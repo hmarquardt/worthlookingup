@@ -32,8 +32,33 @@
       restrictions, uncertainty, Cloudflare resources, outstanding KV configuration),
       src/launches/launch-visibility.md (Phase 2 trajectory/plume inputs and non-goals), providers,
       deployment, agents, readme and the launch boundary readme.
+- [x] Release: index.html comment, footer attribute and visible text versioned together as 2026.10.15.3.
+- [x] Commits d59a51a (engine, ingestion, endpoint), befd10f (interface) and 5eee9df (tests, docs) pushed
+      normally to main; origin/main verified to contain HEAD.
+- [x] GitHub Actions run 38781069146 succeeded end to end: validate (npm ci, 18 regression suites,
+      launch artifact check, Python precision/builders, full browser suite on Chromium/Ubuntu,
+      build, artifact upload) and deploy (Cloudflare Pages, strict production verifier).
+- [x] Production verification: https://worthlookingup.com/api/launches.json returns HTTP 200 with
+      schema worthlookingup.launches/1, 146 launches, served_from committed-feed, source "Launch
+      Library 2" API 2.3.0, retrieved_at and upstream sha256 present, attribution and the rate-limit /
+      commercial-restriction text included, generated_at fresh (X-WLU-Launch-Feed-Age 5 minutes), and
+      stats showing 7 with a published time against 131 with a period only. Deployed HTML is
+      byte-identical to this checkout and still release 2026.10.15.3; /overhead-launches.js,
+      /data/launches/upcoming.json and /src/launches/launch-feed.mjs are all served; the strict
+      verifier passed every redirect chain, the scientific hashes, both workers and the real 404.
+- [x] Live browser acceptance against production: the ROCKET LAUNCHES category loads the real feed
+      ("1 launch with a published time or date in tonight · 96 more announced with a period only"),
+      shows the countdown, both local times, the provider status, the precision sentence, official
+      links and the freshness line, labels visibility unknown on every card, and reports no console
+      errors.
+- [x] The hourly `.github/workflows/launches-data.yml` schedule is registered and active; the same
+      script and `--check` already passed in CI. Its first scheduled run publishes the refreshed
+      artifact (or leaves it untouched when the provider is unavailable).
 - [ ] Outstanding: create the optional `LAUNCHES` KV namespace and binding for cross-colo sharing of an
       on-demand refresh. Not required for correctness; recorded in docs/launches.md.
+- [ ] Note for the next release: local (macOS/Node 26) full-suite teardown can hang after the last test
+      in a multi-spec run. It is pre-existing (the pre-change worktree hangs identically), CI completes
+      normally, and single-spec runs exit cleanly since the launch countdown timer became self-terminating.
 
 ## Completed
 - [x] Inspect source, repository skills, providers, workers, data and test architecture.
