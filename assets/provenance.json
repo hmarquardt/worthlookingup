@@ -1,0 +1,19 @@
+{
+  "assets": [
+    {
+      "paths": [
+        "brand/wordmark.svg",
+        "brand/social.svg",
+        "brand/social.png",
+        "icons/favicon.svg",
+        "imagery/night-sky.svg",
+        "brand/identity.css"
+      ],
+      "creator": "Original artwork created for Worth Looking Up, 2026-10-15",
+      "rights": "Copyright 2026 Hank Marquardt. All rights reserved.",
+      "source": "Created in this repository; no third-party photographs, fonts, textures or reference images.",
+      "description": "Decorative meteor and mountain illustration, not measured sky geometry. Responsive SVG at all viewport sizes; PNG social rendition for crawler compatibility."
+    }
+  ],
+  "photography": "Deferred: source, author and reusable license must be verified before addition."
+}

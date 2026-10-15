@@ -1,0 +1,17 @@
+{
+  "name": "worthlookingup",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 8787",
+    "test": "node scripts/test-science.cjs",
+    "test:browser": "playwright test",
+    "build": "node scripts/build.cjs",
+    "check": "node tests/migration.cjs",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name worthlookingup --branch main"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2",
+    "wrangler": "4.151.0"
+  }
+}

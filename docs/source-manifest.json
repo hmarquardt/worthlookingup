@@ -1,0 +1,25 @@
+{
+  "source_repository": "https://github.com/hmarquardt/junkdrawer",
+  "source_commit": "541a970",
+  "unchanged_files": {
+    "data/overhead/comet-ephemerides.json": "741a153ed074d69f3efbd94d5395485a3218635c8ffba5a5201fe6b6d9b08242",
+    "data/overhead/comets.json": "e604da1158f90cfb337990aaf999050229d3ad862cc31f95721f914cf325c1d9",
+    "data/overhead/meteor-showers.json": "a62d7d6b2efe440e7d6cbcbc61307e168903a46b32d78fdc696480760e2e4b54",
+    "overhead-astro.js": "51787cd1d36320a2f5c058e4e6b6537a160b1af2336023249f35925e64064340",
+    "overhead-celestial-plan.js": "590692c677d20e01456051767959551cb937453d5762e733c7dcde089d99a881",
+    "overhead-celestial-worker.js": "e847aeacd5bdaea087ea22c0ada431e37ab1a8c30c0d5c34ae2e38a77a51f929",
+    "overhead-comets.js": "a21459e92258289283a7279a67bbdd50ec85a7554f89a44d9506270ac35fe7c8",
+    "overhead-engine.js": "8379a1df2ec6b937f023502be2ebed74e19b6595cbcec97798092e38884b2c9a",
+    "overhead-lifecycle.js": "b8e03bda7ee2d615812f6e557ac8e778b213f1022142a3c5fc95179d474f2a3f",
+    "overhead-meteors.js": "3a1ebf238a1a7fa6ca59f05e44cfcea3778f0c728c301834bef0818cffde681d",
+    "overhead-objects.js": "4880cdefa454438278750b013c1017700f2407a948d2be5d4dc49679b013f918",
+    "overhead-opportunities.js": "a8d5a13a5466f2f6160d8f1e2728aa16bf65e4e1d2417d2ca545f620e71f13e2",
+    "overhead-planets.js": "fb0a9656d244c6d712afde8b0dc9a982c36e6082816d90ffbb73098dd15d7f4e",
+    "overhead-trains.js": "a398044de80e9d4985919dc0e919297299198b73e657e3c3eec8a77807552753",
+    "overhead-weekly.js": "abc144ec84cd88d5c73a4c32c992a2c70422c17bcf27ea4f270d976e7325ae1f",
+    "overhead-worker.js": "d8bb9f586a30d7c8aebca254a6bc2bfd56c725e806f9207b9de4131521db4a69",
+    "vendor/overhead/astronomy-2.1.19.min.js": "f41139a87941ea017ab902b954c9389fa27ea72083d7fab4971756d7769d14e6",
+    "vendor/overhead/satellite-6.0.1.min.js": "6fd7487abb99bec37ea2c8d1f5739b59143a6130a00b0faa6c44dd44585aebbf",
+    "vendor/overhead/suncalc-1.9.0.js": "5bfe4127cb91b7436295135d491e2d8abeccacbc8c4d450fb30771183b1e24d2"
+  }
+}

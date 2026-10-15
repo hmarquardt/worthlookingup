@@ -1,0 +1,12 @@
+Copyright (c) 2026 Hank Marquardt. All rights reserved.
+
+Worth Looking Up includes application source extracted from Overhead in the author's
+Junk Drawer repository. No permissive application license was present in that source
+repository. This notice does not grant a new license to that application or its data.
+
+Third-party software retains its original terms:
+- satellite.js 6.0.1: MIT (vendor/overhead/satellite-license.md).
+- SunCalc 1.9.0: BSD-2-Clause (vendor/overhead/suncalc-license).
+- Astronomy Engine 2.1.19: MIT (notice embedded in vendor/overhead/astronomy-2.1.19.min.js).
+- Optional MapLibre GL JS 5.6.1: BSD-3-Clause; https://github.com/maplibre/maplibre-gl-js/blob/v5.6.1/LICENSE.txt.
+Data and map source rights are separate; see docs/providers.md and artifact provenance.
