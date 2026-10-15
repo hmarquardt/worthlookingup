@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-15T22:41:41.494Z",
+ "generated_at": "2026-10-15T23:41:02.636Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,24 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-15T22:41:41.494Z",
-  "sha256": "bfe04e74280fa0affb063d20563c968f0a40d73ca0b197c0dabdd7449c30c7c8",
+  "retrieved_at": "2026-10-15T23:41:02.636Z",
+  "sha256": "67c3f9d80f7ebf37d06b1b0bb5a17cc75a942f517e17976074de738b37138389",
   "pages": 2,
-  "upstream_count": 148,
-  "upstream_records": 148,
+  "upstream_count": 147,
+  "upstream_records": 147,
   "announced_total": 476,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 149,
+  "count": 148,
   "by_status": {
-   "success": 1,
    "scheduled": 6,
    "unconfirmed": 142
   },
   "by_precision": {
-   "minute": 5,
    "second": 2,
+   "minute": 4,
    "hour": 4,
    "day": 7,
    "month": 25,
@@ -43,66 +42,16 @@
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 11,
-  "with_published_date": 18,
+  "with_published_time": 10,
+  "with_published_date": 17,
   "period_only": 131,
   "sites": 20,
-  "providers": 29,
-  "nearest_net": "2026-10-14T11:40:00.000Z",
+  "providers": 28,
+  "nearest_net": "2026-10-16T00:01:05.000Z",
   "window_days": 180,
   "announced_total": 476
  },
  "launches": [
-  {
-   "id": "dfcabb3c-078b-4f5b-a47c-0161f248cee9",
-   "slug": "zhuque-2e-block-2-10-satellites",
-   "name": "Zhuque-2E Block 2 | 10 satellites",
-   "mission": "10 satellites",
-   "mission_type": "Technology",
-   "mission_description": "Ride-share of 10 satellites to sun-synchronous orbit, including: * Guangchuan-03 & 04 (LT-03/04) from LandSpace's subsidiary LandTower for testing and demonstrating LEO communication satellite constellation technologies, including high-speed laser communication nodes/terminals and new-type solar array power systems. * 8 satellites (XSD-39 and XSD-44 through XSD-50) for ADA Space for technology ve…",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Zhuque-2E Block 2",
-   "vehicle_family": "Zhuque",
-   "provider": "LandSpace",
-   "provider_abbrev": "LS",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Area 96A",
-    "latitude": 40.91491,
-    "longitude": 100.245488
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-14T11:40:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-14T11:33:00.000Z",
-    "end": "2026-10-14T12:19:00.000Z"
-   },
-   "last_updated": "2026-10-15T21:18:51.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/dfcabb3c-078b-4f5b-a47c-0161f248cee9/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "df88cfbf-f504-4e11-8370-e33dd6280b5b",
    "slug": "falcon-9-block-5-ussf-481",
@@ -145,7 +94,7 @@
     "start": "2026-10-15T23:44:00.000Z",
     "end": "2026-10-16T03:44:00.000Z"
    },
-   "last_updated": "2026-10-15T21:41:35.000Z",
+   "last_updated": "2026-10-15T23:31:12.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/df88cfbf-f504-4e11-8370-e33dd6280b5b/",
     "info": [],
