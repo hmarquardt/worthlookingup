@@ -80,8 +80,8 @@ detected schedule change.
 | Browser | 15 minutes in the existing bounded cache (`overhead-cache`, IndexedDB, max 32 responses / 7 days) | Fetched only when the ROCKET LAUNCHES category is opened. A stale copy is reused, with its age shown, rather than dropped. |
 | Edge cache (`caches.default`) | 900 s for a served copy, 120 s for a degraded copy, 60 s for an unavailable response | Shared by every visitor in that colo, so visitors never reach the provider. |
 | KV (`LAUNCHES` binding, optional) | Stores the last good feed with `stored_at` | Preferred when it is newer than the committed feed. Without the binding the endpoint still works. |
-| Upstream refresh | Attempted only when the freshest available copy is older than 30 minutes; at most 2 pages plus the announced-total request (3 requests) | Never per visitor, never per request. |
-| Scheduled ingestion | Hourly GitHub Actions workflow; at most 3 launch pages plus the announced-total request (4 requests) | Commits a validated `data/launches/upcoming.json` and deploys it when it changed. |
+| Upstream refresh from Cloudflare | Only when the freshest available copy is **stale** (older than 180 minutes), so a broken scheduled job cannot leave the calendar silently old | At most 2 pages plus the announced-total request. In normal operation the provider is never contacted from Cloudflare: the committed feed is kept current by the scheduled job, and Cloudflare's egress addresses are shared with other tenants, so the provider's per-IP allowance is not spent on routine freshness. |
+| Scheduled ingestion | Hourly GitHub Actions workflow; at most 3 launch pages plus the announced-total request (4 requests) | Commits a validated `data/launches/upcoming.json` and deploys it when it changed. This is the primary freshness mechanism, on its own IP. |
 
 ## Scheduling uncertainty (the part that matters most)
 
@@ -151,7 +151,7 @@ be read as a promise of that capability.
 
 ### Failure behaviour
 
-* Provider 429 → the last good copy is served with `stale: true` and a `stale_reason` naming the rate limit.
+* Provider 429 → the last good copy is served with `stale: true` and a `stale_reason` naming the rate limit. This was observed in production on 2026-10-15: Launch Library 2 rate-limits the shared Cloudflare egress address, so the endpoint was changed to refresh upstream only when its copy is genuinely stale rather than merely older than the refresh interval. The scheduled job, which has its own address, is the primary freshness mechanism.
 * Provider 5xx, timeout, unreachable, malformed payload or an empty page → the same, with the failure named.
 * No copy anywhere → HTTP 200 with `available: false`, an explicit notice ("not an empty schedule") and no launches.
 * A committed feed that fails validation is ignored and replaced by a fresh refresh; it is never served.

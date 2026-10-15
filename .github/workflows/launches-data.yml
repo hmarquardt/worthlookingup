@@ -2,10 +2,13 @@ name: worthlookingup launch schedule
 
 # Refreshes the published launch schedule: data/launches/upcoming.json.
 #
-# This is the server-side ingestion for the ROCKET LAUNCHES category. It runs hourly, writes the
-# artifact atomically only after it validates, and leaves the previous file untouched on any failure, so
-# the site keeps serving the last good schedule. The launch provider (Launch Library 2) is never
-# contacted by a visitor's browser; the Pages endpoint serves this artifact and its own edge cache.
+# This is the server-side ingestion for the ROCKET LAUNCHES category and the primary freshness
+# mechanism, because it runs on its own address: Launch Library 2 rate-limits per address and a 429 was
+# observed from Cloudflare's shared egress addresses in production on 2026-10-15. It runs hourly, writes
+# the artifact atomically only after it validates, and leaves the previous file untouched on any failure,
+# so the site keeps serving the last good schedule. The launch provider is never contacted by a
+# visitor's browser; the Pages endpoint serves this artifact and its edge cache, and refreshes upstream
+# itself only when its copy is stale (older than 180 minutes).
 #
 # One run makes at most 4 upstream requests (up to 3 launch pages of 100 records plus one tiny
 # announced-total request) against a 15-requests-per-hour allowance, and only when the artifact changed

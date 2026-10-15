@@ -514,14 +514,18 @@ function newestFeed(candidates) {
 
 /* Cloudflare ingestion + caching for GET /api/launches.json.
    Visitors never call the provider: the edge cache is shared, the optional KV namespace carries the
-   last good schedule between colos, and the committed feed is the durable seed. A refresh is only
-   attempted when the freshest available copy is older than the refresh interval, and every upstream
-   failure degrades to the last good copy with an explicit stale flag. */
+   last good schedule between colos, and the committed feed (refreshed on a schedule by
+   scripts/refresh-launches.mjs) is the durable seed. The provider is only contacted when the freshest
+   available copy is *stale* — which in normal operation never happens, because the scheduled ingestion
+   keeps the committed feed current. Cloudflare's egress addresses are shared with other tenants, so the
+   provider's per-IP allowance is not something this endpoint should spend on routine freshness; the
+   refresh exists purely so a broken scheduled job cannot leave the calendar silently old. Every failure
+   degrades to the last good copy with an explicit, named stale reason. */
 export async function handleLaunchFeedRequest(request, env = {}, options = {}) {
   const now = options.now ?? Date.now();
   const fetchImpl = options.fetchImpl ?? globalThis.fetch;
   const maxAge = options.maxAgeSeconds ?? 900;
-  const minRefreshMinutes = options.minRefreshMinutes ?? REFRESH_INTERVAL_MINUTES;
+  const refreshAfterMinutes = options.refreshAfterMinutes ?? STALE_AFTER_MINUTES;
   const url = new URL(request.url);
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     return new Response(JSON.stringify({ error: 'method not allowed' }), { status: 405, headers: { 'Content-Type': 'application/json; charset=utf-8', Allow: 'GET, HEAD' } });
@@ -535,7 +539,7 @@ export async function handleLaunchFeedRequest(request, env = {}, options = {}) {
   const best = newestFeed([edge, stored, seeded]);
   const servedFrom = best === edge && edge ? 'edge-cache' : best === stored && stored ? 'kv' : best === seeded && seeded ? 'committed-feed' : 'none';
   const age = best ? feedAgeMinutes(best, now) : null;
-  if (!best || age === null || age >= minRefreshMinutes) {
+  if (!best || age === null || age >= refreshAfterMinutes) {
     try {
       const upstream = await fetchUpstreamLaunches({ fetchImpl, now, maxPages: options.maxPages ?? 2, timeoutMs: options.timeoutMs ?? 20000 });
       // An empty upstream page is a provider failure, not a schedule without launches.

@@ -77,6 +77,17 @@ assert.ok(Number.isFinite(Date.parse(freshBody.generated_at)),'the served feed c
 assert.ok(Number.isFinite(Date.parse(freshBody.served_at)),'the response records when it was served');
 assert.ok(Number.isFinite(Number(freshResponse.headers.get('X-WLU-Launch-Feed-Age'))),'the response reports the feed age');
 assert.equal(freshBody.launches.length,committed.launches.length,'the committed schedule is served intact');
+// A copy that is older than the refresh interval but not yet stale is still served without contacting
+// the provider: Cloudflare's shared egress addresses must not spend the provider's per-IP allowance.
+const middleAged=serve({assets:assetsWithFeed(aged(90)),fetchImpl:upstreamStub({status:500})});
+const middleResponse=await get(feedUrl,{ASSETS:middleAged.assets});
+assert.equal(middleResponse.headers.get('X-WLU-Launch-Feed'),'cached');
+assert.equal(middleAged.stub.calls.length,0,'a 90-minute-old copy does not trigger an upstream request');
+assert.equal((await middleResponse.json()).stale,false,'a 90-minute-old copy is still fresh by policy');
+const nearlyStale=serve({assets:assetsWithFeed(aged(179)),fetchImpl:upstreamStub({status:500})});
+const nearlyResponse=await get(feedUrl,{ASSETS:nearlyStale.assets});
+assert.equal(nearlyStale.stub.calls.length,0,'a copy one minute inside the stale window still does not refresh');
+assert.equal((await nearlyResponse.json()).stale,false);
 
 // 3. A stale copy with a failing provider is served as last-good, with the failure named.
 const serverError=serve({assets:assetsWithFeed(aged(200)),fetchImpl:upstreamStub({status:500})});
@@ -114,8 +125,8 @@ assert.equal(unavailableBody.schema,'worthlookingup.launches/1');
 assert.equal(unavailableBody.source.name,'Launch Library 2','even an unavailable response credits the provider it could not read');
 
 
-// 5. When the copy is older than the refresh interval the endpoint refreshes once, merges, stores in
-//    KV and the edge cache, and then serves the stored copy without asking the provider again.
+// 5. When the copy is stale the endpoint refreshes once, merges, stores in KV and the edge cache, and
+//    then serves the stored copy without asking the provider again.
 const kv=fakeKv();
 const refresh=serve({assets:assetsWithFeed(aged(200)),fetchImpl:upstreamStub({records:fixture.records,announced:473})});
 const refreshed=await get(feedUrl,{ASSETS:refresh.assets,LAUNCHES:kv});
