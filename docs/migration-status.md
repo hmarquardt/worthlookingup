@@ -177,3 +177,15 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Final documentation-only handoff uses [skip ci]; application deployment/CI evidence above refers
   to repair commit 6e914f3. No additional code changes require deployment.
 - Remaining actions for this repair: none.
+
+## Phase 2 photographic discovery — implementation checkpoint
+- Clean main checkout recovered at e413c07; initial sandbox fetch failed on FETCH_HEAD permissions,
+  then authorized fetch succeeded. No uncommitted work existed; no prior work discarded.
+- Release 2026.10.15.4 implements NASA photography, responsive discovery and existing weekly highlight
+  before briefing. All scientific source hashes unchanged. See design.md and phase-2-release.md.
+- Scientific/migration/launch tests passed; existing browser 32 passed, 2 live skips; 3 new homepage
+  tests passed. Python precision 6 passed and both builders/offline comet checks passed.
+- Actual scheduled ingestion run 38788844841 succeeded including publish and feed verification;
+  independently observed fresh committed feed. No KV or credentials created.
+- Next: commit, synchronize/push main, verify complete Actions deployment, exact production assets,
+  redirects, workers and feed, then append final release evidence.

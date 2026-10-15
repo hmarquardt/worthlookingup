@@ -11,6 +11,10 @@ exactly how precise each schedule is, and labels local visibility unknown becaus
 rocket or an illuminated plume needs the ascent trajectory. Launch schedules never enter the satellite
 or celestial scores. See [docs/launches.md](docs/launches.md).
 
+The photographic homepage brings the existing calculated weekly highlight before the detailed briefing.
+All categories remain directly accessible on mobile. See [design patterns](docs/design.md),
+[asset provenance](assets/provenance.json), and [Phase 2 release evidence](docs/phase-2-release.md).
+
 ## Develop and verify
 
 ```sh
@@ -41,6 +45,6 @@ Read [agent instructions](agents.md), [architecture and inventory](docs/migratio
 [scientific reference](docs/overhead.md), and the [launch engine boundary](src/launches/readme.md).
 All repository paths are lowercase, including agents.md, to honor the migration naming rule.
 
-Release: 2026.10.15.3. Canonical production host: https://worthlookingup.com/.
+Release: 2026.10.15.4. Canonical production host: https://worthlookingup.com/.
 Extracted from Overhead without changing the scientific engines; source hashes are recorded
 in docs/source-manifest.json. Reference docs describing old releases are historical.

@@ -92,3 +92,9 @@ strict verifier every 5 seconds, for at most 2 minutes. Every failed attempt is 
 persistent failure exits nonzero; no content or redirect assertion is relaxed. Without --wait a
 manual invocation fails immediately. This was observed in run 38765012826: deploy succeeded, its
 first probe still saw www 200, and an independent subsequent probe passed all ten full chains.
+
+## Photographic homepage release
+The 2026.10.15.4 verifier checks all local responsive WebP/JPEG photo bytes as well as the existing
+brand/social/worker/scientific assets. Asset rights and crops live in assets/provenance.json. See
+[Phase 2 evidence](phase-2-release.md) and [design patterns](design.md). Homepage layout checks run
+in tests/homepage.spec.js. Documentation screenshots are intentionally included under public docs.

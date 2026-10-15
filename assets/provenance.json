@@ -4,7 +4,6 @@
       "paths": [
         "brand/wordmark.svg",
         "brand/social.svg",
-        "brand/social.png",
         "icons/favicon.svg",
         "imagery/night-sky.svg",
         "brand/identity.css"
@@ -12,8 +11,27 @@
       "creator": "Original artwork created for Worth Looking Up, 2026-10-15",
       "rights": "Copyright 2026 Hank Marquardt. All rights reserved.",
       "source": "Created in this repository; no third-party photographs, fonts, textures or reference images.",
-      "description": "Decorative meteor and mountain illustration, not measured sky geometry. Responsive SVG at all viewport sizes; PNG social rendition for crawler compatibility."
+      "description": "Original decorative meteor and mountain artwork, not measured sky geometry. Social SVG is the original illustration alternative."
+    },
+    {
+      "paths": [
+        "imagery/earth-at-night-640.webp",
+        "imagery/earth-at-night-1280.webp",
+        "imagery/earth-at-night-1920.webp",
+        "imagery/earth-at-night.jpg",
+        "brand/social.png"
+      ],
+      "creator": "NASA / Rick Mastracchio, Expedition 39",
+      "source": "https://images.nasa.gov/details/iss039e009160",
+      "original_url": "https://images-assets.nasa.gov/image/iss039e009160/iss039e009160~large.jpg",
+      "metadata_url": "https://images-api.nasa.gov/search?nasa_id=iss039e009160",
+      "rights": "U.S. government NASA astronaut photograph; NASA informational media use guidelines apply. No third-party copyright credit in catalog. No NASA endorsement implied.",
+      "license_url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "attribution": "Photo: NASA / Rick Mastracchio; credit shown and linked on homepage.",
+      "modifications": "WebP at widths 640, 1280, 1920 and 1280\u00d7851 JPEG fallback. CSS cover crop and contrast overlay. Social PNG crops/resizes photo with original brand typography and credit.",
+      "acquired": "2026-10-15",
+      "usage": "Contextual homepage photograph and social sharing preview; not a local aurora forecast."
     }
   ],
-  "photography": "Deferred: source, author and reusable license must be verified before addition."
+  "photography": "One verified NASA astronaut photograph served locally. Original illustration retained as fallback. No unverified third-party photography."
 }
