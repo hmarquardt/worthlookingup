@@ -95,3 +95,25 @@ deployed Worker 0522afb2 successfully, then probed two seconds after deployment 
 www routing. Independent strict production verification subsequently passed all ten HTTP/HTTPS
 chains plus deployed asset hashes. Adding a bounded 2-minute full-verification retry in CI to handle
 route propagation; persistent failures still fail. No scientific/application changes.
+
+### Workflow repair completed
+- Repair commits c111206c2f2e522aa3bdb75fe0e916411e35cb96 and
+  6e914f343f79a084982faf5ed34021674cbd5a91 pushed normally and verified on origin/main.
+- Run https://github.com/hmarquardt/worthlookingup/actions/runs/38765797569 succeeded:
+  validation (26 browser passes, 2 intentional live-source skips; scientific/Python/redirect checks),
+  artifact upload/download with upgraded actions, Cloudflare deployment, strict post-deploy verifier.
+- Deployed application artifact: https://2dfd6328.worthlookingup.pages.dev. Canonical apex remains
+  https://worthlookingup.com. Both hostnames are active; earlier migration DNS/CI-secret blockers
+  are resolved by the existing infrastructure configuration.
+- Independent strict production verifier passed after the successful CI deployment, including
+  deployed HTML/library/scientific dataset hashes, application workers, branding/tracker/transfer
+  bytes, real missing-file 404 and all ten redirect chains.
+- HTTPS www ordinary paths → 301 same path on HTTPS apex → 200. Legacy /overhead.html on either
+  HTTPS hostname → 301 https://worthlookingup.com/ → 200. HTTP first upgrades to HTTPS, then
+  canonicalizes/normalizes as required. Encoded/repeated/empty query values are preserved.
+- No astronomical calculations, generated scientific data, browser application behavior or UI changed.
+  Worker gateway was tested in the actual local Pages runtime as well as deterministic regressions.
+- All jobs pin ubuntu-24.04; action runtimes and tooling Node are 24. Ubuntu26 remains untested.
+- Final documentation-only handoff uses [skip ci]; application deployment/CI evidence above refers
+  to repair commit 6e914f3. No additional code changes require deployment.
+- Remaining actions for this repair: none.
