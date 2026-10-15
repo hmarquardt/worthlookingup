@@ -37,7 +37,12 @@ jobs:
           cache: npm
 
       - name: Record the artifact as it is committed
-        run: sha256sum data/launches/upcoming.json | tee /tmp/before.sha256
+        run: |
+          if [ -f data/launches/upcoming.json ]; then
+            sha256sum data/launches/upcoming.json | tee /tmp/before.sha256
+          else
+            echo 'no committed launch artifact yet' | tee /tmp/before.sha256
+          fi
 
       - name: Refresh the launch schedule
         id: launches
