@@ -8,6 +8,8 @@
     "test:browser": "playwright test",
     "build": "node scripts/build.cjs",
     "check": "node tests/migration.cjs",
+    "launches:refresh": "node scripts/refresh-launches.mjs",
+    "launches:check": "node scripts/refresh-launches.mjs --check",
     "deploy": "npm run build && wrangler pages deploy dist --project-name worthlookingup --branch main"
   },
   "devDependencies": {

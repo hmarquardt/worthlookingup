@@ -45,7 +45,15 @@ assert.equal(spawnSync(process.execPath,['scripts/build.cjs'],{stdio:'inherit'})
 for(const forbidden of ['.git','.env','tests','tools','node_modules','package.json','agents.md'])assert.ok(!fs.existsSync(path.join('dist',forbidden)),forbidden+' leaked into deployment');
 assert.ok(fs.existsSync('dist/404.html'));
 assert.match(fs.readFileSync('dist/_redirects','utf8'),/^\/overhead\.html https:\/\/worthlookingup.com\/ 301$/m);
-assert.equal(fs.readFileSync('dist/_worker.js','utf8'),fs.readFileSync('scripts/pages-worker.mjs','utf8'));
+assert.equal(fs.readFileSync('dist/_worker.js','utf8'),fs.readFileSync('pages-worker.mjs','utf8'));
+// The staged Worker must resolve every relative import inside the deployment directory.
+for(const match of fs.readFileSync('dist/_worker.js','utf8').matchAll(/from\s+'(\.[^']+)'/g)){
+  const target=path.resolve('dist',match[1]);
+  assert.ok(target.startsWith(path.resolve('dist')+path.sep),'Worker import escapes the deployment: '+match[1]);
+  assert.ok(fs.existsSync(target),'Worker import is not staged: '+match[1]);
+}
+assert.ok(fs.existsSync('dist/data/launches/upcoming.json'),'the launch feed is not staged');
+assert.ok(fs.existsSync('dist/overhead-launches.js'),'the launch calendar module is not staged');
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){
   if(['.git','node_modules','.wrangler','test-results','playwright-report'].includes(e.name))continue;
   assert.equal(e.name,e.name.toLowerCase(),'Non-lowercase path '+e.name);

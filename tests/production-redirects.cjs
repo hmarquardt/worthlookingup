@@ -1,6 +1,6 @@
 const assert=require('node:assert/strict');
 (async()=>{
-  const worker=(await import('../scripts/pages-worker.mjs')).default;
+  const worker=(await import('../pages-worker.mjs')).default;
   const {verifyRedirectChain,verifyProductionRedirects}=await import('../scripts/verify-redirects.mjs');
   let served=0;
   const env={ASSETS:{fetch:async request=>{served++;return new Response('asset:'+new URL(request.url).pathname);}}};

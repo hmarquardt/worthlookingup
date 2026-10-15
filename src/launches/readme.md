@@ -1,8 +1,24 @@
-# Future launch engine
+# Launch engine
 
-No launch schedules are implemented in this release. Normalize provider schedule records here,
-with source timestamp, launch window, status, pad coordinates, vehicle and confidence. A future
-Cloudflare cache may serve api.worthlookingup.com; respect Launch Library 2 terms and rate limits.
-Feed a separate opportunity adapter into the UI. Powered ascent, plume illumination and regional
-visibility need independent geometry and confidence models. Never pass a launch into SGP4 or
-present a launch time as a precise local visibility prediction. Preserve uncertain windows.
+The launch schedule boundary. `launch-feed.mjs` is the single implementation of provider access,
+schedule normalization, scheduling precision, status interpretation, duplicate handling, feed
+validation and the cache/stale policy. The Pages Worker (`pages-worker.mjs` at the repository root),
+the scheduled refresh job (`scripts/refresh-launches.mjs`) and the Node regression tests all import it,
+so no schedule rule is implemented twice.
+
+`launch-visibility.md` is the design for a later trajectory-aware visibility and plume model, including
+the inputs it needs and what must never be claimed without them.
+
+Rules this boundary enforces:
+
+* A launch is never given a precise time the provider did not publish. LL2's coarse precisions carry
+  the END of the announced period as the timestamp, so those records are marked approximate and are
+  never treated as a date.
+* An unknown status stays unknown; it is never promoted to "scheduled".
+* Nothing here produces visibility, brightness, bearing, elevation, duration or probability. Launch
+  schedules never enter SGP4 or the satellite/celestial scores.
+* An upstream failure never empties the calendar: the last good copy is served with an explicit stale
+  reason, and an unavailable feed is described as missing rather than empty.
+
+The published feed is `data/launches/upcoming.json` (schema `worthlookingup.launches/1`), refreshed on a
+schedule and served at `GET /api/launches.json`. See [docs/launches.md](../../docs/launches.md).
