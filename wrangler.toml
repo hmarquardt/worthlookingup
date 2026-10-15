@@ -1,3 +1,17 @@
 name = "worthlookingup"
 pages_build_output_dir = "dist"
 compatibility_date = "2026-10-15"
+
+# The launch schedule endpoint (GET /api/launches.json) works without any binding: it serves the edge
+# cache, the committed feed staged at dist/data/launches/upcoming.json and its own bounded upstream
+# refresh. Binding a KV namespace is optional and only adds cross-colo sharing of that refresh and of
+# the last good feed. To enable it:
+#
+#   npx wrangler kv namespace create LAUNCHES
+#
+# then uncomment the binding below with the returned id and deploy. See docs/launches.md.
+#
+# [[kv_namespaces]]
+# binding = "LAUNCHES"
+# id = "<id from wrangler kv namespace create LAUNCHES>"
+
