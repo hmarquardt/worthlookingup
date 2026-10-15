@@ -76,3 +76,10 @@ All workflows pin ubuntu-24.04 until Ubuntu 26 support is tested. Stable action 
 against their official releases/action manifests: checkout@v7, setup-node@v7, setup-python@v7,
 upload-artifact@v7, download-artifact@v8, all running node24. Application/tooling Node is explicitly 24,
 including the data workflow's deploy step. Future upgrades must retain the host/path/query checks.
+
+Immediately after an upload Cloudflare can briefly serve the previous routing configuration from
+some regions. CI uses `verify-production.mjs https://worthlookingup.com --wait` to retry the complete
+strict verifier every 5 seconds, for at most 2 minutes. Every failed attempt is reported and a
+persistent failure exits nonzero; no content or redirect assertion is relaxed. Without --wait a
+manual invocation fails immediately. This was observed in run 38765012826: deploy succeeded, its
+first probe still saw www 200, and an independent subsequent probe passed all ten full chains.

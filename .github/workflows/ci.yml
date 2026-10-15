@@ -55,4 +55,4 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: b1aa310aa0a1638d72b8b086a21e557c
-      - run: node scripts/verify-production.mjs https://worthlookingup.com
+      - run: node scripts/verify-production.mjs https://worthlookingup.com --wait

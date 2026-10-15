@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import {verifyProductionRedirects} from './verify-redirects.mjs';
+import {verifyUntilReady} from './verify-readiness.mjs';
 const base=new URL(process.argv[2]||'https://worthlookingup.com/');
+async function verify() {
 async function get(file){
   const response=await fetch(new URL(file,base),{signal:AbortSignal.timeout(30000)});
   assert.equal(response.status,200,file+' HTTP status');return Buffer.from(await response.arrayBuffer());
@@ -24,3 +26,7 @@ if(base.hostname==='worthlookingup.com'){
   for (const chain of await verifyProductionRedirects()) console.log('Redirect:',JSON.stringify(chain));
 }
 console.log('PASS: HTTPS deployed HTML, release, scientific hashes, both workers and data, brand/transfer/analytics bytes, real 404'+(base.hostname==='worthlookingup.com'?', permanent canonical/legacy redirects preserve queries and nonlegacy paths':'')+' at '+base.origin);
+
+}
+if(process.argv.includes('--wait')) await verifyUntilReady(verify);
+else await verify();

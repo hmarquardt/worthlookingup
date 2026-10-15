@@ -88,3 +88,10 @@ The original source tracked diff was confirmed empty. No credentials were create
 - All workflow runners pin ubuntu-24.04; official stable actions use Node24 and setup-node selects 24.
 - Added behavior regressions for the Worker and verifier, including encoded/repeated/empty queries and malformed chains. npm test passed all scientific/static/redirect regressions. Actual Wrangler Pages runtime smoke passed: www docs/legacy 301 to HTTPS apex, query preservation, static worker 200 with headers, missing worker 404.
 - Next action: finish local checks, pre-push synchronization, commit/push, then verify the next Actions validation/deployment and actual apex/www production chains.
+
+### Deployment readiness follow-up
+Repair c111206 pushed and verified. Run 38765012826 passed full validation (Node24/Ubuntu24.04),
+deployed Worker 0522afb2 successfully, then probed two seconds after deployment and still saw prior
+www routing. Independent strict production verification subsequently passed all ten HTTP/HTTPS
+chains plus deployed asset hashes. Adding a bounded 2-minute full-verification retry in CI to handle
+route propagation; persistent failures still fail. No scientific/application changes.

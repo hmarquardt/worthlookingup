@@ -36,5 +36,13 @@ const assert=require('node:assert/strict');
   await assert.rejects(verifyRedirectChain(start,end,async()=>new Response(null,{status:301})));
   // A canonical self-redirect must fail instead of exhausting an unbounded fetch loop.
   await assert.rejects(verifyRedirectChain('https://worthlookingup.com/'+query,end,async url=>Response.redirect(url.href,301)),/loop/);
+  const {verifyUntilReady}=await import('../scripts/verify-readiness.mjs');
+  let clock=0,attempts=0;
+  const timing={timeoutMs:10,intervalMs:5,now:()=>clock,wait:async ms=>{clock+=ms;},log:()=>{}};
+  assert.equal(await verifyUntilReady(async()=>{if(++attempts<3)throw Error('old deployment');return 'strict checks passed';},timing),'strict checks passed');
+  assert.equal(attempts,3);
+  clock=0;attempts=0;
+  await assert.rejects(verifyUntilReady(async()=>{attempts++;throw Error('persistent redirect failure');},timing),/persistent redirect failure/);
+  assert.equal(attempts,3,'Persistent failures must exhaust the deadline and fail');
   console.log('PASS: canonical/legacy redirects, static delegation, HTTP upgrade chains, encoded/repeated/empty queries; verifier rejects bad hosts, paths, protocols, status, loops and missing Location.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
