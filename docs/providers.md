@@ -2,6 +2,7 @@
 
 | Provider | Terms / operational decision |
 | --- | --- |
+| Launch Library 2 (The Space Devs) | [Launch Library 2](https://thespacedevs.com/llapi) verified 2026-10-15: API version `2.3.0` live (`2.2.0` returns HTTP 404 and is recorded as retired); `limit` caps at 100 records; free unauthenticated access is **15 requests per hour** and higher rates require a paid Patreon tier. Attribution ("Launch data: The Space Devs Launch Library 2") is carried inside every feed and shown in the calendar. Free access is **not** a commercial redistribution grant: the restriction travels in `source.rights` and is repeated in the UI. Server-side only: the scheduled refresh makes at most 3 requests per run and the Pages endpoint never refreshes more often than every 30 minutes, so visitors never reach the provider. The archived community SpaceX API is not used. Review terms before monetization. |
 | Open-Meteo | [Terms](https://open-meteo.com/en/terms) verified: free API noncommercial only, <10,000 daily / 5,000 hourly / 600 minute calls; data CC BY 4.0 attribution retained. Paid commercial plan required before monetization. Current product has no ads/subscriptions. Coordinates appear in provider requests/logs. |
 | CelesTrak | [GP formats](https://celestrak.org/NORAD/documentation/gp-data-formats.php) verified; OMM preserves wider catalog IDs. Preserve 4h GP / 2h SupGP caches, backoff/fallback; no blanket commercial redistribution grant inferred. Review [data](https://celestrak.org/NORAD/elements/) before scale-up. |
 | Wikidata | [Data access](https://www.wikidata.org/wiki/Wikidata:Data_access): structured data CC0, query service limits apply; resolve selected identifiers only, 21d bounded cache. |
@@ -13,5 +14,6 @@
 | Analytics Lite | Locally hosted source; independent lab.aismallbizguru.com collector reused with worthlookingup identity. Browser IDs and page/device metadata sent; Do Not Track respected. No Junk Drawer hosting dependency. Collector-side retention/administration belongs to shared service. |
 
 This is an engineering inventory, not a claim that all provider contracts authorize commercial
-redistribution. Revisit terms before monetization or substantially increased traffic. No API/R2
-service is provisioned for reserved api/data hostnames.
+redistribution. Revisit terms before monetization or substantially increased traffic. The only
+Cloudflare resource added by the launch feature is an optional KV namespace (`LAUNCHES`); no API/R2
+service, hostname or DNS record was provisioned for the reserved api/data hostnames.

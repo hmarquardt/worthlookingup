@@ -3,7 +3,9 @@
 Cloudflare account b1aa310aa0a1638d72b8b086a21e557c; Pages project worthlookingup;
 zone a592818531712408128a88d9dfe3cbbc. Static host worthlookingup.pages.dev.
 Canonical https://worthlookingup.com; the Pages Worker permanently redirects www while preserving paths/queries, and /overhead.html on either host becomes the canonical root with its query intact.
-No API hostname, R2 bucket or duplicate analytics backend was created.
+The same Worker serves the launch schedule at `GET /api/launches.json` (edge cache → optional `LAUNCHES`
+KV → committed `data/launches/upcoming.json` → bounded upstream refresh); see
+[launches.md](launches.md). No API hostname, R2 bucket or duplicate analytics backend was created.
 
 ## Publish
 
@@ -21,6 +23,13 @@ OSM Referer; revalidation prevents unversioned worker/engine caches from mixing 
 prevents SPA fallback from returning index.html for missing workers/assets. Release is in index.html.
 New Wrangler initially delegated Pages creation to Workers; project was deliberately created on
 existing Pages with --force once. Do not add --force to deployment commands.
+
+`pages-worker.mjs` lives at the repository root (not in `scripts/`) so its single relative import,
+`./src/launches/launch-feed.mjs`, resolves identically in the checkout and inside the deployment, where
+`scripts/build.cjs` stages the same file at `dist/src/launches/launch-feed.mjs`. Wrangler bundles
+`_worker.js` and that import at deploy time (bundling is on by default for `wrangler pages deploy`), so
+no build step, flag or new dependency is needed. `npm run check` asserts that `dist/_worker.js` is a
+byte copy of `pages-worker.mjs` and that every relative import it contains resolves inside `dist`.
 
 ## Custom domains and DNS
 

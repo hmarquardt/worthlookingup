@@ -1,5 +1,40 @@
 # Migration status — 2026-10-15
 
+## Rocket launch schedules (Phase 1) — 2026-10-15
+- [x] Inspected the launch boundary (src/launches/readme.md), the existing Cloudflare setup and the UI.
+- [x] Verified the provider before implementing: Launch Library 2 API 2.3.0 is live, 2.2.0 returns 404,
+      15 unauthenticated requests/hour, `limit` caps at 100, attribution and the commercial-use
+      restriction recorded in docs/providers.md and carried inside every feed.
+- [x] Launch engine (src/launches/launch-feed.mjs): normalization, scheduling precision (coarse LL2
+      precisions carry the END of the announced period and are never treated as a date), provider
+      status, duplicate handling, postponement detection, validation, bounded upstream reads, merge and
+      the cache/stale policy. Shared by the Worker, the scheduled job and the tests — one implementation.
+- [x] Server-side scheduled ingestion (scripts/refresh-launches.mjs + .github/workflows/launches-data.yml,
+      hourly) publishes data/launches/upcoming.json atomically and refuses to publish invalid or empty data.
+- [x] Cloudflare endpoint GET /api/launches.json in pages-worker.mjs: edge cache → optional `LAUNCHES` KV
+      → committed feed → bounded upstream refresh (max 2 pages, at most every 30 minutes), explicit stale
+      reasons for 429/5xx/timeout/malformed/empty, and an honest unavailable response when nothing exists.
+      Verified in the real Wrangler Pages runtime: first request `served_by upstream` (live LL2 fetch),
+      second `served_by cached` from the edge cache, static feed and module assets served, 404 preserved,
+      www/legacy redirects unchanged.
+- [x] UI: a ROCKET LAUNCHES category sharing the existing TONIGHT / NEXT 7 DAYS / NEXT 90 DAYS windows,
+      mission/vehicle/site/local time/countdown/status/official links/source freshness, a period-only
+      group for schedules with no published date, and per-launch proximity plus Sun-altitude context.
+      Local visibility is always labelled unknown; launch schedules never enter satellite or celestial
+      scoring; the feed is fetched only when the category is opened, and the countdown timer stops itself
+      so the satellite page keeps its previous performance profile.
+- [x] Tests: tests/launches-feed.cjs, tests/launches-relevance.cjs, tests/launches-worker.cjs (all in
+      `npm test`) and tests/launches.spec.js (browser: on-demand loading, precision, countdown, staleness,
+      missing/empty/foreign feeds, mobile widths, both themes, keyboard use, satellite view unchanged).
+      Fixtures are captured provider records with documented mutations. `npm test` passes (18 suites),
+      `npm run test:browser` passes 32 with the 2 intentional live-source skips.
+- [x] Docs: docs/launches.md (provider, cache intervals, failure behaviour, rate limits, commercial
+      restrictions, uncertainty, Cloudflare resources, outstanding KV configuration),
+      src/launches/launch-visibility.md (Phase 2 trajectory/plume inputs and non-goals), providers,
+      deployment, agents, readme and the launch boundary readme.
+- [ ] Outstanding: create the optional `LAUNCHES` KV namespace and binding for cross-colo sharing of an
+      on-demand refresh. Not required for correctness; recorded in docs/launches.md.
+
 ## Completed
 - [x] Inspect source, repository skills, providers, workers, data and test architecture.
 - [x] Inventory and conservative migration architecture: migration.md.

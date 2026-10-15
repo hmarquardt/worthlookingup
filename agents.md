@@ -17,7 +17,10 @@ because of that rule; agents should read it explicitly (some tools discover only
 - data/overhead/*.json and relevant fixtures are pipeline output: change tools/overhead_*.py,
   validate, regenerate atomically. Never hand-edit facts or replace automated refresh commits.
 - Retained Overhead globals/schema/storage names are compatibility identifiers, not host coupling.
-- Future launches: src/launches; separate schedule, ascent/plume geometry and confidence model.
+- Future launches: src/launches (schedule engine, feed schema and the Phase 2 visibility design);
+  overhead-launches.js interprets schedules for the browser; pages-worker.mjs serves the feed and
+  scripts/refresh-launches.mjs refreshes it on a schedule. Launch schedules never enter satellite or
+  celestial scoring, and local visibility is always labelled unknown without flight geometry.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.
@@ -45,7 +48,7 @@ Version index.html comment, footer attribute and visible text together as YYYY.M
 shipping UI changes. CI and production checks must inspect deployed content, not infer from push.
 
 ## Cloudflare
-Project worthlookingup, canonical apex, www 301 preserves path/query; legacy /overhead.html becomes the canonical root. scripts/pages-worker.mjs is packaged as dist/_worker.js for host redirects (Pages _redirects supports paths only), delegating other requests to ASSETS. npm run build stages only
+Project worthlookingup, canonical apex, www 301 preserves path/query; legacy /overhead.html becomes the canonical root. pages-worker.mjs (repository root) is packaged as dist/_worker.js for host redirects (Pages _redirects supports paths only) and for GET /api/launches.json, delegating other requests to ASSETS. npm run build stages only
 public files; deploy dist, never repository root. Existing independent analytics collector is shared;
 site identity is worthlookingup. No Junk Drawer-hosted runtime assets or APIs. Read docs/deployment.md
 for credentials/CI requirements. Never commit credentials or rotate them without a concrete need.
