@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-15T17:50:56.736Z",
+ "generated_at": "2026-10-15T18:49:55.904Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-15T17:50:56.736Z",
-  "sha256": "86f5b93d1f77a925d341b8332e83e025584c28d4d6392ddb276ba7a2649fd317",
+  "retrieved_at": "2026-10-15T18:49:55.904Z",
+  "sha256": "55b79e200451d1b31e1dbf36161dfc96ff67a6e029c2af0283189a06a0a8ed59",
   "pages": 2,
   "upstream_count": 146,
   "upstream_records": 146,
@@ -36,13 +36,14 @@
   "by_precision": {
    "minute": 5,
    "second": 2,
-   "day": 8,
+   "hour": 1,
+   "day": 7,
    "month": 25,
    "year": 75,
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 7,
+  "with_published_time": 8,
   "with_published_date": 15,
   "period_only": 131,
   "sites": 20,
@@ -325,32 +326,38 @@
     "longitude": 177.865826
    },
    "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
     "kind": "unconfirmed"
    },
-   "net": "2026-10-21T00:00:00.000Z",
+   "net": "2026-10-21T05:00:00.000Z",
    "precision": {
-    "kind": "day",
-    "exact": false,
+    "kind": "hour",
+    "exact": true,
     "dated": true,
-    "countdown": false,
-    "id": 5,
-    "name": "Day"
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
    },
    "window": {
-    "start": "2026-10-21T00:00:00.000Z",
-    "end": "2026-10-21T00:00:00.000Z"
+    "start": "2026-10-21T05:00:00.000Z",
+    "end": "2026-10-21T08:45:00.000Z"
    },
-   "last_updated": "2026-10-12T23:33:06.000Z",
+   "last_updated": "2026-10-15T17:54:06.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-21T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 300,
+    "detected_at": "2026-10-15T18:49:55.904Z"
+   }
   },
   {
    "id": "e2886a96-5ce9-4f45-872f-4e25a00be837",
