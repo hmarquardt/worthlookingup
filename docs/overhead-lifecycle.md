@@ -1,5 +1,7 @@
 # Overhead lifecycle hardening — 2026.09.08.9
 
+> Historical Overhead technical reference. The migrated entry point is [index.html](../index.html); current product, provider, release and deployment decisions are in [migration.md](migration.md). Older release/test/deployment claims below describe the source project, not new production verification.
+
 **Follow-up, .10:** subsequent field observation and a full live-source UI trace reproduced the missing presentation mechanism: score-zero ISS ranked 136th, excluded by the six-row limit. See [the presentation repair and exact weather audit](overhead-awareness.md). The original .9 investigation below is preserved as history; no malformed timing was needed to reproduce the UI failure.
 
 ## Field report: what is and is not reproduced

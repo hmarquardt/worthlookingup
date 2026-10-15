@@ -44,6 +44,6 @@ test('HTTP artifact loads both workers, has no collection dependency, and transf
     expect(await page.evaluate(()=>__OVERHEAD_TEST__.state.favorites)).toEqual(['25544']);
     expect(missing).toEqual([]);expect(errors).toEqual([]);
     expect(requests.filter(url=>/hmarquardt\.github\.io\/junkdrawer|junkdrawer\.(com|pages\.dev)/i.test(url))).toEqual([]);
-    await page.screenshot({path:'/private/tmp/worthlookingup-mobile.png',fullPage:true});
+    await page.screenshot({path:'/tmp/worthlookingup-mobile.png',fullPage:true});
   }finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
 });

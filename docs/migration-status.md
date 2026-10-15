@@ -1,38 +1,69 @@
-# Migration status
+# Migration status — 2026-10-15
 
-## Checklist
-- [x] Inspect source, operational skills, workers, tests, providers and Cloudflare access.
-- [x] Establish dependency inventory and architecture in migration.md.
-- [x] Extract newest committed source and generated data without touching original app.
-- [ ] Adapt tests; verify scientific behavior and worker imports.
-- [x] Brand homepage, assets, analytics and storage transfer.
-- [ ] Add governance, CI and static deployment packaging.
-- [ ] Initial commit, ordinary push and remote verification.
-- [ ] Cloudflare deployment and apex/www acceptance.
+## Completed
+- [x] Inspect source, repository skills, providers, workers, data and test architecture.
+- [x] Inventory and conservative migration architecture: migration.md.
+- [x] Extract source commit 541a9701b1bf7ccd8acabbacb9cf7ff146e47418 without changing original checkout.
+- [x] Preserve scientific modules, workers, libraries and generated data exactly; source-manifest.json holds hashes.
+- [x] Independent index.html, wordmark/favicon/original responsive sky illustration/social PNG, asset provenance.
+- [x] Independent worthlookingup analytics identity, collector HTTP 204 verified on deployed page.
+- [x] Validated preference export/import, old-origin export instructions, privacy/provider/launch-boundary docs.
+- [x] Lowercase agents.md governance, CI, scientific tests and independently owned data refresh workflow.
+- [x] Explicit static packaging, 404 handling, revalidation headers and canonical/www redirect configuration.
+- [x] Initial commit d08b753a7abd7f8100220916dfc16470543a9de6 pushed to main; remote ls-remote and git-sync verify match.
+- [x] Pages project worthlookingup and both custom domains created; 45 static files deployed.
+- [x] HTTPS artifact bytes verified at https://worthlookingup.pages.dev (first deployment 4c3d7b1d).
+- [ ] Complete final browser/CI validation and publish presentation portability fixes.
+- [ ] Activate and verify apex/www DNS and TLS/redirect.
 
-## Decisions
-Preserve engine filenames/globals/data schema and storage keys. New entry index.html. Original vector imagery fallback; no unlicensed photography. Lowercase paths including documentation filenames. Canonical apex, redirect www. No API/R2 provisioning.
+## Decisions and files
+Flat scientific module paths, Overhead globals, storage names and schema identifiers retained for
+compatibility. No Junk Drawer-hosted runtime dependency. Direct providers retained; no API/R2
+infrastructure created. All new filesystem paths lowercase, including agents.md, license.txt and
+these documentation files. Original vector art is a production fallback; photography deferred until
+verified licensed. No application software license grant fabricated (source had no root license).
+92 files in initial commit: application/workers, vendor notices, generated data, fixtures/tests,
+builders, docs, original assets, transfer module, Git helper, CI and deployment configuration.
 
-## Evidence and blockers
-Source local 4cc4467, origin/main newest 541a970 after successful fetch (one automated data commit ahead). Original checkout has four unrelated untracked files: preserve. New main unborn, no remote configured. GitHub CLI not authenticated; Git transport and connected GitHub tooling still to inspect. Cloudflare OAuth account b1aa310aa0a1638d72b8b086a21e557c has Pages/workers access; DNS write scope not shown.
+## Tests and evidence
+- npm install: 0 reported vulnerabilities.
+- npm test: all scientific/migration suites passed, including 116 orbital passes/four ISS references,
+  4,725 Horizons comparisons, 20 train scenarios, 16 weekly cases + 576 score combinations.
+- Python: 6 precision tests passed; comet --check, comet --no-network, meteor --check passed.
+- Full local browser run: 25 passed, 2 intentionally skipped live-incident tests, 1 failed on
+  footer height (241px vs inherited <220px). Privacy text moved to linked policy, final recheck pending.
+- Migration HTTP browser test passed: worker imports, mobile widths/themes, no missing assets,
+  validated import/export and origin independence. Celestial worker and inline plan match.
+- Theme geometry assertion uses document coordinates to remain valid after keyboard focus scrolls.
+- Initial GitHub CI: scientific/Python checks passed, browser failed because inherited screenshot
+  paths used macOS-only /private/tmp plus footer height; screenshot paths now portable /tmp.
+- Original cross-history frozen pixel baseline replaced by retained theme/state/contrast/geometry
+  checks: independent repository has no historical commit, branding intentionally differs.
+- First deployed HTML/assets/workers/libraries/data match local byte/hash checks; missing file is 404.
+- Live deployed Chrome: 414 orbital objects, 2,421 passes, worker active, weather and CelesTrak HTTP 200,
+  analytics worthlookingup accepted HTTP 204, no page errors or application source errors.
+- Original Junk Drawer tracked diff remains empty; four pre-existing untracked files preserved.
 
-## Changed files
-Initial architecture and this checklist. No application changes yet.
+## Git and deployment
+Branch main, origin git@github.com:hmarquardt/worthlookingup.git. Initial upstream established by
+ordinary git push -u origin main after verifying empty remote; no force/reset/clean. First commit
+verified on remote. Presentation/test portability correction commit pending at this checkpoint.
+Release currently being finalized: 2026.10.15.2; first deployed artifact was 2026.10.15.1.
+Canonical intended https://worthlookingup.com; currently verified accessible deployment is
+https://worthlookingup.pages.dev (https://4c3d7b1d.worthlookingup.pages.dev).
 
-## Tests
-Not run yet.
+## External blockers
+1. Cloudflare domains both pending: exact API error “CNAME record not set”. Existing OAuth can manage
+   Pages but DNS records API returns 403. Apex HTTPS returned 522, www request timed out. Add proxied
+   CNAME @ and www → worthlookingup.pages.dev in zone a592818531712408128a88d9dfe3cbbc, then verify
+   both hosts and permanent www path/query redirect. No credentials created/rotated.
+2. Unattended deployment needs an existing Pages write token set as GitHub secret CLOUDFLARE_API_TOKEN
+   and repository variable CLOUDFLARE_DEPLOY_ENABLED=true. Until enabled, publish after data refreshes
+   with npm run deploy. Daily bot includes same-workflow deploy because bot pushes do not trigger CI.
+3. Commercial release needs Open-Meteo commercial plan and review of COBS/calendar redistribution;
+   detailed rights/attribution limits in providers.md. Current product has no ads/subscriptions.
 
 ## Exact next action
-Extract targeted tracked files from source origin/main snapshot, adapt tests to index.html, run deterministic scientific suites.
-
-## Extraction milestone
-Newest source 541a970 extracted via git archive into a temporary snapshot; original application files not changed. 13 scientific JS modules/workers, three vendored libraries, three data artifacts, all Overhead suites/fixtures, three Python builders and reference docs copied. Source hashes recorded. Original vector hero/wordmark/favicon and social SVG added; PNG rendition pending. Independent analytics identity, transfer UI and privacy/provider docs added. npm install passed (0 vulnerabilities). npm test passed all existing scientific suites; migration suite still being added. Git SSH read access to empty target verified (ls-remote exit 0), gh login unavailable but unnecessary for SSH push. Cloudflare zone active a592818531712408128a88d9dfe3cbbc; Pages creation in progress.
-
-Exact next action: complete migration checks/CI, run all browser suites and Python checks, render social PNG, stage and deploy public bundle.
-
-## Before initial commit
-Application extraction, branding, provenance/license notices, independent analytics client identity, explicit bounded preference transfer, governance, deploy packaging, CI and refresh workflow complete. New migration static and HTTP browser checks pass. Python: all 6 precision cases and three offline artifact validation commands passed. Full browser rerun underway; worker/inline parity now passes after adapting inherited HTTP allowlist to index.html. Original frozen git-history pixel test retired because old history is absent and intentional branding differs; existing geometry/theme/contrast/state assertions retained.
-
-Cloudflare Pages project worthlookingup created; apex and www attached (initializing). DNS API list returned 403 with existing OAuth token; exact CNAME records documented in deployment.md. No DNS edits or credentials created. Production has not yet been uploaded. CI unattended deploy requires existing Pages token as GitHub secret and enable variable; not configured.
-
-Git: main is unborn, target remote verified empty by SSH. First push establishes upstream; skip established-history sync gate until then. Exact next action: initial commit and git push -u origin main, then publish dist to Pages and verify actual bytes plus custom-domain state.
+Verify final footer locally, push presentation/CI-portability correction, watch CI, deploy release
+2026.10.15.2 and re-run verify-production.mjs against pages.dev. Then record final evidence here.
+DNS activation requires zone write access/dashboard changes described in deployment.md.

@@ -37,7 +37,7 @@ test('HAPPENING NOW is keyboard usable and readable at five widths in both theme
   for(const theme of ['dark','light']){
    await page.evaluate(theme=>document.querySelector('[data-theme-choice="'+theme+'"]').click(),theme);const button=page.locator('[data-happening]').first();await button.focus();await page.evaluate(()=>__OVERHEAD_TEST__.render());await expect(button).toBeFocused();expect(await button.evaluate(el=>getComputedStyle(el).outlineStyle)).toBe('solid');
    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);const current=await page.locator('#happening-now').boundingBox();if(box)expect(current).toEqual(box);box=current;
-   expect(current.y+current.height).toBeLessThan(950);await page.screenshot({path:'/private/tmp/overhead-awareness-'+theme+'-'+width+'.png'});
+   expect(current.y+current.height).toBeLessThan(950);await page.screenshot({path:'/tmp/overhead-awareness-'+theme+'-'+width+'.png'});
   }
  }
  expect(await page.evaluate(()=>JSON.stringify(__OVERHEAD_TEST__.state.results))).toBe(original);expect(errors).toEqual([]);

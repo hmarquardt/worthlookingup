@@ -150,7 +150,7 @@ test('object identity enrichment: weekly identity, About this object, Starlink s
       expect(box.width).toBeLessThanOrEqual(width);
       expect(await page.locator('#object-about').evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
       expect(await page.locator('#object-about a').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(12);
-      await page.screenshot({path:'/private/tmp/overhead-object-'+theme+'-'+width+'.png'});
+      await page.screenshot({path:'/tmp/overhead-object-'+theme+'-'+width+'.png'});
     }
   }
   // Fresh page: the metadata store is reused (no refetch after reload).

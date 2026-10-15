@@ -51,13 +51,13 @@ test('theme rendering preserves geometry, scientific state, contrast and persist
  for(const width of [390,768,1024,1440,1920]){
    await page.setViewportSize({width,height:1000});await page.waitForTimeout(250);
    const before=await boxes();const data=await application();
-   await page.screenshot({fullPage:true,path:'/private/tmp/worthlookingup-dark-'+width+'.png'});
+   await page.screenshot({fullPage:true,path:'/tmp/worthlookingup-dark-'+width+'.png'});
    await page.locator('#settings-open').click();await page.getByRole('button',{name:'Use light theme'}).click();
    await expect(page.getByRole('button',{name:'Use light theme'})).toHaveAttribute('aria-pressed','true');
    await page.keyboard.press('Escape');await page.mouse.click(1,1);
    expect(await boxes()).toEqual(before);expect(await application()).toBe(data);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
-   await page.screenshot({fullPage:true,path:'/private/tmp/overhead-theme-light-'+width+'.png'});
+   await page.screenshot({fullPage:true,path:'/tmp/overhead-theme-light-'+width+'.png'});
    await page.locator('#settings-open').click();await page.getByRole('button',{name:'Use dark theme'}).click();await page.keyboard.press('Escape');await page.mouse.click(1,1);
    expect(await boxes()).toEqual(before);
  }
@@ -76,8 +76,8 @@ test('theme rendering preserves geometry, scientific state, contrast and persist
  console.log('Light contrast ratios',JSON.stringify(contrast));
  await page.reload();await page.waitForFunction(()=>window.__OVERHEAD_TEST__&&!__OVERHEAD_TEST__.state.busy);
  expect(await page.evaluate(()=>document.documentElement.dataset.theme)).toBe('light');expect(await page.evaluate(()=>window.__firstTheme)).toBe('light');await page.emulateMedia({colorScheme:'dark'});expect(await page.evaluate(()=>document.documentElement.dataset.theme)).toBe('light');
- await page.locator('.event').first().click();await page.screenshot({path:'/private/tmp/overhead-theme-detail-light.png'});await page.keyboard.press('Escape');
- await page.getByRole('tab',{name:'NEXT 7 DAYS'}).click();await page.screenshot({fullPage:true,path:'/private/tmp/overhead-theme-week-light.png'});
+ await page.locator('.event').first().click();await page.screenshot({path:'/tmp/overhead-theme-detail-light.png'});await page.keyboard.press('Escape');
+ await page.getByRole('tab',{name:'NEXT 7 DAYS'}).click();await page.screenshot({fullPage:true,path:'/tmp/overhead-theme-week-light.png'});
  // Existing map instance, camera, data source and selected pass must survive palette changes.
  await page.locator('.event').first().click();await page.locator('#map-open').click();
  await page.waitForFunction(()=>__OVERHEAD_TEST__.getMap()?.getLayer('pass'),null,{timeout:30000});
@@ -93,13 +93,13 @@ test('theme rendering preserves geometry, scientific state, contrast and persist
      expect(await page.evaluate(()=>__OVERHEAD_TEST__.state.selected.id)).toBe(passId);
      expect(await page.evaluate(()=>__themeMap.getPaintProperty('tiles','raster-brightness-max'))).toBe(theme==='light'?1:.55);
      expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
-     await page.locator('#map').scrollIntoViewIfNeeded();await page.waitForTimeout(400);await page.screenshot({path:'/private/tmp/overhead-theme-map-'+theme+'-'+width+'.png'});
+     await page.locator('#map').scrollIntoViewIfNeeded();await page.waitForTimeout(400);await page.screenshot({path:'/tmp/overhead-theme-map-'+theme+'-'+width+'.png'});
    }
  }
  await page.keyboard.press('Escape');
- await page.locator('#location-open').click();await page.locator('#save-location').click();await page.screenshot({path:'/private/tmp/overhead-theme-location.png'});await page.keyboard.press('Escape');
- await page.locator('#settings-open').click();await page.screenshot({path:'/private/tmp/overhead-theme-settings.png'});await page.keyboard.press('Escape');
- await page.locator('#diagnostics summary').click();await page.screenshot({fullPage:true,path:'/private/tmp/overhead-theme-diagnostics.png'});
+ await page.locator('#location-open').click();await page.locator('#save-location').click();await page.screenshot({path:'/tmp/overhead-theme-location.png'});await page.keyboard.press('Escape');
+ await page.locator('#settings-open').click();await page.screenshot({path:'/tmp/overhead-theme-settings.png'});await page.keyboard.press('Escape');
+ await page.locator('#diagnostics summary').click();await page.screenshot({fullPage:true,path:'/tmp/overhead-theme-diagnostics.png'});
  expect(errors).toEqual([]);
  }finally{server.closeAllConnections();await new Promise(r=>server.close(r));}
 });
@@ -118,9 +118,9 @@ test('weekly conclusion, detail reuse, forecast updates and both-theme responsiv
   for(const theme of ['dark','light']){
    await page.evaluate(theme=>document.querySelector('[data-theme-choice="'+theme+'"]').click(),theme);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
-   const current=await page.locator('#weekly-card').boundingBox();if(box)expect(current).toEqual(box);box=current;
+   const current=await page.locator('#weekly-card').evaluate(el=>{const r=el.getBoundingClientRect();return {x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height};});if(box)expect(current).toEqual(box);box=current;
    await page.locator('#weekly-open').focus();expect(await page.locator('#weekly-open').evaluate(el=>getComputedStyle(el).outlineStyle)).toBe('solid');
-   await page.screenshot({fullPage:true,path:'/private/tmp/overhead-weekly-'+theme+'-'+width+'.png'});
+   await page.screenshot({fullPage:true,path:'/tmp/overhead-weekly-'+theme+'-'+width+'.png'});
   }
  }
  await page.keyboard.press('Enter');await expect(page.locator('#event-dialog')).toBeVisible();await expect(page.locator('#detail-title')).toContainText('deliberately long');
@@ -203,7 +203,7 @@ test('Starlink Train Watch rendering, weekly integration and About tab',async({p
    expect(card.width).toBeLessThan(width);
   }
  }
- await page.screenshot({fullPage:true,path:'/private/tmp/overhead-train-about-dark-390.png'});
+ await page.screenshot({fullPage:true,path:'/tmp/overhead-train-about-dark-390.png'});
  expect(errors).toEqual([]);
 });
 
@@ -289,7 +289,7 @@ test('public footer freshness, staged train source fetching and cache capacity',
   const sources=await page.locator('.footer-sources').boundingBox();
   expect(sources.height).toBeLessThan(60); // no narrow vertical strip
  }
- await page.screenshot({fullPage:true,path:'/private/tmp/overhead-footer-1024.png'});
+ await page.screenshot({fullPage:true,path:'/tmp/overhead-footer-1024.png'});
 });
 
 test('public source status uses only currently active sources',async({page})=>{
@@ -357,6 +357,6 @@ test('theme switching survives failed storage and missing source data',async({pa
  const errors=await boot(page,{offline:true});await page.setViewportSize({width:390,height:844});
  await page.locator('#settings-open').click();await page.getByRole('button',{name:'Use light theme'}).click();await page.keyboard.press('Escape');
  expect(await page.evaluate(()=>document.documentElement.dataset.theme)).toBe('light');await expect(page.locator('#status')).toContainText('could not be saved');await expect(page.locator('.event')).toHaveCount(0);
- await page.screenshot({fullPage:true,path:'/private/tmp/overhead-theme-empty-light.png'});
+ await page.screenshot({fullPage:true,path:'/tmp/overhead-theme-empty-light.png'});
  await page.reload();await page.waitForFunction(()=>window.__OVERHEAD_TEST__&&!__OVERHEAD_TEST__.state.busy);expect(await page.evaluate(()=>getComputedStyle(document.documentElement).colorScheme)).toBe('dark');expect(errors).toEqual([]);
 });

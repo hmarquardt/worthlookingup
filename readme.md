@@ -32,6 +32,6 @@ Read [agent instructions](agents.md), [architecture and inventory](docs/migratio
 [scientific reference](docs/overhead.md), and [future launches](src/launches/readme.md).
 All repository paths are lowercase, including agents.md, to honor the migration naming rule.
 
-Release: 2026.10.15.1. Canonical production host: https://worthlookingup.com/.
+Release: 2026.10.15.2. Canonical production host: https://worthlookingup.com/.
 Extracted from Overhead without changing the scientific engines; source hashes are recorded
 in docs/source-manifest.json. Reference docs describing old releases are historical.

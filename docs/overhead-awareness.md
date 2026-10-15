@@ -1,5 +1,7 @@
 # ISS field-incident presentation repair — 2026.09.08.10
 
+> Historical Overhead technical reference. The migrated entry point is [index.html](../index.html); current product, provider, release and deployment decisions are in [migration.md](migration.md). Older release/test/deployment claims below describe the source project, not new production verification.
+
 ## Finding, reproduced before the presentation patch
 
 The ISS did not expire. **The UI buried an in-progress, score-zero pass at rank 136 behind the six-row render limit.** The recommendation briefing instead selected **SL-8 R/B at 4:18:14 AM CDT, score 83**. There was no independent current-event awareness surface. “Poor recommendation” therefore became “not rendered,” even with the default minimum score of zero.

@@ -1,5 +1,7 @@
 # Overhead light/dark theme release
 
+> Historical Overhead technical reference. The migrated entry point is [index.html](../index.html); current product, provider, release and deployment decisions are in [migration.md](migration.md). Older release/test/deployment claims below describe the source project, not new production verification.
+
 Version: `2026.09.08.1`. This release changes theme presentation only. Layout, density, typography, navigation, scoring, orbital calculations, forecasts, chart geometry, and map gestures are preserved.
 
 ## Files changed

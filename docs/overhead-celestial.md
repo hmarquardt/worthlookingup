@@ -1,5 +1,7 @@
 # Overhead — Celestial Observation Planner
 
+> Historical Overhead technical reference. The migrated entry point is [index.html](../index.html); current product, provider, release and deployment decisions are in [migration.md](migration.md). Older release/test/deployment claims below describe the source project, not new production verification.
+
 Technical documentation for the planetary, meteor-shower, comet and special-event capabilities added to
 `overhead.html`. It covers the calculation libraries, external source contracts, data pipeline,
 event-detection rules, thresholds, ranking, validation fixtures with **measured** tolerances, build and

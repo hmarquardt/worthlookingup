@@ -1,5 +1,7 @@
 # Overhead
 
+> Historical Overhead technical reference. The migrated entry point is [index.html](../index.html); current product, provider, release and deployment decisions are in [migration.md](migration.md). Older release/test/deployment claims below describe the source project, not new production verification.
+
 Release **2026.09.08.10** fixes the reproduced field-incident presentation failure: the in-progress ISS was ranked 136th at score zero and excluded by the six-row limit while a 4:18 AM satellite led the briefing. **HAPPENING NOW** now surfaces current calculated opportunities independently of recommendation quality. See [the captured pipeline, exact raw weather/score audit and regression results](overhead-awareness.md). The .9 shared lifecycle and detail grace period remain intact; [its earlier investigation](overhead-lifecycle.md) is retained as release history.
 
 Overhead is a static, local-first evening observing dashboard. Open [overhead.html](../overhead.html) on the Junkdrawer site. No build, npm installation, backend, account, or API key is needed. Opening the file directly also works, with a cooperative main-thread fallback when the browser disallows workers on `file://`.
