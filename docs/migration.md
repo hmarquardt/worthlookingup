@@ -39,3 +39,10 @@ Future launch schedules belong in src/launches/ with a separate normalized sched
 ## Risks
 
 Origin storage does not transfer automatically. Free API availability does not establish commercial rights. Analytics collector identity/CORS must be checked. CI secrets may require owner configuration even when local OAuth deploys work. Source history contains older descriptions predating celestial features; preserve as reference, add current entry documentation. Avoid new tracking, secrets, inaccurate event data or precision claims.
+
+## Photographic discovery presentation
+Release 2026.10.15.4 keeps calculation/scoring modules unchanged. index.html owns the hero,
+location/category navigation and existing weekly summary placement; assets/brand/identity.css
+provides the final presentation layer after application tokens. Responsive photography is local
+and rights-tracked in assets/provenance.json. See design.md and phase-2-release.md for patterns
+and evidence. No cross-category ranking or new background data requests were introduced.

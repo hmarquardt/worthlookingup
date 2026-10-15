@@ -189,3 +189,21 @@ route propagation; persistent failures still fail. No scientific/application cha
   independently observed fresh committed feed. No KV or credentials created.
 - Next: commit, synchronize/push main, verify complete Actions deployment, exact production assets,
   redirects, workers and feed, then append final release evidence.
+
+### Phase 2 deployment completed
+- Implementation b66694ff541d1d0a495209457124211b202af302 pushed normally; git-sync verify confirmed
+  origin/main containment. Bot feed bb8f560 preserved by safe fast-forward with unrelated edits intact.
+- https://github.com/hmarquardt/worthlookingup/actions/runs/38799435528 passed all validation and
+  deploy steps, including production verification. Pages artifact https://65adcb77.worthlookingup.pages.dev.
+- Independent strict verifier passed canonical production HTML/release, responsive photo bytes,
+  scientific hashes, workers/data, branding, real 404 and all ten host/path/query redirect chains.
+- Live production Chrome 390/1280 screenshots inspected: no page errors/overflow; real orbital and
+  weather results; local photos load. Five launch cards retained unknown visibility. Fresh 146-launch
+  feed generated 2026-10-15T19:41:52Z, stale=false, independently checked 20:12Z.
+- Focused final launch suite 6 passed after the compact launch-heading refinement. New homepage
+  suite 3 passed; existing suite 32 passed/2 intentional skips; Python precision/builders passed.
+- Full rationale, measurements, source rights and screenshots: phase-2-release.md, design.md,
+  assets/provenance.json, docs/screenshots. Final documentation evidence commit uses [skip ci];
+  it changes no application assets. No remaining release blocker.
+- Next product improvement: compact discovery across categories with explicit local-versus-schedule
+  scope; consider bounding the existing many-event Happening now presentation without losing labels.

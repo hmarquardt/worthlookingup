@@ -51,6 +51,7 @@ precision labels remain text, with existing semantic colors. No global launch en
 - npm ci completed.
 - npm test: scientific, launch, migration, source hashes, storage and redirect suites passed unchanged.
 - Existing browser suite: 32 passed, 2 opt-in live-provider tests skipped.
+- Full release CI browser suite: 35 passed, 2 intentional live-provider skips.
 - New homepage suite: 3 passed (hierarchy, all widths/themes, keyboard/dialogs, photo failure, staged assets).
 - Python precision: 6 passed; comet --check, comet --no-network and meteor --check passed.
 - npm run build, npm run check and launch-feed offline validation passed.
@@ -65,13 +66,27 @@ Independent GET /api/launches.json returned generated_at 2026-10-15T18:49:55.904
 served_from=committed-feed at 19:30:23Z. Hourly cron remains minute 37. No KV introduced.
 
 ## Release evidence
-Commit, Actions/deployment and final independent production verification are recorded in
-migration-status.md after release. Ordinary main push only; preserve scheduled bot history.
+Implementation commit b66694ff541d1d0a495209457124211b202af302 pushed normally; origin/main
+containment verified after push. The new bot feed bb8f560 was safely fast-forwarded before commit.
+[Actions run 38799435528](https://github.com/hmarquardt/worthlookingup/actions/runs/38799435528)
+passed full validation and Cloudflare deployment. Deployment:
+https://65adcb77.worthlookingup.pages.dev, canonical https://worthlookingup.com/.
+Independent strict production verifier passed deployed HTML, release, every photo derivative,
+scientific hashes, workers/data, branding/transfer/analytics, real 404 and all ten redirect chains.
+Live Chrome at 390/1280: no page errors, no overflow, photo loaded, real orbital/forecast results.
+Five launch cards in the extended view all retained Visibility unknown; source/freshness present.
+Feed independently verified at 20:12:37Z: generated 19:41:52Z, 146 launches, stale=false.
+[Production mobile](screenshots/production-mobile.png), [desktop](screenshots/production-desktop.png),
+[launch card](screenshots/production-launch-mobile.png). Long mission title stress check (including
+an unbroken identifier) stayed inside 18–372px at 390px and preserved uncertainty labels.
+Final evidence-only commit does not change the deployed application.
 
 ## Limits and next improvement
 One verified photograph deliberately replaces an unverified stock library. No new cross-category
 ranking. First list row remains below the fold; the useful weekly opportunity is now above it.
-Real-world weather/orbit source outages still produce honest fallback warnings. Recommended next:
+Real-world weather/orbit source outages still produce honest fallback warnings. The existing live
+Happening now panel takes priority and can move planned highlights lower when many orbital intervals
+are active; it was absent from the fixed-time comparison. Recommended next:
 a compact, explicitly scoped cross-category upcoming-events overview using existing engine outputs,
 with local opportunities separate from globally scheduled launches. It needs a product decision on
 comparison semantics before any new ranking.
