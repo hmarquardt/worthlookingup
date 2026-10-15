@@ -7,8 +7,9 @@ name: worthlookingup launch schedule
 # the site keeps serving the last good schedule. The launch provider (Launch Library 2) is never
 # contacted by a visitor's browser; the Pages endpoint serves this artifact and its own edge cache.
 #
-# One run makes at most 3 upstream requests (2 launch pages plus one tiny announced-total request)
-# against a 15-requests-per-hour allowance.
+# One run makes at most 4 upstream requests (up to 3 launch pages of 100 records plus one tiny
+# announced-total request) against a 15-requests-per-hour allowance, and only when the artifact changed
+# does it also rebuild and deploy.
 
 on:
   schedule:

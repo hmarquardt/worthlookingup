@@ -80,8 +80,8 @@ detected schedule change.
 | Browser | 15 minutes in the existing bounded cache (`overhead-cache`, IndexedDB, max 32 responses / 7 days) | Fetched only when the ROCKET LAUNCHES category is opened. A stale copy is reused, with its age shown, rather than dropped. |
 | Edge cache (`caches.default`) | 900 s for a served copy, 120 s for a degraded copy, 60 s for an unavailable response | Shared by every visitor in that colo, so visitors never reach the provider. |
 | KV (`LAUNCHES` binding, optional) | Stores the last good feed with `stored_at` | Preferred when it is newer than the committed feed. Without the binding the endpoint still works. |
-| Upstream refresh | Only when the freshest available copy is older than 30 minutes; at most 2 pages plus the announced-total request | Never per visitor, never per page view. |
-| Scheduled ingestion | Hourly GitHub Actions workflow | Commits a validated `data/launches/upcoming.json` and deploys it. |
+| Upstream refresh | Attempted only when the freshest available copy is older than 30 minutes; at most 2 pages plus the announced-total request (3 requests) | Never per visitor, never per request. |
+| Scheduled ingestion | Hourly GitHub Actions workflow; at most 3 launch pages plus the announced-total request (4 requests) | Commits a validated `data/launches/upcoming.json` and deploys it when it changed. |
 
 ## Scheduling uncertainty (the part that matters most)
 
