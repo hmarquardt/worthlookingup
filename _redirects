@@ -1,2 +1,2 @@
-https://www.worthlookingup.com/* https://worthlookingup.com/:splat 301
-/overhead.html / 301
+# Path-only fallback for static asset serving. Host canonicalization is in the Pages Worker.
+/overhead.html https://worthlookingup.com/ 301

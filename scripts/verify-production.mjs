@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import {verifyProductionRedirects} from './verify-redirects.mjs';
 const base=new URL(process.argv[2]||'https://worthlookingup.com/');
 async function get(file){
   const response=await fetch(new URL(file,base),{signal:AbortSignal.timeout(30000)});
@@ -20,7 +21,6 @@ for(const file of ['analytics-lite.js','preferences-transfer.js','assets/brand/i
 }
 const missing=await fetch(new URL('/missing-worker-verification.js',base));assert.equal(missing.status,404);
 if(base.hostname==='worthlookingup.com'){
-  const response=await fetch('https://www.worthlookingup.com/overhead.html?verify=1',{redirect:'manual'});
-  assert.equal(response.status,301);assert.equal(response.headers.get('location'),'https://worthlookingup.com/overhead.html?verify=1');
+  for (const chain of await verifyProductionRedirects()) console.log('Redirect:',JSON.stringify(chain));
 }
-console.log('PASS: HTTPS deployed HTML, release, scientific hashes, both workers and data, brand/transfer/analytics bytes, real 404'+(base.hostname==='worthlookingup.com'?', www 301 preserves path/query':'')+' at '+base.origin);
+console.log('PASS: HTTPS deployed HTML, release, scientific hashes, both workers and data, brand/transfer/analytics bytes, real 404'+(base.hostname==='worthlookingup.com'?', permanent canonical/legacy redirects preserve queries and nonlegacy paths':'')+' at '+base.origin);

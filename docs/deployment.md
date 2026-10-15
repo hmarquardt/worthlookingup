@@ -2,7 +2,7 @@
 
 Cloudflare account b1aa310aa0a1638d72b8b086a21e557c; Pages project worthlookingup;
 zone a592818531712408128a88d9dfe3cbbc. Static host worthlookingup.pages.dev.
-Canonical https://worthlookingup.com; www uses _redirects permanent redirect preserving path/query.
+Canonical https://worthlookingup.com; the Pages Worker permanently redirects www while preserving paths/queries, and /overhead.html on either host becomes the canonical root with its query intact.
 No API hostname, R2 bucket or duplicate analytics backend was created.
 
 ## Publish
@@ -51,3 +51,28 @@ another push workflow. Until automation is enabled, run a local deploy after dat
 will age in production. Failed providers leave previous good artifacts and warnings intact.
 
 Check docs/migration-status.md for actual push/deploy evidence and unresolved tasks.
+
+## Redirect and Actions repair (2026-10-15)
+
+Run 38762166564 deployed successfully but its verifier asserted an incorrect intermediate legacy URL.
+Live inspection also found www ordinary pages returning 200: Pages does not support hostname sources
+in _redirects ([official redirect contract](https://developers.cloudflare.com/pages/configuration/redirects/)).
+The unsupported hostname line has been removed. The path-only legacy fallback now has an absolute
+canonical target. `scripts/pages-worker.mjs` is staged as `dist/_worker.js` using Pages advanced mode;
+it handles www and legacy-path 301 redirects and delegates every other request to env.ASSETS.fetch.
+It deploys with the existing Pages project and credentials; no new service or zone rule is required.
+This small gateway uses Pages Functions runtime; the application and scientific workers stay static.
+
+Expected HTTPS behavior (all preserve encoded, repeated and empty query parameters):
+- www /overhead.html → 301 https://worthlookingup.com/ → 200.
+- apex /overhead.html → 301 https://worthlookingup.com/ → 200.
+- www ordinary paths → 301 same path at canonical HTTPS apex → 200.
+- canonical ordinary paths → static asset response.
+Cloudflare may first upgrade HTTP to HTTPS on the same host/path; the verifier checks that full chain.
+It rejects loops, nonpermanent responses, downgrades, unexpected hosts/path changes, query loss and
+www serving 200. It still checks deployed HTML/assets/hashes and genuine 404 responses.
+
+All workflows pin ubuntu-24.04 until Ubuntu 26 support is tested. Stable action majors were checked
+against their official releases/action manifests: checkout@v7, setup-node@v7, setup-python@v7,
+upload-artifact@v7, download-artifact@v8, all running node24. Application/tooling Node is explicitly 24,
+including the data workflow's deploy step. Future upgrades must retain the host/path/query checks.

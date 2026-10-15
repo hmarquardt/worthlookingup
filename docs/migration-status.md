@@ -78,3 +78,13 @@ All work possible with available access is implemented. DNS write and GitHub dep
 are external blockers, not completed deployment claims. Final documentation-only commit records this
 checkpoint after successful application CI; it uses [skip ci] to avoid repeating unchanged code checks.
 The original source tracked diff was confirmed empty. No credentials were created, rotated or committed.
+
+## Workflow repair checkpoint — run 38762166564
+- Source checkout synchronized and clean before work; no astronomical/application UI changes.
+- Confirmed successful Cloudflare deploy and failed post-deploy assertion from original run logs.
+- Live chain: www legacy 301 relative /?verify=1 then www 200; normal www docs also 200.
+- Root cause: unsupported hostname source in Pages _redirects plus verification of an incorrect legacy intermediate target.
+- Repair: packaged Pages Worker canonicalizes www and legacy paths, absolute path-only fallback; verifier walks 10 HTTP/HTTPS chains and enforces permanent status, TLS, canonical final URL, path/query integrity and no loops.
+- All workflow runners pin ubuntu-24.04; official stable actions use Node24 and setup-node selects 24.
+- Added behavior regressions for the Worker and verifier, including encoded/repeated/empty queries and malformed chains. npm test passed all scientific/static/redirect regressions. Actual Wrangler Pages runtime smoke passed: www docs/legacy 301 to HTTPS apex, query preservation, static worker 200 with headers, missing worker 404.
+- Next action: finish local checks, pre-push synchronization, commit/push, then verify the next Actions validation/deployment and actual apex/www production chains.

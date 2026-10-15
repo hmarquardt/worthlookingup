@@ -45,7 +45,7 @@ Version index.html comment, footer attribute and visible text together as YYYY.M
 shipping UI changes. CI and production checks must inspect deployed content, not infer from push.
 
 ## Cloudflare
-Project worthlookingup, canonical apex, www 301 preserves path/query. npm run build stages only
+Project worthlookingup, canonical apex, www 301 preserves path/query; legacy /overhead.html becomes the canonical root. scripts/pages-worker.mjs is packaged as dist/_worker.js for host redirects (Pages _redirects supports paths only), delegating other requests to ASSETS. npm run build stages only
 public files; deploy dist, never repository root. Existing independent analytics collector is shared;
 site identity is worthlookingup. No Junk Drawer-hosted runtime assets or APIs. Read docs/deployment.md
 for credentials/CI requirements. Never commit credentials or rotate them without a concrete need.

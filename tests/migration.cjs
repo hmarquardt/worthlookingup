@@ -43,7 +43,9 @@ for(const bad of [
 const failed=new Storage();failed.fail='overhead.favorites';assert.throws(()=>transfer.apply(input,failed));assert.equal(failed.getItem('overhead.site'),null);assert.equal(failed.getItem('overhead.theme'),'dark');
 assert.equal(spawnSync(process.execPath,['scripts/build.cjs'],{stdio:'inherit'}).status,0);
 for(const forbidden of ['.git','.env','tests','tools','node_modules','package.json','agents.md'])assert.ok(!fs.existsSync(path.join('dist',forbidden)),forbidden+' leaked into deployment');
-assert.ok(fs.existsSync('dist/404.html'));assert.match(fs.readFileSync('dist/_redirects','utf8'),/https:\/\/www.worthlookingup.com\/\* https:\/\/worthlookingup.com\/:splat 301/);
+assert.ok(fs.existsSync('dist/404.html'));
+assert.match(fs.readFileSync('dist/_redirects','utf8'),/^\/overhead\.html https:\/\/worthlookingup.com\/ 301$/m);
+assert.equal(fs.readFileSync('dist/_worker.js','utf8'),fs.readFileSync('scripts/pages-worker.mjs','utf8'));
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){
   if(['.git','node_modules','.wrangler','test-results','playwright-report'].includes(e.name))continue;
   assert.equal(e.name,e.name.toLowerCase(),'Non-lowercase path '+e.name);

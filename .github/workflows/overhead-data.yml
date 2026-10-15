@@ -27,16 +27,16 @@ concurrency:
 
 jobs:
   refresh:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
       PYTHONUNBUFFERED: '1'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
@@ -147,6 +147,12 @@ jobs:
           git push
 
       # GITHUB_TOKEN bot pushes do not trigger the separate push workflow.
+      - uses: actions/setup-node@v7
+        if: env.changed == '1' && vars.CLOUDFLARE_DEPLOY_ENABLED == 'true'
+        with:
+          node-version: '24'
+          cache: npm
+
       - name: Publish validated refreshed data to Pages
         if: env.changed == '1' && vars.CLOUDFLARE_DEPLOY_ENABLED == 'true'
         run: |
