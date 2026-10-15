@@ -10,6 +10,11 @@ test.setTimeout(180000);
 const ISS={OBJECT_NAME:'ISS (ZARYA)',OBJECT_ID:'1998-067A',EPOCH:'2026-10-08T06:00:00.000000',MEAN_MOTION:15.49018229,ECCENTRICITY:.00049836,INCLINATION:51.6306,RA_OF_ASC_NODE:252.7093,ARG_OF_PERICENTER:115.8922,MEAN_ANOMALY:244.258,EPHEMERIS_TYPE:0,CLASSIFICATION_TYPE:'U',NORAD_CAT_ID:25544,ELEMENT_SET_NO:999,REV_AT_EPOCH:58451,BSTAR:.00010434666,MEAN_MOTION_DOT:.00005306,MEAN_MOTION_DDOT:0};
 const hourly={time:Array.from({length:240},(_,i)=>Math.floor(Date.parse('2026-10-08T00:00:00Z')/1000)+i*3600)};
 for(const [key,value]of Object.entries({cloud_cover:15,cloud_cover_low:5,cloud_cover_mid:5,cloud_cover_high:5,visibility:24000,precipitation:0,relative_humidity_2m:60,weather_code:0,temperature_2m:15}))hourly[key]=Array(240).fill(value);
+// A minimal, valid launch feed for the shared page. This spec is about the celestial layer, so it
+// only needs the launch calendar's own data source to answer rather than fail on a file:// page.
+const emptyLaunchFeed=()=>({schema:'worthlookingup.launches/1',available:true,generated_at:new Date().toISOString(),refresh_interval_minutes:30,stale_after_minutes:180,stale:false,stale_reason:null,
+ source:{name:'Launch Library 2',publisher:'The Space Devs',api_version:'2.3.0',attribution:'Launch data: The Space Devs Launch Library 2',rights:'Free unauthenticated access is limited to 15 requests per hour.'},
+ stats:{count:0},launches:[]});
 
 async function boot(page,{datasets='real',meteorsOverride=null,offlineData=false}={}){
  const errors=[];
@@ -19,6 +24,10 @@ async function boot(page,{datasets='real',meteorsOverride=null,offlineData=false
  await page.route('**/api/analytics/**',r=>r.fulfill({status:204,body:''}));
  await page.route('**celestrak.org/**',r=>r.fulfill({json:[ISS]}));
  await page.route('**api.open-meteo.com/**',r=>r.fulfill({json:{timezone:'America/Chicago',hourly}}));
+ // The launch calendar shares this page and its category tablist; this spec only needs its feed to be
+ // reachable so keyboard navigation through the tablist does not produce a browser CORS console error.
+ await page.route('**/api/launches.json*',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(emptyLaunchFeed())}));
+ await page.route('**/data/launches/*.json',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(emptyLaunchFeed())}));
  await page.route('**/data/overhead/*.json',route=>{
   const file=route.request().url().split('/data/overhead/')[1].split('?')[0];
   if(offlineData){route.fulfill({status:500,body:'unavailable'});return;}
@@ -214,14 +223,16 @@ test('changing location recalculates the plan in the new local timezone',async({
 test('celestial controls are accessible, keyboard operable and responsive',async({page})=>{
  const errors=await boot(page);
  const tabs=page.locator('#categories [role="tab"]');
- await expect(tabs).toHaveCount(4);
+ await expect(tabs).toHaveCount(5);
  await expect(tabs.first()).toHaveAttribute('aria-selected','true');
  const horizons=page.locator('[data-horizon]');
  await expect(horizons).toHaveCount(3);
  await expect(horizons.first()).toHaveAttribute('role','radio');
  await expect(horizons.first()).toHaveAttribute('aria-checked','true');
- // Keyboard navigation on the category tablist.
+ // Keyboard navigation on the category tablist, across the launch calendar that now sits second.
  await tabs.first().focus();
+ await page.keyboard.press('ArrowRight');
+ expect(await page.evaluate(()=>document.activeElement.dataset.category)).toBe('launches');
  await page.keyboard.press('ArrowRight');
  expect(await page.evaluate(()=>document.activeElement.dataset.category)).toBe('planets');
  await ready(page);

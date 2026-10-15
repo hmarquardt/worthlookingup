@@ -24,6 +24,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <script src="overhead-engine.js" defer></script>
 <script src="overhead-lifecycle.js" defer></script>
 <script src="overhead-weekly.js" defer></script>
+<script src="overhead-launches.js" defer></script>
 <script src="overhead-trains.js" defer></script>
 <script src="overhead-objects.js" defer></script>
 <script src="overhead-astro.js" defer></script>
@@ -105,6 +106,24 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 .celestial-source{font-size:.75rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:3px}
 .celestial-sky{width:100%;height:auto;display:block}
 .celestial-empty{border:1px dashed var(--line);border-radius:10px;padding:18px;color:var(--muted);display:grid;gap:8px}
+/* Rocket launch calendar. Reuses the celestial card shell so both categories read the same way. */
+.launches-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 18px}
+.launches-actions .small{max-width:640px}
+.launch-day{border-top:1px solid var(--line);padding:14px 0 4px;margin-top:6px}
+.launch-day h2{font-size:.95rem;letter-spacing:.4px}
+.launch-status{font-size:.7rem;letter-spacing:.6px;text-transform:uppercase;border:1px solid var(--line);border-radius:20px;padding:4px 9px;color:var(--muted);white-space:nowrap}
+.launch-status[data-tone=go]{color:var(--lime);border-color:var(--lime)}
+.launch-status[data-tone=warn]{color:var(--amber);border-color:var(--amber)}
+.launch-status[data-tone=done]{color:var(--muted)}
+.launch-countdown{font-size:1.35rem;color:var(--lime);display:block;margin:2px 0 4px}
+.launch-countdown[data-mode=passed],.launch-countdown[data-mode=none]{font-size:.85rem;color:var(--muted)}
+.launch-facts{display:grid;gap:3px;font-size:.82rem;color:var(--muted)}
+.launch-facts strong{color:var(--ink);font-weight:600}
+.launch-why{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.8rem;color:var(--muted)}
+.launch-unknown{color:var(--amber)}
+.launch-links{display:flex;flex-wrap:wrap;gap:10px;font-size:.8rem}
+@media (max-width:720px){.launch-countdown{font-size:1.15rem}}
+@media (max-width:900px){#categories .tabs{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}#categories .tabs::-webkit-scrollbar{display:none}#categories .tabs button{white-space:nowrap}}
 .celestial-section{border-top:1px solid var(--line);margin-top:22px;padding-top:16px;display:grid;gap:10px}
 .celestial-section h2{font-size:1.05rem}
 .celestial-list{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.85rem;color:var(--muted)}
@@ -120,10 +139,11 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 </section>
 <div class="toolbar"><nav class="tabs" role="tablist" aria-label="Observing period"><button role="tab" data-view="now" aria-selected="false">NOW</button><button role="tab" data-view="tonight" aria-selected="true">TONIGHT</button><button role="tab" data-view="week" aria-selected="false">NEXT 7 DAYS</button><button role="tab" data-view="about" aria-selected="false">ABOUT</button></nav><span class="small" id="local-clock"></span></div>
 <section id="happening-now" class="happening-now" aria-label="Happening now" hidden></section>
-<div class="toolbar" id="categories"><nav class="tabs" role="tablist" aria-label="Observing category"><button role="tab" data-category="satellites" aria-selected="true">SATELLITES</button><button role="tab" data-category="planets" aria-selected="false">PLANETS &amp; ALIGNMENTS</button><button role="tab" data-category="meteors" aria-selected="false">METEOR SHOWERS</button><button role="tab" data-category="comets" aria-selected="false">COMETS &amp; SPECIAL EVENTS</button></nav><span class="small" id="category-note">Satellite passes and trains</span></div>
+<div class="toolbar" id="categories"><nav class="tabs" role="tablist" aria-label="Observing category"><button role="tab" data-category="satellites" aria-selected="true">SATELLITES</button><button role="tab" data-category="launches" aria-selected="false">ROCKET LAUNCHES</button><button role="tab" data-category="planets" aria-selected="false">PLANETS &amp; ALIGNMENTS</button><button role="tab" data-category="meteors" aria-selected="false">METEOR SHOWERS</button><button role="tab" data-category="comets" aria-selected="false">COMETS &amp; SPECIAL EVENTS</button></nav><span class="small" id="category-note">Satellite passes and trains</span></div>
 <section id="celestial" class="celestial" hidden aria-label="Celestial observing plan">
-<div class="celestial-head"><div><div class="eyebrow" id="celestial-eyebrow">PLANETS &amp; ALIGNMENTS</div><h1 id="celestial-headline">What is worth going outside for</h1><p class="small" id="celestial-summary">Choosing a planning window…</p></div><div class="night-score"><strong id="celestial-top-score">—</strong><span>BEST OPPORTUNITY / 100</span></div></div>
+<div class="celestial-head"><div><div class="eyebrow" id="celestial-eyebrow">PLANETS &amp; ALIGNMENTS</div><h1 id="celestial-headline">What is worth going outside for</h1><p class="small" id="celestial-summary">Choosing a planning window…</p></div><div class="night-score"><strong id="celestial-top-score">—</strong><span id="celestial-score-label">BEST OPPORTUNITY / 100</span></div></div>
 <div class="celestial-controls" role="radiogroup" aria-label="Planning window"><button type="button" role="radio" data-horizon="tonight" aria-checked="true">TONIGHT</button><button type="button" role="radio" data-horizon="week" aria-checked="false">NEXT 7 DAYS</button><button type="button" role="radio" data-horizon="extended" aria-checked="false">NEXT 90 DAYS</button></div>
+<div id="launches-actions" class="launches-actions" hidden><button type="button" id="launches-refresh" aria-describedby="launches-refresh-note">Check for schedule updates</button><span class="small" id="launches-refresh-note">Schedules come from one shared server-side feed. Nothing is requested from the provider for each visitor.</span></div>
 <div id="celestial-status" class="status" role="status" aria-live="polite"></div>
 <div id="celestial-events" class="celestial-events"></div>
 <section id="celestial-changes" class="celestial-section" hidden aria-label="Noteworthy comet changes"><h2>What changed recently</h2><div id="celestial-changes-body" class="small"></div></section>
@@ -166,10 +186,11 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <li>This page includes the repository's Analytics Lite page-view tracker. Map tiles load only when you open a map.</li>
 </ul>
 <h2>Planets, meteor showers, comets and eclipses</h2>
-<p>Worth Looking Up also answers a wider version of the same question: what is worth going outside to see in the sky above this location tonight, this week, or over the next three months? Choose a category under the tabs — <strong>Satellites</strong>, <strong>Planets &amp; Alignments</strong>, <strong>Meteor Showers</strong> or <strong>Comets &amp; Special Events</strong> — and pick a planning window with TONIGHT, NEXT 7 DAYS or NEXT 90 DAYS.</p>
+<p>Worth Looking Up also answers a wider version of the same question: what is worth going outside to see in the sky above this location tonight, this week, or over the next three months? Choose a category under the tabs — <strong>Satellites</strong>, <strong>Rocket Launches</strong>, <strong>Planets &amp; Alignments</strong>, <strong>Meteor Showers</strong> or <strong>Comets &amp; Special Events</strong> — and pick a planning window with TONIGHT, NEXT 7 DAYS or NEXT 90 DAYS.</p>
 <ul>
 <li><strong>Planets &amp; alignments</strong> — real geometric calculations of where each planet is, which of them share one observing window, how close two of them appear, when a planet is at opposition, when Mercury or Venus is at greatest elongation, and when the Moon passes a planet. Groupings are described as planets spread along the ecliptic, because that is what is actually happening; they never form a literal line in space.</li>
 <li><strong>Meteor showers</strong> — the published IMO Meteor Shower Calendar for the current year (activity dates, peak solar longitude, radiant, velocity, population index and ZHR), combined with this location's real twilight, the radiant's altitude through the night and the Moon's phase, position and separation. ZHR is shown as the standardized reference number it is; no meteor count is predicted for you, because shower rates vary by an order of magnitude from night to night.</li>
+<li><strong>Rocket launches</strong> — the published schedule for orbital launches worldwide, with the provider's own mission name, vehicle, provider, launch site, scheduling precision and status. A scheduled launch is listed because it is scheduled, not because it will be visible from where you are: Worth Looking Up shows how far the pad is and where the Sun will be, and labels local visibility <em>unknown</em>, because confirming a visible rocket or an illuminated exhaust plume needs the ascent trajectory, which is not published. Launch schedules never enter the satellite or celestial scores.</li>
 <li><strong>Comets &amp; special events</strong> — comets from the JPL Small-Body Database that are potentially observable, positioned from a published JPL Horizons ephemeris and, outside that window, from a validated two-body propagation of the published orbital elements. Measured brightness (from the Comet Observation Database) is always shown separately from a catalog magnitude prediction, and a comet with no recent measurement says so. Eclipses appear here with their local circumstances.</li>
 </ul>
 <h3>The three kinds of uncertainty</h3>
@@ -219,12 +240,12 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <details id="how-it-works"><summary>How the recommendation works</summary><p>The night’s score is the best remaining satellite opportunity among your selected categories. It is not a weather score. A “likely visible” segment needs at least 20 seconds above your minimum elevation, with the Sun at least 6° below the horizon and the spacecraft fully sunlit. Buildings, trees, haze and object orientation can still prevent a sighting.</p><p>Base points: elevation 25, useful visible duration 15, sunlight 10, observer darkness 15, brightness category 10, cloud cover 20, and visibility 5. Cloud, poor visibility and rain then reduce the total. Unknown weather earns no weather points and makes the result provisional. No precise apparent magnitude is claimed. <a href="docs/overhead.md">Full algorithm, validation and limitations →</a></p><p>The Moon panel is informational and does not raise the satellite score. A quiet satellite night can still be a lovely night for stargazing.</p></details>
 <details id="diagnostics"><summary>Data & diagnostics</summary><div class="actions"><button id="refresh">Refresh source data</button><button id="clear-cache">Clear downloaded cache</button><label class="text-button">Import OMM JSON / TLE<input id="import" type="file" accept=".json,.txt,.tle" aria-label="Import orbital elements"></label></div><p>Import up to 2 MB of orbital elements from a trusted source if CelesTrak is unavailable. Imported records stay in this session and use their actual epoch; records more than 14 days from a prediction are excluded.</p><pre id="diagnostic-output"></pre></details>
 </main>
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.15.2" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.15.2">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.15.3" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.15.3">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.15.2 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.15.3 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
@@ -298,8 +319,8 @@ async function fetchJSON(url){const r=await fetch(url,{signal:AbortSignal.timeou
 async function source(key,url,ttl,force=false){
  if(inflight.has(key))return inflight.get(key);
  const task=(async()=>{state.activeSourceKeys.add(key);const old=await cached(key);if(old&&Date.now()-old.at<ttl&&!force){state.sources[key]={at:old.at,cache:true,stale:false};return old.data;}
- try{const data=await fetchJSON(url);if(key.startsWith('orbits:')&&!E.parseElements(data,key.slice(7)).length)throw Error('No valid orbital records');if(key.startsWith('weather:')&&(!data?.hourly?.time?.length||!data.timezone))throw Error('Invalid weather response');const record={key,data,at:Date.now()};await cachePut(record);state.sources[key]={at:record.at,cache:false,stale:false};return data;}
- catch(error){state.errors.push(key+': '+error.message);if(old&&Date.now()-old.at<=7*DAY){state.sources[key]={at:old.at,cache:true,stale:true};return old.data;}delete state.sources[key];throw Error(key+' unavailable');}})();inflight.set(key,task);try{return await task;}finally{inflight.delete(key);}
+ try{const data=await fetchJSON(url);if(key.startsWith('orbits:')&&!E.parseElements(data,key.slice(7)).length)throw Error('No valid orbital records');if(key.startsWith('weather:')&&(!data?.hourly?.time?.length||!data.timezone))throw Error('Invalid weather response');if(key.startsWith('launches:')){const feedCheck=L.validateFeed(data);if(!feedCheck.ok)throw Error('Not a usable launch feed: '+(feedCheck.reason||'unrecognised'));}const record={key,data,at:Date.now()};await cachePut(record);state.sources[key]={at:record.at,cache:false,stale:false};return data;}
+ catch(error){state.errors.push(key+': '+error.message);if(old&&Date.now()-old.at<=7*DAY){state.sources[key]={at:old.at,cache:true,stale:true};return old.data;}delete state.sources[key];throw Object.assign(Error(key+' unavailable'),{cause:error});}})();inflight.set(key,task);try{return await task;}finally{inflight.delete(key);}
 }
 const weatherURL=site=>'https://api.open-meteo.com/v1/forecast?'+new URLSearchParams({latitude:site.lat,longitude:site.lon,timezone:'auto',timeformat:'unixtime',forecast_days:9,past_days:1,hourly:'cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility,precipitation,relative_humidity_2m,weather_code,temperature_2m'});
 const weatherKey=site=>'weather:'+site.lat.toFixed(3)+','+site.lon.toFixed(3);
@@ -449,7 +470,7 @@ function render(){const about=state.view==='about';
  document.querySelectorAll('.briefing,.layout,.timeline-panel,#weekly-card,#weekly-tonight,#week,#astronomy,#how-it-works,#diagnostics,#weekly-ranking-diagnostics,#train-diagnostics').forEach(el=>el.hidden=about||celestialView);
  $('celestial').hidden=!celestialView;
  $('about').hidden=!about;
- if(celestialView)renderCelestial();
+ if(celestialView){if(celestial.category==='launches')renderLaunches();else renderCelestial();}
  document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-selected',x.dataset.view===state.view));
  if(about){$('about-version').textContent='version '+document.querySelector('[data-worthlookingup-deploy-footer]')?.dataset.deployVersion;return;}
  const night=state.nights[state.day];if(!night)return;const index=currentIndex(),b=best(),list=displayPasses(),ready=Object.hasOwn(state.results,index),known=state.objects.length>0;
@@ -559,11 +580,22 @@ const Astro=window.OverheadAstro||null,Planets=window.OverheadPlanets||null,Mete
  Comets=window.OverheadComets||null,Opportunities=window.OverheadOpportunities||null,CelestialPlan=window.OverheadCelestialPlan||null,
  celestialAvailable=!!(Astro&&Planets&&Meteors&&Comets&&Opportunities&&CelestialPlan);
 const CATEGORY_LABELS={satellites:{eyebrow:'SATELLITE PASSES',headline:'What is going over tonight',note:'Satellite passes and trains'},
+ launches:{eyebrow:'ROCKET LAUNCHES',headline:'What is launching, and when',note:'Published launch schedules worldwide; local visibility unknown'},
  planets:{eyebrow:'PLANETS & ALIGNMENTS',headline:'Which planets are worth finding',note:'Planets, groupings, pairings and eclipses'},
  meteors:{eyebrow:'METEOR SHOWERS',headline:'Which showers are active and when to watch',note:'Published IMO calendar with local conditions'},
  comets:{eyebrow:'COMETS & SPECIAL EVENTS',headline:'Which comets and odd events are up',note:'Catalogued comets plus eclipses'}};
 const celestial={category:'satellites',horizon:'tonight',available:celestialAvailable,busy:false,status:'idle',result:null,generation:0,
  errors:[],rejected:[],datasets:{meteors:null,comets:null,ephemeris:null},datasetState:{},computedAt:null,worker:null,workerFailed:false,messages:[]};
+/* ---- Rocket launches -------------------------------------------------------------------------
+   A launch schedule is a different question from an observing recommendation: it is worth knowing
+   even when it is invisible from here. Launches therefore live in their own category with their own
+   feed, and never enter the satellite or celestial scores. The feed is one shared server-side
+   artifact (GET /api/launches.json, falling back to the committed data/launches/upcoming.json), so
+   the upstream provider is never contacted per visitor. Nothing here is requested until the reader
+   opens this category, so the satellite page keeps its existing behaviour and network profile. */
+const L=window.OverheadLaunches||null,launchesAvailable=!!L;
+const LAUNCH_FEED_SOURCES=[['api/launches.json',15*60000],['data/launches/upcoming.json',15*60000]];
+const launches={feed:null,available:launchesAvailable,status:'idle',busy:false,errors:[],sourceKey:null,loadedAt:null,window:null,lastRender:null};
 // Local night windows for the planning horizon. The first seven come from the satellite side's own
 // night logic (so late-night viewing still belongs to the correct evening); the rest are extended
 // with real sunsets and sunrises for this location.
@@ -639,6 +671,7 @@ async function selectCategory(category){
  $('category-note').textContent=CATEGORY_LABELS[category].note;
  render();
  if(category==='satellites')return;
+ if(category==='launches'){if(!launches.feed||launches.status!=='ready')await loadLaunches(false);else renderLaunches();return;}
  const needs=celestialNeeds(category).filter(name=>!celestial.datasetState[name]);
  if(needs.length)await celestialDatasets(false,needs);
  requestCelestial();
@@ -646,6 +679,7 @@ async function selectCategory(category){
 function selectHorizon(horizon){
  celestial.horizon=horizon;
  document.querySelectorAll('[data-horizon]').forEach(button=>button.setAttribute('aria-checked',String(button.dataset.horizon===horizon)));
+ if(celestial.category==='launches'){renderLaunches();return;}
  if(celestial.category!=='satellites')requestCelestial();
 }
 /* ---- celestial rendering ---- */
@@ -738,6 +772,10 @@ function renderCelestial(){
  const label=CATEGORY_LABELS[celestial.category]||CATEGORY_LABELS.planets;
  $('celestial-eyebrow').textContent=label.eyebrow;
  $('celestial-headline').textContent=label.headline;
+ // The launch calendar borrows this section; these two labels belong to the calculated categories.
+ $('celestial-score-label').textContent='BEST OPPORTUNITY / 100';
+ $('celestial-more').querySelector('h2').textContent='Calculated but not prioritised';
+ $('launches-actions').hidden=true;
  const plan=celestial.result&&celestial.result.plans?celestial.result.plans[celestial.horizon]:null;
  const busy=celestial.busy||celestial.status==='loading';
  $('celestial-status').textContent=busy?'Calculating '+label.note.toLowerCase()+' for '+state.site.name+'…':
@@ -816,6 +854,210 @@ function renderCelestialFreshness(){
  if(celestial.computedAt)rows.push(`<div>Calculated ${esc(AGEO(celestial.computedAt))} ago${celestial.result&&celestial.result.diagnostics?` in ${celestial.result.diagnostics.durationMs} ms from ${celestial.result.diagnostics.candidateCount} calculated ${celestial.result.diagnostics.candidateCount===1?'event':'events'}`:''}.</div>`);
  body.innerHTML=rows.join('');
 }
+/* ---- launch loading and rendering ------------------------------------------------------------
+   Every string that reaches the DOM goes through esc(). Nothing here can turn a schedule into a
+   visibility claim: the module's relevanceFor always reports 'unknown' and the card says so. */
+function launchSunAltitude(t){try{if(!window.SunCalc||!Number.isFinite(t))return null;const position=SunCalc.getPosition(new Date(t),state.site.lat,state.site.lon);return position&&Number.isFinite(position.altitude)?position.altitude*180/Math.PI:null;}catch{return null;}}
+function launchWindow(){const horizon=celestial.horizon,days=horizon==='extended'?90:horizon==='week'?7:1,now=Date.now(),nights=celestialWindows(days),grace=L.RULES.passedGraceHours*3600000;
+ // A launch whose published time has just passed stays listed for the grace period so a pending
+ // confirmation is visible; the night window still never reaches back into daylight.
+ if(horizon==='tonight'){const night=nights[0],nightStart=Number.isFinite(night&&night.start)?night.start:now,start=Math.max(nightStart,now-grace),end=Number.isFinite(night&&night.end)?Math.max(night.end,start):start+12*3600000;return {start,end,horizon};}
+ const end=nights.length?nights[nights.length-1].end:now+days*DAY;return {start:now-grace,end:Math.max(end,now),horizon};}
+function launchPrecisionText(record){const precision=L.precisionOf(record);
+ if(precision.exact)return 'provider published a time, accurate to the '+String(precision.name||'second').toLowerCase();
+ if(precision.kind==='day')return 'provider published a date but no time of day';
+ return 'provider published a period only \u2014 '+L.periodLabel(record);}
+function launchDayHeading(key){const [year,month,day]=String(key).split('-').map(Number);
+ if(![year,month,day].every(Number.isFinite))return 'Date not published';
+ const date=new Date(Date.UTC(year,month-1,day));
+ const weekday=new Intl.DateTimeFormat('en-US',{timeZone:'UTC',weekday:'short'}).format(date);
+ const monthName=new Intl.DateTimeFormat('en-US',{timeZone:'UTC',month:'short'}).format(date);
+ return weekday+', '+monthName+' '+day+', '+year;}
+function launchLinkLabel(link,record){const base=link.title||link.source||link.type||(link.official?'Official information':'More information');return (link.official?'Official: ':'')+base+' for '+record.name;}
+function launchRelevance(record){return L.relevanceFor(record,state.site,{sunAltitude:launchSunAltitude});}
+function launchCard(entry,now){const record=entry.record,precision=L.precisionOf(record),relevance=launchRelevance(record),status=L.statusChip(record),countdown=L.countdownFor(record,now);
+ const net=Date.parse(record.net);
+ const localTime=precision.exact?L.formatLocal(net,state.site.tz,state.settings.clock):null;
+ const padTime=precision.exact&&record.site.timezone?L.formatLocal(net,record.site.timezone,state.settings.clock):null;
+ const ticking=countdown.mode==='ticking'||countdown.mode==='soon'||countdown.mode==='days';
+ const countdownMarkup=`<span class="launch-countdown"${ticking?' data-countdown="'+esc(record.id)+'"':''} data-mode="${esc(countdown.mode)}"${ticking?' aria-hidden="true"':''}>${esc(countdown.text)}</span>`;
+ const facts=[];
+ facts.push('<div><strong>Vehicle</strong> '+esc(record.vehicle||'not published')+(record.vehicle_family&&record.vehicle_family!==record.vehicle?' · '+esc(record.vehicle_family):'')+'</div>');
+ facts.push('<div><strong>Provider</strong> '+esc(record.provider||'not published')+'</div>');
+ facts.push('<div><strong>Launch site</strong> '+esc(record.site.name||'not published')+(record.pad.name?' · '+esc(record.pad.name):'')+(padTime?' · '+esc(padTime)+' at the pad':'')+'</div>');
+ facts.push('<div><strong>Scheduling precision</strong> '+esc(launchPrecisionText(record))+'</div>');
+ if(precision.exact)facts.push('<div><strong>Published time</strong> <time datetime="'+esc(record.net)+'">'+esc(localTime)+'</time> your time ('+esc(state.site.tz)+')</div>');
+ if(precision.exact&&record.window.start&&record.window.end)facts.push('<div><strong>Provider window</strong> '+esc(L.formatLocal(Date.parse(record.window.start),state.site.tz,state.settings.clock))+' \u2013 '+esc(L.formatTime(Date.parse(record.window.end),state.site.tz,state.settings.clock))+'</div>');
+ if(record.mission_type||record.orbit)facts.push('<div><strong>Mission</strong> '+esc([record.mission_type,record.orbit].filter(Boolean).join(' · '))+'</div>');
+ if(record.last_updated)facts.push('<div><strong>Provider last updated this record</strong> '+esc(L.formatLocal(Date.parse(record.last_updated),state.site.tz,state.settings.clock))+'</div>');
+ const change=L.changeText(record);
+ const links=[...(record.links.info||[]),...(record.links.webcast||[])].slice(0,3);
+ const linkMarkup=(links.length||record.links.ll2)?`<div class="launch-links">${links.map(link=>`<a href="${esc(link.url)}" target="_blank" rel="noopener" aria-label="${esc(launchLinkLabel(link,record))}">${esc(launchLinkLabel(link,record))} ↗</a>`).join('')}${record.links.ll2?`<a href="${esc(record.links.ll2)}" target="_blank" rel="noopener" aria-label="Provider schedule record for ${esc(record.name)}">Provider record ↗</a>`:''}</div>`:'';
+ return `<article class="celestial-card launch-card" data-launch="${esc(record.id)}" data-date-only="${entry.dateOnly?'true':'false'}">`+
+  `<div class="card-top"><h3>${esc(record.name)}</h3><span class="launch-status" data-tone="${esc(status.tone)}" title="${esc(status.detail)}">${esc(status.label)}</span></div>`+
+  countdownMarkup+
+  (localTime?`<div class="small mono">${esc(localTime)} your time</div>`:'')+
+  `<div class="launch-facts">${facts.join('')}</div>`+
+  (record.mission_description?`<p class="small">${esc(record.mission_description)}</p>`:'')+
+  (change?`<div class="small launch-unknown">${esc(change)}</div>`:'')+
+  `<div class="card-top"><h3 style="font-size:.9rem">Local relevance</h3><span class="launch-status" data-tone="warn">Visibility unknown</span></div>`+
+  `<ul class="launch-why">${relevance.statements.map(statement=>`<li>${esc(statement)}</li>`).join('')}</ul>`+
+  `<div class="small">${esc(status.detail)} A launch appears here because it is scheduled, not because it will be visible from where you are.</div>`+
+  linkMarkup+
+  `</article>`;}
+
+// The published feed is fetched once per window and cached with the same bounded local cache used for
+// orbit and weather responses. The edge/committed feed is tried first; the committed file is the
+// fallback, so a page opened without the endpoint still shows an honest schedule with its own age.
+async function loadLaunches(force=false){
+ if(!launchesAvailable){launches.status='unavailable';launches.errors=['The launch calendar module did not load.'];renderLaunches();return;}
+ launches.busy=true;launches.status='loading';launches.errors=[];renderLaunches();
+ let feed=null,used=null;
+ for(const [url,ttl] of LAUNCH_FEED_SOURCES){
+  const requestUrl=force?url+(url.includes('?')?'&':'?')+'refresh='+Date.now():url;
+  try{const value=await source('launches:'+url,requestUrl,ttl,force);const check=L.validateFeed(value);
+   if(!check.ok)throw Error(check.reason||'unusable launch feed');
+   feed=value;used=url;break;}
+  catch(error){launches.errors.push(url+': '+String((error&&error.cause&&error.cause.message)||(error&&error.message)||error));}
+ }
+ launches.busy=false;
+ if(!feed){launches.feed=null;launches.status='error';launches.sourceKey=null;renderLaunches();return;}
+ launches.feed=feed;launches.sourceKey=used;launches.loadedAt=Date.now();
+ launches.status=L.validateFeed(feed).available?'ready':'unavailable';
+ renderLaunches();
+}
+function launchRecordById(id){return launches.feed&&Array.isArray(launches.feed.launches)?launches.feed.launches.find(record=>record.id===id)||null:null;}
+// The ticking countdown is decorative: the absolute published time is always present as text, so a
+// screen reader never receives a value that changes every second. The loop only exists while the
+// launch calendar is on screen with something to tick, and it stops itself otherwise, so the satellite
+// page keeps its previous timer and performance profile.
+let launchTicker=null;
+function launchTickLoop(){
+ launchTicker=null;
+ if(document.hidden||celestial.category!=='launches')return;
+ if(!document.querySelector('[data-countdown]'))return;
+ tickLaunchCountdowns();
+ launchTicker=setTimeout(launchTickLoop,1000);
+}
+function startLaunchTicker(){if(launchTicker===null&&!document.hidden&&celestial.category==='launches'&&document.querySelector('[data-countdown]'))launchTicker=setTimeout(launchTickLoop,1000);}
+function stopLaunchTicker(){if(launchTicker!==null){clearTimeout(launchTicker);launchTicker=null;}}
+function tickLaunchCountdowns(){
+ if(celestial.category!=='launches'||document.hidden)return;
+ const now=Date.now();
+ document.querySelectorAll('[data-countdown]').forEach(element=>{
+  const record=launchRecordById(element.dataset.countdown);
+  if(!record)return;
+  const countdown=L.countdownFor(record,now);
+  element.textContent=countdown.text;element.dataset.mode=countdown.mode;
+  if(countdown.mode==='passed'&&element.dataset.mode!=='passed'){renderLaunches();return;}
+ });
+}
+function renderLaunchMore(selection,feed){
+ const body=$('celestial-more-body'),section=$('celestial-more'),rows=[];
+ if(selection.periods.length){
+  rows.push('<div><strong>Announced with a period, not a date</strong> — the provider has not published a day for these, so they are never placed on one.</div>');
+  rows.push(`<ul class="celestial-list">${selection.periods.map(({record})=>`<li>${esc(record.name)}${record.vehicle?' · '+esc(record.vehicle):''} — ${esc(L.periodLabel(record))}${record.site.name?' · '+esc(record.site.name):''} <span class="launch-status" data-tone="warn">${esc(L.statusChip(record).label)}</span></li>`).join('')}</ul>`);
+  if(selection.periodsTotal>selection.periods.length)rows.push(`<div>${selection.periodsTotal-selection.periods.length} further period-only launch(es) in this window are not listed.</div>`);
+ }
+ const stats=(feed&&feed.stats)||{};
+ if(Number.isFinite(stats.announced_total)){
+  const beyond=stats.announced_total-(Number.isFinite(stats.count)?stats.count:0);
+  rows.push(`<div>${stats.count} launches have a published date or period inside the next ${stats.window_days||180} days. ${stats.announced_total} launches are announced in total${beyond>0?`; the remaining ${beyond} have no window published yet and are not given a date here`:''}.</div>`);
+ }
+ if(selection.completed)rows.push(`<div>${selection.completed} completed launch(es) in the feed are not shown in this calendar.</div>`);
+ rows.push('<div>Launch schedules are published by the provider, not calculated here. A time can move, a launch can be held or cancelled, and a launch with only a period announced cannot be pinned to a night.</div>');
+ section.hidden=false;
+ body.innerHTML=rows.join('');
+}
+function renderLaunchFreshness(feed){
+ const body=$('celestial-freshness-body'),rows=[],check=L.validateFeed(feed);
+ const loadErrors=launches.errors.length?`<div class="privacy">${launches.sourceKey?'Loaded from '+esc(launches.sourceKey)+'. ':''}Could not load: ${esc(launches.errors.slice(0,2).join('; '))}.</div>`:'';
+ if(!check.ok||!check.available){
+  rows.push(`<div><strong>Launch schedule</strong> — not available (${esc(check.reason||check.notice||'unavailable')}). No launch is listed; an empty calendar is never shown as a schedule.</div>`);
+  if(loadErrors)rows.push(loadErrors);
+ }else{
+  const fresh=L.freshness(feed,Date.now());
+  rows.push(`<div><strong>Launch schedule</strong> — ${esc(fresh.text)}</div>`);
+  const stats=feed.stats||{};
+  rows.push(`<div>${esc(String(stats.count||0))} launches in this feed · ${esc(String(stats.with_published_time||0))} with a published time · ${esc(String(stats.with_published_date||0))} with a published date · ${esc(String(stats.period_only||0))} with a period only · ${esc(String(stats.providers||0))} providers · ${esc(String(stats.sites||0))} launch sites</div>`);
+  rows.push(`<div>${L.sourceLine(feed).map(esc).join(' · ')}</div>`);
+  rows.push('<div><strong>Not modelled here</strong> — whether a rocket or its exhaust plume is visible from your location. That needs the powered ascent trajectory, staging and Earth-shadow geometry, which this provider does not publish. Proximity to a launch site is never treated as evidence of visibility.</div>');
+  rows.push(`<div><strong>Refresh</strong> — the shared feed is refreshed on a schedule and cached at the edge; this browser keeps the last copy for ${esc(String(Math.round(LAUNCH_FEED_SOURCES[0][1]/60000)))} minutes and falls back to the published file. It is considered stale after ${esc(String(feed.stale_after_minutes||180))} minutes.</div>`);
+  if(launches.sourceKey||launches.errors.length)rows.push(loadErrors||`<div class="privacy">Loaded from ${esc(launches.sourceKey)}.</div>`);
+ }
+ body.innerHTML=rows.join('');
+}
+
+
+
+/* The launch calendar. It answers "what is launching, and when" for the same three planning windows
+   as the rest of the page, and it never reorders, scores or hides launches by local visibility. */
+function renderLaunches(){
+ // A launch load can finish after the reader has moved to another category; the launch calendar must
+ // never repaint over whatever is on screen now.
+ if(celestial.category!=='launches')return;
+ const label=CATEGORY_LABELS.launches,now=Date.now(),feed=launches.feed,check=L.validateFeed(feed);
+ const window=launchWindow();launches.window=window;
+ $('celestial-eyebrow').textContent=label.eyebrow;
+ $('celestial-headline').textContent=label.headline;
+ $('celestial-score-label').textContent='LAUNCHES IN WINDOW';
+ $('celestial-changes').hidden=true;$('celestial-changes-body').innerHTML='';
+ const moreSection=$('celestial-more');moreSection.querySelector('h2').textContent='Announced but not dated';
+ $('launches-actions').hidden=!launchesAvailable;
+ const events=$('celestial-events');
+ if(!launchesAvailable){
+  $('celestial-status').textContent='The launch calendar module did not load. Satellite and celestial calculations are unaffected.';
+  $('celestial-summary').textContent='No launch schedule can be shown.';
+  $('celestial-top-score').textContent='—';
+  events.innerHTML='<div class="celestial-empty" data-empty="true"><strong>The launch calendar is unavailable.</strong><span>The launch module did not load. Nothing is inferred from its absence: no launch is listed rather than a schedule being guessed.</span></div>';
+  moreSection.hidden=true;$('celestial-more-body').innerHTML='';renderLaunchFreshness(null);return;
+ }
+ const busy=launches.busy||launches.status==='loading';
+ const selection=check.ok&&check.available?L.selectForWindow(feed,{start:window.start,end:window.end,horizon:celestial.horizon,now}):null;
+ launches.lastRender=selection;
+ if(busy&&!feed)$('celestial-status').textContent='Loading the published launch schedule…';
+ else if(!check.ok)$('celestial-status').textContent=(check.reason||'The launch schedule could not be read')+'. No launch is listed; this is a missing feed, not an empty schedule.';
+ else if(!check.available)$('celestial-status').textContent=(check.notice||'The launch schedule is unavailable')+'. No launch is listed.';
+ else $('celestial-status').textContent=`${selection.dated.length} launch${selection.dated.length===1?'':'es'} with a published time or date in ${L.windowLabel(celestial.horizon)} · ${selection.periodsTotal} more announced with a period only · every launch is listed because it is scheduled, not because it is visible from here.`;
+ $('celestial-summary').textContent=!check.ok||!check.available?'The launch schedule is not available right now.':
+  selection.dated.length?`Next up: ${selection.dated[0].record.name}${L.precisionOf(selection.dated[0].record).exact?' at '+L.formatLocal(selection.dated[0].when,state.site.tz,state.settings.clock)+' your time':' ('+L.periodLabel(selection.dated[0].record)+')'}. Local visibility is unknown for every launch here.`:
+  'No launch has a published time or date in this window. Launches announced with a period only are listed below.';
+ $('celestial-top-score').textContent=selection?String(selection.dated.length):'—';
+ if(!check.ok){
+  events.innerHTML=`<div class="celestial-empty" data-empty="true"><strong>The launch schedule could not be read.</strong><span>${esc(check.reason||'unavailable')}</span><span>This is a missing feed, not an empty schedule: no launch is listed rather than a schedule being guessed.</span></div>`;
+ }else if(!check.available){
+  events.innerHTML=`<div class="celestial-empty" data-empty="true"><strong>No launch schedule is available right now.</strong><span>${esc(check.notice||'')}</span><span>This is a missing feed, not an empty schedule. Satellite passes and celestial events are unaffected.</span></div>`;
+ }else if(busy&&!feed){
+  events.innerHTML='<div class="celestial-empty"><strong>Working…</strong><span>Reading the shared launch schedule.</span></div>';
+ }else if(!selection.dated.length){
+  events.innerHTML=`<div class="celestial-empty" data-empty="true"><strong>No launch has a published time or date in ${esc(L.windowLabel(celestial.horizon))}.</strong><span>That is a real answer: a quiet window is normal, and launches announced with only a period are listed separately below rather than being given a date.</span></div>`;
+ }else{
+  const grouped=new Map();
+  for(const entry of selection.dated.slice(0,L.RULES.maxCards)){
+   const key=L.dateKeyFor(entry.record,state.site.tz)||'unknown';
+   if(!grouped.has(key))grouped.set(key,[]);
+   grouped.get(key).push(entry);
+  }
+  events.innerHTML=[...grouped.entries()].sort((a,b)=>a[0].localeCompare(b[0]))
+   .map(([key,entries])=>`<section class="launch-day" aria-label="Launches on ${esc(launchDayHeading(key))}"><h2>${esc(launchDayHeading(key))}</h2>${entries.map(entry=>launchCard(entry,now)).join('')}</section>`).join('')+
+   (selection.dated.length>L.RULES.maxCards?`<div class="small">${selection.dated.length-L.RULES.maxCards} further launch(es) in this window are not listed. Choose a shorter window to see them.</div>`:'');
+ }
+ if(selection)renderLaunchMore(selection,feed);else{moreSection.hidden=true;$('celestial-more-body').innerHTML='';}
+ renderLaunchFreshness(feed);
+ startLaunchTicker();
+}
+
+
+/* ---- launch wiring ---- */
+$('launches-refresh').onclick=async()=>{
+ const button=$('launches-refresh');
+ button.disabled=true;button.textContent='Checking for schedule updates…';
+ await loadLaunches(true);
+ button.disabled=false;button.textContent='Check for schedule updates';
+ const fresh=launches.feed?L.freshness(launches.feed,Date.now()):null;
+ $('celestial-status').textContent=fresh&&launches.status==='ready'?fresh.text+' '+(launches.sourceKey?'Loaded from '+launches.sourceKey+'.':''):
+  'The launch schedule could not be refreshed'+(launches.errors.length?': '+launches.errors[0]:'')+'. The previous copy, if any, is unchanged.';
+};
 /* ---- celestial wiring ---- */
 document.querySelectorAll('[data-category]').forEach(button=>button.onclick=()=>selectCategory(button.dataset.category));
 document.getElementById('categories').addEventListener('keydown',event=>{const tabs=[...document.querySelectorAll('[data-category]')],index=tabs.indexOf(document.activeElement);
@@ -828,11 +1070,16 @@ document.getElementById('celestial-more').addEventListener('click',()=>{});
  window.__OVERHEAD_TEST__={state,engine:E,lifecycle:OverheadLifecycle.eventLifecycle,passes,best,displayPasses,candidates,happeningPasses,presentationTrace,objects:O,metadataAvailable,render,calculate,skySVG,source,showEvent,getMap:()=>map,cachePut,cacheSize:()=>session.size,
   objectEnricher,objectMeta,objectMetaSize:()=>objectMeta.size,renderObjectAbout,renderWeeklyIdentity,enrichObjects,requestFor,objectKey,
  celestial,selectCategory,selectHorizon,requestCelestial,renderCelestial,renderCelestialChanges,renderCelestialFreshness,
- celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities}};
+ celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities},
+ launches,launchesAvailable,loadLaunches,renderLaunches,launchCard,launchWindow,launchRelevance,launchRecordById,tickLaunchCountdowns,launchModule:L,launchFeedSources:LAUNCH_FEED_SOURCES};
  $('sky-preview').innerHTML=skySVG(null);
  if(location.hash==='#about'){const b=document.querySelector('[data-view="about"]');if(b)b.click();}
  load();
  setInterval(()=>{if(!document.hidden&&!state.busy&&state.nights.length){if(state.nights[0].day!==E.nights(state.site)[0].day||(state.view==='now'&&Date.now()-state.windows[7].start>120000)){++state.generation;calculate();}else render();}},60000);
+ // One-second countdown ticker, only while the launch calendar is on screen and the tab is visible.
+ // The countdown ticker is started by renderLaunches() and stops itself when there is nothing to tick,
+ // so no timer runs on the satellite, celestial or About views.
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stopLaunchTicker();else startLaunchTicker();});
 });
 </script>
 </body>
