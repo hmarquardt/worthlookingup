@@ -422,28 +422,55 @@ export function effectiveScheduleDigest(feed) {
   return hash.toString(16).padStart(8, '0') + '-' + payload.length.toString(16);
 }
 
-/* Should a freshly retrieved candidate replace the committed artifact?
+/* Should a freshly retrieved candidate replace the committed artifact, and should the deployment be
+ * refreshed?
  *  - the schedule itself changed            -> always publish
- *  - unchanged, but the committed copy is at or past the freshness deadline -> publish, so the
- *    deployed artifact never approaches the 180-minute staleness horizon
- *  - unchanged and still comfortably fresh  -> do not write, so an identical schedule does not create
- *    a commit or a deployment
+ *  - unchanged, but the copy a reader can actually get is at or past the freshness deadline
+ *                                           -> publish, so the deployed schedule never approaches the
+ *                                              180-minute staleness horizon
+ *  - unchanged and everything in front of a reader is still comfortably fresh
+ *                                           -> do not write, so an identical schedule does not create
+ *                                              a commit or a deployment
  *  - no usable previous artifact            -> always publish
- * A missing or unreadable previous generation time is treated as "past the deadline", so the
- * fail-closed path is always to publish rather than to defer. */
-export function publishDecision({ previous = null, candidate = null, now = Date.now(), freshnessDeadlineMinutes = 120 } = {}) {
-  const previousDigest = effectiveScheduleDigest(previous);
+ *
+ * `deployedAgeMinutes` is the age of the copy served at the public endpoint, when the caller was able
+ * to measure it. The committed artifact and the deployed copy can diverge: during the 2026-10-16
+ * incident the hourly job kept committing a fresh artifact while every deployment failed, so committed
+ * freshness looked healthy while readers were served an eleven-hour-old schedule. Deferring on the
+ * committed artifact alone would then never repair the deployment. The rule therefore uses the older
+ * of the two, and treats a *measured but unusable* deployed age (null: the endpoint was unreachable or
+ * answered without a usable timestamp) as stale, so the fail-closed path is always to publish. Leaving
+ * the parameter undefined means "not measured" and falls back to the committed artifact (a local
+ * command-line run).
+ */
+export function publishDecision({ previous = null, candidate = null, now = Date.now(), freshnessDeadlineMinutes = 120, deployedAgeMinutes } = {}) {
   const candidateDigest = effectiveScheduleDigest(candidate);
-  if (candidateDigest === null) return { publish: true, contentChanged: true, previousAgeMinutes: null, reason: 'no candidate schedule was built' };
-  if (previousDigest === null || !previous) return { publish: true, contentChanged: true, previousAgeMinutes: null, reason: 'no previous artifact to compare against' };
-  const contentChanged = previousDigest !== candidateDigest;
+  if (candidateDigest === null) return { publish: true, contentChanged: true, previousAgeMinutes: null, deployedAgeMinutes: null, freshnessSource: 'none', reason: 'no candidate schedule was built' };
+  if (!previous || effectiveScheduleDigest(previous) === null) return { publish: true, contentChanged: true, previousAgeMinutes: null, deployedAgeMinutes: null, freshnessSource: 'none', reason: 'no previous artifact to compare against' };
+  const contentChanged = effectiveScheduleDigest(previous) !== candidateDigest;
   const previousAgeMinutes = feedAgeMinutes(previous, now);
+  const measured = deployedAgeMinutes === null ? null : (Number.isFinite(deployedAgeMinutes) ? Math.max(0, deployedAgeMinutes) : undefined);
   const deadline = Number.isFinite(freshnessDeadlineMinutes) ? freshnessDeadlineMinutes : 120;
-  if (contentChanged) return { publish: true, contentChanged: true, previousAgeMinutes, reason: 'the published schedule changed' };
-  if (previousAgeMinutes === null || previousAgeMinutes >= deadline) {
-    return { publish: true, contentChanged: false, previousAgeMinutes, reason: 'the schedule is unchanged but its published freshness is at or past the ' + deadline + '-minute deadline' };
+  const reference = measured === null || previousAgeMinutes === null ? null
+    : measured === undefined ? previousAgeMinutes
+    : Math.max(previousAgeMinutes, measured);
+  const freshnessSource = measured === null ? 'deployed-unreadable' : measured === undefined ? 'committed' : 'committed-and-deployed';
+  const base = { previousAgeMinutes, deployedAgeMinutes: measured === undefined ? null : measured, freshnessSource };
+  if (contentChanged) return { ...base, publish: true, contentChanged: true, reason: 'the published schedule changed' };
+  if (reference === null) {
+    return { ...base, publish: true, contentChanged: false, reason: measured === null
+      ? 'the schedule is unchanged but the deployed copy could not be read, so it is republished'
+      : 'the schedule is unchanged but its generation time is unreadable, so it is republished' };
   }
-  return { publish: false, contentChanged: false, previousAgeMinutes, reason: 'the schedule is unchanged and the published copy is ' + Math.round(previousAgeMinutes) + ' minutes old' };
+  if (reference >= deadline) {
+    const detail = freshnessSource === 'committed-and-deployed' && measured > previousAgeMinutes
+      ? 'the deployed copy is ' + Math.round(measured) + ' minutes old'
+      : 'the published freshness is ' + Math.round(reference) + ' minutes old';
+    return { ...base, publish: true, contentChanged: false, reason: 'the schedule is unchanged but ' + detail + ', at or past the ' + deadline + '-minute deadline' };
+  }
+  return { ...base, publish: false, contentChanged: false, reason: 'the schedule is unchanged and ' + (freshnessSource === 'committed-and-deployed'
+    ? 'both the committed and deployed copies are fresh (' + Math.round(previousAgeMinutes) + ' and ' + Math.round(measured) + ' minutes old)'
+    : 'the published copy is ' + Math.round(reference) + ' minutes old') };
 }
 
 export function upstreamWindow(now, windowDays) {

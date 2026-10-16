@@ -53,6 +53,17 @@ function forcePublish() {
   return process.argv.includes('--force-publish') || ['1', 'true', 'yes'].includes(String(process.env.LAUNCH_FORCE_PUBLISH || '').toLowerCase());
 }
 
+/* The age of the copy readers are actually served, measured by the workflow before the refresh.
+   undefined = not measured (a local run); null = measured but unreadable, which must not be mistaken
+   for "fresh"; otherwise a number of minutes. */
+function deployedAgeMinutes() {
+  const raw = String(process.env.LAUNCH_DEPLOYED_AGE_MINUTES ?? '').trim().toLowerCase();
+  if (!raw) return undefined;
+  if (['unknown', 'unreachable', 'unreadable', 'null', 'stale'].includes(raw)) return null;
+  const value = Number(raw);
+  return Number.isFinite(value) && value >= 0 ? value : null;
+}
+
 function readPrevious() {
   try {
     const value = JSON.parse(fs.readFileSync(artifact, 'utf8'));
@@ -106,12 +117,15 @@ async function refresh() {
     process.exit(1);
   }
   assertValidFeed(feed);
-  const decision = publishDecision({ previous, candidate: feed, now, freshnessDeadlineMinutes: deadline });
+  const deployedAge = deployedAgeMinutes();
+  const decision = publishDecision({ previous, candidate: feed, now, freshnessDeadlineMinutes: deadline, deployedAgeMinutes: deployedAge });
   const changes = feed.launches.filter(record => record.change).length;
   console.log('RETRIEVED: ' + feed.launches.length + ' launches (' + merged.fresh + ' refreshed, ' + merged.kept
     + ' kept from the previous feed, ' + changes + ' schedule change(s) detected) from ' + PROVIDER.name + ' '
     + PROVIDER.api_version + ' in ' + upstream.source.pages + ' request(s); upstream total '
     + String(upstream.source.count) + ', announced overall ' + String(upstream.source.announced_total) + '.');
+  console.log('      deployed copy: ' + (deployedAge === undefined ? 'not measured' : deployedAge === null ? 'unreadable' : Math.round(deployedAge) + ' minutes old')
+    + '; committed artifact: ' + (decision.previousAgeMinutes === null ? 'unreadable' : Math.round(decision.previousAgeMinutes) + ' minutes old') + '.');
   console.log('      ' + decision.reason + '; publishing: ' + ((decision.publish || forcePublish()) ? 'yes' : 'no')
     + ' (freshness deadline ' + deadline + ' minutes, staleness horizon ' + STALE_AFTER_MINUTES + ' minutes).');
   if (!decision.publish && !forcePublish()) {

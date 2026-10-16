@@ -53,14 +53,34 @@ jobs:
             echo 'no committed launch artifact yet' | tee /tmp/before.sha256
           fi
 
+      # The committed artifact and the copy readers are served can diverge: a failed deployment used to
+      # leave the site on an old schedule while the hourly commit kept succeeding. Measuring the served
+      # copy makes the refresh decision use the age a reader actually experiences, so the pipeline also
+      # repairs its own deployment instead of deferring on the strength of a fresh commit.
+      - name: Read the deployed feed freshness
+        id: deployed
+        run: |
+          age=$(node -e "
+            fetch('https://worthlookingup.com/api/launches.json',{signal:AbortSignal.timeout(20000)})
+              .then(function(response){return response.ok?response.json():null;})
+              .then(function(feed){
+                if(!feed||!Number.isFinite(Date.parse(feed.generated_at))){console.log('unknown');return;}
+                console.log(Math.round((Date.now()-Date.parse(feed.generated_at))/60000));
+              })
+              .catch(function(){console.log('unknown');});
+          " 2>/dev/null || echo unknown)
+          case "$age" in ''|*[!0-9]*) age=unknown ;; esac
+          echo "deployed_age_minutes=$age" >> "$GITHUB_OUTPUT"
+          echo "Deployed launch feed age: $age minute(s)."
+
       - name: Refresh the launch schedule
         id: launches
         env:
           # A manual run is a verification run: it always writes so publication and the deployed
-          # feed can be checked. A scheduled run defers when the schedule is unchanged and the
-          # published copy is still comfortably fresh, which avoids a commit and a deployment for
-          # a schedule that did not move.
+          # feed can be checked. A scheduled run defers when the schedule is unchanged and everything
+          # a reader can see is still comfortably fresh.
           LAUNCH_FORCE_PUBLISH: ${{ inputs.force_publish && '1' || '' }}
+          LAUNCH_DEPLOYED_AGE_MINUTES: ${{ steps.deployed.outputs.deployed_age_minutes }}
         run: node scripts/refresh-launches.mjs
 
       - name: Validate the refreshed artifact offline

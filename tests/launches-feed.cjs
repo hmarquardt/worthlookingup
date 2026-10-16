@@ -238,6 +238,26 @@ assert.equal(publishDecision({previous:digestBase,candidate:null,now:NOW}).publi
 assert.equal(publishDecision({previous:{schema:FEED_SCHEMA,generated_at:'not a date',launches:[]},candidate:digestBase,now:NOW}).publish,true,'an unreadable previous generation time always publishes');
 assert.equal(publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000}).publish,false,'the default deadline is 120 minutes');
 assert.equal(publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000,freshnessDeadlineMinutes:180}).publish,false,'a longer deadline is still bounded by the staleness horizon in the caller');
+// The deployed copy matters as much as the committed artifact. A fresh commit must not hide a stale
+// deployment: that is exactly the 2026-10-16 incident, where every deployment failed while the hourly
+// commit kept succeeding.
+const staleDeployment=publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000,freshnessDeadlineMinutes:120,deployedAgeMinutes:659});
+assert.equal(staleDeployment.publish,true,'an unchanged schedule with a stale deployed copy is republished');
+assert.equal(staleDeployment.contentChanged,false);
+assert.equal(staleDeployment.freshnessSource,'committed-and-deployed');
+assert.match(staleDeployment.reason,/deployed copy is 659 minutes old/);
+const freshBoth=publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000,freshnessDeadlineMinutes:120,deployedAgeMinutes:20});
+assert.equal(freshBoth.publish,false,'an unchanged schedule with a fresh deployed copy is not republished');
+assert.equal(freshBoth.freshnessSource,'committed-and-deployed');
+const staleCommitFreshDeploy=publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+200*60000,freshnessDeadlineMinutes:120,deployedAgeMinutes:5});
+assert.equal(staleCommitFreshDeploy.publish,true,'a stale commit is republished even when the deployed copy is fresh');
+// A measured but unreadable deployed copy is never mistaken for fresh, and not measuring it at all
+// falls back to the committed artifact (a local run).
+const unreadableDeployment=publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000,freshnessDeadlineMinutes:120,deployedAgeMinutes:null});
+assert.equal(unreadableDeployment.publish,true,'an unreadable deployed copy forces a republication');
+assert.equal(unreadableDeployment.freshnessSource,'deployed-unreadable');
+assert.equal(publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000,freshnessDeadlineMinutes:120,deployedAgeMinutes:undefined}).publish,false,'an unmeasured deployed copy falls back to the committed artifact');
+assert.equal(publishDecision({previous:digestBase,candidate:netMoved,now:NOW+30*60000,freshnessDeadlineMinutes:120,deployedAgeMinutes:5}).publish,true,'changed content publishes regardless of deployment freshness');
 
 console.log('PASS: launch feed artifact, normalization, precision, statuses, duplicates, schedule changes, validation, empty/stale/unavailable feeds, provider failure codes and the effective-content publication rule ('+feed.launches.length+' committed launches).');
 })().catch(error=>{console.error(error);process.exit(1);});

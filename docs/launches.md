@@ -192,9 +192,17 @@ counts, the announced total and the derived stats. `publishDecision` then applie
 | Situation | Result |
 | --- | --- |
 | The schedule content changed | Publish: commit and deploy. |
-| Unchanged, and the committed copy is younger than the 120-minute freshness deadline | **Defer**: nothing is written, so no commit and no deployment are created. |
-| Unchanged, and the committed copy is at or past the deadline | Publish, so the deployed copy never approaches the 180-minute staleness horizon. |
-| No usable previous generation time, or no candidate | Publish (fail closed). |
+| Unchanged, and **everything a reader can get** is younger than the 120-minute freshness deadline | **Defer**: nothing is written, so no commit and no deployment are created. |
+| Unchanged, but the committed artifact *or the deployed copy* is at or past the deadline | Publish, so the schedule a reader actually receives never approaches the 180-minute staleness horizon. |
+| The deployed copy could not be read, or no usable previous generation time, or no candidate | Publish (fail closed). |
+
+The decision deliberately uses the **older** of the committed artifact and the copy served at
+`/api/launches.json`, because those two can diverge. During the 2026-10-16 incident the hourly job kept
+committing a fresh artifact while every deployment failed, so the committed feed looked healthy while
+readers were served an eleven-hour-old schedule flagged stale. Deferring on the committed artifact alone
+would never have repaired that, so the workflow measures the deployed age before each refresh and the
+pipeline republishes whenever the served copy is stale — including when the schedule content itself has
+not changed. A deployed age that was measured but is unusable is never treated as fresh.
 
 The committed artifact never ages beyond 120 minutes in normal operation, so the deployed copy stays
 inside the staleness horizon and the Cloudflare endpoint still never spends its own provider allowance
