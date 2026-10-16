@@ -11,8 +11,10 @@ name: worthlookingup launch schedule
 # itself only when its copy is stale (older than 180 minutes).
 #
 # One run makes at most 4 upstream requests (up to 3 launch pages of 100 records plus one tiny
-# announced-total request) against a 15-requests-per-hour allowance, and only when the artifact changed
-# does it also rebuild and deploy.
+# announced-total request) against a 15-requests-per-hour allowance. It rebuilds and deploys only when
+# the schedule content changed, or when the copy readers are served has reached the freshness deadline;
+# an unchanged schedule whose committed artifact and deployed copy are both still fresh is deferred, so
+# it creates no commit and no deployment. A measured-but-unreadable deployed copy always publishes.
 
 on:
   schedule:

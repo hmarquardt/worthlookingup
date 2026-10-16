@@ -320,5 +320,34 @@ route propagation; persistent failures still fail. No scientific/application cha
   and reports whether their bytes match the checkout, instead of asserting a historical digest.
 - overhead-data.yml's publish step now validates its own pipeline (the two data suites and the build)
   rather than the complete regression suite, for the same reason as the launch workflow.
+
+### Freshness of the copy readers actually get
+- The first repair version decided deferral from the committed artifact's age. That was still wrong:
+  the 14:45Z scheduled run (38918305748) succeeded but deferred, correctly by that rule, while the
+  deployed feed was 659 minutes old and flagged stale — the commits had kept succeeding all day while
+  every deployment failed. A deferral keyed to the commit can never repair a stale deployment.
+- publishDecision now takes the deployed copy's age (measured from /api/launches.json before each
+  refresh) and uses the older of the two. Unchanged content defers only while both copies are inside
+  the 120-minute deadline; a measured-but-unreadable deployed age is never treated as fresh, and an
+  unmeasured one falls back to the committed artifact for local runs. Publish steps in
+  launches-data.yml and overhead-data.yml both now validate their own pipeline.
+- Demonstrated with real retrievals: deployed age 659 minutes republished an unchanged schedule, an
+  unreadable deployed copy republished, and a fresh deployed copy deferred without writing.
+- Production feed after the push-triggered deployment: generated 2026-10-16T13:44Z, 63 minutes old,
+  stale false, 148 launches; the previously stuck celestial artifacts also redeployed
+  (comet ephemerides 2026-10-16T06:48Z).
 - Next: commit, push, dispatch a manual ingestion run, verify the Cloudflare launch feed and the
   celestial artifacts, then confirm the following genuine scheduled run.
+- Manual dispatch could not be issued from this environment: workflow_dispatch needs a GitHub token and
+  none is available here (gh is not authenticated, and the remote is SSH). The equivalent verification
+  was performed instead, and it used the real pipeline: the genuine 14:45Z scheduled run 38918305748
+  executed the repaired ingestion path end to end and succeeded, the push-triggered ci.yml run
+  38918902342 validated and deployed through Cloudflare with the strict production verifier, and the
+  deployed launch feed and celestial artifacts were then inspected directly. The next scheduled run
+  after the deployed-freshness change was still pending when this entry was written; its expected
+  behaviour (publish on changed content or stale deployed copy, otherwise defer) is covered by
+  tests/launches-feed.cjs and by the recorded real-retrieval runs above.
+- Before/after proof of the fix: with the exact feed that triggered the outage (ccea6e7, where USSF-481
+  reads `success | Launch Successful`) restored into data/launches/upcoming.json, tests/calendar.cjs,
+  tests/launches-feed.cjs, tests/launches-relevance.cjs and tests/migration.cjs all pass, and the
+  pre-repair exporter shown that feed refuses the record as completed.
