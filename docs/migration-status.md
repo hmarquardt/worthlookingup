@@ -462,7 +462,27 @@ route propagation; persistent failures still fail. No scientific/application cha
       rejected profiles, presentation, limits, catalog expansion, remaining prerequisites),
       [trajectory-profiles.md](trajectory-profiles.md) (generated provenance and validation record),
       `docs/launches.md`, `src/launches/readme.md`, `docs/launch-trajectory-feasibility.md` and `agents.md`.
+- Git and deployment: commit `e71dd09` pushed to main (fetched and replayed on `origin/main`, which
+  already carried the data bot's `a018717` refresh; no force, no divergence). CI run `38965166121`
+  (*validate and deploy*) finished **success** in 2m19s, running `npm test`, the launch-feed check, the
+  Python precision test and both builders, the whole browser suite, `npm run build`, the Cloudflare Pages
+  deploy and `scripts/verify-production.mjs --wait`.
+- Production verification after the deploy: `scripts/verify-production.mjs https://worthlookingup.com`
+  PASS, including byte equality for the four new assets (`overhead-launch-explorer.js`,
+  `src/launches/launch-trajectory.mjs`, `data/launches/trajectory-profiles.json`,
+  `docs/trajectory-profiles.md`, all HTTP 200 with bytes identical to this checkout). A real browser
+  session against production with an ordinary user agent on release `2026.10.16.1` reported: **0** ascent
+  assets fetched before the panel was opened, 8 launch cards and 8 pad-direction lines (`Launch pad
+  direction SSE (147°) at 1266 km, 6° below your horizon — the pad's direction, not the rocket's path.`),
+  every card still declaring *visibility unknown*, the historical link offered only on a pad with a
+  published profile, the panel showing 3 flights with the both-gates status, a chart and a 10-row
+  time-step table, no unsupported claim anywhere in the rendered text, no horizontal overflow at 390 px,
+  and no console or page errors.
+- Staged-artifact check: `npm run build` then serving `dist/` alone produced the same result from the
+  deployment's own paths (3 profiles, chart, 10 step rows, release `2026.10.16.1`, no errors), so the
+  explorer works from what is actually deployed rather than only from the repository root.
 - Next action: the catalog is intentionally three flights from one pad. Expanding it requires a
   licensing-clean public ascent series for a flight whose insertion orbit is catalogued directly;
   CRS-style cargo runs need a different anchor before they can carry an elevation, and nothing may be
   attached to an upcoming launch until a profile exists for that flight rather than for a sibling.
+
