@@ -158,6 +158,10 @@ assert.match(coarseRelevance.statements.join(' '),/No time is published/);
 const noSun=L.relevanceFor(EXACT,site,{sunAltitude:null});
 assert.equal(noSun.sunAltitudeDeg,null);
 assert.match(noSun.statements.join(' '),/could not be calculated/);
+// One real committed record is still exercised, but only through assertions that hold for any record
+// the artifact could contain: local visibility stays unknown and the statements deny a sighting. The
+// assertion deliberately does not depend on that record's status, precision or site, so an hourly
+// refresh cannot turn it into a failure.
 const realRecord=L.relevanceFor(feed.launches.find(item=>item.precision.exact)||EXACT,site,{sunAltitude:()=>-22});
 assert.equal(realRecord.visibility,'unknown','a real published launch is still unknown locally');
 assert.match(realRecord.statements.join(' '),/Local visibility: unknown/);

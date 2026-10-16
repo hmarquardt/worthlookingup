@@ -3,7 +3,30 @@ const NOW=Date.parse('2026-10-08T18:00Z');
 const ISS={OBJECT_NAME:'ISS (ZARYA)',OBJECT_ID:'1998-067A',EPOCH:'2026-10-08T06:00:00.000000',MEAN_MOTION:15.49018229,ECCENTRICITY:.00049836,INCLINATION:51.6306,RA_OF_ASC_NODE:252.7093,ARG_OF_PERICENTER:115.8922,MEAN_ANOMALY:244.258,NORAD_CAT_ID:25544,BSTAR:.00010434666,MEAN_MOTION_DOT:.00005306,MEAN_MOTION_DDOT:0};
 const hourly={time:Array.from({length:240},(_,i)=>Math.floor(Date.parse('2026-10-08T00:00Z')/1000)+i*3600)};
 for(const [key,value]of Object.entries({cloud_cover:15,visibility:24000,precipitation:0,weather_code:0,temperature_2m:15}))hourly[key]=Array(240).fill(value);
-function feed(){const data=JSON.parse(fs.readFileSync('data/launches/upcoming.json'));const sample=data.launches.find(r=>r.precision.exact);return {...data,generated_at:new Date(NOW).toISOString(),launches:[{...sample,id:'guide-exact',mission:'Discovery mission',name:'Falcon 9 | Discovery mission',net:new Date(NOW+86400000).toISOString(),precision:{kind:'minute',name:'Minute',exact:true,dated:true,countdown:true},status:{kind:'hold',name:'On Hold'}},{...sample,id:'guide-day',mission:'Date-only schedule',name:'Falcon 9 | Date-only schedule',net:'2026-10-10T00:00:00Z',precision:{kind:'day',name:'Day',exact:false,dated:true,countdown:false},status:{kind:'unconfirmed',name:'To Be Determined'}},{...sample,id:'guide-period',mission:'Broad schedule',name:'Falcon 9 | Broad schedule',net:'2026-10-31T00:00:00Z',precision:{kind:'month',name:'Month',exact:false,dated:false,countdown:false},status:{kind:'unconfirmed',name:'To Be Determined'}}]};}
+/* A self-contained launch feed for the guide. It never reads data/launches/upcoming.json: that artifact
+   is refreshed hourly and its records change status as real launches fly, so deriving a fixture from a
+   live sample made this suite depend on whichever launches the provider happened to be publishing. */
+const LAUNCH_ENVELOPE={schema:'worthlookingup.launches/1',available:true,refresh_interval_minutes:30,stale_after_minutes:180,stale:false,stale_reason:null,
+  source:{name:'Launch Library 2',publisher:'The Space Devs',api_version:'2.3.0',attribution:'Launch data: The Space Devs Launch Library 2',
+    rights:'Free unauthenticated access is limited to 15 requests per hour.',retrieved_at:new Date(NOW).toISOString(),sha256:'a'.repeat(64)},
+  stats:{count:3,with_published_time:1,with_published_date:1,period_only:1,announced_total:3,window_days:180}};
+function launch({id,name,net,precision,status,statusKind}){
+  return {id,slug:id,name,mission:name.split('| ').pop(),mission_type:'Communications',
+    mission_description:'A fixed schedule used by the discovery regression.',orbit:'Low Earth Orbit',
+    vehicle:'Falcon 9 Block 5',vehicle_family:'Falcon',provider:'SpaceX',provider_abbrev:'SpX',
+    site:{name:'Cape Canaveral SFS, FL, USA',timezone:'America/New_York',country:'United States of America'},
+    pad:{name:'Space Launch Complex 40',latitude:28.56194122,longitude:-80.57735736},
+    status:{id:1,name:status,abbrev:statusKind==='hold'?'Hold':'TBD',kind:statusKind},net,precision,
+    window:{start:null,end:null},last_updated:'2026-10-08T12:00:00.000Z',
+    links:{ll2:'https://ll.thespacedevs.com/2.3.0/launches/'+id+'/',info:[],webcast:[]},change:null};
+}
+function feed(){return {...LAUNCH_ENVELOPE,generated_at:new Date(NOW).toISOString(),launches:[
+  launch({id:'guide-exact',name:'Falcon 9 | Discovery mission',net:new Date(NOW+86400000).toISOString(),
+    precision:{kind:'minute',name:'Minute',exact:true,dated:true,countdown:true},status:'On Hold',statusKind:'hold'}),
+  launch({id:'guide-day',name:'Falcon 9 | Date-only schedule',net:'2026-10-10T00:00:00Z',
+    precision:{kind:'day',name:'Day',exact:false,dated:true,countdown:false},status:'To Be Determined',statusKind:'unconfirmed'}),
+  launch({id:'guide-period',name:'Falcon 9 | Broad schedule',net:'2026-10-31T00:00:00Z',
+    precision:{kind:'month',name:'Month',exact:false,dated:false,countdown:false},status:'To Be Determined',statusKind:'unconfirmed'})]};}
 async function boot(page,{offline=false,weather=true,launchOffline=false}={}){
  const requests=[],errors=[];page.on('request',r=>requests.push(r.url()));page.on('pageerror',e=>errors.push(e.message));
  await page.clock.setFixedTime(new Date(NOW));
