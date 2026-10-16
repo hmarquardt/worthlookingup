@@ -98,7 +98,11 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 .celestial-chip[data-tone="good"]{color:var(--lime);border-color:var(--lime)}
 .celestial-chip[data-tone="warn"]{color:var(--amber);border-color:var(--amber)}
 .celestial-chip[data-tone="bad"]{color:var(--danger,#f3a99b);border-color:var(--danger,#f3a99b)}
-.celestial-why{margin:0;padding-left:18px;display:grid;gap:4px}
+.celestial-why{margin:0;padding-left:18px;display:grid;gap:4px}.milkyway-panel{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.milkyway-head{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.milkyway-sub{margin:2px 0 0;font-size:.82rem;letter-spacing:.4px;color:var(--muted);text-transform:uppercase}
+.milkyway-figure{margin:0;display:grid;gap:6px}
+.milkyway-chart{width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px}
 .celestial-positions{width:100%;border-collapse:collapse;font-size:.82rem}
 .celestial-positions th,.celestial-positions td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line)}
 .celestial-positions th{color:var(--muted);font-weight:500}
@@ -180,7 +184,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 </section>
 <div class="toolbar"><nav class="tabs" role="tablist" aria-label="Observing period"><button role="tab" data-view="now" aria-selected="false">NOW</button><button role="tab" data-view="tonight" aria-selected="true">TONIGHT</button><button role="tab" data-view="week" aria-selected="false">NEXT 7 DAYS</button><button role="tab" data-view="about" aria-selected="false">ABOUT</button></nav><span class="small" id="local-clock"></span></div>
 <section id="happening-now" class="happening-now" aria-label="Happening now" hidden></section>
-<div class="toolbar" id="categories" tabindex="-1"><nav class="tabs" role="tablist" aria-label="Observing category"><button role="tab" data-category="satellites" aria-selected="true">SATELLITES</button><button role="tab" data-category="launches" aria-selected="false">ROCKET LAUNCHES</button><button role="tab" data-category="planets" aria-selected="false">PLANETS &amp; ALIGNMENTS</button><button role="tab" data-category="meteors" aria-selected="false">METEOR SHOWERS</button><button role="tab" data-category="comets" aria-selected="false">COMETS &amp; SPECIAL EVENTS</button></nav><span class="small" id="category-note">Satellite passes and trains</span></div>
+<div class="toolbar" id="categories" tabindex="-1"><nav class="tabs" role="tablist" aria-label="Observing category"><button role="tab" data-category="satellites" aria-selected="true">SATELLITES</button><button role="tab" data-category="launches" aria-selected="false">ROCKET LAUNCHES</button><button role="tab" data-category="planets" aria-selected="false">PLANETS &amp; ALIGNMENTS</button><button role="tab" data-category="meteors" aria-selected="false">METEOR SHOWERS</button><button role="tab" data-category="comets" aria-selected="false">COMETS &amp; SPECIAL EVENTS</button><button role="tab" data-category="milkyway" aria-selected="false">MILKY WAY</button></nav><span class="small" id="category-note">Satellite passes and trains</span></div>
 <section id="discovery" class="discovery" aria-labelledby="discovery-title" tabindex="-1">
 <div class="visually-hidden" id="discovery-title">YOUR SKY GUIDE</div>
 <div class="discovery-grid"><section class="discovery-tonight" aria-labelledby="tonight-discovery-title"><h2 class="eyebrow" id="tonight-discovery-title">Worth seeing tonight</h2><div id="discovery-tonight"><p class="small">Checking available local opportunities…</p></div></section>
@@ -295,12 +299,12 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <details id="how-it-works"><summary>How the recommendation works</summary><p>The night’s score is the best remaining satellite opportunity among your selected categories. It is not a weather score. A “likely visible” segment needs at least 20 seconds above your minimum elevation, with the Sun at least 6° below the horizon and the spacecraft fully sunlit. Buildings, trees, haze and object orientation can still prevent a sighting.</p><p>Base points: elevation 25, useful visible duration 15, sunlight 10, observer darkness 15, brightness category 10, cloud cover 20, and visibility 5. Cloud, poor visibility and rain then reduce the total. Unknown weather earns no weather points and makes the result provisional. No precise apparent magnitude is claimed. <a href="docs/overhead.md">Full algorithm, validation and limitations →</a></p><p>The Moon panel is informational and does not raise the satellite score. A quiet satellite night can still be a lovely night for stargazing.</p></details>
 <details id="diagnostics"><summary>Data & diagnostics</summary><div class="actions"><button id="refresh">Refresh source data</button><button id="clear-cache">Clear downloaded cache</button><label class="text-button">Import OMM JSON / TLE<input id="import" type="file" accept=".json,.txt,.tle" aria-label="Import orbital elements"></label></div><p>Import up to 2 MB of orbital elements from a trusted source if CelesTrak is unavailable. Imported records stay in this session and use their actual epoch; records more than 14 days from a prediction are excluded.</p><pre id="diagnostic-output"></pre></details>
 </main>
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.16.2" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.16.2">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.16.3" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.16.3">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.16.2 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.16.3 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
@@ -649,13 +653,33 @@ document.querySelector('.tabs').onkeydown=e=>{const tabs=[...document.querySelec
    existing behaviour and network profile. All geometry happens in overhead-celestial-worker.js when
    workers are available, with an identical synchronous fallback. */
 const Astro=window.OverheadAstro||null,Planets=window.OverheadPlanets||null,Meteors=window.OverheadMeteors||null,
- Comets=window.OverheadComets||null,Opportunities=window.OverheadOpportunities||null,CelestialPlan=window.OverheadCelestialPlan||null,
+ Comets=window.OverheadComets||null,Opportunities=window.OverheadOpportunities||null,
+ CelestialPlan=window.OverheadCelestialPlan||null,
  celestialAvailable=!!(Astro&&Planets&&Meteors&&Comets&&Opportunities&&CelestialPlan);
+// The Milky Way engine is the one celestial module the page does not load up front: nothing about the core
+// is needed until a reader opens that category, so it is fetched then (12.6 KB gzipped) and never otherwise.
+// The calculation worker imports it with the other engines, so the module is only fetched here for the
+// synchronous fallback path and for the shared plan when no worker is available.
+let MilkyWay=window.OverheadMilkyWay||null,milkyWayLoading=null;
+function loadMilkyWayEngine(){
+ if(MilkyWay)return Promise.resolve(MilkyWay);
+ if(milkyWayLoading)return milkyWayLoading;
+ milkyWayLoading=new Promise((resolve,reject)=>{
+  const script=document.createElement('script');
+  script.src='overhead-milkyway.js';script.async=true;
+  script.onload=()=>{MilkyWay=window.OverheadMilkyWay||null;
+   if(MilkyWay)resolve(MilkyWay);else reject(new Error('the Milky Way engine did not register itself'));};
+  script.onerror=()=>reject(new Error('the Milky Way engine could not be loaded'));
+  document.head.append(script);
+ }).catch(error=>{milkyWayLoading=null;throw error;});
+ return milkyWayLoading;
+}
 const CATEGORY_LABELS={satellites:{eyebrow:'SATELLITE PASSES',headline:'What is going over tonight',note:'Satellite passes and trains'},
  launches:{eyebrow:'ROCKET LAUNCHES',headline:'What is launching, and when',note:'Published launch schedules worldwide; local visibility unknown'},
  planets:{eyebrow:'PLANETS & ALIGNMENTS',headline:'Which planets are worth finding',note:'Planets, groupings, pairings and eclipses'},
  meteors:{eyebrow:'METEOR SHOWERS',headline:'Which showers are active and when to watch',note:'Published IMO calendar with local conditions'},
- comets:{eyebrow:'COMETS & SPECIAL EVENTS',headline:'Which comets and odd events are up',note:'Catalogued comets plus eclipses'}};
+ comets:{eyebrow:'COMETS & SPECIAL EVENTS',headline:'Which comets and odd events are up',note:'Catalogued comets plus eclipses'},
+ milkyway:{eyebrow:'MILKY WAY',headline:'When to see and photograph the galactic core',note:'Galactic core altitude, darkness, moonlight and the band'}};
 const celestial={category:'satellites',horizon:'tonight',available:celestialAvailable,busy:false,status:'idle',result:null,generation:0,
  errors:[],rejected:[],datasets:{meteors:null,comets:null,ephemeris:null},datasetState:{},computedAt:null,worker:null,workerFailed:false,messages:[]};
 /* ---- Rocket launches -------------------------------------------------------------------------
@@ -702,7 +726,7 @@ function discoveryModel(){
   }
  }
  if(Object.hasOwn(state.results,0)&&state.objects.length)coverage.push('satellites');
- for(const category of ['planets','meteors','comets']){
+ for(const category of ['planets','meteors','comets','milkyway']){
   const candidates=plans.filter(p=>p.category===category).sort((a,b)=>b.result.span.end-a.result.span.end||b.at-a.at),snapshot=candidates[0];
   if(!snapshot)continue;coverage.push(category);
   for(const opportunity of snapshot.result.opportunities||[]){
@@ -897,6 +921,10 @@ async function selectCategory(category,forGuide=false){
  render();
  if(category==='satellites')return;
  if(category==='launches'){if(!launches.feed||launches.status!=='ready'||Date.now()-launches.loadedAt>15*60000)await loadLaunches(false);else renderLaunches();return;}
+ if(category==='milkyway'){
+  try{await loadMilkyWayEngine();}
+  catch(error){celestial.busy=false;celestial.status='unavailable';celestial.errors=[String((error&&error.message)||error)];renderCelestial();return;}
+ }
  const needs=celestialNeeds(category).filter(name=>!celestial.datasetState[name]);
  if(needs.length)await celestialDatasets(false,needs);
  if(selection!==categorySelection)return;
@@ -909,7 +937,7 @@ function selectHorizon(horizon){
  if(celestial.category!=='satellites')requestCelestial();
 }
 /* ---- celestial rendering ---- */
-const OPTICAL_LABEL={'naked-eye':'Naked eye','naked-eye maybe':'Naked eye (marginal)','naked-eye and binocular':'Naked eye, binoculars help',
+const OPTICAL_LABEL={camera:'Camera on a tripod','naked-eye':'Naked eye','naked-eye maybe':'Naked eye (marginal)','naked-eye and binocular':'Naked eye, binoculars help',
  'binoculars':'Binoculars','binocular':'Binoculars','telescope':'Telescope','telescope for one of the pair':'Telescope for one of the pair',
  'solar filter required':'Certified solar filter','unknown':'Unknown'};
 const AGEO=t=>{const m=Math.max(0,Math.floor((Date.now()-t)/60000));return m<60?m+'m':m<1440?Math.floor(m/60)+'h':Math.floor(m/1440)+'d';};
@@ -945,6 +973,73 @@ function celestialSky(positions,label){
   `<text x="6" y="${centre+4}" fill="var(--muted)" font-size="10" text-anchor="middle">W</text>${marks}</svg>`;
 }
 const shortName=name=>String(name).replace(/^Moon near |^Radiant \((.*)\)$/,'$1').replace(/ \(.*\)$/,'').slice(0,18);
+/* ---- Milky Way category panel ----------------------------------------------------------------
+   The card every category shares already shows the direction table, the sky dome, the confidence block
+   and the calendar actions. This adds what is specific to a dark-sky photography window: an
+   altitude-over-time chart of the core (with the Moon and the twilight bands), the plain-language
+   reading of the numbers, the band summary that stops "the core is down" from meaning "nothing is up",
+   and the photography notes the engine derived. Every number comes from the calculation; nothing is
+   inferred from the weather, and a missing forecast is reported as missing. */
+function milkyWayChart(chart){
+ if(!chart||!Array.isArray(chart.points)||chart.points.length<2)return '';
+ const width=640,height=210,left=44,right=16,top=16,bottom=34;
+ const plotW=width-left-right,plotH=height-top-bottom;
+ const from=chart.from,to=chart.to,span=Math.max(1,to-from);
+ const x=t=>left+plotW*(t-from)/span;
+ const y=alt=>top+plotH*(1-Math.max(0,Math.min(90,alt))/90);
+ const hours=[];
+ for(let t=Math.ceil(from/3600000)*3600000;t<=to;t+=3600000)hours.push(t);
+ const bandRects=[];
+ for(const [level,intervals] of Object.entries(chart.bands||{})){
+  const opacity=level==='astronomical'?0.30:level==='nautical'?0.18:0.09;
+  for(const [a,b] of intervals||[]){
+   const x1=x(Math.max(a,from)),x2=x(Math.min(b,to));
+   if(x2>x1)bandRects.push(`<rect x="${x1.toFixed(1)}" y="${top}" width="${(x2-x1).toFixed(1)}" height="${plotH}" fill="var(--ink)" opacity="${opacity}"><title>${esc(level)} twilight</title></rect>`);
+  }
+ }
+ const windowRect=chart.window?`<rect x="${x(Math.max(chart.window.start,from)).toFixed(1)}" y="${top}" width="${Math.max(0,x(Math.min(chart.window.end,to))-x(Math.max(chart.window.start,from))).toFixed(1)}" height="${plotH}" fill="var(--sky-grid)" opacity="0.35"><title>Observing window</title></rect>`:'';
+ const corePath=chart.points.map((point,index)=>`${index?'L':'M'}${x(point.t).toFixed(1)},${y(point.altitude).toFixed(1)}`).join(' ');
+ const moonPath=chart.points.map((point,index)=>`${index?'L':'M'}${x(point.t).toFixed(1)},${y(point.moonAltitude).toFixed(1)}`).join(' ');
+ const threshold=Number.isFinite(chart.thresholdDeg)?`<line x1="${left}" y1="${y(chart.thresholdDeg).toFixed(1)}" x2="${width-right}" y2="${y(chart.thresholdDeg).toFixed(1)}" stroke="var(--amber)" stroke-dasharray="4 4"/><text x="${width-right}" y="${(y(chart.thresholdDeg)-5).toFixed(1)}" text-anchor="end" fill="var(--amber)" font-size="9">${chart.thresholdDeg}° window threshold</text>`:'';
+ const gridlines=[0,30,60,90].map(altitude=>`<line x1="${left}" y1="${y(altitude).toFixed(1)}" x2="${width-right}" y2="${y(altitude).toFixed(1)}" stroke="var(--sky-grid)" opacity="0.6"/><text x="${left-6}" y="${(y(altitude)+3).toFixed(1)}" text-anchor="end" fill="var(--muted)" font-size="9">${altitude}°</text>`).join('');
+ const ticks=hours.filter((_,index)=>index%2===0).map(t=>`<line x1="${x(t).toFixed(1)}" y1="${height-bottom}" x2="${x(t).toFixed(1)}" y2="${height-bottom+4}" stroke="var(--sky-grid)"/><text x="${x(t).toFixed(1)}" y="${height-bottom+16}" text-anchor="middle" fill="var(--muted)" font-size="9">${esc(time(t))}</text>`).join('');
+ const peak=chart.points.reduce((a,b)=>(b.altitude>a.altitude?b:a));
+ const summary=`Core altitude from ${time(from)} to ${time(to)}, peaking at ${Math.round(peak.altitude)} degrees around ${time(peak.t)}. The dashed line is the ${chart.thresholdDeg} degree threshold, the shaded columns are twilight (darkest is astronomical) and the pale block is the observing window.`;
+ return `<figure class="milkyway-figure"><svg class="milkyway-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(summary)}" data-threshold="${esc(String(chart.thresholdDeg))}" data-points="${chart.points.length}">`+
+  `${bandRects.join('')}${windowRect}${gridlines}${ticks}${threshold}`+
+  `<line x1="${left}" y1="${height-bottom}" x2="${width-right}" y2="${height-bottom}" stroke="var(--line)"/>`+
+  `<line x1="${left}" y1="${top}" x2="${left}" y2="${height-bottom}" stroke="var(--line)"/>`+
+  `<path d="${corePath}" fill="none" stroke="var(--lime)" stroke-width="2"/>`+
+  `<path d="${moonPath}" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 3"/>`+
+  `<text x="${left+6}" y="${top+12}" fill="var(--ink)" font-size="10">Milky Way core altitude · ${esc(time(from))}–${esc(time(to))} local</text>`+
+  `</svg><figcaption class="small">${esc(summary)}</figcaption></figure>`;
+}
+function milkyWayPanel(opportunity){
+ const a=opportunity.attributes||{},chart=a.chart||null,moon=a.moon||null,band=a.band||null,photo=a.photography||null;
+ const list=(items,tone)=>items&&items.length?`<ul class="${tone||'celestial-why'}">${items.map(text=>`<li>${esc(text)}</li>`).join('')}</ul>`:'';
+ const core2=o=>Number.isFinite(o)?Math.round(o):'—';
+ const plain=[];
+ plain.push(opportunity.eligibility&&opportunity.eligibility.observable
+  ? 'On this night the galactic core — the bright heart of the Milky Way in Sagittarius — is above your horizon for a usable stretch of the dark hours.'
+  : 'On this night the galactic core does not get high enough during the dark hours to plan a photograph around.');
+ if(Number.isFinite(a.coreMaxAltitude))plain.push('It climbs to about '+core2(a.coreMaxAltitude)+'° above the horizon towards '+(a.coreMaxCompass||'—')+', which is the direction to point a camera.');
+ if(a.windowMinutes)plain.push('The window is '+a.windowMinutes+' minutes long, during '+(a.windowBasis||'the darkest part of the night')+'.');
+ if(a.darknessMinutes)plain.push('The sky reaches '+(a.darknessAchieved||'no')+' twilight for '+core2(a.darknessMinutes.astronomical)+' minutes in total this night.');
+ if(moon)plain.push('Moonlight: '+String(moon.detail||moon.classification)+'.');
+ if(band)plain.push(String(band.statement||'')+' Above 10° right now: '+core2(band.above&&band.above.usableDeg)+' of '+(band.sampled||24)+' sampled galactic longitudes, the highest towards '+((band.highest&&band.highest.compass)||'—')+'.');
+ const quality=Number.isFinite(a.windowQuality)?a.windowQuality+'/100':'—';
+ return `<section class="milkyway-panel" data-milkyway="${esc(opportunity.id)}">`+
+  `<div class="milkyway-head"><strong>Milky Way window quality ${esc(quality)}</strong><span class="small">${esc(a.qualityBasis||'')}</span></div>`+
+  `<div class="small">${esc(String(a.comparability||''))}</div>`+
+  milkyWayChart(chart)+
+  `<h4 class="milkyway-sub">In plain language</h4>`+list(plain)+
+  (photo?`<h4 class="milkyway-sub">For a camera</h4>`+list(photo.requirements)+list(photo.lighting)+list(photo.composition)+list(photo.caveats,'celestial-caveats'):'')+
+  (a.coreMinutes?`<h4 class="milkyway-sub">Time above the thresholds this night</h4><ul class="celestial-why">`+
+    `<li>Above 10°: ${core2(a.coreMinutes.usableDeg)} minutes</li><li>Above 20°: ${core2(a.coreMinutes.goodDeg)} minutes</li>`+
+    `<li>Above 30°: ${core2(a.coreMinutes.photographicDeg)} minutes</li></ul>`:'')+
+  (a.refraction?`<p class="small">${esc(String(a.refraction))}</p>`:'')+
+  `</section>`;
+}
 function celestialCard(opportunity){
  const horizon=celestial.horizon,when=time(opportunity.best),day=dateLabel(opportunity.best);
  const calendarEvent=D.celestial(opportunity,{category:celestial.category,errors:celestial.errors||[]});
@@ -969,7 +1064,7 @@ function celestialCard(opportunity){
  const caveats=(opportunity.caveats||[]).slice(0,4).map(text=>`<li>${esc(text)}</li>`).join('');
  const freshness=celestialFreshnessLine(opportunity);
  return `<article class="celestial-card" tabindex="-1" data-opportunity="${esc(opportunity.id)}" data-type="${esc(opportunity.type)}">`+
-  `<div class="card-top"><h3>${esc(opportunity.title)}</h3><span class="celestial-chip" data-tone="${opportunity.observing.value>=75?'good':opportunity.observing.value>=45?'warn':'neutral'}">${opportunity.observing.value}/100</span></div>`+
+  `<div class="card-top"><h3>${esc(opportunity.title)}</h3><span class="celestial-chip" data-tone="${opportunity.observing.value>=75?'good':opportunity.observing.value>=45?'warn':'neutral'}"${celestial.category==='milkyway'?' title="Milky Way window quality: this category’s own measure of the window, not comparable with satellite, meteor or planetary scores"':''}>${opportunity.observing.value}/100${celestial.category==='milkyway'?' window quality':''}</span></div>`+
   `<div class="small">${esc(opportunity.summary)}</div>`+
   (reasons?`<ul class="celestial-why">${reasons}</ul>`:'')+
   `<div class="small mono">${esc(day)} · best ${esc(when)}${opportunity.t_start?'':''}${attributes.minimumAltitude?` · needs ${attributes.minimumAltitude}° clearance`:''}</div>`+
@@ -977,7 +1072,10 @@ function celestialCard(opportunity){
   (extra.length?`<ul class="celestial-why">${extra.map(text=>`<li>${esc(text)}</li>`).join('')}</ul>`:'')+
   celestialSky(positions,'Sky positions for '+opportunity.title)+
   `<div class="celestial-confidence"><div><strong>Position certainty</strong> — ${esc(confidence.astrometric.grade||'unknown')}: ${esc(confidence.astrometric.detail||'')}</div>`+
-  `<div><strong>Observing suitability</strong> — ${opportunity.observing.value}/100 from ${esc(confidence.observing.grade||'unknown')}${opportunity.observing.provisional?' (provisional)':''}</div>`+
+  (celestial.category==='milkyway'
+   ?`<div><strong>Milky Way window quality</strong> — ${opportunity.observing.value}/100 from ${esc(confidence.observing.grade||'unknown')}: ${esc(confidence.observing.detail||'')}</div>`
+   :`<div><strong>Observing suitability</strong> — ${opportunity.observing.value}/100 from ${esc(confidence.observing.grade||'unknown')}${opportunity.observing.provisional?' (provisional)':''}</div>`)+
+  (celestial.category==='milkyway'?milkyWayPanel(opportunity):'')+
   `<div><strong>Phenomenon predictability</strong> — ${esc(confidence.phenomenon.level||'unknown')}: ${esc(confidence.phenomenon.detail||'')}</div></div>`+
   (caveats?`<ul class="celestial-caveats">${caveats}</ul>`:'')+
   `<div class="celestial-source">${freshness}</div>${calendarActions(calendarEvent?calendarEvent.id:null)}</article>`;
@@ -1011,7 +1109,7 @@ function renderCelestial(){
  $('celestial-status').textContent=busy?'Calculating '+label.note.toLowerCase()+' for '+state.site.name+'…':
   (celestial.status==='ready'&&plan?`${plan.opportunities.length} opportunit${plan.opportunities.length===1?'y':'ies'} in ${esc(plan.label.toLowerCase())} for ${esc(state.site.name)} · ${plan.considered} events considered · every card shows its own uncertainty.`:'Waiting for a calculation.');
  $('celestial-summary').textContent=plan&&!busy?(plan.empty?plan.emptyReason||'Nothing notable is predicted in this window.':
-  'Highest value: '+plan.opportunities[0].title+'. Nothing here is a guarantee; each card explains its own limits.'):
+  (celestial.category==='milkyway'?'Best window: ':'Highest value: ')+plan.opportunities[0].title+'. Nothing here is a guarantee; each card explains its own limits.'):
   'Comparing real geometry, published calendars and your location…';
  $('celestial-top-score').textContent=plan&&plan.opportunities.length?String(plan.opportunities[0].observing.value):'—';
  const events=$('celestial-events');
@@ -1512,7 +1610,7 @@ document.getElementById('celestial-more').addEventListener('click',()=>{});
  window.__OVERHEAD_TEST__={state,discoveryPlans,discoveryIdentity,discoveryModel,renderDiscovery,buildDiscoveryGuide,openDiscovery,backToDiscovery,engine:E,lifecycle:OverheadLifecycle.eventLifecycle,passes,best,displayPasses,candidates,happeningPasses,presentationTrace,objects:O,metadataAvailable,render,calculate,skySVG,source,showEvent,getMap:()=>map,cachePut,cacheSize:()=>session.size,
   objectEnricher,objectMeta,objectMetaSize:()=>objectMeta.size,renderObjectAbout,renderWeeklyIdentity,enrichObjects,requestFor,objectKey,
  celestial,selectCategory,selectHorizon,requestCelestial,renderCelestial,renderCelestialChanges,renderCelestialFreshness,
- celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities},
+ celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities,get milkyway(){return MilkyWay;}},loadMilkyWayEngine,
  launches,launchesAvailable,loadLaunches,renderLaunches,launchCard,launchWindow,launchRelevance,launchRecordById,tickLaunchCountdowns,launchModule:L,launchFeedSources:LAUNCH_FEED_SOURCES,
  calendar:Cal,calendarItems,observingPlan,calendarActions,calendarCheck,addToCalendar,downloadPlan,planAdd,planRemove,planToggle,planClear,renderPlan,planRefresh,planSortKey,calendarOptions,satelliteCalendarItem,downloadText};
  $('sky-preview').innerHTML=skySVG(null);

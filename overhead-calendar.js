@@ -161,6 +161,7 @@ function categoryLabel(category){
     case 'meteors':return 'Meteor showers';
     case 'comets':return 'Comets & special events';
     case 'launches':return 'Rocket launches';
+    case 'milkyway':return 'Milky Way';
     default:return 'Observing opportunity';
   }
 }
@@ -181,8 +182,12 @@ function opportunityEvent(event, options, now){
   const summary=satellite?String(event.title||'Satellite')+(train?' train pass':' pass'):String(event.title||'Observing opportunity');
   const direction=satellite?satelliteDirection(options.source,options):directionFor(options.source,options);
   const equipment=satellite?null:opticalFor(event,options);
+  // The Milky Way carries its own window quality, and the calendar says so rather than reusing the
+  // satellite wording: the two numbers answer different questions and are not comparable.
   const score=Number.isFinite(event.categoryPriority)&&typeof options.scoreLabel==='function'
-    ?'Local sighting score '+event.categoryPriority+'/100 ('+options.scoreLabel(event.categoryPriority)+') \u2014 a local recommendation, not a guarantee of visibility.' : null;
+    ?(event.category==='milkyway'
+      ?'Milky Way window quality '+event.categoryPriority+'/100 ('+options.scoreLabel(event.categoryPriority)+') \u2014 geometry, darkness and moonlight only; not comparable with satellite, meteor or planetary scores.'
+      :'Local sighting score '+event.categoryPriority+'/100 ('+options.scoreLabel(event.categoryPriority)+') \u2014 a local recommendation, not a guarantee of visibility.') : null;
   const description=joinLines([
     event.explanation?String(event.explanation):null,
     '',

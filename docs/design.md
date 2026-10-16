@@ -7,8 +7,7 @@ Use an editorial Earth-at-night photograph, a warm serif headline and compact, p
 controls. The hero answers what the application does; the header always exposes the current place.
 Keep the hero under 240px on phones. Move the existing weekly opportunity above the briefing so a
 real calculated event reaches the first viewport. Do not introduce cross-category ranking or fetch
-extra feeds for a decorative overview. All five categories remain visible on phones; the calendar's
-90-day horizon stays in the category view.
+extra feeds for a decorative overview. All categories remain visible on phones; the calendar's 90-day horizon stays in the category view. Phase 6A added the sixth — MILKY WAY — as the last tab, so the five existing tabs keep their positions on a phone and the satellite page still opens first.
 
 ## Reusable patterns
 - Ink/navy dark surfaces, paper light surfaces, sage actions and muted blue information. Use semantic

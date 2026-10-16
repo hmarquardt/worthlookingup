@@ -3,7 +3,7 @@
 (function(root){
 'use strict';
 const DAY=86400000;
-const LABELS=Object.freeze({satellites:'Satellites',planets:'Planets & alignments',meteors:'Meteor showers',comets:'Comets & special events'});
+const LABELS=Object.freeze({satellites:'Satellites',planets:'Planets & alignments',meteors:'Meteor showers',comets:'Comets & special events',milkyway:'Milky Way',launches:'Rocket launches'});
 const unique=list=>[...new Set(list.filter(Boolean))];
 const chronological=(a,b)=>a.start-b.start||a.end-b.end||a.id.localeCompare(b.id);
 function satellite(pass,{now,lifecycle,weatherText,stale=false,night=0}={}){

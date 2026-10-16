@@ -62,6 +62,23 @@ because of that rule; agents should read it explicitly (some tools discover only
   direction may ever reach an upcoming mission's sector); nothing in the product imports it, the deployment
   does not ship it, and tests assert both.
 
+- Phase 6A adds the Milky Way as a first-class sixth category, and keeps it honest in four ways.
+  `overhead-milkyway.js` is a pure module (no DOM/storage/network) that places the galactic centre — one
+  fixed J2000 catalogue direction, Sgr A* — with the same pinned engine and `horizontalFromJ2000` every
+  other body uses, computes the core's altitude, azimuth, transit, rise/set and above-threshold intervals,
+  intersects them with the existing twilight intervals, samples the Moon inside the window, and reports the
+  geometry of the *galactic plane* separately so a low core is never reported as an invisible band. It may
+  never claim brightness, sky brightness, light pollution, transparency, a plume or a sighting probability,
+  and it must never describe a hazard, a corridor or a family history as a direction. Darkness is solar
+  altitude, moonlight is the Moon's own position and illuminated fraction (a bright Moon below the horizon
+  costs nothing), and weather is reported separately with its forecast range and age: missing weather is
+  never clear skies. The window quality is the category's own documented, monotone formula (45/30/25 on
+  core altitude, darkness and moonlight), is not comparable with satellite, meteor or planetary observing
+  values, and says so wherever it appears. The category is the last tab, contributes Tonight and Coming Up
+  events with `precision: 'window'` through the shared discovery mapper, and exports to the calendar as an
+  interval through overhead-calendar.js — never as a one-hour block. No calculation or dataset request
+  happens until a reader opens the category. See docs/milky-way.md.
+
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.
 Guard storage and external requests; keep fallback paths, timestamps and stale warnings.

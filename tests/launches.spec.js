@@ -222,9 +222,11 @@ test('launch calendar is accessible, responsive and does not disturb the rest of
   const {errors}=await boot(page);
   await expect(page.locator('.event').first()).toBeVisible();
   const satelliteEvents=await page.locator('.event').count();
-  // Keyboard navigation across the category tabs still works with the launch category present.
+  // Keyboard navigation across the category tabs still works with the launch category present, and the
+  // sixth category (Milky Way, Phase 6A) is part of the same roving-tabindex strip.
   const tabs=page.locator('#categories [role="tab"]');
-  await expect(tabs).toHaveCount(5);
+  await expect(tabs).toHaveCount(6);
+  await expect(tabs.nth(5)).toHaveAttribute('data-category','milkyway');
   await tabs.first().focus();
   await page.keyboard.press('ArrowRight');
   expect(await page.evaluate(()=>document.activeElement.dataset.category)).toBe('launches');

@@ -3,7 +3,7 @@
    synchronous fallback, so both paths compute exactly the same answer. */
 (function (root) {
 'use strict';
-const PLAN_CATEGORIES = ['planets', 'meteors', 'comets'];
+const PLAN_CATEGORIES = ['planets', 'meteors', 'comets', 'milkyway'];
 // Eclipses are calculated by the planetary engine (they are solar-system geometry) but belong to the
 // "Comets & Special Events" category in the interface, so they are mapped rather than duplicated.
 const SPECIAL_EVENT_KINDS = ['lunar-eclipse', 'solar-eclipse'];
@@ -93,13 +93,55 @@ function compute(request) {
     }
   }
 
+  // The Milky Way needs no dataset: the galactic centre is one J2000 direction and the pinned engine
+  // already owns the frame handling, so this branch is pure geometry and costs nothing to load. Sampling is
+  // coarser at 90 days so a long-horizon request stays cheap; the window edges are bisected either way.
+  let milkyWay = null;
+  if (category === 'milkyway') {
+    const MW = root.OverheadMilkyWay;
+    if (!MW) errors.push('the Milky Way engine did not load');
+    else {
+      try {
+        const coarse = days > 30;
+        milkyWay = timed('milkyway', () => MW.analyse(windows, site, {
+          thresholdDeg: Math.max(MW.RULES.core.goodDeg, options.minAltitude || 0),
+          stepMinutes: coarse ? 20 : 10, solarStepMinutes: coarse ? 15 : 5,
+          moonStepMinutes: coarse ? 20 : 15, chartStepMinutes: coarse ? 60 : 30,
+          weatherState: request.weather ? 'included' : 'unavailable',
+        }));
+        for (const candidate of milkyWay.candidates) candidates.push(candidate);
+      } catch (error) { errors.push('Milky Way: ' + (error && error.message || error)); }
+    }
+  }
+
   const scored = O.withScores(candidates, { site, now, weatherAt: request.weather ? (t => weatherLookup(request.weather, t)) : null });
+  // The Milky Way carries its own documented window quality (geometry, darkness and moonlight), so the
+  // shared model's generic value — which exists to rank a point source crossing the sky — is replaced by
+  // it for this category only. The number a reader sees is then the same number the plan ordered by, and
+  // the card says plainly that it is this category's own measure and not comparable with any other.
+  if (category === 'milkyway') {
+    for (const opportunity of scored.opportunities) {
+      const own = opportunity.attributes && opportunity.attributes.windowQuality;
+      if (!Number.isFinite(own)) continue;
+      opportunity.observing = { ...opportunity.observing, value: own,
+        basis: (opportunity.attributes && opportunity.attributes.qualityBasis) || 'Milky Way window quality',
+        comparability: opportunity.attributes && opportunity.attributes.comparability,
+        detail: 'Milky Way window quality: geometry, astronomical darkness and moonlight only. ' +
+          (opportunity.observing.weatherUsed ? 'The cloud forecast is reported separately.'
+            : 'No forecast is applied at this range.') };
+      opportunity.confidence = { ...opportunity.confidence,
+        observing: { ...opportunity.confidence.observing, value: own,
+          grade: opportunity.observing.weatherUsed ? 'forecast-included'
+            : opportunity.observing.withinForecast ? 'no-usable-forecast' : 'astronomy-only',
+          detail: opportunity.observing.detail } };
+    }
+  }
   const plans = {};
   for (const name of ['tonight', 'week', 'extended']) {
     plans[name] = O.plan(scored.opportunities, { horizon: name, now, windows, maxCards: name === 'extended' ? 60 : 40,
       minimumScore: options.minimumScore });
   }
-  return { category, horizon, site, now, span: { start: spanStart, end: spanEnd, days },
+  return { category, horizon, site, now, span: { start: spanStart, end: spanEnd, days }, milkyWay,
     opportunities: scored.opportunities, plans, rejected: scored.rejected, errors,
     validation: { meteors: meteorValidation, comets: cometValidation, ephemeris: ephemerisValidation },
     diagnostics: { timings, candidateCount: candidates.length, durationMs: Date.now() - started },

@@ -544,3 +544,62 @@ route propagation; persistent failures still fail. No scientific/application cha
   pursue a machine-readable hazard *direction* source as the only route to a mission-specific sector; keep
   `visibility: 'unknown'` everywhere until a specific flight's trajectory is published.
 
+
+## Phase 6A: Milky Way observing and photography opportunities (shipped)
+
+- [x] `overhead-milkyway.js` is a new pure module (no DOM, storage or network) that places the galactic
+      centre — one fixed J2000 catalogue direction, Sgr A* (Reid & Brunthaler 2004) — through the same
+      pinned Astronomy Engine 2.1.19 and `horizontalFromJ2000` helper every other body uses, so no second
+      frame implementation exists. It computes core altitude, azimuth, meridian transit, rise/set and the
+      time above 10°, 20° and 30°; intersects that with the existing twilight intervals (astronomical
+      preferred, with honest degradation to nautical or civil and a refusal when no darkness exists);
+      samples the Moon inside the window and classifies interference from its position, illuminated
+      fraction and separation rather than its phase; and reports the galactic plane separately from the
+      core so a low core is never reported as an invisible band.
+- [x] Documented, tested numbers: the coordinate path agrees with an independent implementation written
+      into the test suite (Meeus IAU-1976 precession, GMST series, explicit spherical trigonometry) to
+      **0.003° in altitude** and **0.007° in azimuth**; the IAU frame origin lands on Sgr A* to 0.073°;
+      the highest core altitude matches 90 − |latitude − declination| to 0.033°; 90-day coarse sampling
+      reproduces fine-sampled window edges to 0.08 minutes.
+- [x] Category-specific window quality, documented in the engine and asserted for monotonicity and bounds:
+      `100 × (0.45 × core + 0.30 × darkness + 0.25 × moon)`. Weather never enters it; a forecast is
+      reported separately with its range, and missing weather is `no-usable-forecast`, never clear skies.
+      The card, the confidence block and the calendar entry all say the number is this category's own and
+      not comparable with satellite, meteor or planetary values.
+- [x] Sixth category "MILKY WAY", last in the tab order so the five existing tabs keep their positions.
+      The brand stylesheet's category strip became a six-column grid (and a 3 × 2 grid on phones), which
+      restored the pre-Phase-6A first-useful-opportunity geometry exactly: the discovery highlight sits at
+      558/563/582/584 px at 390/768/1280/1440 instead of 601.9 px at 1280 with a wrapped strip.
+- [x] The engine is **lazily loaded**: it is not a page script, so a reader who never opens the category
+      fetches nothing for it (asserted in the browser suite), and one who does fetches 40,232 raw /
+      12,577 gzip bytes once. No dataset request is made at all — the category needs none.
+- [x] Discovery and calendar: one event per observing night with `precision: 'window'` through the shared
+      mapper, into Tonight and Coming Up after the category has been opened; a window exports as an
+      interval with `DTSTART`/`DTEND` at the real boundaries, a stable per-night UID, the observing window,
+      the direction, the equipment label and the quality caveat, through `overhead-calendar.js` — the only
+      iCalendar writer. The observing plan shares that identity.
+- [x] Shared model extended additively: the opportunity model gained a `milkyway` category, a `camera`
+      optical entry, a `reference-j2000` astrometric grade and a Milky Way phenomenon description, and the
+      plan gained one candidate branch. No existing score, weight, threshold or formula changed, which the
+      unmodified suites assert; `docs/source-manifest.json` records the deliberate baseline update for the
+      three touched shared files with that reasoning.
+- [x] Test evidence: `npm test` exit 0 with 26 PASS lines, including the new `tests/overhead-milkyway.cjs`
+      (independent reference, transit and great-circle invariants, window intersection, northern/southern/
+      tropical/polar/white-night cases, moonlight policy, monotonic quality, DST nights, 7- and 90-day
+      horizons with cache reuse, discovery/calendar integration, and no-fabrication checks). Browser suite:
+      63 tests, all passing except the 2 opt-in live-provider specs, verified in four batches (the local
+      full-suite command is killed by this machine's memory pressure partway, which is stated rather than
+      hidden). The new `tests/milkyway.spec.js` covers navigation, the chart and its labels, both themes at
+      four widths, missing weather, calendar export, the observing plan, lazy loading and the untouched
+      satellite pipeline.
+- [x] Documentation: [milky-way.md](milky-way.md) (references, frame, core versus band, thresholds,
+      moonlight states, selection policy, quality formula, accuracy, limitations and the inputs a future
+      location recommendation would need), plus `agents.md`, `docs/design.md`, `docs/discovery.md` and
+      `docs/migration-status.md`.
+- Git and deployment: release identifier `2026.10.16.3`; commit and push verified below, on top of the
+  scheduled data bot's work, never forced.
+- Next action: hold at Galactic-core opportunities (no location recommendation without a licensed
+  light-pollution dataset, terrain horizon data and land-access boundaries); add the southern-sky and
+  equatorial site guidance to the doc as reader questions arrive; and keep the band a geometric summary
+  until a licensed brightness model exists.
+

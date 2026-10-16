@@ -1,5 +1,7 @@
 # Discovery and planning contracts
 
+Phase 6A added the Milky Way as a sixth local-opportunity category. It follows the rules below exactly: one event per observing night with `precision: 'window'`, the category's own window quality as its priority, its limitations in the warning list, and no cross-category comparison anywhere. The category contributes to Tonight and Coming Up only after a reader has opened it, because its plan is calculated on demand like every other celestial category. Its plan is never mixed into the satellite or celestial scores. See docs/milky-way.md.
+
 Plan recorded before implementation on 2026-10-15; implemented in release 2026.10.15.5.
 
 ## Boundaries

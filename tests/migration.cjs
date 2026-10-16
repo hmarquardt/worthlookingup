@@ -112,6 +112,19 @@ assert.ok(fs.existsSync('dist/docs/trajectory-profiles.md'),'the generated prove
 assert.doesNotMatch(html,/<(?:script|link)[^>]*(?:trajectory-profiles|launch-trajectory)/i,
   'the ascent data must not be referenced from the initial document');
 assert.match(html,/overhead-launch-explorer\.js/,'the ascent adapter must be loaded by the page');
+// Phase 6A: the Milky Way engine is part of the celestial stack, so it must be staged with the others and
+// loaded by the page after the astronomy layer and before the plan that calls it.
+assert.ok(fs.existsSync('dist/overhead-milkyway.js'),'the Milky Way engine is not staged');
+assert.equal(fs.readFileSync('dist/overhead-milkyway.js','utf8'),fs.readFileSync('overhead-milkyway.js','utf8'),
+  'the staged Milky Way engine must be the reviewed file');
+assert.doesNotMatch(html,/<script[^>]+overhead-milkyway\.js/,
+  'the Milky Way engine must not be an eager script: a reader who never opens the category should pay nothing');
+assert.match(html,/'overhead-milkyway\.js'/,'the page must fetch the Milky Way engine when the category is opened');
+assert.match(html,/function loadMilkyWayEngine\(\)/,'the lazy loader must exist');
+assert.match(html,/data-category="milkyway"/,'the sixth category must be in the navigation');
+const milkyWayEngine=fs.readFileSync('overhead-milkyway.js','utf8');
+assert.doesNotMatch(milkyWayEngine,/document\.|localStorage|indexedDB|fetch\(/,
+  'the Milky Way engine must stay a pure module');
 
 // Phase 5C: the compact pad index and the evidence review record, the small geodesy module the launch
 // calendar loads, and the pad-index module that validates it. A missing index must be a deployment

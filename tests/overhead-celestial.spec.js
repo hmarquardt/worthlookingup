@@ -223,7 +223,9 @@ test('changing location recalculates the plan in the new local timezone',async({
 test('celestial controls are accessible, keyboard operable and responsive',async({page})=>{
  const errors=await boot(page);
  const tabs=page.locator('#categories [role="tab"]');
- await expect(tabs).toHaveCount(5);
+ // Six categories since Phase 6A, and the Milky Way joins the same tablist last.
+ await expect(tabs).toHaveCount(6);
+ await expect(tabs.nth(5)).toHaveAttribute('data-category','milkyway');
  await expect(tabs.first()).toHaveAttribute('aria-selected','true');
  const horizons=page.locator('[data-horizon]');
  await expect(horizons).toHaveCount(3);

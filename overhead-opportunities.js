@@ -6,7 +6,7 @@
 const DAY = 86400000, HOUR = 3600000;
 const MODEL_VERSION = 'junkdrawer.overhead.opportunity/1';
 const CATEGORIES = Object.freeze({ satellites: 'Satellites', planets: 'Planets & Alignments',
-  meteors: 'Meteor Showers', comets: 'Comets & Special Events' });
+  meteors: 'Meteor Showers', comets: 'Comets & Special Events', milkyway: 'Milky Way' });
 // Observing-suitability weights. Geometry, darkness, moonlight, optical demand, weather and how
 // unusual the event is are scored separately and then combined; the score is about how good the
 // opportunity is to look at, never about how certain the underlying astronomy is (that is the
@@ -15,7 +15,7 @@ const WEIGHTS = Object.freeze({ altitude: 30, darkness: 20, moonlight: 15, optic
 const DARKNESS_POINTS = Object.freeze({ astronomical: 1, nautical: 0.6, civil: 0.25, none: 0 });
 const MOON_POINTS = Object.freeze({ none: 1, glare: 0.55, 'washed-out': 0 });
 const OPTICAL_POINTS = Object.freeze({ 'naked-eye': 1, 'naked-eye maybe': 0.85, binocular: 0.7, 'naked-eye and binocular': 0.9,
-  'binoculars': 0.7, telescope: 0.45, 'telescope for one of the pair': 0.6, 'solar filter required': 0.5, unknown: 0.5 });
+  'binoculars': 0.7, telescope: 0.45, camera: 0.9, 'telescope for one of the pair': 0.6, 'solar filter required': 0.5, unknown: 0.5 });
 // Weather is only used inside the range where a forecast means something. Beyond that the observing
 // value is reported without weather and marked unknown rather than optimistic.
 const WEATHER_HORIZON_HOURS = 84;
@@ -130,6 +130,9 @@ const ASTROMETRIC_GRADES = Object.freeze({
   'kepler-close': { grade: 'kepler-close', detail: 'two-body propagation of published elements within 400 days of the epoch; measured against Horizons to about 15 arcminutes', reliability: 'medium' },
   'kepler-degraded': { grade: 'kepler-degraded', detail: 'two-body propagation 400-800 days from the element epoch; measured error about 90 arcminutes', reliability: 'low' },
   'kepler-unreliable': { grade: 'kepler-unreliable', detail: 'two-body propagation beyond 800 days from the element epoch or near perihelion: the position is approximate only', reliability: 'low' },
+  'reference-j2000': { grade: 'reference-j2000', detail: 'a fixed J2000 catalogue direction rotated into the ' +
+    'horizontal frame by the library\'s own frame handling; the galactic centre is not an ephemeris body',
+    reliability: 'high' },
   unknown: { grade: 'unknown', detail: 'no position method was recorded', reliability: 'unknown' },
 });
 const PHENOMENON = Object.freeze({
@@ -137,9 +140,13 @@ const PHENOMENON = Object.freeze({
   meteor: { level: 'statistical', detail: 'shower geometry is exact, but the actual number of meteors on a given night is not predictable' },
   comet: { level: 'high', detail: 'a comet position is usually reliable, but its brightness can miss a prediction by several magnitudes' },
   eclipse: { level: 'low', detail: 'eclipse timing and local geometry are deterministic' },
+  milkyway: { level: 'deterministic geometry, unpredictable sky', detail: 'where the galactic centre is at ' +
+    'any minute is fixed by the Earth\'s rotation, but whether the sky is dark, clear and moonless enough to ' +
+    'photograph depends on the site and the weather' },
 });
 const phenomenonFor = category => (category === 'planets' ? PHENOMENON.planet : category === 'meteors' ? PHENOMENON.meteor
-  : category === 'comets' ? PHENOMENON.comet : null) || PHENOMENON.planet;
+  : category === 'comets' ? PHENOMENON.comet
+  : category === 'milkyway' ? PHENOMENON.milkyway : null) || PHENOMENON.planet;
 
 // Observing suitability: how good this is to actually look at, from this site, on this night.
 // Weather only enters inside its forecast horizon; otherwise the value is reported weather-free and
@@ -216,6 +223,7 @@ function significance(opportunity) {
       return clamp(brightness + trend, 0.05, 1);
     }
     case 'satellite-pass': return clamp((data.score || 0) / 100, 0.05, 1);
+    case 'milky-way': return clamp((data.windowQuality || 0) / 100, 0.05, 1);
     default: return 0.3;
   }
 }
@@ -223,7 +231,8 @@ function significance(opportunity) {
 function confidence(opportunity, context) {
   const attributes = opportunity.attributes || {};
   const gradeKey = attributes.positionGrade || (opportunity.category === 'planets' ? 'exact'
-    : opportunity.category === 'meteors' ? 'catalogue' : 'unknown');
+    : opportunity.category === 'meteors' ? 'catalogue'
+    : opportunity.category === 'milkyway' ? 'reference-j2000' : 'unknown');
   const astrometric = ASTROMETRIC_GRADES[gradeKey] || ASTROMETRIC_GRADES.unknown;
   const observing = (context && context.observing) || score(opportunity, context);
   return { astrometric: { ...astrometric, frame: opportunity.positions[0] ? opportunity.positions[0].frame || null : null },
