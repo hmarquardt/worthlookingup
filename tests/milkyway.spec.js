@@ -29,12 +29,12 @@ function serve(){
 }
 const openServers=[];
 test.afterEach(async()=>{ await Promise.all(openServers.splice(0).map(server=>new Promise(resolve=>server.close(resolve)))); });
-async function boot(page,{weather=true,requests=[],server=null}={}){
+async function boot(page,{weather=true,requests=[],server=null,now=NOW}={}){
   const errors=[];
   page.on('pageerror',error=>errors.push('pageerror: '+error.message));
   page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('Failed to load resource'))errors.push('console: '+message.text());});
   page.on('request',request=>requests.push(request.url()));
-  await page.clock.setFixedTime(NOW);
+  await page.clock.setFixedTime(now);
   await page.route('**/api/analytics/**',route=>route.fulfill({status:204,body:''}));
   await page.route('**celestrak.org/**',route=>route.fulfill({json:[ISS]}));
   await page.route('**api.open-meteo.com/**',route=>route.fulfill(weather
@@ -156,6 +156,35 @@ test('both themes and four widths keep the panel intact and overflow-free',async
   await page.keyboard.press('Escape');
   await page.mouse.click(1,1);
   expect(await content()).toEqual(dark);
+  expect(errors).toEqual([]);
+});
+
+test('a season with no core window explains itself instead of dead-ending',async({page})=>{
+  // Mid-October at 38.4 N: the core is low in the south-west at dusk and never clears 20 degrees while the
+  // sky is dark, so the horizon has no window. The category must still answer the question.
+  const errors=await boot(page,{now:new Date('2026-10-16T23:30Z')});
+  await openCategory(page);
+  const empty=page.locator('.celestial-empty');
+  await expect(empty).toBeVisible();
+  await expect(page.locator('.milkyway-panel[data-milkyway-empty="true"]')).toBeVisible();
+  const text=await page.locator('.milkyway-panel[data-milkyway-empty="true"]').innerText();
+  expect(text).toContain('Why there is no Milky Way window in this horizon');
+  expect(text).toContain('Closest night in this horizon');
+  expect(text).toMatch(/core reaching \d+°/);
+  expect(text).toMatch(/20°/);
+  expect(text).toMatch(/sampled galactic longitudes/);
+  expect(text).toMatch(/not a claim that the Milky Way is invisible|not about the Milky Way/);
+  expect(text).toMatch(/0 of \d+ nights/);
+  // The explanation is geometry, never a claim about clouds or brightness.
+  expect(text).not.toMatch(/clear skies|brightness of|sighting chance/i);
+  // Switching to the ninety-day horizon re-requests with ninety nights and keeps the same honest answer.
+  await page.locator('[data-horizon="extended"]').click();
+  await page.waitForFunction(()=>{const c=window.__OVERHEAD_TEST__.celestial;
+    return c.status==='ready'&&!c.busy&&c.horizon==='extended'&&c.result&&c.result.category==='milkyway';},null,{timeout:60000});
+  const extended=await page.locator('.milkyway-panel[data-milkyway-empty="true"]').innerText();
+  expect(extended).toMatch(/0 of \d{2,} nights/);
+  const windows=await page.evaluate(()=>window.__OVERHEAD_TEST__.celestial.result.milkyWay.summary.nights);
+  expect(windows).toBeGreaterThanOrEqual(60);
   expect(errors).toEqual([]);
 });
 

@@ -541,7 +541,9 @@ function candidateFor(night, site, options) {
     why.push(night.observable ? 'this is the best dark window available on this date'
       : 'the core is not usefully placed inside the dark hours on this date');
   }
-  const caveats = [...night.caveats];
+  // For a night with no window the refusal is the reason the plan and the interface must lead with, so it
+  // comes first; the band statement stays a caveat behind it rather than becoming the explanation.
+  const caveats = [...(night.observable ? [] : night.refusals), ...night.caveats];
   if (!night.observable && band.above.usableDeg) {
     caveats.push('the core is low or down, but part of the galactic plane is still above the horizon: ' +
       band.statement);
@@ -603,7 +605,39 @@ function chartSeries(night, site, options) {
     thresholdDeg: night.thresholdDeg };
 }
 
-/* ---- the public entry points -------------------------------------------- */
+// A horizon summary, so an empty plan can still answer the question honestly: which night came closest,
+// how close it was, what the band is doing, and why each night fell short. Computed here rather than in
+// the interface so the numbers and the argmax are tested.
+function summariseHorizon(analyses, thresholdDeg, options) {
+  const opts = options || {};
+  const withWindow = analyses.filter(night => night.observable);
+  const best = analyses.slice().sort((a, b) => (b.core.maxAltitude || -90) - (a.core.maxAltitude || -90))[0] || null;
+  const reasons = [];
+  for (const night of analyses) for (const reason of night.refusals || []) {
+    if (!reasons.includes(reason)) reasons.push(reason);
+  }
+  const band = best ? best.band : null;
+  return { nights: analyses.length, withWindow: withWindow.length,
+    thresholdDeg,
+    bestDay: best ? best.day : null,
+    bestCoreAltitude: best ? best.core.maxAltitude : null,
+    bestCoreTime: best ? best.core.maxTime : null,
+    bestCoreCompass: best ? best.core.maxCompass : null,
+    bestCoreAzimuth: best ? best.core.maxAzimuth : null,
+    bestDarknessAchieved: best ? best.darkness.achieved : null,
+    bestDarknessMinutes: best ? best.darkness.minutes : null,
+    bestBestWindowMinutes: withWindow.length
+      ? withWindow.slice().sort((a, b) => b.window.minutes - a.window.minutes)[0].window.minutes : 0,
+    reasons: reasons.slice(0, 3),
+    band: band ? { above: band.above, highest: band.highest, statement: band.statement } : null,
+    // The distinction the whole category exists to keep: no core window is not an empty sky.
+    note: analyses.length && !withWindow.length
+      ? 'No night in this horizon puts the core above ' + thresholdDeg + ' degrees while the sky is dark. ' +
+        'That is a statement about the core, not about the Milky Way: the galactic plane is a great circle, ' +
+        'so part of the band is above the horizon at every latitude and every hour.'
+      : null };
+}
+
 
 // Analyse a list of observing nights (the same window objects the rest of the product uses) and return the
 // analysis plus the candidates for the shared opportunity model. Coarser sampling is available for long
@@ -615,9 +649,11 @@ function analyse(windows, site, options) {
     Number.isFinite(window.end) && window.end > window.start);
   // The cached night objects are shared between calls, so callers must treat them as read-only.
   const analyses = nights.map(window => analyseNight(window, site, opts));
+  const thresholdDeg = clamp(Number.isFinite(opts.thresholdDeg) ? opts.thresholdDeg : RULES.core.goodDeg, 5, 60);
   return { schema: SCHEMA, site: { lat: site.lat, lon: site.lon, tz: site.tz || null, name: site.name || null },
     nights: analyses, candidates: analyses.map(night => candidateFor(night, site, opts)),
-    thresholdDeg: clamp(Number.isFinite(opts.thresholdDeg) ? opts.thresholdDeg : RULES.core.goodDeg, 5, 60),
+    summary: summariseHorizon(analyses, thresholdDeg, opts),
+    thresholdDeg,
     provenance: { library: A.LIBRARY.name + ' ' + A.LIBRARY.version, core: CORE.source,
       galacticFrame: GALACTIC.source, refraction: RULES.refraction.display,
       sampling: 'core track every ' + (opts.stepMinutes || 10) + ' minutes with bisected edges; Moon inside ' +
@@ -627,6 +663,7 @@ function analyse(windows, site, options) {
 root.OverheadMilkyWay = { SCHEMA, CORE, GALACTIC, BAND, RULES, QUALITY_WEIGHTS, DARKNESS_FULL_MINUTES,
   galacticToEquatorial, coreEquatorial, coreHorizontal, horizontalOfJ2000, bandSummary, moonAt,
   moonInterferenceFor, qualityFor, moonFactorFor, photographyFor, coreTrack, analyseNight, analyse,
-  chartSeries, candidateFor, intersectIntervals, longestInterval, CACHE, clearCache, cacheSize };
+  chartSeries, candidateFor, intersectIntervals, longestInterval, summariseHorizon,
+  CACHE, clearCache, cacheSize };
 if (typeof module !== 'undefined') module.exports = root.OverheadMilkyWay;
 })(typeof self !== 'undefined' ? self : globalThis);

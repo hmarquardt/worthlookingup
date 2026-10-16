@@ -626,6 +626,54 @@ const southPole = SITES['South Pole station (-89.9)'];
   worst('engineBytes', source.length);
 }
 
+/* ---- 12. the horizon summary behind an empty plan ------------------------ */
+{
+  const MW = require(path.resolve('overhead-milkyway.js'));
+  // Mid-October at 38.4 N: the core is low in the south-west at dusk and never clears 20 degrees while the
+  // sky is dark, so the horizon has no window at all. The summary must still say which night came closest.
+  const october = MW.analyse(nightsFor(princeton, '2026-10-16T17:00:00Z', 14), princeton, {});
+  assert.equal(october.summary.withWindow, 0, 'no night in mid-October clears the rule at 38.4 N');
+  assert.equal(october.summary.nights, 14);
+  assert.ok(Number.isFinite(october.summary.bestCoreAltitude), 'the closest night must be reported');
+  const expectedBest = october.nights.slice().sort((a, b) => b.core.maxAltitude - a.core.maxAltitude)[0];
+  assert.equal(october.summary.bestDay, expectedBest.day, 'the summary names the argmax night');
+  assert.equal(october.summary.bestCoreAltitude, expectedBest.core.maxAltitude);
+  assert.equal(october.summary.bestCoreCompass, expectedBest.core.maxCompass);
+  // The closest night may clear the altitude threshold and still produce nothing, because the threshold has
+  // to be met while the sky is dark. Either way the refusal must say which of the two failures it was.
+  const closest = october.nights.find(night => night.day === october.summary.bestDay);
+  assert.equal(closest.observable, false);
+  assert.match(closest.refusals[0], /twilight|darkness|never rises/);
+  if (october.summary.bestCoreAltitude < october.thresholdDeg) {
+    assert.match(closest.refusals[0], /only outside/);
+  } else {
+    assert.match(october.summary.bestDarknessAchieved, /astronomical|nautical|civil/);
+  }
+  assert.ok(october.summary.reasons.length, 'the summary must carry the engine\'s own reason');
+  assert.match(october.summary.reasons[0], /twilight|darkness|never rises/);
+  assert.match(october.summary.note, /not about the Milky Way|great circle/);
+  assert.ok(october.summary.band && october.summary.band.above.horizon > 8,
+    'the band is still largely above the horizon when the core is not');
+  // A horizon that does contain windows reports them, and its argument is the window length.
+  const july = MW.analyse(nightsFor(princeton, '2026-07-15T17:00:00Z', 7), princeton, {});
+  assert.equal(july.summary.withWindow, 7);
+  assert.equal(july.summary.note, null, 'no explanation is invented when windows exist');
+  assert.ok(july.summary.bestBestWindowMinutes >= 60);
+  assert.ok(july.summary.bestCoreAltitude > 20);
+  // The plan's own reasons must be the engine's, not the interface's.
+  const CP = require(path.resolve('overhead-celestial-plan.js'));
+  const emptyPlan = CP.compute({ site: princeton, windows: nightsFor(princeton, '2026-10-16T17:00:00Z', 7),
+    now: Date.parse('2026-10-16T18:00:00Z'), horizon: 'week', category: 'milkyway', datasets: {}, weather: null,
+    options: { minAltitude: 10 } });
+  assert.equal(emptyPlan.plans.week.empty, true);
+  assert.equal(emptyPlan.plans.week.opportunities.length, 0);
+  assert.ok(emptyPlan.plans.week.notObservable.length >= 1, 'the nights are listed as calculated but not observable');
+  assert.equal(emptyPlan.milkyWay.summary.withWindow, 0);
+  assert.equal(emptyPlan.milkyWay.summary.bestDay, emptyPlan.plans.week.notObservable[0] ? emptyPlan.milkyWay.summary.bestDay : null);
+  assert.match(emptyPlan.plans.week.notObservable[0].reasons.join(' '), /twilight|darkness|never rises/);
+  assert.ok(emptyPlan.milkyWay.summary.band.above.horizon > 8);
+}
+
 /* ---- summary ------------------------------------------------------------ */
 const round3 = value => Math.round(value * 1000) / 1000;
 console.log('PASS: Milky Way core engine — an independent Meeus/GMST reference for the coordinate path, the ' +
