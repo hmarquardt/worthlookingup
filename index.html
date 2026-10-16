@@ -23,6 +23,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <script src="overhead-engine.js" defer></script>
 <script src="overhead-lifecycle.js" defer></script>
 <script src="overhead-discovery.js" defer></script>
+<script src="overhead-calendar.js" defer></script>
 <script src="overhead-weekly.js" defer></script>
 <script src="overhead-launches.js" defer></script>
 <script src="overhead-trains.js" defer></script>
@@ -122,6 +123,22 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 .launch-why{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.8rem;color:var(--muted)}
 .launch-unknown{color:var(--amber)}
 .launch-links{display:flex;flex-wrap:wrap;gap:10px;font-size:.8rem}
+/* Calendar export and the observing plan. Compact secondary actions with honest labels; the plan
+   panel is the only new persistent region and stays hidden while nothing is selected. */
+.calendar-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.calendar-actions button{font-size:.78rem;padding:8px 11px;letter-spacing:.2px}
+.calendar-actions button[aria-pressed="true"]{border-color:var(--lime);color:var(--lime)}
+.calendar-note{font-size:.74rem;color:var(--muted);line-height:1.55}
+.observing-plan{border:1px solid var(--line);border-left:3px solid var(--lime);border-radius:8px;background:var(--panel);padding:15px 17px;margin:0 0 20px;display:grid;gap:10px}
+.observing-plan .plan-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.observing-plan h2{font-size:1rem}
+.observing-plan .plan-actions{display:flex;flex-wrap:wrap;gap:8px}
+.plan-list{margin:0;padding:0;list-style:none;display:grid;gap:0}
+.plan-list li{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line);padding:9px 0}
+.plan-list .plan-meta{display:grid;gap:2px;min-width:0}
+.plan-list .plan-meta span{font-size:.76rem;color:var(--muted)}
+.plan-list button{font-size:.74rem;padding:7px 10px}
+@media(max-width:650px){.observing-plan{padding:13px}.calendar-actions button{min-height:44px}.plan-list button{min-height:44px}}
 @media (max-width:720px){.launch-countdown{font-size:1.15rem}}
 @media (max-width:900px){#categories .tabs{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}#categories .tabs::-webkit-scrollbar{display:none}#categories .tabs button{white-space:nowrap}}
 .celestial-section{border-top:1px solid var(--line);margin-top:22px;padding-top:16px;display:grid;gap:10px}
@@ -149,6 +166,12 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <details id="discovery-coming"><summary>Coming up <span id="discovery-coming-count" class="small"></span></summary><p class="small">Different opportunities, in time order · next seven days</p><div id="discovery-upcoming"></div></details>
 <details id="discovery-launches"><summary>On the launch calendar</summary><p class="small launch-unknown">Global schedules · local visibility unknown</p><div id="discovery-launch-preview"></div><button type="button" data-discovery-category="launches">Full launch calendar ↗</button></details></div>
 <div class="discovery-controls"><button type="button" id="discovery-build">Build my sky guide</button><span id="discovery-coverage" class="small"></span></div><p id="discovery-notice" class="small" role="status"></p><details id="discovery-source-notices" hidden><summary>Data &amp; calculation notices</summary><ul id="discovery-source-notices-list" class="small"></ul></details>
+</section>
+<section id="observing-plan" class="observing-plan" aria-labelledby="observing-plan-title" hidden>
+<div class="plan-head"><h2 id="observing-plan-title">Observing plan <span id="plan-count" class="small"></span></h2><div class="plan-actions"><button type="button" id="plan-download">Download calendar file (.ics)</button><button type="button" id="plan-clear">Clear plan</button></div></div>
+<p class="small">Selected opportunities, in time order. The file is built in this browser: nothing is uploaded, no account is needed, and Worth Looking Up cannot change your calendar itself. Re-downloading after a schedule changes keeps the same entry identifier, but a calendar app may still show both copies.</p>
+<ol id="plan-list" class="plan-list"></ol>
+<p id="plan-notice" class="small" role="status" aria-live="polite"></p>
 </section>
 <button type="button" id="discovery-back" hidden>↑ Back to discovery</button>
 <section id="celestial" class="celestial" hidden aria-label="Celestial observing plan">
@@ -251,16 +274,16 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <details id="how-it-works"><summary>How the recommendation works</summary><p>The night’s score is the best remaining satellite opportunity among your selected categories. It is not a weather score. A “likely visible” segment needs at least 20 seconds above your minimum elevation, with the Sun at least 6° below the horizon and the spacecraft fully sunlit. Buildings, trees, haze and object orientation can still prevent a sighting.</p><p>Base points: elevation 25, useful visible duration 15, sunlight 10, observer darkness 15, brightness category 10, cloud cover 20, and visibility 5. Cloud, poor visibility and rain then reduce the total. Unknown weather earns no weather points and makes the result provisional. No precise apparent magnitude is claimed. <a href="docs/overhead.md">Full algorithm, validation and limitations →</a></p><p>The Moon panel is informational and does not raise the satellite score. A quiet satellite night can still be a lovely night for stargazing.</p></details>
 <details id="diagnostics"><summary>Data & diagnostics</summary><div class="actions"><button id="refresh">Refresh source data</button><button id="clear-cache">Clear downloaded cache</button><label class="text-button">Import OMM JSON / TLE<input id="import" type="file" accept=".json,.txt,.tle" aria-label="Import orbital elements"></label></div><p>Import up to 2 MB of orbital elements from a trusted source if CelesTrak is unavailable. Imported records stay in this session and use their actual epoch; records more than 14 days from a prediction are excluded.</p><pre id="diagnostic-output"></pre></details>
 </main>
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.15.5" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.15.5">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.15.6" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.15.6">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.15.5 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.15.6 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
-<dialog id="event-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><div><div class="eyebrow" id="detail-category"></div><h2 id="detail-title"></h2></div><button class="close" data-close aria-label="Close event details">×</button></div><div id="detail-content"></div><div class="actions"><button id="favorite">☆ Favorite spacecraft</button><button id="map-open">Ground-track map</button></div><div id="map-panel" hidden><p class="privacy">Drag with a mouse to pan. For touch dragging, enable panning below; turn it off to scroll the page. The marker is at the selected pass peak, not live.</p><div class="actions"><button id="map-plus" aria-label="Zoom map in">+</button><button id="map-minus" aria-label="Zoom map out">−</button><button id="map-center">Center on observer</button><button id="map-fit">Fit pass</button><button id="map-touch" aria-pressed="false">Enable touch panning</button></div><div id="map"></div><p id="map-status" class="privacy" role="status"></p></div></dialog>
+<dialog id="event-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><div><div class="eyebrow" id="detail-category"></div><h2 id="detail-title"></h2></div><button class="close" data-close aria-label="Close event details">×</button></div><div id="detail-content"></div><div class="actions"><button id="favorite">☆ Favorite spacecraft</button><button id="map-open">Ground-track map</button><button id="detail-calendar">Add to calendar (.ics)</button><button id="detail-plan" aria-pressed="false">Add to observing plan</button></div><div id="map-panel" hidden><p class="privacy">Drag with a mouse to pan. For touch dragging, enable panning below; turn it off to scroll the page. The marker is at the selected pass peak, not live.</p><div class="actions"><button id="map-plus" aria-label="Zoom map in">+</button><button id="map-minus" aria-label="Zoom map out">−</button><button id="map-center">Center on observer</button><button id="map-fit">Fit pass</button><button id="map-touch" aria-pressed="false">Enable touch panning</button></div><div id="map"></div><p id="map-status" class="privacy" role="status"></p></div></dialog>
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
 'use strict';
@@ -553,7 +576,7 @@ function renderTrainDiagnostics(){const d=state.trainDiagnostics;let section=$('
 function renderDiagnostics(){const sources=Object.entries(state.sources);const active=Object.fromEntries([...state.activeSourceKeys].filter(k=>state.sources[k]).map(k=>[k,state.sources[k]]));$('freshness').textContent=E.publicFreshness(active);$('diagnostic-output').textContent=JSON.stringify({observer:state.site,timing:timingDiagnostics(),presentation:{selected:presentationTrace(state.selected),best:presentationTrace(state.weekly?.winner?.pass),happeningNow:happeningPasses().map(p=>presentationTrace(p))},timezone:state.site.tz,objectsLoaded:state.objects.length,objectsCalculated:state.poolCount,objectsOmitted:state.excluded,orbitalEpochRange:state.objects.length?[...state.objects.map(o=>o.EPOCH)].sort().filter((_,i,a)=>i===0||i===a.length-1):[],passesCalculated:Object.values(state.results).flat().length,visiblePasses:Object.values(state.results).flat().filter(p=>p.likely).length,calculationMs:Math.round(state.duration),sources:Object.fromEntries(sources.map(([k,v])=>[k,{...v,fetchedAt:new Date(v.at).toISOString()}])),activeSourceKeys:[...state.activeSourceKeys].sort(),cache:'IndexedDB: at most 32 responses, max 7 days; session fallback. Elements >14 days from prediction excluded.',objectMetadata:metadataAvailable?{cache:'IndexedDB overhead-object-meta: at most '+O.RULES.maxRecords+' records, '+O.RULES.ttlDays+'-day TTL; separate from the orbit/weather response cache',onDemandOnly:true,requests:objectEnricher.stats.requests,objectFailures:objectEnricher.stats.objectFailures,sourceWarnings:objectEnricher.stats.sourceWarnings,lastError:objectEnricher.stats.lastError,lastWarning:objectEnricher.stats.lastWarning,objects:[...objectMeta.values()].slice(-5).map(O.provenance)}:{available:false,note:'Metadata enrichment unavailable. Pass predictions are unaffected.'},apiErrors:[...new Set(state.errors)]},null,2);}
 function showEvent(id,candidate){const p=candidate||passes().find(p=>p.id===id);if(!p)return;state.selected=p;render();state.selected=p;$('detail-title').textContent=p.name;$('detail-category').textContent=category(p);const f=(name,value)=>`<div><span>${name}</span>${esc(value)}</div>`;
  $('detail-content').innerHTML=`<div class="detail-score"><strong class="mono">${p.score}</strong><div>${esc(E.label(p.score))}${p.provisional?' · provisional':''}<div class="small">${esc(dateLabel(p.start))} · ${esc(state.site.tz)}</div></div></div><div class="detail-route">${p.likely?'Appears':'Orbital entry'} <strong>${E.compass(p.entry.az)} · ${Math.round(p.entry.el)}°</strong><br>→ <strong>${E.compass(p.peak.az)} · ${Math.round(p.peak.el)}° peak</strong><br>→ ${p.likely?'disappears':'orbital exit'} <strong>${E.compass(p.exit.az)} · ${Math.round(p.exit.el)}°</strong></div><div class="detail-facts">${f('Start',time(p.start,true))}${f('Peak',time(p.peak.t,true))}${f('End',time(p.end,true))}${f('Total likely visible',duration(p.duration))}${f('Geometric horizon rise / set',time(p.rise,true)+' / '+time(p.set,true))}${f('Full orbital maximum',Math.round(p.orbitalPeak.el)+'° at '+time(p.orbitalPeak.t,true))}${f('Range at selected peak',distance(p.peak.range*1000))}${f('Sun altitude',p.peak.sun.toFixed(1)+'°')}${f('Low / mid / high cloud',p.w?[p.w.cloud_cover_low,p.w.cloud_cover_mid,p.w.cloud_cover_high].map(v=>v==null?'?':v+'%').join(' / '):'Unknown')}${f('Element epoch',new Date(p.epoch).toISOString())}</div>${p.train?`<div class="detail-facts">${f('Launch date',p.train.launchDate||'Unknown')}${f('Launch age',p.train.launchAgeDays!=null?'Launched ~'+p.train.launchAgeDays+' days ago':'Recent Starlink launch')}${f('Satellites in cohort',p.train.memberCount+' cataloged · '+p.train.cohortSize+' propagated')}${f('Predicted visible at peak',p.train.visibleCount+' illuminated above '+state.settings.minimum+'°')}${f('Strong viewing window',time(p.start)+' – '+time(p.end)+' · '+duration(p.duration))}${f('Apparent span · median spacing',Math.round(p.train.spanDeg)+'° · '+p.train.medianSpacingDeg+'° (max gap '+p.train.maxGapDeg+'°)')}${f('Train state',p.train.state+(p.train.stale?' · orbital data may be stale':''))}${f('Element source',p.train.source)}</div><p class="small">Why this is a train: ${esc((p.reasons||[]).join(' · '))}</p><details><summary>Individual spacecraft (${p.train.memberRecords.length})</summary><div class="train-members">${p.train.memberRecords.map(m=>`<span>${esc(m.name)} · ${esc(m.norad)}</span>`).join('')}</div></details>`:''}<div id="object-about" class="object-about" hidden aria-live="polite"></div>${skySVG(p)}<h3>Why this score</h3><ul id="reasons"><li>${Math.round(p.peak.el)}° maximum during the displayed segment; ${duration(p.duration)} above ${state.settings.minimum}° while dark and sunlit.</li><li>${p.peak.lit?'Spacecraft fully sunlit':'Spacecraft in Earth’s shadow or penumbra'}; Sun ${Math.abs(p.peak.sun).toFixed(1)}° ${p.peak.sun<0?'below':'above'} your horizon.</li><li>${esc(weatherDescription(p.w))}; visibility ${esc(distance(p.w?.visibility))}.</li><li>Brightness category: ${p.norad==='25544'?'very bright ISS':p.norad==='48274'?'bright station':p.groups.includes('visual')?'CelesTrak bright candidate':'uncertain spacecraft'}. No apparent magnitude estimate.</li><li>${p.provisional?'Missing weather earns zero weather points; this is a provisional geometry score.':'Clouds, reduced visibility and precipitation apply additional penalties.'}</li><li>Base points: ${p.factors?Object.entries(p.factors).map(([k,v])=>esc(k)+' '+v.toFixed(1)).join(' · '):'not recorded for this event'}.</li></ul><p class="small">Times describe the longest continuous visible segment; total duration sums all segments. For an invisible orbital pass, times describe the horizon-to-horizon geometry. Be outside two minutes early. Elements and maneuvers can shift a prediction.</p>`;
- $('favorite').hidden=!!p.train;$('favorite').textContent=state.favorites.includes(p.norad)?'★ Remove favorite':'☆ Favorite spacecraft';$('map-panel').hidden=true;$('event-dialog').showModal();renderDiagnostics();renderObjectAbout();enrichObjects([p]);}
+ $('favorite').hidden=!!p.train;$('favorite').textContent=state.favorites.includes(p.norad)?'★ Remove favorite':'☆ Favorite spacecraft';$('map-panel').hidden=true;$('event-dialog').showModal();renderDiagnostics();renderObjectAbout();enrichObjects([p]);syncDetailCalendar(p);}
 function fillLocation(){$('location-name').value=state.site.name;$('latitude').value=state.site.lat;$('longitude').value=state.site.lon;$('timezone').value=state.site.tz;renderSaved();}
 function renderSaved(){$('saved-locations').innerHTML=state.saved.map((s,i)=>`<div class="saved-row"><button data-site="${i}">${esc(s.name)} <span class="small">${s.lat.toFixed(2)}, ${s.lon.toFixed(2)}</span></button><button data-delete-site="${i}" aria-label="Delete saved ${esc(s.name)}">×</button></div>`).join('');}
 async function useSite(site){$('location-status').textContent='Resolving location…';try{if(!site.tz){const w=await source(weatherKey(site),weatherURL(site),30*60000);site.tz=w.timezone;}new Intl.DateTimeFormat('en',{timeZone:site.tz}).format();if(!site.tz)throw Error('Timezone unavailable');state.site=site;write('site',site);state.day=0;$('location-dialog').close();load();}catch(e){$('location-status').textContent='Could not resolve timezone. Enter an IANA timezone such as Europe/London and try again. '+e.message;}}
@@ -612,7 +635,11 @@ const L=window.OverheadLaunches||null,launchesAvailable=!!L;
 const LAUNCH_FEED_SOURCES=[['api/launches.json',15*60000],['data/launches/upcoming.json',15*60000]];
 const launches={feed:null,available:launchesAvailable,status:'idle',busy:false,errors:[],sourceKey:null,loadedAt:null,window:null,lastRender:null};
 /* Discovery consumes retained source results. It never fetches or recalculates during rendering. */
-const D=window.OverheadDiscovery,discoveryPlans=new Map(),discoveryEntries=new Map(),discoveryFailures=new Map(),discoveryMarkup=new WeakMap();
+const D=window.OverheadDiscovery,Cal=window.OverheadCalendar,discoveryPlans=new Map(),discoveryEntries=new Map(),discoveryFailures=new Map(),discoveryMarkup=new WeakMap();
+/* Calendar export state. calendarItems holds the freshest snapshot of every opportunity that is on
+   screen (so a selected event can be refreshed from already available data), and observingPlan holds
+   the reader's explicit selections for this session. Neither is persisted. */
+const calendarItems=new Map(),observingPlan=new Map();
 let discoveryScope=null,discoveryBuilding=false,discoveryBuildGeneration=0,discoveryNavigation=false,discoveryOrigin=null,categorySelection=0;
 function discoveryIdentity(){return JSON.stringify([state.site.lat,state.site.lon,state.site.tz,+state.settings.minimum,state.generation,state.nights[0]?.day]);}
 function rememberDiscoveryPlan(){
@@ -636,11 +663,8 @@ function discoveryModel(){
   for(const pass of rows){
    const enabled=pass.train?state.groups.has('trains'):pass.norad==='25544'?state.groups.has('iss'):pass.groups.some(g=>state.groups.has(g));
    if(!enabled||state.favoriteOnly&&!state.favorites.includes(pass.norad)||pass.score<threshold)continue;
-   const element=state.objects.find(o=>String(o.NORAD_CAT_ID)===pass.norad);
-   const epoch=pass.epoch||Date.parse(String(element?.EPOCH||'').replace(/Z?$/,'Z'));
-   const stale=(Number.isFinite(epoch)&&now-epoch>3*DAY)||Object.entries(state.sources).some(([key,value])=>key.startsWith('orbits:')&&state.activeSourceKeys.has(key)&&value.stale);
-   const event=D.satellite(pass,{now,lifecycle:OverheadLifecycle.eventLifecycle,weatherText:weatherDescription(pass.w),stale,night:+index});
-   if(event)events.push(event);
+   const item=satelliteCalendarItem(pass,+index,now);
+   if(item)events.push(item.event);
   }
  }
  if(Object.hasOwn(state.results,0)&&state.objects.length)coverage.push('satellites');
@@ -652,12 +676,15 @@ function discoveryModel(){
    const accepted=plan?.opportunities.some(o=>o.id===opportunity.id);
    const event=D.celestial(opportunity,{category,errors:snapshot.result.errors||[]});
    if(!event)continue;event.target.snapshotKey=snapshot.key;event.target.horizon=snapshot.result.span.days>=7?'week':'tonight';
+   calendarItems.set(event.id,{event,source:opportunity});
    if(event.classification==='announcement')announcements.push(event);else if(accepted)events.push(event);
   }
  }
  const tonight=night?D.tonight(events,{now,start:night.start,end:night.end}):[];
  const coming=D.comingUp(events,{now,end,exclude:tonight.map(e=>e.id)});
  const launch=D.launches(launches.feed,{module:L,now,end});
+ // A launch preview is a global schedule: register it so its own card and the plan can describe it.
+ for(const event of launch.events){const record=launchRecordById(event.sourceId);if(record)calendarItems.set(event.id,{event,source:record});}
  return {tonight,coming,launch,coverage,announcements,events,notices:[...new Set([...plans.flatMap(p=>p.result.errors||[]),...discoveryFailures.values()])]};
 }
 function discoveryCard(event){
@@ -670,7 +697,7 @@ function discoveryCard(event){
   (event.optical?`<p class="small">Equipment: ${esc(OPTICAL_LABEL[event.optical]||event.optical)}</p>`:'')+(event.weatherSummary?`<p class="small">${esc(event.weatherSummary)}</p>`:'')+
   warnings.slice(0,2).map(text=>`<p class="small discovery-warning">${esc(text)}</p>`).join('')+
   (warnings.length>2?`<details class="discovery-caveats"><summary>All limits &amp; equipment (${warnings.length})</summary><ul>${warnings.map(w=>`<li>${esc(w)}</li>`).join('')}</ul></details>`:'')+
-  `<p class="discovery-source">${esc(event.source)}</p></article>`;
+  `<p class="discovery-source">${esc(event.source)}</p>${calendarActions(event.id)}</article>`;
 }
 function updateDiscoveryHTML(element,html){
  if(discoveryMarkup.get(element)===html)return;
@@ -699,6 +726,9 @@ function renderDiscovery(){
  $('discovery-build').disabled=discoveryBuilding;
  $('discovery-build').textContent=discoveryBuilding?'Building sky guide…':'Build my sky guide';
  $('discovery').onclick=event=>{const action=event.target.closest('[data-discovery-open]'),category=event.target.closest('[data-discovery-category]');if(action){const entry=discoveryEntries.get(action.dataset.discoveryOpen);if(entry)openDiscovery(entry);}else if(category){celestial.horizon='week';selectCategory(category.dataset.discoveryCategory);}};
+ // The observing plan reflects the same renders, so a selection is refreshed from current data
+ // rather than from a snapshot taken when it was added.
+ renderPlan();
 }
 async function restoreDiscoveryFeed(){
  if(!L)return;
@@ -883,6 +913,8 @@ function celestialSky(positions,label){
 const shortName=name=>String(name).replace(/^Moon near |^Radiant \((.*)\)$/,'$1').replace(/ \(.*\)$/,'').slice(0,18);
 function celestialCard(opportunity){
  const horizon=celestial.horizon,when=time(opportunity.best),day=dateLabel(opportunity.best);
+ const calendarEvent=D.celestial(opportunity,{category:celestial.category,errors:celestial.errors||[]});
+ if(calendarEvent)calendarItems.set(calendarEvent.id,{event:calendarEvent,source:opportunity});
  const attributes=opportunity.attributes||{},confidence=opportunity.confidence||{astrometric:{},observing:{},phenomenon:{}};
  const positions=opportunity.positions||[];
  const extra=[];
@@ -914,7 +946,7 @@ function celestialCard(opportunity){
   `<div><strong>Observing suitability</strong> — ${opportunity.observing.value}/100 from ${esc(confidence.observing.grade||'unknown')}${opportunity.observing.provisional?' (provisional)':''}</div>`+
   `<div><strong>Phenomenon predictability</strong> — ${esc(confidence.phenomenon.level||'unknown')}: ${esc(confidence.phenomenon.detail||'')}</div></div>`+
   (caveats?`<ul class="celestial-caveats">${caveats}</ul>`:'')+
-  `<div class="celestial-source">${freshness}</div></article>`;
+  `<div class="celestial-source">${freshness}</div>${calendarActions(calendarEvent?calendarEvent.id:null)}</article>`;
 }
 // Freshness and provenance line for one card, in plain language.
 function celestialFreshnessLine(opportunity){
@@ -1040,6 +1072,8 @@ function launchDayHeading(key){const [year,month,day]=String(key).split('-').map
 function launchLinkLabel(link,record){const base=link.title||link.source||link.type||(link.official?'Official information':'More information');return (link.official?'Official: ':'')+base+' for '+record.name;}
 function launchRelevance(record){return L.relevanceFor(record,state.site,{sunAltitude:launchSunAltitude});}
 function launchCard(entry,now){const record=entry.record,precision=L.precisionOf(record),relevance=launchRelevance(record),status=L.statusChip(record),countdown=L.countdownFor(record,now);
+ const calendarEvent=D.launchRecord(record,{module:L,feed:launches.feed});
+ calendarItems.set(calendarEvent.id,{event:calendarEvent,source:record});
  const net=Date.parse(record.net);
  const localTime=precision.exact?L.formatLocal(net,state.site.tz,state.settings.clock):null;
  const padTime=precision.exact&&record.site.timezone?L.formatLocal(net,record.site.timezone,state.settings.clock):null;
@@ -1068,6 +1102,7 @@ function launchCard(entry,now){const record=entry.record,precision=L.precisionOf
   `<ul class="launch-why">${relevance.statements.map(statement=>`<li>${esc(statement)}</li>`).join('')}</ul>`+
   `<div class="small">${esc(status.detail)} A launch appears here because it is scheduled, not because it will be visible from where you are.</div>`+
   linkMarkup+
+  calendarActions(calendarEvent.id)+
   `</article>`;}
 
 // The published feed is fetched once per window and cached with the same bounded local cache used for
@@ -1119,7 +1154,7 @@ function tickLaunchCountdowns(){
 function renderLaunchMore(selection,feed){
  const body=$('celestial-more-body'),section=$('celestial-more'),rows=[];
  if(selection.periods.length){
-  rows.push('<div><strong>Announced with a period, not a date</strong> — the provider has not published a day for these, so they are never placed on one.</div>');
+  rows.push('<div><strong>Announced with a period, not a date</strong> — the provider has not published a day for these, so they are never placed on one. A month, quarter, half-year or year is not precise enough for a calendar entry, so no date is invented for them.</div>');
   rows.push(`<ul class="celestial-list">${selection.periods.map(({record})=>`<li tabindex="-1" data-launch-period="${esc(record.id)}">${esc(record.name)}${record.vehicle?' · '+esc(record.vehicle):''} — ${esc(L.periodLabel(record))}${record.site.name?' · '+esc(record.site.name):''} <span class="launch-status" data-tone="warn">${esc(L.statusChip(record).label)}</span></li>`).join('')}</ul>`);
   if(selection.periodsTotal>selection.periods.length)rows.push(`<div>${selection.periodsTotal-selection.periods.length} further period-only launch(es) in this window are not listed.</div>`);
  }
@@ -1213,6 +1248,199 @@ function renderLaunches(){
 }
 
 
+/* ---- Calendar export and the observing plan --------------------------------------------------
+   Everything here is local: the .ics file is built in this browser and handed to the download
+   mechanism. No account, no OAuth, no server and no calendar API is involved. A launch is only
+   exported when the provider published a usable time or date; a broad announced period is refused
+   with a reason rather than turned into a date, and local visibility is never claimed. See
+   docs/calendar.md. */
+const PLAN_LIMIT=40;
+const planSiteKey=()=>[state.site.lat,state.site.lon,state.site.tz].join(',');
+/* One shared satellite mapper, so the guide, the pass dialog and the plan describe the same pass the
+   same way and never disagree about the score or staleness. */
+function satelliteCalendarItem(pass,night=0,now=Date.now()){
+ const element=state.objects.find(o=>String(o.NORAD_CAT_ID)===pass.norad);
+ const epoch=pass.epoch||Date.parse(String(element?.EPOCH||'').replace(/Z?$/,'Z'));
+ const stale=(Number.isFinite(epoch)&&now-epoch>3*DAY)||Object.entries(state.sources).some(([key,value])=>key.startsWith('orbits:')&&state.activeSourceKeys.has(key)&&value.stale);
+ const event=D.satellite(pass,{now,lifecycle:OverheadLifecycle.eventLifecycle,weatherText:weatherDescription(pass.w),stale,night});
+ if(!event)return null;
+ const item={event,source:pass};
+ calendarItems.set(event.id,item);
+ return item;
+}
+function calendarItem(id){return id?calendarItems.get(id)||null:null;}
+function calendarOptions(extra){return {now:Date.now(),site:state.site,timezone:state.site.tz,clock:state.settings.clock,
+ launches:L,feed:launches.feed,compass:E.compass,scoreLabel:value=>E.label(value),
+ opticalLabel:value=>OPTICAL_LABEL[value]||value,...extra};}
+/* The calendar-export decision for one registered item, used by every card and by the plan. */
+function calendarCheck(id){
+ const item=calendarItem(id);
+ if(!item)return {eligible:false,reason:'This opportunity is no longer in the current results, so it cannot be added.'};
+ if(!Cal)return {eligible:false,reason:'The calendar module did not load, so no calendar file can be built.'};
+ return Cal.describe(item.event,calendarOptions({source:item.source}));
+}
+/* Compact actions for a card. An ineligible event gets the reason instead of a misleading button. */
+function calendarActions(id){
+ if(!id)return '';
+ const check=calendarCheck(id);
+ if(!check.eligible)return `<p class="calendar-note">${esc(check.reason)}</p>`;
+ const planned=observingPlan.has(id);
+ return `<div class="calendar-actions">`+
+  `<button type="button" data-calendar-add="${esc(id)}">Add to calendar (.ics)</button>`+
+  `<button type="button" data-plan-toggle="${esc(id)}" aria-pressed="${String(planned)}">${planned?'In observing plan ✓':'Add to observing plan'}</button>`+
+  `</div>`;
+}
+function downloadText(name,text,type){
+ try{
+  const blob=new Blob([text],{type:type+';charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+  link.href=url;link.download=name;document.body.append(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+  return true;
+ }catch(error){announce('The browser could not create the download: '+error.message);return false;}
+}
+function addToCalendar(id){
+ const item=calendarItem(id);
+ if(!item){announce('This opportunity is no longer in the current results, so no calendar file was created.');return;}
+ const result=Cal.single(item,calendarOptions({source:item.source,label:item.event.title}));
+ if(!result.eligible){announce(result.reason);return;}
+ if(downloadText(result.name,result.ics,'text/calendar'))
+  announce('Downloaded '+result.name+'. Open the file to add the event to your calendar; Worth Looking Up cannot change your calendar itself.');
+}
+function planAdd(id){
+ const item=calendarItem(id);
+ if(!item){announce('This opportunity is no longer in the current results, so it was not added to the plan.');return;}
+ if(observingPlan.has(id)){announce('That opportunity is already in your observing plan.');return;}
+ if(observingPlan.size>=PLAN_LIMIT){announce('The observing plan holds up to '+PLAN_LIMIT+' events. Remove one before adding another.');return;}
+ const check=Cal?Cal.describe(item.event,calendarOptions({source:item.source})):{eligible:false,reason:'The calendar module did not load.'};
+ if(!check.eligible){announce(check.reason);return;}
+ observingPlan.set(id,{id,event:item.event,source:item.source,sequence:0,createdAt:Date.now(),snapshotAt:Date.now(),refreshed:false,missing:false,siteKey:planSiteKey()});
+ renderPlan();refreshPlanButtons();
+ announce(item.event.title+' added to the observing plan ('+observingPlan.size+' selected).');
+}
+function planRemove(id){
+ const entry=observingPlan.get(id);
+ if(!entry)return;
+ observingPlan.delete(id);
+ renderPlan();refreshPlanButtons();
+ announce(entry.event.title+' removed from the observing plan ('+observingPlan.size+' remaining).');
+}
+function planClear(){
+ const count=observingPlan.size;
+ observingPlan.clear();
+ renderPlan();refreshPlanButtons();
+ announce(count+' observing-plan selection(s) cleared. Nothing was downloaded.');
+}
+function planToggle(id){observingPlan.has(id)?planRemove(id):planAdd(id);}
+/* Refresh each selection from the data already on screen. A changed window keeps the same calendar
+   identifier and bumps SEQUENCE, so a later download of the same source event is a revision rather
+   than a second event. A selection whose source is no longer available keeps its saved snapshot and
+   is labelled as such; it is never silently dropped or rewritten. */
+function planRefresh(){
+ let changed=0;
+ for(const entry of observingPlan.values()){
+  const current=calendarItem(entry.id);
+  if(!current){entry.missing=true;continue;}
+  entry.missing=false;entry.source=current.source;
+  const next=current.event,prior=entry.event;
+  const differs=next.start!==prior.start||next.end!==prior.end||next.title!==prior.title||
+   next.precision!==prior.precision||next.status!==prior.status;
+  if(differs){entry.event=next;entry.sequence+=1;entry.refreshed=true;entry.snapshotAt=Date.now();changed+=1;}
+ }
+ return changed;
+}
+function refreshPlanButtons(){
+ const sync=button=>{
+  const planned=observingPlan.has(button.dataset.planToggle);
+  button.setAttribute('aria-pressed',String(planned));
+  button.textContent=planned?'In observing plan ✓':'Add to observing plan';
+ };
+ document.querySelectorAll('[data-plan-toggle]').forEach(sync);
+ const detail=$('detail-plan');
+ if(detail&&detail.dataset.planToggle)sync(detail);
+}
+function syncDetailCalendar(pass){
+ const add=$('detail-calendar'),toggle=$('detail-plan');
+ if(!pass||!Cal){
+  add.disabled=true;delete add.dataset.calendarAdd;add.textContent='Not available for calendar export';
+  toggle.hidden=true;delete toggle.dataset.planToggle;
+  $('detail-calendar-note')?.remove();
+  return;
+ }
+ const item=satelliteCalendarItem(pass,state.day||0,Date.now());
+ const check=item?Cal.describe(item.event,calendarOptions({source:item.source}))
+  :{eligible:false,reason:'This pass cannot be added: it has no defensible observing window.'};
+ if(check.eligible){
+  add.disabled=false;add.dataset.calendarAdd=item.event.id;add.textContent='Add to calendar (.ics)';
+  toggle.hidden=false;toggle.dataset.planToggle=item.event.id;
+ }else{
+  add.disabled=true;delete add.dataset.calendarAdd;add.textContent='Not available for calendar export';
+  toggle.hidden=true;delete toggle.dataset.planToggle;
+ }
+ $('detail-calendar-note')?.remove();
+ if(!check.eligible)add.insertAdjacentHTML('afterend',`<span id="detail-calendar-note" class="calendar-note">${esc(check.reason)}</span>`);
+ refreshPlanButtons();
+}
+
+function planSortKey(event){return Number.isFinite(event.start)?event.start:Number.isFinite(event.best)?event.best:Infinity;}
+let planMarkup=null,planNotice=null;
+function renderPlan(){
+ const section=$('observing-plan');
+ if(!section)return;
+ planRefresh();
+ const entries=[...observingPlan.values()];
+ section.hidden=!entries.length;
+ if(!entries.length){
+  if(planMarkup!==null){planMarkup=null;$('plan-list').innerHTML='';}
+  $('plan-count').textContent='';
+  if(planNotice!==null){planNotice=null;$('plan-notice').textContent='';}
+  return;
+ }
+ const ordered=entries.slice().sort((a,b)=>planSortKey(a.event)-planSortKey(b.event));
+ const markup=ordered.map(entry=>{
+  const when=D.timeLabel(entry.event,{timezone:state.site.tz,clock:state.settings.clock});
+  const notes=[];
+  if(entry.missing)notes.push('no longer in the current results; the saved details are exported');
+  if(entry.siteKey!==planSiteKey())notes.push('planned for a different observing location');
+  if(entry.refreshed)notes.push('details updated since you added it');
+  if(planSortKey(entry.event)<Date.now())notes.push('this window has already started or passed');
+  return `<li data-plan-item="${esc(entry.id)}"><div class="plan-meta"><strong>${esc(entry.event.title)}</strong>`+
+   `<span>${esc(D.LABELS[entry.event.category]||entry.event.category)} · ${esc(when)}</span>`+
+   (notes.length?`<span class="warn">${esc(notes.join(' · '))}</span>`:'')+
+   `</div><button type="button" data-plan-remove="${esc(entry.id)}" aria-label="Remove ${esc(entry.event.title)} from the observing plan">Remove</button></li>`;
+ }).join('');
+ if(markup!==planMarkup){planMarkup=markup;$('plan-list').innerHTML=markup;}
+ $('plan-count').textContent='· '+entries.length+(entries.length===1?' event':' events');
+ const refreshed=ordered.filter(entry=>entry.refreshed).length,missing=ordered.filter(entry=>entry.missing).length,
+  past=ordered.filter(entry=>planSortKey(entry.event)<Date.now()).length;
+ const notice=[
+  refreshed?'Updated details are in use for '+refreshed+' selection(s).':null,
+  missing?missing+' selection(s) are no longer in the current results; the details saved when you added them are exported.':null,
+  past?past+' selected window(s) have already started or passed.':null,
+  'Times are stored in UTC, so your calendar app shows them in its own timezone.'].filter(Boolean).join(' ');
+ if(notice!==planNotice){planNotice=notice;$('plan-notice').textContent=notice;}
+}
+function downloadPlan(){
+ const entries=[...observingPlan.values()];
+ if(!entries.length){announce('Your observing plan is empty.');return;}
+ const result=Cal.itinerary(entries,calendarOptions({label:'observing-plan'}));
+ if(!result.count){announce('Nothing in the plan can be exported yet: '+(result.skipped.map(skip=>skip.reason).join(' ')||'no eligible event.'));return;}
+ if(!downloadText(result.name,result.ics,'text/calendar'))return;
+ const skipped=result.skipped.length?' '+result.skipped.length+' selection(s) were not exported: '+result.skipped.map(skip=>skip.reason).join(' '):'';
+ $('plan-notice').textContent='Downloaded '+result.count+' event(s) as '+result.name+'.'+skipped+
+  ' Open the file to add them; a calendar app may not update an entry you imported before.';
+ announce('Observing-plan calendar file downloaded ('+result.count+' event(s)).');
+}
+document.addEventListener('click',event=>{
+ const add=event.target.closest('[data-calendar-add]');
+ if(add){addToCalendar(add.dataset.calendarAdd);return;}
+ const toggle=event.target.closest('[data-plan-toggle]');
+ if(toggle){planToggle(toggle.dataset.planToggle);return;}
+ const remove=event.target.closest('[data-plan-remove]');
+ if(remove){planRemove(remove.dataset.planRemove);}
+});
+$('plan-download').onclick=downloadPlan;
+$('plan-clear').onclick=planClear;
+
 /* ---- launch wiring ---- */
 $('launches-refresh').onclick=async()=>{
  const button=$('launches-refresh');
@@ -1236,7 +1464,8 @@ document.getElementById('celestial-more').addEventListener('click',()=>{});
   objectEnricher,objectMeta,objectMetaSize:()=>objectMeta.size,renderObjectAbout,renderWeeklyIdentity,enrichObjects,requestFor,objectKey,
  celestial,selectCategory,selectHorizon,requestCelestial,renderCelestial,renderCelestialChanges,renderCelestialFreshness,
  celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities},
- launches,launchesAvailable,loadLaunches,renderLaunches,launchCard,launchWindow,launchRelevance,launchRecordById,tickLaunchCountdowns,launchModule:L,launchFeedSources:LAUNCH_FEED_SOURCES};
+ launches,launchesAvailable,loadLaunches,renderLaunches,launchCard,launchWindow,launchRelevance,launchRecordById,tickLaunchCountdowns,launchModule:L,launchFeedSources:LAUNCH_FEED_SOURCES,
+ calendar:Cal,calendarItems,observingPlan,calendarActions,calendarCheck,addToCalendar,downloadPlan,planAdd,planRemove,planToggle,planClear,renderPlan,planRefresh,planSortKey,calendarOptions,satelliteCalendarItem,downloadText};
  $('sky-preview').innerHTML=skySVG(null);
  if(location.hash==='#about'){const b=document.querySelector('[data-view="about"]');if(b)b.click();}
  restoreDiscoveryFeed();

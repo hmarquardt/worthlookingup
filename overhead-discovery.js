@@ -65,20 +65,23 @@ function tonight(events,{now,start,end}={}){
  }
  return [...leaders.values()].sort(chronological);
 }
+// One published schedule as a discovery event. Exact schedules carry their published instant; every
+// other precision carries no timestamp at all, so nothing downstream can invent one.
+function launchRecord(record,{module:L,feed}={}){
+ const p=L.precisionOf(record),status=L.statusChip(record);
+ return {id:'launches:'+record.id,sourceId:record.id,category:'launches',title:record.mission||record.name,vehicle:record.vehicle,
+  precision:p.kind,start:p.exact?Date.parse(record.net):null,end:null,classification:'global-schedule',visibility:'unknown',
+  timeLabel:p.exact?null:L.periodLabel(record),status:status.label,
+  warnings:unique([status.detail,L.changeText(record),'Local visibility unknown; no ascent trajectory is available.']),
+  source:feed?.source?.attribution||'Launch data: The Space Devs Launch Library 2',
+  target:{category:'launches',id:record.id,horizon:p.exact||p.kind==='day'?'week':'extended'}};
+}
 // Broad schedules never acquire a timestamp by substituting their provider's placeholder NET.
 function launches(feed,{module:L,now,end}={}){
  if(!L||!L.validateFeed(feed).ok||!L.validateFeed(feed).available)return {events:[],freshness:{stale:true,level:'missing',text:'Launch schedule unavailable or not loaded; no schedule is inferred.'}};
  const selection=L.selectForWindow(feed,{start:now,end,horizon:'week',now});
  const records=[...selection.dated.slice(0,2).map(x=>x.record),...selection.periods.slice(0,1).map(x=>x.record)];
- return {freshness:L.freshness(feed,now),events:records.map(record=>{
-  const p=L.precisionOf(record),status=L.statusChip(record);
-  return {id:'launches:'+record.id,sourceId:record.id,category:'launches',title:record.mission||record.name,vehicle:record.vehicle,
-   precision:p.kind,start:p.exact?Date.parse(record.net):null,end:null,classification:'global-schedule',visibility:'unknown',
-   timeLabel:p.exact?null:L.periodLabel(record),status:status.label,
-   warnings:unique([status.detail,L.changeText(record),'Local visibility unknown; no ascent trajectory is available.']),
-   source:feed.source?.attribution||'Launch data: The Space Devs Launch Library 2',
-   target:{category:'launches',id:record.id,horizon:p.exact||p.kind==='day'?'week':'extended'}};
- })};
+ return {freshness:L.freshness(feed,now),events:records.map(record=>launchRecord(record,{module:L,feed}))};
 }
 // Both ends carry a local date and timezone. Midnight/DST folds cannot collapse into one time.
 function timeLabel(event,{timezone,clock='12'}={}){
@@ -89,6 +92,6 @@ function timeLabel(event,{timezone,clock='12'}={}){
  if(event.precision==='window'||event.precision==='interval')return format(event.start)+' – '+format(event.end)+' · '+(event.precision==='window'?'observing window':'viewing interval');
  return format(event.start)+' · published '+event.precision+' precision';
 }
-root.OverheadDiscovery={LABELS,satellite,celestial,dedupe,tonight,comingUp,launches,timeLabel,chronological};
+root.OverheadDiscovery={LABELS,satellite,celestial,dedupe,tonight,comingUp,launches,launchRecord,timeLabel,chronological};
 if(typeof module!=='undefined')module.exports=root.OverheadDiscovery;
 })(typeof self!=='undefined'?self:globalThis);
