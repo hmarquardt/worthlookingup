@@ -24,14 +24,13 @@ const TOL = Object.freeze({
   geodeticRoundTripM: 1e-3,      // fixed-point inverse of an exact WGS-84 forward transform
   libraryCoordinatesM: 2.0,      // my WGS-84 ECEF against Astronomy Engine's own observer vector
   librarySolarDeg: 0.30,         // my Earth-fixed solar elevation against overhead-astro sunAltitude
-  closedFormDeg: 1e-6,           // axis-aligned cases that have an exact answer
-  curvatureDifferenceDeg: 3.0,   // minimum flat-versus-spherical disagreement at long range
+  closedFormDeg: 1e-6,           // axis-aligned and antimeridian cases that have an exact answer
+  curvatureMinimumDeg: 2.5,      // flat trigonometry must be visibly wrong at 600 km downrange
   horizonRangeRelative: 0.02,    // ellipsoidal look() against the closed-form horizon distance
   shadowBoundaryDeg: 0.5,        // conical shadow edge against the dip-angle formula
   eventTimeS: 3,                 // reconstruction event times against the published timeline
   altitudeRelative: 0.20,        // reconstruction altitude against the published timeline figure
-  reportAzimuth: 5.0,            // documented video bearing, stated to about this precision
-  reportRangeRelative: 0.08,     // documented range, stated to a tenth of a mile at best
+  reportRangeRelative: 0.08,     // documented range, quoted to a tenth of a mile at best
   orbitSpeedRelative: 0.03,      // reconstruction terminal speed against vis-viva, best case
 });
 
@@ -164,7 +163,7 @@ function claimKeys(value, found = []) {
   const curved = M.ascentState(eastward, originObserver, 300);
   const flatElevation = Math.atan2(curved.altitudeM, 600000) * R2D;
   measured.curvatureDifferenceDeg = flatElevation - curved.elevationDeg;
-  assert.ok(measured.curvatureDifferenceDeg >= 2.5,
+  assert.ok(measured.curvatureDifferenceDeg >= TOL.curvatureMinimumDeg,
     `curvature must matter at 600 km: flat gives ${flatElevation.toFixed(2)} deg, spherical gives ${curved.elevationDeg.toFixed(2)} deg`);
   // The horizon crossing must agree with the closed-form arc distance, measured the same way the
   // module measures it: as a surface distance from the observer to the target's sub-point.
@@ -429,10 +428,13 @@ function claimKeys(value, found = []) {
   const sightline = M.assess({ profile: saocom, observer: encino, sun, stepS: 10 });
   const sweep = sightline.geometry.summary.aboveHorizon.azimuth;
   const documentedAzimuth = encinoObservation.documented.sight_azimuth_deg;
-  // The documented sight line must fall inside the sweep the reconstruction predicts for that observer.
-  assert.ok(documentedAzimuth >= sweep.fromDeg - 1 && documentedAzimuth <= sweep.toDeg + 1,
-    `the documented sight line of ${documentedAzimuth} degrees must lie inside the predicted sweep ` +
-    `${sweep.fromDeg.toFixed(1)} to ${sweep.toDeg.toFixed(1)} degrees`);
+  const documentedAzimuthUncertainty = encinoObservation.uncertainty.azimuth_deg;
+  // The documented sight line, with the uncertainty its own source states, must overlap the sweep the
+  // reconstruction predicts for that observer.
+  assert.ok(documentedAzimuth + documentedAzimuthUncertainty >= sweep.fromDeg &&
+    documentedAzimuth - documentedAzimuthUncertainty <= sweep.toDeg,
+    `the documented sight line of ${documentedAzimuth} +/- ${documentedAzimuthUncertainty} degrees must overlap ` +
+    `the predicted sweep ${sweep.fromDeg.toFixed(1)} to ${sweep.toDeg.toFixed(1)} degrees`);
   // And the naive answer, "look where the launch site is", must be measurably wrong: the plume is not
   // the pad, which is why a bearing needs a trajectory rather than a launch site.
   measured.padVersusDocumentedAzimuthDeg = Math.abs(wrap180(sightline.pad.azimuthDeg - documentedAzimuth));
