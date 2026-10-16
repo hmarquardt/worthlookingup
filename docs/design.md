@@ -34,3 +34,11 @@ Retain original vector artwork; do not imply photographic evidence for an event 
 Record deterministic before/after geometry, local lab LCP/CLS (not field Core Web Vitals), actual
 screenshots, production byte checks and Actions evidence in docs/phase-2-release.md. Existing
 scientific, lifecycle, storage and launch tests must remain unchanged and passing.
+
+## Phase 3 discovery
+The original weekly highlight position now holds a compact three-part sky guide: Tonight, Coming up,
+and the separate launch calendar. One category leader is initially visible, other leaders and previews
+use native details disclosures. Categories are not scored against each other. The weekly satellite
+summary stays below the main list. Happening Now shows one prominence leader and expands the rest,
+with an always-visible summary of additional orbital-only/weather-uncertain events. See discovery.md
+for source, lifecycle, cache and navigation contracts; phase-3-release.md for measured evidence.

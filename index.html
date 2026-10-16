@@ -22,6 +22,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <script src="vendor/overhead/astronomy-2.1.19.min.js" defer></script>
 <script src="overhead-engine.js" defer></script>
 <script src="overhead-lifecycle.js" defer></script>
+<script src="overhead-discovery.js" defer></script>
 <script src="overhead-weekly.js" defer></script>
 <script src="overhead-launches.js" defer></script>
 <script src="overhead-trains.js" defer></script>
@@ -142,7 +143,14 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <div class="toolbar"><nav class="tabs" role="tablist" aria-label="Observing period"><button role="tab" data-view="now" aria-selected="false">NOW</button><button role="tab" data-view="tonight" aria-selected="true">TONIGHT</button><button role="tab" data-view="week" aria-selected="false">NEXT 7 DAYS</button><button role="tab" data-view="about" aria-selected="false">ABOUT</button></nav><span class="small" id="local-clock"></span></div>
 <section id="happening-now" class="happening-now" aria-label="Happening now" hidden></section>
 <div class="toolbar" id="categories" tabindex="-1"><nav class="tabs" role="tablist" aria-label="Observing category"><button role="tab" data-category="satellites" aria-selected="true">SATELLITES</button><button role="tab" data-category="launches" aria-selected="false">ROCKET LAUNCHES</button><button role="tab" data-category="planets" aria-selected="false">PLANETS &amp; ALIGNMENTS</button><button role="tab" data-category="meteors" aria-selected="false">METEOR SHOWERS</button><button role="tab" data-category="comets" aria-selected="false">COMETS &amp; SPECIAL EVENTS</button></nav><span class="small" id="category-note">Satellite passes and trains</span></div>
-<section id="weekly-card" class="weekly-card" aria-label="Best Thing This Week"><div class="eyebrow">BEST THING THIS WEEK</div><p>Comparing seven nights of observations…</p></section>
+<section id="discovery" class="discovery" aria-labelledby="discovery-title" tabindex="-1">
+<div class="visually-hidden" id="discovery-title">YOUR SKY GUIDE</div>
+<div class="discovery-grid"><section class="discovery-tonight" aria-labelledby="tonight-discovery-title"><h2 class="eyebrow" id="tonight-discovery-title">Worth seeing tonight</h2><div id="discovery-tonight"><p class="small">Checking available local opportunities…</p></div></section>
+<details id="discovery-coming"><summary>Coming up <span id="discovery-coming-count" class="small"></span></summary><p class="small">Different opportunities, in time order · next seven days</p><div id="discovery-upcoming"></div></details>
+<details id="discovery-launches"><summary>On the launch calendar</summary><p class="small launch-unknown">Global schedules · local visibility unknown</p><div id="discovery-launch-preview"></div><button type="button" data-discovery-category="launches">Full launch calendar ↗</button></details></div>
+<div class="discovery-controls"><button type="button" id="discovery-build">Build my sky guide</button><span id="discovery-coverage" class="small"></span></div><p id="discovery-notice" class="small" role="status"></p><details id="discovery-source-notices" hidden><summary>Data &amp; calculation notices</summary><ul id="discovery-source-notices-list" class="small"></ul></details>
+</section>
+<button type="button" id="discovery-back" hidden>↑ Back to discovery</button>
 <section id="celestial" class="celestial" hidden aria-label="Celestial observing plan">
 <div class="celestial-head"><div><div class="eyebrow" id="celestial-eyebrow">PLANETS &amp; ALIGNMENTS</div><h1 id="celestial-headline">What is worth going outside for</h1><p class="small" id="celestial-summary">Choosing a planning window…</p></div><div class="night-score"><strong id="celestial-top-score">—</strong><span id="celestial-score-label">BEST OPPORTUNITY / 100</span></div></div>
 <div class="celestial-controls" role="radiogroup" aria-label="Planning window"><button type="button" role="radio" data-horizon="tonight" aria-checked="true">TONIGHT</button><button type="button" role="radio" data-horizon="week" aria-checked="false">NEXT 7 DAYS</button><button type="button" role="radio" data-horizon="extended" aria-checked="false">NEXT 90 DAYS</button></div>
@@ -237,17 +245,18 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <div id="week" class="week" hidden></div>
 <div class="layout"><section aria-labelledby="opportunities-title"><div class="section-heading"><h2 id="opportunities-title">Worth looking up for</h2><small id="event-count">Calculating your evening</small></div><div class="filters" aria-label="Object categories"><button class="chip" data-group="iss" aria-pressed="true">ISS</button><button class="chip" data-group="stations" aria-pressed="true">Stations</button><button class="chip" data-group="visual" aria-pressed="true">Bright satellites</button><button class="chip" data-group="last-30-days" aria-pressed="false">Recent launches</button><button class="chip" data-group="starlink" aria-pressed="false">Starlink</button><button class="chip" data-group="trains" aria-pressed="true" aria-label="Starlink trains: detected train events from recent launches">Starlink trains</button><button class="chip" id="favorites-only" aria-pressed="false">☆ Favorites</button></div><div id="events"><div class="empty">Finding passes takes a moment. All trajectories are calculated on your device.</div></div><button id="more" hidden>Show 12 more passes</button></section>
 <aside class="side"><section class="chart-panel"><div class="section-heading"><h2>Your patch of sky</h2><small id="sky-object">LOOKING UP</small></div><div id="sky-preview"></div><p class="chart-note">Face the entry direction. The center is straight overhead; the outer ring is your horizon.</p><div class="direction-callout" id="sky-instruction">Choose a pass to see where to look.</div></section><section class="conditions"><div class="section-heading"><h2>Out there tonight</h2><small id="conditions-time">AT BEST PASS</small></div><div id="conditions"></div></section></aside></div>
+<section id="weekly-card" class="weekly-card" aria-label="Best Thing This Week"><div class="eyebrow">BEST THING THIS WEEK</div><p>Comparing seven nights of observations…</p></section>
 <section class="timeline-panel"><div class="section-heading"><h2>The night at a glance</h2><small>All times at your location</small></div><div id="timeline"></div><div class="legend"><span>Cloud cover</span><span>Satellite opportunity</span><span>Moon above horizon</span></div></section>
 <details id="astronomy"><summary>Other cool stuff tonight</summary><div id="astronomy-content"></div></details>
 <details id="how-it-works"><summary>How the recommendation works</summary><p>The night’s score is the best remaining satellite opportunity among your selected categories. It is not a weather score. A “likely visible” segment needs at least 20 seconds above your minimum elevation, with the Sun at least 6° below the horizon and the spacecraft fully sunlit. Buildings, trees, haze and object orientation can still prevent a sighting.</p><p>Base points: elevation 25, useful visible duration 15, sunlight 10, observer darkness 15, brightness category 10, cloud cover 20, and visibility 5. Cloud, poor visibility and rain then reduce the total. Unknown weather earns no weather points and makes the result provisional. No precise apparent magnitude is claimed. <a href="docs/overhead.md">Full algorithm, validation and limitations →</a></p><p>The Moon panel is informational and does not raise the satellite score. A quiet satellite night can still be a lovely night for stargazing.</p></details>
 <details id="diagnostics"><summary>Data & diagnostics</summary><div class="actions"><button id="refresh">Refresh source data</button><button id="clear-cache">Clear downloaded cache</button><label class="text-button">Import OMM JSON / TLE<input id="import" type="file" accept=".json,.txt,.tle" aria-label="Import orbital elements"></label></div><p>Import up to 2 MB of orbital elements from a trusted source if CelesTrak is unavailable. Imported records stay in this session and use their actual epoch; records more than 14 days from a prediction are excluded.</p><pre id="diagnostic-output"></pre></details>
 </main>
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.15.4" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.15.4">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.15.5" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.15.5">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.15.4 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.15.5 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
@@ -338,7 +347,7 @@ function candidates(){return state.objects.filter(o=>{const id=String(o.NORAD_CA
  return !state.objects.some(s=>['25544','48274'].includes(String(s.NORAD_CAT_ID))&&s.MEAN_MOTION===o.MEAN_MOTION&&s.MEAN_ANOMALY===o.MEAN_ANOMALY);
  });}
 async function load(force=false){const generation=++state.generation;state.worker?.terminate();state.busy=true;state.loading=true;state.weather=null;state.results={};state.selected=null;state.errors=[];state.limit=6;state.activeSourceKeys=new Set();announce('Fetching orbital elements and weather…');$('events').innerHTML='<div class="empty">Checking real source data for this location…</div>';
- renderHappeningNow();renderWeekly();
+ renderHappeningNow();renderWeekly();renderDiscovery();
  const fetchGroups=[...new Set([...state.groups].map(g=>g==='iss'?'stations':g==='trains'?'last-30-days':g))];
  const jobs=await Promise.allSettled([source(weatherKey(state.site),weatherURL(state.site),30*60000,force),...fetchGroups.map(g=>source('orbits:'+g,'https://celestrak.org/NORAD/elements/gp.php?GROUP='+g+'&FORMAT=json',4*3600000,force))]);
  if(generation!==state.generation)return;
@@ -422,13 +431,15 @@ function happeningPasses(now=Date.now()){
 let happeningMarkup;
 function renderHappeningNow(){
  const panel=$('happening-now'),events=happeningPasses();panel.hidden=state.view==='about'||!events.length;
- const content=events.length?'<div class="eyebrow">HAPPENING NOW</div>'+events.map(p=>{
+ const rows=events.map(p=>{
   const name=p.norad==='25544'?'International Space Station':p.name;
   const caution=!p.likely?'Orbital pass above the horizon; not predicted to be visible.':p.provisional?'Orbital opportunity is happening now; weather is unavailable.':p.score<60?'Orbital opportunity is happening now; forecast conditions may make it difficult to see.':weatherDescription(p.w)+'.';
   return `<button class="happening-event" data-happening="${esc(p.id)}" aria-label="Open directions and sky path for ${esc(name)}, in progress"><strong>${esc(name)} <span class="happening-state">— IN PROGRESS</span></strong><span>${Math.round(p.peak.el)}° predicted peak · ${p.likely?'Useful viewing interval':'Orbital interval'} through ~${esc(time(OverheadLifecycle.eventLifecycle(p,Date.now()).viewingEnd))}</span><span class="small">${esc(caution)} Sighting score ${p.score}/100${p.provisional?' · provisional':''}.</span><span class="small">Path ${E.compass(p.entry.az)} → ${E.compass(p.peak.az)} → ${E.compass(p.exit.az)} · Open directions & sky path ↗</span></button>`;
- }).join(''):'';
+ });
+ const more=events.length>1?`<p class="small warn">Additional events: ${events.slice(1).filter(p=>!p.likely).length} orbital-only, ${events.slice(1).filter(p=>p.provisional).length} weather-incomplete. Expand for individual limits.</p><details id="happening-more"><summary>${events.length-1} more active ${events.length===2?'event':'events'} · expand</summary><p class="small warn">${events.slice(1).some(p=>!p.likely)?'Includes orbital-only intervals, not predicted sightings. ':''}Each event retains its weather and visibility warnings below.</p>${rows.slice(1).join('')}</details>`:'';
+ const content=events.length?'<div class="eyebrow">HAPPENING NOW · '+events.length+' ACTIVE</div>'+rows[0]+more:'';
  // Avoid replacing a focused button on each minute render when nothing changed.
- if(happeningMarkup!==content){panel.innerHTML=content;happeningMarkup=content;}
+ if(happeningMarkup!==content){const expanded=$('happening-more')?.open,focused=document.activeElement?.dataset.happening,summaryFocused=document.activeElement===$('happening-more')?.querySelector('summary');panel.innerHTML=content;happeningMarkup=content;if($('happening-more'))$('happening-more').open=!!expanded;if(focused){const target=[...panel.querySelectorAll('[data-happening]')].find(e=>e.dataset.happening===focused);if(target)target.focus({preventScroll:true});else panel.querySelector('[data-happening]')?.focus({preventScroll:true});}else if(summaryFocused)$('happening-more')?.querySelector('summary').focus({preventScroll:true});}
  // A click just after visible-end still opens the pass shown by the last minute render.
  panel.onclick=e=>{const b=e.target.closest('[data-happening]'),p=b&&events.find(p=>p.id===b.dataset.happening);if(p)showEvent(p.id,p);};
 }
@@ -467,11 +478,13 @@ function skySVG(pass){const point=p=>{const r=(90-Math.max(0,p.el))/90*116,a=p.a
  if(pass){svg+=`<polyline points="${pass.path.filter(Boolean).map(xy).join(' ')}" fill="none" stroke="${pass.likely?'var(--lime)':'var(--muted)'}" stroke-width="2.5" marker-end="url(#arrow)"/>`;for(const [p,label]of [[pass.entry,'START'],[pass.peak,'PEAK'],[pass.exit,'END']]){const [x,y]=point(p);svg+=`<circle cx="${x}" cy="${y}" r="4" fill="var(--bg)" stroke="var(--lime)" stroke-width="2"/><text x="${Math.max(28,Math.min(245,x+8))}" y="${Math.max(43,Math.min(260,y-8))}" font-size="9" fill="var(--ink)" paint-order="stroke" stroke="var(--sky-label-halo)" stroke-width="3">${label}</text>`;}}
  return svg+'</svg>';}
 function render(){const about=state.view==='about';
- renderHappeningNow();
- const celestialView=celestial.category&&celestial.category!=='satellites';
+ renderHappeningNow();renderDiscovery();
+ const celestialView=!discoveryBuilding&&celestial.category&&celestial.category!=='satellites';
  document.querySelectorAll('.briefing,.layout,.timeline-panel,#weekly-card,#weekly-tonight,#week,#astronomy,#how-it-works,#diagnostics,#weekly-ranking-diagnostics,#train-diagnostics').forEach(el=>el.hidden=about||celestialView);
  $('celestial').hidden=!celestialView;
  $('about').hidden=!about;
+ $('discovery').hidden=about||celestialView;
+ $('discovery-back').hidden=about||(!celestialView&&!discoveryNavigation);
  if(celestialView){if(celestial.category==='launches')renderLaunches();else renderCelestial();}
  document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-selected',x.dataset.view===state.view));
  if(about){$('about-version').textContent='version '+document.querySelector('[data-worthlookingup-deploy-footer]')?.dataset.deployVersion;return;}
@@ -598,6 +611,146 @@ const celestial={category:'satellites',horizon:'tonight',available:celestialAvai
 const L=window.OverheadLaunches||null,launchesAvailable=!!L;
 const LAUNCH_FEED_SOURCES=[['api/launches.json',15*60000],['data/launches/upcoming.json',15*60000]];
 const launches={feed:null,available:launchesAvailable,status:'idle',busy:false,errors:[],sourceKey:null,loadedAt:null,window:null,lastRender:null};
+/* Discovery consumes retained source results. It never fetches or recalculates during rendering. */
+const D=window.OverheadDiscovery,discoveryPlans=new Map(),discoveryEntries=new Map(),discoveryFailures=new Map(),discoveryMarkup=new WeakMap();
+let discoveryScope=null,discoveryBuilding=false,discoveryBuildGeneration=0,discoveryNavigation=false,discoveryOrigin=null,categorySelection=0;
+function discoveryIdentity(){return JSON.stringify([state.site.lat,state.site.lon,state.site.tz,+state.settings.minimum,state.generation,state.nights[0]?.day]);}
+function rememberDiscoveryPlan(){
+ if(celestial.status==='error'&&celestial.requestIdentity===discoveryIdentity())discoveryFailures.set(celestial.category,celestial.errors.join('; '));
+ if(celestial.status!=='ready'||celestial.busy||celestial.result?.category!==celestial.category||celestial.requestIdentity!==discoveryIdentity())return;
+ discoveryFailures.delete(celestial.category);
+ const key=celestial.category+':'+celestial.horizon;
+ discoveryPlans.set(key,{key,identity:celestial.requestIdentity,result:celestial.result,at:celestial.computedAt,horizon:celestial.horizon,category:celestial.category});
+}
+function currentDiscoveryPlans(){
+ const identity=discoveryIdentity();
+ if(identity!==discoveryScope){discoveryPlans.clear();discoveryFailures.clear();discoveryScope=identity;}
+ return [...discoveryPlans.values()].filter(p=>p.identity===identity&&Date.now()-p.at<3600000);
+}
+function discoveryModel(){
+ const now=Date.now(),night=state.nights[0],end=state.nights[6]?.end||now+7*DAY;
+ const plans=currentDiscoveryPlans(),events=[],announcements=[],coverage=[];
+ const threshold=Math.max(40,+state.settings.score||0,state.settings.show==='great'?75:0);
+ for(const [index,rows] of Object.entries(state.results)){
+  if(+index>6)continue;
+  for(const pass of rows){
+   const enabled=pass.train?state.groups.has('trains'):pass.norad==='25544'?state.groups.has('iss'):pass.groups.some(g=>state.groups.has(g));
+   if(!enabled||state.favoriteOnly&&!state.favorites.includes(pass.norad)||pass.score<threshold)continue;
+   const element=state.objects.find(o=>String(o.NORAD_CAT_ID)===pass.norad);
+   const epoch=pass.epoch||Date.parse(String(element?.EPOCH||'').replace(/Z?$/,'Z'));
+   const stale=(Number.isFinite(epoch)&&now-epoch>3*DAY)||Object.entries(state.sources).some(([key,value])=>key.startsWith('orbits:')&&state.activeSourceKeys.has(key)&&value.stale);
+   const event=D.satellite(pass,{now,lifecycle:OverheadLifecycle.eventLifecycle,weatherText:weatherDescription(pass.w),stale,night:+index});
+   if(event)events.push(event);
+  }
+ }
+ if(Object.hasOwn(state.results,0)&&state.objects.length)coverage.push('satellites');
+ for(const category of ['planets','meteors','comets']){
+  const candidates=plans.filter(p=>p.category===category).sort((a,b)=>b.result.span.end-a.result.span.end||b.at-a.at),snapshot=candidates[0];
+  if(!snapshot)continue;coverage.push(category);
+  for(const opportunity of snapshot.result.opportunities||[]){
+   const plan=snapshot.result.plans.week;
+   const accepted=plan?.opportunities.some(o=>o.id===opportunity.id);
+   const event=D.celestial(opportunity,{category,errors:snapshot.result.errors||[]});
+   if(!event)continue;event.target.snapshotKey=snapshot.key;event.target.horizon=snapshot.result.span.days>=7?'week':'tonight';
+   if(event.classification==='announcement')announcements.push(event);else if(accepted)events.push(event);
+  }
+ }
+ const tonight=night?D.tonight(events,{now,start:night.start,end:night.end}):[];
+ const coming=D.comingUp(events,{now,end,exclude:tonight.map(e=>e.id)});
+ const launch=D.launches(launches.feed,{module:L,now,end});
+ return {tonight,coming,launch,coverage,announcements,events,notices:[...new Set([...plans.flatMap(p=>p.result.errors||[]),...discoveryFailures.values()])]};
+}
+function discoveryCard(event){
+ discoveryEntries.set(event.id,event);
+ const category=event.category==='launches'?'Launch calendar · global schedule':D.LABELS[event.category];
+ const when=D.timeLabel(event,{timezone:state.site.tz,clock:state.settings.clock});
+ const warnings=event.warnings||[];
+ return `<article class="discovery-event" data-discovery-event="${esc(event.id)}"><button type="button" class="discovery-open" data-discovery-open="${esc(event.id)}">${esc(event.title)} <span aria-hidden="true">↗</span></button><div class="discovery-category">${esc(category)}</div><p class="discovery-time">${esc(when)}</p>`+
+  (event.vehicle?`<p class="small">${esc(event.vehicle)} · ${esc(event.status)}</p>`:`<p class="small">${esc(event.explanation)}</p>`)+
+  (event.optical?`<p class="small">Equipment: ${esc(OPTICAL_LABEL[event.optical]||event.optical)}</p>`:'')+(event.weatherSummary?`<p class="small">${esc(event.weatherSummary)}</p>`:'')+
+  warnings.slice(0,2).map(text=>`<p class="small discovery-warning">${esc(text)}</p>`).join('')+
+  (warnings.length>2?`<details class="discovery-caveats"><summary>All limits &amp; equipment (${warnings.length})</summary><ul>${warnings.map(w=>`<li>${esc(w)}</li>`).join('')}</ul></details>`:'')+
+  `<p class="discovery-source">${esc(event.source)}</p></article>`;
+}
+function updateDiscoveryHTML(element,html){
+ if(discoveryMarkup.get(element)===html)return;
+ discoveryMarkup.set(element,html);
+ const ownsFocus=element.contains(document.activeElement),focused=ownsFocus?document.activeElement?.dataset.discoveryOpen:null,focusedSummary=ownsFocus&&document.activeElement?.tagName==='SUMMARY'?document.activeElement.closest('[data-discovery-event]')?.dataset.discoveryEvent:null;
+ const disclosures=[...element.querySelectorAll('details')].map(e=>e.open);
+ element.innerHTML=html;
+ element.querySelectorAll('details').forEach((e,i)=>e.open=!!disclosures[i]);
+ if(focused){const target=[...element.querySelectorAll('[data-discovery-open]')].find(e=>e.dataset.discoveryOpen===focused);(target||$('discovery')).focus({preventScroll:true});}
+ else if(focusedSummary)[...element.querySelectorAll('[data-discovery-event]')].find(e=>e.dataset.discoveryEvent===focusedSummary)?.querySelector('summary')?.focus({preventScroll:true});
+}
+function renderDiscovery(){
+ if(!D||!$('discovery'))return;
+ const model=discoveryModel();discoveryEntries.clear();
+ updateDiscoveryHTML($('discovery-tonight'),model.tonight.length?discoveryCard(model.tonight[0])+(model.tonight.length>1?'<details id="discovery-tonight-more"><summary>'+ (model.tonight.length-1)+' other category '+(model.tonight.length===2?'leader':'leaders')+' tonight</summary><p class="small">Strongest within each category, in time order. Scores are not compared.</p>'+model.tonight.slice(1).map(discoveryCard).join('')+'</details>':''):
+  `<p class="small">${state.busy?'Checking local calculations…':!state.objects.length||!Object.hasOwn(state.results,0)?'Not enough current orbital data to recommend a sighting.':'No opportunity clears the current local recommendation filters tonight in the calculated categories.'}</p>`);
+ updateDiscoveryHTML($('discovery-upcoming'),model.coming.length?model.coming.map(discoveryCard).join(''):'<p class="small">No other distinct opportunity in the available seven-day results. Explore the category planners for other horizons.</p>');
+ $('discovery-coming-count').textContent=model.coming.length?'· '+model.coming.length+' opportunities':'';
+ const feed=launches.feed;
+ updateDiscoveryHTML($('discovery-launch-preview'),!feed?(launches.status==='error'?'<p class="small warn">Launch schedule unavailable. This is missing data, not an empty schedule. Open the calendar for source status.</p>':'<p class="small">Open the calendar or build your guide to load the existing shared schedule.</p>'):
+  '<p class="small '+(model.launch.freshness.stale?'warn':'')+'">'+esc(model.launch.freshness.text)+'</p>'+model.launch.events.map(discoveryCard).join('')+(!model.launch.events.length?'<p class="small">No dated launch in this preview; the full calendar includes broader announced periods.</p>':''));
+ const missing=['planets','meteors','comets'].filter(c=>!model.coverage.includes(c));
+ $('discovery-coverage').textContent='Satellites: '+Math.min(7,Object.keys(state.results).filter(i=>+i<7).length)+'/7 nights. '+(missing.length?missing.length+' other categories not calculated.': 'Three celestial categories calculated; scores stay separate.');
+ $('discovery-source-notices').hidden=!model.notices.length;
+ updateDiscoveryHTML($('discovery-source-notices-list'),model.notices.map(note=>'<li>'+esc(note)+'</li>').join(''));
+ $('discovery-build').disabled=discoveryBuilding;
+ $('discovery-build').textContent=discoveryBuilding?'Building sky guide…':'Build my sky guide';
+ $('discovery').onclick=event=>{const action=event.target.closest('[data-discovery-open]'),category=event.target.closest('[data-discovery-category]');if(action){const entry=discoveryEntries.get(action.dataset.discoveryOpen);if(entry)openDiscovery(entry);}else if(category){celestial.horizon='week';selectCategory(category.dataset.discoveryCategory);}};
+}
+async function restoreDiscoveryFeed(){
+ if(!L)return;
+ for(const [url] of LAUNCH_FEED_SOURCES){const old=await cached('launches:'+url);if(old&&Date.now()-old.at<=7*DAY&&L.validateFeed(old.data).available){if(!launches.feed&&!launches.busy){launches.feed=old.data;launches.status='ready';launches.sourceKey=url;launches.loadedAt=old.at;renderDiscovery();}return;}}
+}
+async function buildDiscoveryGuide(){
+ const token=++discoveryBuildGeneration,identity=discoveryIdentity();discoveryBuilding=true;
+ $('discovery-notice').textContent='Using the existing seven-day planners and shared launch schedule. You can keep using the page.';renderDiscovery();
+ try{
+  for(const category of ['planets','meteors','comets']){
+   if(token!==discoveryBuildGeneration||identity!==discoveryIdentity())return;
+   const cached=currentDiscoveryPlans().find(p=>p.category===category&&p.result.span.days>=7);
+   if(cached)continue;
+   celestial.horizon='week';await selectCategory(category,true);
+  }
+  if(token!==discoveryBuildGeneration||identity!==discoveryIdentity())return;
+  if(!launches.feed||Date.now()-launches.loadedAt>15*60000)await loadLaunches(false);
+  if(token!==discoveryBuildGeneration)return;
+  $('discovery-notice').textContent='Guide ready from available results. Open each event for its full limits and sources.';
+ }catch(error){$('discovery-notice').textContent='Some plans could not be built. Available results remain useful; check category sources.';}
+ finally{if(token===discoveryBuildGeneration){discoveryBuilding=false;celestial.category='satellites';document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.category==='satellites')));render();}}
+}
+function focusDiscoveryTarget(attribute,id,fallback){
+ const node=[...document.querySelectorAll('['+attribute+']')].find(e=>e.getAttribute(attribute)===id)||$(fallback);
+ if(node){node.setAttribute('tabindex','-1');node.scrollIntoView({block:'start'});node.focus({preventScroll:true});}
+}
+async function openDiscovery(event){
+ if(!discoveryEntries.has(event.id))return;
+ discoveryOrigin??={view:state.view,day:state.day};discoveryNavigation=true;
+ const target=event.target;
+ if(target.category==='satellites'){
+  const pass=Object.values(state.results).flat().find(p=>p.id===target.id);
+  if(!pass||!OverheadLifecycle.eventLifecycle(pass,Date.now()).recommendationEligible){$('discovery-notice').textContent='This interval has ended; choose another opportunity.';renderDiscovery();return;}
+  state.view='week';state.day=target.night;await selectCategory('satellites');showEvent(pass.id,pass);return;
+ }
+ celestial.horizon=target.horizon;
+ if(target.category==='launches'){await selectCategory('launches');document.querySelectorAll('[data-horizon]').forEach(b=>b.setAttribute('aria-checked',String(b.dataset.horizon===celestial.horizon)));focusDiscoveryTarget(['month','quarter','half','year','unknown'].includes(event.precision)?'data-launch-period':'data-launch',target.id,'celestial-more');return;}
+ const snapshot=currentDiscoveryPlans().find(p=>p.key===target.snapshotKey);
+ if(!snapshot){$('discovery-notice').textContent='This plan needs updating for the current location or settings. Build the guide again.';return;}
+ ++celestial.generation;celestial.resolve?.();celestial.resolve=null;
+ Object.assign(celestial,{category:target.category,horizon:target.horizon,result:snapshot.result,status:'ready',busy:false,errors:snapshot.result.errors||[],computedAt:snapshot.at,requestIdentity:snapshot.identity});
+ document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.category===target.category)));
+ document.querySelectorAll('[data-horizon]').forEach(b=>b.setAttribute('aria-checked',String(b.dataset.horizon===target.horizon)));
+ render();focusDiscoveryTarget('data-opportunity',target.id,'celestial-events');
+}
+function backToDiscovery(){
+ if(discoveryBuilding){++discoveryBuildGeneration;discoveryBuilding=false;}
+ celestial.category='satellites';if(discoveryOrigin){state.view=discoveryOrigin.view;state.day=discoveryOrigin.day;}discoveryOrigin=null;discoveryNavigation=false;
+ document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.category==='satellites')));render();$('discovery').scrollIntoView({block:'start'});$('discovery').focus({preventScroll:true});
+}
+$('discovery-build').onclick=buildDiscoveryGuide;$('discovery-back').onclick=backToDiscovery;
+
 // Local night windows for the planning horizon. The first seven come from the satellite side's own
 // night logic (so late-night viewing still belongs to the correct evening); the rest are extended
 // with real sunsets and sunrises for this location.
@@ -639,7 +792,7 @@ function celestialWorker(){
    if(message.ok){celestial.result=message.result;celestial.errors=message.result.errors||[];celestial.rejected=message.result.rejected||[];celestial.status='ready';celestial.computedAt=Date.now();}
    else{celestial.errors=['celestial calculation failed: '+message.error];celestial.status='error';}
    renderCelestial();};
-  celestial.worker.onerror=()=>{celestial.workerFailed=true;celestial.worker=null;};
+  celestial.worker.onerror=()=>{celestial.workerFailed=true;celestial.worker?.terminate();celestial.worker=null;celestial.busy=false;celestial.status='error';celestial.errors=['Celestial worker failed. Reopen the category to use the inline fallback.'];renderCelestial();};
  }catch(error){celestial.workerFailed=true;celestial.worker=null;}
  return celestial.worker;
 }
@@ -648,6 +801,9 @@ function celestialWorker(){
 function requestCelestial(){
  if(celestial.category==='satellites')return;
  if(!celestialAvailable){celestial.status='unavailable';celestial.errors=['The celestial calculation libraries did not load. Satellite predictions are unaffected.'];renderCelestial();return;}
+ celestial.resolve?.();
+ celestial.completion=new Promise(resolve=>celestial.resolve=resolve);
+ celestial.requestIdentity=discoveryIdentity();
  const generation=++celestial.generation;
  celestial.busy=true;celestial.status='loading';celestial.messages=[];
  renderCelestial();
@@ -656,7 +812,7 @@ function requestCelestial(){
   datasets:celestial.datasets,weather:state.weather&&state.weather.hourly?{hourly:state.weather.hourly}:null,
   options:{minAltitude:Math.max(8,Math.min(45,+state.settings.minimum||10))}};
  const worker=celestialWorker();
- if(worker){worker.postMessage({id:generation,request});return;}
+ if(worker){worker.postMessage({id:generation,request});return celestial.completion;}
  setTimeout(()=>{
   try{
    const result=CelestialPlan.compute(request);
@@ -665,18 +821,22 @@ function requestCelestial(){
   }catch(error){celestial.errors=['celestial calculation failed: '+String((error&&error.message)||error)];celestial.status='error';}
   celestial.busy=false;renderCelestial();
  },0);
+ return celestial.completion;
 }
-async function selectCategory(category){
+async function selectCategory(category,forGuide=false){
+ if(!forGuide&&discoveryBuilding){++discoveryBuildGeneration;discoveryBuilding=false;}
+ const selection=++categorySelection;
  if(!CATEGORY_LABELS[category])return;
  celestial.category=category;
- document.querySelectorAll('[data-category]').forEach(button=>button.setAttribute('aria-selected',String(button.dataset.category===category)));
+ if(!forGuide)document.querySelectorAll('[data-category]').forEach(button=>button.setAttribute('aria-selected',String(button.dataset.category===category)));
  $('category-note').textContent=CATEGORY_LABELS[category].note;
  render();
  if(category==='satellites')return;
- if(category==='launches'){if(!launches.feed||launches.status!=='ready')await loadLaunches(false);else renderLaunches();return;}
+ if(category==='launches'){if(!launches.feed||launches.status!=='ready'||Date.now()-launches.loadedAt>15*60000)await loadLaunches(false);else renderLaunches();return;}
  const needs=celestialNeeds(category).filter(name=>!celestial.datasetState[name]);
  if(needs.length)await celestialDatasets(false,needs);
- requestCelestial();
+ if(selection!==categorySelection)return;
+ return requestCelestial();
 }
 function selectHorizon(horizon){
  celestial.horizon=horizon;
@@ -742,7 +902,7 @@ function celestialCard(opportunity){
  const rows=positions.map(position=>`<tr><td>${esc(shortName(position.name))}</td><td>${position.altitude===null||position.altitude===undefined?'—':position.altitude+'°'}</td><td>${esc(position.compass||(Number.isFinite(position.azimuth)?Astro.compass(position.azimuth):'—'))}</td><td>${esc(OPTICAL_LABEL[position.optical]||position.optical||'—')}</td></tr>`).join('');
  const caveats=(opportunity.caveats||[]).slice(0,4).map(text=>`<li>${esc(text)}</li>`).join('');
  const freshness=celestialFreshnessLine(opportunity);
- return `<article class="celestial-card" data-opportunity="${esc(opportunity.id)}" data-type="${esc(opportunity.type)}">`+
+ return `<article class="celestial-card" tabindex="-1" data-opportunity="${esc(opportunity.id)}" data-type="${esc(opportunity.type)}">`+
   `<div class="card-top"><h3>${esc(opportunity.title)}</h3><span class="celestial-chip" data-tone="${opportunity.observing.value>=75?'good':opportunity.observing.value>=45?'warn':'neutral'}">${opportunity.observing.value}/100</span></div>`+
   `<div class="small">${esc(opportunity.summary)}</div>`+
   (reasons?`<ul class="celestial-why">${reasons}</ul>`:'')+
@@ -771,6 +931,8 @@ function celestialFreshnessLine(opportunity){
  return parts.filter(Boolean).map(text=>`<span>${text}</span>`).join('');
 }
 function renderCelestial(){
+ rememberDiscoveryPlan();renderDiscovery();
+ if(!celestial.busy&&celestial.resolve){celestial.resolve();celestial.resolve=null;}
  const label=CATEGORY_LABELS[celestial.category]||CATEGORY_LABELS.planets;
  $('celestial-eyebrow').textContent=label.eyebrow;
  $('celestial-headline').textContent=label.headline;
@@ -895,7 +1057,7 @@ function launchCard(entry,now){const record=entry.record,precision=L.precisionOf
  const change=L.changeText(record);
  const links=[...(record.links.info||[]),...(record.links.webcast||[])].slice(0,3);
  const linkMarkup=(links.length||record.links.ll2)?`<div class="launch-links">${links.map(link=>`<a href="${esc(link.url)}" target="_blank" rel="noopener" aria-label="${esc(launchLinkLabel(link,record))}">${esc(launchLinkLabel(link,record))} ↗</a>`).join('')}${record.links.ll2?`<a href="${esc(record.links.ll2)}" target="_blank" rel="noopener" aria-label="Provider schedule record for ${esc(record.name)}">Provider record ↗</a>`:''}</div>`:'';
- return `<article class="celestial-card launch-card" data-launch="${esc(record.id)}" data-date-only="${entry.dateOnly?'true':'false'}">`+
+ return `<article class="celestial-card launch-card" tabindex="-1" data-launch="${esc(record.id)}" data-date-only="${entry.dateOnly?'true':'false'}">`+
   `<div class="card-top"><h3>${esc(record.name)}</h3><span class="launch-status" data-tone="${esc(status.tone)}" title="${esc(status.detail)}">${esc(status.label)}</span></div>`+
   countdownMarkup+
   (localTime?`<div class="small mono">${esc(localTime)} your time</div>`:'')+
@@ -958,7 +1120,7 @@ function renderLaunchMore(selection,feed){
  const body=$('celestial-more-body'),section=$('celestial-more'),rows=[];
  if(selection.periods.length){
   rows.push('<div><strong>Announced with a period, not a date</strong> — the provider has not published a day for these, so they are never placed on one.</div>');
-  rows.push(`<ul class="celestial-list">${selection.periods.map(({record})=>`<li>${esc(record.name)}${record.vehicle?' · '+esc(record.vehicle):''} — ${esc(L.periodLabel(record))}${record.site.name?' · '+esc(record.site.name):''} <span class="launch-status" data-tone="warn">${esc(L.statusChip(record).label)}</span></li>`).join('')}</ul>`);
+  rows.push(`<ul class="celestial-list">${selection.periods.map(({record})=>`<li tabindex="-1" data-launch-period="${esc(record.id)}">${esc(record.name)}${record.vehicle?' · '+esc(record.vehicle):''} — ${esc(L.periodLabel(record))}${record.site.name?' · '+esc(record.site.name):''} <span class="launch-status" data-tone="warn">${esc(L.statusChip(record).label)}</span></li>`).join('')}</ul>`);
   if(selection.periodsTotal>selection.periods.length)rows.push(`<div>${selection.periodsTotal-selection.periods.length} further period-only launch(es) in this window are not listed.</div>`);
  }
  const stats=(feed&&feed.stats)||{};
@@ -995,6 +1157,7 @@ function renderLaunchFreshness(feed){
 /* The launch calendar. It answers "what is launching, and when" for the same three planning windows
    as the rest of the page, and it never reorders, scores or hides launches by local visibility. */
 function renderLaunches(){
+ renderDiscovery();
  // A launch load can finish after the reader has moved to another category; the launch calendar must
  // never repaint over whatever is on screen now.
  if(celestial.category!=='launches')return;
@@ -1069,13 +1232,14 @@ document.getElementById('categories').addEventListener('keydown',event=>{const t
  tabs[next].focus();tabs[next].click();});
 document.querySelectorAll('[data-horizon]').forEach(button=>button.onclick=()=>selectHorizon(button.dataset.horizon));
 document.getElementById('celestial-more').addEventListener('click',()=>{});
- window.__OVERHEAD_TEST__={state,engine:E,lifecycle:OverheadLifecycle.eventLifecycle,passes,best,displayPasses,candidates,happeningPasses,presentationTrace,objects:O,metadataAvailable,render,calculate,skySVG,source,showEvent,getMap:()=>map,cachePut,cacheSize:()=>session.size,
+ window.__OVERHEAD_TEST__={state,discoveryPlans,discoveryIdentity,discoveryModel,renderDiscovery,buildDiscoveryGuide,openDiscovery,backToDiscovery,engine:E,lifecycle:OverheadLifecycle.eventLifecycle,passes,best,displayPasses,candidates,happeningPasses,presentationTrace,objects:O,metadataAvailable,render,calculate,skySVG,source,showEvent,getMap:()=>map,cachePut,cacheSize:()=>session.size,
   objectEnricher,objectMeta,objectMetaSize:()=>objectMeta.size,renderObjectAbout,renderWeeklyIdentity,enrichObjects,requestFor,objectKey,
  celestial,selectCategory,selectHorizon,requestCelestial,renderCelestial,renderCelestialChanges,renderCelestialFreshness,
  celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities},
  launches,launchesAvailable,loadLaunches,renderLaunches,launchCard,launchWindow,launchRelevance,launchRecordById,tickLaunchCountdowns,launchModule:L,launchFeedSources:LAUNCH_FEED_SOURCES};
  $('sky-preview').innerHTML=skySVG(null);
  if(location.hash==='#about'){const b=document.querySelector('[data-view="about"]');if(b)b.click();}
+ restoreDiscoveryFeed();
  load();
  setInterval(()=>{if(!document.hidden&&!state.busy&&state.nights.length){if(state.nights[0].day!==E.nights(state.site)[0].day||(state.view==='now'&&Date.now()-state.windows[7].start>120000)){++state.generation;calculate();}else render();}},60000);
  // One-second countdown ticker, only while the launch calendar is on screen and the tab is visible.

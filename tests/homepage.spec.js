@@ -24,10 +24,10 @@ test('photographic discovery exposes real opportunities, every category and both
    const geometry=await page.evaluate(()=>{
     const r=s=>document.querySelector(s).getBoundingClientRect();
     const location=r('#location-open'),settings=r('#settings-open');
-    return {width:innerWidth,scroll:document.documentElement.scrollWidth,hero:r('.sky-intro').height,highlight:r('.weekly-open').top,overlap:location.right>settings.left&&location.bottom>settings.top&&settings.bottom>location.top};
+    return {width:innerWidth,scroll:document.documentElement.scrollWidth,hero:r('.sky-intro').height,highlight:r('.discovery-open').top,overlap:location.right>settings.left&&location.bottom>settings.top&&settings.bottom>location.top};
    });
    expect(geometry.scroll).toBe(geometry.width);expect(geometry.overlap).toBe(false);
-   expect(geometry.highlight).toBeLessThan(650);
+   expect(geometry.highlight).toBeLessThan(600);
    if(width===390)expect(geometry.hero).toBeLessThan(240);
    for(const tab of await page.locator('#categories [role=tab]').all()){
     const box=await tab.boundingBox();expect(box.height).toBeGreaterThanOrEqual(44);expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(width);

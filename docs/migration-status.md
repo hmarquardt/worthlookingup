@@ -207,3 +207,15 @@ route propagation; persistent failures still fail. No scientific/application cha
   it changes no application assets. No remaining release blocker.
 - Next product improvement: compact discovery across categories with explicit local-versus-schedule
   scope; consider bounding the existing many-event Happening now presentation without losing labels.
+
+## Phase 3 discovery — implementation checkpoint
+- Clean main recovered; safe fast-forward preserved scheduled bot feed 3a960bd before work.
+- Release 2026.10.15.5 adds pure presentation adapter, scoped guide, source-ID navigation, retained
+  category plans and compact native active-event disclosure; no scientific engine/hash changes.
+- Full local browser suite 39 passed/2 live skips; pure/scientific/migration checks passed. Python
+  precision 6 passed, both builder checks and comet offline validation passed. Focused discovery
+  navigation/network/failure/active-event checks passed. See discovery.md and phase-3-release.md.
+- First useful mobile opportunity remains 558px. Seven active intervals: 1211px → 264px collapsed,
+  1052px expanded. Initial provider calls unchanged; one new local 7KB module request only.
+- Next: synchronize with hourly bot, commit/push, verify full Actions/Pages deployment and strict
+  production content, navigation, source freshness, workers, redirects and imagery; record evidence.

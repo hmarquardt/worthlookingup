@@ -46,3 +46,10 @@ location/category navigation and existing weekly summary placement; assets/brand
 provides the final presentation layer after application tokens. Responsive photography is local
 and rights-tracked in assets/provenance.json. See design.md and phase-2-release.md for patterns
 and evidence. No cross-category ranking or new background data requests were introduced.
+
+## Discovery adapter
+`overhead-discovery.js` is a pure presentation module with no requests, storage, astronomical math
+or new scoring. index.html maps retained source results, keys session plans by observer/settings/
+weather generation/local night, orchestrates the explicit guide action through existing category
+requests, and restores source IDs for navigation. No worker, orbital or celestial source hash changed.
+See discovery.md for selection, uncertainty and navigation invariants.

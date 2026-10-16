@@ -11,7 +11,11 @@ exactly how precise each schedule is, and labels local visibility unknown becaus
 rocket or an illuminated plume needs the ascent trajectory. Launch schedules never enter the satellite
 or celestial scores. See [docs/launches.md](docs/launches.md).
 
-The photographic homepage brings the existing calculated weekly highlight before the detailed briefing.
+The photographic homepage now brings a compact sky guide before the detailed briefing. Tonight shows
+category leaders in time order; Coming up balances distinct opportunities; launch schedules remain
+separate with local visibility unknown. Build my sky guide runs the existing planners on demand.
+The full weekly satellite highlight remains below the results. See [discovery contracts](docs/discovery.md)
+and [Phase 3 evidence](docs/phase-3-release.md).
 All categories remain directly accessible on mobile. See [design patterns](docs/design.md),
 [asset provenance](assets/provenance.json), and [Phase 2 release evidence](docs/phase-2-release.md).
 
@@ -45,6 +49,6 @@ Read [agent instructions](agents.md), [architecture and inventory](docs/migratio
 [scientific reference](docs/overhead.md), and the [launch engine boundary](src/launches/readme.md).
 All repository paths are lowercase, including agents.md, to honor the migration naming rule.
 
-Release: 2026.10.15.4. Canonical production host: https://worthlookingup.com/.
+Release: 2026.10.15.5. Canonical production host: https://worthlookingup.com/.
 Extracted from Overhead without changing the scientific engines; source hashes are recorded
 in docs/source-manifest.json. Reference docs describing old releases are historical.
