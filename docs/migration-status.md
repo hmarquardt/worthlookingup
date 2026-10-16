@@ -413,3 +413,56 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Next action: the human sign-in to the dashboard stays with the existing global admin, who now sees the
   site in the site list; no new user or credential was created for this integration. If a future phase
   moves to the collector's hosted snippet, `window.cflabAnalytics.track` is already the call site.
+
+
+## Phase 5B: anchored historical ascent geometry (shipped)
+
+- [x] Extended `src/launches/launch-trajectory.mjs` with the two anchoring gates and the presentation
+      contract, preserving every Phase 5A protection: `planeAzimuths()` (both headings of a plane, with the
+      mirror branch recorded), `terminalStateConsistency()` (vis-viva at the *reconstructed geocentric
+      radius*, applicability checked first), `publicationPermissions()`, `validatePublishableProfile()`,
+      `validateProfileArtifact()` and `exploreHistorical()`. `assess()` now suppresses elevation and timed
+      windows when a profile's gates did not both pass, and the research fixtures validate unchanged.
+- [x] Two scientific corrections over the Phase 5A prototype, both load-bearing: the plane check is
+      recorded as **not applicable** when the azimuth was derived from the same inclination it would be
+      tested against (a derived azimuth cannot falsify itself), and terminal comparison at the
+      reconstructed radius rather than at perigee, which exposed a 4.8 % speed error that a perigee
+      comparison had hidden on Iridium NEXT 4.
+- [x] `scripts/build-trajectory-profiles.mjs` generates `data/launches/trajectory-profiles.json`
+      (schema `worthlookingup.trajectory-profiles/1`) and the generated `docs/trajectory-profiles.md` from
+      GCAT (launch instants with precision, pad coordinates, catalogued orbits) and public-domain webcast
+      telemetry transcriptions; `--check` regenerates and compares, and it passes after the artifact commit.
+- [x] **Three profiles passed both gates** (FormoSat-5 2017-08-24, Paz 2018-02-22, GRACE-FO 2018-05-22;
+      agreement within 1.3 % in speed and 4.6 km in altitude) and **eleven candidates were measured and
+      rejected** with the numbers that failed them, published in the same artifact rather than dropped:
+      terminal-state failures (Iridium NEXT 4, Iridium NEXT 1, the Falcon Heavy demonstration, Jason-3),
+      series that end on the ground (Iridium NEXT 8, ZUMA, SAOCOM 1A), anchors that are not insertion
+      states (CRS-8, CRS-14, GPS III SV01, SES-11), and one plane disagreement with a published azimuth
+      (SAOCOM 1A: a 199° press-kit azimuth against a 7.6° inconsistency with its achieved plane).
+- [x] `overhead-launch-explorer.js` is the only product-facing adapter: it dynamic-imports the staged
+      geometry module and fetches the reviewed artifact **only** when the historical panel is opened,
+      validates the artifact, calls `exploreHistorical()` and renders the result. It performs no geometry,
+      shows a direction sector with the mirror heading when a profile is direction-only, an
+      elevation-against-time chart plus a time-step table when it is anchored, both gate results with their
+      numbers, the provenance and licence links and the limits, and it says so plainly when the profiles
+      cannot be loaded on a page that cannot serve modules.
+- [x] Launch-card enhancement: one time-independent line per upcoming launch — the direction of the
+      *pad*, labelled as the pad and not the flight path — plus a clearly historical link when that pad has
+      a published profile. Date-only flights keep the line and still say that twilight timing cannot be
+      assessed; no profile is attached to an upcoming launch and `visibility: 'unknown'` is unchanged.
+- [x] Test evidence: `npm test` exit 0 (23 suites; the new `tests/launches-trajectory-profiles.cjs`
+      recomputes both gates from the committed profiles rather than trusting the record, and includes
+      deliberately failing cases and a tampered artifact that must be refused); `node tests/migration.cjs`
+      exit 0 (the artifact, the staged module, the adapter and the generated record are in `dist`, the
+      staged artifact equals the committed one, and the initial document references neither the module nor
+      the profiles); `tests/launches-explorer.spec.js` covers on-demand loading, the anchored panel, a
+      downgraded profile, a refused tampered artifact, the launch-card line, and 390/768/1280/1440 px in
+      both themes.
+- [x] Documentation: [phase-5b-release.md](phase-5b-release.md) (implementation, gates, published and
+      rejected profiles, presentation, limits, catalog expansion, remaining prerequisites),
+      [trajectory-profiles.md](trajectory-profiles.md) (generated provenance and validation record),
+      `docs/launches.md`, `src/launches/readme.md`, `docs/launch-trajectory-feasibility.md` and `agents.md`.
+- Next action: the catalog is intentionally three flights from one pad. Expanding it requires a
+  licensing-clean public ascent series for a flight whose insertion orbit is catalogued directly;
+  CRS-style cargo runs need a different anchor before they can carry an elevation, and nothing may be
+  attached to an upcoming launch until a profile exists for that flight rather than for a sibling.

@@ -282,6 +282,278 @@ export function planeConsistency(padLatDeg, azimuthDeg, achievedInclinationDeg) 
   };
 }
 
+/* The two headings of an orbital plane at the pad latitude.
+
+   cos i = cos(lat) * sin(A) has two solutions, and they are the two headings along the *same* great
+   circle: one with a northerly component, one with a southerly component. The pair is what the
+   inclination and the latitude determine; which of the two a launch used is a separate fact that the
+   inclination alone does not contain, because it depends on where the ascending node sat at liftoff.
+   Selecting a branch needs evidence about how the vehicle actually departed (a published azimuth, or a
+   documented launch corridor), so this function reports both and never picks one silently.
+
+   Validity: a fixed-azimuth, non-dogleg ascent from that latitude. A yaw-steered or dogleg ascent
+   leaves the pad on one heading and reaches the plane on another, so the two headings are the plane's,
+   not necessarily the pad's, and an independently documented pad azimuth may legitimately disagree -
+   which is exactly what the plane-consistency gate is for. |cos i / cos lat| > 1 means the plane does
+   not reach that latitude at all and there is no heading to report. */
+
+export function planeAzimuths(padLatDeg, achievedInclinationDeg) {
+  if (![padLatDeg, achievedInclinationDeg].every(Number.isFinite)) {
+    throw new Error('planeAzimuths requires finite latitude and inclination');
+  }
+  const ratio = Math.cos(achievedInclinationDeg * D2R) / Math.cos(padLatDeg * D2R);
+  if (!Number.isFinite(ratio) || Math.abs(ratio) > 1) {
+    return { available: false, ratio,
+      reason: 'an inclination of ' + achievedInclinationDeg + ' degrees cannot be reached from latitude ' +
+        padLatDeg + ': the plane does not cross that latitude' };
+  }
+  const northerlyDeg = DEG(Math.asin(ratio) * R2D);
+  const southerlyDeg = DEG(180 - Math.asin(ratio) * R2D);
+  return {
+    available: true, ratio, northerlyDeg, southerlyDeg,
+    northerlyCompass: compass(northerlyDeg), southerlyCompass: compass(southerlyDeg),
+    retrograde: achievedInclinationDeg > 90,
+    neglected: LAUNCH_PLANE.neglected,
+  };
+}
+
+
+
+/* ---- orbital anchors and the terminal-state gate ------------------------- */
+/* Phase 5B validates a reconstructed ascent against an independently catalogued achieved orbit. The
+   arithmetic below is deliberately textbook: a spherical geocentric radius from an altitude above the
+   equatorial radius, and the vis-viva relation for the speed an object must have at that radius in the
+   catalogued orbit. It owes nothing to the reconstruction under test, which is the point of the check. */
+
+export const EARTH = Object.freeze({
+  muKm3S2: 398600.4418,         // Earth's gravitational parameter, km^3/s^2 (EGM96 scale)
+  equatorialRadiusKm: 6378.137, // WGS-84 semi-major axis, used as the geocentric radius datum
+});
+
+// Geocentric radius from an altitude above the equatorial radius. Kept apart from the ellipsoidal
+// geodetic conversion on purpose: conflating "altitude above the equator" with "height above the local
+// ellipsoid" is a classic way to smuggle a twenty-kilometre error into a validation, and the two
+// quantities differ by up to the flattening (21 km at the poles).
+export function orbitalRadiusKm(altitudeM) {
+  if (!Number.isFinite(altitudeM)) throw new Error('orbitalRadiusKm needs a finite altitude');
+  return EARTH.equatorialRadiusKm + altitudeM / 1000;
+}
+
+// Semi-major axis of an orbit described by its perigee and apogee altitudes.
+export function orbitSemiMajorAxisKm(perigeeKm, apogeeKm) {
+  if (![perigeeKm, apogeeKm].every(Number.isFinite)) throw new Error('orbitSemiMajorAxisKm needs finite altitudes');
+  if (perigeeKm <= -EARTH.equatorialRadiusKm || apogeeKm < perigeeKm) {
+    throw new Error('orbitSemiMajorAxisKm needs a physically ordered orbit');
+  }
+  return EARTH.equatorialRadiusKm + (perigeeKm + apogeeKm) / 2;
+}
+
+// Vis-viva: the speed along that orbit at a given geocentric radius.
+export function visVivaSpeedMps(perigeeKm, apogeeKm, radiusKm) {
+  const a = orbitSemiMajorAxisKm(perigeeKm, apogeeKm);
+  if (!Number.isFinite(radiusKm) || radiusKm <= 0) throw new Error('visVivaSpeedMps needs a finite radius');
+  return Math.sqrt(EARTH.muKm3S2 * (2 / radiusKm - 1 / a)) * 1000;
+}
+
+// The speed the vehicle must have had at perigee: the insertion speed of the catalogued orbit.
+export const insertionSpeedMps = (perigeeKm, apogeeKm) =>
+  visVivaSpeedMps(perigeeKm, apogeeKm, EARTH.equatorialRadiusKm + perigeeKm);
+
+/* ---- the terminal-state gate -------------------------------------------- */
+/* Tolerances, and why they are what they are rather than something chosen to let a given profile
+   through. The measured populations separate cleanly: the published profiles agree with their anchors to
+   within 1.3 per cent in speed and 5 km in altitude, while every candidate that fails fails by at least
+   4.8 per cent in speed or 429 km in altitude. Each tolerance sits inside that gap, and the two are
+   independent: the Falcon Heavy demonstration passes on altitude at 1 km and fails on speed at 18 per
+   cent. Widening either tolerance would admit an anchored profile whose own anchor contradicts it. */
+
+export const TERMINAL_STATE = Object.freeze({
+  speedRelative: 0.03,
+  altitudeKm: 25,
+  passingPopulation: 'within 1.3 per cent and 5 km',
+  rejectedPopulation: 'at least 4.8 per cent in speed, or 429 km and beyond in altitude',
+  basis: 'each tolerance falls inside the measured gap between the passing and failing populations, not inside a published error budget',
+});
+
+// Does the reconstructed end state agree with an independently catalogued orbit?
+//
+// Applicability comes first, because comparing against the wrong orbit is worse than not comparing at
+// all: a geostationary satellite's catalogue orbit is its operational orbit after its own apogee motor
+// fired, a space-station cargo run's is the station approach orbit, and a booster's last sample is a
+// landing. Only a mission that reaches its catalogue orbit on the launcher's own final burn can be
+// checked this way, so the anchor has to declare itself an insertion state.
+export function terminalStateConsistency({ terminal, orbit }) {
+  if (!terminal || !orbit) return { applicable: false, passes: null, reason: 'no terminal sample or no orbit anchor' };
+  if (orbit.appliesTo !== 'insertion') {
+    return { applicable: false, passes: null, anchorAppliesTo: orbit.appliesTo ?? 'unstated',
+      reason: 'the catalogued orbit is ' + (orbit.appliesTo === 'operational'
+        ? "the operational orbit after the payload's own manoeuvres, not the launcher insertion state"
+        : 'not declared an insertion state, so the comparison would not be a check') };
+  }
+  if (!Number.isFinite(terminal.altitudeM) || !Number.isFinite(terminal.velocityMps)) {
+    return { applicable: false, passes: null, reason: 'the terminal sample carries no altitude and speed' };
+  }
+  if (terminal.altitudeM < 1000) {
+    return { applicable: false, passes: null,
+      reason: 'the profile ends on the ground (a booster landing or an incomplete series)' };
+  }
+  if (terminal.phase && terminal.phase !== 'second-stage') {
+    return { applicable: false, passes: null, reason: 'the last sample is ' + terminal.phase + ', not the insertion phase' };
+  }
+  const radiusKm = orbitalRadiusKm(terminal.altitudeM);
+  const expectedSpeedMps = visVivaSpeedMps(orbit.perigeeKm, orbit.apogeeKm, radiusKm);
+  const speedErrorMps = terminal.velocityMps - expectedSpeedMps;
+  const speedRelativeError = speedErrorMps / expectedSpeedMps;
+  // Compare against the nearer apsis: a profile ending close to either the perigee or the apogee of an
+  // elliptical insertion is consistent with it, but one ending in the middle of an eccentric orbit is not.
+  const altitudeErrorKm = Math.min(Math.abs(terminal.altitudeM / 1000 - orbit.perigeeKm),
+    Math.abs(terminal.altitudeM / 1000 - orbit.apogeeKm));
+  const failures = [];
+  if (Math.abs(speedRelativeError) > TERMINAL_STATE.speedRelative) failures.push('speed');
+  if (altitudeErrorKm > TERMINAL_STATE.altitudeKm) failures.push('altitude');
+  return {
+    applicable: true, passes: failures.length === 0, failures,
+    radiusKm, expectedSpeedMps, speedErrorMps, speedRelativeError, altitudeErrorKm,
+    tolerances: { speedRelative: TERMINAL_STATE.speedRelative, altitudeKm: TERMINAL_STATE.altitudeKm },
+    basis: TERMINAL_STATE.basis,
+    note: failures.length === 0
+      ? 'The reconstructed end state agrees with the catalogued orbit within the gate tolerances.'
+      : 'The reconstructed end state disagrees with the catalogued orbit in ' + failures.join(' and ') +
+        '; the profile is direction-only and may not produce an elevation or a timed observing window',
+  };
+}
+
+
+/* ---- publication permissions -------------------------------------------- */
+/* The single place where the taxonomy, the two anchoring gates and what may be shown meet. The
+   build-time generator and the browser adapter both call it, so a profile can never be presented more
+   generously than it was validated, and no gate can be overridden further downstream. */
+
+export function publicationPermissions(validation) {
+  if (!validation) return null; // research fixtures without gates keep the Phase 5A behaviour
+  const plane = validation.plane || {};
+  const terminal = validation.terminal || {};
+  const planeFailed = plane.applicable === true && plane.consistent === false;
+  const terminalPasses = terminal.applicable === true && terminal.passes === true;
+  const elevation = terminalPasses && !planeFailed;
+  const reasons = [];
+  if (planeFailed) {
+    reasons.push('the orbital-plane check disagreed with the documented azimuth by ' +
+      Math.abs(Number(plane.deltaDeg) || 0).toFixed(1) + ' degrees');
+  }
+  if (terminal.applicable === false) reasons.push('the terminal-state check does not apply: ' + (terminal.reason || 'no reason recorded'));
+  if (terminal.applicable === true && terminal.passes === false) {
+    reasons.push('the terminal-state check failed in ' + ((terminal.failures || []).join(' and ') || 'an unstated way'));
+  }
+  if (terminal.applicable !== true) reasons.push('no independently catalogued insertion orbit was compared');
+  return {
+    direction: 'sector',
+    elevation,
+    timedWindow: elevation,
+    illumination: elevation ? 'vehicle-and-observer' : 'observer-only',
+    downgraded: !elevation,
+    reasons,
+  };
+}
+
+// Gate results and permissions must agree wherever both are written down, so a hand-edited artifact
+// cannot award itself an elevation it did not earn.
+export function validateValidationBlock(validation) {
+  const errors = [];
+  const fail = message => errors.push(message);
+  if (!validation || typeof validation !== 'object') return ['validation must be an object'];
+  for (const key of ['plane', 'terminal']) {
+    if (validation[key] !== undefined && typeof validation[key] !== 'object') fail(`validation.${key} must be an object`);
+  }
+  if (validation.terminal && validation.terminal.applicable === true) {
+    const terminal = validation.terminal;
+    if (typeof terminal.passes !== 'boolean') fail('an applicable terminal check must state passes true or false');
+    for (const field of ['radiusKm', 'expectedSpeedMps', 'speedErrorMps', 'speedRelativeError', 'altitudeErrorKm']) {
+      if (!Number.isFinite(terminal[field])) fail(`an applicable terminal check must carry a finite ${field}`);
+    }
+    if (!terminal.tolerances || !Number.isFinite(terminal.tolerances.speedRelative) || !Number.isFinite(terminal.tolerances.altitudeKm)) {
+      fail('an applicable terminal check must state its tolerances');
+    }
+    if (terminal.passes === false && !(terminal.failures || []).length) fail('a failed terminal check must name what failed');
+  }
+  if (validation.permissions) {
+    const derived = publicationPermissions(validation);
+    for (const key of ['direction', 'elevation', 'timedWindow', 'illumination', 'downgraded']) {
+      if (validation.permissions[key] !== derived[key]) {
+        fail(`validation.permissions.${key} disagrees with the gates: stated ${JSON.stringify(validation.permissions[key])}, derived ${JSON.stringify(derived[key])}`);
+      }
+    }
+    if (derived.elevation === false && validation.permissions.elevation === true) {
+      fail('a profile may not award itself an elevation its gates did not pass');
+    }
+  }
+  return errors;
+}
+
+
+/* ---- the published artifact --------------------------------------------- */
+/* A small, versioned, reviewed set of historical profiles. The generator that writes it and the browser
+   that reads it run the same validation, so an artifact the build accepted cannot quietly differ at
+   runtime, and a profile can never be published as a verified trajectory it is not. */
+
+export const PROFILES_SCHEMA = 'worthlookingup.trajectory-profiles/1';
+
+// Publication adds requirements that research fixtures do not have to meet: a named licence, a
+// retrieved source, a described method, an orbit anchor with a citation, gate results, and no synthetic
+// provenance whatsoever.
+export function validatePublishableProfile(profile) {
+  const errors = [];
+  const fail = message => errors.push(message);
+  if (!profile || typeof profile !== 'object') return { ok: false, errors: ['profile must be an object'] };
+  if (profile.synthetic === true) fail('a synthetic profile must never be published as a historical flight');
+  const evidence = profile.evidence || {};
+  for (const field of ['licence', 'retrievedUtc', 'method', 'sourceUrl']) {
+    if (!evidence[field]) fail(`a published profile must state its ${field}`);
+  }
+  if (!profile.orbit || !profile.orbit.source) fail('a published profile must carry its achieved-orbit anchor and cite it');
+  else if (!['insertion', 'operational'].includes(profile.orbit.appliesTo)) {
+    fail('a published profile must declare whether its anchor is an insertion or an operational state');
+  }
+  if (!profile.validation) {
+    fail('a published profile must carry its gate results');
+  } else {
+    const terminal = profile.validation.terminal || {};
+    if (terminal.applicable === undefined) fail('the terminal gate must record applicability even when it does not apply');
+    if (terminal.applicable === true && typeof terminal.passes !== 'boolean') fail('an applicable terminal gate must record pass or fail');
+    const permissions = publicationPermissions(profile.validation);
+    if (!permissions) fail('permissions could not be derived from the gate results');
+    else if (permissions.downgraded && !(permissions.reasons || []).length) fail('a downgraded profile must say which gate failed');
+  }
+  if (Array.isArray(profile.samples) && profile.samples.length && !profile.terminal) {
+    fail('a sampled profile must record the terminal sample it was checked against');
+  }
+  return { ok: errors.length === 0, errors };
+}
+
+export function validateProfileArtifact(artifact) {
+  const errors = [];
+  const fail = message => errors.push(message);
+  if (!artifact || typeof artifact !== 'object') return { ok: false, errors: ['artifact must be an object'], profiles: [] };
+  if (artifact.schema !== PROFILES_SCHEMA) fail(`schema must be ${PROFILES_SCHEMA}`);
+  if (!Array.isArray(artifact.profiles) || artifact.profiles.length === 0) fail('profiles must be a non-empty array');
+  const ids = new Set();
+  for (const profile of artifact.profiles || []) {
+    const label = profile && profile.id ? profile.id : 'unnamed profile';
+    for (const message of validateProfile(profile).errors) fail(`${label}: ${message}`);
+    for (const message of validatePublishableProfile(profile).errors) fail(`${label}: ${message}`);
+    if (ids.has(profile.id)) fail(`duplicate profile id ${label}`);
+    ids.add(profile.id);
+  }
+  return { ok: errors.length === 0, errors, profiles: artifact.profiles || [] };
+}
+
+export function assertProfileArtifact(artifact) {
+  const result = validateProfileArtifact(artifact);
+  if (!result.ok) throw new Error('Invalid published trajectory-profile artifact: ' + result.errors.join('; '));
+  return artifact;
+}
+
+
 
 /* ---- solar geometry ----------------------------------------------------- */
 
@@ -427,6 +699,43 @@ export function validateProfile(profile) {
     }
   } else if (profile.azimuth != null) {
     fail('level 5 evidence is a pad and a time; it carries no ascent azimuth');
+  }
+  // Phase 5B blocks are checked only when they are present, so every Phase 5A research fixture keeps
+  // validating unchanged while a published profile cannot be sloppy about its anchors or its gates.
+  if (profile.validation !== undefined) {
+    for (const message of validateValidationBlock(profile.validation)) fail(message);
+  }
+  const orbit = profile.orbit;
+  if (orbit !== undefined) {
+    if (!orbit || typeof orbit !== 'object') fail('orbit must be an object');
+    else if (!Number.isFinite(orbit.perigeeKm) || !Number.isFinite(orbit.apogeeKm) || !Number.isFinite(orbit.inclinationDeg)) {
+      fail('orbit needs finite perigeeKm, apogeeKm and inclinationDeg');
+    } else {
+      if (orbit.perigeeKm > orbit.apogeeKm) fail('orbit perigee must not exceed apogee');
+      if (orbit.perigeeKm <= -EARTH.equatorialRadiusKm) fail('orbit perigee is below the centre of the Earth');
+      // Declaration is optional here so the Phase 5A research fixtures keep validating, but a missing
+      // declaration can only ever withhold output: the gate treats an undeclared anchor as uncheckable.
+      if (orbit.appliesTo !== undefined && !['insertion', 'operational'].includes(orbit.appliesTo)) {
+        fail('orbit.appliesTo must be insertion or operational');
+      }
+      if (typeof orbit.source !== 'string' || !orbit.source) fail('orbit.source is required so the anchor can be checked');
+    }
+  }
+  if (profile.terminal !== undefined) {
+    const terminal = profile.terminal;
+    if (!terminal || typeof terminal !== 'object') fail('terminal must be an object');
+    else {
+      if (!Number.isFinite(terminal.altitudeM) || !Number.isFinite(terminal.velocityMps)) {
+        fail('terminal needs a finite altitudeM and velocityMps');
+      }
+      if (terminal.phase !== undefined && typeof terminal.phase !== 'string') fail('terminal.phase must be a string');
+    }
+  }
+  if (azimuth.branch !== undefined) {
+    if (!['northerly', 'southerly'].includes(azimuth.branch)) fail('azimuth.branch must be northerly or southerly');
+    if (!Number.isFinite(azimuth.alternateDeg)) {
+      fail('choosing one plane heading must record the alternate heading rather than hiding the ambiguity');
+    }
   }
   return finishProfileValidation(profile, errors, level, synthetic);
 }
@@ -648,9 +957,71 @@ export function assess({ profile, observer, sun = null, stepS = null, allowSynth
     unknown,
     refusals,
   };
+  // Gate-derived permissions, when the profile carries gate results. A profile whose gates did not
+  // both pass keeps its direction and loses its elevation and timed window, whatever its evidence
+  // level would otherwise allow.
+  const permissions = publicationPermissions(profile.validation);
+  if (permissions) base.permissions = permissions;
   if (level.samplingS === null) return assessWithoutTrack({ ...base, profile: { ...base.profile }, level, refusals, unknown });
+  if (permissions && permissions.elevation === false) {
+    return assessDirectionOnly({ ...base, permissions }, profile, observer, sun, refusals, launchMs);
+  }
   if (level.level === 3) return assessDocumentedProfile(base, profile, observer, level, sun, refusals);
   return assessTimeResolved(base, profile, observer, level, sun, refusals, launchMs, stepS);
+}
+
+/* ---- gate-downgraded profiles: direction only --------------------------- */
+
+// A profile whose gates did not both pass. The evidence still supports a direction, and nothing more.
+// The reconstruction's own track is deliberately not walked: its altitude and downrange are exactly
+// what failed validation, so no bearing-versus-time, no elevation and no timed window may be derived
+// from it. The direction comes from the independent evidence instead — a published azimuth, or the
+// heading of the catalogued orbital plane at the pad latitude — and it carries its uncertainty and the
+// alternate branch with it.
+function assessDirectionOnly(base, profile, observer, sun, refusals, launchMs) {
+  const permissions = base.permissions;
+  const azimuth = profile.azimuth || {};
+  const half = Number.isFinite(azimuth.uncertaintyDeg) ? azimuth.uncertaintyDeg : 10;
+  const direction = {
+    centreDeg: azimuth.deg, compass: compass(azimuth.deg),
+    fromDeg: DEG(azimuth.deg - half), toDeg: DEG(azimuth.deg + half), uncertaintyDeg: half,
+    kind: azimuth.kind, source: azimuth.source,
+    branch: azimuth.branch ?? null,
+    alternateDeg: Number.isFinite(azimuth.alternateDeg) ? azimuth.alternateDeg : null,
+    alternateCompass: Number.isFinite(azimuth.alternateDeg) ? compass(azimuth.alternateDeg) : null,
+    basis: azimuth.kind === 'documented'
+      ? 'a published ascent azimuth, with the plane check reported separately'
+      : 'the heading of the orbital plane at the pad latitude, derived from the catalogued achieved orbit',
+  };
+  for (const reason of permissions.reasons) refusals.push('elevation and timed window withheld: ' + reason);
+  refusals.push("this reconstruction's own altitude and downrange series is what failed validation, so no " +
+    'bearing, elevation or timed window is derived from it');
+  const illumination = sun
+    ? { available: false, scope: 'observer-only', reason: 'the vehicle position along the track is not validated' }
+    : { available: false, reason: 'no solar geometry was supplied' };
+  if (sun) {
+    const unit = sun.sunUnitEcefAt(launchMs);
+    illumination.observerSunElevationDeg = solarElevationDeg(geodeticToEcef(observer.latDeg, observer.lonDeg, observer.heightM || 0), unit);
+    illumination.observerTwilight = twilightBand(illumination.observerSunElevationDeg);
+  }
+  const claims = ['Ascent direction ' + compass(azimuth.deg) + ' (' + azimuth.deg.toFixed(1) +
+    ' degrees) plus or minus ' + half.toFixed(1) + ' degrees, from ' + direction.basis + '.'];
+  if (direction.alternateDeg !== null) {
+    claims.push('The plane reaches that latitude on two headings; the other is ' + compass(direction.alternateDeg) +
+      ' (' + direction.alternateDeg.toFixed(1) + ' degrees), and the branch used here is ' + (direction.branch ?? 'unstated') + '.');
+  }
+  if (Number.isFinite(base.pad.slantRangeM)) {
+    claims.push('The launch site lies ' + compass(base.pad.azimuthDeg) + ' at ' + (base.pad.slantRangeM / 1000).toFixed(0) +
+      ' km; the ascent direction is not the direction of the launch site.');
+  }
+  if (Number.isFinite(illumination.observerSunElevationDeg)) {
+    claims.push('Your own sky at liftoff: solar elevation ' + illumination.observerSunElevationDeg.toFixed(1) +
+      ' degrees (' + illumination.observerTwilight + ').');
+  }
+  return { ...base,
+    geometry: { available: false, samples: [], summary: null, direction,
+      reason: 'the profile did not pass both anchoring gates, so only its direction is published' },
+    illumination, claims, refusals: refusals.slice(0, REFUSAL_LIMIT) };
 }
 
 
@@ -874,4 +1245,85 @@ function assessDocumentedProfile(base, profile, observer, level, sun, refusals) 
       : { available: false, reason: 'no solar geometry was supplied' },
     claims, unknown, refusals: refusals.slice(0, REFUSAL_LIMIT) };
 }
+
+/* ---- the presentation contract for the historical explorer -------------- */
+
+// One call that returns exactly what may be shown for one reviewed historical profile from one
+// observer, with the historical labelling and the gate permissions already applied. The browser module
+// renders this object and adds nothing to it: no number reaches the interface that did not come out of
+// an assessment, so the two gate results cannot be contradicted by the presentation layer.
+export function exploreHistorical({ profile, observer, sun = null, stepS = null, allowSynthetic = false }) {
+  const assessment = assess({ profile, observer, sun, stepS, allowSynthetic });
+  const permissions = assessment.permissions || publicationPermissions(profile.validation) || null;
+  const elevationPermitted = !!(permissions && permissions.elevation === true);
+  const launchMs = Date.parse(profile.launch.utc);
+  const out = {
+    historical: true,
+    notAPrediction: 'A reconstruction of a past flight, not a prediction for this or any future launch.',
+    available: assessment.available,
+    profile: assessment.profile,
+    evidence: assessment.evidence,
+    schedule: assessment.schedule,
+    observer: assessment.observer,
+    pad: assessment.pad,
+    launchAzimuth: assessment.launchAzimuth,
+    direction: (assessment.geometry && assessment.geometry.direction) || null,
+    permissions,
+    validation: profile.validation || null,
+    orbit: profile.orbit || null,
+    provenance: {
+      source: profile.evidence.source ?? null, sourceUrl: profile.evidence.sourceUrl ?? null,
+      licence: profile.evidence.licence ?? null, retrievedUtc: profile.evidence.retrievedUtc ?? null,
+      method: profile.evidence.method ?? null, anchor: profile.orbit ? profile.orbit.source : null,
+      anchorUrl: profile.orbit && profile.orbit.sourceUrl ? profile.orbit.sourceUrl : null,
+    },
+    disagreements: (profile.disagreements || []).map(entry => ({
+      field: entry.field, resolution: entry.resolution,
+      values: (entry.values || []).map(value => ({ value: value.value, source: value.source })),
+      note: entry.note ?? null,
+    })),
+    limits: (profile.limits || []).slice(),
+    series: null, summary: null, illuminationInvariance: null,
+    illumination: assessment.illumination,
+    permitted: assessment.permitted, notProvided: assessment.notProvided,
+    unknown: assessment.unknown, refusals: assessment.refusals, claims: assessment.claims,
+  };
+  if (elevationPermitted && assessment.geometry && Array.isArray(assessment.geometry.samples)) {
+    const trackAzimuth = azimuthRange(assessment.geometry.samples.map(sample => sample.azimuthDeg));
+    // The direction of an anchored reconstruction is its own walked track: the full azimuth span the
+    // reconstruction covers, bounded by the published uncertainty on the heading it was flown along.
+    out.direction = {
+      fromDeg: trackAzimuth.fromDeg, toDeg: trackAzimuth.toDeg, spanDeg: trackAzimuth.spanDeg,
+      centreDeg: profile.azimuth.deg, compass: compass(profile.azimuth.deg),
+      uncertaintyDeg: profile.azimuth.uncertaintyDeg, kind: profile.azimuth.kind,
+      source: profile.azimuth.source,
+      branch: profile.azimuth.branch ?? null,
+      alternateDeg: Number.isFinite(profile.azimuth.alternateDeg) ? profile.azimuth.alternateDeg : null,
+      alternateCompass: Number.isFinite(profile.azimuth.alternateDeg) ? compass(profile.azimuth.alternateDeg) : null,
+      basis: 'the heading the validated reconstruction was flown along, and the azimuth span it covers',
+    };
+    out.series = assessment.geometry.samples.map(sample => ({
+      t: sample.t, utc: sample.utc, altitudeM: sample.altitudeM, downrangeM: sample.downrangeM,
+      azimuthDeg: sample.azimuthDeg, azimuthCompass: sample.azimuthCompass,
+      elevationDeg: sample.elevationDeg, slantRangeM: sample.slantRangeM,
+      aboveHorizon: sample.aboveHorizon, shadow: sample.shadow ?? null,
+      observerTwilight: sample.observerTwilight ?? null,
+    }));
+    out.summary = assessment.geometry.summary;
+    // Vehicle illumination is only ever stated as a bounded fact: whether the whole plausible track at
+    // the final sampled altitude shares one shadow state. When it does not, no vehicle-illumination
+    // claim is made at all.
+    const top = (profile.samples || [])[(profile.samples || []).length - 1];
+    if (sun && top) {
+      const sweep = sensitivityOverDownrange(profile, observer, top.altitudeM, top.t, sun, launchMs, { steps: 12 });
+      out.illuminationInvariance = {
+        t: top.t, altitudeM: top.altitudeM, invariant: sweep.shadowInvariant,
+        states: sweep.shadowStates, downrangeSweepM: sweep.downrangeSweepM,
+        elevationRangeDeg: sweep.elevationRangeDeg,
+      };
+    }
+  }
+  return out;
+}
+
 

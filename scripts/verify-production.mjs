@@ -31,7 +31,11 @@ for(const [file,spec] of Object.entries(manifest.pipeline_outputs||{})){
   const identical=JSON.stringify(deployed)===JSON.stringify(JSON.parse(fs.readFileSync(file,'utf8')));
   console.log('Pipeline output:',file,'deployed schema/provenance valid, bytes match this checkout:',identical);
 }
-for(const file of ['overhead-discovery.js','overhead-calendar.js','analytics-lite.js','preferences-transfer.js','assets/brand/identity.css','assets/icons/favicon.svg','assets/imagery/night-sky.svg','assets/brand/social.png','assets/imagery/earth-at-night-640.webp','assets/imagery/earth-at-night-1280.webp','assets/imagery/earth-at-night-1920.webp','assets/imagery/earth-at-night.jpg']){
+for(const file of ['overhead-discovery.js','overhead-calendar.js','analytics-lite.js','preferences-transfer.js','assets/brand/identity.css','assets/icons/favicon.svg','assets/imagery/night-sky.svg','assets/brand/social.png','assets/imagery/earth-at-night-640.webp','assets/imagery/earth-at-night-1280.webp','assets/imagery/earth-at-night-1920.webp','assets/imagery/earth-at-night.jpg',
+  // Phase 5B: the reviewed historical profiles are committed by hand, not refreshed on a schedule, so
+  // their deployed bytes must equal this checkout exactly, together with the geometry module and the
+  // adapter that reads them.
+  'overhead-launch-explorer.js','src/launches/launch-trajectory.mjs','data/launches/trajectory-profiles.json','docs/trajectory-profiles.md']){
   assert.deepEqual(await get(file),fs.readFileSync(file),file+' deployed bytes');
 }
 const missing=await fetch(new URL('/missing-worker-verification.js',base));assert.equal(missing.status,404);

@@ -91,6 +91,28 @@ for(const match of fs.readFileSync('dist/_worker.js','utf8').matchAll(/from\s+'(
 }
 assert.ok(fs.existsSync('dist/data/launches/upcoming.json'),'the launch feed is not staged');
 assert.ok(fs.existsSync('dist/overhead-launches.js'),'the launch calendar module is not staged');
+// Phase 5B: the published profiles, the geometry module they were generated with, and the adapter that
+// loads both on demand must all be in the deployment, at the same relative paths the browser asks for.
+assert.ok(fs.existsSync('dist/data/launches/trajectory-profiles.json'),'the published ascent profiles are not staged');
+assert.ok(fs.existsSync('dist/src/launches/launch-trajectory.mjs'),'the ascent geometry module is not staged');
+assert.ok(fs.existsSync('dist/overhead-launch-explorer.js'),'the ascent explorer adapter is not staged');
+assert.equal(fs.readFileSync('dist/src/launches/launch-trajectory.mjs','utf8'),
+  fs.readFileSync('src/launches/launch-trajectory.mjs','utf8'),'the staged geometry module must be the reviewed file');
+assert.ok(fs.existsSync('dist/docs/trajectory-profiles.md'),'the generated provenance record is not staged');
+// The published artifact must survive the staging step intact and must still validate there.
+{
+  const staged=JSON.parse(fs.readFileSync('dist/data/launches/trajectory-profiles.json','utf8'));
+  const source=JSON.parse(fs.readFileSync('data/launches/trajectory-profiles.json','utf8'));
+  assert.deepEqual(staged,source,'the staged profiles must be the committed profiles');
+  assert.equal(staged.schema,'worthlookingup.trajectory-profiles/1');
+  for(const profile of staged.profiles)
+    assert.equal(profile.validation.permissions.elevation,true,'only profiles that passed both gates may be published');
+}
+// The homepage must not fetch a profile or the geometry module before the reader asks for them.
+assert.doesNotMatch(html,/<(?:script|link)[^>]*(?:trajectory-profiles|launch-trajectory)/i,
+  'the ascent data must not be referenced from the initial document');
+assert.match(html,/overhead-launch-explorer\.js/,'the ascent adapter must be loaded by the page');
+
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){
   if(['.git','node_modules','.wrangler','test-results','playwright-report'].includes(e.name))continue;
   assert.equal(e.name,e.name.toLowerCase(),'Non-lowercase path '+e.name);

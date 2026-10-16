@@ -339,6 +339,16 @@ and contradictions are copied once into `tests/fixtures/launches/trajectory-case
 
 ## 8. Recommended Phase 5B scope
 
+> **Shipped in Phase 5B, 2026-10-16.** The recommendation below was implemented as written, with one
+> scientific correction and a smaller catalog than hoped. `docs/phase-5b-release.md` records what was
+> published, the two gates, the three anchored profiles, the eleven rejected candidates, the
+> presentation and what remains missing. Two things are worth carrying back into this document: the
+> plane check can only falsify an azimuth that came from *outside* the inclination it is tested against
+> (a derived azimuth is recorded as not applicable, never as a pass), and the terminal gate must compare
+> states at the reconstructed geocentric radius rather than at perigee — comparing at perigee hid a
+> 4.8 % speed error on Iridium NEXT 4. Three of fifteen candidates cleared both gates; every rejection is
+> published with the numbers that failed it rather than being dropped.
+
 **Do not build a general visibility feature.** The data does not support it, and the failure mode is not
 an error message — it is a person driving to a hillside for a promise we could not keep. What the data
 does support is narrower, genuinely useful, and honest.

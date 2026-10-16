@@ -12,5 +12,9 @@ for(const file of files)fs.copyFileSync(path.join(root,file),path.join(out,file)
 fs.copyFileSync(path.join(root,'pages-worker.mjs'),path.join(out,'_worker.js'));
 fs.mkdirSync(path.join(out,'src/launches'),{recursive:true});
 fs.copyFileSync(path.join(root,'src/launches/launch-feed.mjs'),path.join(out,'src/launches/launch-feed.mjs'));
+// The Phase 5B geometry module is staged for the same reason: overhead-launch-explorer.js imports it by
+// its repository-relative path, so the browser must be able to fetch it from the deployment as an ES
+// module. It is the same file the research fixtures and the profile generator import, never a copy.
+fs.copyFileSync(path.join(root,'src/launches/launch-trajectory.mjs'),path.join(out,'src/launches/launch-trajectory.mjs'));
 for(const dir of ['assets','vendor','data','docs'])fs.cpSync(path.join(root,dir),path.join(out,dir),{recursive:true});
 console.log('Static application staged in dist.');

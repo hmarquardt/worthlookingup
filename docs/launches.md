@@ -227,12 +227,33 @@ real launches fly. Only content-independent invariants (schema validity, provide
 relative to the artifact itself) may be asserted against the live artifact.
 
 
-## Trajectory research (Phase 5A, nothing wired in)
+## Trajectory research (Phase 5A) and anchored historical profiles (Phase 5B)
 
 The scheduling boundary above is unchanged, and local visibility is still reported as unknown for every
 launch. What a future trajectory-aware layer would need, what public data actually exists for it, and how
 far the geometry can be taken honestly are recorded in
 [launch-trajectory-feasibility.md](launch-trajectory-feasibility.md), with the source and licensing
-inventory in [launch-trajectory-sources.md](launch-trajectory-sources.md). The prototype
-(`src/launches/launch-trajectory.mjs`) is research only: no product module, the Pages worker or
-`index.html` imports it, and the published feed gained no trajectory or visibility field.
+inventory in [launch-trajectory-sources.md](launch-trajectory-sources.md). The geometry module
+(`src/launches/launch-trajectory.mjs`) began as a research prototype and now carries the two anchoring
+gates; it still produces no visibility statement and never enters satellite or celestial scoring, and the
+published feed gained no trajectory or visibility field.
+
+Phase 5B publishes a small, reviewed set of **past** Falcon ascents. Three profiles passed both anchoring
+gates and may show a reconstructed observer elevation and a timed window; every candidate that failed is
+published in the same artifact as a direction-only entry with the numbers that failed it. The feed is
+untouched: no profile is attached to an upcoming launch, and `visibility: 'unknown'` still stands in
+every card. Regenerate the profiles with
+`node scripts/build-trajectory-profiles.mjs` and review
+[phase-5b-release.md](phase-5b-release.md) and the generated [trajectory-profiles.md](trajectory-profiles.md)
+before publication.
+
+What the calendar shows because of this work, and nothing else:
+
+* One line per upcoming launch with a pad: `Launch pad direction <compass> (<deg>) at <km>, <deg> above
+  your horizon — the pad's direction, not the rocket's path.` It is time-independent, so a date-only
+  launch keeps it, and no lighting statement is invented for a flight without a published time.
+* A *Historical Falcon ascents* panel, opened from the launch calendar, which shows one reviewed past
+  flight at a time with its direction, its reconstructed geometry where the gates allowed it, its
+  illumination context, its provenance and its limits. Both the profile data and the geometry module are
+  fetched only when the panel is opened.
+

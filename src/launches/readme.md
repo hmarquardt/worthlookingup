@@ -9,13 +9,25 @@ so no schedule rule is implemented twice.
 `launch-visibility.md` is the design for a later trajectory-aware visibility and plume model, including
 the inputs it needs and what must never be claimed without them.
 
-`launch-trajectory.mjs` is the Phase 5A research prototype built against that design: a pure module (no
-DOM, storage, network or ephemeris of its own) that computes observer bearing, elevation, slant range,
-horizon clearance and Earth-shadow illumination for a launch profile, gated by a five-level evidence
-taxonomy that caps what any profile may claim. Nothing in the product imports it and the production
-calendar still reports local visibility as unknown. `trajectory-sources.json` is the machine-readable
-source and licensing inventory, `scripts/build-trajectory-fixtures.mjs` regenerates the committed
-reconstruction fixtures, and the tests are `tests/launches-trajectory.cjs`. See
+`launch-trajectory.mjs` is the ascent-geometry module: a pure module (no DOM, storage, network or
+ephemeris of its own) that computes observer bearing, elevation, slant range, horizon clearance and
+Earth-shadow illumination for a launch profile, gated by a five-level evidence taxonomy that caps what any
+profile may claim. Phase 5B extended it with the two anchoring gates (orbital-plane consistency and
+terminal-state consistency against a catalogued insertion orbit), the publication-permission rule derived
+from those gates, and `exploreHistorical()`, the one entry point the interface calls. It still imports
+nothing, produces no visibility statement and never enters satellite or celestial scoring.
+`trajectory-sources.json` is the machine-readable source and licensing inventory,
+`scripts/build-trajectory-fixtures.mjs` regenerates the research fixtures, and
+`tests/launches-trajectory.cjs` holds those regressions.
+
+Phase 5B publishes reviewed profiles. `scripts/build-trajectory-profiles.mjs` fetches the public sources,
+runs both gates and writes `data/launches/trajectory-profiles.json` plus the generated
+`docs/trajectory-profiles.md`; only profiles that passed both gates appear as trajectories, and every
+rejection is recorded with the numbers that failed it. `overhead-launch-explorer.js` is the single
+product-facing adapter: it loads the module and the artifact on demand (never on page load), validates
+the artifact, calls `exploreHistorical()` and renders the result, and it computes no geometry itself so
+the gate results cannot be contradicted in the interface. See
+[docs/phase-5b-release.md](../../docs/phase-5b-release.md) and
 [docs/launch-trajectory-feasibility.md](../../docs/launch-trajectory-feasibility.md).
 
 Rules this boundary enforces:
