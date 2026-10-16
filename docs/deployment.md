@@ -5,7 +5,9 @@ zone a592818531712408128a88d9dfe3cbbc. Static host worthlookingup.pages.dev.
 Canonical https://worthlookingup.com; the Pages Worker permanently redirects www while preserving paths/queries, and /overhead.html on either host becomes the canonical root with its query intact.
 The same Worker serves the launch schedule at `GET /api/launches.json` (edge cache → optional `LAUNCHES`
 KV → committed `data/launches/upcoming.json` → bounded upstream refresh); see
-[launches.md](launches.md). No API hostname, R2 bucket or duplicate analytics backend was created.
+[launches.md](launches.md). No API hostname, R2 bucket or duplicate analytics backend was created:
+analytics reports to the existing shared CFLab Analytics collector, and the site registration, events
+and verification commands are in [analytics.md](analytics.md).
 
 ## Publish
 

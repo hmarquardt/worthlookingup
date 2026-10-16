@@ -10,11 +10,18 @@ a ground-track map loads jsDelivr MapLibre and OpenStreetMap tiles. Spacecraft i
 send identifiers to CelesTrak/Wikidata, not your observing coordinates. Providers receive ordinary
 network metadata such as IP address; see their linked policies in providers.md.
 
-Analytics Lite sends page/device/referrer/timing metadata and random browser/session identifiers
-to the independent lab.aismallbizguru.com service with site ID worthlookingup. Identifiers are
-stored under worthlookingup.analytics.* and are never included in preference transfers. It respects
-Do Not Track. Do not put private coordinates or other secrets in page URLs. Shared collector
-retention and access are governed by that service; no new retention claim is made here.
+Analytics is the shared CFLab Analytics collector (the `cflab-analytics` Cloudflare Worker), reached
+through its legacy-compatible ingestion route at lab.aismallbizguru.com/api/analytics/collect with the
+site identity worthlookingup. This site is registered there as `as_PKAOHGDzw9aJP98hZxaPQB` with the
+domains worthlookingup.com (primary) and www.worthlookingup.com (alias), 90-day raw retention, and
+DNT/GPC respected; the collector refuses any other source origin. What is sent: page views, and three
+interaction events — event detail views (a category label), category selections (the view name) and
+location searches (the method: place, coordinates or geolocation). No coordinates, no search text, no
+favorite or saved-place names and no observation times are sent. Random browser and session identifiers
+live under worthlookingup.analytics.* and are never included in preference transfers. Do Not Track
+suppresses collection in the browser and the collector also refuses requests that carry DNT or Sec-GPC;
+see [analytics.md](analytics.md). Do not put private coordinates or other secrets in page URLs. Shared
+collector retention and access are governed by that service; no new retention claim is made here.
 
 Origin storage cannot be read across sites: old Overhead data is neither moved nor deleted by
 visiting this domain. Use the explicit documented transfer process. Browser storage is not encrypted.

@@ -1,3 +1,17 @@
+/* Worth Looking Up analytics client.
+   Collector: CFLab Analytics (the `cflab-analytics` Cloudflare Worker). This file posts to its
+   legacy-compatible ingestion route, https://lab.aismallbizguru.com/api/analytics/collect, which the
+   Worker records in its own model and also dual-writes to the legacy tables. The deployed
+   data-site-id ("worthlookingup") resolves to the registered CFLab Analytics site whose domains are
+   worthlookingup.com and www.worthlookingup.com; an unregistered source is refused by the collector,
+   so the origin allowlist is real rather than decorative.
+
+   Privacy: no cookies, identifiers live in localStorage/sessionStorage only, Do Not Track and Global
+   Privacy Control suppress collection, and no coordinates or search text are ever sent — interaction
+   events carry only a method name or a category label. See docs/privacy.md.
+
+   Events sent: `pageview` automatically; `event_detail_view`, `category_select` and `location_search`
+   from index.html through window.cflabAnalytics.track(name, props). */
 (function () {
   "use strict";
 
@@ -81,6 +95,9 @@
 
   function isDoNotTrackEnabled() {
     try {
+      // Global Privacy Control is honored the same way: the collector also refuses a request carrying
+      // Sec-GPC: 1, so this is the client-side half of the same promise (docs/privacy.md).
+      if (config.respectDoNotTrack && navigator.globalPrivacyControl === true) return true;
       return config.respectDoNotTrack && (
         navigator.doNotTrack === "1" ||
         window.doNotTrack === "1" ||
@@ -394,6 +411,11 @@
       getSessionId: getSessionId,
       config: config
     };
+    // CFLab Analytics' own snippet exposes window.cflabAnalytics.track(name, props); the same object
+    // name is published here so application code never depends on the legacy JunkStats name and a
+    // later switch to the hosted snippet stays a drop-in. JunkStats remains for compatibility.
+    // track() is a no-op when the collector is unavailable or tracking is disabled.
+    window.cflabAnalytics = { track: trackEvent, pageview: trackPageview };
     queueAutomaticPageview();
   } catch (error) {
     debugWarn("Initialization failed.", error);

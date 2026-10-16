@@ -65,7 +65,10 @@ shipping UI changes. CI and production checks must inspect deployed content, not
 ## Cloudflare
 Project worthlookingup, canonical apex, www 301 preserves path/query; legacy /overhead.html becomes the canonical root. pages-worker.mjs (repository root) is packaged as dist/_worker.js for host redirects (Pages _redirects supports paths only) and for GET /api/launches.json, delegating other requests to ASSETS. npm run build stages only
 public files; deploy dist, never repository root. Existing independent analytics collector is shared;
-site identity is worthlookingup. No Junk Drawer-hosted runtime assets or APIs. Read docs/deployment.md
+site identity is worthlookingup, registered in CFLab Analytics as as_PKAOHGDzw9aJP98hZxaPQB with the
+domains worthlookingup.com and www.worthlookingup.com (docs/analytics.md records the registration, the
+four events sent and the verification commands). Never add an analytics secret to browser code: the
+public tracking ID is the only identifier the client knows. No Junk Drawer-hosted runtime assets or APIs. Read docs/deployment.md
 for credentials/CI requirements. Never commit credentials or rotate them without a concrete need.
 Do not retire original Overhead until the new site passes production acceptance.
 
