@@ -18,6 +18,19 @@ const manifest=JSON.parse(fs.readFileSync('docs/source-manifest.json'));
 await Promise.all(Object.entries(manifest.unchanged_files).map(async([file,hash])=>{
   assert.equal(crypto.createHash('sha256').update(await get(file)).digest('hex'),hash,file+' deployed hash');
 }));
+// Pipeline outputs are refreshed on a schedule and deployed by their own workflow, so a frozen
+// migration digest would fail as soon as the pipeline legitimately regenerated them (and the deployed
+// copy can briefly lag the checkout until that workflow's own deploy finishes). What must hold for
+// these is that the deployed artifact is a real, valid, attributed artifact of the documented schema.
+for(const [file,spec] of Object.entries(manifest.pipeline_outputs||{})){
+  const deployed=JSON.parse((await get(file)).toString('utf8'));
+  assert.equal(deployed.schema,spec.schema,file+' deployed schema');
+  assert.ok(Number.isFinite(Date.parse(deployed.generated_at)),file+' deployed generation time');
+  assert.ok(deployed[spec.list]&&Object.keys(deployed[spec.list]).length,file+' deployed '+spec.list);
+  assert.ok(deployed[spec.provenance]&&Object.keys(deployed[spec.provenance]).length,file+' deployed provenance');
+  const identical=JSON.stringify(deployed)===JSON.stringify(JSON.parse(fs.readFileSync(file,'utf8')));
+  console.log('Pipeline output:',file,'deployed schema/provenance valid, bytes match this checkout:',identical);
+}
 for(const file of ['overhead-discovery.js','overhead-calendar.js','analytics-lite.js','preferences-transfer.js','assets/brand/identity.css','assets/icons/favicon.svg','assets/imagery/night-sky.svg','assets/brand/social.png','assets/imagery/earth-at-night-640.webp','assets/imagery/earth-at-night-1280.webp','assets/imagery/earth-at-night-1920.webp','assets/imagery/earth-at-night.jpg']){
   assert.deepEqual(await get(file),fs.readFileSync(file),file+' deployed bytes');
 }

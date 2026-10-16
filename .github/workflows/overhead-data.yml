@@ -157,7 +157,12 @@ jobs:
         if: env.changed == '1' && vars.CLOUDFLARE_DEPLOY_ENABLED == 'true'
         run: |
           npm ci
-          npm test
+          # Publication validates this pipeline only: the refreshed artifacts and the Node data suites
+          # that check them. The complete regression suite belongs to the separate validation workflow;
+          # gating a data deployment on it is how the 2026-10-16 celestial refresh committed new data
+          # and then failed to deploy it because of an unrelated test.
+          node tests/overhead-comets-data.cjs
+          node tests/overhead-meteors-data.cjs
           npm run build
           npx wrangler pages deploy dist --project-name worthlookingup --branch main
         env:
