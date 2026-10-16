@@ -303,3 +303,22 @@ route propagation; persistent failures still fail. No scientific/application cha
   homepage, migration) 13 passed.
 - Next: commit, push, dispatch a manual ingestion run, verify the Cloudflare feed, then confirm the
   following genuine scheduled run.
+
+### Second incident found while verifying: celestial data committed but never deployed
+- .github/workflows/overhead-data.yml run 38863253804 (2026-10-16T06:47Z) committed the refreshed
+  comet catalog and ephemerides and then failed in its own publish step, which also ran npm test: the
+  same tests/calendar.cjs mutable-feed failure. Production therefore served 2026-10-15T06:48Z data
+  while the checkout held 2026-10-16T06:48Z. Because bot pushes do not trigger ci.yml, nothing
+  reported it.
+- The refreshed celestial data is scientifically sound: comet/ephemeris --check, the two Node data
+  suites, the Horizons fixture reproduction and the COBS re-derivation all pass.
+- Fixed the assertion that made it look like a data problem: docs/source-manifest.json now separates
+  frozen code (the overhead-*.js engines and vendor/overhead libraries, still byte-frozen against the
+  migration commit) from pipeline_outputs (data/overhead/*.json, validated by schema, generation time,
+  non-empty content, recorded provenance and an existing builder, with the migration digest kept as
+  history). scripts/verify-production.mjs validates those deployed artifacts by schema and provenance
+  and reports whether their bytes match the checkout, instead of asserting a historical digest.
+- overhead-data.yml's publish step now validates its own pipeline (the two data suites and the build)
+  rather than the complete regression suite, for the same reason as the launch workflow.
+- Next: commit, push, dispatch a manual ingestion run, verify the Cloudflare launch feed and the
+  celestial artifacts, then confirm the following genuine scheduled run.
