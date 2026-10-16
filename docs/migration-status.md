@@ -238,3 +238,39 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Final evidence-only commit uses [skip ci] and changes no deployed application assets.
 - No remaining release blocker. Next: explicit calendar export with honest windows/timezones and
   update semantics; retain approximate periods for launch schedules without exact dates.
+
+## Phase 4 calendar export and observing plans — implementation checkpoint
+- Clean main recovered; the hourly bot's feed commit 005dd86 preserved by a safe fast-forward.
+- Release 2026.10.15.6 adds overhead-calendar.js (pure RFC 5545 serializer: CRLF, escaping, 75-octet
+  UTF-8 folding, UTC instants, product-owned UIDs, refusal reasons) plus the interface controls and a
+  session-only observing plan. No scientific engine, fixture or source-manifest hash changed.
+- npm test 21 suites passed (new tests/calendar.cjs re-parses the output with ical.js, a
+  development-only dependency). Browser: 44 passed, 2 intentional live-provider skips, 0 failures,
+  including five new calendar tests with real downloads. Python precision 6 passed; comet --check,
+  comet --no-network and meteor --check passed. Launch artifact check passed.
+- Layout cost measured (scripts/measure-calendar.cjs): action row 44px at 390 and 36px above 720, so the
+  first satellite row moves 44/35/36/36px; the plan panel is 0px while empty; no overflow at four widths.
+- Next: synchronize with the hourly bot, verify the full Actions/Pages deployment and strict production
+  content, then download and inspect real .ics files from the production browser; record evidence.
+
+### Phase 4 production acceptance completed
+- Implementation commits a51896b, 1b5f486 and a1428b0 pushed normally; git-sync verify confirmed
+  origin/main contains a1428b0. No force/reset/stash; the bot feed commit was preserved.
+- https://github.com/hmarquardt/worthlookingup/actions/runs/38835421998 passed validation and deploy.
+  CI: npm test, launch artifact check, Python precision/builders, full browser suite on Chromium, build,
+  artifact upload, Cloudflare Pages publication and the strict production verifier.
+- Independent strict production verification passed deployed HTML/release, exact
+  overhead-discovery.js/overhead-calendar.js bytes, unchanged scientific hashes, workers/data,
+  branding/transfer/analytics, a real 404 and all ten redirect chains.
+- Real production Chrome downloaded and inspected three actual .ics files (comet opportunity, exact
+  launch, two-event observing plan) with CRLF, ≤75-octet folding, UTC instants, stable UIDs, the
+  Worth Looking Up link, no coordinates or storage keys, TENTATIVE launch semantics, no visibility or
+  probability claim and no fabricated DTEND. Plan count/remove/clear/self-hide, a 44px tap target,
+  visible focus, both themes and no overflow at 390px confirmed; 12 period-only schedules offered no
+  calendar action. Script: scripts/verify-calendar-production.cjs.
+- Evidence, measurements, screenshots and limits: docs/calendar.md and docs/phase-4-release.md.
+- Final evidence-only commit uses [skip ci] and changes no deployed application assets.
+- No remaining release blocker. Next: a per-location webcal:// subscription would need a server-side
+  renderer and a reader identity, which this phase deliberately avoids; revisit only with a concrete
+  need, reusing the existing serializer, UID namespace and eligibility rules.
+
