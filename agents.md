@@ -11,6 +11,10 @@ because of that rule; agents should read it explicitly (some tools discover only
 - overhead-engine.js owns orbital math and scoring; overhead-worker.js hosts calculations.
 - overhead-lifecycle.js controls current/recent/eligible event timing across every presentation.
 - overhead-weekly.js and overhead-trains.js interpret opportunities without modifying SGP4.
+- overhead-calendar.js is the only iCalendar writer: a pure module (no DOM, storage, network or engine
+  call) that turns a discovery event into RFC 5545 text, with UTC instants, stable product-owned UIDs
+  and explicit refusals for anything the source cannot time. index.html owns the download, the
+  session-only observing plan and every user-facing label. See docs/calendar.md.
 - overhead-objects.js enriches selected objects; metadata failures must not affect ranking.
 - overhead-astro.js wraps pinned Astronomy Engine; planets/meteors/comets feed opportunities and
   celestial-plan; overhead-celestial-worker.js executes the same plan off the main thread.

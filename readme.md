@@ -11,6 +11,12 @@ exactly how precise each schedule is, and labels local visibility unknown becaus
 rocket or an illuminated plume needs the ascent trajectory. Launch schedules never enter the satellite
 or celestial scores. See [docs/launches.md](docs/launches.md).
 
+Any eligible opportunity can be exported to a calendar file built in the browser, or collected into a
+session-only observing plan and downloaded as one `.ics`. Precisely timed entries use UTC instants with
+stable product-owned identifiers, a published date becomes a tentative all-day placeholder, and a broad
+announced period is refused rather than turned into a date. No account, OAuth, server or calendar API is
+involved. See [docs/calendar.md](docs/calendar.md).
+
 The photographic homepage now brings a compact sky guide before the detailed briefing. Tonight shows
 category leaders in time order; Coming up balances distinct opportunities; launch schedules remain
 separate with local visibility unknown. Build my sky guide runs the existing planners on demand.
@@ -46,9 +52,10 @@ Read [agent instructions](agents.md), [architecture and inventory](docs/migratio
 [resumable status](docs/migration-status.md), [deployment](docs/deployment.md),
 [storage transfer](docs/storage-migration.md), [provider terms](docs/providers.md),
 [launch schedule, caching and limits](docs/launches.md),
+[calendar export and observing plans](docs/calendar.md),
 [scientific reference](docs/overhead.md), and the [launch engine boundary](src/launches/readme.md).
 All repository paths are lowercase, including agents.md, to honor the migration naming rule.
 
-Release: 2026.10.15.5. Canonical production host: https://worthlookingup.com/.
+Release: 2026.10.15.6. Canonical production host: https://worthlookingup.com/.
 Extracted from Overhead without changing the scientific engines; source hashes are recorded
 in docs/source-manifest.json. Reference docs describing old releases are historical.

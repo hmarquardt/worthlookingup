@@ -49,6 +49,10 @@ fixtures, requests, script work, CLS, first useful/detailed event and collapsed/
 Run full Node/browser/Python/build checks and strict production/Actions verification.
 
 ## Implemented contracts
+- Calendar export is a local, session-scoped action on the discovery card, the celestial card, the
+  launch card and the pass dialog. It produces RFC 5545 text with UTC instants and a stable
+  product-owned UID; the observing plan is in memory only and writes no preference key. See
+  [calendar.md](calendar.md) for the eligibility, precision, UID and privacy rules.
 - Tonight retains each category leader and displays the earliest leader first; additional leaders
   are under a disclosure. Strongest means within the original category only. No global winner claim.
 - No data request or extra calculation is made during preview render. Explicit guide construction

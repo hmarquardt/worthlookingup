@@ -42,3 +42,13 @@ use native details disclosures. Categories are not scored against each other. Th
 summary stays below the main list. Happening Now shows one prominence leader and expands the rest,
 with an always-visible summary of additional orbital-only/weather-uncertain events. See discovery.md
 for source, lifecycle, cache and navigation contracts; phase-3-release.md for measured evidence.
+
+## Phase 4 calendar export
+Every eligible opportunity card now carries two compact secondary controls: **Add to calendar (.ics)**
+and **Add to observing plan**. The observing plan is a small bordered panel above the category view
+that appears only while something is selected; it lists selections chronologically with per-event
+remove, a clear action and one combined download. Times remain UTC in the file and are rendered by the
+calendar client; the description names the observing site's local time. A launch with only a broad
+announced period gets the refusal sentence in place of a button, in the same muted `calendar-note`
+style. Nothing in the visual system changes: same ink/paper surfaces, sage actions, 44px mobile
+controls and visible focus. See [calendar.md](calendar.md).

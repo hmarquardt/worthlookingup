@@ -142,6 +142,24 @@ a pending confirmation stays visible instead of vanishing.
   `CLOUDFLARE_DEPLOY_ENABLED` variable, exactly like the celestial data workflow.
 * Nothing else is required: the feed is same-origin and no credential was created or rotated.
 
+## Calendar export (Phase 4)
+
+An exact published time can be exported as a calendar entry. It is always `STATUS:TENTATIVE`, carries
+no `DTEND` (a target time is not a duration), and its description names the provider, the provider's
+status, the record's last-update time, the scheduling precision, any postponement since the previous
+refresh, the age of the schedule, and the fact that a published target time is not a confirmed
+liftoff. Local visibility is stated as unknown in the same words the card uses.
+
+A launch with only a published date exports an all-day placeholder (`DTSTART;VALUE=DATE`) that says it
+is tentative and shows no time of day. A month, quarter, half-year or year is **refused**: no date is
+invented for it, and the card says why. A launch the provider reports as successful, failed or
+under way, or whose published time has already passed, is not exported at all.
+
+The UID is derived from the provider's launch identifier, so a postponement keeps the same calendar
+entry. A later download is a revision of that entry, not a second event, in clients that match on
+`UID`; a client that does not may show both copies. Nothing here promises automatic synchronization.
+See [calendar.md](calendar.md).
+
 ## Future: trajectory-aware visibility (Phase 2 design, not implemented)
 
 See [launch-visibility.md](launch-visibility.md) for the required inputs, the separate confidence model
