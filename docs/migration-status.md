@@ -378,3 +378,38 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Next action: hold Phase 5B at the recommended scope (anchored direction and illumination context for
   Falcon missions only), and do not add any trajectory or visibility field to the production feed until a
   profile can be anchored per flight.
+
+## CFLab Analytics integration (verified live)
+
+- Problem: Worth Looking Up was posting page views to the shared collector but had never been registered
+  as a site there, so every request was answered with an empty `204` and nothing was recorded. The
+  collector's own gate was verified rather than assumed: an unregistered source origin still returns
+  `403 origin_not_allowed` with nothing stored.
+- Registration (collector database, no new infrastructure or credentials): site row id 4, public tracking
+  ID `as_PKAOHGDzw9aJP98hZxaPQB`, legacy key `worthlookingup` (so the already-deployed `data-site-id`
+  keeps resolving), domains `worthlookingup.com` (primary) and `www.worthlookingup.com` (alias), DNT and
+  GPC respected, 90-day raw retention, created by the existing global admin. Written with Wrangler into
+  the `cflab-analytics` D1 database, matching exactly what the collector's `POST /api/sites` route writes.
+  No Worker, token, dashboard or CFLab code change: the collector already routed and accepted this
+  payload. Commands and the full record are in docs/analytics.md.
+- Client: `analytics-lite.js` documents the collector and now also publishes
+  `window.cflabAnalytics.track(name, props)` — the same global the collector's hosted snippet exposes —
+  and honours Global Privacy Control in the browser as well as server-side. `index.html` tracks event
+  detail views (category label), category selections (view name) and location searches (method only).
+- Test evidence: `npm test` exit 0 (unchanged suites, including release/version and packaging checks);
+  `npm run test:browser` runs 48 cases with the two new analytics cases passing and no failures;
+  `tests/analytics.spec.js` asserts the page view, the three event names and properties, the collector's
+  event-name pattern, that no payload contains coordinates, search text or a saved place name, and that
+  Do Not Track suppresses every request.
+- Git and deployment: commit `48ea501` pushed to main; CI run 38948678705 (validate and deploy) finished
+  green, including `wrangler pages deploy` and `scripts/verify-production.mjs` against
+  https://worthlookingup.com.
+- Live verification after the deploy: the deployed page carries the five tracking calls, and a real
+  browser session on production received `200` from the collector for `pageview`, `event_detail_view`,
+  `location_search` and `category_select`. The rows were read back from `analytics_events` for site 4
+  (props `{"category":"International Space Station"}`, `{"method":"place"}`, `{"view":"about"}`), the
+  three names are registered in `analytics_event_names`, the legacy tables carry the dual-write, and the
+  dashboard host answers 200 with the same totals its reporting query computes for this site.
+- Next action: the human sign-in to the dashboard stays with the existing global admin, who now sees the
+  site in the site list; no new user or credential was created for this integration. If a future phase
+  moves to the collector's hosted snippet, `window.cflabAnalytics.track` is already the call site.
