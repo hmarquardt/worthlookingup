@@ -486,3 +486,61 @@ route propagation; persistent failures still fail. No scientific/application cha
   CRS-style cargo runs need a different anchor before they can carry an elevation, and nothing may be
   attached to an upcoming launch until a profile exists for that flight rather than for a sibling.
 
+
+## Phase 5C: trajectory evidence audit, pad index and direction research (shipped)
+
+- [x] Monthly, read-only evidence audit. `scripts/audit-trajectory-profiles.mjs` validates the artifact, the
+      compact pad index and the review record, recomputes both anchoring gates from each profile's own
+      numbers, and re-checks every published profile against fresh copies of the sources it cites (GCAT
+      launch log, satellite catalogue, launch-point table, and the profile's own telemetry transcription).
+      The judgement is a pure module (`src/launches/trajectory-audit.mjs`) so the failure paths are tested
+      offline. Verified against live sources on 2026-10-16: 28 checks, verdict clean, exit 0.
+- [x] Workflow `.github/workflows/trajectory-evidence-audit.yml`: monthly on the 3rd at 07:23 UTC plus
+      `workflow_dispatch`, own concurrency group, `contents: read`, no `npm ci`, no push and no data
+      artifact of its own, so it cannot block the hourly launch or celestial workflows. Manual dispatch
+      verified: run `38972635477`.
+- [x] Drift policy in `docs/trajectory-audit.md` for every condition — no change, source unavailable,
+      changed within tolerance, changed beyond a gate, ambiguous provenance, integrity failure — with what
+      stays usable, what needs a human, and which conditions fail the run. Two properties are mechanical,
+      not promised: nothing is promoted (no code path raises a level or restores a withheld output) and
+      nothing is demoted automatically (the audit has no code path that writes a published file).
+- [x] `data/launches/trajectory-review.json` (schema `worthlookingup.trajectory-review/1`) is the only way a
+      published output may be suspended while its evidence is re-checked. Applied at read time by
+      `exploreHistorical({..., review})`: `suppress-elevation` withholds the chart, timed window and vehicle
+      illumination while the direction and provenance stay, `suppress-all` withholds everything, the
+      recorded gate results are never rewritten, and an entry in a record that does not validate suppresses
+      nothing. It needs no regeneration of any other dataset.
+- [x] Launch-page loading cut. The observer-facing geometry moved to `src/launches/launch-geodesy.mjs`,
+      imported and re-exported unchanged by the trajectory module (all Phase 5A/5B measured values are
+      identical, which is the evidence that the extraction changed no behaviour). The calendar reads the
+      generated compact index `data/launches/trajectory-pad-index.json` (schema
+      `worthlookingup.trajectory-pad-index/1`; ids, dates, evidence levels, output classes and the artifact's
+      sha256, never a sample), and the evidence module, the artifact and the review record load only when the
+      historical panel is opened. Measured with gzip: the category-specific cost of the launch calendar fell
+      from 29,821 B to 6,954 B (77 % less); a reader who opens the panel transfers about 29.3 KB at that
+      moment instead of paying 29.8 KB on arrival. A missing, invalid or stale index can only remove a link.
+- [x] Mission-direction research and contract. `src/launches/mission-direction.mjs` (schema
+      `worthlookingup.mission-direction-evidence/1`) classifies direction evidence five ways and permits
+      only a published or reconstructed mission-specific direction to reach an upcoming mission's sector;
+      hazard-only, family-only, inclination-derived and self-corroborating claims are refused mechanically.
+      Findings source by source in `docs/mission-direction-evidence.md`: no reachable source publishes a
+      mission-specific ascent direction today. The one real investigation (USSF-481, Falcon 9, SLC-4E) is
+      filed as an incomplete, rejected candidate with what is missing named; the launch calendar is unchanged
+      and local visibility stays unknown. Nothing imports the contract and the deployment does not ship it.
+- [x] Test evidence: `npm test` exit 0 (25 suites), including the new `tests/launches-trajectory-audit.cjs`
+      and `tests/launches-mission-direction.cjs`; `node tests/migration.cjs` exit 0 with the new staged-asset,
+      index-digest and not-deployed assertions; browser suite 57 tests, 55 passed and the 2 opt-in live specs
+      skipped, with the launches-explorer suite (9) passing on its own and the four new cases covering the
+      index-only card path, a missing index, a review suspension and a stale index that is reported but not
+      obeyed. The local full-suite command was killed twice by this machine while collecting the last specs,
+      so the suite was run in three overlapping parts that account for all 57.
+- [x] Documentation: [phase-5c-release.md](phase-5c-release.md), [trajectory-audit.md](trajectory-audit.md),
+      [mission-direction-evidence.md](mission-direction-evidence.md), plus `docs/launches.md`,
+      `src/launches/readme.md` and `agents.md`.
+- Git and deployment: commit `9d9b0f8`, replayed on the data bot's `fffbc1a` schedule refresh and pushed
+  without force; `origin/main` contains HEAD after the push. Release identifier `2026.10.16.2`.
+- Next action: run `build-trajectory-profiles.mjs --check` by hand when the monthly audit reports a review
+  item; broaden the catalog with further insertion-state anchors (the index makes each addition cheap);
+  pursue a machine-readable hazard *direction* source as the only route to a mission-specific sector; keep
+  `visibility: 'unknown'` everywhere until a specific flight's trajectory is published.
+

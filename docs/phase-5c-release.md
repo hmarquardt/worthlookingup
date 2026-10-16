@@ -70,9 +70,9 @@ of any other dataset.
 
 ## 4. Measured performance change
 
-Measured on 2026-10-16, the launch calendar's own deferred assets only, gzip as served (production figures
-are Cloudflare's transfer sizes with `Accept-Encoding: gzip`; the local figures are `gzip -9` of the built
-files, which agree with production to within a few per cent).
+Measured on 2026-10-16, gzip as served, with `Accept-Encoding: gzip` and an ordinary user agent, against
+production for both releases (so the "before" numbers come from the deployed 2026.10.16.1 and the "after"
+numbers from the deployed 2026.10.16.2, not from local estimates).
 
 **Before (release 2026.10.16.1, measured from production):**
 
@@ -83,30 +83,44 @@ files, which agree with production to within a few per cent).
 | `data/launches/trajectory-profiles.json` | 7,258 B | opening the launches category |
 | **launch category total** | **29,821 B** | before any historical panel is opened |
 
-**After (release 2026.10.16.2, measured from the built artifact):**
+**After (release 2026.10.16.2, measured from production):**
 
 | asset | transferred | when |
 | --- | --- | --- |
-| `overhead-launch-explorer.js` | ~9.9 KB → 10.4 KB in production | every page |
-| `src/launches/launch-geodesy.mjs` | 3,470 B | opening the launches category |
-| `src/launches/launch-pad-index.mjs` | 2,928 B | opening the launches category |
-| `data/launches/trajectory-pad-index.json` | 556 B | opening the launches category |
-| **launch category total** | **6,954 B** | before any historical panel is opened |
-| `src/launches/launch-trajectory.mjs` + `data/launches/trajectory-profiles.json` + `data/launches/trajectory-review.json` | 29,262 B | only when the historical panel is opened |
+| `overhead-launch-explorer.js` | 9,910 B | every page |
+| `src/launches/launch-geodesy.mjs` | 3,451 B | opening the launches category |
+| `src/launches/launch-pad-index.mjs` | 2,907 B | opening the launches category |
+| `data/launches/trajectory-pad-index.json` | 530 B | opening the launches category |
+| **launch category total** | **6,888 B** | before any historical panel is opened |
+| `src/launches/launch-trajectory.mjs` | 21,635 B | only when the historical panel is opened |
+| `data/launches/trajectory-profiles.json` | 7,258 B | only when the historical panel is opened |
+| `data/launches/trajectory-review.json` | 343 B | only when the historical panel is opened |
 
-So the category-specific cost of the launch calendar falls from 29,821 B to 6,954 B: **22,867 B less, 77 %
-less**, and the whole extra cost of the category including the adapter falls from 38,160 B to about
-16,900 B. The honest other half of the ledger: a reader who *does* open the historical panel now transfers
-about 29.3 KB at that moment instead of having paid 29.8 KB on arrival, so the panel path is roughly
-8 KB heavier than before, once, for the minority who ask for it. That is the trade the phase asked for —
-the common path pays for the common path — and it is the reason the panel assets are now genuinely
-deferred rather than merely named as lazy.
+The category-specific cost of the launch calendar falls from 29,821 B to 6,888 B: **22,933 B less, 77 %
+less**. Including the adapter, the whole cost of the category falls from 38,160 B to 16,798 B. The honest
+other half of the ledger: a reader who *does* open the historical panel transfers 29,236 B at that moment
+instead of having paid 29,821 B on arrival, so the panel path is about 8.4 KB heavier than before, once,
+for the minority who ask for it. That is the trade the phase asked for — the common path pays for the
+common path — and it is why the panel assets are now genuinely deferred rather than merely named as lazy.
 
-Request-count evidence, not just bytes (from `tests/launches-explorer.spec.js`, in a real browser):
-before opening the panel the page requests `launch-geodesy.mjs`, `launch-pad-index.mjs` and
-`trajectory-pad-index.json` and **never** `launch-trajectory.mjs` or `trajectory-profiles.json`; switching
-categories and coming back re-requests none of them; and opening the panel still loads the same profiles it
-loaded in 5B.
+**Production browser probe** (Chrome, viewport 1280×900, ordinary user agent, against
+`https://worthlookingup.com`, release `2026.10.16.2`):
+
+- after arriving and opening the launches category, exactly three tracked requests had been made:
+  `src/launches/launch-geodesy.mjs`, `src/launches/launch-pad-index.mjs`,
+  `data/launches/trajectory-pad-index.json` — and **zero** requests for `launch-trajectory.mjs` or
+  `trajectory-profiles.json`;
+- eight launch cards drew a pad-direction line from real feed data (for example
+  "Launch pad direction SSE (147°) at 1266 km, 6° below your horizon — the pad's direction, not the
+  rocket's path."), and two carried a historical link;
+- opening the historical panel then requested `launch-trajectory.mjs`, `trajectory-profiles.json` and
+  `trajectory-review.json`, rendered the panel, and reported
+  "Reconstruction passed both anchoring gates: direction, elevation and timed geometry are shown." with no
+  staleness warning — which means the deployed index digest matched the deployed artifact in a real
+  browser, not only in the tests.
+
+Request-count evidence in a controlled browser is in `tests/launches-explorer.spec.js`: switching
+categories and coming back re-requests none of the three, and the heavy pair stays unfetched.
 
 ## 5. Mission-direction research outcome
 
@@ -158,7 +172,30 @@ deployment does not ship it, and tests assert both.
 - No gate tolerance, score, weighting or fixture value was changed in this phase.
 
 
-## 8. Files added or modified
+## 8. Deployment and verification
+
+- **Commit:** `9d9b0f8` ("Audit trajectory evidence and cut launch-page loading (Phase 5C)"), replayed on the
+  data bot's `fffbc1a` schedule refresh (fetched first, rebased, no force) and pushed to `origin/main`;
+  `git fetch` afterwards confirmed `origin/main` contains HEAD.
+- **CI:** run [`38972609758`](https://github.com/hmarquardt/worthlookingup/actions/runs/38972609758)
+  (*validate and deploy*) finished **success** in 2m47s, running `npm test` (25 suites), the launch-feed
+  check, the Python precision test and both builders, the whole browser suite, `npm run build`, the
+  Cloudflare Pages deploy and `node scripts/verify-production.mjs https://worthlookingup.com --wait`.
+- **Monthly audit, run by hand:** the workflow was dispatched with
+  `gh workflow run trajectory-evidence-audit.yml` → run
+  [`38972635477`](https://github.com/hmarquardt/worthlookingup/actions/runs/38972635477) finished
+  **success** in 19s, and its log shows the real verdict:
+  `Verdict: **clean** — 28 passed, 0 need review, 0 unavailable, 0 failed.` So manual dispatch works, and
+  the audit passes on a GitHub runner against live sources. The scheduled monthly run has not happened yet
+  and is not claimed.
+- **Production verification:** `scripts/verify-production.mjs` → **PASS** with the four new assets in its
+  byte-equality list (deployed release `2026.10.16.2`); the launch schedule feed is served unchanged
+  (`/api/launches.json`, schema `worthlookingup.launches/1`, 148 records, generated 2026-10-16T21:41:43Z by
+  the data bot); the scientific engines and both workers are byte-identical to this checkout; the pad index,
+  the review record and both new modules are served at the paths the browser asks for; the production
+  browser probe in §4 confirms the loading behaviour and the index digest match in a real browser.
+
+## 9. Files added or modified
 
 **Added**
 
@@ -194,7 +231,7 @@ deployment does not ship it, and tests assert both.
 | `agents.md`, `docs/launches.md`, `src/launches/readme.md`, `docs/migration-status.md` | the phase 5C rules, files and milestone record |
 | `index.html` | release identifier `2026.10.16.2` |
 
-## 9. Remaining limitations
+## 10. Remaining limitations
 
 - **No mission-specific direction exists.** See §5. An upcoming launch still shows the pad's direction and
   historical reconstructions of past flights from that pad, and nothing about its own ascent.
@@ -211,7 +248,7 @@ deployment does not ship it, and tests assert both.
   operator's pages are referenced, not redistributed, and the direction contract records a licence field
   precisely because a future accepted record would need one.
 
-## 10. Recommendation for the next milestone
+## 11. Recommendation for the next milestone
 
 1. **Anchor review as a habit, not a phase:** run `build-trajectory-profiles.mjs --check` by hand when the
    monthly audit reports a review item, and keep `visibility: 'unknown'` everywhere until a specific flight's
