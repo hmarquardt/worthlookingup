@@ -19,6 +19,19 @@ for(const worker of ['overhead-worker.js','overhead-celestial-worker.js']){
   const text=fs.readFileSync(worker,'utf8');
   for(const block of text.matchAll(/importScripts\(([^)]+)\)/g))for(const file of block[1].matchAll(/'([^']+)'/g))assert.ok(fs.existsSync(file[1]),worker+' missing '+file[1]);
 }
+// The calendar serializer is pure and local-first: no DOM, storage, network or framework, and it is
+// the only module that writes iCalendar.
+const calendar=fs.readFileSync('overhead-calendar.js','utf8');
+assert.match(html,/src="overhead-calendar\.js"/,'index.html must load the calendar module');
+assert.match(calendar,/BEGIN:VCALENDAR/);
+assert.match(calendar,/PRODID/);
+assert.match(calendar,/\\r\\n/);
+for(const forbidden of [/\bdocument\./,/\blocalStorage\b/,/\bindexedDB\b/,/\bfetch\(/,/\bXMLHttpRequest\b/,/require\('https?/])
+  assert.doesNotMatch(calendar,forbidden,'overhead-calendar.js must not use '+forbidden);
+for(const file of ['overhead-discovery.js','overhead-launches.js'])
+  assert.ok(fs.readFileSync(file,'utf8').includes('module.exports'),file+' stays loadable outside the browser');
+assert.doesNotMatch(html,/<script[^>]+(?:googleapis|graph\.microsoft|calendar\.google)/i,'no calendar provider script may be introduced');
+assert.doesNotMatch(calendar,/oauth|googleapis|graph\.microsoft/i,'the calendar module must stay free of provider APIs');
 const versions=[...html.matchAll(/(?:version="|data-deploy-version="|· version )(\d{4}\.\d{2}\.\d{2}\.\d+)/g)].map(x=>x[1]);
 assert.equal(versions.length,3);assert.equal(new Set(versions).size,1);
 const transfer=require('../preferences-transfer.js');
