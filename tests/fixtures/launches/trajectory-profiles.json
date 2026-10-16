@@ -1,0 +1,1367 @@
+{
+ "schema": "worthlookingup.trajectory-fixtures/1",
+ "generated_by": "scripts/build-trajectory-fixtures.mjs",
+ "retrieved_utc": "2026-10-16",
+ "source": {
+  "name": "shahar603/Telemetry-Data",
+  "url": "https://github.com/shahar603/Telemetry-Data",
+  "licence": "Unlicense (public domain)",
+  "description": "webcast telemetry transcriptions for Falcon 9 and Falcon Heavy flights"
+ },
+ "note": "Generated file: change the script, not this file. Altitudes and downranges are metres; times are seconds after liftoff.",
+ "profiles": [
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "saocom-1a-2018-076",
+   "mission": "SAOCOM 1A",
+   "vehicle": "Falcon 9 Block 5",
+   "stage": 1,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "webcast-telemetry-reconstruction",
+    "source": "shahar603/Telemetry-Data (webcast telemetry transcriptions)",
+    "sourceUrl": "https://raw.githubusercontent.com/shahar603/Telemetry-Data/master/SAOCOM%201A/JSON/analysed.json",
+    "licence": "Unlicense (public domain)",
+    "retrievedUtc": "2026-10-16",
+    "method": "third-party transcription of webcast telemetry displays, reduced here to 10 s samples of altitude and downrange distance, referenced to liftoff"
+   },
+   "launch": {
+    "utc": "2018-10-08T02:21:00.000Z",
+    "precision": "minute",
+    "source": "GCAT launch log (CC-BY-4.0)"
+   },
+   "site": {
+    "pad": "Space Launch Complex 4E",
+    "latDeg": 34.632,
+    "lonDeg": -120.611,
+    "source": "GCAT launch point catalogue (CC-BY-4.0)"
+   },
+   "azimuth": {
+    "deg": 199,
+    "kind": "documented",
+    "uncertaintyDeg": 5,
+    "source": "SpaceX SAOCOM 1A press kit timeline, reproduced in Oberg 2018 review draft",
+    "url": "http://satobs.org/seesat_ref/misc/181007-spaceX_1208.pdf"
+   },
+   "plane": {
+    "achievedInclinationDeg": 97.9,
+    "source": "GCAT satcat 2018-076A (615 x 634 km, 97.90 deg)"
+   },
+   "orbit": {
+    "perigeeKm": 615,
+    "apogeeKm": 634,
+    "inclinationDeg": 97.9,
+    "source": "GCAT satcat 2018-076A (CC-BY-4.0)"
+   },
+   "samplingS": 10,
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0,
+     "velocityMps": 0.555,
+     "phase": "ascent"
+    },
+    {
+     "t": 10,
+     "altitudeM": 176,
+     "downrangeM": 0,
+     "velocityMps": 38.611,
+     "phase": "ascent"
+    },
+    {
+     "t": 20,
+     "altitudeM": 801,
+     "downrangeM": 0,
+     "velocityMps": 88.333,
+     "phase": "ascent"
+    },
+    {
+     "t": 30,
+     "altitudeM": 1969,
+     "downrangeM": 14,
+     "velocityMps": 146.807,
+     "phase": "ascent"
+    },
+    {
+     "t": 40,
+     "altitudeM": 3743,
+     "downrangeM": 396,
+     "velocityMps": 214.861,
+     "phase": "ascent"
+    },
+    {
+     "t": 50,
+     "altitudeM": 6182,
+     "downrangeM": 1120,
+     "velocityMps": 291.666,
+     "phase": "ascent"
+    },
+    {
+     "t": 60,
+     "altitudeM": 9384,
+     "downrangeM": 2002,
+     "velocityMps": 361.666,
+     "phase": "ascent"
+    },
+    {
+     "t": 70,
+     "altitudeM": 13291,
+     "downrangeM": 3067,
+     "velocityMps": 440.833,
+     "phase": "ascent"
+    },
+    {
+     "t": 80,
+     "altitudeM": 17971,
+     "downrangeM": 4533,
+     "velocityMps": 536.111,
+     "phase": "ascent"
+    },
+    {
+     "t": 90,
+     "altitudeM": 23571,
+     "downrangeM": 6585,
+     "velocityMps": 651.666,
+     "phase": "ascent"
+    },
+    {
+     "t": 100,
+     "altitudeM": 30224,
+     "downrangeM": 9399,
+     "velocityMps": 789.722,
+     "phase": "ascent"
+    },
+    {
+     "t": 110,
+     "altitudeM": 38200,
+     "downrangeM": 13053,
+     "velocityMps": 951.666,
+     "phase": "ascent"
+    },
+    {
+     "t": 120,
+     "altitudeM": 47498,
+     "downrangeM": 17877,
+     "velocityMps": 1140,
+     "phase": "ascent"
+    },
+    {
+     "t": 130,
+     "altitudeM": 58303,
+     "downrangeM": 24190,
+     "velocityMps": 1357.222,
+     "phase": "ascent"
+    },
+    {
+     "t": 140,
+     "altitudeM": 71098,
+     "downrangeM": 31803,
+     "velocityMps": 1611.111,
+     "phase": "ascent"
+    },
+    {
+     "t": 150,
+     "altitudeM": 84750,
+     "downrangeM": 40469,
+     "velocityMps": 1573.611,
+     "phase": "booster-return"
+    },
+    {
+     "t": 160,
+     "altitudeM": 97314,
+     "downrangeM": 49024,
+     "velocityMps": 1487.777,
+     "phase": "booster-return"
+    },
+    {
+     "t": 170,
+     "altitudeM": 108821,
+     "downrangeM": 56368,
+     "velocityMps": 1232.777,
+     "phase": "booster-return"
+    },
+    {
+     "t": 180,
+     "altitudeM": 118202,
+     "downrangeM": 61173,
+     "velocityMps": 882.5,
+     "phase": "booster-return"
+    },
+    {
+     "t": 190,
+     "altitudeM": 124977,
+     "downrangeM": 62582,
+     "velocityMps": 545.833,
+     "phase": "booster-return"
+    },
+    {
+     "t": 200,
+     "altitudeM": 129073,
+     "downrangeM": 61114,
+     "velocityMps": 425,
+     "phase": "booster-return"
+    },
+    {
+     "t": 210,
+     "altitudeM": 131602,
+     "downrangeM": 58134,
+     "velocityMps": 364.722,
+     "phase": "booster-return"
+    },
+    {
+     "t": 220,
+     "altitudeM": 133186,
+     "downrangeM": 55144,
+     "velocityMps": 321.111,
+     "phase": "booster-return"
+    },
+    {
+     "t": 230,
+     "altitudeM": 133845,
+     "downrangeM": 52146,
+     "velocityMps": 301.6,
+     "phase": "booster-return"
+    },
+    {
+     "t": 240,
+     "altitudeM": 133560,
+     "downrangeM": 49129,
+     "velocityMps": 310.626,
+     "phase": "booster-return"
+    },
+    {
+     "t": 250,
+     "altitudeM": 132348,
+     "downrangeM": 46094,
+     "velocityMps": 345.277,
+     "phase": "booster-return"
+    },
+    {
+     "t": 260,
+     "altitudeM": 130199,
+     "downrangeM": 43044,
+     "velocityMps": 399.722,
+     "phase": "booster-return"
+    },
+    {
+     "t": 270,
+     "altitudeM": 127126,
+     "downrangeM": 39979,
+     "velocityMps": 466.944,
+     "phase": "booster-return"
+    },
+    {
+     "t": 280,
+     "altitudeM": 123030,
+     "downrangeM": 36913,
+     "velocityMps": 541.666,
+     "phase": "booster-return"
+    },
+    {
+     "t": 290,
+     "altitudeM": 118093,
+     "downrangeM": 33803,
+     "velocityMps": 622.222,
+     "phase": "booster-return"
+    },
+    {
+     "t": 300,
+     "altitudeM": 112122,
+     "downrangeM": 30716,
+     "velocityMps": 706.388,
+     "phase": "booster-return"
+    },
+    {
+     "t": 310,
+     "altitudeM": 105309,
+     "downrangeM": 27581,
+     "velocityMps": 792.777,
+     "phase": "booster-return"
+    },
+    {
+     "t": 320,
+     "altitudeM": 97497,
+     "downrangeM": 24421,
+     "velocityMps": 880.833,
+     "phase": "booster-return"
+    },
+    {
+     "t": 330,
+     "altitudeM": 88850,
+     "downrangeM": 21138,
+     "velocityMps": 970.555,
+     "phase": "booster-return"
+    },
+    {
+     "t": 340,
+     "altitudeM": 79104,
+     "downrangeM": 17951,
+     "velocityMps": 1061.666,
+     "phase": "booster-return"
+    },
+    {
+     "t": 350,
+     "altitudeM": 68477,
+     "downrangeM": 14588,
+     "velocityMps": 1153.611,
+     "phase": "booster-return"
+    },
+    {
+     "t": 360,
+     "altitudeM": 56850,
+     "downrangeM": 11303,
+     "velocityMps": 1245.833,
+     "phase": "booster-return"
+    },
+    {
+     "t": 370,
+     "altitudeM": 45050,
+     "downrangeM": 8770,
+     "velocityMps": 1090.833,
+     "phase": "booster-return"
+    },
+    {
+     "t": 380,
+     "altitudeM": 35928,
+     "downrangeM": 7490,
+     "velocityMps": 777.777,
+     "phase": "booster-return"
+    },
+    {
+     "t": 390,
+     "altitudeM": 29650,
+     "downrangeM": 6595,
+     "velocityMps": 607.363,
+     "phase": "booster-return"
+    },
+    {
+     "t": 400,
+     "altitudeM": 23324,
+     "downrangeM": 5381,
+     "velocityMps": 665.743,
+     "phase": "booster-return"
+    },
+    {
+     "t": 410,
+     "altitudeM": 16824,
+     "downrangeM": 3910,
+     "velocityMps": 645.277,
+     "phase": "booster-return"
+    },
+    {
+     "t": 420,
+     "altitudeM": 11083,
+     "downrangeM": 2929,
+     "velocityMps": 500.277,
+     "phase": "booster-return"
+    },
+    {
+     "t": 430,
+     "altitudeM": 6963,
+     "downrangeM": 2240,
+     "velocityMps": 362.5,
+     "phase": "booster-return"
+    },
+    {
+     "t": 440,
+     "altitudeM": 3885,
+     "downrangeM": 1573,
+     "velocityMps": 278.333,
+     "phase": "booster-return"
+    },
+    {
+     "t": 450,
+     "altitudeM": 1661,
+     "downrangeM": 1313,
+     "velocityMps": 175.833,
+     "phase": "booster-return"
+    },
+    {
+     "t": 460,
+     "altitudeM": 368,
+     "downrangeM": 1315,
+     "velocityMps": 83.611,
+     "phase": "booster-return"
+    },
+    {
+     "t": 468,
+     "altitudeM": 0,
+     "downrangeM": 1315,
+     "velocityMps": 13.055,
+     "phase": "booster-return"
+    }
+   ],
+   "gaps": [],
+   "disagreements": [
+    {
+     "field": "launch azimuth",
+     "resolution": "reported",
+     "values": [
+      {
+       "value": "199 deg (press kit)",
+       "source": "spacex-saocom1a-press-kit"
+      },
+      {
+       "value": "189.6 deg (implied by the achieved 97.90 deg inclination at 34.632 N)",
+       "source": "derived-gcat-2018-076"
+      }
+     ],
+     "note": "A fixed-azimuth ascent on 199 deg would reach 105.5 deg inclination. The 9.4 deg gap is the signature of the yaw steering these Vandenberg sun-synchronous ascents fly, so the pad azimuth is a first-leg direction and not the plane of the orbit."
+    }
+   ],
+   "limits": [
+    "The first stage returned to Landing Zone 4, so this series covers the ascent and the booster return; the second stage, which carried the visible twilight plume after staging, is not in it.",
+    "Derived from a public webcast, not from operator telemetry: absolute altitude and velocity are not independently validated, which is why this is evidence level 2 and not level 1."
+   ],
+   "sourceEvents": {
+    "maxq": 58,
+    "throttle_down_start": 52,
+    "throttle_down_end": 79,
+    "meco": 142,
+    "boostback_start": 156,
+    "boostback_end": 205,
+    "apogee": 232,
+    "entry_start": 361,
+    "entry_end": 387,
+    "landing_start": 436,
+    "landing_end": 467,
+    "ses1": null,
+    "seco1": null,
+    "ses2": null,
+    "seco2": null
+   }
+  },
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "falcon-heavy-demo-1-2018-017",
+   "mission": "Falcon Heavy Demo 1",
+   "vehicle": "Falcon Heavy",
+   "stage": 2,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "webcast-telemetry-reconstruction",
+    "source": "shahar603/Telemetry-Data (webcast telemetry transcriptions)",
+    "sourceUrl": "https://raw.githubusercontent.com/shahar603/Telemetry-Data/master/Falcon%20Heavy%20Demo%201/JSON/analysed.json",
+    "licence": "Unlicense (public domain)",
+    "retrievedUtc": "2026-10-16",
+    "method": "third-party transcription of webcast telemetry displays, reduced here to 10 s samples of altitude and downrange distance, referenced to liftoff"
+   },
+   "launch": {
+    "utc": "2018-02-06T20:45:00.000Z",
+    "precision": "minute",
+    "source": "GCAT launch log (CC-BY-4.0)"
+   },
+   "site": {
+    "pad": "Launch Complex 39A",
+    "latDeg": 28.608,
+    "lonDeg": -80.604,
+    "source": "GCAT launch point catalogue (CC-BY-4.0)"
+   },
+   "azimuth": {
+    "deg": 84.9,
+    "kind": "derived-from-achieved-inclination",
+    "uncertaintyDeg": 3,
+    "source": "derived from GCAT achieved parking-orbit inclination 29.02 deg and the WGS-84 pad latitude",
+    "url": "https://planet4589.org/space/gcat/"
+   },
+   "plane": {
+    "achievedInclinationDeg": 29.02,
+    "source": "GCAT satcat 2018-017A (180 x 6939 km parking orbit, 29.02 deg)"
+   },
+   "orbit": {
+    "perigeeKm": 180,
+    "apogeeKm": 6939,
+    "inclinationDeg": 29.02,
+    "source": "GCAT satcat 2018-017A (CC-BY-4.0)"
+   },
+   "samplingS": 10,
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0,
+     "velocityMps": 0,
+     "phase": "ascent"
+    },
+    {
+     "t": 10,
+     "altitudeM": 172,
+     "downrangeM": 0,
+     "velocityMps": 42.089,
+     "phase": "ascent"
+    },
+    {
+     "t": 20,
+     "altitudeM": 883,
+     "downrangeM": 0,
+     "velocityMps": 101.533,
+     "phase": "ascent"
+    },
+    {
+     "t": 30,
+     "altitudeM": 2193,
+     "downrangeM": 121,
+     "velocityMps": 161.392,
+     "phase": "ascent"
+    },
+    {
+     "t": 40,
+     "altitudeM": 4079,
+     "downrangeM": 617,
+     "velocityMps": 220.559,
+     "phase": "ascent"
+    },
+    {
+     "t": 50,
+     "altitudeM": 6358,
+     "downrangeM": 1391,
+     "velocityMps": 261.391,
+     "phase": "ascent"
+    },
+    {
+     "t": 60,
+     "altitudeM": 9011,
+     "downrangeM": 2526,
+     "velocityMps": 312.781,
+     "phase": "ascent"
+    },
+    {
+     "t": 70,
+     "altitudeM": 12070,
+     "downrangeM": 4165,
+     "velocityMps": 377.23,
+     "phase": "ascent"
+    },
+    {
+     "t": 80,
+     "altitudeM": 15678,
+     "downrangeM": 6499,
+     "velocityMps": 480.017,
+     "phase": "ascent"
+    },
+    {
+     "t": 90,
+     "altitudeM": 19934,
+     "downrangeM": 9845,
+     "velocityMps": 606.952,
+     "phase": "ascent"
+    },
+    {
+     "t": 100,
+     "altitudeM": 24916,
+     "downrangeM": 14541,
+     "velocityMps": 759.452,
+     "phase": "ascent"
+    },
+    {
+     "t": 110,
+     "altitudeM": 30511,
+     "downrangeM": 20944,
+     "velocityMps": 940.572,
+     "phase": "ascent"
+    },
+    {
+     "t": 120,
+     "altitudeM": 36792,
+     "downrangeM": 29334,
+     "velocityMps": 1148.636,
+     "phase": "ascent"
+    },
+    {
+     "t": 130,
+     "altitudeM": 43625,
+     "downrangeM": 39908,
+     "velocityMps": 1376.969,
+     "phase": "ascent"
+    },
+    {
+     "t": 140,
+     "altitudeM": 50951,
+     "downrangeM": 52944,
+     "velocityMps": 1618.913,
+     "phase": "ascent"
+    },
+    {
+     "t": 150,
+     "altitudeM": 58651,
+     "downrangeM": 68716,
+     "velocityMps": 1879.469,
+     "phase": "ascent"
+    },
+    {
+     "t": 160,
+     "altitudeM": 66351,
+     "downrangeM": 86517,
+     "velocityMps": 2025.572,
+     "phase": "ascent"
+    },
+    {
+     "t": 170,
+     "altitudeM": 74151,
+     "downrangeM": 106464,
+     "velocityMps": 2261.978,
+     "phase": "ascent"
+    },
+    {
+     "t": 180,
+     "altitudeM": 82087,
+     "downrangeM": 129083,
+     "velocityMps": 2531.708,
+     "phase": "ascent"
+    },
+    {
+     "t": 190,
+     "altitudeM": 90110,
+     "downrangeM": 154041,
+     "velocityMps": 2639.998,
+     "phase": "second-stage"
+    },
+    {
+     "t": 200,
+     "altitudeM": 97474,
+     "downrangeM": 179366,
+     "velocityMps": 2654.448,
+     "phase": "second-stage"
+    },
+    {
+     "t": 210,
+     "altitudeM": 104348,
+     "downrangeM": 205311,
+     "velocityMps": 2714.033,
+     "phase": "second-stage"
+    },
+    {
+     "t": 220,
+     "altitudeM": 110640,
+     "downrangeM": 232021,
+     "velocityMps": 2777.089,
+     "phase": "second-stage"
+    },
+    {
+     "t": 230,
+     "altitudeM": 116520,
+     "downrangeM": 259509,
+     "velocityMps": 2846.674,
+     "phase": "second-stage"
+    },
+    {
+     "t": 240,
+     "altitudeM": 121875,
+     "downrangeM": 287827,
+     "velocityMps": 2921.115,
+     "phase": "second-stage"
+    },
+    {
+     "t": 250,
+     "altitudeM": 126966,
+     "downrangeM": 316996,
+     "velocityMps": 3000.012,
+     "phase": "second-stage"
+    },
+    {
+     "t": 260,
+     "altitudeM": 131559,
+     "downrangeM": 347047,
+     "velocityMps": 3081.952,
+     "phase": "second-stage"
+    },
+    {
+     "t": 270,
+     "altitudeM": 135842,
+     "downrangeM": 378004,
+     "velocityMps": 3168.896,
+     "phase": "second-stage"
+    },
+    {
+     "t": 280,
+     "altitudeM": 139750,
+     "downrangeM": 409907,
+     "velocityMps": 3260.563,
+     "phase": "second-stage"
+    },
+    {
+     "t": 290,
+     "altitudeM": 143270,
+     "downrangeM": 442794,
+     "velocityMps": 3356.128,
+     "phase": "second-stage"
+    },
+    {
+     "t": 300,
+     "altitudeM": 146490,
+     "downrangeM": 476701,
+     "velocityMps": 3456.952,
+     "phase": "second-stage"
+    },
+    {
+     "t": 310,
+     "altitudeM": 149385,
+     "downrangeM": 511671,
+     "velocityMps": 3562.508,
+     "phase": "second-stage"
+    },
+    {
+     "t": 320,
+     "altitudeM": 151940,
+     "downrangeM": 547752,
+     "velocityMps": 3672.508,
+     "phase": "second-stage"
+    },
+    {
+     "t": 330,
+     "altitudeM": 154218,
+     "downrangeM": 584979,
+     "velocityMps": 3788.063,
+     "phase": "second-stage"
+    },
+    {
+     "t": 340,
+     "altitudeM": 156305,
+     "downrangeM": 623394,
+     "velocityMps": 3906.405,
+     "phase": "second-stage"
+    },
+    {
+     "t": 350,
+     "altitudeM": 158176,
+     "downrangeM": 663034,
+     "velocityMps": 4030.017,
+     "phase": "second-stage"
+    },
+    {
+     "t": 360,
+     "altitudeM": 159935,
+     "downrangeM": 703933,
+     "velocityMps": 4157.794,
+     "phase": "second-stage"
+    },
+    {
+     "t": 370,
+     "altitudeM": 161612,
+     "downrangeM": 746139,
+     "velocityMps": 4290.85,
+     "phase": "second-stage"
+    },
+    {
+     "t": 380,
+     "altitudeM": 163297,
+     "downrangeM": 789702,
+     "velocityMps": 4429.452,
+     "phase": "second-stage"
+    },
+    {
+     "t": 390,
+     "altitudeM": 164984,
+     "downrangeM": 834686,
+     "velocityMps": 4575.017,
+     "phase": "second-stage"
+    },
+    {
+     "t": 400,
+     "altitudeM": 166694,
+     "downrangeM": 881177,
+     "velocityMps": 4730.294,
+     "phase": "second-stage"
+    },
+    {
+     "t": 410,
+     "altitudeM": 168367,
+     "downrangeM": 929271,
+     "velocityMps": 4895.017,
+     "phase": "second-stage"
+    },
+    {
+     "t": 420,
+     "altitudeM": 170042,
+     "downrangeM": 979065,
+     "velocityMps": 5070.572,
+     "phase": "second-stage"
+    },
+    {
+     "t": 430,
+     "altitudeM": 171672,
+     "downrangeM": 1030673,
+     "velocityMps": 5258.08,
+     "phase": "second-stage"
+    },
+    {
+     "t": 440,
+     "altitudeM": 173224,
+     "downrangeM": 1084227,
+     "velocityMps": 5458.358,
+     "phase": "second-stage"
+    },
+    {
+     "t": 450,
+     "altitudeM": 174722,
+     "downrangeM": 1139850,
+     "velocityMps": 5674.191,
+     "phase": "second-stage"
+    },
+    {
+     "t": 460,
+     "altitudeM": 176087,
+     "downrangeM": 1197693,
+     "velocityMps": 5903.358,
+     "phase": "second-stage"
+    },
+    {
+     "t": 470,
+     "altitudeM": 177348,
+     "downrangeM": 1257932,
+     "velocityMps": 6152.517,
+     "phase": "second-stage"
+    },
+    {
+     "t": 480,
+     "altitudeM": 178319,
+     "downrangeM": 1320748,
+     "velocityMps": 6416.413,
+     "phase": "second-stage"
+    },
+    {
+     "t": 490,
+     "altitudeM": 178839,
+     "downrangeM": 1386309,
+     "velocityMps": 6700.58,
+     "phase": "second-stage"
+    },
+    {
+     "t": 500,
+     "altitudeM": 178967,
+     "downrangeM": 1454845,
+     "velocityMps": 7009.478,
+     "phase": "second-stage"
+    },
+    {
+     "t": 510,
+     "altitudeM": 178851,
+     "downrangeM": 1526573,
+     "velocityMps": 7341.986,
+     "phase": "second-stage"
+    },
+    {
+     "t": 518,
+     "altitudeM": 178683,
+     "downrangeM": 1585603,
+     "velocityMps": 7389.722,
+     "phase": "second-stage"
+    }
+   ],
+   "gaps": [],
+   "disagreements": [
+    {
+     "field": "launch azimuth",
+     "resolution": "reported",
+     "values": [
+      {
+       "value": "84.9 deg (plane implied by the achieved 29.02 deg inclination)",
+       "source": "derived-gcat-2018-017"
+      },
+      {
+       "value": "no published pad azimuth found",
+       "source": "source-search-2026-10"
+      }
+     ],
+     "note": "The 180 x 6939 km parking orbit fixes the plane but not the ascent history; the second stage coasted and burned again, which this profile does not contain."
+    }
+   ],
+   "limits": [
+    "This is the daylit, less favourable end of the observing range: the vehicle is sunlit at the parking orbit but the sky behind it is bright, which the assessment reports as unknown detectability rather than as visibility.",
+    "Derived from a public webcast, not from operator telemetry: absolute altitude and velocity are not independently validated, which is why this is evidence level 2 and not level 1."
+   ],
+   "sourceEvents": {
+    "maxq": 76,
+    "throttle_down_start": 38,
+    "throttle_down_end": 72,
+    "meco": 185,
+    "boostback_start": null,
+    "boostback_end": null,
+    "apogee": null,
+    "entry_start": null,
+    "entry_end": null,
+    "landing_start": null,
+    "landing_end": null,
+    "ses1": 196,
+    "seco1": 512,
+    "ses2": null,
+    "seco2": null
+   }
+  },
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "iridium-next-4-2017-083",
+   "mission": "Iridium NEXT 4",
+   "vehicle": "Falcon 9 Block 5",
+   "stage": 2,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "webcast-telemetry-reconstruction",
+    "source": "shahar603/Telemetry-Data (webcast telemetry transcriptions)",
+    "sourceUrl": "https://raw.githubusercontent.com/shahar603/Telemetry-Data/master/Iridium%20NEXT%204/JSON/analysed.json",
+    "licence": "Unlicense (public domain)",
+    "retrievedUtc": "2026-10-16",
+    "method": "third-party transcription of webcast telemetry displays, reduced here to 10 s samples of altitude and downrange distance, referenced to liftoff"
+   },
+   "launch": {
+    "utc": "2017-12-23T01:27:23.000Z",
+    "precision": "second",
+    "source": "GCAT launch log (CC-BY-4.0)"
+   },
+   "site": {
+    "pad": "Space Launch Complex 4E",
+    "latDeg": 34.632,
+    "lonDeg": -120.611,
+    "source": "GCAT launch point catalogue (CC-BY-4.0)"
+   },
+   "azimuth": {
+    "deg": 176,
+    "kind": "derived-from-achieved-inclination",
+    "uncertaintyDeg": 3,
+    "source": "derived from GCAT achieved inclination 86.69 deg and the WGS-84 pad latitude",
+    "url": "https://planet4589.org/space/gcat/"
+   },
+   "plane": {
+    "achievedInclinationDeg": 86.69,
+    "source": "GCAT satcat 2017-083A..K (609-611 x 625-627 km, 86.69 deg)"
+   },
+   "orbit": {
+    "perigeeKm": 610,
+    "apogeeKm": 626,
+    "inclinationDeg": 86.69,
+    "source": "GCAT satcat 2017-083A..K (CC-BY-4.0)"
+   },
+   "samplingS": 10,
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0,
+     "velocityMps": 0,
+     "phase": "ascent"
+    },
+    {
+     "t": 10,
+     "altitudeM": 129,
+     "downrangeM": 0,
+     "velocityMps": 29.166,
+     "phase": "ascent"
+    },
+    {
+     "t": 20,
+     "altitudeM": 614,
+     "downrangeM": 0,
+     "velocityMps": 69.166,
+     "phase": "ascent"
+    },
+    {
+     "t": 30,
+     "altitudeM": 1490,
+     "downrangeM": 113,
+     "velocityMps": 117.222,
+     "phase": "ascent"
+    },
+    {
+     "t": 40,
+     "altitudeM": 2990,
+     "downrangeM": 353,
+     "velocityMps": 174.444,
+     "phase": "ascent"
+    },
+    {
+     "t": 50,
+     "altitudeM": 5042,
+     "downrangeM": 484,
+     "velocityMps": 228.333,
+     "phase": "ascent"
+    },
+    {
+     "t": 60,
+     "altitudeM": 7473,
+     "downrangeM": 771,
+     "velocityMps": 270.277,
+     "phase": "ascent"
+    },
+    {
+     "t": 70,
+     "altitudeM": 10422,
+     "downrangeM": 1962,
+     "velocityMps": 362.222,
+     "phase": "ascent"
+    },
+    {
+     "t": 80,
+     "altitudeM": 14200,
+     "downrangeM": 3720,
+     "velocityMps": 466.944,
+     "phase": "ascent"
+    },
+    {
+     "t": 90,
+     "altitudeM": 18834,
+     "downrangeM": 6300,
+     "velocityMps": 591.944,
+     "phase": "ascent"
+    },
+    {
+     "t": 100,
+     "altitudeM": 24443,
+     "downrangeM": 9969,
+     "velocityMps": 743.055,
+     "phase": "ascent"
+    },
+    {
+     "t": 110,
+     "altitudeM": 31100,
+     "downrangeM": 15040,
+     "velocityMps": 923.611,
+     "phase": "ascent"
+    },
+    {
+     "t": 120,
+     "altitudeM": 38775,
+     "downrangeM": 21894,
+     "velocityMps": 1134.166,
+     "phase": "ascent"
+    },
+    {
+     "t": 130,
+     "altitudeM": 47400,
+     "downrangeM": 31013,
+     "velocityMps": 1379.166,
+     "phase": "ascent"
+    },
+    {
+     "t": 140,
+     "altitudeM": 57034,
+     "downrangeM": 42820,
+     "velocityMps": 1668.333,
+     "phase": "ascent"
+    },
+    {
+     "t": 150,
+     "altitudeM": 67660,
+     "downrangeM": 57689,
+     "velocityMps": 1983.055,
+     "phase": "ascent"
+    },
+    {
+     "t": 160,
+     "altitudeM": 78851,
+     "downrangeM": 74723,
+     "velocityMps": 2030.277,
+     "phase": "second-stage"
+    },
+    {
+     "t": 170,
+     "altitudeM": 89267,
+     "downrangeM": 92044,
+     "velocityMps": 2030,
+     "phase": "second-stage"
+    },
+    {
+     "t": 180,
+     "altitudeM": 99266,
+     "downrangeM": 109957,
+     "velocityMps": 2061.11,
+     "phase": "second-stage"
+    },
+    {
+     "t": 190,
+     "altitudeM": 108245,
+     "downrangeM": 128639,
+     "velocityMps": 2096.944,
+     "phase": "second-stage"
+    },
+    {
+     "t": 200,
+     "altitudeM": 117200,
+     "downrangeM": 147811,
+     "velocityMps": 2139.722,
+     "phase": "second-stage"
+    },
+    {
+     "t": 210,
+     "altitudeM": 125731,
+     "downrangeM": 167687,
+     "velocityMps": 2187.222,
+     "phase": "second-stage"
+    },
+    {
+     "t": 220,
+     "altitudeM": 133833,
+     "downrangeM": 188266,
+     "velocityMps": 2239.444,
+     "phase": "second-stage"
+    },
+    {
+     "t": 230,
+     "altitudeM": 141537,
+     "downrangeM": 209595,
+     "velocityMps": 2296.388,
+     "phase": "second-stage"
+    },
+    {
+     "t": 240,
+     "altitudeM": 148812,
+     "downrangeM": 231692,
+     "velocityMps": 2358.888,
+     "phase": "second-stage"
+    },
+    {
+     "t": 250,
+     "altitudeM": 155624,
+     "downrangeM": 254620,
+     "velocityMps": 2427.222,
+     "phase": "second-stage"
+    },
+    {
+     "t": 260,
+     "altitudeM": 161919,
+     "downrangeM": 278424,
+     "velocityMps": 2500.833,
+     "phase": "second-stage"
+    },
+    {
+     "t": 270,
+     "altitudeM": 167687,
+     "downrangeM": 303158,
+     "velocityMps": 2580.277,
+     "phase": "second-stage"
+    },
+    {
+     "t": 280,
+     "altitudeM": 172915,
+     "downrangeM": 328852,
+     "velocityMps": 2666.111,
+     "phase": "second-stage"
+    },
+    {
+     "t": 290,
+     "altitudeM": 177539,
+     "downrangeM": 355564,
+     "velocityMps": 2757.5,
+     "phase": "second-stage"
+    },
+    {
+     "t": 300,
+     "altitudeM": 181595,
+     "downrangeM": 383318,
+     "velocityMps": 2854.166,
+     "phase": "second-stage"
+    },
+    {
+     "t": 310,
+     "altitudeM": 185074,
+     "downrangeM": 412155,
+     "velocityMps": 2956.944,
+     "phase": "second-stage"
+    },
+    {
+     "t": 320,
+     "altitudeM": 188054,
+     "downrangeM": 442112,
+     "velocityMps": 3065.277,
+     "phase": "second-stage"
+    },
+    {
+     "t": 330,
+     "altitudeM": 190539,
+     "downrangeM": 473230,
+     "velocityMps": 3178.888,
+     "phase": "second-stage"
+    },
+    {
+     "t": 340,
+     "altitudeM": 192564,
+     "downrangeM": 505547,
+     "velocityMps": 3298.055,
+     "phase": "second-stage"
+    },
+    {
+     "t": 350,
+     "altitudeM": 194138,
+     "downrangeM": 539115,
+     "velocityMps": 3423.888,
+     "phase": "second-stage"
+    },
+    {
+     "t": 360,
+     "altitudeM": 195335,
+     "downrangeM": 573982,
+     "velocityMps": 3555,
+     "phase": "second-stage"
+    },
+    {
+     "t": 370,
+     "altitudeM": 196166,
+     "downrangeM": 610201,
+     "velocityMps": 3691.944,
+     "phase": "second-stage"
+    },
+    {
+     "t": 380,
+     "altitudeM": 196666,
+     "downrangeM": 647837,
+     "velocityMps": 3836.111,
+     "phase": "second-stage"
+    },
+    {
+     "t": 390,
+     "altitudeM": 196859,
+     "downrangeM": 686953,
+     "velocityMps": 3988.055,
+     "phase": "second-stage"
+    },
+    {
+     "t": 400,
+     "altitudeM": 196765,
+     "downrangeM": 727630,
+     "velocityMps": 4147.777,
+     "phase": "second-stage"
+    },
+    {
+     "t": 410,
+     "altitudeM": 196405,
+     "downrangeM": 769942,
+     "velocityMps": 4316.111,
+     "phase": "second-stage"
+    },
+    {
+     "t": 420,
+     "altitudeM": 195801,
+     "downrangeM": 813976,
+     "velocityMps": 4493.055,
+     "phase": "second-stage"
+    },
+    {
+     "t": 430,
+     "altitudeM": 194979,
+     "downrangeM": 859829,
+     "velocityMps": 4679.722,
+     "phase": "second-stage"
+    },
+    {
+     "t": 440,
+     "altitudeM": 193971,
+     "downrangeM": 907586,
+     "velocityMps": 4874.444,
+     "phase": "second-stage"
+    },
+    {
+     "t": 450,
+     "altitudeM": 192790,
+     "downrangeM": 957374,
+     "velocityMps": 5086.111,
+     "phase": "second-stage"
+    },
+    {
+     "t": 460,
+     "altitudeM": 191486,
+     "downrangeM": 1009318,
+     "velocityMps": 5308.333,
+     "phase": "second-stage"
+    },
+    {
+     "t": 470,
+     "altitudeM": 190082,
+     "downrangeM": 1063551,
+     "velocityMps": 5544.166,
+     "phase": "second-stage"
+    },
+    {
+     "t": 480,
+     "altitudeM": 188599,
+     "downrangeM": 1120225,
+     "velocityMps": 5796.666,
+     "phase": "second-stage"
+    },
+    {
+     "t": 490,
+     "altitudeM": 187126,
+     "downrangeM": 1179525,
+     "velocityMps": 6068.888,
+     "phase": "second-stage"
+    },
+    {
+     "t": 500,
+     "altitudeM": 185695,
+     "downrangeM": 1241639,
+     "velocityMps": 6360.833,
+     "phase": "second-stage"
+    },
+    {
+     "t": 510,
+     "altitudeM": 184395,
+     "downrangeM": 1306804,
+     "velocityMps": 6678.333,
+     "phase": "second-stage"
+    },
+    {
+     "t": 520,
+     "altitudeM": 183203,
+     "downrangeM": 1375292,
+     "velocityMps": 7025.555,
+     "phase": "second-stage"
+    },
+    {
+     "t": 530,
+     "altitudeM": 182292,
+     "downrangeM": 1447419,
+     "velocityMps": 7408.333,
+     "phase": "second-stage"
+    },
+    {
+     "t": 536,
+     "altitudeM": 181847,
+     "downrangeM": 1492586,
+     "velocityMps": 7651.111,
+     "phase": "second-stage"
+    }
+   ],
+   "gaps": [],
+   "disagreements": [
+    {
+     "field": "launch azimuth",
+     "resolution": "reported",
+     "values": [
+      {
+       "value": "176.0 deg (plane implied by the achieved 86.69 deg inclination)",
+       "source": "derived-gcat-2017-083"
+      },
+      {
+       "value": "no published pad azimuth found",
+       "source": "source-search-2026-10"
+      }
+     ],
+     "note": "The bearing is derived from the achieved orbit rather than documented, and the profile carries that derivation instead of a measured value."
+    }
+   ],
+   "limits": [
+    "The series runs from liftoff to second-stage cutoff and reaches about 197 km and 1490 km downrange. Its terminal altitude and speed do not agree with the achieved 610 x 626 km orbit, which the tests check and the feasibility report discusses.",
+    "Derived from a public webcast, not from operator telemetry: absolute altitude and velocity are not independently validated, which is why this is evidence level 2 and not level 1."
+   ],
+   "sourceEvents": {
+    "maxq": 75,
+    "throttle_down_start": 48,
+    "throttle_down_end": 59,
+    "meco": 153,
+    "boostback_start": null,
+    "boostback_end": null,
+    "apogee": null,
+    "entry_start": null,
+    "entry_end": null,
+    "landing_start": null,
+    "landing_end": null,
+    "ses1": 164,
+    "seco1": 543,
+    "ses2": null,
+    "seco2": null
+   }
+  }
+ ]
+}

@@ -351,3 +351,30 @@ route propagation; persistent failures still fail. No scientific/application cha
   reads `success | Launch Successful`) restored into data/launches/upcoming.json, tests/calendar.cjs,
   tests/launches-feed.cjs, tests/launches-relevance.cjs and tests/migration.cjs all pass, and the
   pre-repair exporter shown that feed refuses the record as completed.
+
+## Phase 5A: launch trajectory feasibility (research only, no product change)
+
+- Deliverables: `docs/launch-trajectory-feasibility.md` (report, taxonomy, validation, Phase 5B scope),
+  `docs/launch-trajectory-sources.md` plus `src/launches/trajectory-sources.json` (fifteen sources with
+  access, precision, licensing and the evidence ceiling each can support), the pure prototype
+  `src/launches/launch-trajectory.mjs`, the generator `scripts/build-trajectory-fixtures.mjs`, committed
+  fixtures under `tests/fixtures/launches/`, and `tests/launches-trajectory.cjs`.
+- Test evidence: `npm test` passes with 22 suites; the new suite reports measured agreement with
+  independent references (WGS-84 against Astronomy Engine 0.42 m; solar elevation against overhead-astro
+  0.143 deg; shadow edge against the closed-form dip angle 0.270 deg; horizon crossing against the
+  closed-form arc 0.06 %), reproduces the SAOCOM 1A twilight-illumination window from published
+  observations, and enforces that the prototype stays network-, DOM- and storage-free, that the published
+  feed carries no trajectory or visibility field, and that `overhead-launches.js` still reports
+  `visibility:'unknown'`.
+- Research findings that gate Phase 5B: no operator, range authority or regulator publishes a
+  time-resolved ascent trajectory, and 14 CFR part 420 Appendix B confirms one-second nominal trajectories
+  exist for every licensed launch without being published; the public-domain webcast-telemetry archive
+  covers roughly sixty Falcon flights from 2016 to 2019 and disagrees with the achieved orbits in one
+  dimension per flight; Starship has no usable public data at all.
+- Product evidence: nothing user-facing changed. No UI version bump is required because no visible text,
+  comment or footer version in `index.html` changed; `npm run build` stages the documentation, the
+  prototype stays out of `dist` unless imported, and `tests/migration.cjs` passes including the packaging
+  and lowercase-path checks.
+- Next action: hold Phase 5B at the recommended scope (anchored direction and illumination context for
+  Falcon missions only), and do not add any trajectory or visibility field to the production feed until a
+  profile can be anchored per flight.

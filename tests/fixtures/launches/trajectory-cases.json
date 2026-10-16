@@ -1,0 +1,695 @@
+{
+ "schema": "worthlookingup.trajectory-fixtures/1",
+ "note": "Hand-authored deterministic cases for the launch-ascent geometry prototype. Synthetic profiles exist only to exercise the geometry and are marked synthetic so no caller can present them as a real launch. The documented, corridor and pad-only records are fixed copies of cited public evidence, taken once and kept here so the tests never depend on a live source.",
+ "synthetic_profiles": [
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "synthetic-vertical",
+   "mission": "synthetic vertical ascent",
+   "vehicle": "synthetic",
+   "synthetic": true,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "synthetic-fixture",
+    "source": "synthetic"
+   },
+   "launch": {
+    "utc": "2026-01-01T00:00:00.000Z",
+    "precision": "second"
+   },
+   "site": {
+    "pad": "synthetic pad at the equator on the prime meridian",
+    "latDeg": 0,
+    "lonDeg": 0
+   },
+   "azimuth": {
+    "deg": 90,
+    "kind": "documented",
+    "uncertaintyDeg": 0.5,
+    "source": "synthetic"
+   },
+   "samplingS": 60,
+   "notes": "Straight up: every sample sits directly over the pad, so the bearing to the vehicle is undefined and the elevation approaches 90 degrees.",
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0
+    },
+    {
+     "t": 60,
+     "altitudeM": 10000,
+     "downrangeM": 0
+    },
+    {
+     "t": 120,
+     "altitudeM": 40000,
+     "downrangeM": 0
+    },
+    {
+     "t": 180,
+     "altitudeM": 90000,
+     "downrangeM": 0
+    },
+    {
+     "t": 240,
+     "altitudeM": 160000,
+     "downrangeM": 0
+    }
+   ],
+   "gaps": [],
+   "disagreements": []
+  },
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "synthetic-eastward",
+   "mission": "synthetic eastward ascent",
+   "vehicle": "synthetic",
+   "synthetic": true,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "synthetic-fixture",
+    "source": "synthetic"
+   },
+   "launch": {
+    "utc": "2026-01-01T00:00:00.000Z",
+    "precision": "second"
+   },
+   "site": {
+    "pad": "synthetic pad at the equator on the prime meridian",
+    "latDeg": 0,
+    "lonDeg": 0
+   },
+   "azimuth": {
+    "deg": 90,
+    "kind": "documented",
+    "uncertaintyDeg": 0.5,
+    "source": "synthetic"
+   },
+   "samplingS": 60,
+   "notes": "Due east from the equator, climbing to 250 km over 600 km of downrange: the reference case for azimuth, elevation and Earth-curvature arithmetic at long range.",
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0
+    },
+    {
+     "t": 60,
+     "altitudeM": 15000,
+     "downrangeM": 20000
+    },
+    {
+     "t": 120,
+     "altitudeM": 55000,
+     "downrangeM": 90000
+    },
+    {
+     "t": 180,
+     "altitudeM": 110000,
+     "downrangeM": 210000
+    },
+    {
+     "t": 240,
+     "altitudeM": 175000,
+     "downrangeM": 390000
+    },
+    {
+     "t": 300,
+     "altitudeM": 250000,
+     "downrangeM": 600000
+    }
+   ],
+   "gaps": [],
+   "disagreements": []
+  },
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "synthetic-antimeridian",
+   "mission": "synthetic antimeridian crossing",
+   "vehicle": "synthetic",
+   "synthetic": true,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "synthetic-fixture",
+    "source": "synthetic"
+   },
+   "launch": {
+    "utc": "2026-01-01T00:00:00.000Z",
+    "precision": "second"
+   },
+   "site": {
+    "pad": "synthetic pad just west of the antimeridian",
+    "latDeg": 0,
+    "lonDeg": 179.8
+   },
+   "azimuth": {
+    "deg": 90,
+    "kind": "documented",
+    "uncertaintyDeg": 1,
+    "source": "synthetic"
+   },
+   "samplingS": 60,
+   "notes": "The ground track crosses 180 degrees east, so reported longitudes must wrap sign without the sight line jumping.",
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0
+    },
+    {
+     "t": 60,
+     "altitudeM": 20000,
+     "downrangeM": 60000
+    },
+    {
+     "t": 120,
+     "altitudeM": 60000,
+     "downrangeM": 180000
+    },
+    {
+     "t": 180,
+     "altitudeM": 120000,
+     "downrangeM": 320000
+    }
+   ],
+   "gaps": [],
+   "disagreements": []
+  },
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "synthetic-gap",
+   "mission": "synthetic ascent with a missing segment",
+   "vehicle": "synthetic",
+   "synthetic": true,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "synthetic-fixture",
+    "source": "synthetic"
+   },
+   "launch": {
+    "utc": "2026-01-01T00:00:00.000Z",
+    "precision": "second"
+   },
+   "site": {
+    "pad": "synthetic pad",
+    "latDeg": 28.5,
+    "lonDeg": -80.5
+   },
+   "azimuth": {
+    "deg": 84,
+    "kind": "documented",
+    "uncertaintyDeg": 2,
+    "source": "synthetic"
+   },
+   "samplingS": 60,
+   "notes": "A declared 120-300 s hole stands in for a telemetry dropout; the module must refuse to interpolate across it.",
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0
+    },
+    {
+     "t": 60,
+     "altitudeM": 12000,
+     "downrangeM": 15000
+    },
+    {
+     "t": 120,
+     "altitudeM": 45000,
+     "downrangeM": 60000
+    },
+    {
+     "t": 300,
+     "altitudeM": 150000,
+     "downrangeM": 330000
+    },
+    {
+     "t": 360,
+     "altitudeM": 200000,
+     "downrangeM": 470000
+    }
+   ],
+   "gaps": [
+    {
+     "fromT": 120,
+     "toT": 300,
+     "reason": "telemetry dropout in the source recording"
+    }
+   ],
+   "disagreements": []
+  },
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "synthetic-contradictory-time",
+   "mission": "synthetic ascent with two reported liftoff times",
+   "vehicle": "synthetic",
+   "synthetic": true,
+   "evidence": {
+    "level": 2,
+    "code": "reconstructed-vehicle-profile",
+    "provenanceKind": "synthetic-fixture",
+    "source": "synthetic"
+   },
+   "launch": {
+    "utc": "2026-01-01T00:04:00.000Z",
+    "precision": "minute"
+   },
+   "site": {
+    "pad": "synthetic pad",
+    "latDeg": 28.5,
+    "lonDeg": -80.5
+   },
+   "azimuth": {
+    "deg": 84,
+    "kind": "documented",
+    "uncertaintyDeg": 2,
+    "source": "synthetic"
+   },
+   "samplingS": 60,
+   "notes": "Two sources give liftoff four minutes apart and the conflict is unresolved; the assessment must surface it rather than pick one.",
+   "samples": [
+    {
+     "t": 0,
+     "altitudeM": 0,
+     "downrangeM": 0
+    },
+    {
+     "t": 60,
+     "altitudeM": 12000,
+     "downrangeM": 15000
+    },
+    {
+     "t": 120,
+     "altitudeM": 45000,
+     "downrangeM": 60000
+    }
+   ],
+   "gaps": [],
+   "disagreements": [
+    {
+     "field": "liftoff time",
+     "resolution": "unresolved",
+     "values": [
+      {
+       "value": "2026-01-01T00:04:00Z",
+       "source": "source A"
+      },
+      {
+       "value": "2026-01-01T00:08:00Z",
+       "source": "source B"
+      }
+     ]
+    }
+   ],
+   "launchUtc": null
+  }
+ ],
+ "documented_profiles": [
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "saocom-1a-2018-076-press-kit",
+   "mission": "SAOCOM 1A",
+   "vehicle": "Falcon 9 Block 5",
+   "stage": null,
+   "evidence": {
+    "level": 3,
+    "code": "documented-mission-profile",
+    "provenanceKind": "press-kit-timeline",
+    "source": "SpaceX SAOCOM 1A press kit, reproduced in Oberg 2018 review draft (page 68)",
+    "sourceUrl": "http://satobs.org/seesat_ref/misc/181007-spaceX_1208.pdf",
+    "licence": "SpaceX copyright; cited, not redistributed",
+    "retrievedUtc": "2026-10-16",
+    "method": "published event times and altitudes copied from the reproduced timeline"
+   },
+   "launch": {
+    "utc": "2018-10-08T02:21:00.000Z",
+    "precision": "minute",
+    "source": "GCAT launch log (CC-BY-4.0)"
+   },
+   "site": {
+    "pad": "Space Launch Complex 4E",
+    "latDeg": 34.632,
+    "lonDeg": -120.611,
+    "source": "GCAT launch point catalogue"
+   },
+   "azimuth": {
+    "deg": 199,
+    "kind": "documented",
+    "uncertaintyDeg": 5,
+    "source": "press kit timeline (azimuth is a first-leg direction; see the recorded disagreement)"
+   },
+   "plane": {
+    "achievedInclinationDeg": 97.9,
+    "source": "GCAT satcat 2018-076A (615 x 634 km, 97.90 deg)"
+   },
+   "events": [
+    {
+     "name": "main engine cutoff",
+     "t": 140,
+     "altitudeM": 86000,
+     "source": "press kit"
+    },
+    {
+     "name": "second engine start",
+     "t": 151,
+     "altitudeM": 88000,
+     "source": "press kit"
+    },
+    {
+     "name": "second engine cutoff",
+     "t": 607,
+     "altitudeM": 625000,
+     "source": "press kit"
+    }
+   ],
+   "limits": [
+    "the press kit interleaves two different clocks (T+ and UTC) and publishes no ground position",
+    "the altitude labels are the operator's own figures and are not independently corroborated"
+   ],
+   "disagreements": [
+    {
+     "field": "main engine cutoff altitude",
+     "resolution": "unresolved",
+     "values": [
+      {
+       "value": "86000 m (press kit)",
+       "source": "spacex-saocom1a-press-kit"
+      },
+      {
+       "value": "71100 m (webcast telemetry reconstruction at the same instant)",
+       "source": "telemetry-data-saocom1a"
+      }
+     ],
+     "note": "a 17 per cent disagreement at a published event; used in the tests as the altitude uncertainty band"
+    }
+   ],
+   "gaps": []
+  }
+ ],
+ "corridor_profiles": [
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "faa-tfr-6-9169-shape-example",
+   "mission": "FAA TFR 6/9169 (Raleigh security TFR; a shape example, not a launch)",
+   "vehicle": "none",
+   "evidence": {
+    "level": 4,
+    "code": "launch-corridor-or-hazard-area",
+    "provenanceKind": "hazard-area",
+    "source": "FAA temporary flight restriction service, geoserver TFR layer V_TFR_LOC",
+    "sourceUrl": "https://tfr.faa.gov/geoserver/TFR/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=TFR:V_TFR_LOC",
+    "licence": "US federal government work; not a launch hazard area",
+    "retrievedUtc": "2026-10-16",
+    "method": "one feature captured verbatim from the service to fix the shape of a safety area"
+   },
+   "launch": {
+    "utc": "2026-10-15T00:00:00.000Z",
+    "precision": "day",
+    "source": "TFR title window"
+   },
+   "site": {
+    "pad": "centroid of the captured TFR polygon",
+    "latDeg": 35.795555,
+    "lonDeg": -78.711943,
+    "source": "computed from the captured vertices"
+   },
+   "azimuth": {
+    "deg": 0,
+    "kind": "corridor-derived",
+    "uncertaintyDeg": 180,
+    "source": "a safety area fixes no direction; the field records that nothing constrains the ascent bearing"
+   },
+   "corridor": {
+    "kind": "hazard-area",
+    "notam_key": "6/9169-1-FDC-F",
+    "title": "RALEIGH, NC, Thursday, October 15, 2026 through Sunday, October 25, 2026 Local",
+    "legal": "SECURITY",
+    "vertex_count": 37,
+    "longitude_span_deg": 0.04098,
+    "latitude_span_deg": 0.03338,
+    "first_vertices": [
+     [
+      -78.73187656,
+      35.79555381
+     ],
+     [
+      -78.73156457,
+      35.79265543
+     ],
+     [
+      -78.73063963,
+      35.78984521
+     ],
+     [
+      -78.72912988,
+      35.78720854
+     ]
+    ]
+   },
+   "limits": [
+    "this is a security TFR captured as a shape example: the service carries launch hazard areas as the same kind of feature, but no launch TFR was captured, and none is needed to prove the refusal path"
+   ]
+  }
+ ],
+ "pad_only_profiles": [
+  {
+   "schema": "worthlookingup.trajectory-profile/1",
+   "id": "ll2-df88cfbf-ussf-481",
+   "mission": "Falcon 9 Block 5 | USSF-481",
+   "vehicle": "Falcon 9 Block 5",
+   "evidence": {
+    "level": 5,
+    "code": "launch-site-only",
+    "provenanceKind": "pad-record",
+    "source": "Launch Library 2 via data/launches/upcoming.json",
+    "sourceUrl": "https://ll.thespacedevs.com/2.3.0/launches/",
+    "licence": "provider terms; attribution carried in the feed",
+    "retrievedUtc": "2026-10-16",
+    "method": "pad coordinates and the scheduled instant only"
+   },
+   "launch": {
+    "utc": "2026-10-16T00:01:05.000Z",
+    "precision": "second",
+    "source": "provider record"
+   },
+   "site": {
+    "pad": "Space Launch Complex 4E",
+    "latDeg": 34.632,
+    "lonDeg": -120.611,
+    "source": "provider record"
+   },
+   "limits": [
+    "the production feed carries no trajectory, so this level can say nothing about the vehicle in flight"
+   ]
+  }
+ ],
+ "observations": [
+  {
+   "id": "oberg-encino-sightline",
+   "mission": "SAOCOM 1A",
+   "observer": {
+    "name": "Encino, California (US 101 and Killion Street)",
+    "latDeg": 34.17145,
+    "lonDeg": -118.51161,
+    "coordinates_from_source": true,
+    "coordinate_uncertainty_m": 100
+   },
+   "documented": {
+    "sight_azimuth_deg": 270,
+    "range": "120 miles",
+    "method": "video line of sight compared with the Google Earth street view of the same location"
+   },
+   "uncertainty": {
+    "azimuth_deg": 5,
+    "range_relative": 0.05,
+    "basis": "video field of view and street-view geometry, not a measured bearing"
+   },
+   "source": {
+    "citation": "Oberg, J., Analysis of Observations of SpaceX Falcon-9 Launch October 7, 2018, REVIEW DRAFT 2, 8 December 2018, pages 43-45",
+    "url": "http://satobs.org/seesat_ref/misc/181007-spaceX_1208.pdf",
+    "licence": "author copyright; cited, not redistributed"
+   }
+  },
+  {
+   "id": "oberg-hermosa-pier",
+   "mission": "SAOCOM 1A",
+   "observer": {
+    "name": "Hermosa Beach Pier, California",
+    "latDeg": 33.8623,
+    "lonDeg": -118.4016,
+    "coordinates_from_source": false,
+    "coordinate_note": "the source names the pier and gives its orientation, not its coordinates; the pier position is used here and is the main weak link in this comparison"
+   },
+   "documented": {
+    "pier_orientation_deg": 258,
+    "method": "the pier itself fixes the line of sight in the imagery"
+   },
+   "uncertainty": {
+    "azimuth_deg": 5,
+    "basis": "pier orientation plus the pier position, not a measured bearing"
+   },
+   "source": {
+    "citation": "Oberg, J., same report, pages 46-47",
+    "url": "http://satobs.org/seesat_ref/misc/181007-spaceX_1208.pdf"
+   }
+  },
+  {
+   "id": "apod-iridium-4",
+   "mission": "Iridium NEXT 4",
+   "observer": {
+    "name": "Orange County, California",
+    "latDeg": 33.7175,
+    "lonDeg": -117.8311,
+    "coordinates_from_source": false,
+    "coordinate_note": "the source names the county; a county centroid is used and the location uncertainty is therefore tens of kilometres"
+   },
+   "documented": {
+    "description": "launch plume photographed in a 2.5 s exposure, backlit by the setting Sun, with the first-stage plume on the right and the upper stage at the apex of the plume toward the left",
+    "quantitative": false
+   },
+   "uncertainty": {
+    "azimuth_deg": null,
+    "basis": "no bearing or range is published, so this observation is used qualitatively only"
+   },
+   "source": {
+    "citation": "NASA Astronomy Picture of the Day, 24 December 2017, image credit Craig Bobchin",
+    "url": "https://apod.nasa.gov/apod/ap171224.html",
+    "licence": "NASA APOD text; image rights with the photographer"
+   }
+  }
+ ],
+ "anchors": [
+  {
+   "id": "gcat-2018-076",
+   "mission": "SAOCOM 1A",
+   "kind": "achieved orbit",
+   "value": {
+    "perigeeKm": 615,
+    "apogeeKm": 634,
+    "inclinationDeg": 97.9,
+    "launch_utc": "2018-10-08"
+   },
+   "source": "GCAT satcat 2018-076A",
+   "licence": "CC-BY-4.0 (J. McDowell, planet4589.org/space/gcat)"
+  },
+  {
+   "id": "gcat-2017-083",
+   "mission": "Iridium NEXT 4",
+   "kind": "achieved orbit",
+   "value": {
+    "perigeeKm": 610,
+    "apogeeKm": 626,
+    "inclinationDeg": 86.69,
+    "launch_utc": "2017-12-23"
+   },
+   "source": "GCAT satcat 2017-083A..K",
+   "licence": "CC-BY-4.0"
+  },
+  {
+   "id": "gcat-2018-017",
+   "mission": "Falcon Heavy Demo 1",
+   "kind": "achieved parking orbit",
+   "value": {
+    "perigeeKm": 180,
+    "apogeeKm": 6939,
+    "inclinationDeg": 29.02,
+    "launch_utc": "2018-02-06"
+   },
+   "source": "GCAT satcat 2018-017A",
+   "licence": "CC-BY-4.0"
+  },
+  {
+   "id": "presskit-saocom1a",
+   "mission": "SAOCOM 1A",
+   "kind": "published mission timeline",
+   "value": {
+    "meco_t": 140,
+    "meco_altitude_m": 86000,
+    "ses1_t": 151,
+    "ses1_altitude_m": 88000,
+    "seco1_t": 607,
+    "seco1_altitude_m": 625000,
+    "launch_azimuth_deg": 199
+   },
+   "source": "SpaceX SAOCOM 1A press kit, via the Oberg review draft; the original URL is dead and the document survives only in the Internet Archive",
+   "licence": "SpaceX copyright; cited, not redistributed"
+  }
+ ],
+ "contradictions": [
+  {
+   "id": "saocom-meco-altitude",
+   "mission": "SAOCOM 1A",
+   "field": "altitude at main engine cutoff",
+   "values": [
+    {
+     "value_m": 86000,
+     "source": "presskit-saocom1a"
+    },
+    {
+     "value_m": 71100,
+     "source": "telemetry-data reconstruction at t=140 s"
+    }
+   ],
+   "relative_difference": -0.173,
+   "resolution": "unresolved",
+   "use": "the tests turn this into the altitude uncertainty band that bounds the elevation claim"
+  },
+  {
+   "id": "saocom-launch-azimuth",
+   "mission": "SAOCOM 1A",
+   "field": "launch azimuth",
+   "values": [
+    {
+     "value_deg": 199,
+     "source": "presskit-saocom1a, first-leg direction"
+    },
+    {
+     "value_deg": 189.6,
+     "source": "plane implied by the achieved 97.90 deg inclination"
+    }
+   ],
+   "resolution": "reported",
+   "use": "the geometry is approximate for this reason, and the module reports it instead of averaging"
+  },
+  {
+   "id": "iridium-terminal-state",
+   "mission": "Iridium NEXT 4",
+   "field": "state at second-stage cutoff",
+   "values": [
+    {
+     "value": "181.8 km at 7651 m/s",
+     "source": "telemetry-data reconstruction, final sample"
+    },
+    {
+     "value": "610 x 626 km orbit, insertion speed 7557 m/s by vis-viva",
+     "source": "gcat-2017-083"
+    }
+   ],
+   "resolution": "unresolved",
+   "use": "the reconstruction agrees with the achieved orbit in speed and disagrees in altitude, so it cannot be used for elevation without an altitude anchor"
+  },
+  {
+   "id": "falcon-heavy-terminal-state",
+   "mission": "Falcon Heavy Demo 1",
+   "field": "state at second-stage cutoff",
+   "values": [
+    {
+     "value": "178.7 km at 7390 m/s",
+     "source": "telemetry-data reconstruction, final sample"
+    },
+    {
+     "value": "180 x 6939 km parking orbit, perigee speed 9025 m/s by vis-viva",
+     "source": "gcat-2018-017"
+    }
+   ],
+   "resolution": "unresolved",
+   "use": "the reconstruction agrees with the achieved orbit in altitude and disagrees in speed: the opposite failure mode, which is why neither series is trusted without an anchor"
+  }
+ ]
+}

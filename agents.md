@@ -25,6 +25,13 @@ because of that rule; agents should read it explicitly (some tools discover only
   overhead-launches.js interprets schedules for the browser; pages-worker.mjs serves the feed and
   scripts/refresh-launches.mjs refreshes it on a schedule. Launch schedules never enter satellite or
   celestial scoring, and local visibility is always labelled unknown without flight geometry.
+- src/launches/launch-trajectory.mjs is the Phase 5A research prototype: ascent geometry and a five-level
+  evidence taxonomy, no DOM/storage/network, no ephemeris of its own and no import of the schedule engine.
+  Nothing in the product loads it; it must stay out of index.html, the worker and every score, and it may
+  never publish a brightness, plume-size, probability or visibility claim. Its fixtures come from
+  scripts/build-trajectory-fixtures.mjs (public-domain webcast transcriptions) and its inventory is
+  src/launches/trajectory-sources.json; see docs/launch-trajectory-feasibility.md. A profile whose values
+  are not anchored to an achieved orbit may support a direction, never an elevation.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.

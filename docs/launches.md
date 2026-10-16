@@ -226,3 +226,13 @@ pushed and no history rewritten. Test fixtures and browser fixtures never read t
 real launches fly. Only content-independent invariants (schema validity, provider credit, counts
 relative to the artifact itself) may be asserted against the live artifact.
 
+
+## Trajectory research (Phase 5A, nothing wired in)
+
+The scheduling boundary above is unchanged, and local visibility is still reported as unknown for every
+launch. What a future trajectory-aware layer would need, what public data actually exists for it, and how
+far the geometry can be taken honestly are recorded in
+[launch-trajectory-feasibility.md](launch-trajectory-feasibility.md), with the source and licensing
+inventory in [launch-trajectory-sources.md](launch-trajectory-sources.md). The prototype
+(`src/launches/launch-trajectory.mjs`) is research only: no product module, the Pages worker or
+`index.html` imports it, and the published feed gained no trajectory or visibility field.
