@@ -527,7 +527,7 @@ route propagation; persistent failures still fail. No scientific/application cha
       mission-specific ascent direction today. The one real investigation (USSF-481, Falcon 9, SLC-4E) is
       filed as an incomplete, rejected candidate with what is missing named; the launch calendar is unchanged
       and local visibility stays unknown. Nothing imports the contract and the deployment does not ship it.
-- [x] Test evidence: `npm test` exit 0 (25 suites), including the new `tests/launches-trajectory-audit.cjs`
+- [x] Test evidence: `npm test` exit 0 (24 suites), including the new `tests/launches-trajectory-audit.cjs`
       and `tests/launches-mission-direction.cjs`; `node tests/migration.cjs` exit 0 with the new staged-asset,
       index-digest and not-deployed assertions; browser suite 57 tests, 55 passed and the 2 opt-in live specs
       skipped, with the launches-explorer suite (9) passing on its own and the four new cases covering the

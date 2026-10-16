@@ -156,7 +156,7 @@ deployment does not ship it, and tests assert both.
 
 ## 7. Scientific regression results
 
-- `npm test`: 25 suites, all passing, including the two new ones and every 5A/5B suite unchanged. The 5A
+- `npm test`: 24 suites, all passing, including the two new ones and every 5A/5B suite unchanged. The 5A
   and 5B measured values that appear in their output are byte-identical to the pre-Phase-5C run
   (`libraryCoordinatesM 0.42`, `curvatureDifferenceDeg 3.13`, `padVersusDocumentedAzimuthDeg 15.4`,
   `worstPublishedSpeedPct 1.26`, `bestRejectedSpeedPct 4.78`), which is the evidence that extracting the
@@ -178,7 +178,7 @@ deployment does not ship it, and tests assert both.
   data bot's `fffbc1a` schedule refresh (fetched first, rebased, no force) and pushed to `origin/main`;
   `git fetch` afterwards confirmed `origin/main` contains HEAD.
 - **CI:** run [`38972609758`](https://github.com/hmarquardt/worthlookingup/actions/runs/38972609758)
-  (*validate and deploy*) finished **success** in 2m47s, running `npm test` (25 suites), the launch-feed
+  (*validate and deploy*) finished **success** in 2m47s, running `npm test` (24 suites), the launch-feed
   check, the Python precision test and both builders, the whole browser suite, `npm run build`, the
   Cloudflare Pages deploy and `node scripts/verify-production.mjs https://worthlookingup.com --wait`.
 - **Monthly audit, run by hand:** the workflow was dispatched with
