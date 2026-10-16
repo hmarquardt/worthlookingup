@@ -362,6 +362,90 @@ export function isStale(feed, now = Date.now()) {
   return age > limit;
 }
 
+/* ---- effective schedule content, and when a refresh is worth publishing -------------
+ *
+ * A successful hourly refresh always knows the provider's state at its own retrieval time, so the
+ * artifact's `generated_at` must stay accurate or the calendar would warn about a schedule that is
+ * in fact current. That freshness timestamp is volatile by nature, which means a naive comparison
+ * sees a change every hour even when the schedule itself did not move (measured: half of sixteen
+ * consecutive hourly refreshes carried identical schedule content).
+ *
+ * `effectiveScheduleDigest` therefore digests only what a reader can see: the normalized launch
+ * records and the declared window. Provenance and freshness fields (`generated_at`, the retrieval
+ * time, the upstream payload digest, page counts, the announced total and the derived stats) are
+ * excluded, so a refresh that learned nothing new compares equal.
+ */
+
+/* One reader-visible launch record, with keys in a fixed order so the digest cannot depend on
+   upstream key order. Nothing is invented: absent values stay absent. */
+function effectiveRecord(record) {
+  if (!record || typeof record !== 'object') return record ?? null;
+  const precision = record.precision || {};
+  const status = record.status || {};
+  const site = record.site || {};
+  const pad = record.pad || null;
+  return {
+    id: record.id ?? null,
+    name: record.name ?? null,
+    mission: record.mission ?? null,
+    mission_type: record.mission_type ?? null,
+    orbit: record.orbit ?? null,
+    vehicle: record.vehicle ?? null,
+    provider: record.provider ?? null,
+    net: record.net ?? null,
+    precision: { kind: precision.kind ?? null, exact: !!precision.exact, dated: !!precision.dated },
+    status: { kind: status.kind ?? null, name: status.name ?? null },
+    site: { name: site.name ?? null, timezone: site.timezone ?? null, country: site.country ?? null },
+    pad: pad ? { name: pad.name ?? null, latitude: pad.latitude ?? null, longitude: pad.longitude ?? null } : null,
+    window: record.window ? { start: record.window.start ?? null, end: record.window.end ?? null } : null,
+    last_updated: record.last_updated ?? null,
+    change: record.change ? { kind: record.change.kind ?? null, delta_minutes: record.change.delta_minutes ?? null, previous_net: record.change.previous_net ?? null, previous_status: record.change.previous_status ?? null } : null,
+    links: {
+      info: (record.links && record.links.info || []).map(link => ({ url: (link && link.url) ?? null, title: (link && link.title) ?? null })),
+      webcast: (record.links && record.links.webcast || []).map(link => ({ url: (link && link.url) ?? null, title: (link && link.title) ?? null }))
+    }
+  };
+}
+
+/* A stable, comparable digest of the reader-visible schedule. Deterministic for identical input. */
+export function effectiveScheduleDigest(feed) {
+  if (!feed || !Array.isArray(feed.launches)) return null;
+  const records = feed.launches.map(effectiveRecord)
+    .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  const payload = JSON.stringify({
+    schema: feed.schema ?? null,
+    window_days: (feed.stats && feed.stats.window_days) ?? null,
+    launches: records
+  });
+  let hash = 5381;
+  for (let i = 0; i < payload.length; i += 1) hash = ((hash * 33) ^ payload.charCodeAt(i)) >>> 0;
+  return hash.toString(16).padStart(8, '0') + '-' + payload.length.toString(16);
+}
+
+/* Should a freshly retrieved candidate replace the committed artifact?
+ *  - the schedule itself changed            -> always publish
+ *  - unchanged, but the committed copy is at or past the freshness deadline -> publish, so the
+ *    deployed artifact never approaches the 180-minute staleness horizon
+ *  - unchanged and still comfortably fresh  -> do not write, so an identical schedule does not create
+ *    a commit or a deployment
+ *  - no usable previous artifact            -> always publish
+ * A missing or unreadable previous generation time is treated as "past the deadline", so the
+ * fail-closed path is always to publish rather than to defer. */
+export function publishDecision({ previous = null, candidate = null, now = Date.now(), freshnessDeadlineMinutes = 120 } = {}) {
+  const previousDigest = effectiveScheduleDigest(previous);
+  const candidateDigest = effectiveScheduleDigest(candidate);
+  if (candidateDigest === null) return { publish: true, contentChanged: true, previousAgeMinutes: null, reason: 'no candidate schedule was built' };
+  if (previousDigest === null || !previous) return { publish: true, contentChanged: true, previousAgeMinutes: null, reason: 'no previous artifact to compare against' };
+  const contentChanged = previousDigest !== candidateDigest;
+  const previousAgeMinutes = feedAgeMinutes(previous, now);
+  const deadline = Number.isFinite(freshnessDeadlineMinutes) ? freshnessDeadlineMinutes : 120;
+  if (contentChanged) return { publish: true, contentChanged: true, previousAgeMinutes, reason: 'the published schedule changed' };
+  if (previousAgeMinutes === null || previousAgeMinutes >= deadline) {
+    return { publish: true, contentChanged: false, previousAgeMinutes, reason: 'the schedule is unchanged but its published freshness is at or past the ' + deadline + '-minute deadline' };
+  }
+  return { publish: false, contentChanged: false, previousAgeMinutes, reason: 'the schedule is unchanged and the published copy is ' + Math.round(previousAgeMinutes) + ' minutes old' };
+}
+
 export function upstreamWindow(now, windowDays) {
   return { start: new Date(now - 36 * 3600000).toISOString(), end: new Date(now + windowDays * 86400000).toISOString() };
 }

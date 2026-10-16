@@ -4,22 +4,54 @@
  * (.github/workflows/launches-data.yml), never in a visitor's browser, and it publishes exactly one
  * artifact: data/launches/upcoming.json, the normalized public feed.
  *
- *   node scripts/refresh-launches.mjs             fetch upstream and publish if it validates
+ *   node scripts/refresh-launches.mjs             fetch upstream and publish when it is worth publishing
  *   node scripts/refresh-launches.mjs --check     validate the committed artifact offline (no network)
  *   node scripts/refresh-launches.mjs --no-network  alias for --check, matching the Python builders
  *
  * A failed or invalid retrieval leaves the previous artifact exactly as it was and exits non-zero, so
  * the site keeps serving the last good schedule instead of an empty or invented one.
+ *
+ * A successful retrieval that learned nothing new does not rewrite the artifact while the published
+ * copy is still comfortably fresh (see publishDecision in the engine). That keeps the deployed
+ * `generated_at` accurate without creating a commit and a deployment for an unchanged schedule; the
+ * artifact is always republished once the freshness deadline is reached. `--force-publish` (or
+ * LAUNCH_FORCE_PUBLISH=1) always writes, which is what a manual verification run uses.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { FEED_SCHEMA, MAX_LAUNCHES, PROVIDER, REFRESH_INTERVAL_MINUTES, STALE_AFTER_MINUTES, assertValidFeed, buildFeed, feedStats, fetchUpstreamLaunches, mergeFeeds, validateFeed } from '../src/launches/launch-feed.mjs';
+import { FEED_SCHEMA, MAX_LAUNCHES, PROVIDER, REFRESH_INTERVAL_MINUTES, STALE_AFTER_MINUTES, assertValidFeed, buildFeed, feedStats, fetchUpstreamLaunches, mergeFeeds, publishDecision, validateFeed } from '../src/launches/launch-feed.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const artifact = path.join(root, 'data/launches/upcoming.json');
 const WINDOW_DAYS = 180;
 const MAX_PAGES = 3;
+/* Republish an unchanged schedule before its published age can approach STALE_AFTER_MINUTES, so the
+   deployed copy never looks stale to a reader or forces the Cloudflare endpoint to spend its own
+   provider allowance on routine freshness. */
+const DEFAULT_FRESHNESS_DEADLINE_MINUTES = 120;
+
+function argumentValue(name) {
+  const inline = process.argv.find(value => value.startsWith('--' + name + '='));
+  if (inline) return inline.slice(name.length + 3);
+  const index = process.argv.indexOf('--' + name);
+  return index >= 0 ? process.argv[index + 1] : null;
+}
+
+function freshnessDeadlineMinutes() {
+  const raw = argumentValue('freshness-deadline-minutes');
+  const parsed = Number.parseInt(String(raw ?? ''), 10);
+  const value = Number.isFinite(parsed) ? parsed : DEFAULT_FRESHNESS_DEADLINE_MINUTES;
+  if (!(value > 0) || value >= STALE_AFTER_MINUTES) {
+    console.error('FAIL: the freshness deadline must be a positive number of minutes below the ' + STALE_AFTER_MINUTES + '-minute staleness horizon (received ' + String(raw) + ').');
+    process.exit(2);
+  }
+  return value;
+}
+
+function forcePublish() {
+  return process.argv.includes('--force-publish') || ['1', 'true', 'yes'].includes(String(process.env.LAUNCH_FORCE_PUBLISH || '').toLowerCase());
+}
 
 function readPrevious() {
   try {
@@ -51,6 +83,7 @@ function check() {
 async function refresh() {
   const previous = readPrevious();
   const now = Date.now();
+  const deadline = freshnessDeadlineMinutes();
   let upstream;
   try {
     upstream = await fetchUpstreamLaunches({ now, windowDays: WINDOW_DAYS, maxPages: MAX_PAGES });
@@ -73,17 +106,27 @@ async function refresh() {
     process.exit(1);
   }
   assertValidFeed(feed);
+  const decision = publishDecision({ previous, candidate: feed, now, freshnessDeadlineMinutes: deadline });
+  const changes = feed.launches.filter(record => record.change).length;
+  console.log('RETRIEVED: ' + feed.launches.length + ' launches (' + merged.fresh + ' refreshed, ' + merged.kept
+    + ' kept from the previous feed, ' + changes + ' schedule change(s) detected) from ' + PROVIDER.name + ' '
+    + PROVIDER.api_version + ' in ' + upstream.source.pages + ' request(s); upstream total '
+    + String(upstream.source.count) + ', announced overall ' + String(upstream.source.announced_total) + '.');
+  console.log('      ' + decision.reason + '; publishing: ' + ((decision.publish || forcePublish()) ? 'yes' : 'no')
+    + ' (freshness deadline ' + deadline + ' minutes, staleness horizon ' + STALE_AFTER_MINUTES + ' minutes).');
+  if (!decision.publish && !forcePublish()) {
+    console.log('DEFERRED: the artifact was not rewritten because the schedule is unchanged and the published copy is '
+      + Math.round(decision.previousAgeMinutes ?? 0) + ' minutes old. No commit or deployment is created, and the '
+      + 'current artifact is left exactly as it is. It will be republished once it reaches ' + deadline + ' minutes.');
+    return;
+  }
   const serialized = JSON.stringify(feed, null, 1) + '\n';
   const temporary = artifact + '.tmp';
   fs.mkdirSync(path.dirname(artifact), { recursive: true });
   fs.writeFileSync(temporary, serialized);
   fs.renameSync(temporary, artifact);
-  const changes = feed.launches.filter(record => record.change).length;
-  console.log('PASS: published ' + feed.launches.length + ' launches (' + merged.fresh + ' refreshed, ' + merged.kept
-    + ' kept from the previous feed, ' + changes + ' schedule change(s) detected) from ' + PROVIDER.name + ' '
-    + PROVIDER.api_version + ' in ' + upstream.source.pages + ' request(s); upstream total '
-    + String(upstream.source.count) + ', announced overall ' + String(upstream.source.announced_total) + '.');
-  console.log('      ' + path.relative(root, artifact) + ' written atomically; ' + Buffer.byteLength(serialized)
+  console.log('PASS: ' + (decision.contentChanged ? 'published the changed schedule' : 'republished the unchanged schedule for freshness')
+    + ' to ' + path.relative(root, artifact) + ' atomically; ' + Buffer.byteLength(serialized)
     + ' bytes; sha256 ' + String(upstream.source.sha256 || 'unavailable').slice(0, 16) + '\u2026 of the upstream payload.');
 }
 

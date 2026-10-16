@@ -13,7 +13,7 @@ function response(body,{status=200,ok=true}={}){return {ok,status,json:async()=>
 
 (async()=>{
 await load;
-const {normalizeLaunch,precisionFor,statusFor,dedupeLaunches,buildFeed,validateFeed,assertValidFeed,feedAgeMinutes,isStale,unavailableFeed,scheduleChange,mergeFeeds,feedStats,fetchUpstreamLaunches,staleReason,FEED_SCHEMA,PROVIDER,MAX_LAUNCHES}=engine;
+const {normalizeLaunch,precisionFor,statusFor,dedupeLaunches,buildFeed,validateFeed,assertValidFeed,feedAgeMinutes,isStale,unavailableFeed,scheduleChange,mergeFeeds,feedStats,fetchUpstreamLaunches,staleReason,effectiveScheduleDigest,publishDecision,FEED_SCHEMA,PROVIDER,MAX_LAUNCHES}=engine;
 
 // 1. The committed artifact is a valid, non-empty, credited feed with a stable schema.
 assert.equal(feed.schema,REAL_SCHEMA,'committed feed schema');
@@ -207,5 +207,37 @@ assert.equal(mergeFeeds([],stalePast,{now:NOW}).records.length,0,"a long-past sc
 assert.equal(mergeFeeds([],{launches:[]},{now:NOW}).records.length,0,"merging an empty previous feed yields nothing");
 assert.equal(mergeFeeds([],null,{now:NOW}).records.length,0,"merging without a previous feed yields nothing");
 
-console.log('PASS: launch feed artifact, normalization, precision, statuses, duplicates, schedule changes, validation, empty/stale/unavailable feeds and provider failure codes ('+feed.launches.length+' committed launches).');
+// 12. Freshness compared against effective schedule content.
+//     The freshness timestamp is volatile by design, so a naive comparison would republish every hour
+//     even when the schedule did not move. These checks pin both halves of that rule: an otherwise
+//     identical feed is recognised as unchanged, and any reader-visible difference is not.
+const digestBase=buildFeed({records:fixture.records,now:NOW,upstream:{records:fixture.records.length},strict:false});
+const laterFreshness={...digestBase,generated_at:new Date(NOW+3600000).toISOString(),
+  source:{...digestBase.source,retrieved_at:new Date(NOW+3600000).toISOString(),sha256:'f'.repeat(64),pages:3}};
+assert.equal(effectiveScheduleDigest(laterFreshness),effectiveScheduleDigest(digestBase),'freshness, provenance and page counts are not schedule content');
+assert.equal(effectiveScheduleDigest({...digestBase,launches:digestBase.launches.slice().reverse()}),effectiveScheduleDigest(digestBase),'record order is not schedule content');
+const statusMoved={...digestBase,launches:digestBase.launches.map(record=>record.id===digestBase.launches[0].id?{...record,status:{...record.status,kind:'success',name:'Launch Successful'}}:record)};
+assert.notEqual(effectiveScheduleDigest(statusMoved),effectiveScheduleDigest(digestBase),'a status change is schedule content');
+const netMoved={...digestBase,launches:digestBase.launches.map(record=>record.id===digestBase.launches[0].id?{...record,net:'2026-11-01T00:00:00.000Z'}:record)};
+assert.notEqual(effectiveScheduleDigest(netMoved),effectiveScheduleDigest(digestBase),'a moved schedule is schedule content');
+assert.equal(effectiveScheduleDigest(null),null);assert.equal(effectiveScheduleDigest({}),null,'a feed without a launch list has no digest');
+// The publish decision: changed content always publishes; unchanged content defers only while the
+// published copy is comfortably inside the staleness horizon, and publishes once it is not.
+const changedDecision=publishDecision({previous:digestBase,candidate:netMoved,now:NOW,freshnessDeadlineMinutes:120});
+assert.equal(changedDecision.publish,true);assert.equal(changedDecision.contentChanged,true);
+const freshUnchanged=publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+3600000,freshnessDeadlineMinutes:120});
+assert.equal(freshUnchanged.publish,false,'an unchanged schedule inside the deadline is not republished');
+assert.equal(freshUnchanged.contentChanged,false);
+const dueUnchanged=publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+120*60000,freshnessDeadlineMinutes:120});
+assert.equal(dueUnchanged.publish,true,'an unchanged schedule at the deadline is republished for freshness');
+assert.equal(dueUnchanged.contentChanged,false);
+const overdueUnchanged=publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+240*60000,freshnessDeadlineMinutes:120});
+assert.equal(overdueUnchanged.publish,true,'an unchanged schedule past the deadline is republished');
+assert.equal(publishDecision({previous:null,candidate:digestBase,now:NOW}).publish,true,'the first publication always writes');
+assert.equal(publishDecision({previous:digestBase,candidate:null,now:NOW}).publish,true,'no candidate always writes');
+assert.equal(publishDecision({previous:{schema:FEED_SCHEMA,generated_at:'not a date',launches:[]},candidate:digestBase,now:NOW}).publish,true,'an unreadable previous generation time always publishes');
+assert.equal(publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000}).publish,false,'the default deadline is 120 minutes');
+assert.equal(publishDecision({previous:digestBase,candidate:laterFreshness,now:NOW+30*60000,freshnessDeadlineMinutes:180}).publish,false,'a longer deadline is still bounded by the staleness horizon in the caller');
+
+console.log('PASS: launch feed artifact, normalization, precision, statuses, duplicates, schedule changes, validation, empty/stale/unavailable feeds, provider failure codes and the effective-content publication rule ('+feed.launches.length+' committed launches).');
 })().catch(error=>{console.error(error);process.exit(1);});
