@@ -60,8 +60,32 @@ navigation, dialog dismissal and Back to discovery verified. No formal assistive
 - Production verifier now also checks the exact deployed discovery module bytes.
 
 ## Production evidence
-Implementation commit, Actions/Pages deployment, independent strict production checks and live
-screenshots will be recorded here and in migration-status.md after release.
+Implementation commit `ddb1f3726a7c1871d8a89a83e5063cc7c43f885c` pushed normally to main;
+post-push fetch and git-sync verification confirmed origin/main contains it. The hourly bot's
+06a366a, a0aac3c and 8bcaee6 feed updates were preserved by a safe fast-forward before commit.
+
+[Actions run 38828769307](https://github.com/hmarquardt/worthlookingup/actions/runs/38828769307)
+passed full validation (39 browser passes, 2 intentional live-provider skips), artifact packaging,
+Cloudflare publication and strict deployed-content verification. Pages deployment:
+https://e67c2dd3.worthlookingup.pages.dev. Canonical https://worthlookingup.com/.
+
+Independent production verifier passed exact HTML/release/adapter/photo bytes, unchanged scientific
+hashes, workers/data, branding/transfer/analytics, real 404 and all ten host/path/query redirect chains.
+Independent feed check at 2026-10-16T00:25:00Z: 148 launches, generated 2026-10-15T23:41:02Z,
+served_from=committed-feed, stale=false. Hourly scheduled ingestion and infrastructure were unchanged.
+
+Live Chrome at 390/1280: local photo loaded, no page errors, no same-origin 4xx/5xx, no horizontal
+overflow. Six real active intervals: 264px collapsed mobile / 221px desktop. Explicit guide construction
+retained satellites, planets, meteors and comets; the upcoming list had category variety. A celestial
+opportunity opened its exact source card, Back to discovery worked, stored preferences stayed equal,
+and preview launch navigation opened its source category. Minute, second and year schedules all
+retained unknown local visibility. Actual source caveats stayed visible/expandable.
+
+Production screenshots: [mobile](screenshots/phase3/production-mobile.png),
+[desktop](screenshots/phase3/production-desktop.png),
+[expanded guide](screenshots/phase3/production-guide-mobile.png),
+[light guide](screenshots/phase3/production-guide-light-mobile.png). Expanded views intentionally
+show more detail than the compact defaults. Final evidence-only commit changes no application assets.
 
 ## Limits and next task
 A fresh page initially knows only existing satellite calculations; full category coverage is explicit

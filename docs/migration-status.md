@@ -219,3 +219,22 @@ route propagation; persistent failures still fail. No scientific/application cha
   1052px expanded. Initial provider calls unchanged; one new local 7KB module request only.
 - Next: synchronize with hourly bot, commit/push, verify full Actions/Pages deployment and strict
   production content, navigation, source freshness, workers, redirects and imagery; record evidence.
+
+### Phase 3 production acceptance completed
+- Deployed implementation ddb1f3726a7c1871d8a89a83e5063cc7c43f885c pushed normally and verified on
+  origin/main. All three newer hourly bot commits preserved before release; no force/reset/stash.
+- https://github.com/hmarquardt/worthlookingup/actions/runs/38828769307 passed validation and deploy.
+  CI browser 39 passed/2 intentional live skips. Deployment https://e67c2dd3.worthlookingup.pages.dev.
+- Independent strict production verification passed release HTML, exact adapter/photo bytes,
+  scientific source hashes, workers/data, analytics/transfer, real 404 and ten redirect chains.
+- Production Chrome 390/1280: no page errors, same-origin HTTP errors or overflow; real photos,
+  orbital/weather results and six active intervals in compact 264px/221px panels. All four local
+  guide categories loaded, chronological/varied previews appeared, celestial source navigation and
+  Back worked, stored preferences were unchanged, launch preview navigation and unknown visibility
+  remained correct for exact and year schedules. Screenshots under docs/screenshots/phase3.
+- Fresh committed launch feed independently checked 2026-10-16T00:25Z: 148 launches, generated
+  2026-10-15T23:41Z, stale=false. Hourly ingestion unchanged; no new service/KV/DNS or credentials.
+- Contracts and evidence in discovery.md, phase-3-release.md and phase-3-measurements.json.
+- Final evidence-only commit uses [skip ci] and changes no deployed application assets.
+- No remaining release blocker. Next: explicit calendar export with honest windows/timezones and
+  update semantics; retain approximate periods for launch schedules without exact dates.
