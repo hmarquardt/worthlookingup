@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-16T11:43:48.962Z",
+ "generated_at": "2026-10-16T12:53:07.574Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-16T11:43:48.962Z",
-  "sha256": "3d98a92b4267276c3074ef18b73e520f4527c2777e7b7d86fa4d54aa4088f524",
+  "retrieved_at": "2026-10-16T12:53:07.574Z",
+  "sha256": "8769cfb07e5eb51a1c9ff4a43661f56285a8b8f494251247625d71a630d13b75",
   "pages": 2,
   "upstream_count": 147,
   "upstream_records": 147,
@@ -30,8 +30,8 @@
   "count": 148,
   "by_status": {
    "success": 1,
-   "scheduled": 5,
-   "unconfirmed": 142
+   "scheduled": 6,
+   "unconfirmed": 141
   },
   "by_precision": {
    "second": 2,
@@ -145,7 +145,7 @@
     "start": "2026-10-19T10:30:00.000Z",
     "end": "2026-10-19T11:30:00.000Z"
    },
-   "last_updated": "2026-10-13T17:28:28.000Z",
+   "last_updated": "2026-10-16T12:08:39.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3b430f81-0ff1-4d85-8a1a-cef0de326198/",
     "info": [],
@@ -195,7 +195,7 @@
     "start": "2026-10-19T19:41:03.000Z",
     "end": "2026-10-19T19:41:03.000Z"
    },
-   "last_updated": "2026-10-10T06:02:48.000Z",
+   "last_updated": "2026-10-16T11:53:14.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/69ebbcd2-b257-4070-9ef9-21e7d1f8a883/",
     "info": [],
@@ -376,13 +376,13 @@
     "longitude": 110.930753
    },
    "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
-   "net": "2026-10-22T02:00:00.000Z",
+   "net": "2026-10-22T02:57:00.000Z",
    "precision": {
     "kind": "hour",
     "exact": true,
@@ -392,16 +392,22 @@
     "name": "Hour"
    },
    "window": {
-    "start": "2026-10-22T02:00:00.000Z",
-    "end": "2026-10-22T05:00:00.000Z"
+    "start": "2026-10-22T02:50:00.000Z",
+    "end": "2026-10-22T03:15:00.000Z"
    },
-   "last_updated": "2026-10-15T21:06:29.000Z",
+   "last_updated": "2026-10-16T11:48:38.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6b95bcc8-1f88-4539-84fe-f63630138766/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-22T02:00:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": 57,
+    "detected_at": "2026-10-16T12:53:07.574Z"
+   }
   },
   {
    "id": "3621085f-deae-4f89-bd54-c0f96ee44421",
