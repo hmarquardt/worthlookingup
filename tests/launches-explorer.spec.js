@@ -55,7 +55,7 @@ function serve(){
   return server;
 }
 
-async function boot(page,{artifact=null}={}){
+async function boot(page,{artifact=null,index=null,indexMissing=false,review=undefined}={}){
   const server=serve();
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
   const origin='http://127.0.0.1:'+server.address().port;
@@ -71,9 +71,19 @@ async function boot(page,{artifact=null}={}){
     if(!artifact)return route.continue();
     route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(artifact)});
   });
+  await page.route('**/data/launches/trajectory-pad-index.json',route=>{
+    if(indexMissing)return route.fulfill({status:404,body:'missing'});
+    if(!index)return route.continue();
+    route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(index)});
+  });
+  await page.route('**/data/launches/trajectory-review.json',route=>{
+    if(review===undefined)return route.continue();
+    if(review===null)return route.fulfill({status:404,body:'missing'});
+    route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(review)});
+  });
   await page.clock.setFixedTime(new Date(NOW));
   await page.goto(origin+'/index.html');
-  await page.waitForFunction(()=>window.__OVERHEAD_TEST__&&!__OVERHEAD_TEST__.state.busy,null,{timeout:60000});
+  await page.waitForFunction(()=>window.__OVERHEAD_TEST__&&!window.__OVERHEAD_TEST__.state.busy,null,{timeout:60000});
   return {errors,requests,origin,close:()=>{server.closeAllConnections?.();return new Promise(resolve=>server.close(resolve));}};
 }
 
@@ -223,6 +233,91 @@ test('an artifact that awards itself an elevation its gates did not pass is refu
     await expect(page.locator('#ascent-body')).toContainText('could not be loaded');
     await expect(page.locator('#ascent-body')).toContainText('did not validate');
     await expect(page.locator('#ascent-body .ascent-panel')).toHaveCount(0);
+  }finally{await harness.close();}
+});
+
+
+test('the launch calendar draws its pad line from the compact index and never loads the evidence module',async({page})=>{
+  const harness=await boot(page);
+  try{
+    await page.getByRole('tab',{name:'ROCKET LAUNCHES'}).click();
+    await page.waitForFunction(()=>['ready','error','unavailable'].includes(window.__OVERHEAD_TEST__.launches.status),null,{timeout:30000});
+    await page.locator('[data-horizon="extended"]').click();
+    await expect(page.locator("[data-pad-geometry='vandenberg-exact']")).toBeVisible();
+    await expect(page.locator("[data-pad-geometry='vandenberg-exact']")).toContainText('Launch pad direction');
+
+    const fetched=harness.requests;
+    expect(fetched.some(url=>/launch-geodesy\.mjs/.test(url))).toBe(true);
+    expect(fetched.some(url=>/launch-pad-index\.mjs/.test(url))).toBe(true);
+    expect(fetched.some(url=>/data\/launches\/trajectory-pad-index\.json/.test(url))).toBe(true);
+    // The 79 KB evidence module and the 47 KB profile artifact must not be fetched for this.
+    expect(fetched.filter(url=>/launch-trajectory\.mjs/.test(url))).toHaveLength(0);
+    expect(fetched.filter(url=>/data\/launches\/trajectory-profiles\.json/.test(url))).toHaveLength(0);
+
+    // Switching categories and coming back must not refetch what is already loaded.
+    await page.getByRole('tab',{name:'SATELLITES'}).click();
+    await page.getByRole('tab',{name:'ROCKET LAUNCHES'}).click();
+    await page.waitForTimeout(600);
+    expect(harness.requests.filter(url=>/data\/launches\/trajectory-pad-index\.json/.test(url))).toHaveLength(1);
+    expect(harness.requests.filter(url=>/launch-geodesy\.mjs/.test(url))).toHaveLength(1);
+    expect(harness.requests.filter(url=>/launch-trajectory\.mjs/.test(url))).toHaveLength(0);
+    expect(harness.errors).toEqual([]);
+  }finally{await harness.close();}
+});
+
+test('a missing pad index removes the historical link and keeps the pad line, with no errors',async({page})=>{
+  const harness=await boot(page,{indexMissing:true});
+  try{
+    await page.getByRole('tab',{name:'ROCKET LAUNCHES'}).click();
+    await page.waitForFunction(()=>['ready','error','unavailable'].includes(window.__OVERHEAD_TEST__.launches.status),null,{timeout:30000});
+    await page.locator('[data-horizon="extended"]').click();
+    const line=page.locator("[data-pad-geometry='vandenberg-exact']");
+    await expect(line).toBeVisible();
+    await expect(line).toContainText('Launch pad direction');
+    await expect(line).toContainText("not the rocket's path");
+    await expect(line.locator('[data-ascent-open]')).toHaveCount(0);
+    // The panel still works from the artifact alone; the index only ever drove the link.
+    await openPanel(page);
+    await expect(page.locator('#ascent-flight option')).toHaveCount(3);
+    await expect(page.locator('#ascent-body svg.ascent-chart')).toBeVisible();
+    expect(harness.errors).toEqual([]);
+  }finally{await harness.close();}
+});
+
+test('an evidence review withholds the elevation while the recorded gates still say they passed',async({page})=>{
+  const review={schema:'worthlookingup.trajectory-review/1',reviewed_utc:'2026-10-16',entries:[{
+    id:'formosat-5-2017-049',action:'suppress-elevation',since:'2026-10-16',
+    reason:'the catalogue orbit for this anchor was revised and the terminal gate is being re-checked',
+    evidence:'tests inject this record; see docs/trajectory-audit.md',
+  }]};
+  const harness=await boot(page,{review});
+  try{
+    await openPanel(page);
+    await page.locator('#ascent-flight').selectOption('formosat-5-2017-049');
+    const body=page.locator('#ascent-body');
+    await expect(body).toContainText('Output suspended pending evidence review');
+    await expect(body).toContainText('the terminal gate is being re-checked');
+    await expect(body.locator('svg.ascent-sector')).toBeVisible();
+    await expect(body.locator('svg.ascent-chart')).toHaveCount(0);
+    await expect(body.locator('.ascent-steps')).toHaveCount(0);
+    // The recorded gate result is still shown as it was recorded, next to the suspension.
+    await expect(body).toContainText('Terminal state');
+    await expect(page.locator('#ascent-status')).toContainText('suspends what it may show');
+    await expect(page.locator('#ascent-status')).toContainText('passed both anchoring gates');
+    expect(harness.errors).toEqual([]);
+  }finally{await harness.close();}
+});
+
+test('a stale pad index is reported in the panel but never changes what is shown',async({page})=>{
+  const stale=JSON.parse(fs.readFileSync(path.resolve('data/launches/trajectory-pad-index.json'),'utf8'));
+  stale.artifact_digest='0'.repeat(64);
+  const harness=await boot(page,{index:stale});
+  try{
+    await openPanel(page);
+    await expect(page.locator('#ascent-body svg.ascent-chart')).toBeVisible();
+    await expect(page.locator('#ascent-status')).toContainText('built from a different revision');
+    await expect(page.locator('#ascent-status')).toContainText('passed both anchoring gates');
+    expect(harness.errors).toEqual([]);
   }finally{await harness.close();}
 });
 

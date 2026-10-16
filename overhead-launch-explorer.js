@@ -15,13 +15,19 @@
 
   var MODULE_PATH = "src/launches/launch-trajectory.mjs";
   var ARTIFACT_PATH = "data/launches/trajectory-profiles.json";
-  var pending = null;
+  var REVIEW_PATH = "data/launches/trajectory-review.json";
+  var GEODESY_PATH = "src/launches/launch-geodesy.mjs";
+  var PAD_INDEX_PATH = "src/launches/launch-pad-index.mjs";
+  var PAD_INDEX_DATA_PATH = "data/launches/trajectory-pad-index.json";
+  var pending = null, pendingCard = null;
 
-  // Both are resolved against the document base: a specifier like "src/x.mjs" would be read as a bare
-  // module specifier and refused, and resolving here keeps the panel working when the site is served
-  // from anywhere other than the domain root.
-  var moduleUrl = function () { return new URL(MODULE_PATH, document.baseURI).href; };
-  var artifactUrl = function () { return new URL(ARTIFACT_PATH, document.baseURI).href; };
+  // Every path is resolved against the document base: a specifier like "src/x.mjs" would be read as a
+  // bare module specifier and refused, and resolving here keeps the panel working when the site is
+  // served from anywhere other than the domain root.
+  var at = function (path) { return new URL(path, document.baseURI).href; };
+  var moduleUrl = function () { return at(MODULE_PATH); };
+  var artifactUrl = function () { return at(ARTIFACT_PATH); };
+  var servesModules = function () { return /^https?:$/.test(window.location.protocol); };
 
   var esc = function (value) {
     return String(value === undefined || value === null ? "" : value)
@@ -41,22 +47,64 @@
   };
 
   // The geometry module and the published artifact, fetched once and shared by every caller.
+  // The launch-card path: the small geodesy module and the compact index, nothing else. This is what the
+  // launch category needs to draw one pad-direction line and to know whether a pad has a reviewed
+  // profile; the evidence module and the profile artifact stay untouched until a reader opens the
+  // historical panel. The index is optional: a missing or invalid one removes the historical link and
+  // leaves the pad line, which needs only the geodesy.
+  function ensureCardData() {
+    if (!pendingCard) {
+      // A module import and a fetch both need a real origin. A file:// page can load neither, and
+      // attempting it would only produce a cross-origin console error in someone's browser, so the
+      // refusal is explicit and the interface explains itself instead.
+      if (!servesModules()) {
+        return Promise.reject(new Error("the ascent geometry needs the site to be served over http or https"));
+      }
+      pendingCard = Promise.all([
+        import(at(GEODESY_PATH)),
+        import(at(PAD_INDEX_PATH)).catch(function () { return null; }),
+        fetch(at(PAD_INDEX_DATA_PATH), { cache: "no-cache" })
+          .then(function (response) { return response.ok ? response.json() : null; })
+          .catch(function () { return null; }),
+      ]).then(function (loaded) {
+        var geodesy = loaded[0], padIndex = loaded[1], index = loaded[2];
+        var usable = null;
+        if (padIndex && index && padIndex.validatePadIndex(index).ok) usable = index;
+        return { geodesy: geodesy, padIndex: padIndex, index: usable, indexUnavailable: usable === null };
+      });
+    }
+    return pendingCard;
+  }
+
+  // The explorer path: the full module, the published artifact and the review record. The review record
+  // is optional and its absence is reported rather than assumed safe.
   function ensureData() {
     if (!pending) {
-      // Both the module import and the artifact fetch need a real origin. A file:// page can load
-      // neither, and attempting it would only produce a cross-origin console error in someone's browser,
-      // so the refusal is explicit and the panel explains itself instead.
-      if (!/^https?:$/.test(window.location.protocol)) {
+      if (!servesModules()) {
         return Promise.reject(new Error("the ascent panel needs the site to be served over http or https"));
       }
       pending = import(moduleUrl()).then(function (module) {
-        return fetch(artifactUrl(), { cache: "no-cache" }).then(function (response) {
-          if (!response.ok) throw new Error("profile artifact unavailable (" + response.status + ")");
-          return response.json().then(function (artifact) {
-            var validation = module.validateProfileArtifact(artifact);
-            if (!validation.ok) throw new Error("profile artifact did not validate: " + validation.errors.slice(0, 3).join("; "));
-            return { module: module, artifact: artifact };
-          });
+        return Promise.all([
+          fetch(artifactUrl(), { cache: "no-cache" }).then(function (response) {
+            if (!response.ok) throw new Error("profile artifact unavailable (" + response.status + ")");
+            return response.text();
+          }),
+          fetch(at(REVIEW_PATH), { cache: "no-cache" }).then(function (response) {
+            return response.ok ? response.json() : null;
+          }).catch(function () { return null; }),
+        ]).then(function (loaded) {
+          var artifactText = loaded[0], review = loaded[1];
+          var artifact = JSON.parse(artifactText);
+          var validation = module.validateProfileArtifact(artifact);
+          if (!validation.ok) throw new Error("profile artifact did not validate: " + validation.errors.slice(0, 3).join("; "));
+          var reviewErrors = null;
+          if (review) {
+            var checked = module.validateReviewRecord(review);
+            reviewErrors = checked.ok ? null : checked.errors;
+          }
+          return { module: module, artifact: artifact, artifactText: artifactText,
+            review: review && !reviewErrors ? review : null,
+            reviewMissing: review === null, reviewErrors: reviewErrors };
         });
       }).catch(function (error) {
         pending = null;
@@ -347,19 +395,75 @@
     return ensureData().then(function (data) {
       var profile = data.artifact.profiles.find(function (entry) { return entry.id === flightSelect.value; });
       if (!profile) { body.innerHTML = '<p class="small warn">That profile is not in the published set.</p>'; return; }
-      var explored = data.module.exploreHistorical({ profile: profile, observer: observer, sun: sunSource(), stepS: null });
-      body.innerHTML = '<article class="ascent-panel">' + facts(explored, context) + directionSection(explored) +
-        geometrySection(explored) + illuminationSection(explored) + validationSection(explored) + "</article>";
+      var explored = data.module.exploreHistorical({ profile: profile, observer: observer, sun: sunSource(),
+        stepS: null, review: data.review });
+      body.innerHTML = '<article class="ascent-panel">' + reviewNotice(explored, data) + facts(explored, context) +
+        directionSection(explored) + geometrySection(explored) + illuminationSection(explored) +
+        validationSection(explored) + "</article>";
       if (status) {
-        status.textContent = explored.permissions && explored.permissions.elevation
-          ? "Reconstruction passed both anchoring gates: direction, elevation and timed geometry are shown."
-          : "Reconstruction is direction-only: its elevation and timed window are withheld.";
+        status.textContent = effectiveSummary(explored);
       }
+      // A stale index is a consistency signal, not a claim: it never changes what is shown, because the
+      // artifact is the only source of geometry, but it is worth saying out loud.
+      staleIndexNotice().then(function (notice) {
+        if (notice && status) status.textContent = effectiveSummary(explored) + " " + notice;
+      });
     }).catch(function (error) {
       body.innerHTML = '<p class="small warn">The reviewed profiles could not be loaded (' + esc(error.message) +
         "). Nothing is shown rather than something unchecked.</p>";
       if (status) status.textContent = "";
     });
+  }
+
+  // Two facts that must never be merged into "the numbers are fine": whether the gates passed, and
+  // whether an evidence review has suspended the output anyway.
+  function effectiveSummary(explored) {
+    var gates = explored.gatePermissions && explored.gatePermissions.elevation
+      ? "passed both anchoring gates" : "did not pass both anchoring gates";
+    if (explored.review && explored.review.action && explored.review.action !== "none") {
+      return "The reconstruction " + gates + ", but an evidence review (" + explored.review.action +
+        " since " + explored.review.since + ") suspends what it may show.";
+    }
+    return explored.permissions && explored.permissions.elevation
+      ? "Reconstruction passed both anchoring gates: direction, elevation and timed geometry are shown."
+      : "Reconstruction is direction-only: its elevation and timed window are withheld.";
+  }
+
+  function reviewNotice(explored, data) {
+    var parts = [];
+    if (explored.review && explored.review.action && explored.review.action !== "none") {
+      parts.push('<p class="small ascent-banner"><strong>Output suspended pending evidence review.</strong> ' +
+        esc(explored.review.reason) + " (since " + esc(explored.review.since) + "; " + esc(explored.review.evidence) +
+        "). The recorded gate results are unchanged and the profile stays in the record.</p>");
+    }
+    if (data.reviewMissing) {
+      parts.push('<p class="small">The evidence review record could not be read, so this panel cannot confirm ' +
+        "that no review is pending. The gate results below are the profile's own and are unaffected.</p>");
+    } else if (data.reviewErrors) {
+      parts.push('<p class="small warn">The evidence review record did not validate, so no review entry was ' +
+        "applied: " + esc(data.reviewErrors.slice(0, 2).join("; ")) + "</p>");
+    }
+    return parts.join("");
+  }
+
+  // Compare the digest of the artifact bytes we already fetched with the index's recorded digest, when
+  // the browser can hash. No material change here ever alters what is shown: the artifact is the only
+  // source of geometry, and this is a consistency signal about a pad link.
+  function staleIndexNotice() {
+    var subtle = window.crypto && window.crypto.subtle;
+    return ensureData().then(function (data) {
+      if (!subtle || !window.TextEncoder) return "";
+      return ensureCardData().then(function (cards) {
+        if (!cards.index) return "";
+        return subtle.digest("SHA-256", new TextEncoder().encode(data.artifactText)).then(function (buffer) {
+          var digest = Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
+            return byte.toString(16).padStart(2, "0");
+          }).join("");
+          return digest === cards.index.artifact_digest ? ""
+            : "The published pad index was built from a different revision of the profiles, so its pad links may be stale.";
+        });
+      });
+    }).catch(function () { return ""; });
   }
 
 
@@ -409,26 +513,26 @@
     if (!placeholders.length || !context || !context.records) return Promise.resolve();
     // A card's own link opens the panel with the same observing location the card was drawn for.
     api._context = context;
-    return ensureData().then(function (data) {
+    // Only the small geodesy module and the compact pad index are loaded here. The full evidence module
+    // and the profile artifact are not touched until a reader opens the historical panel.
+    return ensureCardData().then(function (cards) {
       Array.prototype.forEach.call(placeholders, function (node) {
         var record = context.records.find(function (entry) { return entry.id === node.getAttribute("data-pad-geometry"); });
         if (!record || !record.pad || !Number.isFinite(record.pad.latitude) || !Number.isFinite(record.pad.longitude)) return;
         var site = context.site;
         if (!site || !Number.isFinite(site.lat)) return;
-        var between = data.module.greatCircleBetween(site.lat, site.lon, record.pad.latitude, record.pad.longitude);
-        var sight = data.module.look({ latDeg: site.lat, lonDeg: site.lon, heightM: 0 },
-          data.module.geodeticToEcef(record.pad.latitude, record.pad.longitude, 0));
-        var shared = data.artifact.profiles.filter(function (profile) {
-          return Math.abs(profile.site.latDeg - record.pad.latitude) < 0.05 &&
-            Math.abs(profile.site.lonDeg - record.pad.longitude) < 0.05;
-        });
+        var between = cards.geodesy.greatCircleBetween(site.lat, site.lon, record.pad.latitude, record.pad.longitude);
+        var sight = cards.geodesy.look({ latDeg: site.lat, lonDeg: site.lon, heightM: 0 },
+          cards.geodesy.geodeticToEcef(record.pad.latitude, record.pad.longitude, 0));
+        var shared = cards.padIndex.profilesForPad(cards.index, record.pad);
         node.innerHTML = "<strong>Launch pad direction</strong> " + esc(sight.azimuthCompass) + " (" +
           sight.azimuthDeg.toFixed(0) + "°) at " + kilometres(between.distanceM) + ", " +
           (sight.elevationDeg >= 0 ? sight.elevationDeg.toFixed(0) + "° above your horizon"
             : Math.abs(sight.elevationDeg).toFixed(0) + "° below your horizon") +
           " — the pad's direction, not the rocket's path." +
-          (shared.length ? ' <button type="button" class="link-button" data-ascent-open>' +
-            "See reconstructed ascents from this pad (historical)</button>" : "");
+          (shared.length ? ' <button type="button" class="link-button" data-ascent-open>See ' +
+            (shared.length === 1 ? "the reconstructed ascent from this pad" : shared.length + " reconstructed ascents from this pad") +
+            " (historical)</button>" : "");
         node.hidden = false;
       });
     }).catch(function () { /* the launch card keeps its published facts and says nothing further */ });

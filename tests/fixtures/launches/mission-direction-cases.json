@@ -1,0 +1,717 @@
+{
+ "note": "Representative fixtures for the mission-direction evidence contract (worthlookingup.mission-direction-evidence/1). The accepted cases are illustrative shapes, not claims about a real flight: they cite example.invalid URLs and a made-up operator so that nothing here can be mistaken for a published source. The final case is real and deliberately incomplete: it records exactly why no upcoming Falcon mission currently has usable ascent-direction evidence. See docs/mission-direction-evidence.md.",
+ "cases": [
+  {
+   "name": "accepted-published-mission-direction",
+   "why": "An operator that states this mission's ascent azimuth, in a documented frame, with an independent second document. This is the only shape that may ever drive a sector.",
+   "expected": {
+    "ok": true,
+    "permitted": true,
+    "class": "published-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator",
+     "identifier": "example-operator"
+    },
+    "mission": {
+     "id": "example-published-azimuth",
+     "name": "Example Published Azimuth"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-01-01T02:00:00Z",
+     "precision": "minute"
+    },
+    "direction": {
+     "centreDeg": 196,
+     "fromDeg": 191,
+     "toDeg": 201,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "azimuth of the ascent heading at liftoff"
+    },
+    "source": {
+     "type": "press-kit",
+     "url": "https://example.invalid/press-kit/example-published-azimuth",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "publicationUtc": "2026-10-10",
+     "licence": "operator publication quoted for research; no redistribution licence granted"
+    },
+    "evidenceClass": "published-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "airspace-notice",
+      "url": "https://example.invalid/notices/example-a",
+      "independent": true,
+      "note": "an independent published notice naming the same sector",
+      "publisher": "Example Range Authority"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "the sector is the heading at liftoff; steering later in the ascent is not documented"
+    ],
+    "reviewBy": "2027-01-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "accepted-reconstructed-mission-direction",
+   "why": "A direction reconstructed from this mission's own evidence with a published method and stated uncertainty, corroborated by a second independent reconstruction.",
+   "expected": {
+    "ok": true,
+    "permitted": true,
+    "class": "reconstructed-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-reconstructed",
+     "name": "Example Reconstructed"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-2",
+     "latDeg": 28.5619,
+     "lonDeg": -80.5774
+    },
+    "scheduled": {
+     "utc": null,
+     "precision": "not published"
+    },
+    "direction": {
+     "centreDeg": 43,
+     "fromDeg": 38,
+     "toDeg": 48,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad, fitted to a published track"
+    },
+    "source": {
+     "type": "instrumented-reconstruction",
+     "url": "https://example.invalid/analysis/example-reconstructed",
+     "publisher": "Example Instrumented Reconstruction",
+     "retrievedUtc": "2026-10-16",
+     "licence": "analysis published for reuse with attribution"
+    },
+    "evidenceClass": "reconstructed-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "instrumented-reconstruction",
+      "url": "https://example.invalid/analysis/example-independent",
+      "independent": true,
+      "note": "a separate reconstruction from different instrumentation",
+      "publisher": "Example Independent Observatory"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "fitted to the first 200 seconds only",
+     "steering after that is unconstrained"
+    ],
+    "reviewBy": "2027-04-16",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-family-only-as-upcoming-sector",
+   "why": "A vehicle-family analogy is a valid class-4 record and can never be an upcoming mission's ascent direction.",
+   "expected": {
+    "ok": true,
+    "permitted": false,
+    "class": "vehicle-family-analogy"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-family",
+     "name": "Example Family Analogy"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "vehicle-family-history",
+     "url": "https://example.invalid/history/example-family",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "vehicle-family-analogy",
+    "corroboration": [],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "how this vehicle has flown before says nothing about how this flight will fly"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-hazard-only-claimed-as-direction",
+   "why": "A hazard area may only be filed as a physical constraint, so a record calling it a published direction is refused outright.",
+   "expected": {
+    "ok": false,
+    "permitted": false,
+    "class": "published-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-hazard",
+     "name": "Example Hazard As Direction"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "hazard-area",
+     "url": "https://example.invalid/notices/example-hazard",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "published-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "launch-corridor",
+      "url": "https://example.invalid/notices/example-corridor",
+      "independent": true,
+      "publisher": "Example Range Authority"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "a hazard area is not a flight path"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-inclination-derived-claimed-as-published",
+   "why": "An inclination-derived heading may only be class 3: a derived heading is not independent corroboration of the inclination it came from.",
+   "expected": {
+    "ok": false,
+    "permitted": false,
+    "class": "published-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-inclination",
+     "name": "Example Inclination Derived"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "catalogue-orbit",
+     "url": "https://example.invalid/catalogue/piece-1",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "published-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "catalogue-orbit",
+      "url": "https://example.invalid/catalogue/piece-2",
+      "independent": true,
+      "publisher": "Example Range Authority"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "the heading was computed from the same inclination it would be checked against"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-self-corroborating-copy",
+   "why": "A second copy of the same document, or the same source type at the same URL, is not independent corroboration.",
+   "expected": {
+    "ok": false,
+    "permitted": false,
+    "class": "reconstructed-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-self-corroborating",
+     "name": "Example Self Corroborating"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "press-kit",
+     "url": "https://example.invalid/pk/example",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "reconstructed-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "press-kit",
+      "url": "https://example.invalid/pk/example",
+      "publisher": "Example Launch Operator",
+      "independent": true
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "illustrative"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-without-independent-corroboration",
+   "why": "Classes 1 and 2 require at least one genuinely independent corroborating document.",
+   "expected": {
+    "ok": false,
+    "permitted": false,
+    "class": "reconstructed-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-no-corroboration",
+     "name": "Example Without Corroboration"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "press-kit",
+     "url": "https://example.invalid/pk/example",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "reconstructed-mission-direction",
+    "corroboration": [],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "illustrative"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-expired-review",
+   "why": "A record past its reviewBy date must be re-verified: it validates but is not permitted for use.",
+   "expected": {
+    "ok": true,
+    "permitted": false,
+    "class": "reconstructed-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-expired",
+     "name": "Example Expired"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "press-kit",
+     "url": "https://example.invalid/pk/example",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "reconstructed-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "instrumented-reconstruction",
+      "url": "https://example.invalid/a/other",
+      "independent": true,
+      "publisher": "Example Range Authority"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "illustrative"
+    ],
+    "reviewBy": "2020-01-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-unstated-frame",
+   "why": "Only one frame and convention are accepted, so a magnetic bearing is refused rather than silently reinterpreted.",
+   "expected": {
+    "ok": false,
+    "permitted": false,
+    "class": "published-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-magnetic",
+     "name": "Example Magnetic Frame"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "magnetic-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "press-kit",
+     "url": "https://example.invalid/pk/example",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "published-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "airspace-notice",
+      "url": "https://example.invalid/n/other",
+      "independent": true,
+      "publisher": "Example Range Authority"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "illustrative"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-unbounded-sector",
+   "why": "An uncertainty beyond 45 degrees is a hemisphere, not a direction.",
+   "expected": {
+    "ok": false,
+    "permitted": false,
+    "class": "published-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-wide",
+     "name": "Example Unbounded Sector"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 120,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "press-kit",
+     "url": "https://example.invalid/pk/example",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "published-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "airspace-notice",
+      "url": "https://example.invalid/n/other",
+      "independent": true,
+      "publisher": "Example Range Authority"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "illustrative"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  },
+  {
+   "name": "rejected-ambiguous-provenance",
+   "why": "A record whose source identity is ambiguous validates but is not usable until the provenance is cleared.",
+   "expected": {
+    "ok": true,
+    "permitted": false,
+    "class": "reconstructed-mission-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "Example Launch Operator"
+    },
+    "mission": {
+     "id": "example-ambiguous",
+     "name": "Example Ambiguous Provenance"
+    },
+    "vehicle": "Example Vehicle",
+    "pad": {
+     "id": "EXAMPLE-PAD-1",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2027-02-01T01:00:00Z",
+     "precision": "hour"
+    },
+    "direction": {
+     "centreDeg": 190,
+     "fromDeg": 185,
+     "toDeg": 195,
+     "uncertaintyDeg": 5,
+     "frame": "true-north-from-north-through-east",
+     "convention": "initial bearing from the pad"
+    },
+    "source": {
+     "type": "press-kit",
+     "url": "https://example.invalid/pk/example",
+     "publisher": "Example Launch Operator",
+     "retrievedUtc": "2026-10-16",
+     "licence": "research quotation"
+    },
+    "evidenceClass": "reconstructed-mission-direction",
+    "corroboration": [
+     {
+      "sourceType": "instrumented-reconstruction",
+      "url": "https://example.invalid/a/other",
+      "independent": true,
+      "publisher": "Example Range Authority"
+     }
+    ],
+    "uncertaintyDeg": 5,
+    "limitations": [
+     "illustrative"
+    ],
+    "reviewBy": "2027-06-01",
+    "provenance": {
+     "status": "ambiguous"
+    }
+   }
+  },
+  {
+   "name": "incomplete-ussf-481-pad-and-orbit-class-only",
+   "why": "The real investigation of one upcoming mission: a Falcon 9 from SLC-4E with a second-precision T-0 and a published orbit class, and no ascent direction in any source reachable without authentication. A valid class-3 constraint, deliberately unusable as a direction.",
+   "expected": {
+    "ok": true,
+    "permitted": false,
+    "class": "physically-constrained-direction"
+   },
+   "record": {
+    "schema": "worthlookingup.mission-direction-evidence/1",
+    "provider": {
+     "name": "SpaceX"
+    },
+    "mission": {
+     "id": "falcon-9-ussf-481",
+     "name": "USSF-481"
+    },
+    "vehicle": "Falcon 9 Block 5",
+    "pad": {
+     "id": "SLC-4E",
+     "latDeg": 34.632,
+     "lonDeg": -120.611
+    },
+    "scheduled": {
+     "utc": "2026-10-16T00:01:05Z",
+     "precision": "second"
+    },
+    "direction": null,
+    "source": {
+     "type": "operator-mission-page",
+     "url": "https://www.spacex.com/launches/",
+     "publisher": "SpaceX",
+     "retrievedUtc": "2026-10-16",
+     "licence": "operator website; no reuse licence granted, so nothing here is redistributed"
+    },
+    "evidenceClass": "physically-constrained-direction",
+    "corroboration": [],
+    "uncertaintyDeg": null,
+    "limitations": [
+     "the live launch feed record for this flight publishes the pad, the orbit class (Polar Orbit) and a second-precision T-0, and no inclination",
+     "no field in that record, in the GCAT launch log, satellite catalogue or launch-point table, or on the operator's mission page states an ascent azimuth or heading",
+     "an orbit class alone does not fix an inclination, and an inclination anyway constrains the plane rather than the flown heading, so this cannot exclude a dogleg or a plane change",
+     "the range authority's hazard notices for this pad are published as notices and PDFs, not as machine-readable direction records"
+    ],
+    "reviewBy": "2027-01-16",
+    "provenance": {
+     "status": "clear"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "schema": "worthlookingup.trajectory-pad-index/1",
+ "generated_utc": "2026-10-16T21:45:06.960Z",
+ "artifact_schema": "worthlookingup.trajectory-profiles/1",
+ "artifact_digest": "931eb9f713b217d84e735a414463a2a894b948ca353a700b725715651f05cc71",
+ "artifact_generated_utc": "2026-10-16T21:45:06.960Z",
+ "profile_count": 3,
+ "pad_count": 1,
+ "pads": [
+  {
+   "key": "34.632,-120.611",
+   "pad": "Space Launch Complex 4-East, Vandenberg AFB",
+   "lat_deg": 34.632,
+   "lon_deg": -120.6106,
+   "profiles": [
+    {
+     "id": "formosat-5-2017-049",
+     "mission": "FormoSat-5",
+     "launch_utc": "2017-08-24T18:51:00.000Z",
+     "evidence_level": 2,
+     "output": "elevation-and-window"
+    },
+    {
+     "id": "paz-2018-020",
+     "mission": "Paz",
+     "launch_utc": "2018-02-22T14:17:00.000Z",
+     "evidence_level": 2,
+     "output": "elevation-and-window"
+    },
+    {
+     "id": "grace-fo-2018-047",
+     "mission": "GRACE-FO and Iridium NEXT 6",
+     "launch_utc": "2018-05-22T19:47:58.000Z",
+     "evidence_level": 2,
+     "output": "elevation-and-window"
+    }
+   ],
+   "profile_count": 3,
+   "capabilities": {
+    "elevation": "available",
+    "direction": "available"
+   }
+  }
+ ]
+}

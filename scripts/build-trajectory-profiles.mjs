@@ -14,9 +14,11 @@
      series being validated.
    The GCAT files are cached under the system temporary directory; pass --fresh to refetch them. */
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import * as T from '../src/launches/launch-trajectory.mjs';
+import * as PAD_INDEX from '../src/launches/launch-pad-index.mjs';
 
 const GCAT = 'https://planet4589.org/space/gcat/tsv/';
 const ARCHIVE = 'https://raw.githubusercontent.com/shahar603/Telemetry-Data/master/';
@@ -378,7 +380,19 @@ const artifact = {
 };
 
 T.assertProfileArtifact(artifact);
-writeFileSync(new URL('../data/launches/trajectory-profiles.json', import.meta.url), JSON.stringify(artifact, null, 1) + '\n');
+const artifactBytes = JSON.stringify(artifact, null, 1) + '\n';
+writeFileSync(new URL('../data/launches/trajectory-profiles.json', import.meta.url), artifactBytes);
+
+/* ---- the compact pad index ----------------------------------------------- */
+/* Generated from the artifact that was just validated, and carrying the digest of the exact bytes
+   written, so the launch calendar can answer "does this pad have a reviewed profile?" without fetching
+   47 KB of samples, and can detect a stale index rather than trusting it. */
+const artifactDigest = createHash('sha256').update(artifactBytes, 'utf8').digest('hex');
+const publishedPadIndex = PAD_INDEX.assertPadIndex(PAD_INDEX.buildPadIndex(artifact, {
+  digest: artifactDigest, generatedUtc: artifact.generated_utc,
+}));
+writeFileSync(new URL('../data/launches/trajectory-pad-index.json', import.meta.url), JSON.stringify(publishedPadIndex, null, 1) + '\n');
+console.log(`wrote the pad index: ${publishedPadIndex.pad_count} pad(s), ${publishedPadIndex.profile_count} profile(s), digest ${artifactDigest.slice(0, 12)}…`);
 console.log(`wrote ${profiles.length} published profiles and ${rejected.length} rejected candidates`);
 for (const profile of profiles) {
   const terminal = profile.validation.terminal;
@@ -441,13 +455,30 @@ console.log(`wrote docs/trajectory-profiles.md (${profiles.length} published, ${
 /* ---- --check: does the committed artifact match a fresh build? ------------ */
 
 if (CHECK) {
-  const committed = JSON.parse(readFileSync(new URL('../data/launches/trajectory-profiles.json', import.meta.url), 'utf8'));
   const strip = value => { const copy = JSON.parse(JSON.stringify(value)); delete copy.generated_utc; return JSON.stringify(copy); };
+  const committed = JSON.parse(readFileSync(new URL('../data/launches/trajectory-profiles.json', import.meta.url), 'utf8'));
+  const committedIndex = JSON.parse(readFileSync(new URL('../data/launches/trajectory-pad-index.json', import.meta.url), 'utf8'));
+  // The index is derived from the artifact, so a mismatch here can be either a stale index or a stale
+  // artifact; the digest in the index tells the caller which, and this check refuses both.
+  const committedDigest = createHash('sha256')
+    .update(readFileSync(new URL('../data/launches/trajectory-profiles.json', import.meta.url)), 'utf8').digest('hex');
+  let failed = false;
   if (strip(committed) !== strip(artifact)) {
     console.error('FAIL: the committed artifact differs from a fresh build; regenerate and review the diff');
+    failed = true;
+  }
+  if (strip(committedIndex) !== strip(publishedPadIndex)) {
+    console.error('FAIL: the committed pad index differs from a fresh build; regenerate and review the diff');
+    failed = true;
+  }
+  if (committedIndex.artifact_digest !== committedDigest) {
+    console.error('FAIL: the committed pad index was not built from the committed artifact');
+    failed = true;
+  }
+  if (failed) {
     process.exitCode = 1;
   } else {
-    console.log('PASS: the committed artifact matches a fresh build (generated_utc excluded)');
+    console.log('PASS: the committed artifact and pad index match a fresh build (generated_utc excluded)');
   }
 }
 

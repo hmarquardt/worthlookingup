@@ -1,0 +1,58 @@
+name: worthlookingup trajectory evidence audit
+
+# Monthly, read-only audit of the published historical ascent profiles:
+# data/launches/trajectory-profiles.json, its pad index and its evidence review record.
+#
+# What it does: validates the artifact, the index and the review record against their schemas, recomputes
+# both anchoring gates from the artifact's own numbers, then re-checks each published profile against
+# fresh copies of the sources it cites (the GCAT launch log, satellite catalogue and launch points, and
+# the published telemetry transcription). It reports every check in the job summary and, when a source
+# has moved enough to matter, names the affected profile and prints the review entry a human could commit.
+#
+# What it never does: it writes nothing to the repository, promotes nothing to a higher evidence level,
+# demotes nothing automatically, and rewrites no unrelated data. It never touches the hourly launch
+# schedule or the celestial-data workflows, and it cannot block them: this workflow owns no data artifact,
+# pushes no commit and runs on its own schedule and concurrency group. A source that simply does not
+# answer is reported as unavailable and the run still succeeds, so an outage is never mistaken for a
+# contradiction; only an integrity failure or genuine evidence drift turns the run red for a human to read.
+
+on:
+  schedule:
+    # The 3rd of each month at 07:23 UTC. Deliberately not on the hour, so it never competes with the
+    # hourly launch refresh.
+    - cron: '23 7 3 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: worthlookingup-trajectory-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      # No npm ci: the audit imports only the repository's own modules and the Node standard library, so
+      # it keeps working even when dependency installation is the thing that is broken.
+      - name: Audit the published trajectory evidence
+        run: node scripts/audit-trajectory-profiles.mjs --json trajectory-audit.json --emit-review trajectory-audit-out
+
+      - name: Upload the audit report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trajectory-evidence-audit
+          path: |
+            trajectory-audit.json
+            trajectory-audit-out/
+          if-no-files-found: ignore
+          retention-days: 90

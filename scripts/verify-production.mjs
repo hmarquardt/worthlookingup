@@ -32,10 +32,13 @@ for(const [file,spec] of Object.entries(manifest.pipeline_outputs||{})){
   console.log('Pipeline output:',file,'deployed schema/provenance valid, bytes match this checkout:',identical);
 }
 for(const file of ['overhead-discovery.js','overhead-calendar.js','analytics-lite.js','preferences-transfer.js','assets/brand/identity.css','assets/icons/favicon.svg','assets/imagery/night-sky.svg','assets/brand/social.png','assets/imagery/earth-at-night-640.webp','assets/imagery/earth-at-night-1280.webp','assets/imagery/earth-at-night-1920.webp','assets/imagery/earth-at-night.jpg',
-  // Phase 5B: the reviewed historical profiles are committed by hand, not refreshed on a schedule, so
-  // their deployed bytes must equal this checkout exactly, together with the geometry module and the
-  // adapter that reads them.
-  'overhead-launch-explorer.js','src/launches/launch-trajectory.mjs','data/launches/trajectory-profiles.json','docs/trajectory-profiles.md']){
+  // Phase 5B/5C: the reviewed historical profiles are committed by hand, not refreshed on a schedule, so
+  // their deployed bytes must equal this checkout exactly, together with the two geometry modules, the
+  // compact pad index the launch calendar reads, the evidence review record and the adapter that binds
+  // them. A mismatch here is how a stale index or a dropped review record is caught in production.
+  'overhead-launch-explorer.js','src/launches/launch-trajectory.mjs','src/launches/launch-geodesy.mjs',
+  'src/launches/launch-pad-index.mjs','data/launches/trajectory-profiles.json',
+  'data/launches/trajectory-pad-index.json','data/launches/trajectory-review.json','docs/trajectory-profiles.md']) {
   assert.deepEqual(await get(file),fs.readFileSync(file),file+' deployed bytes');
 }
 const missing=await fetch(new URL('/missing-worker-verification.js',base));assert.equal(missing.status,404);

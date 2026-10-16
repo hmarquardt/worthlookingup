@@ -30,6 +30,27 @@ the gate results cannot be contradicted in the interface. See
 [docs/phase-5b-release.md](../../docs/phase-5b-release.md) and
 [docs/launch-trajectory-feasibility.md](../../docs/launch-trajectory-feasibility.md).
 
+Phase 5C added four pieces, all reachable from this directory:
+
+- `launch-geodesy.mjs` — the observer-facing geometry (WGS-84 conversion, ENU look angles, great-circle
+  helpers, horizon distance), extracted verbatim from the trajectory module, which imports and re-exports
+  it unchanged. The launch calendar loads this instead of the evidence machinery; there is one
+  implementation of the geometry and never a second model.
+- `launch-pad-index.mjs` — builds, validates and queries the compact index
+  (`data/launches/trajectory-pad-index.json`, schema `worthlookingup.trajectory-pad-index/1`) that says
+  which pads have reviewed profiles, without carrying a single sample.
+- `trajectory-audit.mjs` — the monthly evidence audit's judgement: integrity from the committed files,
+  drift against live sources, the summary, and the review entries a human may choose to commit. Pure and
+  offline-testable, and it has no code path that writes a published file.
+- `mission-direction.mjs` — the mission-direction evidence contract (five classes; only a published or
+  reconstructed mission-specific direction may ever reach an upcoming mission's sector). A contract only:
+  nothing imports it.
+
+`data/launches/trajectory-review.json` (schema `worthlookingup.trajectory-review/1`) is the single way a
+published output may be suspended while its evidence is re-checked, and it is applied at read time as
+`exploreHistorical({..., review})`. It never rewrites a recorded gate result, and an entry in a record that
+does not validate suppresses nothing.
+
 Rules this boundary enforces:
 
 * A launch is never given a precise time the provider did not publish. LL2's coarse precisions carry

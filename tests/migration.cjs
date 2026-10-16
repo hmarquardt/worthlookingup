@@ -113,6 +113,36 @@ assert.doesNotMatch(html,/<(?:script|link)[^>]*(?:trajectory-profiles|launch-tra
   'the ascent data must not be referenced from the initial document');
 assert.match(html,/overhead-launch-explorer\.js/,'the ascent adapter must be loaded by the page');
 
+// Phase 5C: the compact pad index and the evidence review record, the small geodesy module the launch
+// calendar loads, and the pad-index module that validates it. A missing index must be a deployment
+// failure rather than a silent loss of the historical links, and a stale index is caught by its digest.
+for(const file of ['dist/data/launches/trajectory-pad-index.json','dist/data/launches/trajectory-review.json',
+  'dist/src/launches/launch-geodesy.mjs','dist/src/launches/launch-pad-index.mjs']){
+  assert.ok(fs.existsSync(file),'the phase 5C asset is not staged: '+file);
+  assert.equal(fs.readFileSync(file,'utf8'),fs.readFileSync(file.replace('dist/',''),'utf8'),
+    'the staged file must be the reviewed file: '+file);
+}
+{
+  const staged=JSON.parse(fs.readFileSync('dist/data/launches/trajectory-pad-index.json','utf8'));
+  assert.equal(staged.schema,'worthlookingup.trajectory-pad-index/1');
+  assert.equal(staged.artifact_digest,crypto.createHash('sha256')
+    .update(fs.readFileSync('dist/data/launches/trajectory-profiles.json')).digest('hex'),
+    'the staged pad index must have been built from the staged profiles');
+  assert.equal(JSON.stringify(staged).includes('altitudeM'),false,'the pad index must not carry trajectory samples');
+  const review=JSON.parse(fs.readFileSync('dist/data/launches/trajectory-review.json','utf8'));
+  assert.equal(review.schema,'worthlookingup.trajectory-review/1');
+}
+// The direction contract and the audit are deliberately *not* staged: neither is a product capability, and
+// leaving them out of the deployment makes it impossible for a future change to reach them from a page.
+assert.equal(fs.existsSync('dist/src/launches/mission-direction.mjs'),false,
+  'the mission-direction contract must not be deployed while nothing consumes it');
+assert.equal(fs.existsSync('dist/src/launches/trajectory-audit.mjs'),false,
+  'the evidence audit must not be deployed: it is a repository job, not a browser asset');
+for(const file of ['dist/index.html','dist/overhead-launch-explorer.js']){
+  assert.equal(/mission-direction|trajectory-audit/.test(fs.readFileSync(file,'utf8')),false,
+    'a deployed file must not reference the contract or the audit: '+file);
+}
+
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){
   if(['.git','node_modules','.wrangler','test-results','playwright-report'].includes(e.name))continue;
   assert.equal(e.name,e.name.toLowerCase(),'Non-lowercase path '+e.name);

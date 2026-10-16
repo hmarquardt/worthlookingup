@@ -1,6 +1,6 @@
 {
  "schema": "worthlookingup.trajectory-profiles/1",
- "generated_utc": "2026-10-16T20:37:21.530Z",
+ "generated_utc": "2026-10-16T21:45:06.960Z",
  "note": "Published historical ascent profiles. Each one passed both anchoring gates. Candidates that failed a gate are listed under rejected with the numbers that failed, and are not published as trajectories. Nothing here is a prediction for any future launch.",
  "gate_tolerances": {
   "plane": {

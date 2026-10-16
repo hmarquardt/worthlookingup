@@ -1,0 +1,6 @@
+{
+ "schema": "worthlookingup.trajectory-review/1",
+ "reviewed_utc": "2026-10-16",
+ "note": "Evidence reviews that suspend part of a published profile without rewriting it. An entry here never changes a recorded gate result; it stops the assessment from showing the output the review suspended, with the reason carried into the refusal. Entries are added by a human after the monthly evidence audit reports drift beyond the gate tolerances (see docs/trajectory-audit.md), never by the audit job itself.",
+ "entries": []
+}

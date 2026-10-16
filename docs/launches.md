@@ -247,6 +247,22 @@ every card. Regenerate the profiles with
 [phase-5b-release.md](phase-5b-release.md) and the generated [trajectory-profiles.md](trajectory-profiles.md)
 before publication.
 
+Phase 5C keeps it sustainable and cheap. `src/launches/launch-geodesy.mjs` now holds the
+observer-facing geometry, imported and re-exported unchanged by the trajectory module, so the launch
+calendar can draw the pad line without downloading the evidence machinery. The calendar reads the
+generated compact index `data/launches/trajectory-pad-index.json` (ids, dates, evidence levels, output
+classes and the artifact's sha256 — no samples, no elevations, no azimuths) instead of the profile
+artifact, and a missing, invalid or stale index can only remove a historical link. A published output can
+be suspended, never rewritten, through `data/launches/trajectory-review.json`, a hand-committed and
+validated record that the panel applies at read time. The monthly, read-only evidence audit
+(`scripts/audit-trajectory-profiles.mjs`, policy in [trajectory-audit.md](trajectory-audit.md)) re-checks
+gates, anchors, provenance and drift, and never promotes or demotes anything by itself. Whether an
+upcoming Falcon mission ever has a mission-specific ascent direction is answered, source by source, in
+[mission-direction-evidence.md](mission-direction-evidence.md): today it does not, so the contract in
+`src/launches/mission-direction.mjs` is a schema and a set of refusals rather than a feature. See
+[phase-5c-release.md](phase-5c-release.md) for the measured effect on the launch page (77 % less
+category-specific transfer).
+
 What the calendar shows because of this work, and nothing else:
 
 * One line per upcoming launch with a pad: `Launch pad direction <compass> (<deg>) at <km>, <deg> above

@@ -1,8 +1,11 @@
-/* Launch ascent geometry prototype (Phase 5A research artifact).
-   Pure computation: no DOM, no storage, no network, no library import, and no import from the
-   launch schedule engine. Nothing in the product imports this file; it exists to establish what can
-   honestly be computed about a rocket's ascent from an observer's location, and to prove that the
-   geometry is right, before any of it is allowed near a user-facing surface.
+/* Launch ascent geometry and evidence gates (Phase 5A research artifact, extended by Phase 5B/5C).
+   Pure computation: no DOM, no storage, no network, no library import, no import from the launch
+   schedule engine. Its only import is its sibling observer-geodesy module (launch-geodesy.mjs), which
+   this file re-exports unchanged so there is one implementation of the geometry and no second model.
+
+   Nothing here is a prediction for a future launch, and no profile may be attached to one by vehicle
+   family, launch site or a hazard polygon. The interface reaches it only through the documented
+   `exploreHistorical` entry point, and only when a reader opens the historical panel.
 
    Scope and hard limits, all deliberate:
    * It answers geometric questions only: where the vehicle is, which way you look, how high it is,
@@ -16,35 +19,18 @@
      through east, exactly as overhead-astro.js defines horizontal coordinates.
    See docs/launch-trajectory-feasibility.md. */
 
-/* ---- constants ---------------------------------------------------------- */
+/* ---- importer of the shared geodesy ------------------------------------- */
+/* The observer-facing geometry lives in its own file so the launch calendar can draw the direction of
+   a pad without downloading the evidence machinery in this one. It is the same code either way: the
+   functions are imported here and re-exported unchanged, so there is no second geometry model and no
+   behaviour change for anything that imports this module. Nothing else may import that file for a
+   trajectory claim: everything below — the taxonomy, the gates and the assessment — stays here. */
 
-// WGS-84 ellipsoid, the datum the launch pads in the feed are published in.
-export const WGS84 = Object.freeze({
-  a: 6378137.0,                 // semi-major axis, metres
-  f: 1 / 298.257223563,         // flattening
-  b: 6356752.314245,            // semi-minor axis, metres
-  e2: 6.6943799901413165e-3,    // first eccentricity squared
-});
+import { WGS84, SHADOW, DOWNRANGE_RADIUS_M, D2R, R2D, DEG, LON, compass, geodeticToEcef, ecefToGeodetic,
+  enuBasis, dot, norm, look, greatCirclePoint, greatCircleBetween, horizonDistanceM } from './launch-geodesy.mjs';
 
-// Geometric shadow model constants. The Earth is treated as a sphere for the shadow cone only: the
-// difference between the spherical radius and either WGS-84 axis is under 0.4 %, far smaller than
-// the atmospheric refraction of grazing sunlight the model already ignores.
-export const SHADOW = Object.freeze({
-  earthRadiusM: 6371000,        // mean spherical radius used for the shadow cone
-  sunAngularRadiusDeg: 0.2666,  // mean apparent solar radius (16 arcmin)
-  umbraApexM: 6371000 / Math.tan(0.2666 * Math.PI / 180),
-});
-
-// Mean spherical radius used to convert a downrange distance into an along-track angle. The ascent
-// ground track of a fixed-azimuth launch is a great circle on a sphere, so the projected surface
-// distance is what the profile records; using the mean radius keeps that arithmetic consistent.
-export const DOWNRANGE_RADIUS_M = 6371008.8;
-
-const D2R = Math.PI / 180, R2D = 180 / Math.PI;
-const DEG = v => ((v % 360) + 360) % 360;
-// Longitudes are reported signed, the way the launch feed publishes pad longitudes (-120.611),
-// while azimuths stay in [0,360) as the astronomy layer defines them.
-const LON = v => ((v + 540) % 360) - 180;
+export { WGS84, SHADOW, DOWNRANGE_RADIUS_M, compass, geodeticToEcef, ecefToGeodetic, enuBasis, dot, norm,
+  look, greatCirclePoint, greatCircleBetween, horizonDistanceM };
 
 /* ---- evidence taxonomy -------------------------------------------------- */
 /* The point of the levels is that they cap the output. A launch corridor is not a trajectory; a pad
@@ -130,123 +116,6 @@ export const FORBIDDEN_CLAIMS = Object.freeze(['brightness', 'magnitude', 'proba
 
 // Same 16-point convention as overhead-astro.js, restated here because that module is a browser
 // global that requires the pinned Astronomy Engine at load time and this one must stand alone.
-const COMPASS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-export const compass = azimuth => COMPASS[Math.round(DEG(azimuth) / 22.5) % 16];
-
-/* ---- geodetic and local geometry ---------------------------------------- */
-
-// Geodetic latitude/longitude/height above the ellipsoid to Earth-centred, Earth-fixed metres.
-// The prime meridian is +x, 90 degrees east is +y, the north spin axis is +z.
-export function geodeticToEcef(latDeg, lonDeg, heightM = 0) {
-  if (![latDeg, lonDeg, heightM].every(Number.isFinite)) throw new Error('geodeticToEcef requires finite inputs');
-  if (Math.abs(latDeg) > 90 || Math.abs(lonDeg) > 360) throw new Error('geodeticToEcef latitude/longitude out of range');
-  const lat = latDeg * D2R, lon = lonDeg * D2R;
-  const sinLat = Math.sin(lat), cosLat = Math.cos(lat);
-  const n = WGS84.a / Math.sqrt(1 - WGS84.e2 * sinLat * sinLat);
-  return {
-    x: (n + heightM) * cosLat * Math.cos(lon),
-    y: (n + heightM) * cosLat * Math.sin(lon),
-    z: (n * (1 - WGS84.e2) + heightM) * sinLat,
-  };
-}
-
-// Inverse of the above by fixed-point iteration. Converges to well under a millimetre for every
-// point from the ellipsoid surface out to orbital altitude; the loop is bounded so a pathological
-// input cannot hang a caller.
-export function ecefToGeodetic(point, iterations = 12) {
-  const { x, y, z } = point;
-  if (![x, y, z].every(Number.isFinite)) throw new Error('ecefToGeodetic requires finite coordinates');
-  const lon = Math.atan2(y, x);
-  const p = Math.hypot(x, y);
-  if (p === 0) return { latDeg: Math.sign(z) * 90, lonDeg: LON(lon * R2D), heightM: Math.abs(z) - WGS84.b };
-  let lat = Math.atan2(z, p * (1 - WGS84.e2));
-  let heightM = 0;
-  for (let i = 0; i < iterations; i++) {
-    const sinLat = Math.sin(lat);
-    const n = WGS84.a / Math.sqrt(1 - WGS84.e2 * sinLat * sinLat);
-    heightM = p / Math.cos(lat) - n;
-    lat = Math.atan2(z, p * (1 - (WGS84.e2 * n) / (n + heightM)));
-  }
-  return { latDeg: lat * R2D, lonDeg: LON(lon * R2D), heightM };
-}
-
-// Local east/north/up unit vectors at a geodetic point: the frame an observer actually points in.
-export function enuBasis(latDeg, lonDeg) {
-  const lat = latDeg * D2R, lon = lonDeg * D2R;
-  const sinLat = Math.sin(lat), cosLat = Math.cos(lat), sinLon = Math.sin(lon), cosLon = Math.cos(lon);
-  return {
-    east: { x: -sinLon, y: cosLon, z: 0 },
-    north: { x: -sinLat * cosLon, y: -sinLat * sinLon, z: cosLat },
-    up: { x: cosLat * cosLon, y: cosLat * sinLon, z: sinLat },
-  };
-}
-
-export const dot = (a, b) => a.x * b.x + a.y * b.y + a.z * b.z;
-export const norm = v => Math.hypot(v.x, v.y, v.z);
-const sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y, z: a.z - b.z });
-
-// Where an observer must look to see an Earth-fixed target, and how far away it is.
-// Azimuth is from north through east; elevation is geometric (no refraction) and is negative when the
-// target is below the local horizontal plane, which is exactly what happens past the curve of the
-// Earth. Earth curvature needs no special case: the target carries its own altitude in the ellipsoid
-// frame, so the bulge of the Earth is already inside this arithmetic.
-export function look(observer, targetEcef) {
-  if (!observer || !Number.isFinite(observer.latDeg) || !Number.isFinite(observer.lonDeg)) {
-    throw new Error('look requires an observer with finite latDeg/lonDeg');
-  }
-  const from = geodeticToEcef(observer.latDeg, observer.lonDeg, observer.heightM || 0);
-  const d = sub(targetEcef, from);
-  const basis = enuBasis(observer.latDeg, observer.lonDeg);
-  const east = dot(d, basis.east), north = dot(d, basis.north), up = dot(d, basis.up);
-  const slantRangeM = norm(d);
-  const azimuth = Math.atan2(east, north) * R2D;
-  return {
-    azimuthDeg: DEG(azimuth),
-    azimuthCompass: compass(azimuth),
-    elevationDeg: slantRangeM === 0 ? 90 : Math.asin(up / slantRangeM) * R2D,
-    slantRangeM,
-    aboveHorizon: slantRangeM > 0 && up > 0,
-    // Height of the target above the observer's local horizontal plane, for horizon-clearance talk.
-    tangentialHeightM: up,
-    provenance: { frame: 'wgs84-ecef', refraction: 'none' },
-  };
-}
-
-
-
-// Destination point reached by travelling `distanceM` along a sphere of the given radius on an
-// initial bearing. This is how a downrange distance plus a launch azimuth becomes a ground position.
-export function greatCirclePoint(latDeg, lonDeg, bearingDeg, distanceM, radiusM = DOWNRANGE_RADIUS_M) {
-  const lat1 = latDeg * D2R, lon1 = lonDeg * D2R, bearing = bearingDeg * D2R;
-  const delta = distanceM / radiusM;
-  const sinLat2 = Math.sin(lat1) * Math.cos(delta) + Math.cos(lat1) * Math.sin(delta) * Math.cos(bearing);
-  const lat2 = Math.asin(Math.max(-1, Math.min(1, sinLat2)));
-  const lon2 = lon1 + Math.atan2(Math.sin(bearing) * Math.sin(delta) * Math.cos(lat1),
-    Math.cos(delta) - Math.sin(lat1) * sinLat2);
-  return { latDeg: lat2 * R2D, lonDeg: LON(lon2 * R2D) };
-}
-
-// Surface distance between two geodetic points on the same mean sphere, and the initial bearing from
-// the first to the second. Used to reconcile a reported observer range with its coordinates.
-export function greatCircleBetween(lat1, lon1, lat2, lon2, radiusM = DOWNRANGE_RADIUS_M) {
-  const p1 = lat1 * D2R, p2 = lat2 * D2R, dl = (lon2 - lon1) * D2R;
-  const central = Math.acos(Math.max(-1, Math.min(1,
-    Math.sin(p1) * Math.sin(p2) + Math.cos(p1) * Math.cos(p2) * Math.cos(dl))));
-  const y = Math.sin(dl) * Math.cos(p2);
-  const x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl);
-  return { distanceM: central * radiusM, bearingDeg: DEG(Math.atan2(y, x) * R2D) };
-}
-
-// Surface (arc) distance at which a target at one height is exactly on the geometric horizon of an
-// observer at another height: R * (acos(R/(R+h1)) + acos(R/(R+h2))). This is an *arc*, not the tangent
-// chord sqrt(2Rh), so it is directly comparable with downrange and great-circle distances; the two
-// differ by about 2 % at 200 km. It is the analytic reference the tests compare the exact
-// ellipsoidal look() against, and it bounds the downrange sweep for a profile without a ground track.
-export function horizonDistanceM(observerHeightM, targetHeightM = 0, radiusM = SHADOW.earthRadiusM) {
-  const dip = heightM => Math.acos(Math.max(-1, Math.min(1, radiusM / (radiusM + Math.max(0, heightM)))));
-  return radiusM * (dip(observerHeightM) + dip(targetHeightM));
-}
-
 /* ---- launch-plane reconciliation ---------------------------------------- */
 /* The relation between a launch azimuth and the orbital inclination of the plane it reaches:
    cos i = cos(lat) * sin(azimuth), for a non-retrograde ascent flown in a fixed azimuth plane from
@@ -551,6 +420,59 @@ export function assertProfileArtifact(artifact) {
   const result = validateProfileArtifact(artifact);
   if (!result.ok) throw new Error('Invalid published trajectory-profile artifact: ' + result.errors.join('; '));
   return artifact;
+}
+
+
+
+/* ---- evidence review and temporary suppression --------------------------- */
+/* Phase 5C. When an external anchor drifts far enough that a published profile's supporting evidence is
+   in question, the honest response is to stop showing the number while the evidence is re-checked --
+   without rewriting the profile, its gate results or its provenance, because those are the record of
+   what was verified and when.
+
+   So the review lives in its own small committed file (data/launches/trajectory-review.json) with an
+   explicit, validated shape, the audit job may only *propose* entries for a human to commit, and the
+   assessment applies them at read time. Gates that passed stay recorded as passed; the effective
+   permissions simply stop permitting an elevation, and the refusal says why. */
+
+export const REVIEW_SCHEMA = 'worthlookingup.trajectory-review/1';
+export const REVIEW_ACTIONS = Object.freeze(['none', 'suppress-elevation', 'suppress-all']);
+
+export function validateReviewRecord(record) {
+  const errors = [];
+  const fail = message => errors.push(message);
+  if (!record || typeof record !== 'object') return { ok: false, errors: ['the review record must be an object'] };
+  if (record.schema !== REVIEW_SCHEMA) fail(`the review record schema must be ${REVIEW_SCHEMA}`);
+  if (!Array.isArray(record.entries)) fail('the review record must carry an entries array');
+  const ids = new Set();
+  for (const entry of record.entries || []) {
+    const label = entry && entry.id ? entry.id : 'unnamed entry';
+    if (typeof entry.id !== 'string' || !entry.id) fail(`${label}: every review entry needs the profile id it applies to`);
+    if (!REVIEW_ACTIONS.includes(entry.action)) fail(`${label}: action must be ${REVIEW_ACTIONS.join(', ')}`);
+    if (typeof entry.reason !== 'string' || !entry.reason) fail(`${label}: every review entry must state its reason`);
+    if (!/^\d{4}-\d{2}-\d{2}/.test(String(entry.since))) fail(`${label}: every review entry must date itself`);
+    if (typeof entry.evidence !== 'string' || !entry.evidence) fail(`${label}: every review entry must name its evidence`);
+    if (ids.has(entry.id)) fail(`${label}: a profile may appear only once in the review record`);
+    ids.add(entry.id);
+  }
+  if (record.reviewed_utc !== undefined && !/^\d{4}-\d{2}-\d{2}/.test(String(record.reviewed_utc))) {
+    fail('reviewed_utc must be a date when it is present');
+  }
+  return { ok: errors.length === 0, errors };
+}
+
+export function assertReviewRecord(record) {
+  const result = validateReviewRecord(record);
+  if (!result.ok) throw new Error('Invalid trajectory review record: ' + result.errors.join('; '));
+  return record;
+}
+
+// The review entry for one profile, or null. A record that does not validate suppresses nothing: an
+// unreadable safety file must never be able to silently authorise output.
+export function reviewFor(record, id) {
+  if (!record || !Array.isArray(record.entries)) return null;
+  if (!validateReviewRecord(record).ok) return null;
+  return record.entries.find(entry => entry.id === id) || null;
 }
 
 
@@ -893,7 +815,7 @@ export const REFUSAL_LIMIT = 12;
 //
 // The returned object always carries permitted outputs, the list of things that remain unknown, and
 // explicit refusals with reasons. It never carries brightness, apparent size or any probability.
-export function assess({ profile, observer, sun = null, stepS = null, allowSynthetic = false }) {
+export function assess({ profile, observer, sun = null, stepS = null, allowSynthetic = false, review = null }) {
   const validation = validateProfile(profile);
   if (!validation.ok) {
     return { available: false, refusals: validation.errors, unknown: ['everything: the profile failed validation'],
@@ -960,9 +882,23 @@ export function assess({ profile, observer, sun = null, stepS = null, allowSynth
   // Gate-derived permissions, when the profile carries gate results. A profile whose gates did not
   // both pass keeps its direction and loses its elevation and timed window, whatever its evidence
   // level would otherwise allow.
-  const permissions = publicationPermissions(profile.validation);
+  const gatePermissions = publicationPermissions(profile.validation);
+  // A review entry can only ever remove output. When one applies, the gate results stay exactly as
+  // recorded -- they are the evidence that the profile was verified -- and the effective permissions
+  // stop permitting what the review suspended, with the reason carried into the refusals.
+  const reviewEntry = reviewFor(review, profile.id);
+  if (reviewEntry) base.review = { action: reviewEntry.action, reason: reviewEntry.reason,
+    since: reviewEntry.since, evidence: reviewEntry.evidence };
+  const permissions = gatePermissions && reviewEntry && reviewEntry.action !== 'none'
+    ? { ...gatePermissions,
+        elevation: false, timedWindow: false, illumination: 'observer-only', downgraded: true,
+        suppressed: reviewEntry.action,
+        reasons: [...gatePermissions.reasons, `evidence review since ${reviewEntry.since}: ${reviewEntry.reason}`] }
+    : gatePermissions;
   if (permissions) base.permissions = permissions;
   if (level.samplingS === null) return assessWithoutTrack({ ...base, profile: { ...base.profile }, level, refusals, unknown });
+  // The dispatch uses the *effective* permissions, so a review suspension withholds the track exactly as
+  // a failed gate does, and the direction-only path carries the review reason into its refusals.
   if (permissions && permissions.elevation === false) {
     return assessDirectionOnly({ ...base, permissions }, profile, observer, sun, refusals, launchMs);
   }
@@ -1019,9 +955,13 @@ function assessDirectionOnly(base, profile, observer, sun, refusals, launchMs) {
       ' degrees (' + illumination.observerTwilight + ').');
   }
   return { ...base,
-    geometry: { available: false, samples: [], summary: null, direction,
+    geometry: { available: false, samples: [], summary: null, direction: permissions.suppressed === 'suppress-all' ? null : direction,
       reason: 'the profile did not pass both anchoring gates, so only its direction is published' },
-    illumination, claims, refusals: refusals.slice(0, REFUSAL_LIMIT) };
+    illumination,
+    claims: permissions.suppressed === 'suppress-all'
+      ? ['This profile is suspended pending an evidence review, so nothing about its ascent is shown.']
+      : claims,
+    refusals: refusals.slice(0, REFUSAL_LIMIT) };
 }
 
 
@@ -1252,8 +1192,8 @@ function assessDocumentedProfile(base, profile, observer, level, sun, refusals) 
 // observer, with the historical labelling and the gate permissions already applied. The browser module
 // renders this object and adds nothing to it: no number reaches the interface that did not come out of
 // an assessment, so the two gate results cannot be contradicted by the presentation layer.
-export function exploreHistorical({ profile, observer, sun = null, stepS = null, allowSynthetic = false }) {
-  const assessment = assess({ profile, observer, sun, stepS, allowSynthetic });
+export function exploreHistorical({ profile, observer, sun = null, stepS = null, allowSynthetic = false, review = null }) {
+  const assessment = assess({ profile, observer, sun, stepS, allowSynthetic, review });
   const permissions = assessment.permissions || publicationPermissions(profile.validation) || null;
   const elevationPermitted = !!(permissions && permissions.elevation === true);
   const launchMs = Date.parse(profile.launch.utc);
@@ -1269,6 +1209,10 @@ export function exploreHistorical({ profile, observer, sun = null, stepS = null,
     launchAzimuth: assessment.launchAzimuth,
     direction: (assessment.geometry && assessment.geometry.direction) || null,
     permissions,
+    // The gate permissions as recorded, next to the effective ones, so a reader (and the panel) can see
+    // that an output was withheld by an evidence review rather than because a gate failed.
+    gatePermissions: publicationPermissions(profile.validation),
+    review: assessment.review || null,
     validation: profile.validation || null,
     orbit: profile.orbit || null,
     provenance: {

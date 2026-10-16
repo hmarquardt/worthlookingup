@@ -319,11 +319,14 @@ const FORBIDDEN = /^(brightness|magnitude|plumesize|probability|chance|apparents
   assert.match(indexHtml, /data-pad-geometry=/);
   assert.match(indexHtml, /enhanceLaunchPadGeometry\(selection\)/);
   assert.match(indexHtml, /none of it predicts a future launch/);
-  // The adapter loads both the module and the artifact on demand, resolves them against the document base,
-  // and refuses to try at all on a page that cannot serve modules.
+  // The adapter loads the module and the artifact on demand, resolves them against the document base, and
+  // refuses to try at all on a page that cannot serve modules. Phase 5C split that reuse into two named
+  // paths, so this asserts the resolution is still central rather than duplicated per asset.
   assert.match(adapter, /import\(moduleUrl\(\)\)/);
-  assert.match(adapter, /new URL\(MODULE_PATH, document\.baseURI\)/);
-  assert.match(adapter, /new URL\(ARTIFACT_PATH, document\.baseURI\)/);
+  assert.match(adapter, /var at = function \(path\) \{ return new URL\(path, document\.baseURI\)\.href; \}/);
+  assert.match(adapter, /var moduleUrl = function \(\) \{ return at\(MODULE_PATH\); \}/);
+  assert.match(adapter, /var artifactUrl = function \(\) \{ return at\(ARTIFACT_PATH\); \}/);
+  assert.match(adapter, /servesModules\(\)/);
   assert.match(adapter, /validateProfileArtifact/);
   assert.match(adapter, /exploreHistorical/);
   assert.match(adapter, /\^https\?:\$/);

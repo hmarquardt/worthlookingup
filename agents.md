@@ -43,6 +43,24 @@ because of that rule; agents should read it explicitly (some tools discover only
   exploreHistorical() and renders the result, performs no geometry of its own and refuses to attempt a
   load on a page that cannot serve modules. Nothing may attach a historical profile to an upcoming launch
   by vehicle family, launch site or a hazard polygon, and local visibility stays unknown everywhere.
+- Phase 5C keeps that capability honest and cheap, in four parts. (1) The observer-facing geometry lives in
+  src/launches/launch-geodesy.mjs, which launch-trajectory.mjs imports and re-exports unchanged: the launch
+  calendar may load the geometry without the evidence machinery, and there must never be a second geometry
+  model. (2) The launch calendar reads the generated compact index data/launches/trajectory-pad-index.json
+  (schema worthlookingup.trajectory-pad-index/1, validated by src/launches/launch-pad-index.mjs) instead of
+  the profile artifact; the artifact and the evidence module load only when a reader opens the historical
+  panel. The index carries ids, dates, evidence levels, output classes and the artifact's sha256 — never a
+  sample, an elevation or an azimuth — and a missing, invalid or stale index can only remove a link.
+  (3) data/launches/trajectory-review.json (schema worthlookingup.trajectory-review/1) is the only way a
+  published output may be suspended: it is added by hand after the monthly audit, it never rewrites a
+  recorded gate result, and an entry in a record that does not validate suppresses nothing. (4) The
+  evidence audit (scripts/audit-trajectory-profiles.mjs, judgement in src/launches/trajectory-audit.mjs,
+  workflow .github/workflows/trajectory-evidence-audit.yml, policy in docs/trajectory-audit.md) is
+  read-only and monthly: it never promotes a profile, never demotes one automatically, never writes the
+  published files, and never gates the hourly launch or celestial workflows. src/launches/mission-direction.mjs
+  is a contract only (five direction classes, of which only a published or reconstructed mission-specific
+  direction may ever reach an upcoming mission's sector); nothing in the product imports it, the deployment
+  does not ship it, and tests assert both.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.
