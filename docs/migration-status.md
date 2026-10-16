@@ -274,3 +274,32 @@ route propagation; persistent failures still fail. No scientific/application cha
   renderer and a reader identity, which this phase deliberately avoids; revisit only with a concrete
   need, reusing the existing serializer, UID namespace and eligibility rules.
 
+
+## Hourly launch ingestion repair — 2026-10-16
+- Ten consecutive hourly runs failed (2026-10-16T04:46Z through 13:44Z, last run 38910193196) at
+  tests/calendar.cjs:219. Root cause: the calendar test selected "the first published time in the
+  future" from the live data/launches/upcoming.json, which resolved to USSF-481; the 04:46Z refresh
+  recorded that flight as `success | Launch Successful`, and the exporter correctly refuses completed
+  launches. The 03:48Z refresh still read `unknown | Launch in Flight`, which is why the breakage
+  started at 04:46Z. Verified against the committed feeds at f59deae, 6cdf94f and ccea6e7.
+- Because the failure was inside the publication step, Cloudflare was never redeployed: the deployed
+  schedule aged while the refresh itself kept succeeding. Fail-closed behaviour and the last-good
+  commit were never at risk.
+- Fixed: tests/calendar.cjs now declares fixed fixtures for exact, day-only, every broad period,
+  active/unconfirmed/held, completed, cancelled, under-way, already-passed, unreadable and missing
+  cases, and asserts only content-independent invariants against the live artifact;
+  tests/discovery.spec.js builds its own launch feed instead of spreading a live sample.
+- Publication now validates this pipeline only (artifact check, schedule engine, relevance and worker
+  suites, build) instead of the full regression suite, so an unrelated vertical can no longer block
+  hourly data publication. The push fetches and replays on origin/main with up to three attempts and
+  never forces.
+- publishDecision/effectiveScheduleDigest: an unchanged schedule is no longer rewritten every hour.
+  Measured: 8 of the previous 16 hourly commits carried identical schedule content. Unchanged content
+  now defers while the committed copy is under the 120-minute deadline (keeping the deployed copy
+  inside the 180-minute staleness horizon) and republishes once it is reached. A live three-run check
+  showed publish/changed, publish/changed then defer/unchanged as expected.
+- Verified: npm test 21 suites; node scripts/refresh-launches.mjs --check; launches-feed,
+  launches-relevance and launches-worker; npm run build; the fixed browser specs (discovery, calendar,
+  homepage, migration) 13 passed.
+- Next: commit, push, dispatch a manual ingestion run, verify the Cloudflare feed, then confirm the
+  following genuine scheduled run.

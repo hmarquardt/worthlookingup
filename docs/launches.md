@@ -81,7 +81,7 @@ detected schedule change.
 | Edge cache (`caches.default`) | 900 s for a served copy, 120 s for a degraded copy, 60 s for an unavailable response | Shared by every visitor in that colo, so visitors never reach the provider. |
 | KV (`LAUNCHES` binding, optional) | Stores the last good feed with `stored_at` | Preferred when it is newer than the committed feed. Without the binding the endpoint still works. |
 | Upstream refresh from Cloudflare | Only when the freshest available copy is **stale** (older than 180 minutes), so a broken scheduled job cannot leave the calendar silently old | At most 2 pages plus the announced-total request. In normal operation the provider is never contacted from Cloudflare: the committed feed is kept current by the scheduled job, and Cloudflare's egress addresses are shared with other tenants, so the provider's per-IP allowance is not spent on routine freshness. |
-| Scheduled ingestion | Hourly GitHub Actions workflow; at most 3 launch pages plus the announced-total request (4 requests) | Commits a validated `data/launches/upcoming.json` and deploys it when it changed. This is the primary freshness mechanism, on its own IP. |
+| Scheduled ingestion | Hourly GitHub Actions workflow; at most 3 launch pages plus the announced-total request (4 requests) | Commits a validated `data/launches/upcoming.json` and deploys it when the schedule content changed. An unchanged schedule is republished for freshness at most once every 120 minutes instead of every hour, so the deployed copy never approaches the 180-minute horizon and no commit or deployment is created for a schedule that did not move. This is the primary freshness mechanism, on its own IP. |
 
 ## Scheduling uncertainty (the part that matters most)
 
@@ -176,4 +176,45 @@ be read as a promise of that capability.
 * The scheduled job refuses to write an artifact that fails validation or contains no launches, so a
   failed retrieval leaves the previous file and the previous deployment untouched.
 * The reader always sees the age of the schedule, and a warning once it is older than 180 minutes.
+
+### When an hourly refresh publishes, and when it does not
+
+`generated_at` records when the provider was last read successfully, so it must stay accurate or the
+calendar would warn about a schedule that is in fact current. It is therefore volatile by nature, and a
+naive comparison sees a change every hour: measured over sixteen consecutive hourly commits, **eight
+carried identical schedule content** and differed only in timestamps and provenance digests.
+
+`effectiveScheduleDigest` (in `src/launches/launch-feed.mjs`) digests only what a reader can see — the
+normalized launch records, including status, precision, net, window, pad, links, last-update and any
+detected change — and excludes `generated_at`, `retrieved_at`, the upstream payload digest, page
+counts, the announced total and the derived stats. `publishDecision` then applies one rule:
+
+| Situation | Result |
+| --- | --- |
+| The schedule content changed | Publish: commit and deploy. |
+| Unchanged, and the committed copy is younger than the 120-minute freshness deadline | **Defer**: nothing is written, so no commit and no deployment are created. |
+| Unchanged, and the committed copy is at or past the deadline | Publish, so the deployed copy never approaches the 180-minute staleness horizon. |
+| No usable previous generation time, or no candidate | Publish (fail closed). |
+
+The committed artifact never ages beyond 120 minutes in normal operation, so the deployed copy stays
+inside the staleness horizon and the Cloudflare endpoint still never spends its own provider allowance
+on routine freshness. A run that defers exits successfully and says so, in the log and in the workflow
+summary; it is not a failure and it does not leave the artifact dirty.
+
+### The ingestion workflow's own validation gate
+
+Publication validates this pipeline only: `scripts/refresh-launches.mjs --check` (the artifact itself),
+`tests/launches-feed.cjs` (the schedule engine), `tests/launches-relevance.cjs` (presentation rules) and
+`tests/launches-worker.cjs` (the endpoint), then `npm run build` and the Pages deployment. The complete
+browser and scientific regression suites belong to the separate validation workflow. An unrelated
+vertical's defect must never gate an hourly data publication, because that would leave the site serving
+an aging schedule.
+
+The publish step pushes with a bounded fetch-and-replay loop (never a force): `main` is shared with the
+celestial data bot, so a rejected push is followed by `git fetch origin main` and `git rebase
+origin/main`, retried up to three times. A conflict aborts the rebase and fails the run with nothing
+pushed and no history rewritten. Test fixtures and browser fixtures never read the launch list out of
+`data/launches/upcoming.json`; they use fixed records, because the artifact's contents change hourly as
+real launches fly. Only content-independent invariants (schema validity, provider credit, counts
+relative to the artifact itself) may be asserted against the live artifact.
 

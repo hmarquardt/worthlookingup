@@ -41,6 +41,10 @@ Python dependencies: requirements.txt. Run precision test and both builders --ch
 Run npm run build and verify the staged artifact for releases. Worker imports, missing assets,
 origin independence, transfer validation and deployment packaging are checked in tests/migration.cjs.
 Never replace a real behavior test with an assertion mirroring its implementation.
+Hourly refresh workflows validate their own artifact, engine and endpoint only: unrelated regression
+suites must never gate data publication. They push only after fetching and replaying on origin/main and
+never force. Test fixtures for continuously refreshed artifacts are fixed records declared in the test;
+only content-independent invariants may be asserted against the live artifact.
 
 ## Git synchronization and releases
 Inspect status/branch/remotes; fetch origin before work and before push. Main is shared with a
