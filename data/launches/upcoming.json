@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-17T11:40:36.540Z",
+ "generated_at": "2026-10-17T12:47:18.679Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,24 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-17T11:40:36.540Z",
-  "sha256": "739550464e1837616694d471b0c58cc4ca75b58ab50471d20b26e097c81fe3aa",
+  "retrieved_at": "2026-10-17T12:47:18.679Z",
+  "sha256": "9c5e231adc3d55eb7d63c2871d85f3c3138ee7940ed22eb313e625110f5c8e4b",
   "pages": 2,
-  "upstream_count": 147,
-  "upstream_records": 147,
+  "upstream_count": 146,
+  "upstream_records": 146,
   "announced_total": 475,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 148,
+  "count": 147,
   "by_status": {
-   "success": 1,
    "scheduled": 6,
    "unconfirmed": 141
   },
   "by_precision": {
-   "second": 2,
    "minute": 4,
+   "second": 1,
    "hour": 4,
    "day": 7,
    "month": 25,
@@ -43,66 +42,16 @@
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 10,
-  "with_published_date": 17,
+  "with_published_time": 9,
+  "with_published_date": 16,
   "period_only": 131,
   "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-10-16T00:01:05.000Z",
+  "nearest_net": "2026-10-19T10:30:00.000Z",
   "window_days": 180,
   "announced_total": 475
  },
  "launches": [
-  {
-   "id": "df88cfbf-f504-4e11-8370-e33dd6280b5b",
-   "slug": "falcon-9-block-5-ussf-481",
-   "name": "Falcon 9 Block 5 | USSF-481",
-   "mission": "USSF-481",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of ascent rocket stage drop zones being fits with previous SDA Transport Layer launches.",
-   "orbit": "Polar Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-16T00:01:05.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-10-15T23:44:00.000Z",
-    "end": "2026-10-16T03:44:00.000Z"
-   },
-   "last_updated": "2026-10-16T23:19:59.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/df88cfbf-f504-4e11-8370-e33dd6280b5b/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
    "slug": "falcon-9-block-5-bandwagon-5-dedicated-mid-inclina",
