@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-17T15:40:45.640Z",
+ "generated_at": "2026-10-17T16:41:56.821Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-17T15:40:45.640Z",
-  "sha256": "1d1a8fe4c304a8be375093ec8323a85e0d9946d6841831faee4732eb6efc59b8",
+  "retrieved_at": "2026-10-17T16:41:56.821Z",
+  "sha256": "6805e6633d7e47df5b7a1ad91a9a828df337bc7ac283b75cf6674c969826549c",
   "pages": 2,
   "upstream_count": 147,
   "upstream_records": 147,
@@ -58,7 +58,7 @@
    "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
    "mission": "Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
    "mission_type": "Dedicated Rideshare",
-   "mission_description": "Dedicated rideshare flight to a mid-inclination orbit with dozens of small microsatellites and nanosatellites for commercial and government customers.",
+   "mission_description": "Dedicated rideshare flight to a mid-inclination orbit with dozens of small microsatellites and nanosatellites for commercial and government customers. This launch also carries the second demonstration mission for SpaceX’s Project Starfall, which aims to mass-produce reentry capsules designed to autonomously transport valuable customer experiments and other payloads safely back from space to Earth…",
    "orbit": "Low Earth Orbit",
    "vehicle": "Falcon 9 Block 5",
    "vehicle_family": "Falcon",
@@ -94,7 +94,7 @@
     "start": "2026-10-19T10:30:00.000Z",
     "end": "2026-10-19T11:30:00.000Z"
    },
-   "last_updated": "2026-10-17T04:23:02.000Z",
+   "last_updated": "2026-10-17T15:58:16.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3b430f81-0ff1-4d85-8a1a-cef0de326198/",
     "info": [],
