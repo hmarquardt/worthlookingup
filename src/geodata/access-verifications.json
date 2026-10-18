@@ -1,0 +1,148 @@
+{
+  "schema": "worthlookingup.geodata-access-verifications/1",
+  "checked_at": "2026-10-18",
+  "note": "Re-checked against the managing agencies' own pages for this release. Each statement is quoted, with its URL and the date it was read; the page text is not republished. A statement applies only to the units listed in appliesTo. Anything not listed as verified is excluded from the public explorer, with the reason recorded in `review`.",
+  "publisherNote": "Quotations are short extracts used to support a factual claim, with attribution.",
+  "evidence": {
+    "shawnee-nf": [
+      {
+        "id": "usfs-shawnee-overnight-parking",
+        "kind": "agency-page",
+        "publisher": "USDA Forest Service, Shawnee National Forest",
+        "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+        "verifiedAt": "2026-10-18",
+        "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+        "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking.",
+        "appliesTo": [
+          "shawnee-nf",
+          "garden-of-the-gods",
+          "lusk-creek"
+        ],
+        "states": {
+          "publicLand": true,
+          "nightAccess": "permitted",
+          "parking": "permitted",
+          "scope": "forest",
+          "nightWindow": "overnight parking where posted, such as trailheads; day-use areas closed 22:00-06:00"
+        }
+      },
+      {
+        "id": "padus-shawnee-ownership",
+        "kind": "official-dataset",
+        "publisher": "USGS PAD-US 4.1",
+        "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+        "verifiedAt": "2026-10-18",
+        "summary": "PAD-US records federal ownership and USFS management for this unit. It does not record opening hours.",
+        "quote": null,
+        "appliesTo": [
+          "shawnee-nf",
+          "garden-of-the-gods",
+          "lusk-creek"
+        ],
+        "states": {
+          "publicLand": true
+        }
+      }
+    ],
+    "garden-of-the-gods": [
+      {
+        "id": "usfs-shawnee-wilderness-restrictions",
+        "kind": "agency-page",
+        "publisher": "USDA Forest Service, Shawnee National Forest",
+        "url": "https://www.fs.usda.gov/r09/shawnee/recreation/wilderness-areas",
+        "verifiedAt": "2026-10-18",
+        "summary": "The wilderness areas are non-motorized: mechanical and motorized vehicles and equipment are prohibited within wilderness, so the mapped centre is not reachable by vehicle and entry is on foot.",
+        "quote": "Mechanical and motorized vehicles and equipment are prohibited within wilderness.",
+        "appliesTo": [
+          "garden-of-the-gods",
+          "lusk-creek"
+        ],
+        "states": {
+          "publicLand": true,
+          "vehicleAccess": "prohibited"
+        }
+      }
+    ],
+    "lusk-creek": [],
+    "sugar-ridge-fwa": [
+      {
+        "id": "in-dnr-sugar-ridge-24-7",
+        "kind": "agency-rule",
+        "publisher": "Indiana Department of Natural Resources",
+        "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/sugar-ridge-fwa/",
+        "verifiedAt": "2026-10-18",
+        "summary": "The property page states 24/7 property hours, which permits presence on the property after dark; parking is covered by the same whole-property statement and is not documented separately.",
+        "quote": "Property hours 24/7. Some activities may have specific open times, especially if there is a draw.",
+        "appliesTo": [
+          "sugar-ridge-fwa"
+        ],
+        "states": {
+          "publicLand": true,
+          "nightAccess": "permitted",
+          "parking": "on-site-by-property-hours",
+          "scope": "property",
+          "nightWindow": "24/7 property hours, with activity-specific exceptions posted at the property"
+        }
+      },
+      {
+        "id": "padus-sugar-ridge-ownership",
+        "kind": "official-dataset",
+        "publisher": "USGS PAD-US 4.1",
+        "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+        "verifiedAt": "2026-10-18",
+        "summary": "PAD-US records state ownership and Indiana DNR management for this unit. It does not record opening hours.",
+        "quote": null,
+        "appliesTo": [
+          "sugar-ridge-fwa"
+        ],
+        "states": {
+          "publicLand": true
+        }
+      }
+    ]
+  },
+  "review": {
+    "glendale-fwa": {
+      "outcome": "excluded",
+      "checkedAt": "2026-10-18",
+      "reason": "The property page carries an Hours heading but no property access hours in the served page, and no after-dark statement was found.",
+      "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/glendale-fwa/"
+    },
+    "hovey-lake-fwa": {
+      "outcome": "excluded",
+      "checkedAt": "2026-10-18",
+      "reason": "Only office and visitor-centre hours are published; no statement about access after dark.",
+      "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/hovey-lake-fwa/"
+    },
+    "harmonie": {
+      "outcome": "excluded",
+      "checkedAt": "2026-10-18",
+      "reason": "The published Hours block is office hours (9 a.m. to 3 p.m.); no property access hours or after-dark statement were found, and office hours must not be read as access permission.",
+      "url": "https://www.in.gov/dnr/state-parks/parks-lakes/harmonie-state-park/"
+    },
+    "patoka-lake": {
+      "outcome": "excluded",
+      "checkedAt": "2026-10-18",
+      "reason": "PAD-US records a federal reservoir designation; no statement from a managing agency about access after dark was located in this review.",
+      "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview"
+    },
+    "higginson-henry": {
+      "outcome": "excluded",
+      "checkedAt": "2026-10-18",
+      "reason": "The Kentucky Department of Fish and Wildlife Resources site returned HTTP 403 to this review, so no statement could be confirmed either way.",
+      "url": "https://fw.ky.gov/"
+    },
+    "wabash-mount-carmel": {
+      "outcome": "excluded",
+      "checkedAt": "2026-10-18",
+      "reason": "PAD-US records private ownership and private management with no public permission recorded.",
+      "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview"
+    },
+    "aep-rockport": {
+      "outcome": "excluded",
+      "checkedAt": "2026-10-18",
+      "reason": "PAD-US records a public-access flag for this unit while its owner and manager are private; a dataset flag is not permission, so it is excluded.",
+      "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview"
+    }
+  }
+}

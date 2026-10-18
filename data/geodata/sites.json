@@ -1,0 +1,3338 @@
+{
+  "schema": "worthlookingup.geodata-sites/1",
+  "generated_by": "scripts/build-geodata-sites.mjs",
+  "checked_at": "2026-10-18",
+  "region": {
+    "id": "southern-indiana",
+    "label": "Southern Indiana, western Kentucky and southeastern Illinois",
+    "west": -88.6,
+    "east": -86.3,
+    "south": 37.3,
+    "north": 38.7,
+    "note": "Location exploration is available only in this researched region. Milky Way calculations continue worldwide for the location you choose."
+  },
+  "publication": {
+    "rule": "Only areas whose after-dark access is documented by the managing agency, with a legal place to park or a documented standing permission, are published. Ownership alone is not permission.",
+    "publishedAreas": 4,
+    "reviewedCandidates": 11,
+    "excludedCount": 7
+  },
+  "terrain": {
+    "state": "regional-context-only",
+    "note": "A parcel has no single horizon, and the centre of a parcel has no verified observation point. These are the steepest modelled direction at each of the pilot's sampled points, offered as regional context only; a clearance angle needs a specific observation point, which this release does not have.",
+    "steepestDirectionMinDeg": -0.03,
+    "steepestDirectionMaxDeg": 18.92,
+    "sampledPoints": 11,
+    "source": "usgs-3dep",
+    "demoPixelSizeM": 31,
+    "bareEarth": "Bare earth only: trees, crops, buildings, levees and vehicles are not in the model."
+  },
+  "sky": {
+    "state": "unavailable",
+    "message": "Local artificial sky brightness has not yet been assessed for these locations."
+  },
+  "limitations": [
+    "These are areas, not observation points: no parking place, trailhead, gate or tripod position is verified.",
+    "An area has no single horizon; a clearance angle needs a specific observation point.",
+    "Bare-earth terrain only: trees, crops, buildings and levees are not modelled.",
+    "No artificial sky brightness is assessed, so no area is described as dark.",
+    "Distances are straight-line to the nearest mapped boundary: not a drive, and no travel time is implied.",
+    "Check the agency source and current conditions before travelling; seasonal closures and hunting seasons apply."
+  ],
+  "attribution": [
+    {
+      "id": "usgs-padus-4-1",
+      "publisher": "U.S. Geological Survey, Protected Areas Database of the United States, version 4.1",
+      "product": "PADUS_Management_Areas feature service",
+      "attribution": "USGS PAD-US",
+      "licence": "U.S. Government work (public domain)"
+    },
+    {
+      "id": "usgs-3dep",
+      "publisher": "U.S. Geological Survey, 3D Elevation Program",
+      "product": "3DEPElevation ImageServer (best-available lidar DEM, resampled on request)",
+      "attribution": "courtesy of the U.S. Geological Survey",
+      "licence": "U.S. Government work (public domain)"
+    }
+  ],
+  "areas": [
+    {
+      "id": "garden-of-the-gods",
+      "type": "area",
+      "name": "Garden Of The Gods Wilderness",
+      "agency": {
+        "owner": "DESG",
+        "manager": "FED",
+        "managerName": "USFS",
+        "designation": "Wilderness Area",
+        "designationCode": "WA",
+        "state": "IL",
+        "acres": 3978,
+        "source": "usgs-padus-4-1"
+      },
+      "boundary": {
+        "rings": [
+          [
+            [
+              -88.3881,
+              37.6254
+            ],
+            [
+              -88.3884,
+              37.6165
+            ],
+            [
+              -88.3854,
+              37.6165
+            ],
+            [
+              -88.3854,
+              37.6143
+            ],
+            [
+              -88.3839,
+              37.6142
+            ],
+            [
+              -88.3839,
+              37.618
+            ],
+            [
+              -88.3818,
+              37.6179
+            ],
+            [
+              -88.3818,
+              37.6217
+            ],
+            [
+              -88.3838,
+              37.6217
+            ],
+            [
+              -88.3837,
+              37.6254
+            ],
+            [
+              -88.3748,
+              37.6253
+            ],
+            [
+              -88.3749,
+              37.6216
+            ],
+            [
+              -88.3719,
+              37.6192
+            ],
+            [
+              -88.3721,
+              37.6177
+            ],
+            [
+              -88.3713,
+              37.6152
+            ],
+            [
+              -88.3682,
+              37.6078
+            ],
+            [
+              -88.367,
+              37.6062
+            ],
+            [
+              -88.3653,
+              37.6053
+            ],
+            [
+              -88.3653,
+              37.6031
+            ],
+            [
+              -88.3756,
+              37.6032
+            ],
+            [
+              -88.3795,
+              37.6069
+            ],
+            [
+              -88.3872,
+              37.607
+            ],
+            [
+              -88.3875,
+              37.5997
+            ],
+            [
+              -88.369,
+              37.5995
+            ],
+            [
+              -88.3704,
+              37.5958
+            ],
+            [
+              -88.3705,
+              37.5886
+            ],
+            [
+              -88.3723,
+              37.5886
+            ],
+            [
+              -88.3728,
+              37.5877
+            ],
+            [
+              -88.3751,
+              37.5876
+            ],
+            [
+              -88.3751,
+              37.585
+            ],
+            [
+              -88.3849,
+              37.5848
+            ],
+            [
+              -88.3848,
+              37.5885
+            ],
+            [
+              -88.3894,
+              37.5884
+            ],
+            [
+              -88.3894,
+              37.5888
+            ],
+            [
+              -88.3906,
+              37.5888
+            ],
+            [
+              -88.3906,
+              37.5884
+            ],
+            [
+              -88.3943,
+              37.5883
+            ],
+            [
+              -88.3941,
+              37.5919
+            ],
+            [
+              -88.4051,
+              37.5919
+            ],
+            [
+              -88.4051,
+              37.5922
+            ],
+            [
+              -88.4065,
+              37.5923
+            ],
+            [
+              -88.4067,
+              37.5919
+            ],
+            [
+              -88.408,
+              37.5919
+            ],
+            [
+              -88.4081,
+              37.59
+            ],
+            [
+              -88.422,
+              37.59
+            ],
+            [
+              -88.4222,
+              37.5846
+            ],
+            [
+              -88.4315,
+              37.5846
+            ],
+            [
+              -88.4315,
+              37.5857
+            ],
+            [
+              -88.4333,
+              37.5857
+            ],
+            [
+              -88.4313,
+              37.5925
+            ],
+            [
+              -88.4315,
+              37.5957
+            ],
+            [
+              -88.4307,
+              37.597
+            ],
+            [
+              -88.4277,
+              37.6
+            ],
+            [
+              -88.4245,
+              37.6012
+            ],
+            [
+              -88.4224,
+              37.603
+            ],
+            [
+              -88.4203,
+              37.6056
+            ],
+            [
+              -88.42,
+              37.6072
+            ],
+            [
+              -88.4176,
+              37.6096
+            ],
+            [
+              -88.4178,
+              37.611
+            ],
+            [
+              -88.4164,
+              37.6138
+            ],
+            [
+              -88.4144,
+              37.6145
+            ],
+            [
+              -88.4116,
+              37.6145
+            ],
+            [
+              -88.4115,
+              37.6182
+            ],
+            [
+              -88.4022,
+              37.6176
+            ],
+            [
+              -88.4021,
+              37.6218
+            ],
+            [
+              -88.3974,
+              37.6218
+            ],
+            [
+              -88.3972,
+              37.6273
+            ],
+            [
+              -88.3924,
+              37.6273
+            ],
+            [
+              -88.3925,
+              37.6254
+            ],
+            [
+              -88.3881,
+              37.6254
+            ]
+          ]
+        ],
+        "bbox": [
+          -88.4333,
+          37.5846,
+          -88.3653,
+          37.6273
+        ],
+        "provenance": {
+          "source": "usgs-padus-4-1",
+          "objectId": 91615,
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "method": "PAD-US polygon, Douglas-Peucker simplified locally to a point budget, EPSG:4326, 4 decimal places",
+          "note": "a mapped management extent, simplified for display; not a surveyed property boundary",
+          "ringsKept": 1,
+          "ringsTotal": 1
+        }
+      },
+      "access": {
+        "state": "verified-night-access",
+        "label": "Public access after dark documented",
+        "nightWindow": null,
+        "parkingInferred": false,
+        "verifiedAt": "2026-10-18",
+        "evidence": [
+          {
+            "id": null,
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+            "quote": null
+          },
+          {
+            "id": null,
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "id": "usfs-shawnee-overnight-parking",
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "id": "padus-shawnee-ownership",
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records federal ownership and USFS management for this unit. It does not record opening hours.",
+            "quote": null
+          },
+          {
+            "id": "usfs-shawnee-wilderness-restrictions",
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/wilderness-areas",
+            "verifiedAt": "2026-10-18",
+            "summary": "The wilderness areas are non-motorized: mechanical and motorized vehicles and equipment are prohibited within wilderness, so the mapped centre is not reachable by vehicle and entry is on foot.",
+            "quote": "Mechanical and motorized vehicles and equipment are prohibited within wilderness."
+          }
+        ]
+      },
+      "restrictions": [
+        {
+          "text": "trailhead parking for overnight camping; day-use areas closed 22:00-06:00",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        },
+        {
+          "text": "overnight parking where posted, such as trailheads; day-use areas closed 22:00-06:00",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        },
+        {
+          "text": "Vehicles and mechanized equipment are prohibited inside the wilderness; entry is on foot.",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/wilderness-areas",
+          "verifiedAt": "2026-10-18",
+          "quote": "Mechanical and motorized vehicles and equipment are prohibited within wilderness."
+        },
+        {
+          "text": "Day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        }
+      ],
+      "terrain": {
+        "state": "regional-context-only",
+        "note": "A parcel has no single horizon, and the centre of a parcel has no verified observation point. These are the steepest modelled direction at each of the pilot's sampled points, offered as regional context only; a clearance angle needs a specific observation point, which this release does not have.",
+        "steepestDirectionMinDeg": -0.03,
+        "steepestDirectionMaxDeg": 18.92,
+        "sampledPoints": 11,
+        "source": "usgs-3dep",
+        "demoPixelSizeM": 31,
+        "bareEarth": "Bare earth only: trees, crops, buildings, levees and vehicles are not in the model."
+      },
+      "sky": {
+        "state": "unavailable",
+        "message": "Local artificial sky brightness has not yet been assessed for these locations.",
+        "note": "No commercially licensed, machine-readable sky-brightness dataset is available. Upward satellite radiance is not ground sky brightness and is not converted here."
+      },
+      "distance": {
+        "kind": "great-circle",
+        "reference": "nearest mapped boundary",
+        "note": "Straight-line distance to the nearest mapped edge of the area. An edge is a management boundary, not an entrance, not a road, and not a destination; no driving distance or travel time is computed."
+      },
+      "unknowns": [
+        "no verified observation point, trailhead, gate or parking place for this release",
+        "local horizon: bare-earth terrain only, vegetation not modelled",
+        "local artificial sky brightness",
+        "road access, driving distance and travel time",
+        "seasonal closures, hunting seasons and current conditions"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "lusk-creek",
+      "type": "area",
+      "name": "Lusk Creek Wilderness",
+      "agency": {
+        "owner": "DESG",
+        "manager": "FED",
+        "managerName": "USFS",
+        "designation": "Wilderness Area",
+        "designationCode": "WA",
+        "state": "IL",
+        "acres": 6632,
+        "source": "usgs-padus-4-1"
+      },
+      "boundary": {
+        "rings": [
+          [
+            [
+              -88.5242,
+              37.5425
+            ],
+            [
+              -88.5243,
+              37.5409
+            ],
+            [
+              -88.4921,
+              37.5413
+            ],
+            [
+              -88.4922,
+              37.5265
+            ],
+            [
+              -88.4968,
+              37.5266
+            ],
+            [
+              -88.4968,
+              37.5339
+            ],
+            [
+              -88.5014,
+              37.534
+            ],
+            [
+              -88.5014,
+              37.5266
+            ],
+            [
+              -88.4968,
+              37.5266
+            ],
+            [
+              -88.4969,
+              37.5215
+            ],
+            [
+              -88.5107,
+              37.5215
+            ],
+            [
+              -88.5109,
+              37.5166
+            ],
+            [
+              -88.5062,
+              37.5166
+            ],
+            [
+              -88.5062,
+              37.5176
+            ],
+            [
+              -88.5016,
+              37.5176
+            ],
+            [
+              -88.5016,
+              37.5103
+            ],
+            [
+              -88.497,
+              37.5103
+            ],
+            [
+              -88.4972,
+              37.5012
+            ],
+            [
+              -88.5018,
+              37.5013
+            ],
+            [
+              -88.5018,
+              37.5008
+            ],
+            [
+              -88.5025,
+              37.5009
+            ],
+            [
+              -88.5064,
+              37.5041
+            ],
+            [
+              -88.5156,
+              37.5042
+            ],
+            [
+              -88.5156,
+              37.5015
+            ],
+            [
+              -88.5248,
+              37.5016
+            ],
+            [
+              -88.5247,
+              37.5078
+            ],
+            [
+              -88.5214,
+              37.5079
+            ],
+            [
+              -88.5223,
+              37.5087
+            ],
+            [
+              -88.5201,
+              37.5087
+            ],
+            [
+              -88.5201,
+              37.512
+            ],
+            [
+              -88.5246,
+              37.512
+            ],
+            [
+              -88.5247,
+              37.5087
+            ],
+            [
+              -88.5436,
+              37.5085
+            ],
+            [
+              -88.5437,
+              37.5067
+            ],
+            [
+              -88.5427,
+              37.5063
+            ],
+            [
+              -88.5415,
+              37.501
+            ],
+            [
+              -88.5391,
+              37.4992
+            ],
+            [
+              -88.5386,
+              37.4979
+            ],
+            [
+              -88.5483,
+              37.4978
+            ],
+            [
+              -88.5482,
+              37.5014
+            ],
+            [
+              -88.5579,
+              37.5004
+            ],
+            [
+              -88.5584,
+              37.5009
+            ],
+            [
+              -88.5608,
+              37.5008
+            ],
+            [
+              -88.5601,
+              37.5046
+            ],
+            [
+              -88.5599,
+              37.5118
+            ],
+            [
+              -88.5611,
+              37.5118
+            ],
+            [
+              -88.5611,
+              37.518
+            ],
+            [
+              -88.5566,
+              37.5194
+            ],
+            [
+              -88.5565,
+              37.5213
+            ],
+            [
+              -88.5542,
+              37.5227
+            ],
+            [
+              -88.5522,
+              37.5227
+            ],
+            [
+              -88.5521,
+              37.5255
+            ],
+            [
+              -88.5568,
+              37.5255
+            ],
+            [
+              -88.5568,
+              37.5263
+            ],
+            [
+              -88.5614,
+              37.5263
+            ],
+            [
+              -88.5613,
+              37.5354
+            ],
+            [
+              -88.5566,
+              37.5355
+            ],
+            [
+              -88.5565,
+              37.541
+            ],
+            [
+              -88.5556,
+              37.541
+            ],
+            [
+              -88.5556,
+              37.5428
+            ],
+            [
+              -88.5518,
+              37.5428
+            ],
+            [
+              -88.5471,
+              37.5419
+            ],
+            [
+              -88.5471,
+              37.5446
+            ],
+            [
+              -88.5424,
+              37.5447
+            ],
+            [
+              -88.5424,
+              37.5435
+            ],
+            [
+              -88.5417,
+              37.5447
+            ],
+            [
+              -88.5424,
+              37.5447
+            ],
+            [
+              -88.5424,
+              37.5482
+            ],
+            [
+              -88.5517,
+              37.5482
+            ],
+            [
+              -88.5516,
+              37.5528
+            ],
+            [
+              -88.547,
+              37.5527
+            ],
+            [
+              -88.5469,
+              37.5554
+            ],
+            [
+              -88.5508,
+              37.5554
+            ],
+            [
+              -88.5509,
+              37.5558
+            ],
+            [
+              -88.5509,
+              37.5594
+            ],
+            [
+              -88.5517,
+              37.5614
+            ],
+            [
+              -88.5498,
+              37.5635
+            ],
+            [
+              -88.5495,
+              37.5649
+            ],
+            [
+              -88.5481,
+              37.5644
+            ],
+            [
+              -88.5475,
+              37.5619
+            ],
+            [
+              -88.5463,
+              37.5609
+            ],
+            [
+              -88.5433,
+              37.5598
+            ],
+            [
+              -88.5405,
+              37.5572
+            ],
+            [
+              -88.5384,
+              37.5566
+            ],
+            [
+              -88.5355,
+              37.5566
+            ],
+            [
+              -88.5351,
+              37.5553
+            ],
+            [
+              -88.5143,
+              37.5557
+            ],
+            [
+              -88.5155,
+              37.5536
+            ],
+            [
+              -88.518,
+              37.5521
+            ],
+            [
+              -88.5186,
+              37.5483
+            ],
+            [
+              -88.5239,
+              37.5468
+            ],
+            [
+              -88.5242,
+              37.5425
+            ]
+          ]
+        ],
+        "bbox": [
+          -88.5614,
+          37.4978,
+          -88.4921,
+          37.5649
+        ],
+        "provenance": {
+          "source": "usgs-padus-4-1",
+          "objectId": 260778,
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "method": "PAD-US polygon, Douglas-Peucker simplified locally to a point budget, EPSG:4326, 4 decimal places",
+          "note": "a mapped management extent, simplified for display; not a surveyed property boundary",
+          "ringsKept": 1,
+          "ringsTotal": 1
+        }
+      },
+      "access": {
+        "state": "verified-night-access",
+        "label": "Public access after dark documented",
+        "nightWindow": null,
+        "parkingInferred": false,
+        "verifiedAt": "2026-10-18",
+        "evidence": [
+          {
+            "id": null,
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+            "quote": null
+          },
+          {
+            "id": null,
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "id": "usfs-shawnee-overnight-parking",
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "id": "padus-shawnee-ownership",
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records federal ownership and USFS management for this unit. It does not record opening hours.",
+            "quote": null
+          },
+          {
+            "id": "usfs-shawnee-wilderness-restrictions",
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/wilderness-areas",
+            "verifiedAt": "2026-10-18",
+            "summary": "The wilderness areas are non-motorized: mechanical and motorized vehicles and equipment are prohibited within wilderness, so the mapped centre is not reachable by vehicle and entry is on foot.",
+            "quote": "Mechanical and motorized vehicles and equipment are prohibited within wilderness."
+          }
+        ]
+      },
+      "restrictions": [
+        {
+          "text": "trailhead parking for overnight camping; day-use areas closed 22:00-06:00",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        },
+        {
+          "text": "overnight parking where posted, such as trailheads; day-use areas closed 22:00-06:00",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        },
+        {
+          "text": "Vehicles and mechanized equipment are prohibited inside the wilderness; entry is on foot.",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/wilderness-areas",
+          "verifiedAt": "2026-10-18",
+          "quote": "Mechanical and motorized vehicles and equipment are prohibited within wilderness."
+        },
+        {
+          "text": "Day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        }
+      ],
+      "terrain": {
+        "state": "regional-context-only",
+        "note": "A parcel has no single horizon, and the centre of a parcel has no verified observation point. These are the steepest modelled direction at each of the pilot's sampled points, offered as regional context only; a clearance angle needs a specific observation point, which this release does not have.",
+        "steepestDirectionMinDeg": -0.03,
+        "steepestDirectionMaxDeg": 18.92,
+        "sampledPoints": 11,
+        "source": "usgs-3dep",
+        "demoPixelSizeM": 31,
+        "bareEarth": "Bare earth only: trees, crops, buildings, levees and vehicles are not in the model."
+      },
+      "sky": {
+        "state": "unavailable",
+        "message": "Local artificial sky brightness has not yet been assessed for these locations.",
+        "note": "No commercially licensed, machine-readable sky-brightness dataset is available. Upward satellite radiance is not ground sky brightness and is not converted here."
+      },
+      "distance": {
+        "kind": "great-circle",
+        "reference": "nearest mapped boundary",
+        "note": "Straight-line distance to the nearest mapped edge of the area. An edge is a management boundary, not an entrance, not a road, and not a destination; no driving distance or travel time is computed."
+      },
+      "unknowns": [
+        "no verified observation point, trailhead, gate or parking place for this release",
+        "local horizon: bare-earth terrain only, vegetation not modelled",
+        "local artificial sky brightness",
+        "road access, driving distance and travel time",
+        "seasonal closures, hunting seasons and current conditions"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "shawnee-nf",
+      "type": "area",
+      "name": "Shawnee National Forest",
+      "agency": {
+        "owner": "FED",
+        "manager": "FED",
+        "managerName": "USFS",
+        "designation": "National Forest",
+        "designationCode": "NF",
+        "state": "IL",
+        "acres": 165650,
+        "source": "usgs-padus-4-1"
+      },
+      "boundary": {
+        "rings": [
+          [
+            [
+              -88.4968,
+              37.5302
+            ],
+            [
+              -88.4738,
+              37.5229
+            ],
+            [
+              -88.4549,
+              37.563
+            ],
+            [
+              -88.4317,
+              37.5627
+            ],
+            [
+              -88.4274,
+              37.5482
+            ],
+            [
+              -88.4438,
+              37.5374
+            ],
+            [
+              -88.4138,
+              37.5073
+            ],
+            [
+              -88.4485,
+              37.4826
+            ],
+            [
+              -88.4236,
+              37.4711
+            ],
+            [
+              -88.42,
+              37.4281
+            ],
+            [
+              -88.4408,
+              37.4233
+            ],
+            [
+              -88.4277,
+              37.4421
+            ],
+            [
+              -88.4329,
+              37.4604
+            ],
+            [
+              -88.4565,
+              37.4589
+            ],
+            [
+              -88.4513,
+              37.4752
+            ],
+            [
+              -88.4677,
+              37.4755
+            ],
+            [
+              -88.4609,
+              37.4644
+            ],
+            [
+              -88.4746,
+              37.4755
+            ],
+            [
+              -88.4887,
+              37.4683
+            ],
+            [
+              -88.4705,
+              37.4536
+            ],
+            [
+              -88.4751,
+              37.4425
+            ],
+            [
+              -88.4889,
+              37.4535
+            ],
+            [
+              -88.5119,
+              37.4462
+            ],
+            [
+              -88.498,
+              37.4575
+            ],
+            [
+              -88.5184,
+              37.4686
+            ],
+            [
+              -88.5112,
+              37.4905
+            ],
+            [
+              -88.5297,
+              37.4906
+            ],
+            [
+              -88.5228,
+              37.4783
+            ],
+            [
+              -88.5344,
+              37.4833
+            ],
+            [
+              -88.5348,
+              37.4462
+            ],
+            [
+              -88.5668,
+              37.4569
+            ],
+            [
+              -88.5806,
+              37.4421
+            ],
+            [
+              -88.576,
+              37.4568
+            ],
+            [
+              -88.5952,
+              37.4677
+            ],
+            [
+              -88.5894,
+              37.4861
+            ],
+            [
+              -88.5758,
+              37.4678
+            ],
+            [
+              -88.5712,
+              37.4789
+            ],
+            [
+              -88.5506,
+              37.4737
+            ],
+            [
+              -88.5529,
+              37.4848
+            ],
+            [
+              -88.5438,
+              37.4795
+            ],
+            [
+              -88.5296,
+              37.4978
+            ],
+            [
+              -88.5018,
+              37.5008
+            ],
+            [
+              -88.5248,
+              37.5016
+            ],
+            [
+              -88.52,
+              37.512
+            ],
+            [
+              -88.5429,
+              37.5227
+            ],
+            [
+              -88.5385,
+              37.4979
+            ],
+            [
+              -88.5619,
+              37.5008
+            ],
+            [
+              -88.5522,
+              37.5227
+            ],
+            [
+              -88.5614,
+              37.53
+            ],
+            [
+              -88.5743,
+              37.519
+            ],
+            [
+              -88.5659,
+              37.5117
+            ],
+            [
+              -88.5879,
+              37.5212
+            ],
+            [
+              -88.5566,
+              37.5355
+            ],
+            [
+              -88.5701,
+              37.552
+            ],
+            [
+              -88.5605,
+              37.5737
+            ],
+            [
+              -88.5481,
+              37.5846
+            ],
+            [
+              -88.5503,
+              37.5664
+            ],
+            [
+              -88.5283,
+              37.5735
+            ],
+            [
+              -88.5317,
+              37.618
+            ],
+            [
+              -88.5049,
+              37.596
+            ],
+            [
+              -88.4763,
+              37.62
+            ],
+            [
+              -88.4816,
+              37.6036
+            ],
+            [
+              -88.4676,
+              37.6001
+            ],
+            [
+              -88.4773,
+              37.5925
+            ],
+            [
+              -88.4409,
+              37.581
+            ],
+            [
+              -88.4642,
+              37.5521
+            ],
+            [
+              -88.4799,
+              37.5667
+            ],
+            [
+              -88.4729,
+              37.5776
+            ],
+            [
+              -88.4914,
+              37.5832
+            ],
+            [
+              -88.5102,
+              37.5666
+            ],
+            [
+              -88.5179,
+              37.5786
+            ],
+            [
+              -88.5239,
+              37.559
+            ],
+            [
+              -88.4918,
+              37.5595
+            ],
+            [
+              -88.4968,
+              37.5302
+            ]
+          ],
+          [
+            [
+              -88.4325,
+              37.6183
+            ],
+            [
+              -88.3372,
+              37.6326
+            ],
+            [
+              -88.3467,
+              37.6158
+            ],
+            [
+              -88.3238,
+              37.6136
+            ],
+            [
+              -88.3189,
+              37.6248
+            ],
+            [
+              -88.3145,
+              37.6101
+            ],
+            [
+              -88.3048,
+              37.6283
+            ],
+            [
+              -88.2913,
+              37.6212
+            ],
+            [
+              -88.2532,
+              37.6362
+            ],
+            [
+              -88.2449,
+              37.6176
+            ],
+            [
+              -88.2265,
+              37.6139
+            ],
+            [
+              -88.2269,
+              37.5958
+            ],
+            [
+              -88.206,
+              37.5993
+            ],
+            [
+              -88.2037,
+              37.5906
+            ],
+            [
+              -88.2409,
+              37.5625
+            ],
+            [
+              -88.2593,
+              37.5701
+            ],
+            [
+              -88.2405,
+              37.5549
+            ],
+            [
+              -88.2827,
+              37.5403
+            ],
+            [
+              -88.2964,
+              37.5515
+            ],
+            [
+              -88.2643,
+              37.5703
+            ],
+            [
+              -88.2822,
+              37.5885
+            ],
+            [
+              -88.2752,
+              37.5992
+            ],
+            [
+              -88.2914,
+              37.6064
+            ],
+            [
+              -88.2867,
+              37.5912
+            ],
+            [
+              -88.3006,
+              37.5774
+            ],
+            [
+              -88.2863,
+              37.5663
+            ],
+            [
+              -88.296,
+              37.57
+            ],
+            [
+              -88.2964,
+              37.5519
+            ],
+            [
+              -88.3198,
+              37.5468
+            ],
+            [
+              -88.3012,
+              37.5403
+            ],
+            [
+              -88.3017,
+              37.5145
+            ],
+            [
+              -88.3133,
+              37.5109
+            ],
+            [
+              -88.2972,
+              37.5041
+            ],
+            [
+              -88.3159,
+              37.4924
+            ],
+            [
+              -88.2995,
+              37.472
+            ],
+            [
+              -88.3302,
+              37.4665
+            ],
+            [
+              -88.3444,
+              37.4842
+            ],
+            [
+              -88.3486,
+              37.4739
+            ],
+            [
+              -88.3698,
+              37.4815
+            ],
+            [
+              -88.326,
+              37.4961
+            ],
+            [
+              -88.3723,
+              37.5
+            ],
+            [
+              -88.3773,
+              37.5213
+            ],
+            [
+              -88.3576,
+              37.5184
+            ],
+            [
+              -88.3527,
+              37.5331
+            ],
+            [
+              -88.3716,
+              37.5406
+            ],
+            [
+              -88.3617,
+              37.5442
+            ],
+            [
+              -88.3379,
+              37.5403
+            ],
+            [
+              -88.3389,
+              37.5219
+            ],
+            [
+              -88.319,
+              37.5255
+            ],
+            [
+              -88.3296,
+              37.5145
+            ],
+            [
+              -88.3156,
+              37.5145
+            ],
+            [
+              -88.3107,
+              37.5292
+            ],
+            [
+              -88.3339,
+              37.5388
+            ],
+            [
+              -88.3359,
+              37.5552
+            ],
+            [
+              -88.2983,
+              37.57
+            ],
+            [
+              -88.3051,
+              37.5885
+            ],
+            [
+              -88.3328,
+              37.5884
+            ],
+            [
+              -88.3329,
+              37.6016
+            ],
+            [
+              -88.3421,
+              37.5921
+            ],
+            [
+              -88.369,
+              37.5995
+            ],
+            [
+              -88.3758,
+              37.585
+            ],
+            [
+              -88.4174,
+              37.59
+            ],
+            [
+              -88.4177,
+              37.5792
+            ],
+            [
+              -88.4452,
+              37.5918
+            ],
+            [
+              -88.4489,
+              37.6111
+            ],
+            [
+              -88.4395,
+              37.6146
+            ],
+            [
+              -88.458,
+              37.6146
+            ],
+            [
+              -88.4484,
+              37.6329
+            ],
+            [
+              -88.4623,
+              37.6439
+            ],
+            [
+              -88.4483,
+              37.6407
+            ],
+            [
+              -88.4482,
+              37.6585
+            ],
+            [
+              -88.4259,
+              37.6658
+            ],
+            [
+              -88.428,
+              37.6841
+            ],
+            [
+              -88.4013,
+              37.6989
+            ],
+            [
+              -88.397,
+              37.6767
+            ],
+            [
+              -88.421,
+              37.6585
+            ],
+            [
+              -88.4114,
+              37.6302
+            ],
+            [
+              -88.4325,
+              37.6183
+            ]
+          ],
+          [
+            [
+              -88.6746,
+              37.4115
+            ],
+            [
+              -88.66,
+              37.4275
+            ],
+            [
+              -88.6686,
+              37.4433
+            ],
+            [
+              -88.6528,
+              37.4431
+            ],
+            [
+              -88.6503,
+              37.4611
+            ],
+            [
+              -88.6366,
+              37.4645
+            ],
+            [
+              -88.6918,
+              37.4833
+            ],
+            [
+              -88.6919,
+              37.5155
+            ],
+            [
+              -88.6736,
+              37.523
+            ],
+            [
+              -88.6947,
+              37.5171
+            ],
+            [
+              -88.6963,
+              37.5302
+            ],
+            [
+              -88.6734,
+              37.5335
+            ],
+            [
+              -88.6604,
+              37.5715
+            ],
+            [
+              -88.6635,
+              37.5813
+            ],
+            [
+              -88.6819,
+              37.5776
+            ],
+            [
+              -88.6821,
+              37.5666
+            ],
+            [
+              -88.6866,
+              37.5739
+            ],
+            [
+              -88.6818,
+              37.5853
+            ],
+            [
+              -88.6635,
+              37.585
+            ],
+            [
+              -88.6723,
+              37.5993
+            ],
+            [
+              -88.6526,
+              37.5967
+            ],
+            [
+              -88.6492,
+              37.6067
+            ],
+            [
+              -88.6313,
+              37.5885
+            ],
+            [
+              -88.6308,
+              37.6213
+            ],
+            [
+              -88.6124,
+              37.6141
+            ],
+            [
+              -88.6007,
+              37.6287
+            ],
+            [
+              -88.5931,
+              37.6176
+            ],
+            [
+              -88.6265,
+              37.6066
+            ],
+            [
+              -88.6266,
+              37.5956
+            ],
+            [
+              -88.606,
+              37.5885
+            ],
+            [
+              -88.6323,
+              37.5776
+            ],
+            [
+              -88.6362,
+              37.5631
+            ],
+            [
+              -88.6108,
+              37.5666
+            ],
+            [
+              -88.6132,
+              37.5555
+            ],
+            [
+              -88.5884,
+              37.5558
+            ],
+            [
+              -88.584,
+              37.5448
+            ],
+            [
+              -88.6503,
+              37.5059
+            ],
+            [
+              -88.6364,
+              37.4972
+            ],
+            [
+              -88.5922,
+              37.5153
+            ],
+            [
+              -88.5948,
+              37.4924
+            ],
+            [
+              -88.6229,
+              37.475
+            ],
+            [
+              -88.6141,
+              37.4609
+            ],
+            [
+              -88.6282,
+              37.4244
+            ],
+            [
+              -88.6284,
+              37.4557
+            ],
+            [
+              -88.6414,
+              37.4536
+            ],
+            [
+              -88.6401,
+              37.4207
+            ],
+            [
+              -88.6517,
+              37.425
+            ],
+            [
+              -88.6381,
+              37.4019
+            ],
+            [
+              -88.6152,
+              37.3982
+            ],
+            [
+              -88.6576,
+              37.3894
+            ],
+            [
+              -88.6746,
+              37.4024
+            ],
+            [
+              -88.6761,
+              37.3877
+            ],
+            [
+              -88.693,
+              37.3879
+            ],
+            [
+              -88.7018,
+              37.4212
+            ],
+            [
+              -88.6917,
+              37.4361
+            ],
+            [
+              -88.7106,
+              37.4253
+            ],
+            [
+              -88.7105,
+              37.4397
+            ],
+            [
+              -88.6912,
+              37.4723
+            ],
+            [
+              -88.6775,
+              37.465
+            ],
+            [
+              -88.6881,
+              37.4489
+            ],
+            [
+              -88.6734,
+              37.4397
+            ],
+            [
+              -88.6746,
+              37.4115
+            ]
+          ],
+          [
+            [
+              -88.7521,
+              37.5119
+            ],
+            [
+              -88.7317,
+              37.5192
+            ],
+            [
+              -88.7411,
+              37.5338
+            ],
+            [
+              -88.7185,
+              37.5302
+            ],
+            [
+              -88.7187,
+              37.5155
+            ],
+            [
+              -88.6972,
+              37.5228
+            ],
+            [
+              -88.6943,
+              37.4747
+            ],
+            [
+              -88.7236,
+              37.4829
+            ],
+            [
+              -88.705,
+              37.4905
+            ],
+            [
+              -88.6942,
+              37.479
+            ],
+            [
+              -88.7132,
+              37.4995
+            ],
+            [
+              -88.7323,
+              37.4947
+            ],
+            [
+              -88.7328,
+              37.4753
+            ],
+            [
+              -88.7169,
+              37.4722
+            ],
+            [
+              -88.7374,
+              37.4641
+            ],
+            [
+              -88.7371,
+              37.4786
+            ],
+            [
+              -88.7589,
+              37.4929
+            ],
+            [
+              -88.7521,
+              37.5119
+            ]
+          ],
+          [
+            [
+              -88.5611,
+              37.2139
+            ],
+            [
+              -88.5898,
+              37.2377
+            ],
+            [
+              -88.5694,
+              37.2692
+            ],
+            [
+              -88.552,
+              37.2548
+            ],
+            [
+              -88.5243,
+              37.2548
+            ],
+            [
+              -88.5197,
+              37.2368
+            ],
+            [
+              -88.506,
+              37.2331
+            ],
+            [
+              -88.5219,
+              37.2276
+            ],
+            [
+              -88.5266,
+              37.2478
+            ],
+            [
+              -88.5378,
+              37.2478
+            ],
+            [
+              -88.5265,
+              37.2259
+            ],
+            [
+              -88.5611,
+              37.2139
+            ]
+          ],
+          [
+            [
+              -89.2923,
+              37.5842
+            ],
+            [
+              -89.2971,
+              37.5766
+            ],
+            [
+              -89.3006,
+              37.5993
+            ],
+            [
+              -89.3188,
+              37.6039
+            ],
+            [
+              -89.3146,
+              37.625
+            ],
+            [
+              -89.2933,
+              37.64
+            ],
+            [
+              -89.2684,
+              37.6392
+            ],
+            [
+              -89.2685,
+              37.6185
+            ],
+            [
+              -89.2478,
+              37.6135
+            ],
+            [
+              -89.248,
+              37.6024
+            ],
+            [
+              -89.2872,
+              37.5992
+            ],
+            [
+              -89.2923,
+              37.5842
+            ]
+          ],
+          [
+            [
+              -88.608,
+              37.6103
+            ],
+            [
+              -88.5784,
+              37.6251
+            ],
+            [
+              -88.5507,
+              37.6179
+            ],
+            [
+              -88.5812,
+              37.5775
+            ],
+            [
+              -88.5989,
+              37.5851
+            ],
+            [
+              -88.608,
+              37.6103
+            ]
+          ],
+          [
+            [
+              -88.5166,
+              37.4278
+            ],
+            [
+              -88.5186,
+              37.413
+            ],
+            [
+              -88.55,
+              37.398
+            ],
+            [
+              -88.5689,
+              37.3982
+            ],
+            [
+              -88.5682,
+              37.4118
+            ],
+            [
+              -88.584,
+              37.4165
+            ],
+            [
+              -88.564,
+              37.4312
+            ],
+            [
+              -88.5643,
+              37.4184
+            ],
+            [
+              -88.5166,
+              37.4278
+            ]
+          ],
+          [
+            [
+              -88.5841,
+              37.2914
+            ],
+            [
+              -88.6022,
+              37.2879
+            ],
+            [
+              -88.5977,
+              37.2695
+            ],
+            [
+              -88.6331,
+              37.2887
+            ],
+            [
+              -88.6201,
+              37.2923
+            ],
+            [
+              -88.6314,
+              37.3065
+            ],
+            [
+              -88.6022,
+              37.3065
+            ],
+            [
+              -88.5841,
+              37.2914
+            ]
+          ],
+          [
+            [
+              -89.3237,
+              37.64
+            ],
+            [
+              -89.3514,
+              37.6326
+            ],
+            [
+              -89.3402,
+              37.6456
+            ],
+            [
+              -89.3444,
+              37.6737
+            ],
+            [
+              -89.3234,
+              37.67
+            ],
+            [
+              -89.3237,
+              37.64
+            ]
+          ]
+        ],
+        "bbox": [
+          -89.3514,
+          37.2139,
+          -88.2037,
+          37.6989
+        ],
+        "provenance": {
+          "source": "usgs-padus-4-1",
+          "objectId": 285784,
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "method": "PAD-US polygon, Douglas-Peucker simplified locally to a point budget, EPSG:4326, 4 decimal places",
+          "note": "a mapped management extent, simplified for display; not a surveyed property boundary",
+          "ringsKept": 10,
+          "ringsTotal": 377
+        }
+      },
+      "access": {
+        "state": "verified-night-access",
+        "label": "Public access after dark documented",
+        "nightWindow": null,
+        "parkingInferred": false,
+        "verifiedAt": "2026-10-18",
+        "evidence": [
+          {
+            "id": null,
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+            "quote": null
+          },
+          {
+            "id": null,
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "id": "usfs-shawnee-overnight-parking",
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "id": "padus-shawnee-ownership",
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records federal ownership and USFS management for this unit. It does not record opening hours.",
+            "quote": null
+          }
+        ]
+      },
+      "restrictions": [
+        {
+          "text": "trailhead parking for overnight camping; day-use areas closed 22:00-06:00",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        },
+        {
+          "text": "overnight parking where posted, such as trailheads; day-use areas closed 22:00-06:00",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        },
+        {
+          "text": "Day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+        }
+      ],
+      "terrain": {
+        "state": "regional-context-only",
+        "note": "A parcel has no single horizon, and the centre of a parcel has no verified observation point. These are the steepest modelled direction at each of the pilot's sampled points, offered as regional context only; a clearance angle needs a specific observation point, which this release does not have.",
+        "steepestDirectionMinDeg": -0.03,
+        "steepestDirectionMaxDeg": 18.92,
+        "sampledPoints": 11,
+        "source": "usgs-3dep",
+        "demoPixelSizeM": 31,
+        "bareEarth": "Bare earth only: trees, crops, buildings, levees and vehicles are not in the model."
+      },
+      "sky": {
+        "state": "unavailable",
+        "message": "Local artificial sky brightness has not yet been assessed for these locations.",
+        "note": "No commercially licensed, machine-readable sky-brightness dataset is available. Upward satellite radiance is not ground sky brightness and is not converted here."
+      },
+      "distance": {
+        "kind": "great-circle",
+        "reference": "nearest mapped boundary",
+        "note": "Straight-line distance to the nearest mapped edge of the area. An edge is a management boundary, not an entrance, not a road, and not a destination; no driving distance or travel time is computed."
+      },
+      "unknowns": [
+        "no verified observation point, trailhead, gate or parking place for this release",
+        "local horizon: bare-earth terrain only, vegetation not modelled",
+        "local artificial sky brightness",
+        "road access, driving distance and travel time",
+        "seasonal closures, hunting seasons and current conditions"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "sugar-ridge-fwa",
+      "type": "area",
+      "name": "Sugar Ridge Fish And Wildlife Area",
+      "agency": {
+        "owner": "STAT",
+        "manager": "STAT",
+        "managerName": "SFW",
+        "designation": "State conservation area",
+        "designationCode": "SCA",
+        "state": "IN",
+        "acres": 7935,
+        "source": "usgs-padus-4-1"
+      },
+      "boundary": {
+        "rings": [
+          [
+            [
+              -87.1909,
+              38.2385
+            ],
+            [
+              -87.1908,
+              38.2366
+            ],
+            [
+              -87.1887,
+              38.2366
+            ],
+            [
+              -87.1875,
+              38.2332
+            ],
+            [
+              -87.1861,
+              38.2332
+            ],
+            [
+              -87.1861,
+              38.2277
+            ],
+            [
+              -87.1791,
+              38.2277
+            ],
+            [
+              -87.1791,
+              38.2241
+            ],
+            [
+              -87.1767,
+              38.2241
+            ],
+            [
+              -87.1767,
+              38.2207
+            ],
+            [
+              -87.1721,
+              38.2209
+            ],
+            [
+              -87.1721,
+              38.2316
+            ],
+            [
+              -87.1674,
+              38.2317
+            ],
+            [
+              -87.1674,
+              38.2262
+            ],
+            [
+              -87.1628,
+              38.2263
+            ],
+            [
+              -87.1628,
+              38.2317
+            ],
+            [
+              -87.158,
+              38.2319
+            ],
+            [
+              -87.1579,
+              38.2302
+            ],
+            [
+              -87.1534,
+              38.2304
+            ],
+            [
+              -87.1533,
+              38.2286
+            ],
+            [
+              -87.1487,
+              38.2288
+            ],
+            [
+              -87.1486,
+              38.2251
+            ],
+            [
+              -87.1533,
+              38.225
+            ],
+            [
+              -87.1534,
+              38.2177
+            ],
+            [
+              -87.1569,
+              38.2176
+            ],
+            [
+              -87.1569,
+              38.2168
+            ],
+            [
+              -87.1579,
+              38.2167
+            ],
+            [
+              -87.1579,
+              38.2162
+            ],
+            [
+              -87.1626,
+              38.216
+            ],
+            [
+              -87.1627,
+              38.2141
+            ],
+            [
+              -87.172,
+              38.2139
+            ],
+            [
+              -87.172,
+              38.2104
+            ],
+            [
+              -87.1767,
+              38.2103
+            ],
+            [
+              -87.1768,
+              38.2114
+            ],
+            [
+              -87.1814,
+              38.2114
+            ],
+            [
+              -87.1814,
+              38.2134
+            ],
+            [
+              -87.186,
+              38.2133
+            ],
+            [
+              -87.186,
+              38.2168
+            ],
+            [
+              -87.1953,
+              38.2165
+            ],
+            [
+              -87.1953,
+              38.2193
+            ],
+            [
+              -87.2001,
+              38.2191
+            ],
+            [
+              -87.2001,
+              38.2201
+            ],
+            [
+              -87.2046,
+              38.2201
+            ],
+            [
+              -87.2046,
+              38.2164
+            ],
+            [
+              -87.21,
+              38.2164
+            ],
+            [
+              -87.2099,
+              38.2225
+            ],
+            [
+              -87.2123,
+              38.227
+            ],
+            [
+              -87.2149,
+              38.23
+            ],
+            [
+              -87.2168,
+              38.231
+            ],
+            [
+              -87.2095,
+              38.231
+            ],
+            [
+              -87.2002,
+              38.2347
+            ],
+            [
+              -87.1955,
+              38.2348
+            ],
+            [
+              -87.1954,
+              38.2373
+            ],
+            [
+              -87.1932,
+              38.2385
+            ],
+            [
+              -87.1909,
+              38.2385
+            ]
+          ],
+          [
+            [
+              -87.1634,
+              38.2902
+            ],
+            [
+              -87.1633,
+              38.2834
+            ],
+            [
+              -87.1604,
+              38.2833
+            ],
+            [
+              -87.1604,
+              38.2811
+            ],
+            [
+              -87.1587,
+              38.281
+            ],
+            [
+              -87.157,
+              38.2793
+            ],
+            [
+              -87.1541,
+              38.2793
+            ],
+            [
+              -87.154,
+              38.2759
+            ],
+            [
+              -87.1657,
+              38.276
+            ],
+            [
+              -87.1622,
+              38.2738
+            ],
+            [
+              -87.1617,
+              38.2728
+            ],
+            [
+              -87.1636,
+              38.2703
+            ],
+            [
+              -87.1619,
+              38.2694
+            ],
+            [
+              -87.1617,
+              38.2683
+            ],
+            [
+              -87.1521,
+              38.2605
+            ],
+            [
+              -87.1509,
+              38.2611
+            ],
+            [
+              -87.148,
+              38.2611
+            ],
+            [
+              -87.1481,
+              38.2647
+            ],
+            [
+              -87.147,
+              38.2647
+            ],
+            [
+              -87.1469,
+              38.2641
+            ],
+            [
+              -87.1464,
+              38.264
+            ],
+            [
+              -87.1463,
+              38.2626
+            ],
+            [
+              -87.1444,
+              38.2626
+            ],
+            [
+              -87.144,
+              38.2467
+            ],
+            [
+              -87.1532,
+              38.2465
+            ],
+            [
+              -87.1536,
+              38.2536
+            ],
+            [
+              -87.158,
+              38.2536
+            ],
+            [
+              -87.1579,
+              38.2519
+            ],
+            [
+              -87.1629,
+              38.2518
+            ],
+            [
+              -87.1629,
+              38.2535
+            ],
+            [
+              -87.1719,
+              38.2535
+            ],
+            [
+              -87.1725,
+              38.2644
+            ],
+            [
+              -87.1769,
+              38.2644
+            ],
+            [
+              -87.1773,
+              38.2753
+            ],
+            [
+              -87.186,
+              38.2752
+            ],
+            [
+              -87.1861,
+              38.2788
+            ],
+            [
+              -87.1843,
+              38.2789
+            ],
+            [
+              -87.1843,
+              38.2863
+            ],
+            [
+              -87.1865,
+              38.2863
+            ],
+            [
+              -87.1867,
+              38.2897
+            ],
+            [
+              -87.1634,
+              38.2902
+            ]
+          ],
+          [
+            [
+              -87.2551,
+              38.3595
+            ],
+            [
+              -87.2551,
+              38.3544
+            ],
+            [
+              -87.2582,
+              38.3544
+            ],
+            [
+              -87.2549,
+              38.3508
+            ],
+            [
+              -87.2548,
+              38.3487
+            ],
+            [
+              -87.2561,
+              38.3487
+            ],
+            [
+              -87.2567,
+              38.3522
+            ],
+            [
+              -87.2597,
+              38.3523
+            ],
+            [
+              -87.2602,
+              38.3514
+            ],
+            [
+              -87.2597,
+              38.3509
+            ],
+            [
+              -87.2597,
+              38.3469
+            ],
+            [
+              -87.2639,
+              38.3469
+            ],
+            [
+              -87.2639,
+              38.3455
+            ],
+            [
+              -87.2672,
+              38.3453
+            ],
+            [
+              -87.2673,
+              38.3467
+            ],
+            [
+              -87.2692,
+              38.3467
+            ],
+            [
+              -87.2691,
+              38.3521
+            ],
+            [
+              -87.2643,
+              38.3522
+            ],
+            [
+              -87.2643,
+              38.356
+            ],
+            [
+              -87.2621,
+              38.3559
+            ],
+            [
+              -87.2622,
+              38.3578
+            ],
+            [
+              -87.2642,
+              38.3578
+            ],
+            [
+              -87.2642,
+              38.3632
+            ],
+            [
+              -87.2617,
+              38.3631
+            ],
+            [
+              -87.2619,
+              38.3704
+            ],
+            [
+              -87.2613,
+              38.3704
+            ],
+            [
+              -87.2612,
+              38.373
+            ],
+            [
+              -87.26,
+              38.3737
+            ],
+            [
+              -87.26,
+              38.3704
+            ],
+            [
+              -87.2549,
+              38.3703
+            ],
+            [
+              -87.2549,
+              38.3677
+            ],
+            [
+              -87.2523,
+              38.3689
+            ],
+            [
+              -87.251,
+              38.3703
+            ],
+            [
+              -87.2504,
+              38.3703
+            ],
+            [
+              -87.2503,
+              38.3668
+            ],
+            [
+              -87.2407,
+              38.3667
+            ],
+            [
+              -87.2406,
+              38.3627
+            ],
+            [
+              -87.2391,
+              38.3627
+            ],
+            [
+              -87.236,
+              38.3591
+            ],
+            [
+              -87.236,
+              38.3573
+            ],
+            [
+              -87.2347,
+              38.3573
+            ],
+            [
+              -87.2358,
+              38.3554
+            ],
+            [
+              -87.2299,
+              38.3554
+            ],
+            [
+              -87.2293,
+              38.3539
+            ],
+            [
+              -87.2277,
+              38.354
+            ],
+            [
+              -87.2278,
+              38.3553
+            ],
+            [
+              -87.2269,
+              38.3554
+            ],
+            [
+              -87.2266,
+              38.3481
+            ],
+            [
+              -87.2261,
+              38.3481
+            ],
+            [
+              -87.2261,
+              38.3486
+            ],
+            [
+              -87.2244,
+              38.3486
+            ],
+            [
+              -87.2245,
+              38.3482
+            ],
+            [
+              -87.2201,
+              38.3482
+            ],
+            [
+              -87.22,
+              38.3471
+            ],
+            [
+              -87.2176,
+              38.3482
+            ],
+            [
+              -87.2152,
+              38.3482
+            ],
+            [
+              -87.2153,
+              38.3369
+            ],
+            [
+              -87.2061,
+              38.3372
+            ],
+            [
+              -87.206,
+              38.3336
+            ],
+            [
+              -87.215,
+              38.3335
+            ],
+            [
+              -87.2154,
+              38.3341
+            ],
+            [
+              -87.2199,
+              38.334
+            ],
+            [
+              -87.2199,
+              38.3351
+            ],
+            [
+              -87.2241,
+              38.3351
+            ],
+            [
+              -87.2241,
+              38.3334
+            ],
+            [
+              -87.235,
+              38.3334
+            ],
+            [
+              -87.2353,
+              38.3385
+            ],
+            [
+              -87.2339,
+              38.3385
+            ],
+            [
+              -87.2322,
+              38.3407
+            ],
+            [
+              -87.2351,
+              38.3407
+            ],
+            [
+              -87.235,
+              38.3444
+            ],
+            [
+              -87.2399,
+              38.3443
+            ],
+            [
+              -87.2411,
+              38.3434
+            ],
+            [
+              -87.2412,
+              38.3406
+            ],
+            [
+              -87.2393,
+              38.3406
+            ],
+            [
+              -87.2394,
+              38.3339
+            ],
+            [
+              -87.246,
+              38.3361
+            ],
+            [
+              -87.246,
+              38.3377
+            ],
+            [
+              -87.245,
+              38.3376
+            ],
+            [
+              -87.2449,
+              38.3391
+            ],
+            [
+              -87.2441,
+              38.3391
+            ],
+            [
+              -87.244,
+              38.3412
+            ],
+            [
+              -87.2449,
+              38.342
+            ],
+            [
+              -87.2447,
+              38.3424
+            ],
+            [
+              -87.2442,
+              38.3424
+            ],
+            [
+              -87.2432,
+              38.3435
+            ],
+            [
+              -87.2425,
+              38.3435
+            ],
+            [
+              -87.2411,
+              38.345
+            ],
+            [
+              -87.2348,
+              38.3465
+            ],
+            [
+              -87.2347,
+              38.3522
+            ],
+            [
+              -87.2366,
+              38.3545
+            ],
+            [
+              -87.2392,
+              38.3542
+            ],
+            [
+              -87.2392,
+              38.3553
+            ],
+            [
+              -87.2422,
+              38.3557
+            ],
+            [
+              -87.2422,
+              38.3595
+            ],
+            [
+              -87.2551,
+              38.3595
+            ]
+          ],
+          [
+            [
+              -87.25,
+              38.4034
+            ],
+            [
+              -87.25,
+              38.3997
+            ],
+            [
+              -87.2444,
+              38.3997
+            ],
+            [
+              -87.2443,
+              38.3961
+            ],
+            [
+              -87.2409,
+              38.3961
+            ],
+            [
+              -87.2409,
+              38.3925
+            ],
+            [
+              -87.2501,
+              38.3924
+            ],
+            [
+              -87.2504,
+              38.3804
+            ],
+            [
+              -87.2525,
+              38.3798
+            ],
+            [
+              -87.2552,
+              38.3781
+            ],
+            [
+              -87.255,
+              38.3851
+            ],
+            [
+              -87.2563,
+              38.3851
+            ],
+            [
+              -87.257,
+              38.3857
+            ],
+            [
+              -87.2584,
+              38.3851
+            ],
+            [
+              -87.2596,
+              38.3834
+            ],
+            [
+              -87.2689,
+              38.3835
+            ],
+            [
+              -87.2688,
+              38.3921
+            ],
+            [
+              -87.2733,
+              38.392
+            ],
+            [
+              -87.2734,
+              38.3959
+            ],
+            [
+              -87.2687,
+              38.3959
+            ],
+            [
+              -87.2687,
+              38.3995
+            ],
+            [
+              -87.264,
+              38.3996
+            ],
+            [
+              -87.264,
+              38.4039
+            ],
+            [
+              -87.2593,
+              38.404
+            ],
+            [
+              -87.2593,
+              38.4033
+            ],
+            [
+              -87.25,
+              38.4034
+            ]
+          ],
+          [
+            [
+              -87.1734,
+              38.3449
+            ],
+            [
+              -87.1688,
+              38.3449
+            ],
+            [
+              -87.1687,
+              38.341
+            ],
+            [
+              -87.1774,
+              38.3408
+            ],
+            [
+              -87.1774,
+              38.3372
+            ],
+            [
+              -87.1721,
+              38.3373
+            ],
+            [
+              -87.1721,
+              38.3339
+            ],
+            [
+              -87.1848,
+              38.3338
+            ],
+            [
+              -87.1849,
+              38.3357
+            ],
+            [
+              -87.187,
+              38.3357
+            ],
+            [
+              -87.187,
+              38.341
+            ],
+            [
+              -87.1885,
+              38.341
+            ],
+            [
+              -87.1885,
+              38.3416
+            ],
+            [
+              -87.1915,
+              38.3417
+            ],
+            [
+              -87.1916,
+              38.3447
+            ],
+            [
+              -87.1965,
+              38.3447
+            ],
+            [
+              -87.1965,
+              38.3483
+            ],
+            [
+              -87.1735,
+              38.3484
+            ],
+            [
+              -87.1734,
+              38.3449
+            ]
+          ]
+        ],
+        "bbox": [
+          -87.2734,
+          38.2103,
+          -87.144,
+          38.404
+        ],
+        "provenance": {
+          "source": "usgs-padus-4-1",
+          "objectId": 153634,
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "method": "PAD-US polygon, Douglas-Peucker simplified locally to a point budget, EPSG:4326, 4 decimal places",
+          "note": "a mapped management extent, simplified for display; not a surveyed property boundary",
+          "ringsKept": 5,
+          "ringsTotal": 14
+        }
+      },
+      "access": {
+        "state": "verified-night-access",
+        "label": "Public access after dark documented",
+        "nightWindow": null,
+        "parkingInferred": true,
+        "verifiedAt": "2026-10-18",
+        "evidence": [
+          {
+            "id": null,
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+            "quote": null
+          },
+          {
+            "id": null,
+            "publisher": "Indiana Department of Natural Resources",
+            "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/sugar-ridge-fwa/",
+            "verifiedAt": "2026-10-18",
+            "summary": "The property page states 24/7 property hours, which permits presence on the property after dark; parking is covered by the same statement and is not documented separately.",
+            "quote": "Property hours 24/7. Some activities may have specific open times, especially if there is a draw."
+          },
+          {
+            "id": "in-dnr-sugar-ridge-24-7",
+            "publisher": "Indiana Department of Natural Resources",
+            "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/sugar-ridge-fwa/",
+            "verifiedAt": "2026-10-18",
+            "summary": "The property page states 24/7 property hours, which permits presence on the property after dark; parking is covered by the same whole-property statement and is not documented separately.",
+            "quote": "Property hours 24/7. Some activities may have specific open times, especially if there is a draw."
+          },
+          {
+            "id": "padus-sugar-ridge-ownership",
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records state ownership and Indiana DNR management for this unit. It does not record opening hours.",
+            "quote": null
+          }
+        ]
+      },
+      "restrictions": [
+        {
+          "text": "24/7 property hours, with activity-specific exceptions posted at the property",
+          "sourceUrl": "https://www.in.gov/dnr/fish-and-wildlife/properties/sugar-ridge-fwa/",
+          "verifiedAt": "2026-10-18",
+          "quote": "Property hours 24/7. Some activities may have specific open times, especially if there is a draw."
+        }
+      ],
+      "terrain": {
+        "state": "regional-context-only",
+        "note": "A parcel has no single horizon, and the centre of a parcel has no verified observation point. These are the steepest modelled direction at each of the pilot's sampled points, offered as regional context only; a clearance angle needs a specific observation point, which this release does not have.",
+        "steepestDirectionMinDeg": -0.03,
+        "steepestDirectionMaxDeg": 18.92,
+        "sampledPoints": 11,
+        "source": "usgs-3dep",
+        "demoPixelSizeM": 31,
+        "bareEarth": "Bare earth only: trees, crops, buildings, levees and vehicles are not in the model."
+      },
+      "sky": {
+        "state": "unavailable",
+        "message": "Local artificial sky brightness has not yet been assessed for these locations.",
+        "note": "No commercially licensed, machine-readable sky-brightness dataset is available. Upward satellite radiance is not ground sky brightness and is not converted here."
+      },
+      "distance": {
+        "kind": "great-circle",
+        "reference": "nearest mapped boundary",
+        "note": "Straight-line distance to the nearest mapped edge of the area. An edge is a management boundary, not an entrance, not a road, and not a destination; no driving distance or travel time is computed."
+      },
+      "unknowns": [
+        "no verified observation point, trailhead, gate or parking place for this release",
+        "local horizon: bare-earth terrain only, vegetation not modelled",
+        "local artificial sky brightness",
+        "road access, driving distance and travel time",
+        "seasonal closures, hunting seasons and current conditions"
+      ],
+      "verifiedAt": "2026-10-18"
+    }
+  ]
+}
