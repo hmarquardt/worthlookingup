@@ -78,6 +78,22 @@ because of that rule; agents should read it explicitly (some tools discover only
   events with `precision: 'window'` through the shared discovery mapper, and exports to the calendar as an
   interval through overhead-calendar.js — never as a one-hour block. No calculation or dataset request
   happens until a reader opens the category. See docs/milky-way.md.
+- Phase 6A.1 adds the **next season**, for readers whose next opportunity is beyond the ninety-day plan.
+  `analyseSeason()` in the same engine walks the site's own observing nights in date order through the
+  unchanged `analyseNight()` and stops at the first hit, which is exact because time order is the question;
+  the bound is 366 nights and no pre-filter exists, because a conservative pre-filter is how an off-by-one-night
+  bug hides. Two dates are kept apart: the **season opening** (geometry — the first night the window exists) and
+  the **first favourable night** (the first night whose own window quality reaches 60, a bar measured from a full
+  year at the reference sites, never a new scale and never a cross-category comparison). A negative answer is
+  classified by cause — never reaches the threshold, below the threshold, no darkness, no
+  darkness overlap, unavailable — and every one keeps the band statement: out of reach for the core is not
+  invisible for the galaxy. A night is labelled by its evening and a window by the date of its own instant
+  (`day` versus `date`, `Intl` in the site's zone), so daylight saving and pre-dawn windows stay correct.
+  Weather months ahead is `not-forecastable`: no cloud, brightness, probability or "sighting chance" may appear
+  in the record or in any exported file. The search is on demand in its own worker request
+  (`kind: 'season'`), cached per site/generation/threshold, and makes no network request; a future window enters
+  the ordinary opportunity, discovery and calendar machinery through `seasonCandidate()`, and the global
+  planning horizons must never be stretched to a year to accommodate it. See docs/milky-way.md.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.

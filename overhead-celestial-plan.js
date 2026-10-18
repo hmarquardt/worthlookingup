@@ -148,6 +148,24 @@ function compute(request) {
     noteworthy: C ? C.changes(datasets.comets) : null };
 }
 
-root.OverheadCelestialPlan = { PLAN_CATEGORIES, SPECIAL_EVENT_KINDS, weatherLookup, compute };
+// The seasonal search is a separate, on-demand request: it looks a year ahead, which is far beyond the
+// planning horizons, and nothing renders it until a reader asks. It reuses the Milky Way engine's own nightly
+// analysis, so there is one implementation of nights, twilight, moonlight and the window.
+function computeSeason(request) {
+  const MW = root.OverheadMilkyWay;
+  if (!MW) throw new Error('the Milky Way engine did not load, so no season can be searched');
+  const site = request.site;
+  const windows = request.windows || [];
+  const options = request.options || {};
+  const season = MW.analyseSeason(windows, site, {
+    thresholdDeg: Math.max(MW.RULES.core.goodDeg, options.minAltitude || 0),
+    favorableQuality: options.favorableQuality,
+    horizonDays: options.horizonDays,
+    stepMinutes: 20, solarStepMinutes: 15, moonStepMinutes: 20,
+  });
+  return { kind: 'season', category: 'milkyway', site, now: request.now || Date.now(), season };
+}
+
+root.OverheadCelestialPlan = { PLAN_CATEGORIES, SPECIAL_EVENT_KINDS, weatherLookup, compute, computeSeason };
 if (typeof module !== 'undefined') module.exports = root.OverheadCelestialPlan;
 })(typeof self !== 'undefined' ? self : globalThis);

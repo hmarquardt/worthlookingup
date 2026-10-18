@@ -603,3 +603,59 @@ route propagation; persistent failures still fail. No scientific/application cha
   equatorial site guidance to the doc as reader questions arrive; and keep the band a geometric summary
   until a licensed brightness model exists.
 
+
+## Phase 6A.1: next Galactic-core season (shipped)
+
+- [x] `analyseSeason()` in `overhead-milkyway.js` answers the question the ninety-day plan cannot: when the
+      core next becomes workable from this latitude. It walks the site's own observing nights (built by the
+      same `celestialWindows()` the plans use) in date order through the unchanged `analyseNight()`, and stops
+      as soon as it holds both answers, which is exact rather than a heuristic because the first hit in time
+      order is the answer. Bound: 366 nights (`SEASON.horizonDays`), one annual cycle plus a day so a leap year
+      cannot hide a season. No pre-filter: a conservative one is how an off-by-one-night bug hides, and the
+      exact walk is cheap enough.
+- [x] Season opening versus first favourable night, kept distinct. The opening is geometry (the first night the
+      window exists); the favourable night is the first night whose **own** window quality reaches 60, a bar
+      calibrated by measuring a full year of qualifying nights at the reference sites (opening nights score in
+      the thirties and forties; the better half of a season scores 60+; median 58, p75 67, max 74 at 38.4° N).
+      When no night reaches it the interface says the season offers marginal windows only instead of inventing
+      a second date. No cross-category comparison is introduced anywhere.
+- [x] Every negative answer is classified rather than called seasonal: `never-reaches-threshold` (Tromsø, and
+      the 0.8° ceiling at 60.2° N), `below-threshold`, `no-darkness` (McMurdo in December, where the core is
+      37° up and the sun never sets), `no-darkness-overlap`, `unavailable`. Each keeps the band statement: the
+      galactic plane is a great circle, so the core being out of reach never makes the band invisible.
+- [x] Local dates are explicit. A night is labelled by the evening it begins and a window by the calendar date
+      of its own instant (`day` versus `date`), computed with `Intl` in the site's zone; prose, calendar entry
+      and observing plan all use the instant's date, so Indiana reads "season opens 2027-03-29, 4:49–5:10 AM".
+      Daylight-saving transitions, midnight-crossing nights and the 2028 leap day are asserted.
+- [x] Weather months ahead is `not-forecastable`, never clear skies: no cloud value, brightness, probability or
+      "sighting chance" in the record or any exported file, asserted by test. Calendar and plan entries carry
+      the caveat, so an exported date cannot be mistaken for a forecast.
+- [x] On-demand and isolated: a separate worker request (`kind: 'season'`) created when the category opens and
+      terminated when the answer arrives, so the plan's first paint never waits; a bounded session cache keyed by
+      site, generation and threshold makes a revisit free; no dataset, forecast or provider request at all.
+      Measured: ~0.35 s of calculation for a typical site in Node (~0.5 s including night building), the same
+      walk warm in ~1 ms, and a 4×-throttled 390 px browser at ~1.6 s cold with the plan's cards already on
+      screen.
+- [x] Reuses the ordinary observing machinery: `seasonCandidate()` produces the same candidate shape a plan
+      night gets, so `overhead-opportunities.js`, `overhead-discovery.js` (`precision: 'window'`) and
+      `overhead-calendar.js` (interval, stable per-night UID) work unchanged. The global planning horizons were
+      not extended for any category.
+- [x] Test evidence: new `tests/overhead-milkyway-season.cjs` (brute-force scan equivalence with no tolerance
+      on the night at seven sites, coarse/fine equivalence, marginal-versus-favourable policy, moonlight above
+      and below the horizon, the four negative classes, DST, midnight crossing, leap year, cache hits and
+      misses, plan/worker/calendar/plan integration, and no-fabrication checks). Browser: `tests/milkyway.spec.js`
+      grew from 7 to 15 tests (prominent empty-state answer, marginal-versus-favourable wording, calendar and
+      plan export from a future window with a stable UID, collapsed secondary block with keyboard operation,
+      location-change re-search, on-demand loading with no provider request, throttled cold/warm measurement,
+      four widths and both themes without overflow).
+- [x] Documentation: [milky-way.md](milky-way.md) gained the season definitions, the measured favourable bar,
+      the search and its exactness argument, the classification table, the reference-case table, accuracy,
+      measured cost and the limitations. `docs/source-manifest.json` records the deliberate baseline update for
+      the two touched shared files (`overhead-celestial-plan.js` gained `computeSeason`, the worker one dispatch
+      branch) with the reasoning that nothing existing changed.
+- Git and deployment: release identifier `2026.10.16.7`; commit and push verified below, on top of the
+  scheduled data bot's work, never forced.
+- Next action: keep seasonal planning geometric; a "where to go" answer still needs a licensed light-pollution
+  dataset, a real horizon model and land-access boundaries. The honest next increments are seasonal context for
+  the southern hemisphere and the equator beyond 90 days, and a moon-phase calendar that is recomputed rather
+  than extrapolated.

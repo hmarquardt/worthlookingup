@@ -3,8 +3,8 @@
   "source_commit": "541a9701b1bf7ccd8acabbacb9cf7ff146e47418",
   "unchanged_files": {
     "overhead-astro.js": "51787cd1d36320a2f5c058e4e6b6537a160b1af2336023249f35925e64064340",
-    "overhead-celestial-plan.js": "17e3fdab591de30390cf04a5615c83323e0c5721397c782f9c67e91dfafafff4",
-    "overhead-celestial-worker.js": "b5978dcdc1f87f6ead86e08bb707d93b6058cce8b6b7ca2e723e22617e305a25",
+    "overhead-celestial-plan.js": "e6cf78607b079739373623f708cec1d88396a906805bd056f66effc92e43f690",
+    "overhead-celestial-worker.js": "17df11f5ba10868e90805ef2ed6b30fdc56221597a61ca1e1698705f2b75d431",
     "overhead-comets.js": "a21459e92258289283a7279a67bbdd50ec85a7554f89a44d9506270ac35fe7c8",
     "overhead-engine.js": "8379a1df2ec6b937f023502be2ebed74e19b6595cbcec97798092e38884b2c9a",
     "overhead-lifecycle.js": "b8e03bda7ee2d615812f6e557ac8e778b213f1022142a3c5fc95179d474f2a3f",
@@ -57,6 +57,23 @@
         "tests/overhead-meteors.cjs",
         "tests/overhead-comets.cjs",
         "tests/overhead-milkyway.cjs"
+      ]
+    },
+    {
+      "phase": "6A.1 Next Galactic-core season",
+      "files": [
+        "overhead-celestial-plan.js",
+        "overhead-celestial-worker.js"
+      ],
+      "reason": "the plan module gained computeSeason() and the worker one dispatch branch for the request kind \"season\". Both are additions: computeSeason calls the Milky Way engine's existing analyseSeason(), which walks the same analyseNight() the plans use, and no existing plan, score, weight, threshold, grade or formula was touched. The seasonal search is a separate request so no category's planning horizons change, and the Milky Way category's own window quality remains its only number.",
+      "evidence": [
+        "tests/overhead-milkyway-season.cjs",
+        "tests/overhead-milkyway.cjs",
+        "tests/overhead-opportunities.cjs",
+        "tests/overhead-planets.cjs",
+        "tests/overhead-meteors.cjs",
+        "tests/overhead-comets.cjs",
+        "tests/milkyway.spec.js"
       ]
     }
   ]

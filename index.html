@@ -103,6 +103,18 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 .milkyway-sub{margin:2px 0 0;font-size:.82rem;letter-spacing:.4px;color:var(--muted);text-transform:uppercase}
 .milkyway-figure{margin:0;display:grid;gap:6px}
 .milkyway-chart{width:100%;height:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.milkyway-season{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:16px;display:grid;gap:8px;margin-top:18px}
+.milkyway-season[data-prominent="true"]{border-color:var(--amber)}
+.milkyway-season h2{font-size:1.05rem;margin:0}
+.milkyway-season .season-when{font-size:1.02rem;line-height:1.5}
+.milkyway-season .season-when strong{color:var(--lime)}
+.milkyway-season .season-chip{border:1px solid var(--line);border-radius:999px;padding:2px 9px;font-size:.72rem;color:var(--muted);letter-spacing:.4px;white-space:nowrap}
+.milkyway-season .season-chip[data-tone="good"]{color:var(--lime);border-color:var(--lime)}
+.milkyway-season .season-chip[data-tone="warn"]{color:var(--amber);border-color:var(--amber)}
+.milkyway-season .season-row{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.milkyway-season .season-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.milkyway-season .season-actions button{font-size:.78rem;padding:8px 11px;min-height:44px}
+@media (max-width:720px){.milkyway-season{padding:13px}}
 .celestial-positions{width:100%;border-collapse:collapse;font-size:.82rem}
 .celestial-positions th,.celestial-positions td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line)}
 .celestial-positions th{color:var(--muted);font-weight:500}
@@ -206,6 +218,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <div id="celestial-status" class="status" role="status" aria-live="polite"></div>
 <div id="celestial-events" class="celestial-events"></div>
 <section id="celestial-changes" class="celestial-section" hidden aria-label="Noteworthy comet changes"><h2>What changed recently</h2><div id="celestial-changes-body" class="small"></div></section>
+<section id="milkyway-season" class="milkyway-season" hidden aria-label="Next Galactic-core season"></section>
 <section id="celestial-more" class="celestial-section" aria-label="Other events in this window"><h2>Calculated but not prioritised</h2><div id="celestial-more-body" class="small"></div></section>
 <section id="celestial-freshness" class="celestial-section" aria-label="Celestial data sources"><h2>Where these numbers come from</h2><div id="celestial-freshness-body" class="small"></div></section>
 </section>
@@ -299,12 +312,12 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <details id="how-it-works"><summary>How the recommendation works</summary><p>The night’s score is the best remaining satellite opportunity among your selected categories. It is not a weather score. A “likely visible” segment needs at least 20 seconds above your minimum elevation, with the Sun at least 6° below the horizon and the spacecraft fully sunlit. Buildings, trees, haze and object orientation can still prevent a sighting.</p><p>Base points: elevation 25, useful visible duration 15, sunlight 10, observer darkness 15, brightness category 10, cloud cover 20, and visibility 5. Cloud, poor visibility and rain then reduce the total. Unknown weather earns no weather points and makes the result provisional. No precise apparent magnitude is claimed. <a href="docs/overhead.md">Full algorithm, validation and limitations →</a></p><p>The Moon panel is informational and does not raise the satellite score. A quiet satellite night can still be a lovely night for stargazing.</p></details>
 <details id="diagnostics"><summary>Data & diagnostics</summary><div class="actions"><button id="refresh">Refresh source data</button><button id="clear-cache">Clear downloaded cache</button><label class="text-button">Import OMM JSON / TLE<input id="import" type="file" accept=".json,.txt,.tle" aria-label="Import orbital elements"></label></div><p>Import up to 2 MB of orbital elements from a trusted source if CelesTrak is unavailable. Imported records stay in this session and use their actual epoch; records more than 14 days from a prediction are excluded.</p><pre id="diagnostic-output"></pre></details>
 </main>
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.16.6" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.16.6">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.16.7" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.16.7">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.16.6 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.16.7 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
@@ -932,6 +945,7 @@ async function selectCategory(category,forGuide=false){
  const needs=celestialNeeds(category).filter(name=>!celestial.datasetState[name]);
  if(needs.length)await celestialDatasets(false,needs);
  if(selection!==categorySelection)return;
+ if(category==='milkyway'){const plan=requestCelestial();requestSeason();return plan;}
  return requestCelestial();
 }
 function selectHorizon(horizon){
@@ -1128,6 +1142,153 @@ function milkyWayEmptyState(){
   `<p class="small">Nothing here is a claim that the Milky Way is invisible, and nothing here is a prediction about clouds. This is the core's position, the darkness the sky reaches and the Moon's own geometry — nothing else.</p>`+
   `</div>`;
 }
+/* ---- Next Galactic-core season ---------------------------------------------------------------
+   The ninety-day plan answers "when, soon". This answers "when, at all": a year-long search of the
+   site's own observing nights, run on demand in its own worker so the category's first paint is never
+   blocked, cached per location and settings, and presented as planned geometry rather than a forecast. It
+   distinguishes the season's first qualifying night from its first genuinely favourable one, because those
+   are usually not the same night and the marginal one must not be sold as the best. */
+const seasonState={status:'idle',busy:false,key:null,result:null,errors:[],worker:null,requested:null,pending:null,
+ ms:null,events:new Map()};
+const seasonCache=new Map();
+const SEASON_CACHE_LIMIT=6;
+function seasonThreshold(){return Math.max(8,Math.min(45,+state.settings.minimum||10));}
+function seasonKey(){
+ return discoveryIdentity()+'|'+seasonThreshold()+'|'+(MilkyWay?MilkyWay.SEASON.favorableQuality:60);
+}
+function seasonRequest(){
+ return {kind:'season',site:state.site,windows:celestialWindows(365),now:Date.now(),
+  options:{minAltitude:seasonThreshold()}};
+}
+function finishSeason(key,result,error){
+ if(seasonState.key!==key)return;
+ seasonState.busy=false;seasonState.requested=null;seasonState.pending=null;
+ if(error){seasonState.status='error';seasonState.errors=[error];renderSeasonSection();return;}
+ seasonState.result=result;seasonState.status='ready';
+ seasonState.ms=result&&result.season?result.season.search.ms:null;
+ if(seasonCache.size>=SEASON_CACHE_LIMIT)seasonCache.delete(seasonCache.keys().next().value);
+ seasonCache.set(key,result);
+ registerSeasonItems(result);
+ renderSeasonSection();
+}
+function requestSeason(){
+ if(celestial.category!=='milkyway'||!MilkyWay||!CelestialPlan)return Promise.resolve(null);
+ const key=seasonKey();
+ if(seasonState.key===key&&seasonState.status==='ready')return Promise.resolve(seasonState.result);
+ const cached=seasonCache.get(key);
+ if(cached){seasonState.key=key;seasonState.result=cached;seasonState.status='ready';seasonState.busy=false;
+  seasonState.requested=null;registerSeasonItems(cached);renderSeasonSection();return Promise.resolve(cached);}
+ if(seasonState.requested===key)return seasonState.pending||Promise.resolve(null);
+ seasonState.requested=key;seasonState.key=key;seasonState.busy=true;seasonState.status='loading';seasonState.errors=[];
+ renderSeasonSection();
+ seasonState.pending=new Promise(resolve=>{
+  const request=seasonRequest();
+  let worker=null;
+  try{worker=new Worker('overhead-celestial-worker.js');}catch(error){worker=null;}
+  if(!worker){
+   // No worker: the same code runs inline, so the answer is identical and only the main thread waits.
+   setTimeout(()=>{
+    try{const result=CelestialPlan.computeSeason(request);finishSeason(key,result,null);resolve(result);}
+    catch(error){finishSeason(key,null,String((error&&error.message)||error));resolve(null);}
+   },0);
+   return;
+  }
+  seasonState.worker=worker;
+  worker.onmessage=event=>{const message=event.data||{};
+   worker.terminate();seasonState.worker=null;
+   if(message.ok)finishSeason(key,message.result,null);else finishSeason(key,null,String(message.error||'the seasonal search failed'));
+   resolve(message.ok?message.result:null);};
+  worker.onerror=()=>{worker.terminate();seasonState.worker=null;
+   finishSeason(key,null,'the seasonal worker failed to load');resolve(null);};
+  worker.postMessage({id:key,request});
+ });
+ return seasonState.pending;
+}
+// The season's nights enter the ordinary calendar machinery through the shared model, so the buttons, the
+// serializer and the observing plan are the ones every other opportunity uses — never a second calendar path.
+function registerSeasonItems(result){
+ const season=result&&result.season;
+ if(!season||!Opportunities||!MilkyWay)return;
+ const records=[season.opening,season.favorable].filter(Boolean);
+ const candidates=[...new Map(records.map(record=>[record.day,MilkyWay.seasonCandidate(record,state.site)])
+  .filter(entry=>entry[1])).values()];
+ if(!candidates.length)return;
+ const scored=Opportunities.withScores(candidates,{site:state.site,now:Date.now(),weatherAt:null});
+ seasonState.events=new Map();
+ for(const opportunity of scored.opportunities){
+  const own=opportunity.attributes&&opportunity.attributes.windowQuality;
+  if(Number.isFinite(own)){
+   opportunity.observing={...opportunity.observing,value:own,
+    detail:'Milky Way window quality: geometry, darkness and moonlight only. No forecast exists at this range.'};
+  }
+  const event=D.celestial(opportunity,{category:'milkyway',errors:[]});
+  if(!event)continue;
+  calendarItems.set(event.id,{event,source:opportunity});
+  seasonState.events.set((opportunity.attributes||{}).seasonDate||opportunity.night,event.id);
+ }
+}
+const SEASON_LABEL={ 'season-favorable':'Season found', 'season-marginal':'Marginal season only',
+ 'never-reaches-threshold':'No season at this latitude', 'below-threshold':'No season at this latitude',
+ 'no-darkness':'No dark season', 'no-darkness-overlap':'No overlap between the core and darkness',
+ unavailable:'Season unavailable' };
+function seasonRecordBlock(record,label){
+ if(!record)return '';
+ const tone=record.favorable?'good':'warn';
+ const id=seasonState.events&&seasonState.events.get(record.date||record.day);
+ const event=id?{event:calendarItems.get(id)?.event,id}:null;
+ const moon=record.moon?String(record.moon.classification).replace(/-/g,' '):'not evaluated';
+ return `<div class="season-row"><span class="small">${esc(label)}</span>`+
+   `<span class="season-chip" data-tone="${tone}">${record.favorable?'favorable':'marginal'}</span>`+
+   `<span class="season-chip">${esc(String(record.quality))}/100 window quality</span></div>`+
+  `<div class="season-when"><strong>${esc(dateLabel(record.start))}</strong> · ${esc(time(record.start))}–${esc(time(record.end))} local · ${record.minutes} min</div>`+
+  `<div class="small">${esc('the core reaches ' + Math.round(record.coreAltitude) + '° towards ' +
+    (record.coreCompass||'—') + ' · ' + record.darknessMinutes.astronomical +
+    ' min of astronomical darkness that night · Moon: ' + moon)}</div>`+
+  (record.limitations.length?`<ul class="celestial-why">${record.limitations.map(text=>`<li>${esc(text)}</li>`).join('')}</ul>`:'')+
+  (event&&event.event?calendarActions(event.id):'');
+}
+function renderSeasonSection(){
+ const section=$('milkyway-season');
+ if(!section)return;
+ if(celestial.category!=='milkyway'){section.hidden=true;section.innerHTML='';return;}
+ section.hidden=false;
+ const plan=celestial.result&&celestial.result.plans?celestial.result.plans[celestial.horizon]:null;
+ const empty=!!(plan&&plan.empty);
+ section.dataset.prominent=String(empty);
+ if(Number.isFinite(seasonState.ms))section.dataset.searchMs=String(seasonState.ms);
+ if(seasonState.busy||seasonState.status==='loading'){
+  section.innerHTML='<h2>Next Galactic-core season</h2><p class="small">Searching the next year of observing '+
+   'nights for '+esc(state.site.name||'this location')+'… a year-long calculation that runs in the background; '+
+   'nothing above waits for it.</p>';
+  return;
+ }
+ if(seasonState.status==='error'){
+  section.innerHTML='<h2>Next Galactic-core season</h2><p class="small warn">The seasonal search could not run ('+
+   esc(seasonState.errors[0]||'unknown reason')+'). Tonight\'s window above is unaffected.</p>';
+  return;
+ }
+ const season=seasonState.result&&seasonState.result.season;
+ if(!season){section.innerHTML='';return;}
+ const headline=SEASON_LABEL[season.classification]||'Season';
+ const blocks=[];
+ if(season.opening){
+  blocks.push(seasonRecordBlock(season.opening,'Season opens'));
+  if(season.favorable&&season.favorable.day!==season.opening.day){
+   blocks.push(seasonRecordBlock(season.favorable,'First favourable night'));
+  }
+ }else{
+  blocks.push(`<div class="season-when"><strong>${esc(headline)}</strong></div>`);
+ }
+ blocks.push(`<ul class="celestial-why">${season.explanation.map(text=>`<li>${esc(text)}</li>`).join('')}</ul>`);
+ blocks.push(`<p class="small">${esc(season.weather.detail)} ${esc('Walked ' + season.search.scanned +
+   ' of the ' + season.search.nights + ' observing nights after today for ' +
+   (state.site.name||'this location') + '; ' + season.search.withWindow + ' of those qualify' +
+   (season.search.stoppedEarly?', and the walk stopped once both answers were known' : '') + '.')}</p>`);
+ const content=blocks.join('');
+ const summary=season.opening?'Season opens '+dateLabel(season.opening.start):headline;
+ section.innerHTML='<h2>Next Galactic-core season</h2>'+
+  (empty?content:`<details><summary>${esc(summary)}</summary>${content}</details>`);
+}
 function renderCelestial(){
  rememberDiscoveryPlan();renderDiscovery();
  if(!celestial.busy&&celestial.resolve){celestial.resolve();celestial.resolve=null;}
@@ -1166,6 +1327,7 @@ function renderCelestial(){
  }else{moreSection.hidden=true;more.innerHTML='';}
  renderCelestialChanges();
  renderCelestialFreshness();
+ renderSeasonSection();
 }
 // Noteworthy comet changes, straight from the published comparison in the dataset.
 function renderCelestialChanges(){
@@ -1647,7 +1809,8 @@ document.getElementById('celestial-more').addEventListener('click',()=>{});
  celestial,selectCategory,selectHorizon,requestCelestial,renderCelestial,renderCelestialChanges,renderCelestialFreshness,
  celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities,get milkyway(){return MilkyWay;}},loadMilkyWayEngine,
  launches,launchesAvailable,loadLaunches,renderLaunches,launchCard,launchWindow,launchRelevance,launchRecordById,tickLaunchCountdowns,launchModule:L,launchFeedSources:LAUNCH_FEED_SOURCES,
- calendar:Cal,calendarItems,observingPlan,calendarActions,calendarCheck,addToCalendar,downloadPlan,planAdd,planRemove,planToggle,planClear,renderPlan,planRefresh,planSortKey,calendarOptions,satelliteCalendarItem,downloadText};
+ calendar:Cal,calendarItems,observingPlan,calendarActions,calendarCheck,addToCalendar,downloadPlan,planAdd,planRemove,planToggle,planClear,renderPlan,planRefresh,planSortKey,calendarOptions,satelliteCalendarItem,downloadText,
+ season:seasonState,seasonCache,seasonKey,seasonRequest,requestSeason,finishSeason,renderSeasonSection,registerSeasonItems,seasonThreshold};
  $('sky-preview').innerHTML=skySVG(null);
  if(location.hash==='#about'){const b=document.querySelector('[data-view="about"]');if(b)b.click();}
  restoreDiscoveryFeed();

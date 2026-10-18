@@ -351,10 +351,12 @@ function qualityFor(components) {
 // storage, and holds no user data beyond the site coordinates already in the request.
 const CACHE = Object.freeze({ limit: 900 });
 const cache = new Map();
+// Hit and miss counts, so a caller can prove that reused nights were reused rather than recomputed.
+const cacheStats = { hits: 0, misses: 0 };
 const cacheKey = (night, site, options) => [site.lat, site.lon, night.day || night.start, night.start, night.end,
   options.thresholdDeg, options.stepMinutes, options.solarStepMinutes, options.moonStepMinutes,
   options.clampStart].join('|');
-function clearCache() { cache.clear(); }
+function clearCache() { cache.clear(); cacheStats.hits = 0; cacheStats.misses = 0; }
 const cacheSize = () => cache.size;
 
 /* ---- one night, analysed ------------------------------------------------ */
@@ -366,7 +368,8 @@ const cacheSize = () => cache.size;
 function analyseNight(night, site, options) {
   const opts = options || {};
   const key = cacheKey(night, site, opts);
-  if (cache.has(key)) return cache.get(key);
+  if (cache.has(key)) { cacheStats.hits++; return cache.get(key); }
+  cacheStats.misses++;
   const result = computeNight(night, site, opts);
   if (cache.size >= CACHE.limit) cache.delete(cache.keys().next().value);
   cache.set(key, result);
@@ -642,6 +645,80 @@ function summariseHorizon(analyses, thresholdDeg, options) {
 // Analyse a list of observing nights (the same window objects the rest of the product uses) and return the
 // analysis plus the candidates for the shared opportunity model. Coarser sampling is available for long
 // horizons so a 90-day request stays cheap; nothing about the answer changes except the sampling density,
+
+/* ---- the next season, beyond the ninety-day plan ------------------------ */
+
+// The seasonal search answers the question the ninety-day plan cannot: when will the core next be workable
+// from here? It walks the observing nights in order and stops as soon as it has the season's first
+// qualifying night and the first genuinely favourable one, because scanning chronologically and stopping at
+// the first hit is exact. If the year holds nothing, the whole year is scanned and the reason is classified
+// rather than guessed.
+const SEASON = Object.freeze({
+  // One full annual cycle plus a day, so a leap year cannot hide a season between consecutive searches.
+  horizonDays: 366,
+  // The favourable bar is this category's own quality scale, calibrated against a full year of qualifying
+  // nights at the reference sites (see docs/milky-way.md): a marginal season opening scores in the thirties
+  // and forties, and the better half of a mid-latitude season scores sixty and above. It is a *planning*
+  // bar, never a promise of a photograph, and it is not comparable with any other category's scale.
+  favorableQuality: 60,
+});
+
+// The local calendar date of an instant at the site, as YYYY-MM-DD. Intl is the only time-zone source in this
+// module; if it is unavailable the UTC date is used and the caller still gets a valid string.
+function localDate(instant, tz) {
+  if (!Number.isFinite(instant)) return null;
+  if (tz) {
+    try {
+      const parts = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit',
+        day: '2-digit' }).formatToParts(new Date(instant));
+      const part = name => (parts.find(entry => entry.type === name) || {}).value;
+      const value = part('year') + '-' + part('month') + '-' + part('day');
+      if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+    } catch (error) { /* fall through to UTC */ }
+  }
+  return new Date(instant).toISOString().slice(0, 10);
+}
+
+// A compact record of one night, with the limitations that make it marginal when it is. `tz` names the
+// observing site's zone, so a window that opens at 04:49 is dated to that morning rather than the evening
+// before, which is the night's own label.
+function seasonNightRecord(night, favorableQuality, tz) {
+  const core = night.core, window = night.window, quality = night.quality.value;
+  const limitations = [];
+  if (window.minutes < 60) limitations.push('the window is only ' + window.minutes + ' minutes long');
+  if (core.maxAltitude < RULES.core.photographicDeg) {
+    limitations.push('the core stays under ' + RULES.core.photographicDeg + ' degrees, in the worst of the ' +
+      'atmosphere');
+  }
+  if (night.moon && night.moon.classification === 'significant-moonlight') {
+    limitations.push('a bright Moon is up inside the window');
+  } else if (night.moon && night.moon.classification === 'some-moonlight') {
+    limitations.push('the Moon is up for part of the window');
+  }
+  if (night.darkness.achieved !== 'astronomical') {
+    limitations.push('the sky only reaches ' + night.darkness.achieved + ' twilight, not astronomical darkness');
+  }
+  const series = Array.isArray(night.series) ? night.series : [];
+  const first = series[0] || null, last = series.length ? series[series.length - 1] : null;
+  return { day: night.day, date: localDate(window.start, tz), start: window.start, end: window.end,
+    minutes: window.minutes,
+    level: window.level, thresholdDeg: night.thresholdDeg,
+    openAltitude: first ? first.altitude : null, openAzimuth: first ? first.azimuth : null,
+    openCompass: first ? first.compass : null,
+    closeAltitude: last ? last.altitude : null, closeAzimuth: last ? last.azimuth : null,
+    closeCompass: last ? last.compass : null,
+    coreAltitude: core.maxAltitude, coreTime: core.maxTime, coreCompass: core.maxCompass,
+    coreAzimuth: core.maxAzimuth, bestAltitude: night.bestAltitude, bestCompass: night.bestCompass,
+    bestTime: night.bestTime,
+    darknessMinutes: night.darkness.minutes, darknessAchieved: night.darkness.achieved,
+    moon: night.moon ? { classification: night.moon.classification, detail: night.moon.detail,
+      metrics: night.moon.metrics } : null,
+    quality, factors: night.quality.factors,
+    band: night.band ? { above: night.band.above, highest: night.band.highest, statement: night.band.statement } : null,
+    favorable: quality >= favorableQuality,
+    limitations };
+}
+
 // and the window edges are bisected either way.
 function analyse(windows, site, options) {
   const opts = options || {};
@@ -664,6 +741,174 @@ root.OverheadMilkyWay = { SCHEMA, CORE, GALACTIC, BAND, RULES, QUALITY_WEIGHTS, 
   galacticToEquatorial, coreEquatorial, coreHorizontal, horizontalOfJ2000, bandSummary, moonAt,
   moonInterferenceFor, qualityFor, moonFactorFor, photographyFor, coreTrack, analyseNight, analyse,
   chartSeries, candidateFor, intersectIntervals, longestInterval, summariseHorizon,
-  CACHE, clearCache, cacheSize };
+  SEASON, analyseSeason, seasonNightRecord, seasonCandidate, classifySeason,
+  CACHE, clearCache, cacheSize, cacheStats };
 if (typeof module !== 'undefined') module.exports = root.OverheadMilkyWay;
+
+// The seasonal answer for one location. `windows` are the site's own observing nights, in order; the caller
+// supplies them (the interface reuses the same builder it uses for the plans, so nothing about nights is
+// re-implemented here).
+function analyseSeason(windows, site, options) {
+  const opts = options || {};
+  const started = Date.now();
+  const thresholdDeg = clamp(Number.isFinite(opts.thresholdDeg) ? opts.thresholdDeg : RULES.core.goodDeg, 5, 60);
+  const favorableQuality = Number.isFinite(opts.favorableQuality) ? opts.favorableQuality : SEASON.favorableQuality;
+  const horizonDays = Number.isFinite(opts.horizonDays) ? opts.horizonDays : SEASON.horizonDays;
+  const nights = (windows || []).filter(window => window && Number.isFinite(window.start) &&
+    Number.isFinite(window.end) && window.end > window.start).slice(0, horizonDays);
+  const nightOptions = { ...opts, thresholdDeg };
+  const statsBefore = { ...cacheStats };
+  let opening = null, favorable = null, scanned = 0, withWindow = 0, maxCoreAll = -90, anyDarkness = false;
+  for (const window of nights) {
+    scanned++;
+    const night = analyseNight(window, site, nightOptions);
+    if (night.observable) {
+      withWindow++;
+      if (!opening) opening = seasonNightRecord(night, favorableQuality, site.tz);
+      if (!favorable && night.quality.value >= favorableQuality) {
+        favorable = seasonNightRecord(night, favorableQuality, site.tz);
+      }
+      // Both found: nothing later in the year can be earlier, so the scan stops there.
+      if (opening && favorable) break;
+    } else {
+      if (Number.isFinite(night.core.maxAltitude) && night.core.maxAltitude > maxCoreAll) {
+        maxCoreAll = night.core.maxAltitude;
+      }
+      if (night.darkness && night.darkness.achieved && night.darkness.achieved !== 'none') anyDarkness = true;
+    }
+  }
+  const base = { schema: SCHEMA, kind: 'season',
+    site: { lat: site.lat, lon: site.lon, tz: site.tz || null, name: site.name || null },
+    thresholdDeg, favorableQuality, horizonDays,
+    search: { nights: nights.length, scanned, withWindow, stoppedEarly: scanned < nights.length,
+      cacheHits: cacheStats.hits - statsBefore.hits, cacheMisses: cacheStats.misses - statsBefore.misses,
+      ms: Date.now() - started },
+    // Months ahead there is no forecast, and the result says so rather than implying calm skies.
+    weather: { state: 'not-forecastable',
+      detail: 'No forecast exists at this range. This is planned sky geometry — darkness, the core and the ' +
+        'Moon — not a prediction of cloud, haze or light pollution.' },
+    band: opening && opening.band ? opening.band
+      : bandSummary(new Date(nights[0] ? nights[0].start : Date.now()), site, opts),
+    provenance: { library: A.LIBRARY.name + ' ' + A.LIBRARY.version, core: CORE.source,
+      galacticFrame: GALACTIC.source, method: 'the same nightly analysis the plans use, walked in date order' } };
+  return classifySeason(base, { nights, opening, favorable, scanned, withWindow, maxCoreAll, anyDarkness,
+    thresholdDeg, favorableQuality });
+}
+
+
+// A seasonal night as a candidate for the shared opportunity model, so a future window can be registered
+// with the same identity rules, calendar serializer and observing plan as any other opportunity. The number
+// is the category's own window quality, exactly as on a card tonight.
+function seasonCandidate(record, site) {
+  if (!record) return null;
+  const positions = [];
+  const push = (name, t, altitude, azimuth, compass) => {
+    if (!Number.isFinite(t) || !Number.isFinite(altitude)) return;
+    positions.push({ name, altitude: round(altitude, 1), azimuth: round(azimuth, 1), compass: compass || null,
+      optical: 'camera', at: t });
+  };
+  push('The core as the window opens', record.start, record.openAltitude, record.openAzimuth, record.openCompass);
+  push('The core at its highest', record.bestTime, record.bestAltitude, record.coreAzimuth, record.bestCompass);
+  push('The core as the window closes', record.end, record.closeAltitude, record.closeAzimuth, record.closeCompass);
+  return {
+    kind: 'milky-way', category: 'milkyway', objects: ['Milky Way core'], night: record.date || record.day,
+    title: 'Milky Way core window — ' + (record.date || record.day),
+    summary: 'the core is up to ' + Math.round(record.bestAltitude) + ' degrees towards ' + record.bestCompass +
+      '; ' + record.minutes + ' minutes during ' + darknessPhrase(record.level) + ' with the core above ' +
+      record.thresholdDeg + ' degrees' +
+      (record.moon && record.moon.classification === 'moon-below-horizon' ? '; no moonlight inside the window'
+        : record.moon ? '; Moon: ' + String(record.moon.classification).replace(/-/g, ' ') : '') +
+      '. Planned from the season search one year ahead: no forecast exists at this range.',
+    why: [record.favorable
+      ? 'this window clears the favourable bar of this category\'s own quality scale'
+      : 'this is the first qualifying window of the season, and it is a marginal one: ' +
+        (record.limitations.join('; ') || 'short or low in the sky')],
+    caveats: [...record.limitations,
+      'Weather months ahead is not forecastable: this is planned geometry, not a promise of clear skies.',
+      'The number is this category\'s own window quality and is not comparable with satellite, meteor or ' +
+        'planetary observing values.'],
+    t: { start: record.start, end: record.end, best: record.bestTime },
+    positions, optical: 'camera', observable: true,
+    site: { lat: site.lat, lon: site.lon, tz: site.tz || null, name: site.name || null },
+    data: { windowQuality: record.quality, qualityBasis: 'Milky Way window quality (geometry, darkness, moonlight)',
+      qualityFactors: record.factors, positionGrade: 'reference-j2000',
+      comparability: 'Milky Way window quality — this category\'s own measure, not comparable with satellite, ' +
+        'meteor or planetary scores.',
+      windowMinutes: record.minutes, windowBasis: 'the core at or above ' + record.thresholdDeg +
+        ' degrees during ' + darknessPhrase(record.level),
+      thresholdDeg: record.thresholdDeg, coreMaxAltitude: record.coreAltitude, coreMaxTime: record.coreTime,
+      coreMaxAzimuth: record.coreAzimuth, coreMaxCompass: record.coreCompass,
+      darknessAchieved: record.darknessAchieved, darknessMinutes: record.darknessMinutes,
+      moon: record.moon, band: record.band, season: true, favorable: record.favorable,
+      seasonDate: record.date || record.day, nightLabel: record.day,
+      weatherState: 'not-forecastable' },
+    provenance: { library: A.LIBRARY.name + ' ' + A.LIBRARY.version, reference: CORE.source, frame: CORE.frame,
+      galacticFrame: GALACTIC.source, dataset: null,
+      method: 'season search over the site\'s own observing nights' },
+  };
+}
+
+
+function classifySeason(base, state) {
+  const { nights, opening, favorable, maxCoreAll, anyDarkness, thresholdDeg, favorableQuality } = state;
+  const round1 = value => round(value, 1);
+  if (!nights.length) {
+    return { ...base, opening: null, favorable: null, classification: 'unavailable',
+      explanation: ['No observing nights were supplied, so no season could be searched.'] };
+  }
+  if (!opening) {
+    // Nothing qualified in the whole year. Classify why, in the order the geometry forces: altitude first,
+    // then darkness, then the overlap between them.
+    if (maxCoreAll < thresholdDeg) {
+      const neverRises = maxCoreAll < RULES.core.usableDeg;
+      return { ...base, opening: null, favorable: null,
+        classification: neverRises ? 'never-reaches-threshold' : 'below-threshold',
+        maxCoreAltitude: round1(maxCoreAll),
+        explanation: [neverRises
+          ? 'The galactic core never rises above ' + RULES.core.usableDeg + ' degrees from this latitude, so no ' +
+            'season exists here: the core stays below the useful horizon all year.'
+          : 'The galactic core peaks at ' + round1(maxCoreAll) + ' degrees from this latitude, under the ' +
+            thresholdDeg + ' degree threshold the window rule asks for, so no night can qualify.',
+        'The rest of the galaxy is a different question: the galactic plane is a great circle, so part of the ' +
+          'band is above the horizon here at every hour, and the core being out of reach does not make the ' +
+          'band invisible.'] };
+    }
+    if (!anyDarkness) {
+      return { ...base, opening: null, favorable: null, classification: 'no-darkness',
+        maxCoreAltitude: round1(maxCoreAll),
+        explanation: ['The sky never reaches even civil darkness during the searched nights, so there is no dark ' +
+          'window to place the core in.',
+        'The core itself does reach ' + round1(maxCoreAll) + ' degrees here: it is the twilight, not the ' +
+          'geometry, that rules the season out.'] };
+    }
+    return { ...base, opening: null, favorable: null, classification: 'no-darkness-overlap',
+      maxCoreAltitude: round1(maxCoreAll),
+      explanation: ['The core does climb above ' + thresholdDeg + ' degrees here, but only while the sky is still ' +
+        'too bright: across the searched nights its altitude and the dark hours never overlap.',
+      'That is a statement about the core and the twilight at this latitude, not about the whole band.'] };
+  }
+  const explanation = [];
+  explanation.push(opening.favorable
+    ? 'The season opens on ' + opening.date + ' with a window that already clears the favourable bar: ' +
+      opening.minutes + ' minutes, the core reaching ' + Math.round(opening.coreAltitude) + ' degrees towards ' +
+      opening.coreCompass + '.'
+    : 'The season opens on ' + opening.date + ' with a qualifying but marginal window: ' + opening.minutes +
+      ' minutes, the core reaching ' + Math.round(opening.coreAltitude) + ' degrees towards ' +
+      opening.coreCompass + '.');
+  if (opening && opening.limitations && opening.limitations.length) {
+    explanation.push('Its limitations: ' + opening.limitations.join('; ') + '.');
+  }
+  if (favorable && opening && favorable.day !== opening.day) {
+    explanation.push('The first genuinely favourable night is ' + favorable.date + ': ' + favorable.minutes +
+      ' minutes, the core at ' + Math.round(favorable.coreAltitude) + ' degrees towards ' +
+      favorable.coreCompass + ', quality ' + favorable.quality + '/100 on this category\'s own scale.');
+  } else if (!favorable) {
+    explanation.push('No night in the searched period reaches the favourable bar of ' + favorableQuality +
+      '/100, so this season offers marginal windows only — worth knowing, and worth checking the Moon and ' +
+      'the weather on the night.');
+  }
+  return { ...base, opening, favorable, classification: favorable ? 'season-favorable' : 'season-marginal',
+    explanation };
+}
+
 })(typeof self !== 'undefined' ? self : globalThis);
