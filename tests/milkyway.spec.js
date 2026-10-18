@@ -170,7 +170,8 @@ test('a season with no core window explains itself instead of dead-ending',async
   const text=await page.locator('.milkyway-panel[data-milkyway-empty="true"]').innerText();
   expect(text).toContain('Why there is no Milky Way window in this horizon');
   expect(text).toContain('Closest night in this horizon');
-  expect(text).toMatch(/core reaching \d+°/);
+  // One decimal, so the sentence and the comparison cannot disagree at the threshold.
+  expect(text).toMatch(/core reaching \d+\.\d°/);
   expect(text).toMatch(/20°/);
   expect(text).toMatch(/sampled galactic longitudes/);
   expect(text).toMatch(/not a claim that the Milky Way is invisible|not about the Milky Way/);
