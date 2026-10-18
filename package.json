@@ -10,7 +10,11 @@
     "check": "node tests/migration.cjs",
     "launches:refresh": "node scripts/refresh-launches.mjs",
     "launches:check": "node scripts/refresh-launches.mjs --check",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name worthlookingup --branch main"
+    "deploy": "npm run build && wrangler pages deploy dist --project-name worthlookingup --branch main",
+    "geodata:candidates": "node research/geodata/tools/fetch-candidates.mjs",
+    "geodata:profiles": "node research/geodata/tools/build-profiles.mjs",
+    "geodata:report": "node research/geodata/tools/build-report.mjs",
+    "geodata:fixture": "node research/geodata/tools/make-fixture.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

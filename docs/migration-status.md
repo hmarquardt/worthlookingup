@@ -659,3 +659,52 @@ route propagation; persistent failures still fail. No scientific/application cha
   dataset, a real horizon model and land-access boundaries. The honest next increments are seasonal context for
   the southern hemisphere and the equator beyond 90 days, and a moon-phase calendar that is recomputed rather
   than extrapolated.
+
+## Phase 6B.1: geographic data feasibility and site selection (research only, nothing published)
+
+- [x] Researched every light-pollution source against its publisher's own metadata: Falchi et al. 2016
+      (30″, modelled artificial zenith brightness, CC BY-NC 4.0, 2.9 GB GeoTIFF behind a request form), EOG
+      VIIRS VNL (15″, upward radiance, CC BY 4.0 on the product page but every download directory now redirects
+      to a sign-in page), World Bank Light Every Night (anonymous S3, 2012–2020, per-orbit scenes, registry
+      states ODbL and links CC BY 4.0), NASA Black Marble VNP46A4 (public domain, Earthdata token, HDF5),
+      Lorenz atlas (PNG only, no licence), DMSP-OLS (login-gated, 1992–2013). Routing researched separately: OSRM demo is not for production, openrouteservice needs a key, self-hosting needs a
+      separate service, and a precomputed matrix is the best fit (with ODbL obligations recorded).
+- [x] Built `src/geodata/*.mjs` as a pure layer: coordinate and study-area normalisation, great-circle
+      distance and bearing, curvature with standard refraction, a georeferenced raster reader with strict
+      nodata handling, a terrain horizon evaluator, a units-aware sky-brightness layer, the access policy, the
+      source gate and a three-axis site evaluation. No composite score, no rank, no travel time, no Bortle.
+- [x] Built `research/geodata/`: a reproducible candidate generator that queries PAD-US 4.1 for eleven real
+      units (coordinates are service-returned polygon centroids; ownership and acreage from the same record), a
+      profile builder that fetches 3DEP extracts (1024² over 32 km, ≈31 m, read with a 120-line tiled-GeoTIFF
+      reader rather than a GDAL dependency), and a report builder producing a 32 kB self-contained page with no
+      tiles, no scripts and no external requests.
+- [x] Access evidence is real and per-unit: Sugar Ridge FWA states "Property hours 24/7" (verified, with the
+      parking inference recorded), Atterbury FWA states "7 a.m. to 11 p.m. unless engaged in authorized activity"
+      (restricted), Shawnee National Forest permits overnight parking at trailheads (verified, with the PAD-US
+      RA flag surfaced as a caution), and five public properties have no after-dark statement at all. The
+      American Electric Power Rockport parcel carries PAD-US `Pub_Access=OA` while owner and manager are private:
+      it is classified `private-no-permission`, and a test pins that down.
+- [x] Regional finding: modelled bare-earth horizons run 0.1°–3.8° against a core at 22°–23.5° on 2027-04-13,
+      so terrain is not the limiting factor in this region — vegetation and access are. Two real bugs were
+      found and fixed by the tests along the way: the observer height was being applied as an elevation above
+      the datum (turning every plateau into a wall), and the uncertainty model conflated pixel footprint with
+      sampling error.
+- [x] Licensing gate is machine-checked: `sources.json` + `geo-sources.mjs` compute eligibility and throw when
+      an entry's own facts contradict its `productionEligible` flag. Production-eligible today: 3DEP, PAD-US,
+      NASA Black Marble, the Indiana DNR and USFS rule pages, and the AWS terrain tiles fallback. Blocked:
+      Falchi (non-commercial, manual access), EOG (account-gated), World Bank (contradictory licence), Lorenz
+      (no licence, no data product), OSM (share-alike on derived databases).
+- [x] Test evidence: `npm test` exit 0 with 26 PASS suites and 31 new geodata checks across three suites
+      (`geodata-geometry-terrain` 13, `geodata-sky-access-sources` 12, `geodata-sites` 6), all offline, using a
+      committed 96×96 genuine 3DEP fixture with 211 m of relief plus analytic planes and ridges. The research
+      page was rendered in a real browser at 390/768/1280/1440 px with no external request, no console error and
+      no overflow.
+- [x] Documentation: `docs/photography-geodata-feasibility.md` (sources and licences, the radiance-versus-sky
+      distinction, the terrain method and its limits, the access policy with the real cases behind each rule,
+      routing options, the pilot table, costs, the smallest defensible 6B.2, and the open questions).
+- Git and deployment: research and documentation only; the public application, its engines and its release
+  identifier are unchanged, and the deployment was re-verified with `scripts/verify-production.mjs` after the
+  push.
+- Next action: decide Phase 6B.2 as a single named-region "where to go" section that shows only documented
+  after-dark access, modelled terrain clearance and explicit gaps — no ranking, no drive time, no Bortle class,
+  and no site presented as a recommendation without a fresh verified access record.

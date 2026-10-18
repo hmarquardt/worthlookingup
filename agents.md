@@ -94,6 +94,24 @@ because of that rule; agents should read it explicitly (some tools discover only
   (`kind: 'season'`), cached per site/generation/threshold, and makes no network request; a future window enters
   the ordinary opportunity, discovery and calendar machinery through `seasonCandidate()`, and the global
   planning horizons must never be stretched to a year to accommodate it. See docs/milky-way.md.
+- Phase 6B.1 is **research only**: `src/geodata/*.mjs` is a pure evaluation layer (no DOM, storage, network or
+  engine call) and `research/geodata/` holds the candidate inventory, DEM-derived horizon profiles, generators
+  and a self-contained report. None of it is staged by `scripts/build.cjs`, imported by the page or published;
+  `tests/geodata-sites.cjs` asserts that `dist/` contains neither the modules nor any research artefact. The
+  three dimensions stay separate and **no composite score, rank or travel time may be computed**: sky quality,
+  terrain clearance and access are reported as three verdicts with their evidence. Sky brightness is currently
+  `unavailable` everywhere because no dataset clears the gate, and `unavailable` is never rendered as dark.
+  Upward radiance (VIIRS, nW cm^-2 sr^-1) is never converted into sky brightness; the only conversion allowed is
+  mcd/m^2 to mag/arcsec^2 with the stated zero point, and the natural sky must be added before any total is
+  quoted. No Bortle class may be derived from any of it. The licensing gate in `src/geodata/geo-sources.mjs`
+  computes eligibility from `src/geodata/sources.json` and throws if an entry overstates its own eligibility;
+  a source is production-eligible only when its licence permits commercial use and redistribution, it carries
+  no unresolved share-alike obligation, and a job can read it. Access is decided by `access-evidence.mjs`:
+  only `verified-night-access` may ever support an affirmative recommendation, a restriction always wins over a
+  permission, a third-party map can never verify anything, a permission without a documented legal parking place
+  is not enough, and verification expires after a year and is then downgraded rather than kept. A DEM is bare
+  earth: a low modelled horizon is never a clear view, and every terrain claim carries that caveat plus an
+  uncertainty. See docs/photography-geodata-feasibility.md.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.
