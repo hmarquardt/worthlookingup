@@ -111,6 +111,15 @@ of altitude so the sentence and the comparison cannot disagree. Every empty stat
 statement that this is a fact about the core, not about the galaxy, and that nothing there is a claim
 about clouds.
 
+## Cost
+
+The engine is not a page script: it is fetched the first time a reader opens the category (42,469 bytes
+raw, 13.2 KB gzipped) and never otherwise, and it needs no dataset at all, so opening the category makes
+no other request. A 90-night analysis takes about 0.2 seconds in Node, and identical nights are cached in
+memory (bounded, session-only) so switching horizons reuses them. The one shared change to the existing
+celestial stack is the ninety-day window builder, whose extension loop re-read a growing array length and
+so repeated the eighth night; that is fixed for every category and asserted in the browser suite.
+
 ## Accuracy and known limitations
 
 - The coordinate path is validated against an independent implementation written into the test suite (Meeus

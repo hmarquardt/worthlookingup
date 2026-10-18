@@ -571,8 +571,8 @@ route propagation; persistent failures still fail. No scientific/application cha
       restored the pre-Phase-6A first-useful-opportunity geometry exactly: the discovery highlight sits at
       558/563/582/584 px at 390/768/1280/1440 instead of 601.9 px at 1280 with a wrapped strip.
 - [x] The engine is **lazily loaded**: it is not a page script, so a reader who never opens the category
-      fetches nothing for it (asserted in the browser suite), and one who does fetches 40,232 raw /
-      12,577 gzip bytes once. No dataset request is made at all — the category needs none.
+      fetches nothing for it (asserted in the browser suite), and one who does fetches 42,469 raw /
+      13,173 gzip bytes once (13,153 gzip as served in production). No dataset request is made at all — the category needs none.
 - [x] Discovery and calendar: one event per observing night with `precision: 'window'` through the shared
       mapper, into Tonight and Coming Up after the category has been opened; a window exports as an
       interval with `DTSTART`/`DTEND` at the real boundaries, a stable per-night UID, the observing window,
