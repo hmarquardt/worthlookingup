@@ -1,0 +1,198 @@
+{
+  "schema": "worthlookingup.geodata-profile/1",
+  "candidate": "glendale-fwa",
+  "origin": {
+    "lat": 38.549916,
+    "lon": -87.04064599999998
+  },
+  "generated_at": "2026-10-18T21:39:53.581Z",
+  "generated_by": "research/geodata/tools/build-profiles.mjs",
+  "dem": {
+    "source": "usgs-3dep",
+    "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+    "product": "3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample",
+    "bbox": [
+      -87.22442800000002,
+      38.366133999999995,
+      -86.85686400000002,
+      38.733698
+    ],
+    "pixelSizeM": 31.2,
+    "width": 1024,
+    "height": 1024,
+    "bytes": 4195622,
+    "verticalAccuracy": "lidar-derived bare earth, resampled for this prototype: treat the angle as indicative at about 1-2 m vertical"
+  },
+  "eyeHeightM": 1.6,
+  "observerElevationM": 145.79207611051697,
+  "searchRadiusM": 16000,
+  "profile": [
+    {
+      "azimuthDeg": 0,
+      "maxAngleDeg": 0.356,
+      "maxAtM": 540,
+      "maxElevationM": 150.7,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 22.5,
+      "maxAngleDeg": 0.501,
+      "maxAtM": 180,
+      "maxElevationM": 149,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 45,
+      "maxAngleDeg": 0.581,
+      "maxAtM": 180,
+      "maxElevationM": 149.2,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 67.5,
+      "maxAngleDeg": 0.41,
+      "maxAtM": 3300,
+      "maxElevationM": 170.3,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 90,
+      "maxAngleDeg": 0.484,
+      "maxAtM": 2280,
+      "maxElevationM": 166.3,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 112.5,
+      "maxAngleDeg": 0.287,
+      "maxAtM": 3360,
+      "maxElevationM": 163.5,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 135,
+      "maxAngleDeg": 0.357,
+      "maxAtM": 3960,
+      "maxElevationM": 171,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 157.5,
+      "maxAngleDeg": 1.086,
+      "maxAtM": 120,
+      "maxElevationM": 149.7,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 180,
+      "maxAngleDeg": 1.249,
+      "maxAtM": 120,
+      "maxElevationM": 150,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 202.5,
+      "maxAngleDeg": 1.283,
+      "maxAtM": 120,
+      "maxElevationM": 150.1,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 225,
+      "maxAngleDeg": 1.526,
+      "maxAtM": 60,
+      "maxElevationM": 149,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 247.5,
+      "maxAngleDeg": 1.618,
+      "maxAtM": 60,
+      "maxElevationM": 149.1,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 270,
+      "maxAngleDeg": 1.106,
+      "maxAtM": 120,
+      "maxElevationM": 149.7,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 292.5,
+      "maxAngleDeg": 1.032,
+      "maxAtM": 120,
+      "maxElevationM": 149.6,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 315,
+      "maxAngleDeg": 0.31,
+      "maxAtM": 720,
+      "maxElevationM": 151.2,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 337.5,
+      "maxAngleDeg": 0.353,
+      "maxAtM": 4800,
+      "maxElevationM": 175.4,
+      "groundElevationM": 145.8,
+      "coverage": 1,
+      "status": "ok"
+    }
+  ],
+  "core": {
+    "night": {
+      "day": "2027-04-13",
+      "start": 1807662168734,
+      "end": 1807701227142
+    },
+    "bestTime": 1807697148734,
+    "altitudeDeg": 22.47,
+    "azimuthDeg": 179.92,
+    "compass": "S",
+    "observable": true,
+    "windowMinutes": 53,
+    "moonlight": "moon-below-horizon"
+  },
+  "clearance": {
+    "status": "clear",
+    "differenceDeg": 21.22,
+    "horizonAngleDeg": 1.25,
+    "marginDeg": 2.23,
+    "uncertaintyDeg": 2.23,
+    "reason": null,
+    "note": "terrain only: vegetation, buildings and vehicles are not in a bare-earth model"
+  }
+}

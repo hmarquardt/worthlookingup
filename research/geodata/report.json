@@ -1,0 +1,985 @@
+{
+  "schema": "worthlookingup.geodata-report/1",
+  "generated_at": "2026-10-18T21:41:30.278Z",
+  "generated_by": "research/geodata/tools/build-report.mjs",
+  "status": "research-only",
+  "disclaimer": "Not a recommendation, not a safety or access guarantee, and not part of the public site. Every entry is a candidate for further investigation; only entries whose after-dark access is documented by an authoritative source appear in the recommendable group, and even those need a site visit.",
+  "studyArea": {
+    "west": -88.6,
+    "south": 37.3,
+    "east": -86.3,
+    "north": 38.7,
+    "label": "Southern Indiana, western Kentucky and southeastern Illinois"
+  },
+  "origin": {
+    "lat": 38.3553,
+    "lon": -87.5675
+  },
+  "targetNight": "2027-04-13",
+  "gate": {
+    "eligible": [
+      "usgs-3dep",
+      "usgs-padus-4-1",
+      "nasa-black-marble-vnp46a4",
+      "indiana-dnr-properties",
+      "usfs-shawnee",
+      "aws-terrain-tiles"
+    ],
+    "blocked": [
+      {
+        "id": "falchi-2016-world-atlas",
+        "blockers": [
+          "licence does not permit commercial use (noncommercial-only)",
+          "licence does not permit redistribution (non-commercial only, with attribution)",
+          "no automated access method"
+        ]
+      },
+      {
+        "id": "eog-viirs-vnl",
+        "blockers": [
+          "no automated access method"
+        ]
+      },
+      {
+        "id": "worldbank-light-every-night",
+        "blockers": [
+          "licence does not permit commercial use (terms-uncertain)",
+          "licence does not permit redistribution (unclear; ODbL would impose share-alike on a derived database)"
+        ]
+      },
+      {
+        "id": "lorenz-atlas",
+        "blockers": [
+          "licence does not permit commercial use (terms-uncertain)",
+          "licence does not permit redistribution (unknown)",
+          "no automated access method"
+        ]
+      },
+      {
+        "id": "osm",
+        "blockers": [
+          "share-alike licence: derived data would have to carry the same licence, which needs an explicit product decision"
+        ]
+      }
+    ],
+    "routing": [
+      {
+        "id": "osrm-demo",
+        "verdict": "not for production: the demo server is published for testing and carries no availability commitment"
+      },
+      {
+        "id": "openrouteservice",
+        "verdict": "viable for a low-volume drive-time estimate with a key held server-side, at the cost of a new external dependency and a new secret to manage"
+      },
+      {
+        "id": "self-hosted-osrm",
+        "verdict": "the honest long-term answer for road distance and drive time in one region: about 1-2 GB of RAM for an Indiana-scale extract, but it is a separate service outside the Cloudflare Pages architecture"
+      },
+      {
+        "id": "precomputed-matrix",
+        "verdict": "the best fit for this product: a few thousand origin-destination pairs for one study area, generated offline and shipped as a small artefact, with no runtime service and no key"
+      }
+    ]
+  },
+  "comparison": {
+    "noCompositeScore": true,
+    "basis": "grouped by documented after-dark access first, then by modelled terrain clearance; no sky-quality or overall score is computed, and no road distance or travel time is inferred",
+    "recommendable": [
+      {
+        "id": "shawnee-nf",
+        "name": "Shawnee National Forest",
+        "type": "federal-forest",
+        "coordinates": {
+          "lat": 37.516107,
+          "lon": -88.562841
+        },
+        "distance": {
+          "metres": 127776,
+          "km": 127.8,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "verified-night-access",
+          "label": "Public access after dark documented",
+          "reason": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "stale": false,
+          "recommendable": true,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": 0
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 1.52,
+          "coreAltitudeDeg": 23.5,
+          "coreAzimuthDeg": 179.9,
+          "differenceDeg": 21.98,
+          "uncertaintyDeg": 0.93,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 23.5,
+          "azimuthDeg": 179.9,
+          "compass": "S",
+          "windowMinutes": 70,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "FED / FED / NF / 165650 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "access",
+            "source": "agency-page:USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.3 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "garden-of-the-gods",
+        "name": "Garden Of The Gods Wilderness",
+        "type": "federal-wilderness",
+        "coordinates": {
+          "lat": 37.603705,
+          "lon": -88.397048
+        },
+        "distance": {
+          "metres": 110773,
+          "km": 110.8,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "verified-night-access",
+          "label": "Public access after dark documented",
+          "reason": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "stale": false,
+          "recommendable": true,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": 0
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 2.93,
+          "coreAltitudeDeg": 23.4,
+          "coreAzimuthDeg": 179.9,
+          "differenceDeg": 20.49,
+          "uncertaintyDeg": 2.55,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 23.4,
+          "azimuthDeg": 179.9,
+          "compass": "S",
+          "windowMinutes": 68,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "PAD-US records restricted access for this unit (WA), so the property rules must be confirmed on the ground",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "DESG / FED / WA / 3978 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "access",
+            "source": "agency-page:USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.3 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "lusk-creek",
+        "name": "Lusk Creek Wilderness",
+        "type": "federal-wilderness",
+        "coordinates": {
+          "lat": 37.527175,
+          "lon": -88.529951
+        },
+        "distance": {
+          "metres": 124909,
+          "km": 124.9,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "verified-night-access",
+          "label": "Public access after dark documented",
+          "reason": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "stale": false,
+          "recommendable": true,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": 0
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 3.5,
+          "coreAltitudeDeg": 23.5,
+          "coreAzimuthDeg": 179.9,
+          "differenceDeg": 19.99,
+          "uncertaintyDeg": 1.27,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.2,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 23.5,
+          "azimuthDeg": 179.9,
+          "compass": "S",
+          "windowMinutes": 70,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "PAD-US records restricted access for this unit (WA), so the property rules must be confirmed on the ground",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "DESG / FED / WA / 6632 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "access",
+            "source": "agency-page:USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking."
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.2 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "sugar-ridge-fwa",
+        "name": "Sugar Ridge Fish And Wildlife Area",
+        "type": "state-fish-and-wildlife-area",
+        "coordinates": {
+          "lat": 38.298607,
+          "lon": -87.201385
+        },
+        "distance": {
+          "metres": 32553,
+          "km": 32.6,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "verified-night-access",
+          "label": "Public access after dark documented",
+          "reason": "The property page states 24/7 property hours, which permits presence on the property after dark; parking is covered by the same statement and is not documented separately.",
+          "stale": false,
+          "recommendable": true,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": 0
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 3.75,
+          "coreAltitudeDeg": 22.7,
+          "coreAzimuthDeg": 180.1,
+          "differenceDeg": 18.97,
+          "uncertaintyDeg": 4.42,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 22.7,
+          "azimuthDeg": 180.1,
+          "compass": "S",
+          "windowMinutes": 57,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "PAD-US records restricted access for this unit (SCA), so the property rules must be confirmed on the ground",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "STAT / STAT / SCA / 7935 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "access",
+            "source": "agency-rule:Indiana Department of Natural Resources",
+            "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/sugar-ridge-fwa/",
+            "verifiedAt": "2026-10-18",
+            "quote": "Property hours 24/7. Some activities may have specific open times, especially if there is a draw."
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.3 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      }
+    ],
+    "needsVerification": [
+      {
+        "id": "hovey-lake-fwa",
+        "name": "Hovey Lake Fish And Wildlife Area",
+        "type": "state-fish-and-wildlife-area",
+        "coordinates": {
+          "lat": 37.82068,
+          "lon": -87.946228
+        },
+        "distance": {
+          "metres": 68063,
+          "km": 68.1,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "public-night-unknown",
+          "label": "Public access, after-dark rules not established",
+          "reason": "public land is documented, but no authoritative statement about access after dark was found",
+          "stale": false,
+          "recommendable": false,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": null
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 0.37,
+          "coreAltitudeDeg": 23.2,
+          "coreAzimuthDeg": 180,
+          "differenceDeg": 22.83,
+          "uncertaintyDeg": 0.5,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 23.2,
+          "azimuthDeg": 180,
+          "compass": "S",
+          "windowMinutes": 65,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "after-dark access is not verified, so this is not a recommendation",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "STAT / STAT / SCA / 5847 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.3 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "harmonie",
+        "name": "Harmonie State Park",
+        "type": "state-park",
+        "coordinates": {
+          "lat": 38.062291,
+          "lon": -87.952015
+        },
+        "distance": {
+          "metres": 46800,
+          "km": 46.8,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "public-night-unknown",
+          "label": "Public access, after-dark rules not established",
+          "reason": "public land is documented, but no authoritative statement about access after dark was found",
+          "stale": false,
+          "recommendable": false,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": null
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 0.95,
+          "coreAltitudeDeg": 23,
+          "coreAzimuthDeg": 180,
+          "differenceDeg": 22.01,
+          "uncertaintyDeg": 0.5,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 23,
+          "azimuthDeg": 180,
+          "compass": "S",
+          "windowMinutes": 61,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "after-dark access is not verified, so this is not a recommendation",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "STAT / STAT / SP / 2912 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.3 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "glendale-fwa",
+        "name": "Glendale Fish And Wildlife Area",
+        "type": "state-fish-and-wildlife-area",
+        "coordinates": {
+          "lat": 38.549916,
+          "lon": -87.040646
+        },
+        "distance": {
+          "metres": 50726,
+          "km": 50.7,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "public-night-unknown",
+          "label": "Public access, after-dark rules not established",
+          "reason": "public land is documented, but no authoritative statement about access after dark was found",
+          "stale": false,
+          "recommendable": false,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": null
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 1.25,
+          "coreAltitudeDeg": 22.5,
+          "coreAzimuthDeg": 179.9,
+          "differenceDeg": 21.22,
+          "uncertaintyDeg": 2.23,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.2,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 22.5,
+          "azimuthDeg": 179.9,
+          "compass": "S",
+          "windowMinutes": 53,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "after-dark access is not verified, so this is not a recommendation",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "STAT / STAT / SCA / 8127 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.2 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "patoka-lake",
+        "name": "Patoka Lake",
+        "type": "federal-reservoir-recreation-area",
+        "coordinates": {
+          "lat": 38.410841,
+          "lon": -86.636045
+        },
+        "distance": {
+          "metres": 81423,
+          "km": 81.4,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "public-night-unknown",
+          "label": "Public access, after-dark rules not established",
+          "reason": "public land is documented, but no authoritative statement about access after dark was found",
+          "stale": false,
+          "recommendable": false,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": null
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 1.74,
+          "coreAltitudeDeg": 22.6,
+          "coreAzimuthDeg": 179.9,
+          "differenceDeg": 20.87,
+          "uncertaintyDeg": 0.72,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.2,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 22.6,
+          "azimuthDeg": 179.9,
+          "compass": "S",
+          "windowMinutes": 55,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "after-dark access is not verified, so this is not a recommendation",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "DESG / FED / REC / 8751 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.2 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "higginson-henry",
+        "name": "Higginson-Henry Wildlife Management Area",
+        "type": "state-wildlife-management-area",
+        "coordinates": {
+          "lat": 37.635101,
+          "lon": -87.873651
+        },
+        "distance": {
+          "metres": 84457,
+          "km": 84.5,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "public-night-unknown",
+          "label": "Public access, after-dark rules not established",
+          "reason": "public land is documented, but no authoritative statement about access after dark was found",
+          "stale": false,
+          "recommendable": false,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": null
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 3.2,
+          "coreAltitudeDeg": 23.4,
+          "coreAzimuthDeg": 179.9,
+          "differenceDeg": 20.18,
+          "uncertaintyDeg": 0.76,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.2,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 23.4,
+          "azimuthDeg": 179.9,
+          "compass": "S",
+          "windowMinutes": 68,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "after-dark access is not verified, so this is not a recommendation",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "STAT / STAT / SCA / 5451 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.2 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      }
+    ],
+    "unsuitable": [
+      {
+        "id": "aep-rockport",
+        "name": "American Electric Power - Rockport",
+        "type": "private-industrial-land",
+        "coordinates": {
+          "lat": 37.935011,
+          "lon": -87.023273
+        },
+        "distance": {
+          "metres": 66701,
+          "km": 66.7,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "private-no-permission",
+          "label": "Private land, no permission established",
+          "reason": "ownership evidence shows private or non-governmental land, and no public permission is recorded",
+          "stale": false,
+          "recommendable": false,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": null
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 0.12,
+          "coreAltitudeDeg": 23.1,
+          "coreAzimuthDeg": 180,
+          "differenceDeg": 22.97,
+          "uncertaintyDeg": 0.5,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.2,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 23.1,
+          "azimuthDeg": 180,
+          "compass": "S",
+          "windowMinutes": 63,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "after-dark access is not verified, so this is not a recommendation",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "PVT / PVT / POTH / 4245 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.2 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true
+      },
+      {
+        "id": "wabash-mount-carmel",
+        "name": "Wabash River - Mount Carmel",
+        "type": "private-conservation-area",
+        "coordinates": {
+          "lat": 38.769923,
+          "lon": -87.631301
+        },
+        "distance": {
+          "metres": 46437,
+          "km": 46.4,
+          "kind": "great-circle",
+          "caveat": "straight-line distance, not a drive; no road distance or travel time is computed"
+        },
+        "access": {
+          "state": "private-no-permission",
+          "label": "Private land, no permission established",
+          "reason": "ownership evidence shows private or non-governmental land, and no public permission is recorded",
+          "stale": false,
+          "recommendable": false,
+          "nightWindow": null,
+          "conflict": false,
+          "oldestEvidenceDays": null
+        },
+        "terrain": {
+          "state": "clear",
+          "horizonAngleDeg": 0.13,
+          "coreAltitudeDeg": 22.3,
+          "coreAzimuthDeg": 180,
+          "differenceDeg": 22.12,
+          "uncertaintyDeg": 0.5,
+          "reason": null,
+          "demSource": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "caveat": "modelled bare-earth terrain only: trees, buildings, levees and vehicles are not in the model"
+        },
+        "sky": {
+          "state": "unavailable",
+          "value": null,
+          "unit": null,
+          "reason": "no licensed, machine-readable sky-brightness dataset is available",
+          "note": "unavailable is not the same as dark"
+        },
+        "core": {
+          "day": "2027-04-13",
+          "altitudeDeg": 22.3,
+          "azimuthDeg": 180,
+          "compass": "S",
+          "windowMinutes": 48,
+          "moonlight": "moon-below-horizon"
+        },
+        "warnings": [
+          "after-dark access is not verified, so this is not a recommendation",
+          "sky brightness is unavailable, not dark: no licensed, machine-readable sky-brightness dataset is available",
+          "the polygon centroid lies outside the study box, although the unit intersects it"
+        ],
+        "provenance": [
+          {
+            "claim": "ownership and management",
+            "source": "usgs-padus-4-1",
+            "detail": "PVT / PVT / PCON / 3680 ac"
+          },
+          {
+            "claim": "access",
+            "source": "official-dataset:USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "quote": null
+          },
+          {
+            "claim": "terrain horizon",
+            "source": "usgs-3dep",
+            "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+            "detail": "31.3 m pixels; 3DEPElevation ImageServer exportImage, EPSG:4326, bilinear resample"
+          }
+        ],
+        "noCompositeScore": true,
+        "outsideStudyArea": true
+      }
+    ],
+    "counts": {
+      "total": 11,
+      "recommendable": 4,
+      "needsVerification": 5,
+      "unsuitable": 2,
+      "skySampled": 0,
+      "terrainClear": 11
+    }
+  },
+  "checks": {
+    "candidatesInsideStudyArea": 10,
+    "candidatesOutsideStudyArea": [
+      "wabash-mount-carmel"
+    ],
+    "profilesPresent": 11
+  }
+}

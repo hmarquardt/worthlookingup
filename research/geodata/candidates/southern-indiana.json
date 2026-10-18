@@ -1,0 +1,566 @@
+{
+  "schema": "worthlookingup.geodata-candidates/1",
+  "generated_by": "research/geodata/tools/fetch-candidates.mjs",
+  "generated_at": "2026-10-18T21:40:35.532Z",
+  "studyArea": {
+    "west": -88.6,
+    "south": 37.3,
+    "east": -86.3,
+    "north": 38.7,
+    "label": "Southern Indiana, western Kentucky and southeastern Illinois"
+  },
+  "status": "research-only: not a recommendation, not published, and not verified on the ground",
+  "sources": [
+    "usgs-padus-4-1",
+    "usfs-shawnee",
+    "indiana-dnr-properties"
+  ],
+  "candidates": [
+    {
+      "id": "shawnee-nf",
+      "name": "Shawnee National Forest",
+      "type": "federal-forest",
+      "coordinates": {
+        "lat": 37.516107,
+        "lon": -88.562841
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Shawnee National Forest",
+        "objectId": 285784
+      },
+      "ownership": {
+        "ownerType": "FED",
+        "ownerName": "USFS",
+        "managerType": "FED",
+        "managerName": "USFS",
+        "designation": "NF",
+        "designationDetail": "NF",
+        "gapStatus": "3",
+        "publicAccessFlag": "OA",
+        "acres": 165650,
+        "state": "IL",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        },
+        {
+          "kind": "agency-page",
+          "publisher": "USDA Forest Service, Shawnee National Forest",
+          "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking.",
+          "states": {
+            "publicLand": true,
+            "nightAccess": "permitted",
+            "parking": "permitted",
+            "nightWindow": "trailhead parking for overnight camping; day-use areas closed 22:00-06:00"
+          }
+        }
+      ],
+      "unresolved": [],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "garden-of-the-gods",
+      "name": "Garden Of The Gods Wilderness",
+      "type": "federal-wilderness",
+      "coordinates": {
+        "lat": 37.603705,
+        "lon": -88.397048
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Garden Of The Gods Wilderness",
+        "objectId": 91615
+      },
+      "ownership": {
+        "ownerType": "DESG",
+        "ownerName": "DESG",
+        "managerType": "FED",
+        "managerName": "USFS",
+        "designation": "WA",
+        "designationDetail": "",
+        "gapStatus": "1",
+        "publicAccessFlag": "RA",
+        "acres": 3978,
+        "state": "IL",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        },
+        {
+          "kind": "agency-page",
+          "publisher": "USDA Forest Service, Shawnee National Forest",
+          "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking.",
+          "states": {
+            "publicLand": true,
+            "nightAccess": "permitted",
+            "parking": "permitted",
+            "nightWindow": "trailhead parking for overnight camping; day-use areas closed 22:00-06:00"
+          }
+        }
+      ],
+      "unresolved": [],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "lusk-creek",
+      "name": "Lusk Creek Wilderness",
+      "type": "federal-wilderness",
+      "coordinates": {
+        "lat": 37.527175,
+        "lon": -88.529951
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Lusk Creek Wilderness",
+        "objectId": 260778
+      },
+      "ownership": {
+        "ownerType": "DESG",
+        "ownerName": "DESG",
+        "managerType": "FED",
+        "managerName": "USFS",
+        "designation": "WA",
+        "designationDetail": "",
+        "gapStatus": "1",
+        "publicAccessFlag": "RA",
+        "acres": 6632,
+        "state": "IL",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        },
+        {
+          "kind": "agency-page",
+          "publisher": "USDA Forest Service, Shawnee National Forest",
+          "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+          "verifiedAt": "2026-10-18",
+          "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+          "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking.",
+          "states": {
+            "publicLand": true,
+            "nightAccess": "permitted",
+            "parking": "permitted",
+            "nightWindow": "trailhead parking for overnight camping; day-use areas closed 22:00-06:00"
+          }
+        }
+      ],
+      "unresolved": [],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "sugar-ridge-fwa",
+      "name": "Sugar Ridge Fish And Wildlife Area",
+      "type": "state-fish-and-wildlife-area",
+      "coordinates": {
+        "lat": 38.298607,
+        "lon": -87.201385
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Sugar Ridge Fish And Wildlife Area",
+        "objectId": 153634
+      },
+      "ownership": {
+        "ownerType": "STAT",
+        "ownerName": "SFW",
+        "managerType": "STAT",
+        "managerName": "SFW",
+        "designation": "SCA",
+        "designationDetail": "Wildlife Habitat Management Area",
+        "gapStatus": "2",
+        "publicAccessFlag": "RA",
+        "acres": 7935,
+        "state": "IN",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        },
+        {
+          "kind": "agency-rule",
+          "publisher": "Indiana Department of Natural Resources",
+          "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/sugar-ridge-fwa/",
+          "verifiedAt": "2026-10-18",
+          "summary": "The property page states 24/7 property hours, which permits presence on the property after dark; parking is covered by the same statement and is not documented separately.",
+          "quote": "Property hours 24/7. Some activities may have specific open times, especially if there is a draw.",
+          "states": {
+            "publicLand": true,
+            "nightAccess": "permitted",
+            "parking": "on-site-by-property-hours",
+            "scope": "property",
+            "nightWindow": "24/7 property hours, with activity-specific exceptions posted at the property"
+          }
+        }
+      ],
+      "unresolved": [],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "glendale-fwa",
+      "name": "Glendale Fish And Wildlife Area",
+      "type": "state-fish-and-wildlife-area",
+      "coordinates": {
+        "lat": 38.549916,
+        "lon": -87.040646
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Glendale Fish And Wildlife Area",
+        "objectId": 414963
+      },
+      "ownership": {
+        "ownerType": "STAT",
+        "ownerName": "SFW",
+        "managerType": "STAT",
+        "managerName": "SFW",
+        "designation": "SCA",
+        "designationDetail": "Wildlife Habitat Management Area",
+        "gapStatus": "2",
+        "publicAccessFlag": "RA",
+        "acres": 8127,
+        "state": "IN",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        }
+      ],
+      "unresolved": [
+        "no authoritative statement about access after dark was found for this unit"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "hovey-lake-fwa",
+      "name": "Hovey Lake Fish And Wildlife Area",
+      "type": "state-fish-and-wildlife-area",
+      "coordinates": {
+        "lat": 37.82068,
+        "lon": -87.946228
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Hovey Lake Fish And Wildlife Area",
+        "objectId": 34849
+      },
+      "ownership": {
+        "ownerType": "STAT",
+        "ownerName": "SFW",
+        "managerType": "STAT",
+        "managerName": "SFW",
+        "designation": "SCA",
+        "designationDetail": "Wildlife Habitat Management Area",
+        "gapStatus": "2",
+        "publicAccessFlag": "RA",
+        "acres": 5847,
+        "state": "IN",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        }
+      ],
+      "unresolved": [
+        "no authoritative statement about access after dark was found for this unit"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "harmonie",
+      "name": "Harmonie State Park",
+      "type": "state-park",
+      "coordinates": {
+        "lat": 38.062291,
+        "lon": -87.952015
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Harmonie State Park",
+        "objectId": 180642
+      },
+      "ownership": {
+        "ownerType": "STAT",
+        "ownerName": "SPR",
+        "managerType": "STAT",
+        "managerName": "SPR",
+        "designation": "SP",
+        "designationDetail": "Park",
+        "gapStatus": "4",
+        "publicAccessFlag": "OA",
+        "acres": 2912,
+        "state": "IN",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        }
+      ],
+      "unresolved": [
+        "no authoritative statement about access after dark was found for this unit"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "patoka-lake",
+      "name": "Patoka Lake",
+      "type": "federal-reservoir-recreation-area",
+      "coordinates": {
+        "lat": 38.410841,
+        "lon": -86.636045
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Patoka Lake",
+        "objectId": 293164
+      },
+      "ownership": {
+        "ownerType": "DESG",
+        "ownerName": "DESG",
+        "managerType": "FED",
+        "managerName": "USACE",
+        "designation": "REC",
+        "designationDetail": "Recreation Reservoir",
+        "gapStatus": "4",
+        "publicAccessFlag": "OA",
+        "acres": 8751,
+        "state": "IN",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        }
+      ],
+      "unresolved": [
+        "no authoritative statement about access after dark was found for this unit"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "higginson-henry",
+      "name": "Higginson-Henry Wildlife Management Area",
+      "type": "state-wildlife-management-area",
+      "coordinates": {
+        "lat": 37.635101,
+        "lon": -87.873651
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Higginson-Henry Wildlife Management Area",
+        "objectId": 119374
+      },
+      "ownership": {
+        "ownerType": "STAT",
+        "ownerName": "SFW",
+        "managerType": "STAT",
+        "managerName": "SFW",
+        "designation": "SCA",
+        "designationDetail": "State WMA",
+        "gapStatus": "2",
+        "publicAccessFlag": "OA",
+        "acres": 5451,
+        "state": "KY",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records ownership, management, protection status and an agency-reported public-access flag. It does not record opening hours or nighttime permission.",
+          "quote": null,
+          "states": {
+            "publicLand": true
+          }
+        }
+      ],
+      "unresolved": [
+        "no authoritative statement about access after dark was found for this unit"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "wabash-mount-carmel",
+      "name": "Wabash River - Mount Carmel",
+      "type": "private-conservation-area",
+      "coordinates": {
+        "lat": 38.769923,
+        "lon": -87.631301
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "Wabash River - Mount Carmel",
+        "objectId": 32964
+      },
+      "ownership": {
+        "ownerType": "PVT",
+        "ownerName": "PVT",
+        "managerType": "PVT",
+        "managerName": "PVT",
+        "designation": "PCON",
+        "designationDetail": "Conservation Area",
+        "gapStatus": "2",
+        "publicAccessFlag": "RA",
+        "acres": 3680,
+        "state": "IL",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records non-governmental ownership or management for this unit, with no public permission recorded.",
+          "quote": null,
+          "states": {
+            "publicLand": false,
+            "ownership": "private"
+          }
+        }
+      ],
+      "unresolved": [
+        "no authoritative statement about access after dark was found for this unit"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "aep-rockport",
+      "name": "American Electric Power - Rockport",
+      "type": "private-industrial-land",
+      "coordinates": {
+        "lat": 37.935011,
+        "lon": -87.023273
+      },
+      "coordinateSource": {
+        "sourceId": "usgs-padus-4-1",
+        "method": "largest matching polygon centroid returned by the PAD-US service (returnCentroid, EPSG:4326)",
+        "unitName": "American Electric Power - Rockport",
+        "objectId": 32166
+      },
+      "ownership": {
+        "ownerType": "PVT",
+        "ownerName": "PVT",
+        "managerType": "PVT",
+        "managerName": "PVT",
+        "designation": "POTH",
+        "designationDetail": "Designated Utility Corridors",
+        "gapStatus": "4",
+        "publicAccessFlag": "OA",
+        "acres": 4245,
+        "state": "IN",
+        "sourceId": "usgs-padus-4-1"
+      },
+      "accessEvidence": [
+        {
+          "kind": "official-dataset",
+          "publisher": "USGS PAD-US 4.1",
+          "verifiedAt": "2026-10-18",
+          "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+          "summary": "PAD-US records non-governmental ownership or management for this unit, with no public permission recorded.",
+          "quote": null,
+          "states": {
+            "publicLand": false,
+            "ownership": "private"
+          }
+        }
+      ],
+      "unresolved": [
+        "no authoritative statement about access after dark was found for this unit"
+      ],
+      "verifiedAt": "2026-10-18"
+    }
+  ]
+}
