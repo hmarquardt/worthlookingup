@@ -113,6 +113,23 @@ To add an area: add it to the Phase 6B.1 candidate inventory, fetch its boundary
 in `access-verifications.json` with `appliesTo`, regenerate. The generator refuses a record without verified
 after-dark access, without a boundary, or with any forbidden field.
 
+## Expiry is enforced twice
+
+The access policy says a verified statement is good for a year and is then downgraded rather than kept. That
+rule is applied in two places, because either one alone would eventually be wrong:
+
+1. **At generation.** The generator classifies every candidate with the verification date as "now", so a stale
+   statement cannot become a published record in the first place.
+2. **At render.** The browser checks `verifiedAt` again against the real clock. An artifact that has not been
+   regenerated for a year stops presenting its records as current: they move to a **Withheld: verification
+   expired** list, each named with the date it was last confirmed and a link to the agency page to re-check, and
+   the primary list and the map go empty. The empty state says why — "an old permission is not a current one" —
+   and offers the re-check as the next step.
+
+The same shell handles an artifact with **no** published areas: it explains the publication rule instead of
+rendering an empty list. Four browser tests and four unit checks cover those states, including the exact
+364/366-day boundary and a record with no date at all (which is never current).
+
 ## Known limitations
 
 - **No observation points.** Nothing in this release tells anyone where to park. That needs a curated trailhead

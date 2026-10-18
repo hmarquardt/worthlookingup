@@ -259,3 +259,49 @@ test('other categories are unaffected, and the explorer hides when the category 
   expect(requests.some(url=>/sites\.json/.test(url))).toBe(false);
   expect(errors).toEqual([]);
 });
+
+// The artifact carries the date its evidence was read. These two tests serve altered copies of it, because
+// the states they cover are about time and emptiness rather than about the four areas that are live today.
+const artifactPath=path.join(__dirname,'..','data','geodata','sites.json');
+const liveArtifact=()=>JSON.parse(fs.readFileSync(artifactPath,'utf8'));
+
+test('expired access evidence is withheld, named and never shown as available',async({page})=>{
+  const errors=await boot(page);
+  // A year and a month later the same artifact must stop presenting the old permission as current.
+  const aged=liveArtifact();
+  aged.checked_at='2025-09-01';
+  for(const area of aged.areas)area.verifiedAt='2025-09-01';
+  await page.route('**/data/geodata/sites.json',route=>route.fulfill({json:aged}));
+  await openMilkyWay(page);
+  await page.locator('#whereto-open').click();
+  await expect(section(page)).toContainText('No area currently meets the publication rule',{timeout:60000});
+  expect(await page.locator('.whereto-area').count()).toBe(0);
+  expect(await page.locator('.whereto-map path').count()).toBe(0);
+  const withheld=page.locator('.whereto-withheld');
+  await expect(withheld).toHaveCount(1);
+  await expect(withheld).toContainText('Withheld: verification expired');
+  await expect(withheld).toContainText('last confirmed 2025-09-01');
+  const links=withheld.locator('a[href^="https://"]');
+  expect(await links.count()).toBe(4);
+  // The shared limitations and the sky sentence survive the empty state.
+  await expect(section(page)).toContainText('Local artificial sky brightness has not yet been assessed');
+  expect(await section(page).innerText()).not.toMatch(/bortle|dark sky/i);
+  expect(errors).toEqual([]);
+});
+
+test('an artifact with no areas explains the rule instead of showing an empty list',async({page})=>{
+  const errors=await boot(page);
+  const empty=liveArtifact();
+  empty.areas=[];
+  empty.publication={...empty.publication,publishedAreas:0,excludedCount:11};
+  await page.route('**/data/geodata/sites.json',route=>route.fulfill({json:empty}));
+  await openMilkyWay(page);
+  await page.locator('#whereto-open').click();
+  await expect(section(page)).toContainText('No area currently meets the publication rule',{timeout:60000});
+  await expect(section(page)).toContainText('Areas are published only when the managing agency documents after-dark access');
+  expect(await page.locator('.whereto-area').count()).toBe(0);
+  expect(await page.locator('.whereto-empty').count()).toBe(1);
+  // The Milky Way calculations above are untouched by an empty area list.
+  await expect(page.locator('#celestial-events')).not.toBeEmpty();
+  expect(errors).toEqual([]);
+});

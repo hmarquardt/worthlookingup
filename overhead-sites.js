@@ -99,13 +99,33 @@
 
   /* The comparison: one entry per published area, ordered by name so that nothing implies a quality ranking.
      Each entry carries its distance to the nearest mapped edge and every unknown that remains unknown. */
-  function compare(artifact, origin) {
+  /* The access policy says a verified state expires after a year and is then downgraded rather than kept. The
+     generator applies that when it runs; this applies it when the page runs, so an artifact that has not been
+     regenerated cannot keep presenting a year-old permission as current. */
+  var MAX_VERIFICATION_DAYS = 365;
+  function verificationAgeDays(area, now) {
+    var at = Date.parse(area && area.verifiedAt);
+    if (!Number.isFinite(at)) return null;
+    return Math.max(0, (now - at) / 86400000);
+  }
+  function isCurrent(area, now) {
+    var age = verificationAgeDays(area, now);
+    return age !== null && age <= MAX_VERIFICATION_DAYS;
+  }
+
+  function compare(artifact, origin, options) {
+    var settings = options || {};
+    var now = Number.isFinite(settings.now) ? settings.now : Date.now();
     return artifact.areas.map(function (area) {
       var nearest = nearestBoundary(area, origin);
+      var age = verificationAgeDays(area, now);
       return {
         id: area.id, name: area.name, area: area,
         distanceMetres: nearest ? Math.round(nearest.metres) : null,
         distanceKind: 'great-circle',
+        verifiedAt: area.verifiedAt || null,
+        verificationAgeDays: age === null ? null : Math.round(age),
+        current: isCurrent(area, now),
       };
     }).sort(function (a, b) { return a.name < b.name ? -1 : a.name > b.name ? 1 : 0; });
   }
@@ -147,7 +167,7 @@
 
   /* The map is a sketch of the mapped outlines and the visitor, with no basemap and no tiles. It is labelled
      for screen readers by the same facts the list carries, so the two cannot disagree. */
-  function mapMarkup(artifact, origin) {
+  function mapMarkup(artifact, origin, withheldCount) {
     var region = artifact.region;
     var width = 640, height = 420, pad = 24;
     var extents = artifact.areas.reduce(function (acc, area) {
@@ -182,7 +202,8 @@
     var frame = [project(region.west, region.north), project(region.east, region.south)];
     var label = 'Mapped outlines of ' + artifact.areas.length + ' published areas near your selected location, ' +
       'with the studied region outlined and your location marked. Distances are straight-line to the nearest ' +
-      'mapped edge.';
+      'mapped edge.' + (withheldCount ? ' ' + withheldCount + ' further area(s) are withheld because their access ' +
+        'evidence has expired.' : '');
     return '<figure class="whereto-map"><svg viewBox="0 0 ' + width + ' ' + height + '" role="img" aria-label="' +
       esc(label) + '">' +
       '<rect x="' + frame[0][0].toFixed(1) + '" y="' + frame[0][1].toFixed(1) + '" width="' +
@@ -194,18 +215,48 @@
 
   function render(container, options) {
     var artifact = validate(options.artifact);
-    var entries = compare(artifact, options.origin);
+    var now = Number.isFinite(options.now) ? options.now : Date.now();
+    var entries = compare(artifact, options.origin, { now: now });
+    var current = entries.filter(function (entry) { return entry.current; });
+    var expired = entries.filter(function (entry) { return !entry.current; });
     var astronomyNote = options.astronomy
       ? '<p class="whereto-window"><strong>Your window, at your location.</strong> ' + esc(options.astronomy) + '</p>'
       : '';
-    container.innerHTML = '<p class="whereto-intro">These are <strong>areas</strong>, not observation points: ' +
+    var head = '<p class="whereto-intro">These are <strong>areas</strong>, not observation points: ' +
       'no parking place, trailhead, gate or tripod position has been verified. Distances are straight-line to the ' +
       'nearest mapped edge of an area, which is a management boundary — not a drive, an entrance or a destination.</p>' +
       '<p class="whereto-status">' + esc(artifact.sky.message) + '</p>' +
-      astronomyNote +
-      '<div class="whereto-grid"><div class="whereto-records">' +
-        '<h3 class="whereto-heading">Published areas <span class="small">(' + entries.length + ', listed by name)</span></h3>' +
-        entries.map(areaMarkup).join('') + '</div>' + mapMarkup(artifact, options.origin) + '</div>' +
+      astronomyNote;
+    var expiredList = expired.length
+      ? '<section class="whereto-withheld" data-withheld="true"><h3 class="whereto-heading">Withheld: verification expired ' +
+        '<span class="small">(' + expired.length + ')</span></h3><p class="small">A verified after-dark statement is ' +
+        'only good for a year. These areas are not presented as available until a person re-reads the agency page: ' +
+        'the date beside each one is when it was last confirmed.</p><ul class="whereto-list-plain">' +
+        expired.map(function (entry) {
+          return '<li>' + esc(entry.name) + ' — last confirmed ' + esc(entry.verifiedAt) + ' (' +
+            esc(entry.verificationAgeDays) + ' days ago) — ' +
+            '<a href="' + esc(entry.area.access.evidence[0].url) + '" rel="noopener">official page to re-check</a></li>';
+        }).join('') + '</ul></section>'
+      : '';
+    var body;
+    if (current.length) {
+      body = '<div class="whereto-grid"><div class="whereto-records">' +
+        '<h3 class="whereto-heading">Published areas <span class="small">(' + current.length +
+        ', listed by name)</span></h3>' + current.map(areaMarkup).join('') + expiredList + '</div>' +
+        mapMarkup({ region: artifact.region, areas: current.map(function (entry) { return entry.area; }) },
+          options.origin, expired.length) + '</div>';
+    } else {
+      body = '<div class="whereto-empty" data-empty="true">' +
+        '<p><strong>No area currently meets the publication rule for this region.</strong></p>' +
+        '<p class="small">' + (expired.length
+          ? 'Every published area here has an access statement older than a year, so nothing is presented as ' +
+            'available until somebody re-reads the agency pages. The expiry is deliberate: an old permission is ' +
+            'not a current one.'
+          : 'Areas are published only when the managing agency documents after-dark access. None does at the ' +
+            'moment for the studied region, and a guess is not a substitute.') +
+        '</p>' + expiredList + '</div>';
+    }
+    container.innerHTML = head + body +
       '<ul class="whereto-limits">' + artifact.limitations.map(function (line) {
         return '<li>' + esc(line) + '</li>';
       }).join('') + '</ul>' +
@@ -213,10 +264,11 @@
         esc(artifact.attribution[0].licence) + '). Terrain context: ' + esc(artifact.attribution[1].publisher) +
         ' (' + esc(artifact.attribution[1].licence) + '). Access evidence checked ' +
         esc(artifact.checked_at) + '; official links are on each record.</p>';
-    return { entries: entries, listIsAuthoritative: true };
+    return { entries: current, withheld: expired, listIsAuthoritative: true };
   }
 
   root.OverheadSites = { SCHEMA: SCHEMA, validate: validate, regionContains: regionContains,
     nearestBoundary: nearestBoundary, distanceLabel: distanceLabel, compare: compare, render: render,
-    mapMarkup: mapMarkup, esc: esc };
+    verificationAgeDays: verificationAgeDays, isCurrent: isCurrent,
+    MAX_VERIFICATION_DAYS: MAX_VERIFICATION_DAYS, mapMarkup: mapMarkup, esc: esc };
 })(typeof self !== 'undefined' ? self : globalThis);

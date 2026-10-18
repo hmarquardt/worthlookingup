@@ -185,3 +185,77 @@ const NOW = Date.parse('2026-10-18T12:00:00Z');
   if (failures) { console.log(failures + ' check(s) failed'); process.exit(1); }
   console.log('all published-site checks passed');
 })();
+
+/* ---- the states the interface must handle beyond "four areas" ------------------------------------- */
+(async () => {
+  const sites = require(path.join(root, 'overhead-sites.js')) || globalThis.OverheadSites;
+  const module = globalThis.OverheadSites || sites;
+  const artifact = readJson('data/geodata/sites.json');
+  const NOW = Date.parse('2026-10-18T12:00:00Z');
+  const call = (fn) => {
+    let captured = '';
+    const fake = { set innerHTML(value) { captured = value; }, get innerHTML() { return captured; } };
+    const result = fn(fake);
+    return { ...result, html: captured };
+  };
+  const withNow = (at) => call(container => module.render(container,
+    { artifact, origin: { lat: 38.3553, lon: -87.5675 }, now: at }));
+
+  test('access evidence expires in the browser, not only in the generator', () => {
+    const fresh = withNow(NOW);
+    assert.strictEqual(fresh.entries.length, 4);
+    assert.strictEqual(fresh.withheld.length, 0);
+    assert.ok(!/Withheld/.test(fresh.html));
+    // A year and five days later the same bytes must not present the old permission as current.
+    const aged = withNow(NOW + 370 * 86400000);
+    assert.strictEqual(aged.entries.length, 0, 'nothing is current after the year is up');
+    assert.strictEqual(aged.withheld.length, 4);
+    assert.ok(/No area currently meets the publication rule/.test(aged.html), 'the empty state is shown');
+    assert.ok(/Withheld: verification expired/.test(aged.html), 'the withheld areas are named');
+    assert.ok(/last confirmed 2026-10-18/.test(aged.html), 'the date is quoted');
+    assert.ok(/official page to re-check/.test(aged.html), 'and the page to re-check is linked');
+    assert.ok(!/Published areas/.test(aged.html), 'no primary list is presented');
+    assert.ok(!/nearest mapped edge/.test(aged.html.replace(/Distances are straight-line[^<]*/g, '')),
+      'no distance is offered for a withheld area');
+  });
+
+  test('the expiry boundary is a year, and a missing date is not current', () => {
+    const entry = { name: 'x', verifiedAt: '2026-10-18' };
+    assert.strictEqual(module.isCurrent(entry, NOW), true);
+    assert.strictEqual(module.isCurrent(entry, NOW + 364 * 86400000), true);
+    assert.strictEqual(module.isCurrent(entry, NOW + 366 * 86400000), false);
+    assert.strictEqual(module.isCurrent({ name: 'x' }, NOW), false);
+    assert.strictEqual(module.isCurrent({ name: 'x', verifiedAt: 'not a date' }, NOW), false);
+    // A date without a time parses as midnight UTC, so half a day is the honest age at noon.
+    const age = module.verificationAgeDays({ verifiedAt: '2026-10-18' }, NOW);
+    assert.ok(age >= 0 && age < 1, 'same-day evidence is less than a day old: ' + age);
+    assert.strictEqual(module.verificationAgeDays({}, NOW), null);
+    assert.strictEqual(module.MAX_VERIFICATION_DAYS, 365);
+  });
+
+  test('an artifact with no published areas explains itself instead of showing an empty list', () => {
+    const empty = JSON.parse(JSON.stringify(artifact));
+    empty.areas = [];
+    const result = call(container => module.render(container,
+      { artifact: empty, origin: { lat: 38.3553, lon: -87.5675 }, now: NOW }));
+    assert.strictEqual(result.entries.length, 0);
+    assert.ok(/No area currently meets the publication rule/.test(result.html));
+    assert.ok(/Areas are published only when the managing agency documents after-dark access/.test(result.html));
+    assert.ok(!/Published areas/.test(result.html));
+    // The limitations and the sky-brightness sentence survive every state.
+    assert.ok(/Local artificial sky brightness has not yet been assessed/.test(result.html));
+    assert.ok(/Bare-earth terrain only/.test(result.html));
+  });
+
+  test('a stale artifact never leaks a current-looking record into the map', () => {
+    const aged = withNow(NOW + 400 * 86400000);
+    assert.ok(!/<path /.test(aged.html), 'no outlines are drawn when nothing is current');
+    assert.ok(!/aria-label="Mapped outlines/.test(aged.html));
+    const fresh = withNow(NOW);
+    assert.strictEqual((fresh.html.match(/<path /g) || []).length, 4);
+  });
+
+  console.log('');
+  if (failures) { console.log(failures + ' check(s) failed'); process.exit(1); }
+  console.log('all published-site states passed');
+})();

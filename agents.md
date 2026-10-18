@@ -128,7 +128,10 @@ because of that rule; agents should read it explicitly (some tools discover only
   authoritative interface and the map is a tile-free SVG sketch beside it, and the window shown is always the
   visitor's own because no area has a verified observation point. Access evidence is re-checked by hand, carries
   its URL, quotation and date, expires after a year, and must never be replaced by a crowdsourced or generic
-  ownership signal. See docs/phase-6b2-regional-site-explorer.md.
+  ownership signal. Expiry is enforced **twice** — in the generator and again in the browser against the real
+  clock — so an artifact that has not been regenerated can only move its records to a named "withheld" list,
+  never keep presenting them as available, and an artifact with no published areas must explain the rule
+  rather than render an empty list. See docs/phase-6b2-regional-site-explorer.md.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.
