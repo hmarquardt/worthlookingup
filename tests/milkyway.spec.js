@@ -410,6 +410,12 @@ test('when there are opportunities the season stays available but secondary, and
   expect(await page.evaluate(()=>document.activeElement.tagName)).toBe('SUMMARY');
   await page.keyboard.press('Enter');
   expect(await details.evaluate(node=>node.open)).toBe(true);
+  // A horizon change re-renders the block, and must not close what the reader opened.
+  await page.locator('[data-horizon="extended"]').click();
+  await page.waitForFunction(()=>window.__OVERHEAD_TEST__.celestial.horizon==='extended'&&
+    window.__OVERHEAD_TEST__.celestial.status==='ready',null,{timeout:60000});
+  await expect(section.locator('details')).toHaveCount(1);
+  expect(await section.locator('details').evaluate(node=>node.open)).toBe(true);
   const text=await section.innerText();
   expect(text).toMatch(new RegExp('the core reaches \\d+° towards [A-Z]'));
   expect(text).toContain('window quality');

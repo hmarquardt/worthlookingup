@@ -1149,7 +1149,7 @@ function milkyWayEmptyState(){
    distinguishes the season's first qualifying night from its first genuinely favourable one, because those
    are usually not the same night and the marginal one must not be sold as the best. */
 const seasonState={status:'idle',busy:false,key:null,result:null,errors:[],worker:null,requested:null,pending:null,
- ms:null,events:new Map()};
+ ms:null,events:new Map(),open:false};
 const seasonCache=new Map();
 const SEASON_CACHE_LIMIT=6;
 function seasonThreshold(){return Math.max(8,Math.min(45,+state.settings.minimum||10));}
@@ -1288,6 +1288,12 @@ function renderSeasonSection(){
  const summary=season.opening?'Season opens '+dateLabel(season.opening.start):headline;
  section.innerHTML='<h2>Next Galactic-core season</h2>'+
   (empty?content:`<details><summary>${esc(summary)}</summary>${content}</details>`);
+ // A re-render must not close what the reader opened.
+ const details=section.querySelector('details');
+ if(details){
+  details.open=seasonState.open;
+  details.addEventListener('toggle',()=>{seasonState.open=details.open;});
+ }
 }
 function renderCelestial(){
  rememberDiscoveryPlan();renderDiscovery();
