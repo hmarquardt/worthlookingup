@@ -1,0 +1,480 @@
+{
+  "schema": "worthlookingup.geodata-sources/1",
+  "checked_at": "2026-10-18",
+  "note": "Every entry was checked against the publisher's own pages or metadata on the date in checked_at. licence.commercialUse and access.automatable are separate facts on purpose: a dataset can be legally usable and still impossible to fetch without an account, or easy to fetch and illegal to republish.",
+  "classes": {
+    "open-public-domain": "No conditions; US Government work or equivalent.",
+    "attribution-required": "May be used and redistributed, including commercially, with attribution.",
+    "noncommercial-only": "Use is limited to non-commercial purposes; any product that earns revenue must ask permission first.",
+    "terms-uncertain": "No clear licence statement, or conflicting statements between a registry and a publisher.",
+    "access-gated": "Technically obtainable only with an account, an API key or a request form.",
+    "inaccessible": "No usable access method for an automated or scripted workflow."
+  },
+  "sources": [
+    {
+      "id": "usgs-3dep",
+      "kind": "elevation",
+      "publisher": "U.S. Geological Survey, 3D Elevation Program",
+      "product": "3DEPElevation ImageServer (best-available lidar DEM, resampled on request)",
+      "methodology": "Airborne lidar and photogrammetric DEMs blended into a seamless bare-earth surface; the ImageServer resamples and reprojects server-side.",
+      "resolution": "1 m where lidar coverage exists (Indiana, Kentucky and Illinois are complete), 10 m or 30 m elsewhere",
+      "verticalDatum": "NAVD88, metres",
+      "horizontalCrs": "EPSG:4326 request and response, resampled from the native projection",
+      "units": "metres above NAVD88",
+      "temporal": "Static per acquisition; lidar flights in this region 2007-2023",
+      "coverage": "United States and territories",
+      "access": {
+        "method": "ArcGIS ImageServer exportImage with format=tiff",
+        "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+        "authentication": "none",
+        "automatable": true,
+        "rateLimits": "not published; keep requests small and few"
+      },
+      "licence": {
+        "class": "open-public-domain",
+        "name": "U.S. Government work (public domain)",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "courtesy of the U.S. Geological Survey",
+        "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Bare earth: no vegetation, buildings, fences or vehicles, so a low profile is not a clear view",
+        "Vertical accuracy describes the lidar source (about 0.1 m RMSE for QL2), not the resampled product served here",
+        "A server-side resample to a coarser grid smooths narrow ridges, levees and road cuts"
+      ],
+      "productionEligible": true,
+      "productionBlockers": []
+    },
+    {
+      "id": "usgs-padus-4-1",
+      "kind": "ownership",
+      "publisher": "U.S. Geological Survey, Protected Areas Database of the United States, version 4.1",
+      "product": "PADUS_Management_Areas feature service",
+      "methodology": "Aggregated agency and NGO land records: owner, manager, designation, GAP protection status and an agency-reported public-access flag.",
+      "resolution": "Vector polygons as published by each agency; positional accuracy varies by source",
+      "verticalDatum": null,
+      "horizontalCrs": "EPSG:4326 query",
+      "units": "acres (attributes), polygons (geometry)",
+      "temporal": "Version 4.1, 2024; each unit carries its own source date",
+      "coverage": "United States",
+      "access": {
+        "method": "ArcGIS FeatureServer query by envelope",
+        "url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/PADUS_Management_Areas/FeatureServer",
+        "authentication": "none",
+        "automatable": true
+      },
+      "licence": {
+        "class": "open-public-domain",
+        "name": "U.S. Government work (public domain)",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "USGS PAD-US",
+        "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Documents ownership, management, protection status and an agency access flag: not opening hours and not nighttime permission",
+        "Some units aggregate smaller parcels and are not survey boundaries",
+        "A gap in PAD-US is evidence of a gap, not evidence of private land"
+      ],
+      "productionEligible": true,
+      "productionBlockers": []
+    },
+    {
+      "id": "falchi-2016-world-atlas",
+      "kind": "sky-brightness",
+      "publisher": "Falchi, Cinzano, Duriscoe, Kyba, Elvidge, Baugh, Portnov, Rybnikova and Furgoni; GFZ Data Services",
+      "product": "Supplement to: The New World Atlas of Artificial Night Sky Brightness",
+      "methodology": "VIIRS DNB 2015 radiance propagated through an atmospheric radiative-transfer model (Cinzano and Falchi 2012) and calibrated against Sky Quality Meter measurements: artificial zenith sky radiance.",
+      "resolution": "30 arcseconds (about 0.9 km)",
+      "verticalDatum": null,
+      "horizontalCrs": "Geographic",
+      "units": "mcd m^-2, artificial zenith sky brightness only",
+      "temporal": "2015 base year; published 2016; licence changed 2019",
+      "coverage": "Global, 65S to 75N",
+      "access": {
+        "method": "FTP download by request form",
+        "url": "https://doi.org/10.5880/GFZ.1.4.2016.001",
+        "authentication": "request form with manual approval",
+        "automatable": false,
+        "size": "2.9 GB GeoTIFF"
+      },
+      "licence": {
+        "class": "noncommercial-only",
+        "name": "CC BY-NC 4.0",
+        "commercialUse": false,
+        "redistribution": "non-commercial only, with attribution",
+        "attribution": "Falchi et al. 2016, GFZ Data Services, CC BY-NC 4.0",
+        "url": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Artificial light only: the natural sky must be added before comparing with a meter",
+        "A model, not a measurement; accuracy is best at regional scale",
+        "2015 base year, so nine years of LED conversion and growth are missing",
+        "Not usable in a commercial product without permission from the authors"
+      ],
+      "productionEligible": false,
+      "productionBlockers": [
+        "licence is non-commercial",
+        "access is manual and cannot be automated"
+      ]
+    },
+    {
+      "id": "eog-viirs-vnl",
+      "kind": "radiance",
+      "publisher": "Earth Observation Group, Colorado School of Mines",
+      "product": "VIIRS Nighttime Lights annual V2.1 and V2.2 (average radiance, masked)",
+      "methodology": "Monthly cloud-free DNB averages combined into annual composites with outlier removal and a lit mask; radiance in nW cm^-2 sr^-1.",
+      "resolution": "15 arcseconds (about 450 m)",
+      "verticalDatum": null,
+      "horizontalCrs": "Geographic",
+      "units": "nW cm^-2 sr^-1 (upward radiance at the satellite, not sky brightness)",
+      "temporal": "2012 to present, annual and monthly",
+      "coverage": "Global, 75N to 65S",
+      "access": {
+        "method": "web portal",
+        "url": "https://eogdata.mines.edu/products/vnl/",
+        "authentication": "account required for downloads; every data directory redirected to a sign-in page when checked",
+        "automatable": false
+      },
+      "licence": {
+        "class": "attribution-required",
+        "name": "CC BY 4.0 per the EOG product pages",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "EOG, Colorado School of Mines; Elvidge et al. 2017 and 2021",
+        "url": "https://eogdata.mines.edu/products/vnl/",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Upward radiance is not sky brightness and cannot be converted without an emission and atmosphere model",
+        "Annual composites still contain gas flares, fishing fleets and industrial sources",
+        "The licence statement is on the product page while downloads sit behind an account whose terms are not published, so redistribution needs clarification before production use"
+      ],
+      "productionEligible": false,
+      "productionBlockers": [
+        "downloads require an account and the account terms are not verified"
+      ]
+    },
+    {
+      "id": "worldbank-light-every-night",
+      "kind": "radiance",
+      "publisher": "World Bank Group, with NOAA/Colorado School of Mines and the University of Michigan",
+      "product": "Light Every Night: VIIRS DNB nightly imagery on AWS Open Data",
+      "methodology": "Nightly VIIRS DNB scenes as cloud-optimised GeoTIFF, per orbit, with monthly catalogues.",
+      "resolution": "15 arcseconds",
+      "verticalDatum": null,
+      "horizontalCrs": "Per scene",
+      "units": "nW cm^-2 sr^-1 (upward radiance)",
+      "temporal": "April 2012 to 2020, plus one 2023 month",
+      "coverage": "Global",
+      "access": {
+        "method": "S3, anonymous",
+        "url": "https://registry.opendata.aws/wb-light-every-night/",
+        "authentication": "none",
+        "automatable": true,
+        "note": "per-orbit scene files of 16-36 MB in lines/samples layout, so a regional mosaic is substantial work"
+      },
+      "licence": {
+        "class": "terms-uncertain",
+        "name": "the registry states 'World Bank Open Database License (ODbL)' but links to CC BY 4.0",
+        "commercialUse": "unclear",
+        "redistribution": "unclear; ODbL would impose share-alike on a derived database",
+        "attribution": "World Bank Light Every Night",
+        "url": "https://registry.opendata.aws/wb-light-every-night/",
+        "shareAlike": false
+      },
+      "limitations": [
+        "The licence statement contradicts itself inside one registry entry",
+        "Per-orbit scenes are not analysis-ready; mosaicking and reprojection are required",
+        "Coverage effectively ends in 2020 for the study region"
+      ],
+      "productionEligible": false,
+      "productionBlockers": [
+        "licence statement contradicts itself (ODbL versus CC BY 4.0)",
+        "the last full year is 2020"
+      ]
+    },
+    {
+      "id": "nasa-black-marble-vnp46a4",
+      "kind": "radiance",
+      "publisher": "NASA LP DAAC, Black Marble",
+      "product": "VNP46A4 annual nighttime lights, 500 m",
+      "methodology": "Bidirectional-reflectance-corrected DNB radiance with lunar and atmospheric correction, composited annually.",
+      "resolution": "500 m (15 arcseconds)",
+      "verticalDatum": null,
+      "horizontalCrs": "Per tile (HDF5)",
+      "units": "nW cm^-2 sr^-1 radiance",
+      "temporal": "2012 to present, annual",
+      "coverage": "Global",
+      "access": {
+        "method": "LP DAAC and Earthdata Cloud, HDF5 tiles",
+        "url": "https://ladsweb.modaps.eosdis.nasa.gov/products/",
+        "authentication": "Earthdata Login token required",
+        "automatable": true,
+        "note": "automatable once an account exists; HDF5 needs a reader the prototype does not include"
+      },
+      "licence": {
+        "class": "open-public-domain",
+        "name": "NASA data policy: free and open, no restriction on use",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "NASA Black Marble (VNP46A4), LP DAAC",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-and-information-policy",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Radiance, so the same non-convertibility applies as for any upward measurement",
+        "HDF5 tiles of about 10 MB at 500 m: a regional mosaic for one year is manageable, a national one is not",
+        "Requires an Earthdata account and token storage in the refresh job"
+      ],
+      "productionEligible": true,
+      "productionBlockers": [],
+      "productionNotes": [
+        "legal and technically feasible, but the token must live in the refresh workflow and the mosaic must be precomputed, never fetched in a browser"
+      ]
+    },
+    {
+      "id": "lorenz-atlas",
+      "kind": "sky-brightness",
+      "publisher": "David J. Lorenz, University of Wisconsin-Madison",
+      "product": "Light Pollution Atlas 2025, a recomputation of the Cinzano/Falchi model on EOG VIIRS annual data",
+      "methodology": "The same radiative-transfer approach as the World Atlas, driven by the latest EOG annual composite and published as colour-scaled PNG maps.",
+      "resolution": "1/120 degree (about 900 m) for continent maps, 1/40 degree for world maps",
+      "verticalDatum": null,
+      "horizontalCrs": "Web map tiles",
+      "units": "artificial zenith sky brightness (mcd m^-2) shown as a colour ramp",
+      "temporal": "2025",
+      "coverage": "Global, 65S to 75N",
+      "access": {
+        "method": "PNG map downloads and an overlay viewer",
+        "url": "https://djlorenz.github.io/astronomy/lp/",
+        "authentication": "none",
+        "automatable": false,
+        "note": "no numeric raster download; the viewer tiles are not offered for bulk use"
+      },
+      "licence": {
+        "class": "terms-uncertain",
+        "name": "no licence statement on the site; the author asks that the Bortle scale not be conflated with these maps",
+        "commercialUse": "unknown",
+        "redistribution": "unknown",
+        "attribution": "David Lorenz, Light Pollution Atlas",
+        "url": "https://djlorenz.github.io/astronomy/lp/",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Only rendered images are published, so numeric sampling would mean reverse-engineering a colour ramp",
+        "Derived from EOG VIIRS, whose own access terms apply",
+        "The author states clearly that these are zenith brightness, not Bortle classes"
+      ],
+      "productionEligible": false,
+      "productionBlockers": [
+        "no licence statement",
+        "no numeric data product to sample"
+      ]
+    },
+    {
+      "id": "osm",
+      "kind": "roads-and-parking",
+      "publisher": "OpenStreetMap contributors",
+      "product": "OSM data through the Overpass API: roads, parking, access and fee tags",
+      "methodology": "Crowd-sourced mapping; tags describe physical features and, sometimes, legal access.",
+      "resolution": "Vector",
+      "verticalDatum": null,
+      "horizontalCrs": "WGS84",
+      "units": "n/a",
+      "temporal": "Continuous",
+      "coverage": "Global",
+      "access": {
+        "method": "Overpass API",
+        "url": "https://overpass-api.de/api/interpreter",
+        "authentication": "none",
+        "automatable": true,
+        "note": "the public instance returned 503 under load during this research; the usage policy requires modest, cached, identified queries"
+      },
+      "licence": {
+        "class": "attribution-required",
+        "name": "ODbL 1.0 for the database, with the OSM attribution guidelines",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "© OpenStreetMap contributors",
+        "url": "https://www.openstreetmap.org/copyright",
+        "shareAlike": true,
+        "shareAlikeNote": "ODbL: a derived database must itself be offered under ODbL"
+      },
+      "limitations": [
+        "A parking polygon does not establish that stopping there after dark is legal, or that a gate is open",
+        "Tag completeness varies, and a missing tag is not a missing restriction",
+        "Share-alike applies to a derived database, which matters if a candidate list is built from OSM geometry"
+      ],
+      "productionEligible": false,
+      "productionBlockers": [
+        "share-alike obligations for a derived database need a deliberate decision",
+        "tag values are not authoritative for legal access"
+      ]
+    },
+    {
+      "id": "indiana-dnr-properties",
+      "kind": "access-rules",
+      "publisher": "Indiana Department of Natural Resources",
+      "product": "Property pages for state parks, state recreation areas and fish and wildlife areas",
+      "methodology": "Agency-published property hours and rules.",
+      "resolution": "Per property page",
+      "verticalDatum": null,
+      "horizontalCrs": null,
+      "units": "n/a",
+      "temporal": "Live pages, which may change without notice",
+      "coverage": "Indiana",
+      "access": {
+        "method": "HTTPS page fetch",
+        "url": "https://www.in.gov/dnr/fish-and-wildlife/properties/",
+        "authentication": "none",
+        "automatable": true,
+        "note": "HTML pages, no structured feed"
+      },
+      "licence": {
+        "class": "open-public-domain",
+        "name": "State of Indiana government publication: the fact of a stated opening time is quoted with attribution, and page text is not republished",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "Indiana DNR",
+        "url": "https://www.in.gov/dnr/",
+        "shareAlike": false,
+        "note": "what is stored is the fact and a short quotation with its URL, not the page"
+      },
+      "limitations": [
+        "Hours are stated per property and can be superseded by posted signs, alerts or closures",
+        "A page stating 7 a.m. to 11 p.m. means the property is closed at 11 p.m., whatever the sky is doing"
+      ],
+      "productionEligible": true,
+      "productionBlockers": [],
+      "productionNotes": [
+        "store the quote, the URL and the retrieval date per candidate; never infer hours from a template"
+      ]
+    },
+    {
+      "id": "usfs-shawnee",
+      "kind": "access-rules",
+      "publisher": "USDA Forest Service, Shawnee National Forest",
+      "product": "Camping and cabins page, including overnight parking rules",
+      "methodology": "Agency-published recreation rules.",
+      "resolution": "Per forest",
+      "verticalDatum": null,
+      "horizontalCrs": null,
+      "units": "n/a",
+      "temporal": "Live page",
+      "coverage": "Southern Illinois",
+      "access": {
+        "method": "HTTPS page fetch",
+        "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+        "authentication": "none",
+        "automatable": true
+      },
+      "licence": {
+        "class": "open-public-domain",
+        "name": "U.S. Government work (public domain)",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "USDA Forest Service",
+        "url": "https://www.fs.usda.gov/",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Seasonal campground dates (typically 1 April to 15 December) and posted closures override the general rule",
+        "Day-use areas posted 6 a.m. to 10 p.m. are closed to overnight parking"
+      ],
+      "productionEligible": true,
+      "productionBlockers": []
+    },
+    {
+      "id": "aws-terrain-tiles",
+      "kind": "elevation-fallback",
+      "publisher": "Mapzen/Joerd terrain tiles on AWS Open Data",
+      "product": "Global terrarium-encoded elevation tiles",
+      "methodology": "A blend of public-domain and openly licensed DEMs, tiled at zoom 0-15.",
+      "resolution": "About 30 m at zoom 12 in this region (SRTM and 3DEP blend)",
+      "verticalDatum": "Varies by source",
+      "horizontalCrs": "Web Mercator tiles",
+      "units": "metres, terrarium RGB encoding",
+      "temporal": "Static",
+      "coverage": "Global",
+      "access": {
+        "method": "S3, anonymous",
+        "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png",
+        "authentication": "none",
+        "automatable": true
+      },
+      "licence": {
+        "class": "attribution-required",
+        "name": "Mixed sources with a published attribution list",
+        "commercialUse": true,
+        "redistribution": true,
+        "attribution": "United States 3DEP, GMTED2010 and SRTM courtesy of the U.S. Geological Survey; full list on the project attribution page",
+        "url": "https://github.com/tilezen/joerd/blob/master/docs/attribution.md",
+        "shareAlike": false
+      },
+      "limitations": [
+        "Coarser than 3DEP in the United States, so it is a fallback rather than the primary",
+        "Attribution depends on which source feeds each tile, which the tile itself does not say"
+      ],
+      "productionEligible": true,
+      "productionBlockers": [],
+      "productionNotes": [
+        "fallback only; the study region is fully covered by 3DEP at higher resolution"
+      ]
+    }
+  ],
+  "routing": [
+    {
+      "id": "osrm-demo",
+      "name": "OSRM public demo server",
+      "verdict": "not for production: the demo server is published for testing and carries no availability commitment",
+      "licence": {
+        "class": "terms-uncertain",
+        "name": "demo server with no service guarantee and a policy against production use",
+        "commercialUse": false,
+        "redistribution": false,
+        "url": "https://project-osrm.org/docs/v5.24.0/api/"
+      }
+    },
+    {
+      "id": "openrouteservice",
+      "name": "openrouteservice hosted API",
+      "verdict": "viable for a low-volume drive-time estimate with a key held server-side, at the cost of a new external dependency and a new secret to manage",
+      "licence": {
+        "class": "attribution-required",
+        "name": "free tier with an API key, commercial plans available",
+        "commercialUse": true,
+        "redistribution": false,
+        "url": "https://openrouteservice.org/plans/"
+      }
+    },
+    {
+      "id": "self-hosted-osrm",
+      "name": "Self-hosted OSRM or Valhalla on a small VPS",
+      "verdict": "the honest long-term answer for road distance and drive time in one region: about 1-2 GB of RAM for an Indiana-scale extract, but it is a separate service outside the Cloudflare Pages architecture",
+      "licence": {
+        "class": "attribution-required",
+        "name": "engine licences are permissive, the OSM data is ODbL",
+        "commercialUse": true,
+        "redistribution": true,
+        "url": "https://github.com/Project-OSRM/osrm-backend"
+      }
+    },
+    {
+      "id": "precomputed-matrix",
+      "name": "Precomputed road-distance matrix from a one-off OSRM run",
+      "verdict": "the best fit for this product: a few thousand origin-destination pairs for one study area, generated offline and shipped as a small artefact, with no runtime service and no key",
+      "licence": {
+        "class": "attribution-required",
+        "name": "derived from OSM (ODbL) by an OSRM run",
+        "commercialUse": true,
+        "redistribution": "ODbL share-alike applies to the derived database",
+        "url": "https://www.openstreetmap.org/copyright"
+      }
+    }
+  ]
+}
