@@ -115,6 +115,33 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 .milkyway-season .season-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .milkyway-season .season-actions button{font-size:.78rem;padding:8px 11px;min-height:44px}
 @media (max-width:720px){.milkyway-season{padding:13px}}
+.milkyway-whereto{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:16px;display:grid;gap:10px;margin-top:18px}
+.milkyway-whereto h2{font-size:1.05rem;margin:0}
+.milkyway-whereto .whereto-intro,.milkyway-whereto .whereto-window{margin:0;color:var(--muted);line-height:1.65}
+.milkyway-whereto .whereto-window{color:var(--ink);border-left:2px solid var(--lime);padding-left:10px}
+.whereto-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:16px;align-items:start}
+.whereto-heading{font-size:.82rem;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.whereto-area{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;background:var(--bg)}
+.whereto-area summary{cursor:pointer;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:.95rem}
+.whereto-area summary:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.whereto-name{font-weight:600}
+.whereto-chip{border:1px solid var(--line);border-radius:999px;padding:1px 8px;font-size:.7rem;color:var(--muted);white-space:nowrap}
+.whereto-distance{color:var(--blue);border-color:var(--blue)}
+.whereto-facts{display:grid;grid-template-columns:minmax(96px,auto) minmax(0,1fr);gap:6px 12px;margin:10px 0 0;font-size:.85rem}
+.whereto-facts dt{color:var(--muted)}
+.whereto-facts dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.whereto-list-plain{margin:2px 0 0 16px;padding:0}
+.whereto-list-plain li{margin:3px 0}
+.whereto-facts q{color:var(--muted);font-style:italic}
+.whereto-limits{margin:4px 0 0 16px;padding:0;color:var(--muted);font-size:.82rem;line-height:1.6}
+.whereto-map{margin:0;display:grid;gap:6px}
+.whereto-map svg{width:100%;height:auto;background:var(--bg);border:1px solid var(--line);border-radius:8px}
+.whereto-map figcaption{color:var(--muted);font-size:.75rem;line-height:1.5}
+.whereto-status{margin:0;color:var(--muted);line-height:1.6}
+.whereto-status[data-tone="warn"]{color:var(--amber)}
+@media (max-width:900px){.whereto-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:720px){.milkyway-whereto{padding:13px}.whereto-facts{grid-template-columns:minmax(0,1fr);gap:2px}.whereto-facts dt{margin-top:6px}}
+
 .celestial-positions{width:100%;border-collapse:collapse;font-size:.82rem}
 .celestial-positions th,.celestial-positions td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line)}
 .celestial-positions th{color:var(--muted);font-weight:500}
@@ -219,6 +246,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <div id="celestial-events" class="celestial-events"></div>
 <section id="celestial-changes" class="celestial-section" hidden aria-label="Noteworthy comet changes"><h2>What changed recently</h2><div id="celestial-changes-body" class="small"></div></section>
 <section id="milkyway-season" class="milkyway-season" hidden aria-label="Next Galactic-core season"></section>
+<section id="milkyway-whereto" class="milkyway-whereto" hidden aria-label="Where to go"></section>
 <section id="celestial-more" class="celestial-section" aria-label="Other events in this window"><h2>Calculated but not prioritised</h2><div id="celestial-more-body" class="small"></div></section>
 <section id="celestial-freshness" class="celestial-section" aria-label="Celestial data sources"><h2>Where these numbers come from</h2><div id="celestial-freshness-body" class="small"></div></section>
 </section>
@@ -312,12 +340,12 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <details id="how-it-works"><summary>How the recommendation works</summary><p>The night’s score is the best remaining satellite opportunity among your selected categories. It is not a weather score. A “likely visible” segment needs at least 20 seconds above your minimum elevation, with the Sun at least 6° below the horizon and the spacecraft fully sunlit. Buildings, trees, haze and object orientation can still prevent a sighting.</p><p>Base points: elevation 25, useful visible duration 15, sunlight 10, observer darkness 15, brightness category 10, cloud cover 20, and visibility 5. Cloud, poor visibility and rain then reduce the total. Unknown weather earns no weather points and makes the result provisional. No precise apparent magnitude is claimed. <a href="docs/overhead.md">Full algorithm, validation and limitations →</a></p><p>The Moon panel is informational and does not raise the satellite score. A quiet satellite night can still be a lovely night for stargazing.</p></details>
 <details id="diagnostics"><summary>Data & diagnostics</summary><div class="actions"><button id="refresh">Refresh source data</button><button id="clear-cache">Clear downloaded cache</button><label class="text-button">Import OMM JSON / TLE<input id="import" type="file" accept=".json,.txt,.tle" aria-label="Import orbital elements"></label></div><p>Import up to 2 MB of orbital elements from a trusted source if CelesTrak is unavailable. Imported records stay in this session and use their actual epoch; records more than 14 days from a prediction are excluded.</p><pre id="diagnostic-output"></pre></details>
 </main>
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.16.7" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.16.7">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.16.8" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.16.8">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.16.7 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.16.8 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
@@ -1295,6 +1323,105 @@ function renderSeasonSection(){
   details.addEventListener('toggle',()=>{seasonState.open=details.open;});
  }
 }
+
+/* ---- Where to go: a regional area explorer --------------------------------------------------------
+   Everything about place is separate from the astronomy. The visitor's own window is computed by the Milky
+   Way engine above and is shown as theirs, never as the area's. The area data is a static artifact, loaded
+   once, on demand, when the reader asks for it; the module is fetched only then too. Nothing here ranks a
+   place, estimates a drive, or claims a darkness nobody has measured. */
+const sitesState={status:'idle',artifact:null,module:null,error:null,key:null,requested:false};
+function sitesRegionKey(){return state.site.lat+','+state.site.lon+','+state.generation;}
+function loadSitesScript(){
+ // The renderer is a separate file so a reader who never opens this section fetches nothing for it.
+ if(sitesState.module)return Promise.resolve(sitesState.module);
+ return new Promise((resolve,reject)=>{
+  const script=document.createElement('script');
+  script.src='overhead-sites.js';script.async=true;
+  script.onload=()=>{const module=window.OverheadSites||null;
+   if(!module)reject(new Error('the area explorer did not register itself'));
+   else{sitesState.module=module;resolve(module);}};
+  script.onerror=()=>reject(new Error('the area explorer could not be loaded'));
+  document.head.append(script);
+ });
+}
+async function loadSites(){
+ if(sitesState.artifact)return sitesState.artifact;
+ const response=await fetch('data/geodata/sites.json',{cache:'no-cache'});
+ if(!response.ok)throw new Error('the area data returned HTTP '+response.status);
+ const artifact=await response.json();
+ sitesState.module.validate(artifact);
+ sitesState.artifact=artifact;
+ return artifact;
+}
+function sitesWindowNote(){
+ const plan=celestial.result&&celestial.result.plans?celestial.result.plans[celestial.horizon]:null;
+ if(!plan)return {text:'Your Milky Way window is still being calculated. The area list below does not depend on it.',empty:false};
+ if(plan.empty){
+  return {empty:true,text:'No qualifying Galactic-core window for your own location in this horizon ('+
+   plan.label.toLowerCase()+'). These areas are something to plan around, and that is not a reason to travel '+
+   'tonight: no area here has a verified observation point to recalculate the window at.'};
+ }
+ const best=plan.opportunities[0];
+ if(!best)return {text:'Your window is calculated above; the area list does not change it.',empty:false};
+ return {empty:false,text:'At your location, in this horizon: '+best.title+'. Recounted at your own coordinates, '
+  +'because no area in this list has a verified observation point to recalculate the window at.'};
+}
+function renderWhereTo(){
+ const section=$('milkyway-whereto');
+ if(!section)return;
+ if(celestial.category!=='milkyway'){section.hidden=true;section.innerHTML='';return;}
+ section.hidden=false;
+ if(sitesState.status==='loading'){
+  section.innerHTML='<h2>Where to go</h2><p class="whereto-status">Loading the researched areas around your location… '+
+   'nothing above waits for this.</p>';
+  return;
+ }
+ if(sitesState.status==='error'){
+  section.innerHTML='<h2>Where to go</h2><p class="whereto-status" data-tone="warn">The area data could not be loaded ('+
+   esc(sitesState.error||'unknown reason')+'). Your Milky Way calculations above are unaffected.</p>'+
+   '<div class="season-actions"><button type="button" id="whereto-retry">Try again</button></div>';
+  $('whereto-retry').onclick=()=>{sitesState.status='idle';sitesState.error=null;loadWhereTo(true);};
+  return;
+ }
+ if(!sitesState.requested){
+  section.innerHTML='<h2>Where to go</h2><p class="whereto-status">Areas within the studied region of southern Indiana, '+
+   'southeastern Illinois and western Kentucky whose after-dark access is documented by the managing agency. '+
+   'These are areas, not observation points, and no darkness has been assessed.</p>'+
+   '<div class="season-actions"><button type="button" id="whereto-open">Show areas near me</button></div>';
+  $('whereto-open').onclick=()=>loadWhereTo(true);
+  return;
+ }
+ const module=sitesState.module, artifact=sitesState.artifact;
+ if(!module||!artifact){sitesState.status='idle';renderWhereTo();return;}
+ const origin={lat:state.site.lat,lon:state.site.lon};
+ const head='<h2>Where to go</h2>';
+ if(!module.regionContains(artifact,origin)){
+  section.innerHTML=head+'<p class="whereto-status">'+esc('Location exploration is available in '+artifact.region.label+
+   ' only. Your Milky Way calculations continue worldwide for '+state.site.name+', and this explorer will not '+
+   'invent a site outside the region that has been researched.')+'</p>'+
+   '<p class="small">Change location in the header to a place inside that region, or keep planning from here — '+
+   'the window above is yours either way.</p>';
+  return;
+ }
+ const note=sitesWindowNote();
+ section.innerHTML=head+'<div id="whereto-body"></div>';
+ module.render($('whereto-body'),{artifact,origin,astronomy:note.text});
+ section.dataset.windowEmpty=String(note.empty);
+}
+async function loadWhereTo(interactive){
+ if(sitesState.status==='loading')return;
+ sitesState.requested=true;sitesState.status='loading';sitesState.error=null;renderWhereTo();
+ try{
+  await loadSitesScript();
+  await loadSites();
+  sitesState.status='ready';sitesState.key=sitesRegionKey();
+ }catch(error){
+  sitesState.status='error';sitesState.error=String((error&&error.message)||error);
+ }
+ renderWhereTo();
+ if(interactive&&sitesState.status==='ready')announce('Area details loaded. These are areas, not verified observation points.');
+}
+
 function renderCelestial(){
  rememberDiscoveryPlan();renderDiscovery();
  if(!celestial.busy&&celestial.resolve){celestial.resolve();celestial.resolve=null;}
@@ -1334,6 +1461,7 @@ function renderCelestial(){
  renderCelestialChanges();
  renderCelestialFreshness();
  renderSeasonSection();
+ renderWhereTo();
 }
 // Noteworthy comet changes, straight from the published comparison in the dataset.
 function renderCelestialChanges(){
