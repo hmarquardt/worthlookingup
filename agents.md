@@ -112,6 +112,23 @@ because of that rule; agents should read it explicitly (some tools discover only
   is not enough, and verification expires after a year and is then downgraded rather than kept. A DEM is bare
   earth: a low modelled horizon is never a clear view, and every terrain claim carries that caveat plus an
   uncertainty. See docs/photography-geodata-feasibility.md.
+- Phase 6B.2 ships the **Where to go** explorer, and it is area-only on purpose. `data/geodata/sites.json` is a
+  generated static artifact (`scripts/build-geodata-sites.mjs`, `npm run geodata:sites:check` in `npm test`) built
+  from the Phase 6B.1 inventory, the simplified PAD-US outlines in `research/geodata/boundaries/` and the
+  hand-maintained quotations in `src/geodata/access-verifications.json`. **Only areas whose after-dark access is
+  documented by the managing agency are published**, and a parcel centroid must never be promoted to an
+  observation point, trailhead, gate or parking place: every record is `type: 'area'` with an outline, no record
+  carries coordinates, terrain is regional context only (a parcel has no single horizon), and distance is
+  straight-line to the nearest mapped edge, labelled as a management boundary rather than an entrance or a drive.
+  The artifact validator and the generator both refuse coordinates, parking, trailheads, clearance angles, travel
+  times, Bortle classes, sky brightness and scores, and a test proves no excluded candidate appears in the public
+  bytes. Sky brightness stays `unavailable` with the sentence "Local artificial sky brightness has not yet been
+  assessed for these locations"; upward radiance is never converted and no darkness rating is ever derived.
+  `overhead-sites.js` and the artifact load only when a reader opens the section, the comparison list is the
+  authoritative interface and the map is a tile-free SVG sketch beside it, and the window shown is always the
+  visitor's own because no area has a verified observation point. Access evidence is re-checked by hand, carries
+  its URL, quotation and date, expires after a year, and must never be replaced by a crowdsourced or generic
+  ownership signal. See docs/phase-6b2-regional-site-explorer.md.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.

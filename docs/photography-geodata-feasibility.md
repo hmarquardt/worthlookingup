@@ -1,6 +1,10 @@
 # Can Worth Looking Up say where to go? A geographic-data feasibility study
 
-**Status: research completed, prototype built, nothing published.** No location recommendation, map layer or
+**Status: research completed, prototype built; Phase 6B.2 published a deliberately narrow area explorer.**
+
+The public explorer — areas with documented after-dark access, no observation points, no darkness rating — is described in [phase-6b2-regional-site-explorer.md](phase-6b2-regional-site-explorer.md). The rest of this document is the research that decided what it may and may not say.
+
+Original status line: nothing published. No location recommendation, map layer or
 candidate site appears in the public application. This document records what the data allows, what it forbids,
 and what the smallest honest next step would be.
 

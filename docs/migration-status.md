@@ -708,3 +708,42 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Next action: decide Phase 6B.2 as a single named-region "where to go" section that shows only documented
   after-dark access, modelled terrain clearance and explicit gaps — no ranking, no drive time, no Bortle class,
   and no site presented as a recommendation without a fresh verified access record.
+
+## Phase 6B.2: regional area explorer (shipped)
+
+- [x] `data/geodata/sites.json` is a generated, deterministic artifact: four areas whose after-dark access a
+      managing agency documents (Shawnee National Forest, Garden Of The Gods Wilderness, Lusk Creek Wilderness,
+      Sugar Ridge FWA), each with a simplified PAD-US outline, the agency quotation with URL and date, its
+      restrictions, regional terrain context, the sky-brightness limitation, a list of unknowns and attribution.
+      80 kB raw, 8.1 kB gzipped. `scripts/build-geodata-sites.mjs --check` runs inside `npm test` and fails on any
+      drift.
+- [x] Seven candidates excluded with recorded reasons: five public properties with no after-dark statement
+      (Glendale and Hovey Lake FWAs, Harmonie State Park, Patoka Lake, Higginson-Henry WMA — the Kentucky page
+      returned 403 to this review) and two private parcels, including the American Electric Power Rockport parcel
+      that PAD-US flags open-access while ownership is private. A test asserts none of their identifiers appears
+      in the published bytes.
+- [x] Areas are never dressed as observation points: no record carries coordinates, a parking place, a trailhead
+      or a clearance angle; terrain is regional context only; distance is straight-line to the nearest mapped
+      edge and is labelled as a management boundary, not an entrance and not a drive. The generator, the artifact
+      validator and the tests refuse all of it.
+- [x] `overhead-sites.js` (13 kB) and the artifact load only when the reader opens **Where to go**; the list is
+      the authoritative interface with a tile-free SVG sketch beside it; the window shown is always the visitor's
+      own because no area has a verified observation point; outside the region the section explains the limit and
+      the Milky Way calculations continue worldwide.
+- [x] Test evidence: `npm test` exit 0 with 26 PASS suites and 103 checks, including the new
+      `tests/geodata-published-sites.cjs` (10 checks: artifact validation, area-only records, forbidden fields,
+      excluded candidates absent, agency statements naming their units, `--check` reproducibility, size budget,
+      boundary distance, tamper refusal). Browser: new `tests/whereto.spec.js` with 8 tests (on-demand loading,
+      list/map agreement, area caveats, official links, empty-window wording, unsupported region, failed load
+      with retry, keyboard and screen-reader use, four widths, both themes, no overflow, other categories
+      unaffected). The existing Milky Way, homepage, discovery and migration suites still pass (23 tests).
+- [x] Documentation: [phase-6b2-regional-site-explorer.md](phase-6b2-regional-site-explorer.md) (inclusion rules,
+      area/point distinction, re-verification scope, terrain uncertainty, light-pollution prohibition, licensing,
+      regeneration, known limitations), plus updates to [milky-way.md](milky-way.md),
+      [photography-geodata-feasibility.md](photography-geodata-feasibility.md), [design.md](design.md) and
+      `agents.md`.
+- Git and deployment: release identifier `2026.10.16.8`; no new infrastructure, no new secret and no new
+  scheduled job. CI and production verified after the push.
+- Next action: the honest next increment is a **verified observation point** — a curated trailhead or lot with
+  its own agency evidence, coordinate source and a point-level terrain clearance — followed by a licensed
+  sky-brightness layer. Neither may be simulated from an area centroid.

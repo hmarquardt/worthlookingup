@@ -321,6 +321,30 @@ horizons are untouched: the ninety-day planner was not extended for any category
 - Nothing here is a forecast, and the interface says so in the block, in each candidate's caveats and in every
   exported file.
 
+## Where to go, for one region
+
+Under the season block, **Where to go** offers the areas whose after-dark access a managing agency documents,
+for the studied region of southern Indiana, southeastern Illinois and western Kentucky. It is deliberately
+narrow:
+
+- **Areas, not points.** Each record is a mapped management outline (USGS PAD-US) with an acreage, a manager and
+  the agency's own quotation. No record is a trailhead, a gate or a parking place, and none is described as one.
+- **Your window, not the area's.** The astronomical window shown is computed at your coordinates. No area has a
+  verified observation point, so there is nothing to recalculate at and nothing is implied about any point
+  inside an outline.
+- **Terrain is context only.** The pilot's modelled bare-earth angles (0.0°–18.9° as the steepest direction at
+  eleven sampled points) are regional context; a clearance angle needs a specific observation point, which this
+  release does not have.
+- **Distance is straight-line to the nearest mapped edge**, a management boundary rather than an entrance or a
+  destination. There is no drive time, no routing and no ranking.
+- **No darkness.** Local artificial sky brightness has not yet been assessed for these locations, and no area is
+  described as dark.
+
+Click **Show areas near me** to load it; the module and the 8 kB (gzipped) artifact are not fetched until then, and
+nothing about the astronomy above waits for them. Outside the studied region the section explains the limit and
+the Milky Way calculations continue worldwide. The full release notes, inclusion rules and regeneration steps are
+in [phase-6b2-regional-site-explorer.md](phase-6b2-regional-site-explorer.md).
+
 ## Inputs a future location recommendation would need
 
 Nothing in this release recommends a place, only a time.
