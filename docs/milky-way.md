@@ -99,6 +99,18 @@ moon     = 1 - (lit-Moon fraction of the window) * illumination weight * separat
 The weights are documented in the engine, the factors travel with the number, monotonicity in every input is
 asserted by tests, the value is bounded to 0..100 for any input, and **weather never enters it**. It is
 
+## When there is no window in the horizon
+
+An empty horizon is a real answer and is treated as one. `analyse()` returns a `summary` with the night
+whose core climbed highest (`bestDay`, `bestCoreAltitude`, `bestCoreCompass`, `bestCoreTime`), the twilight
+that night reaches, the engine's own refusal reasons, and the band counts. The interface renders it only
+when the category's plan is empty, and it separates the two failure modes, which are not the same thing:
+the core can stay below the threshold all night, or it can clear the threshold while the sky is still too
+bright to use — at 38.4° N in mid-October it is the second, and the explanation says so with one decimal
+of altitude so the sentence and the comparison cannot disagree. Every empty state also carries the
+statement that this is a fact about the core, not about the galaxy, and that nothing there is a claim
+about clouds.
+
 ## Accuracy and known limitations
 
 - The coordinate path is validated against an independent implementation written into the test suite (Meeus

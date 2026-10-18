@@ -172,7 +172,8 @@ test('a season with no core window explains itself instead of dead-ending',async
   expect(text).toContain('Closest night in this horizon');
   // One decimal, so the sentence and the comparison cannot disagree at the threshold.
   expect(text).toMatch(/core reaching \d+\.\d°/);
-  expect(text).toMatch(/20°/);
+  expect(text).toMatch(/20 (degrees|°)/);
+  expect(text).toMatch(/minutes of astronomical darkness/);
   expect(text).toMatch(/sampled galactic longitudes/);
   expect(text).toMatch(/not a claim that the Milky Way is invisible|not about the Milky Way/);
   expect(text).toMatch(/0 of \d+ nights/);
@@ -184,8 +185,18 @@ test('a season with no core window explains itself instead of dead-ending',async
     return c.status==='ready'&&!c.busy&&c.horizon==='extended'&&c.result&&c.result.category==='milkyway';},null,{timeout:60000});
   const extended=await page.locator('.milkyway-panel[data-milkyway-empty="true"]').innerText();
   expect(extended).toMatch(/0 of \d{2,} nights/);
-  const windows=await page.evaluate(()=>window.__OVERHEAD_TEST__.celestial.result.milkyWay.summary.nights);
-  expect(windows).toBeGreaterThanOrEqual(60);
+  const horizon=await page.evaluate(()=>{
+    const hook=window.__OVERHEAD_TEST__, result=hook.celestial.result, plan=result.plans.extended;
+    const days=[...new Set(hook.celestialWindows(90).map(night=>night.day))];
+    return { spanDays: result.span.days, nights: result.milkyWay.summary.nights, distinctDays: days.length,
+      planStart: plan.start, planEnd: plan.end, considered: plan.considered,
+      lastDay: days[days.length-1] };
+  });
+  expect(horizon.spanDays).toBe(90);
+  expect(horizon.distinctDays).toBeGreaterThanOrEqual(88);
+  expect(horizon.nights).toBeGreaterThanOrEqual(88);
+  expect(horizon.considered).toBeGreaterThanOrEqual(80);
+  expect((horizon.planEnd-horizon.planStart)/86400000).toBeGreaterThan(80);
   expect(errors).toEqual([]);
 });
 
