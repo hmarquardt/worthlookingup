@@ -7,7 +7,7 @@ Use an editorial Earth-at-night photograph, a warm serif headline and compact, p
 controls. The hero answers what the application does; the header always exposes the current place.
 Keep the hero under 240px on phones. Move the existing weekly opportunity above the briefing so a
 real calculated event reaches the first viewport. Do not introduce cross-category ranking or fetch
-extra feeds for a decorative overview. All categories remain visible on phones; the calendar's 90-day horizon stays in the category view. Phase 6A added the sixth — MILKY WAY — as the last tab, so the five existing tabs keep their positions on a phone and the satellite page still opens first.
+extra feeds for a decorative overview. All categories remain visible on phones; the calendar's 90-day horizon stays in the category view. Phase 6A added the sixth — MILKY WAY — as the last tab, so the five existing tabs keep their positions on a phone and the satellite page still opens first. Phase 6A.1's **Next Galactic-core season** block lives inside that category, under the cards and the chart: it is a plain panel when the horizon is empty (where it is the answer, and carries `data-prominent="true"` with the amber border) and a collapsed `<details>` when there are windows to look at, so it never competes with tonight. It uses the existing panel, line, lime and amber tokens and the same 44 px action buttons as a card, adds no homepage element and does not move the first-opportunity geometry.
 
 ## Reusable patterns
 - Ink/navy dark surfaces, paper light surfaces, sage actions and muted blue information. Use semantic
