@@ -181,7 +181,8 @@ because of that rule; agents should read it explicitly (some tools discover only
   (only an explicit save takes a new one), the operation is labelled as a check against Worth Looking Up's
   published record rather than the agency, a direct official link is always offered, and a withheld point keeps
   its saved coordinates and identity instead of silently moving the plan home. **Refresh** reports astronomy,
-  access, weather and terrain separately, preserves notes, kit and identity, and never says everything updated.
+  access, weather and terrain separately, preserves notes, kit and identity, never says everything updated, and
+  refuses to overwrite or duplicate the saved plan when the reader has changed the place or night.
   Offline, a saved plan still shows its place, window, direction, Moon, terrain, evidence, notes and the
   last-known forecast under a clearly separated heading, and offline outranks any forecast still held in memory;
   cold start is covered by a self-contained, script-free field-copy HTML download, not by a service worker.

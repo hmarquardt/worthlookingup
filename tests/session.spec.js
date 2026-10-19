@@ -530,6 +530,32 @@ test('refresh reports each part separately and never calls a partial result a su
   expect(errors).toEqual([]);
 });
 
+test('refresh never turns a changed place or night into a second saved plan',async({page})=>{
+  const errors=await bootWithWeather(page);
+  await openMilkyWay(page);
+  await openBuilder(page);
+  await choosePoint(page,'camp-cadiz-campground');
+  await setDate(page,'2027-04-13');
+  await page.locator('#milkyway-session [data-session="save"]').click();
+  await expect(builder(page)).toContainText('Saved in this browser only');
+  const saved=await page.evaluate(()=>window.__OVERHEAD_TEST__.session.saved.map(entry=>({id:entry.id,date:entry.date,pointId:entry.pointId})));
+  expect(saved.length).toBe(1);
+  // The reader moves the plan to their own location, then asks to refresh. That is a different plan: refresh
+  // recalculates what is on screen but must not overwrite or duplicate the saved Camp Cadiz plan.
+  await page.locator('#milkyway-session [data-session="where"][data-value="home"]').click();
+  await page.waitForFunction(()=>window.__OVERHEAD_TEST__.session.where==='home');
+  await page.locator('#milkyway-session [data-session="refresh"]').click();
+  await page.waitForFunction(()=>{const r=window.__OVERHEAD_TEST__.refreshing();return Array.isArray(r)&&r.length>=4;},null,{timeout:30000});
+  const report=await page.locator('#milkyway-session .sx-refresh li').allInnerTexts();
+  expect(report.some(line=>/different place or night from the plan you opened/.test(line))).toBe(true);
+  const after=await page.evaluate(()=>window.__OVERHEAD_TEST__.session.saved.map(entry=>({id:entry.id,date:entry.date,pointId:entry.pointId})));
+  expect(after.length).toBe(1);
+  expect(after[0]).toEqual(saved[0]);
+  expect(after[0].pointId).toBe('camp-cadiz-campground');
+  expect(after[0].date).toBe('2027-04-13');
+  expect(errors).toEqual([]);
+});
+
 test('a changed access record is shown as changed, with both versions, not as still verified',async({page})=>{
   const errors=await bootWithWeather(page);
   await openMilkyWay(page);

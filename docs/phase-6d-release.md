@@ -33,7 +33,8 @@ no account and no background service.
    Moon, forecast state and access warnings; provenance stays below.
 7. **Refresh.** Astronomy, access, weather and terrain are reported separately. Nothing says "everything
    updated". Notes, kit and identity survive; a night that loses its window keeps the saved record for reference
-   while actions that need a live window stay disabled.
+   while actions that need a live window stay disabled. If the reader has changed the place or night since
+   opening the plan, refresh reports that it did not overwrite the saved plan instead of writing a second one.
 8. **Print and calendar.** The printed sheet carries the forecast state, fetch age and valid interval, access
    date and restrictions, parking caveats, terrain uncertainty, current-versus-saved access status and the
    outstanding checks. Calendar output still goes only through `overhead-calendar.js` and adds no departure,

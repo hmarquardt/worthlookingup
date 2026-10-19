@@ -198,9 +198,11 @@ identity and coordinates.
 
 A partial failure is reported as a failure on that line and as success nowhere else. Notes, equipment and
 readiness ticks survive the refresh, and the session identity is unchanged, so refreshing can never create a
-duplicate plan. If the recalculation finds no qualifying window, the saved window remains visible for reference
-but save, print, calendar, field copy and observing-plan actions stay disabled until the issue is resolved. The
-chosen place and date are never changed by a refresh.
+duplicate plan. If the reader has changed the place or night since opening a saved plan, refresh says that it did
+not overwrite the saved plan rather than silently writing a second one; **Save this plan** is still the explicit
+action that does that. If the recalculation finds no qualifying window, the saved window remains visible for
+reference but save, print, calendar, field copy and observing-plan actions stay disabled until the issue is
+resolved. The chosen place and date are never changed by a refresh.
 
 ## Print layout
 

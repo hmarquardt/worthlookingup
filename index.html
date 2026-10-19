@@ -2409,9 +2409,16 @@ async function refreshSession(){
   :'no bare-earth profile is published for this place, and none was invented.')});
  if(sessionState.current&&computed&&computed.analysis&&computed.analysis.window){
   const record=sessionRecord(computed,{keepEvidence:true});
-  const result=module.put(sessionStore(),record);
-  if(result.ok){sessionState.saved=result.sessions;sessionState.current=record;}
-  else report.push({status:'bad',text:'Saving the refreshed plan failed ('+(result.reason||'storage refused')+'). The previous saved version is unchanged.'});
+  // Refresh belongs to the plan that was opened. If the reader has changed the place or night, this is a
+  // different plan; refreshing must not silently write it over the saved list or create a second record.
+  if(before&&record.id!==before.id){
+   report.push({status:'warn',text:'This is a different place or night from the plan you opened, so refresh did not '+
+    'overwrite that plan. Save this plan if you want to keep it.'});
+  }else{
+   const result=module.put(sessionStore(),record);
+   if(result.ok){sessionState.saved=result.sessions;sessionState.current=record;}
+   else report.push({status:'bad',text:'Saving the refreshed plan failed ('+(result.reason||'storage refused')+'). The previous saved version is unchanged.'});
+  }
  }
  sessionState.refreshReport=report;
  sessionState.notice='Refresh finished. Each part is reported separately below; nothing here contacted the managing agency.';
