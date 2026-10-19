@@ -1152,19 +1152,22 @@ function selectHorizon(horizon){
    loaded because every card uses it to explain the object. Equipment never hides an opportunity and never
    changes an opportunity score or ranking. */
 const equipmentState={module:null,loading:null,profile:undefined,error:null};
+function difficultyLib(){return typeof OverheadDifficulty!=='undefined'?OverheadDifficulty:null;}
 updateEquipmentSummary();
 function equipmentProfile(){
  if(equipmentState.profile===undefined){
   const raw=read('equipment.v1',null);
-  equipmentState.profile=raw&&OverheadDifficulty?OverheadDifficulty.normaliseProfile(raw):null;
+  const D=difficultyLib();
+  equipmentState.profile=raw&&D?D.normaliseProfile(raw):null;
  }
  return equipmentState.profile;
 }
-function equipmentProfileActive(){return !!(equipmentProfile()&&OverheadDifficulty&&OverheadDifficulty.profileHasAny(equipmentProfile()));}
+function equipmentProfileActive(){const D=difficultyLib();return !!(equipmentProfile()&&D&&D.profileHasAny(equipmentProfile()));}
 function updateEquipmentSummary(){
  const el=$('equipment-summary');
  if(!el)return;
- el.textContent=OverheadDifficulty?OverheadDifficulty.profileSummary(equipmentProfile()):'No equipment profile';
+ const D=difficultyLib();
+ el.textContent=D?D.profileSummary(equipmentProfile()):'No equipment profile';
 }
 function loadEquipmentScript(){
  if(equipmentState.module)return Promise.resolve(equipmentState.module);
@@ -1182,18 +1185,18 @@ function loadEquipmentScript(){
  return equipmentState.loading;
 }
 function equipmentFit(assessment){
- if(!assessment||!OverheadDifficulty)return null;
- return OverheadDifficulty.applyProfile(assessment,equipmentProfile());
+ const D=difficultyLib();if(!assessment||!D)return null;
+ return D.applyProfile(assessment,equipmentProfile());
 }
 function difficultyForOpportunity(opportunity){
  if(!opportunity)return null;
- const base=opportunity.difficulty||(OverheadDifficulty?OverheadDifficulty.assessOpportunity(opportunity):null);
+ const D=difficultyLib();const base=opportunity.difficulty||(D?D.assessOpportunity(opportunity):null);
  if(!base)return null;
  return {...base,profileFit:equipmentFit(base)};
 }
 function difficultyForPass(pass){
- if(!pass||!OverheadDifficulty)return null;
- const base=OverheadDifficulty.assessSatellite({brightness:pass.score&&pass.score.brightness,
+ const D=difficultyLib();if(!pass||!D)return null;
+ const base=D.assessSatellite({brightness:pass.score&&pass.score.brightness,
   peakAltitudeDeg:pass.peak&&pass.peak.el,durationSeconds:pass.duration,train:!!pass.train});
  return {...base,profileFit:equipmentFit(base)};
 }
@@ -1214,7 +1217,7 @@ function difficultyBlock(assessment){
  const imaging=d.imaging;
  const equipmentLabel=d.equipment&&d.equipment.label?d.equipment.label:'Not established';
  const alternatives=d.equipment&&Array.isArray(d.equipment.alternatives)?d.equipment.alternatives
-  .filter(id=>id!==d.equipment.primary).map(id=>OverheadDifficulty&&OverheadDifficulty.EQUIPMENT_LABELS[id]||id):[];
+  .filter(id=>id!==d.equipment.primary).map(id=>{const D=difficultyLib();return D&&D.EQUIPMENT_LABELS[id]||id;}):[];
  const approach=equipmentLabel+(alternatives.length?' · also '+alternatives.join(' or '):'');
  const why=(d.reasons&&d.reasons[0])||visual.detail||'No object-specific reason is recorded.';
  const inputs=(d.inputs||[]).map(row=>`<li><strong>${esc(row.label)}:</strong> ${esc(row.value)}</li>`).join('');
@@ -1255,7 +1258,7 @@ function renderEquipmentDialog(module){
  if(!form)return;
  form.onsubmit=event=>{
   event.preventDefault();
-  const profile=M.readForm(form,OverheadDifficulty?OverheadDifficulty.normaliseProfile:value=>value);
+  const profile=M.readForm(form,difficultyLib()?difficultyLib().normaliseProfile:value=>value);
   equipmentState.profile=profile;write('equipment.v1',profile);updateEquipmentSummary();
   renderEquipmentDialog(M);
   const status=$('equipment-dialog-body').querySelector('.equipment-status');
@@ -1541,7 +1544,7 @@ function registerSeasonItems(result){
  const scored=Opportunities.withScores(candidates,{site:state.site,now:Date.now(),weatherAt:null});
  seasonState.events=new Map();
  for(const opportunity of scored.opportunities){
-  if(OverheadDifficulty)opportunity.difficulty=OverheadDifficulty.assessOpportunity(opportunity);
+  const Difficulty=difficultyLib();if(Difficulty)opportunity.difficulty=Difficulty.assessOpportunity(opportunity);
   const own=opportunity.attributes&&opportunity.attributes.windowQuality;
   if(Number.isFinite(own)){
    opportunity.observing={...opportunity.observing,value:own,
