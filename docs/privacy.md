@@ -25,3 +25,9 @@ collector retention and access are governed by that service; no new retention cl
 
 Origin storage cannot be read across sites: old Overhead data is neither moved nor deleted by
 visiting this domain. Use the explicit documented transfer process. Browser storage is not encrypted.
+
+The optional equipment profile (`overhead.equipment.v1`) is stored only in this browser. It contains the
+instrument categories and numbers the reader chooses to enter (for example binocular magnification, telescope
+aperture or camera focal length), never a manufacturer, serial number, account or purchase history. It is not
+sent to analytics or any provider, not included in the preference-transfer export, and is removed with the
+site's other local data. The equipment guide is a local file, loaded only when the reader opens it.

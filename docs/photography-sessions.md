@@ -105,7 +105,18 @@ valid and prints as empty boxes. The seven **Before you leave** prompts are a se
 `overhead.session.readiness.v1`; ticking one records that the reader did it and never turns an agency rule into a
 verified fact.
 
-## Camera-setting estimation limits
+## Equipment profile and session camera
+
+The session builder can reuse the local **My equipment** profile without turning it into a required step.
+When the profile reports a camera and the plan has no camera choices yet, the sensor, focal length, aperture
+and tracking flag are prefilled once. An explicit session choice is never overwritten; a saved plan keeps its
+own camera values. The Prepare step says when fields were prefilled, and says when a saved plan's camera differs
+from the current profile. The profile remains user-reported capability; it does not change the camera guidance
+rules (still the 500/300-rule family and still a rule of thumb) or the observing window.
+
+See [equipment-difficulty.md](equipment-difficulty.md) for the profile schema, privacy and reset behaviour.
+
+
 
 Two families of output, and a deliberate refusal:
 

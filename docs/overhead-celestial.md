@@ -356,6 +356,19 @@ Behavioural assertions that are not simple numbers (all in the committed tests):
   in the fixture, and an empty payload is confirmed to produce no measured value.
 - The DOM never contains the words "spectacle", "amazing", "once in a lifetime" or "must see".
 
+## 7A. Observing difficulty and equipment
+
+The opportunity score is unchanged. Every opportunity also carries a separate `difficulty` object computed by
+`overhead-difficulty.js` in both the worker and the synchronous fallback. It names the object type, visual and
+imaging tiers, recommended equipment, input measurements, reasons, evidence/confidence and limitations. It is
+not a detectability model and never alters the score, ranking, calendar interval or astronomy.
+
+Comet difficulty uses total magnitude conservatively and never equates it with a stellar limiting magnitude.
+A CCD total magnitude is not allowed to make a comet look easier than a visual record when a 30-day median is
+available. The published `coma_diameter_arcmin` field is carried with `unitVerified: false`; no surface
+brightness is derived. Planet angular diameters use the model geocentric distance and documented radii. See
+[equipment-difficulty.md](equipment-difficulty.md).
+
 ## 8. Known limitations
 
 - **Comet brightness is not predictable.** The catalog model can be wrong by several magnitudes, and COBS

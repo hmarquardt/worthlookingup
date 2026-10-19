@@ -38,6 +38,7 @@ function positionRecord(name, t, site) {
     compass: A.compass(horizontal.azimuth),
     magnitude: round(info.magnitude, 2), magnitudeSource: info.source,
     phaseAngle: round(info.phaseAngle, 1),
+    geoDistanceAu: round(info.geoDistanceAu, 4),
     elongationDeg: round(A.sunAngle(name, t), 1),
     optical: opticalFor(name, info.magnitude),
     frame: horizontal.frame, refractionApplied: horizontal.refractionApplied };

@@ -55,7 +55,23 @@ announced period gets the refusal sentence in place of a button, in the same mut
 style. Nothing in the visual system changes: same ink/paper surfaces, sage actions, 44px mobile
 controls and visible focus. See [calendar.md](calendar.md).
 
-## Phase 6C photography sessions
+## Phase 7A equipment and difficulty
+
+Every celestial card keeps its existing observing-suitability value and adds a separate, compact difficulty
+block immediately below the summary: two chips (**Visual** and **Imaging**), the suggested approach, one
+plain-English reason, an optional profile fit and a disclosure with inputs, limits and provenance. The block
+uses the existing panel, line and semantic chip colours; it never replaces or recolours the opportunity score.
+The full explanation stays in a native `<details>`, while the level, approach and reason are always visible.
+
+The equipment guide and profile live in one dialog opened from Settings, from any difficulty block and from
+the session builder. The guide is a two-column card grid on wide screens and one column under 650px; the
+profile uses native fieldsets, legends, checkboxes and numeric inputs with 44px rows. The module is fetched
+only when the dialog opens. The profile is local-only and never suppresses an opportunity or changes its rank.
+
+Discovery cards add one small difficulty line and the guide link. The satellite detail dialog uses the same
+block. The session builder notes when camera fields were prefilled from the profile, or when a saved plan's
+camera differs from the current profile; it never overwrites either silently.
+
 
 The session builder is one bordered panel in the Milky Way category, below **Where to go**, and it opens
 in place instead of navigating to a separate screen. Five numbered steps run top to bottom, each a

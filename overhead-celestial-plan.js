@@ -115,6 +115,10 @@ function compute(request) {
   }
 
   const scored = O.withScores(candidates, { site, now, weatherAt: request.weather ? (t => weatherLookup(request.weather, t)) : null });
+  // Difficulty is a separate answer from the observing-suitability score and never changes that score or
+  // the ranking. It is computed here so the worker and the synchronous fallback produce the same object.
+  const Difficulty = root.OverheadDifficulty;
+  if (Difficulty) for (const opportunity of scored.opportunities) opportunity.difficulty = Difficulty.assessOpportunity(opportunity);
   // The Milky Way carries its own documented window quality (geometry, darkness and moonlight), so the
   // shared model's generic value — which exists to rank a point source crossing the sky — is replaced by
   // it for this category only. The number a reader sees is then the same number the plan ordered by, and

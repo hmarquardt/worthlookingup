@@ -191,6 +191,23 @@ because of that rule; agents should read it explicitly (some tools discover only
   keyboard operation, a visible focus ring and no double toggle. Navigation, lazy loading, the astronomy engines
   and the RFC 5545 writer are unchanged. See docs/photography-sessions.md.
 
+- Phase 7A separates **opportunity, difficulty and equipment** without changing the opportunity score.
+  `overhead-difficulty.js` is the pure, object-specific assessment layer (no DOM, storage, network or score):
+  it produces separate visual and imaging tiers, equipment categories, reasons, inputs, confidence and limits,
+  and the same object is not judged by a universal magnitude cutoff. Comet total magnitude is never a stellar
+  limiting magnitude; a CCD total magnitude cannot make a comet look easier than the visual record when a
+  30-day median exists; measured/predicted disagreement and photometry age are reported rather than resolved;
+  and `coma_diameter_arcmin` stays `unitVerified: false`, so no surface brightness is derived. Planet guidance
+  uses model magnitude and an angular diameter from the computed geocentric distance and documented radii;
+  meteor showers remain naked-eye/wide-field; satellite passes distinguish naked-eye, wide-field imaging and
+  difficult high-magnification tracking; the Milky Way recommends wide-field camera work, not a telescope;
+  solar eclipses require a certified filter the app cannot verify. The difficulty block sits below a card's
+  summary and never replaces the score, ranking, calendar interval or astronomy. `overhead-equipment.js` is a
+  lazy guide/profile module: `worthlookingup.equipment/1` in `overhead.equipment.v1`, user-reported capability,
+  bounded and optional, local only, never hides an opportunity and never changes ranking. It may prefill a
+  session's camera only when the session has no camera choices; it never overwrites a saved plan or an explicit
+  choice. See docs/equipment-difficulty.md.
+
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.
 Guard storage and external requests; keep fallback paths, timestamps and stale warnings.

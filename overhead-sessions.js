@@ -666,6 +666,8 @@
     return step(5, 'Prepare',
       '<div class="sx-readiness"><h5>Readiness checklist</h5><ul class="small">' + readiness + '</ul>' +
       '<p class="small">Ticking these boxes is a prompt, not a safety certification, and this page cannot know the conditions at the site.</p></div>' +
+      (ctx.equipmentNote ? '<p class="small sx-equipment-note">' + esc(ctx.equipmentNote) + '</p>' : '') +
+      '<p class="small"><button type="button" class="equipment-guide-link" data-equipment-guide>Equipment guide &amp; my kit</button></p>' +
       '<div class="sx-gear"><h5>Equipment checklist</h5><ul class="sx-checks">' + items + '</ul>' +
       '<p class="small">Your ticks are stored in this browser only, survive a reload, and are copied into a saved plan. ' +
       'Nothing is uploaded.</p></div>' +

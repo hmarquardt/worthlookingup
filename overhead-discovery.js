@@ -32,7 +32,7 @@ function celestial(opportunity,{category,errors=[]}={}){
  return {id:category+':'+opportunity.id,sourceId:opportunity.id,category,title:opportunity.title,
   start,end,best:opportunity.best,precision:start===end?'calculated-instant':'window',
   classification:local?'local-opportunity':'announcement',categoryPriority:opportunity.observing?.value,
-  withinCategory:true,optical:opportunity.optical,warnings,weatherSummary:opportunity.observing?.weatherUsed&&opportunity.observing.weather?'Forecast: '+opportunity.observing.weather.cloud_cover+'% cloud · '+opportunity.observing.weather.visibility+' m visibility · '+opportunity.observing.weather.precipitation+' mm precipitation':'Weather: '+(confidence.observing?.grade||'not included'),
+  withinCategory:true,optical:opportunity.optical,difficulty:opportunity.difficulty||null,warnings,weatherSummary:opportunity.observing?.weatherUsed&&opportunity.observing.weather?'Forecast: '+opportunity.observing.weather.cloud_cover+'% cloud · '+opportunity.observing.weather.visibility+' m visibility · '+opportunity.observing.weather.precipitation+' mm precipitation':'Weather: '+(confidence.observing?.grade||'not included'),
   explanation:opportunity.summary||(opportunity.why||[]).join(' · '),
   source:opportunity.provenance?.library||opportunity.calculation?.library||'Celestial calculation',
   circumstance:[opportunity.type,...(opportunity.objects||[]).slice().sort(),opportunity.occurrence||''].join('|'),

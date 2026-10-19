@@ -30,6 +30,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <script src="overhead-trains.js" defer></script>
 <script src="overhead-objects.js" defer></script>
 <script src="overhead-astro.js" defer></script>
+<script src="overhead-difficulty.js" defer></script>
 <script src="overhead-opportunities.js" defer></script>
 <script src="overhead-planets.js" defer></script>
 <script src="overhead-meteors.js" defer></script>
@@ -161,6 +162,43 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 .celestial-confidence strong{color:var(--ink);font-weight:600}
 .celestial-caveats{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.8rem;color:var(--muted)}
 .celestial-source{font-size:.75rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:3px}
+/* Phase 7A: object-specific difficulty, always adjacent to the opportunity score and never a substitute for it. */
+.difficulty{display:grid;gap:6px;border:1px solid var(--line);border-radius:8px;padding:9px 10px;background:var(--surface-2)}
+.difficulty-line{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.difficulty-chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:.72rem;font-weight:600}
+.difficulty-chip[data-level="easy"]{border-color:var(--good);color:var(--good)}
+.difficulty-chip[data-level="accessible"]{border-color:var(--blue);color:var(--blue)}
+.difficulty-chip[data-level="moderate"]{border-color:var(--amber);color:var(--amber)}
+.difficulty-chip[data-level="challenging"],.difficulty-chip[data-level="advanced"]{border-color:var(--danger);color:var(--danger)}
+.difficulty-chip[data-level="uncertain"]{border-color:var(--line);color:var(--muted)}
+.difficulty p{margin:0}
+.difficulty .difficulty-fit{color:var(--ink)}
+.difficulty details{border-top:1px solid var(--line);padding:5px 0 0}
+.difficulty details summary{font-size:.75rem;color:var(--blue)}
+.difficulty .equipment-guide-link{border:0;padding:2px 0;color:var(--blue);font-size:.75rem;text-align:left;min-height:32px}
+.equipment-setting{display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.equipment-setting .small{flex:1;min-width:180px}
+#equipment-dialog{max-width:820px}
+.equipment-guide-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));margin:12px 0 18px}
+.equipment-guide-card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--panel);display:grid;gap:6px}
+.equipment-guide-card h3,.equipment-guide-note h3{font-size:.95rem;margin:0}
+.equipment-guide-card p{font-size:.82rem;color:var(--muted);line-height:1.6}
+.equipment-guide-card ul{margin:0;padding-left:16px}
+.equipment-guide-note{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:6px}
+.equipment-profile{border-top:1px solid var(--line);padding-top:16px;margin-top:18px}
+.equipment-form{display:grid;gap:14px;margin-top:10px}
+.equipment-form fieldset{border:1px solid var(--line);border-radius:8px;padding:10px;margin:0}
+.equipment-form legend{font-size:.8rem;color:var(--muted);padding:0 4px}
+.equipment-checks{display:grid;gap:2px}
+.equipment-form button:focus{outline:2px solid var(--lime);outline-offset:4px}
+.equipment-form button:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
+.equipment-check{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:7px 2px;color:var(--ink);font-size:.86rem}
+.equipment-check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--accent);flex:none}
+.equipment-check input:focus{outline:2px solid var(--lime);outline-offset:2px}
+.equipment-check span{display:block}
+.equipment-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.equipment-status{min-height:1.2em}
+@media (max-width:650px){.equipment-setting{display:grid}.equipment-grid{grid-template-columns:1fr}.difficulty{padding:8px}}
 .celestial-sky{width:100%;height:auto;display:block}
 .celestial-empty{border:1px dashed var(--line);border-radius:10px;padding:18px;color:var(--muted);display:grid;gap:8px}
 /* Rocket launch calendar. Reuses the celestial card shell so both categories read the same way. */
@@ -300,6 +338,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 /* A checklist row is the target, not the box: 44px minimum, the whole row toggles, and focus is visible on the box. */
 .milkyway-session .sx-check{min-height:44px;align-items:center;padding:8px 2px}
 .milkyway-session .sx-check input{width:20px;height:20px;margin:0;accent-color:var(--accent)}
+.milkyway-session .sx-check input:focus{outline:2px solid var(--accent);outline-offset:2px}
 .milkyway-session .sx-check input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .milkyway-session .sx-check:hover{background:var(--hover)}
 @media (max-width:720px){.milkyway-session .sx-field{flex-direction:column;align-items:flex-start;gap:1px}
@@ -459,15 +498,16 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 </main>
 <section id="session-print" class="session-print" aria-hidden="true"></section>
 <!-- The print sheet above is filled only when a reader asks to print a session, and is hidden on screen. -->
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.19.2" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.19.2">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.19.3" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.19.3">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.19.2 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.19.3 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
-<dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
+<dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><div class="equipment-setting"><button type="button" id="equipment-open">Equipment guide &amp; my kit</button><span id="equipment-summary" class="small">No equipment profile</span></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
+<dialog id="equipment-dialog" aria-labelledby="equipment-dialog-title"><div class="dialog-heading"><h2 id="equipment-dialog-title">Equipment and difficulty</h2><button class="close" data-close aria-label="Close equipment guide">×</button></div><div id="equipment-dialog-body"><p class="small">Loading the guide and your locally stored equipment profile…</p></div><p class="privacy">The guide and profile are loaded only when you open this panel. Your equipment stays in this browser, is never uploaded, and is used for guidance only; it never hides opportunities or changes their scores.</p></dialog>
 <dialog id="ascent-dialog" aria-labelledby="ascent-title"><div class="dialog-heading"><h2 id="ascent-title">Historical ascent geometry</h2><button class="close" data-close aria-label="Close historical ascents">×</button></div><p class="small ascent-banner">Reconstructed geometry from past Falcon flights, each validated against its own catalogued achieved orbit. Every entry is a past flight: none of it predicts a future launch, and none of it says whether anything was or will be visible.</p><p id="ascent-status" class="small" role="status" aria-live="polite"></p><div class="grid"><label>Historical flight<select id="ascent-flight" disabled></select></label><label>Observing location<select id="ascent-observer"></select></label></div><div id="ascent-body"></div><p class="privacy">Nothing is requested until you open this panel: the reviewed profile data and the geometry module are fetched on demand. Profiles exist only for flights that have both a catalogued achieved orbit and a public telemetry transcription, and a flight whose reconstruction fails its checks is published as a direction with its elevation withheld.</p></dialog>
 <dialog id="event-dialog" aria-labelledby="detail-title"><div class="dialog-heading"><div><div class="eyebrow" id="detail-category"></div><h2 id="detail-title"></h2></div><button class="close" data-close aria-label="Close event details">×</button></div><div id="detail-content"></div><div class="actions"><button id="favorite">☆ Favorite spacecraft</button><button id="map-open">Ground-track map</button><button id="detail-calendar">Add to calendar (.ics)</button><button id="detail-plan" aria-pressed="false">Add to observing plan</button></div><div id="map-panel" hidden><p class="privacy">Drag with a mouse to pan. For touch dragging, enable panning below; turn it off to scroll the page. The marker is at the selected pass peak, not live.</p><div class="actions"><button id="map-plus" aria-label="Zoom map in">+</button><button id="map-minus" aria-label="Zoom map out">−</button><button id="map-center">Center on observer</button><button id="map-fit">Fit pass</button><button id="map-touch" aria-pressed="false">Enable touch panning</button></div><div id="map"></div><p id="map-status" class="privacy" role="status"></p></div></dialog>
 <script>
@@ -765,7 +805,7 @@ function renderTrainDiagnostics(){const d=state.trainDiagnostics;let section=$('
    elementAgeDays:x.elementAgeDays,samplesPropagated:x.samples,clusterCandidates:x.candidates,rejections:x.rejected,events:x.results.map(describe)}))},null,2);}
 function renderDiagnostics(){const sources=Object.entries(state.sources);const active=Object.fromEntries([...state.activeSourceKeys].filter(k=>state.sources[k]).map(k=>[k,state.sources[k]]));$('freshness').textContent=E.publicFreshness(active);$('diagnostic-output').textContent=JSON.stringify({observer:state.site,timing:timingDiagnostics(),presentation:{selected:presentationTrace(state.selected),best:presentationTrace(state.weekly?.winner?.pass),happeningNow:happeningPasses().map(p=>presentationTrace(p))},timezone:state.site.tz,objectsLoaded:state.objects.length,objectsCalculated:state.poolCount,objectsOmitted:state.excluded,orbitalEpochRange:state.objects.length?[...state.objects.map(o=>o.EPOCH)].sort().filter((_,i,a)=>i===0||i===a.length-1):[],passesCalculated:Object.values(state.results).flat().length,visiblePasses:Object.values(state.results).flat().filter(p=>p.likely).length,calculationMs:Math.round(state.duration),sources:Object.fromEntries(sources.map(([k,v])=>[k,{...v,fetchedAt:new Date(v.at).toISOString()}])),activeSourceKeys:[...state.activeSourceKeys].sort(),cache:'IndexedDB: at most 32 responses, max 7 days; session fallback. Elements >14 days from prediction excluded.',objectMetadata:metadataAvailable?{cache:'IndexedDB overhead-object-meta: at most '+O.RULES.maxRecords+' records, '+O.RULES.ttlDays+'-day TTL; separate from the orbit/weather response cache',onDemandOnly:true,requests:objectEnricher.stats.requests,objectFailures:objectEnricher.stats.objectFailures,sourceWarnings:objectEnricher.stats.sourceWarnings,lastError:objectEnricher.stats.lastError,lastWarning:objectEnricher.stats.lastWarning,objects:[...objectMeta.values()].slice(-5).map(O.provenance)}:{available:false,note:'Metadata enrichment unavailable. Pass predictions are unaffected.'},apiErrors:[...new Set(state.errors)]},null,2);}
 function showEvent(id,candidate){const p=candidate||passes().find(p=>p.id===id);if(!p)return;analyticsEvent('event_detail_view',{category:category(p)});state.selected=p;render();state.selected=p;$('detail-title').textContent=p.name;$('detail-category').textContent=category(p);const f=(name,value)=>`<div><span>${name}</span>${esc(value)}</div>`;
- $('detail-content').innerHTML=`<div class="detail-score"><strong class="mono">${p.score}</strong><div>${esc(E.label(p.score))}${p.provisional?' · provisional':''}<div class="small">${esc(dateLabel(p.start))} · ${esc(state.site.tz)}</div></div></div><div class="detail-route">${p.likely?'Appears':'Orbital entry'} <strong>${E.compass(p.entry.az)} · ${Math.round(p.entry.el)}°</strong><br>→ <strong>${E.compass(p.peak.az)} · ${Math.round(p.peak.el)}° peak</strong><br>→ ${p.likely?'disappears':'orbital exit'} <strong>${E.compass(p.exit.az)} · ${Math.round(p.exit.el)}°</strong></div><div class="detail-facts">${f('Start',time(p.start,true))}${f('Peak',time(p.peak.t,true))}${f('End',time(p.end,true))}${f('Total likely visible',duration(p.duration))}${f('Geometric horizon rise / set',time(p.rise,true)+' / '+time(p.set,true))}${f('Full orbital maximum',Math.round(p.orbitalPeak.el)+'° at '+time(p.orbitalPeak.t,true))}${f('Range at selected peak',distance(p.peak.range*1000))}${f('Sun altitude',p.peak.sun.toFixed(1)+'°')}${f('Low / mid / high cloud',p.w?[p.w.cloud_cover_low,p.w.cloud_cover_mid,p.w.cloud_cover_high].map(v=>v==null?'?':v+'%').join(' / '):'Unknown')}${f('Element epoch',new Date(p.epoch).toISOString())}</div>${p.train?`<div class="detail-facts">${f('Launch date',p.train.launchDate||'Unknown')}${f('Launch age',p.train.launchAgeDays!=null?'Launched ~'+p.train.launchAgeDays+' days ago':'Recent Starlink launch')}${f('Satellites in cohort',p.train.memberCount+' cataloged · '+p.train.cohortSize+' propagated')}${f('Predicted visible at peak',p.train.visibleCount+' illuminated above '+state.settings.minimum+'°')}${f('Strong viewing window',time(p.start)+' – '+time(p.end)+' · '+duration(p.duration))}${f('Apparent span · median spacing',Math.round(p.train.spanDeg)+'° · '+p.train.medianSpacingDeg+'° (max gap '+p.train.maxGapDeg+'°)')}${f('Train state',p.train.state+(p.train.stale?' · orbital data may be stale':''))}${f('Element source',p.train.source)}</div><p class="small">Why this is a train: ${esc((p.reasons||[]).join(' · '))}</p><details><summary>Individual spacecraft (${p.train.memberRecords.length})</summary><div class="train-members">${p.train.memberRecords.map(m=>`<span>${esc(m.name)} · ${esc(m.norad)}</span>`).join('')}</div></details>`:''}<div id="object-about" class="object-about" hidden aria-live="polite"></div>${skySVG(p)}<h3>Why this score</h3><ul id="reasons"><li>${Math.round(p.peak.el)}° maximum during the displayed segment; ${duration(p.duration)} above ${state.settings.minimum}° while dark and sunlit.</li><li>${p.peak.lit?'Spacecraft fully sunlit':'Spacecraft in Earth’s shadow or penumbra'}; Sun ${Math.abs(p.peak.sun).toFixed(1)}° ${p.peak.sun<0?'below':'above'} your horizon.</li><li>${esc(weatherDescription(p.w))}; visibility ${esc(distance(p.w?.visibility))}.</li><li>Brightness category: ${p.norad==='25544'?'very bright ISS':p.norad==='48274'?'bright station':p.groups.includes('visual')?'CelesTrak bright candidate':'uncertain spacecraft'}. No apparent magnitude estimate.</li><li>${p.provisional?'Missing weather earns zero weather points; this is a provisional geometry score.':'Clouds, reduced visibility and precipitation apply additional penalties.'}</li><li>Base points: ${p.factors?Object.entries(p.factors).map(([k,v])=>esc(k)+' '+v.toFixed(1)).join(' · '):'not recorded for this event'}.</li></ul><p class="small">Times describe the longest continuous visible segment; total duration sums all segments. For an invisible orbital pass, times describe the horizon-to-horizon geometry. Be outside two minutes early. Elements and maneuvers can shift a prediction.</p>`;
+ $('detail-content').innerHTML=`<div class="detail-score"><strong class="mono">${p.score}</strong><div>${esc(E.label(p.score))}${p.provisional?' · provisional':''}<div class="small">${esc(dateLabel(p.start))} · ${esc(state.site.tz)}</div></div></div>${difficultyBlock(difficultyForPass(p))}<div class="detail-route">${p.likely?'Appears':'Orbital entry'} <strong>${E.compass(p.entry.az)} · ${Math.round(p.entry.el)}°</strong><br>→ <strong>${E.compass(p.peak.az)} · ${Math.round(p.peak.el)}° peak</strong><br>→ ${p.likely?'disappears':'orbital exit'} <strong>${E.compass(p.exit.az)} · ${Math.round(p.exit.el)}°</strong></div><div class="detail-facts">${f('Start',time(p.start,true))}${f('Peak',time(p.peak.t,true))}${f('End',time(p.end,true))}${f('Total likely visible',duration(p.duration))}${f('Geometric horizon rise / set',time(p.rise,true)+' / '+time(p.set,true))}${f('Full orbital maximum',Math.round(p.orbitalPeak.el)+'° at '+time(p.orbitalPeak.t,true))}${f('Range at selected peak',distance(p.peak.range*1000))}${f('Sun altitude',p.peak.sun.toFixed(1)+'°')}${f('Low / mid / high cloud',p.w?[p.w.cloud_cover_low,p.w.cloud_cover_mid,p.w.cloud_cover_high].map(v=>v==null?'?':v+'%').join(' / '):'Unknown')}${f('Element epoch',new Date(p.epoch).toISOString())}</div>${p.train?`<div class="detail-facts">${f('Launch date',p.train.launchDate||'Unknown')}${f('Launch age',p.train.launchAgeDays!=null?'Launched ~'+p.train.launchAgeDays+' days ago':'Recent Starlink launch')}${f('Satellites in cohort',p.train.memberCount+' cataloged · '+p.train.cohortSize+' propagated')}${f('Predicted visible at peak',p.train.visibleCount+' illuminated above '+state.settings.minimum+'°')}${f('Strong viewing window',time(p.start)+' – '+time(p.end)+' · '+duration(p.duration))}${f('Apparent span · median spacing',Math.round(p.train.spanDeg)+'° · '+p.train.medianSpacingDeg+'° (max gap '+p.train.maxGapDeg+'°)')}${f('Train state',p.train.state+(p.train.stale?' · orbital data may be stale':''))}${f('Element source',p.train.source)}</div><p class="small">Why this is a train: ${esc((p.reasons||[]).join(' · '))}</p><details><summary>Individual spacecraft (${p.train.memberRecords.length})</summary><div class="train-members">${p.train.memberRecords.map(m=>`<span>${esc(m.name)} · ${esc(m.norad)}</span>`).join('')}</div></details>`:''}<div id="object-about" class="object-about" hidden aria-live="polite"></div>${skySVG(p)}<h3>Why this score</h3><ul id="reasons"><li>${Math.round(p.peak.el)}° maximum during the displayed segment; ${duration(p.duration)} above ${state.settings.minimum}° while dark and sunlit.</li><li>${p.peak.lit?'Spacecraft fully sunlit':'Spacecraft in Earth’s shadow or penumbra'}; Sun ${Math.abs(p.peak.sun).toFixed(1)}° ${p.peak.sun<0?'below':'above'} your horizon.</li><li>${esc(weatherDescription(p.w))}; visibility ${esc(distance(p.w?.visibility))}.</li><li>Brightness category: ${p.norad==='25544'?'very bright ISS':p.norad==='48274'?'bright station':p.groups.includes('visual')?'CelesTrak bright candidate':'uncertain spacecraft'}. No apparent magnitude estimate.</li><li>${p.provisional?'Missing weather earns zero weather points; this is a provisional geometry score.':'Clouds, reduced visibility and precipitation apply additional penalties.'}</li><li>Base points: ${p.factors?Object.entries(p.factors).map(([k,v])=>esc(k)+' '+v.toFixed(1)).join(' · '):'not recorded for this event'}.</li></ul><p class="small">Times describe the longest continuous visible segment; total duration sums all segments. For an invisible orbital pass, times describe the horizon-to-horizon geometry. Be outside two minutes early. Elements and maneuvers can shift a prediction.</p>`;
  $('favorite').hidden=!!p.train;$('favorite').textContent=state.favorites.includes(p.norad)?'★ Remove favorite':'☆ Favorite spacecraft';$('map-panel').hidden=true;$('event-dialog').showModal();renderDiagnostics();renderObjectAbout();enrichObjects([p]);syncDetailCalendar(p);}
 function fillLocation(){$('location-name').value=state.site.name;$('latitude').value=state.site.lat;$('longitude').value=state.site.lon;$('timezone').value=state.site.tz;renderSaved();}
 function renderSaved(){$('saved-locations').innerHTML=state.saved.map((s,i)=>`<div class="saved-row"><button data-site="${i}">${esc(s.name)} <span class="small">${s.lat.toFixed(2)}, ${s.lon.toFixed(2)}</span></button><button data-delete-site="${i}" aria-label="Delete saved ${esc(s.name)}">×</button></div>`).join('');}
@@ -785,6 +825,8 @@ document.querySelector('.tabs').onkeydown=e=>{const tabs=[...document.querySelec
  $('favorites-only').onclick=()=>{state.favoriteOnly=!state.favoriteOnly;$('favorites-only').setAttribute('aria-pressed',state.favoriteOnly);++state.generation;calculate();};
  $('events').onclick=e=>{const b=e.target.closest('[data-event]');if(b)showEvent(b.dataset.event);};$('more').onclick=()=>{state.limit+=12;render();};$('week').onclick=e=>{const b=e.target.closest('[data-day]');if(b){state.day=+b.dataset.day;state.limit=6;state.selected=null;render();}};
  $('location-open').onclick=()=>{fillLocation();$('location-dialog').showModal();};$('settings-open').onclick=()=>{for(const [k,v]of Object.entries(state.settings))if($('settings-form').elements[k])$('settings-form').elements[k].value=v;$('settings-dialog').showModal();};
+ $('equipment-open').onclick=()=>openEquipmentGuide();
+ document.addEventListener('click',event=>{const target=event.target.closest('[data-equipment-guide]');if(target){event.preventDefault();openEquipmentGuide();}});
  $('settings-form').onsubmit=e=>{e.preventDefault();const old=state.settings.minimum;state.settings=Object.fromEntries(new FormData(e.target));write('settings',state.settings);$('settings-dialog').close();if(state.loading)return;if(+old!==+state.settings.minimum){++state.generation;calculate();}else render();};
  $('coordinate-form').onsubmit=e=>{e.preventDefault();analyticsEvent('location_search',{method:'coordinates'});useSite({name:$('location-name').value.trim()||'Observing point',lat:+$('latitude').value,lon:+$('longitude').value,tz:$('timezone').value.trim()});};
  $('latitude').oninput=$('longitude').oninput=()=>{$('timezone').value='';};
@@ -912,7 +954,7 @@ function discoveryCard(event){
  const warnings=event.warnings||[];
  return `<article class="discovery-event" data-discovery-event="${esc(event.id)}"><button type="button" class="discovery-open" data-discovery-open="${esc(event.id)}">${esc(event.title)} <span aria-hidden="true">↗</span></button><div class="discovery-category">${esc(category)}</div><p class="discovery-time">${esc(when)}</p>`+
   (event.vehicle?`<p class="small">${esc(event.vehicle)} · ${esc(event.status)}</p>`:`<p class="small">${esc(event.explanation)}</p>`)+
-  (event.optical?`<p class="small">Equipment: ${esc(OPTICAL_LABEL[event.optical]||event.optical)}</p>`:'')+(event.weatherSummary?`<p class="small">${esc(event.weatherSummary)}</p>`:'')+
+  (event.optical?`<p class="small">Equipment: ${esc(OPTICAL_LABEL[event.optical]||event.optical)}</p>`:'')+difficultyLine(event)+(event.weatherSummary?`<p class="small">${esc(event.weatherSummary)}</p>`:'')+
   warnings.slice(0,2).map(text=>`<p class="small discovery-warning">${esc(text)}</p>`).join('')+
   (warnings.length>2?`<details class="discovery-caveats"><summary>All limits &amp; equipment (${warnings.length})</summary><ul>${warnings.map(w=>`<li>${esc(w)}</li>`).join('')}</ul></details>`:'')+
   `<p class="discovery-source">${esc(event.source)}</p>${calendarActions(event.id)}</article>`;
@@ -1105,7 +1147,138 @@ function selectHorizon(horizon){
  if(celestial.category==='launches'){renderLaunches();return;}
  if(celestial.category!=='satellites')requestCelestial();
 }
-/* ---- celestial rendering ---- */
+/* ---- equipment guide, profile and difficulty (Phase 7A) ----
+   The guide/profile module is fetched only when a reader opens it. The pure difficulty module is already
+   loaded because every card uses it to explain the object. Equipment never hides an opportunity and never
+   changes an opportunity score or ranking. */
+const equipmentState={module:null,loading:null,profile:undefined,error:null};
+updateEquipmentSummary();
+function equipmentProfile(){
+ if(equipmentState.profile===undefined){
+  const raw=read('equipment.v1',null);
+  equipmentState.profile=raw&&OverheadDifficulty?OverheadDifficulty.normaliseProfile(raw):null;
+ }
+ return equipmentState.profile;
+}
+function equipmentProfileActive(){return !!(equipmentProfile()&&OverheadDifficulty&&OverheadDifficulty.profileHasAny(equipmentProfile()));}
+function updateEquipmentSummary(){
+ const el=$('equipment-summary');
+ if(!el)return;
+ el.textContent=OverheadDifficulty?OverheadDifficulty.profileSummary(equipmentProfile()):'No equipment profile';
+}
+function loadEquipmentScript(){
+ if(equipmentState.module)return Promise.resolve(equipmentState.module);
+ if(equipmentState.loading)return equipmentState.loading;
+ equipmentState.loading=new Promise((resolve,reject)=>{
+  const script=document.createElement('script');
+  script.src='overhead-equipment.js';script.async=true;
+  script.onload=()=>{equipmentState.module=window.OverheadEquipment||null;
+   if(!equipmentState.module){equipmentState.error='the equipment module did not register';reject(Error(equipmentState.error));return;}
+   equipmentState.error=null;resolve(equipmentState.module);};
+  script.onerror=()=>{equipmentState.loading=null;equipmentState.error='the equipment module could not be loaded';reject(Error(equipmentState.error));};
+  document.head.append(script);
+ }).catch(error=>{equipmentState.loading=null;throw error;});
+ equipmentState.loading.then(()=>{equipmentState.loading=null;},()=>{equipmentState.loading=null;});
+ return equipmentState.loading;
+}
+function equipmentFit(assessment){
+ if(!assessment||!OverheadDifficulty)return null;
+ return OverheadDifficulty.applyProfile(assessment,equipmentProfile());
+}
+function difficultyForOpportunity(opportunity){
+ if(!opportunity)return null;
+ const base=opportunity.difficulty||(OverheadDifficulty?OverheadDifficulty.assessOpportunity(opportunity):null);
+ if(!base)return null;
+ return {...base,profileFit:equipmentFit(base)};
+}
+function difficultyForPass(pass){
+ if(!pass||!OverheadDifficulty)return null;
+ const base=OverheadDifficulty.assessSatellite({brightness:pass.score&&pass.score.brightness,
+  peakAltitudeDeg:pass.peak&&pass.peak.el,durationSeconds:pass.duration,train:!!pass.train});
+ return {...base,profileFit:equipmentFit(base)};
+}
+function difficultyForEvent(event){
+ const item=calendarItems.get(event&&event.id);
+ if(event&&event.difficulty)return {...event.difficulty,profileFit:equipmentFit(event.difficulty)};
+ if(item&&item.source&&item.source.category==='satellites')return difficultyForPass(item.source);
+ if(item&&item.source&&item.source.category)return difficultyForOpportunity(item.source);
+ return null;
+}
+function difficultyGuideButton(){
+ return '<button type="button" class="equipment-guide-link" data-equipment-guide>Equipment guide &amp; my kit</button>';
+}
+function difficultyBlock(assessment){
+ if(!assessment)return '';
+ const d=assessment, fit=d.profileFit||equipmentFit(d)||{};
+ const visual=d.visual||{label:'Difficulty uncertain',id:'uncertain',level:null,detail:''};
+ const imaging=d.imaging;
+ const equipmentLabel=d.equipment&&d.equipment.label?d.equipment.label:'Not established';
+ const alternatives=d.equipment&&Array.isArray(d.equipment.alternatives)?d.equipment.alternatives
+  .filter(id=>id!==d.equipment.primary).map(id=>OverheadDifficulty&&OverheadDifficulty.EQUIPMENT_LABELS[id]||id):[];
+ const approach=equipmentLabel+(alternatives.length?' · also '+alternatives.join(' or '):'');
+ const why=(d.reasons&&d.reasons[0])||visual.detail||'No object-specific reason is recorded.';
+ const inputs=(d.inputs||[]).map(row=>`<li><strong>${esc(row.label)}:</strong> ${esc(row.value)}</li>`).join('');
+ const limits=(d.limitations||[]).map(text=>`<li>${esc(text)}</li>`).join('');
+ const imagingLine=imaging?`<span class="difficulty-chip" data-level="${esc(imaging.id)}">Imaging: ${esc(imaging.label)}</span>`:'';
+ return `<div class="difficulty" data-difficulty="${esc(visual.id)}" aria-label="Observing difficulty">`+
+  `<div class="difficulty-line"><span class="difficulty-chip" data-level="${esc(visual.id)}">Visual: ${esc(visual.label)}</span>${imagingLine}</div>`+
+  `<p class="small"><strong>Suggested approach:</strong> ${esc(approach)}</p>`+
+  `<p class="small"><strong>Why:</strong> ${esc(why)}</p>`+
+  (fit&&fit.detail?`<p class="small difficulty-fit"><strong>${esc(fit.label)}:</strong> ${esc(fit.detail)}</p>`:'')+
+  `<details><summary>How this was assessed</summary><ul class="small">${inputs}${limits||'<li>No additional limitations recorded.</li>'}`+
+  `<li><strong>Evidence:</strong> ${esc(d.evidence||'unknown')} · <strong>Confidence:</strong> ${esc(d.confidence||'medium')}</li></ul>`+
+  `<p class="small">This is a product-specific guidance tier, not an astronomical standard, a limiting-magnitude calculation or a promise of detection. The observing-suitability score above describes the opportunity, not how easy the object is to see.</p></details>`+
+  difficultyGuideButton()+'</div>';
+}
+function difficultyLine(event){
+ const d=difficultyForEvent(event);
+ if(!d)return '';
+ const visual=d.visual||{label:'Uncertain'};
+ const imaging=d.imaging?` · Imaging: ${esc(d.imaging.label)}`:'';
+ const fit=d.profileFit&&d.profileFit.status!=='no-profile'?` · ${esc(d.profileFit.label)}`:'';
+ return `<p class="small difficulty-inline"><strong>Visual: ${esc(visual.label)}</strong>${imaging}${fit} ${difficultyGuideButton()}</p>`;
+}
+async function openEquipmentGuide(){
+ const dialog=$('equipment-dialog');
+ if(!dialog)return;
+ if(!dialog.open)dialog.showModal();
+ const body=$('equipment-dialog-body');
+ try{const module=await loadEquipmentScript();renderEquipmentDialog(module);}
+ catch(error){body.innerHTML='<p class="small warn">The equipment guide could not be loaded ('+esc(String((error&&error.message)||error))+'). Your opportunity cards and their scores are unaffected.</p>';}
+}
+function renderEquipmentDialog(module){
+ const M=module||equipmentState.module;
+ const body=$('equipment-dialog-body');
+ if(!M||!body)return;
+ body.innerHTML=M.renderGuide()+M.renderProfile(equipmentProfile());
+ const form=body.querySelector('#equipment-form');
+ if(!form)return;
+ form.onsubmit=event=>{
+  event.preventDefault();
+  const profile=M.readForm(form,OverheadDifficulty?OverheadDifficulty.normaliseProfile:value=>value);
+  equipmentState.profile=profile;write('equipment.v1',profile);updateEquipmentSummary();
+  renderEquipmentDialog(M);
+  const status=$('equipment-dialog-body').querySelector('.equipment-status');
+  if(status)status.textContent='Equipment saved in this browser. Card guidance now reflects it; scores and rankings have not changed.';
+  refreshEquipmentViews();
+ };
+ const reset=form.querySelector('[data-equipment-reset]');
+ if(reset)reset.onclick=()=>{
+  try{localStorage.removeItem('overhead.equipment.v1');}catch{}
+  equipmentState.profile=null;updateEquipmentSummary();renderEquipmentDialog(M);
+  const status=$('equipment-dialog-body').querySelector('.equipment-status');
+  if(status)status.textContent='Equipment profile reset. Guidance is general again.';
+  refreshEquipmentViews();
+ };
+}
+function refreshEquipmentViews(){
+ try{render();}catch{}
+ try{if(celestial.category!=='satellites'&&celestial.status==='ready'&&!celestial.busy)renderCelestial();}catch{}
+ try{renderSeasonSection();}catch{}
+ try{if(sessionState.open)renderSession();}catch{}
+}
+
+
 const OPTICAL_LABEL={camera:'Camera on a tripod','naked-eye':'Naked eye','naked-eye maybe':'Naked eye (marginal)','naked-eye and binocular':'Naked eye, binoculars help',
  'binoculars':'Binoculars','binocular':'Binoculars','telescope':'Telescope','telescope for one of the pair':'Telescope for one of the pair',
  'solar filter required':'Certified solar filter','unknown':'Unknown'};
@@ -1235,6 +1408,7 @@ function celestialCard(opportunity){
  return `<article class="celestial-card" tabindex="-1" data-opportunity="${esc(opportunity.id)}" data-type="${esc(opportunity.type)}">`+
   `<div class="card-top"><h3>${esc(opportunity.title)}</h3><span class="celestial-chip" data-tone="${opportunity.observing.value>=75?'good':opportunity.observing.value>=45?'warn':'neutral'}"${celestial.category==='milkyway'?' title="Milky Way window quality: this category’s own measure of the window, not comparable with satellite, meteor or planetary scores"':''}>${opportunity.observing.value}/100${celestial.category==='milkyway'?' window quality':''}</span></div>`+
   `<div class="small">${esc(opportunity.summary)}</div>`+
+  difficultyBlock(difficultyForOpportunity(opportunity))+
   (reasons?`<ul class="celestial-why">${reasons}</ul>`:'')+
   `<div class="small mono">${esc(day)} · best ${esc(when)}${opportunity.t_start?'':''}${attributes.minimumAltitude?` · needs ${attributes.minimumAltitude}° clearance`:''}</div>`+
   (rows?`<table class="celestial-positions"><thead><tr><th>Object</th><th>Altitude</th><th>Facing</th><th>Needs</th></tr></thead><tbody>${rows}</tbody></table>`:'')+
@@ -1367,6 +1541,7 @@ function registerSeasonItems(result){
  const scored=Opportunities.withScores(candidates,{site:state.site,now:Date.now(),weatherAt:null});
  seasonState.events=new Map();
  for(const opportunity of scored.opportunities){
+  if(OverheadDifficulty)opportunity.difficulty=OverheadDifficulty.assessOpportunity(opportunity);
   const own=opportunity.attributes&&opportunity.attributes.windowQuality;
   if(Number.isFinite(own)){
    opportunity.observing={...opportunity.observing,value:own,
@@ -1688,7 +1863,7 @@ function buildPointViews(artifact){
 const sessionState={open:false,status:'idle',module:null,loading:null,error:null,when:'tonight',date:null,
  where:'home',notes:'',camera:{},checklist:null,notice:null,noticeTone:null,computed:null,computedKey:null,
  saved:[],savedError:null,current:null,season:null,seasonKey:null,seasonBusy:false,seasonTried:new Set(),
- opportunityId:null,refreshedAt:null,readiness:null,refreshReport:null,
+ opportunityId:null,refreshedAt:null,readiness:null,refreshReport:null,equipmentPrefilled:false,
  online:(()=>{try{return navigator.onLine!==false;}catch{return true;}})()};
 /* The browser's own connection flag is a hint, not a measurement: it can be wrong on a captive portal. The panel
    uses it only to stop pretending a request is in flight, and every cached or saved value stays labelled. */
@@ -1705,6 +1880,31 @@ function updateSessionConnection(online){
 window.addEventListener('online',()=>updateSessionConnection(true));
 window.addEventListener('offline',()=>updateSessionConnection(false));
 function sessionStore(){return {get:(key,fallback)=>read(key,fallback),set:(key,value)=>write(key,value)};}
+/* A general equipment profile may prefill camera fields only when this plan has no camera choices yet.
+   Session-specific values are never overwritten, and a saved plan's own equipment is never replaced. */
+function prefillSessionEquipment(){
+ if(sessionState.current)return;
+ const profile=equipmentProfile();
+ if(!profile||!profile.types||!profile.types.camera)return;
+ const camera=sessionState.camera||{};
+ if(camera.sensor||camera.focalLength||camera.aperture||camera.tracker)return;
+ sessionState.camera={...camera,sensor:profile.camera.sensor||'',focalLength:profile.camera.focalLengthMm||'',
+  aperture:profile.camera.aperture||'',tracker:profile.camera.tracking===true};
+ sessionState.equipmentPrefilled=true;
+}
+function sessionEquipmentNote(){
+ const profile=equipmentProfile();
+ if(!profile||!profile.types||(!profile.types.camera&&!profile.types.trackedImaging))return null;
+ const camera=sessionState.camera||{};
+ if(sessionState.current){
+  const differs=(camera.sensor||null)!==(profile.camera.sensor||null)||
+   (String(camera.focalLength||'')!==String(profile.camera.focalLengthMm||''))||
+   (String(camera.aperture||'')!==String(profile.camera.aperture||''));
+  return differs?'This saved plan uses its own camera settings, which differ from your current equipment profile. Nothing here has been overwritten.':null;
+ }
+ if(sessionState.equipmentPrefilled)return 'Camera fields were prefilled from your equipment profile. You can change them for this plan without changing the profile.';
+ return null;
+}
 function loadSessionScript(){
  // The builder is a separate file: a reader who never opens it downloads nothing for it.
  if(sessionState.module)return Promise.resolve(sessionState.module);
@@ -2276,6 +2476,7 @@ function renderSession(){
   notes:sessionState.notes,camera:sessionState.camera},todayISO,maxDateISO:E.localDate(Date.now()+365*DAY,sessionSite().tz),
   dates:sessionDates(),points,home:{name:state.site.name},conditions:computed?computed.conditions:null,
   checklist:sessionState.checklist,readiness:sessionState.readiness,refreshReport:sessionState.refreshReport,
+  equipmentNote:sessionEquipmentNote(),
   guidance:module.cameraGuidance(sessionState.camera),saved:sessionState.saved,
   notice:sessionState.notice,session:sessionState.current})+
   '<div class="season-actions"><button type="button" data-session="close">Close the session builder</button></div></div>'+
@@ -2299,6 +2500,7 @@ async function openSession(){
   await loadPointData();
  }catch(error){sessionState.pointsError=String((error&&error.message)||error);}
  sessionState.status='ready';
+ prefillSessionEquipment();
  if(!sessionState.checklist)sessionState.checklist=sessionState.module.readChecklist(sessionStore(),sessionState.module.CHECKLIST);
  if(!sessionState.readiness)sessionState.readiness=sessionState.module.readReadiness(sessionStore(),sessionState.module.READINESS);
  const listed=sessionState.module.listFrom(sessionStore());
@@ -2333,6 +2535,7 @@ function openSavedSession(id){
  const points=pointsState.artifact?pointsState.artifact.points:[];
  const available=!record.pointId||points.some(point=>point.id===record.pointId);
  sessionState.current=record;
+ sessionState.equipmentPrefilled=false;
  sessionState.notes=record.notes||'';
  sessionState.camera=record.camera||{};
  sessionState.checklist={...sessionState.module.readChecklist(sessionStore(),sessionState.module.CHECKLIST),...(record.checklist||{})};

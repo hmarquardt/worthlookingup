@@ -194,8 +194,12 @@ function measuredBrightness(comet) {
   const measured = comet.brightness && comet.brightness.measured;
   if (!measured || !measured.latest || !Number.isFinite(measured.latest.magnitude)) return null;
   return { magnitude: measured.latest.magnitude, date: measured.latest.date, method: measured.latest.method,
-    observerCount: measured.latest.observer_count || null, source: 'COBS - Comet Observation Database',
+    methodName: measured.latest.method_name || null, observerCount: measured.latest.observer_count || null,
+    source: 'COBS - Comet Observation Database',
     median30d: measured.median_30d ? measured.median_30d.magnitude : null,
+    coma: measured.latest.coma_diameter_arcmin !== null && measured.latest.coma_diameter_arcmin !== undefined
+      ? { value: measured.latest.coma_diameter_arcmin, unit: null, field: 'coma_diameter_arcmin', source: 'COBS',
+        unitVerified: false } : null,
     trend: measured.trend || null, observed: true };
 }
 // Optical requirement from a brightness value, with the reason recorded. A comet is diffuse, so the
@@ -328,6 +332,7 @@ function evaluate(comet, ephemerisEntry, site, night, context) {
       optical: optical.level }],
     optical: optical.level,
     data: { measuredBrightness: measured || null, predictedBrightness: predicted || null,
+      coma: measured && measured.coma ? measured.coma : null,
       brightnessSource: measured ? 'COBS measurement' : predicted ? 'catalog model prediction' : 'unknown',
       opticalReason: optical.reason,
       positionMethod: peak.position ? peak.position.method : null,

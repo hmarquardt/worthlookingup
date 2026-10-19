@@ -918,3 +918,25 @@ route propagation; persistent failures still fail. No scientific/application cha
 - [ ] GitHub Actions completion: `validate and deploy` runs `39280655763`, `39280877754`, `39281541706` and
       `39282355146` were queued under a platform-wide Actions `degraded_performance` at the time of this record.
       No CI conclusion is claimed; the production deployment and verifier results above are independent of it.
+
+## Phase 7A: equipment awareness, difficulty and the beginner's guide (implemented)
+
+- [x] Pure `overhead-difficulty.js`: five conservative tiers, separate visual and imaging answers, object-
+      specific rules and reasons, inputs, evidence/confidence and limits. No DOM, storage, network or scoring.
+      It never mutates an opportunity and never changes a score or rank.
+- [x] Comet safeguards: total magnitude is not a stellar limiting magnitude; CCD/median conservatism; photometry
+      age; measured/predicted disagreement; no surface brightness from the unverified coma field.
+- [x] Planet angular size from model geocentric distance and documented NASA radii; meteor naked-eye/wFOV;
+      satellite/Starlink wide-field and tracking caveats; Milky Way wide-field camera; solar-filter warning.
+- [x] Cards, discovery lines and satellite detail show difficulty below the opportunity score. The score keeps
+      its position and meaning; the Milky Way keeps its own window-quality label.
+- [x] Lazy `overhead-equipment.js` guide/profile, local `worthlookingup.equipment/1` in
+      `overhead.equipment.v1`, bounded/normalised/migrating/corrupt-safe. Profile never hides an opportunity,
+      never changes ranking, and may prefill session camera only when the session has no camera choices.
+- [x] Tests: `tests/equipment-difficulty.cjs` and `tests/equipment.spec.js`; existing celestial, comet,
+      session and migration tests re-run. `docs/source-manifest.json` updated for the additive planetary,
+      comet and celestial-plan changes.
+- [x] Documentation: [phase-7a-release.md](phase-7a-release.md), [equipment-difficulty.md](equipment-difficulty.md),
+      design, photography sessions, overhead-celestial, privacy and `agents.md`.
+- [x] Version `2026.10.19.3` in the index comment/footer/visible text.
+- [ ] Deployment, CI and production verification: pending.
