@@ -933,16 +933,17 @@ route propagation; persistent failures still fail. No scientific/application cha
 - [x] Lazy `overhead-equipment.js` guide/profile, local `worthlookingup.equipment/1` in
       `overhead.equipment.v1`, bounded/normalised/migrating/corrupt-safe. Profile never hides an opportunity,
       never changes ranking, and may prefill session camera only when the session has no camera choices.
-- [x] Tests: `tests/equipment-difficulty.cjs` and `tests/equipment.spec.js`; existing celestial, comet,
-      session and migration tests re-run. `docs/source-manifest.json` updated for the additive planetary,
-      comet and celestial-plan changes.
+- [x] Tests: `tests/equipment-difficulty.cjs` (25 checks) and `tests/equipment.spec.js` (7 browser tests);
+      existing celestial, comet, session and migration tests re-run. `docs/source-manifest.json` updated for
+      the additive planetary, comet and celestial-plan changes.
 - [x] Documentation: [phase-7a-release.md](phase-7a-release.md), [equipment-difficulty.md](equipment-difficulty.md),
       design, photography sessions, overhead-celestial, privacy and `agents.md`.
 - [x] Version `2026.10.19.3` in the index comment/footer/visible text.
-- [x] Commits `3b4b902` and `19e773a` pushed normally; `HEAD` and `origin/main` matched. GitHub Actions
-      `validate and deploy` run `39302090323` completed success (npm test, Chromium browser suite, build,
-      Pages deploy, production verifier). Production serves `2026.10.19.3` and the deployed HTML/equipment
-      module hashes match the checkout.
+- [x] Commits `3b4b902`, `19e773a`, `48d30d2` and `b068623` pushed normally; `HEAD` and `origin/main`
+      matched. GitHub Actions `validate and deploy` run `39302090323` completed success for the main feature
+      commit and final run `39304585845` on `b068623` completed success through validate, Chromium browser
+      suite, build, Pages deploy and the production verifier. Production serves `2026.10.19.3`; deployed
+      HTML and equipment-module hashes match the checkout.
 - [x] Production scenarios: C/2026 A2 at 79/100 with Visual Advanced and no score change under profiles;
       C/2024 J3 not easy; bright planet easier than the comet; Geminids naked-eye/wide-field; Milky Way
       wide-field camera; binocular, 150 mm telescope and smart-telescope profiles each changed the qualified

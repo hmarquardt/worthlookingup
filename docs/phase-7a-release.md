@@ -78,11 +78,25 @@ calculation or a detectability model. The full contract is in [equipment-difficu
   units, missing magnitude, conditions modifiers, visual vs imaging, aperture tiers, no profile, binoculars,
   smart telescope, planet angular size, meteor/satellite/Milky Way/eclipse rules, unknown types, score
   immutability, profile migration/corruption.
-- `tests/equipment.spec.js`: **6** browser tests — card difficulty, lazy module request, guide content, profile
-  save/edit/reset, corrupt storage, comet card separation, camera session prefill, four widths/two themes,
-  keyboard targets.
+- `tests/equipment.spec.js`: **7** browser tests — card difficulty, lazy module request, guide content, profile
+  save/edit/reset, corrupt storage, comet card separation, camera session prefill, saved-session camera
+  preservation, four widths/two themes, keyboard targets.
 - `npm test` and `npm run check` pass; `tests/migration.cjs` includes the updated scientific-source baseline
   for the additive planetary/comet/celestial-plan changes.
+
+## Faults found during acceptance
+
+- The existing session checkbox focus ring used only `:focus-visible`; a programmatic focus in Chromium showed
+  no ring. The session and equipment controls now also show focus on `:focus`.
+- When the optional difficulty script was deliberately withheld, the page referenced it before checking that
+  it existed and the satellite dashboard never booted. Difficulty access now goes through a missing-safe
+  accessor; the metadata-unavailable test passes again.
+- Editing a session camera field and then clicking Save could lose the click: the blur-triggered change
+  re-rendered the panel and replaced the button under the pointer. The camera re-render is deferred one turn,
+  so the save click completes with the new camera value.
+- A calendar browser test compared the exported file with a different horizon's opportunity and could differ
+  by a few seconds when discovery snapshots changed. It now compares the file with the item that was actually
+  exported, preserving the real serialization assertion.
 
 ## Measurements
 
@@ -122,11 +136,15 @@ All checks passed against the deployed site using real catalog data and the real
 
 ## Deployment
 
-- Code commits: `3b4b902` (difficulty, guide, cards, tests, docs) and `19e773a` (missing-module resilience and
-  the focus-ring fix found by CI). Both were pushed normally; `HEAD` and `origin/main` matched after each push.
-- GitHub Actions `validate and deploy` run **39302090323** completed **success** on Chromium: `npm ci`,
-  `npm test`, launch check, comet precision/builders/meteors, `npm run test:browser`, `npm run build`, artifact
-  upload, Cloudflare Pages deploy and `scripts/verify-production.mjs`.
+- Code commits: `3b4b902` (difficulty, guide, cards, tests, docs), `19e773a` (missing-module resilience and
+  the focus-ring fix found by CI), `48d30d2` (camera change no longer swallows the save click; coma-unit
+  comment) and `b068623` (calendar browser test compares the interval with the item actually exported). All
+  were pushed normally; `HEAD` and `origin/main` matched after each push.
+- GitHub Actions `validate and deploy` run **39302090323** completed **success** on Chromium for the main
+  feature commit. After the resilience/focus/camera fixes and the calendar-test hardening, the final run
+  **39304585845** on `b068623` also completed **success** through validate, Chromium browser suite, build,
+  Cloudflare Pages deploy and the production verifier. The validate job runs `npm ci`, `npm test`, launch
+  check, comet precision/builders/meteors, `npm run test:browser`, `npm run build` and artifact upload.
 - The staged `dist/` was also deployed independently through the existing Pages project (deployment
   `02fe9178`) so production verification could proceed while the Actions run was in progress. Production serves
   `2026.10.19.3`; the deployed HTML SHA-256 matched `dist/` (`a92d531d…` before the final documentation-only
