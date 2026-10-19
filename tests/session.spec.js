@@ -140,6 +140,29 @@ test('a date with no qualifying window explains itself and refuses to save, prin
   expect(errors).toEqual([]);
 });
 
+test('a night with no window still shows the destination forecast, access and terrain',async({page})=>{
+  // Nothing can be saved for this night, but a reader may still want to know what the weather is doing at the
+  // place and whether the access evidence is current. The panel must not go blank just because astronomy refused.
+  const hourly={time:[],cloud_cover:[],precipitation_probability:[],temperature_2m:[],wind_speed_10m:[],wind_gusts_10m:[],
+    units:{temperature_2m:'°C',wind_speed_10m:'km/h',precipitation_probability:'%'}};
+  const start=Date.parse('2026-10-18T00:00:00Z');
+  for(let i=0;i<120;i++){hourly.time.push(Math.floor((start+i*3600000)/1000));hourly.cloud_cover.push(24);
+    hourly.precipitation_probability.push(3);hourly.temperature_2m.push(11);hourly.wind_speed_10m.push(9);hourly.wind_gusts_10m.push(18);}
+  const errors=await boot(page,{weather:{timezone:'America/Chicago',hourly}});
+  await openMilkyWay(page);
+  await openBuilder(page);
+  await choosePoint(page,'camp-cadiz-campground');
+  await setDate(page,'2026-10-20');
+  await page.waitForFunction(()=>window.__OVERHEAD_TEST__.sessionWeatherState().status==='ready',null,{timeout:30000});
+  const door=builder(page);
+  await expect(door).toContainText('No qualifying Galactic-core window at this place on this date.');
+  await expect(door).toContainText(/Cloud cover \d+%/);
+  await expect(door.locator('[data-access-status]')).toContainText('Night presence');
+  await expect(door).toContainText('Terrain toward the core');
+  await expect(door.locator('[data-session="save"]')).toBeDisabled();
+  expect(errors).toEqual([]);
+});
+
 test('a custom date at the visitor\'s own location is labelled as unverified, with no invented terrain or forecast',async({page})=>{
   const errors=await boot(page);
   await openMilkyWay(page);

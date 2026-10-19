@@ -50,6 +50,9 @@ no account and no background service.
 - The first version of the save/compare browser test mutated parking to a value the artifact gate correctly
   rejects. The test now uses two publishable classifications, so it exercises the comparison rather than the
   artifact refusal.
+- Production acceptance on a late-October night found that a no-window night returned before building the
+  forecast, access and terrain, so the panel went quiet exactly when a reader might still travel. The no-window
+  branch now carries all three, while save, print, calendar and plan stay disabled.
 
 ## Verification (local)
 

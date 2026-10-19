@@ -52,7 +52,9 @@ Two rules are structural, not stylistic:
   "first favourable night" found for Camp Cadiz cannot survive a switch to your own location.
 - **A night without a window has nothing to save.** The conditions step says why the engine refused
   (`analysis.refusals`), states the core's actual highest altitude so "no window" is never read as "invisible",
-  and disables save, print, calendar and plan.
+  and disables save, print, calendar and plan. It still reports the destination forecast, the published access
+  evidence and the point's terrain, because a reader may still want to know what the place and the weather are
+  doing even when there is no window to plan.
 
 ## Scientific assumptions
 

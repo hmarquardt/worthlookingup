@@ -154,7 +154,8 @@ because of that rule; agents should read it explicitly (some tools discover only
   calculated condition block). Every window in a session is recalculated at the selected site and date through
   `analyseNight` with the visitor's own threshold; a window calculated for another place is never reused, a
   season date is re-derived when the place changes, and a night whose `refusals` are non-empty disables save,
-  print, calendar and plan rather than storing an interval that does not exist. Terrain clearance interpolates the
+  print, calendar and plan rather than storing an interval that does not exist, while still reporting the
+  destination forecast, published access evidence and terrain. Terrain clearance interpolates the
   point artifact's 16-azimuth bare-earth profile at that night's own core azimuth, and a test checks it against
   `src/geodata/terrain-horizon.mjs` so there is one method, not two. Weather is the page's own Open-Meteo request
   made for the selected place's coordinates: a point never inherits the visitor's answer, the response is reused

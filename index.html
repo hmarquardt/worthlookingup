@@ -2079,28 +2079,7 @@ function sessionAccess(point){
  return {...base,status:comparison.status,label:comparison.label,detail:comparison.detail,
   changes:comparison.changes,savedSummary:saved&&saved.access?saved.access.summary:null,warning};
 }
-function sessionConditions(parts){
- const {site,point,night,analysis,date}=parts;
- const base={siteName:(point?point.name:(site.name||'your saved location')),dateLabel:sessionDay(site,date),timezone:site.tz,quality:null,
-  offline:sessionState.online===false,
-  destination:{name:(point?point.name:(site.name||'your saved location')),verified:Boolean(point),pointId:point?point.id:null,
-   withheld:Boolean(!point&&sessionWithheld())}};
- if(!Number.isFinite(night.start)){
-  return {...base,why:{headline:'No night could be calculated for this date.',
-   detail:'The Sun\'s set and rise could not be computed for this place and date, so no observing window is claimed.'}};
- }
- if(!analysis.observable||!analysis.window){
-  const refusal=analysis.refusals&&analysis.refusals.length?analysis.refusals[0]:null;
-  const highest=Number.isFinite(analysis.core&&analysis.core.maxAltitude)?analysis.core.maxAltitude.toFixed(1):null;
-  const where=analysis.core?analysis.core.maxCompass:null;
-  return {...base,why:{headline:'No qualifying Galactic-core window at this place on this date.',
-   detail:(refusal?String(refusal):'The core never clears the '+analysis.thresholdDeg+'° rule during this night\'s darkness.')+
-    (highest?' The core still reaches '+highest+'° towards '+where+' at its highest, so the galaxy is not invisible; there is simply no window that meets the rule.':'')}};
- }
- const core=analysis.core,window=analysis.window;
- const bestAltitude=Number.isFinite(analysis.bestAltitude)?analysis.bestAltitude:core.maxAltitude;
- const bestAzimuth=Number.isFinite(analysis.bestAzimuth)?analysis.bestAzimuth:core.maxAzimuth;
- const bestCompass=analysis.bestCompass||core.maxCompass;
+function sessionLimitations(point,analysis){
  const limitations=[];
  if(point){
   limitations.push('parking is '+(point.access.parking==='verified'?'permitted by the agency at this facility':
@@ -2111,8 +2090,37 @@ function sessionConditions(parts){
  }else{
   limitations.push('this is your own saved location: the app holds no public-access evidence for it, and nothing here says the site is open after dark');
  }
- if(core.maxAltitude<MilkyWay.RULES.core.photographicDeg&&analysis.band&&analysis.band.statement)limitations.push(analysis.band.statement);
+ if(analysis&&analysis.core&&Number.isFinite(analysis.core.maxAltitude)&&analysis.core.maxAltitude<MilkyWay.RULES.core.photographicDeg&&
+  analysis.band&&analysis.band.statement)limitations.push(analysis.band.statement);
  limitations.push('local artificial sky brightness has not been assessed here; no darkness rating is derived from any dataset');
+ return limitations;
+}
+function sessionConditions(parts){
+ const {site,point,night,analysis,date}=parts;
+ const base={siteName:(point?point.name:(site.name||'your saved location')),dateLabel:sessionDay(site,date),timezone:site.tz,quality:null,
+  offline:sessionState.online===false,
+  destination:{name:(point?point.name:(site.name||'your saved location')),verified:Boolean(point),pointId:point?point.id:null,
+   withheld:Boolean(!point&&sessionWithheld())}};
+ if(!Number.isFinite(night.start)){
+  return {...base,why:{headline:'No night could be calculated for this date.',
+   detail:'The Sun\'s set and rise could not be computed for this place and date, so no observing window is claimed.'},
+   access:point?sessionAccess(point):sessionWithheldAccess(),limitations:sessionLimitations(point,null)};
+ }
+ if(!analysis.observable||!analysis.window){
+  const refusal=analysis.refusals&&analysis.refusals.length?analysis.refusals[0]:null;
+  const highest=Number.isFinite(analysis.core&&analysis.core.maxAltitude)?analysis.core.maxAltitude.toFixed(1):null;
+  const where=analysis.core?analysis.core.maxCompass:null;
+  return {...base,why:{headline:'No qualifying Galactic-core window at this place on this date.',
+   detail:(refusal?String(refusal):'The core never clears the '+analysis.thresholdDeg+'° rule during this night\'s darkness.')+
+    (highest?' The core still reaches '+highest+'° towards '+where+' at its highest, so the galaxy is not invisible; there is simply no window that meets the rule.':'')},
+   forecast:sessionForecast(site,night,night),access:point?sessionAccess(point):sessionWithheldAccess(),
+   terrain:sessionTerrain(point,analysis),limitations:sessionLimitations(point,analysis)};
+ }
+ const core=analysis.core,window=analysis.window;
+ const bestAltitude=Number.isFinite(analysis.bestAltitude)?analysis.bestAltitude:core.maxAltitude;
+ const bestAzimuth=Number.isFinite(analysis.bestAzimuth)?analysis.bestAzimuth:core.maxAzimuth;
+ const bestCompass=analysis.bestCompass||core.maxCompass;
+ const limitations=sessionLimitations(point,analysis);
  return {...base,quality:analysis.quality.value,
   window:{startLabel:sessionClock(site,window.start),endLabel:sessionClock(site,window.end),minutes:window.minutes,
    level:String(window.level||analysis.darkness.achieved||'').replace(/-/g,' ')},

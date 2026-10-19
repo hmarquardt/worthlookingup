@@ -514,7 +514,12 @@
         'does not exist, so there is nothing to save. Choose another date above: the next favourable night is offered ' +
         'when the engine finds one, and a date months away is still fine — only the astronomy is certain that far ahead.</p></div>' +
         summaryHTML + (conditions.forecast ? forecastBlock(conditions.forecast) : '') +
-        (conditions.access ? accessBlock(conditions.access) : '');
+        (conditions.access ? accessBlock(conditions.access) : '') +
+        (conditions.terrain ? '<p class="small sx-terrain sx-terrain-' + esc(conditions.terrain.state) + '"><strong>Terrain toward the core:</strong> ' +
+          esc(conditions.terrain.state) + ' at bearing ' + esc(conditions.terrain.azimuthDeg) + '°, modeled horizon ' +
+          esc(conditions.terrain.horizonAngleDeg) + '°, uncertainty ±' + esc(conditions.terrain.uncertaintyDeg) + '°. This is a ' +
+          esc(conditions.terrain.dem) + ' bare-earth model and does not see trees, buildings or a bank in front of you.</p>'
+          : '<p class="small sx-terrain-none">No bare-earth horizon profile is published for this place, and none is invented.</p>');
     }
     var html = summaryHTML;
     var facts = [];
