@@ -122,8 +122,12 @@ for (const candidate of publishable) {
       bbox: raster.bbox, width: raster.width, height: raster.height, pixelSizeM: raster.resolutionM, bytes,
       verticalAccuracy: 'lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical' },
     observer: { eyeHeightM: profile.eyeHeightM, groundElevationM: Number(profile.groundElevationM.toFixed(1)) },
+    // Every azimuth, with the uncertainty at that azimuth, so any night's core direction can be evaluated later
+    // without re-running the DEM: the point artifact carries this and the session builder interpolates it.
     profile: profile.azimuths.map(entry => ({ azimuthDeg: entry.azimuthDeg,
-      maxAngleDeg: Number(entry.maxAngleDeg.toFixed(2)), maxAtM: entry.maxAtM,
+      horizonAngleDeg: Number(entry.maxAngleDeg.toFixed(2)), maxAtM: entry.maxAtM,
+      uncertaintyDeg: Number(horizonUncertaintyDeg({ verticalRmseM: 1.55, roughnessM: entry.roughnessM || 0,
+        distanceM: entry.maxAtM || SEARCH_RADIUS_M }).toFixed(2)),
       coverage: Number(entry.coverage.toFixed(3)), status: entry.status })),
     core: { windowStart: analysis.window.start, windowEnd: analysis.window.end, minutes: analysis.window.minutes,
       level: analysis.window.level, maxAltitudeDeg: Number(analysis.core.maxAltitude.toFixed(2)),

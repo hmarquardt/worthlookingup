@@ -100,6 +100,136 @@
           "verticalAccuracy": "lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical",
           "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer"
         },
+        "profile": [
+          {
+            "azimuthDeg": 0,
+            "horizonAngleDeg": 0.04,
+            "maxAtM": 2700,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 22.5,
+            "horizonAngleDeg": 0.42,
+            "maxAtM": 480,
+            "uncertaintyDeg": 0.76,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 45,
+            "horizonAngleDeg": 0.09,
+            "maxAtM": 660,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 67.5,
+            "horizonAngleDeg": -0.02,
+            "maxAtM": 4920,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 90,
+            "horizonAngleDeg": -0.04,
+            "maxAtM": 14820,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 112.5,
+            "horizonAngleDeg": 0.1,
+            "maxAtM": 9300,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 135,
+            "horizonAngleDeg": 0.17,
+            "maxAtM": 12540,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 157.5,
+            "horizonAngleDeg": 0.42,
+            "maxAtM": 5400,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 180,
+            "horizonAngleDeg": 0.52,
+            "maxAtM": 7560,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 202.5,
+            "horizonAngleDeg": 0.94,
+            "maxAtM": 240,
+            "uncertaintyDeg": 1.11,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 225,
+            "horizonAngleDeg": 1.31,
+            "maxAtM": 420,
+            "uncertaintyDeg": 0.62,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 247.5,
+            "horizonAngleDeg": 0.97,
+            "maxAtM": 1380,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 270,
+            "horizonAngleDeg": 0.56,
+            "maxAtM": 2640,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 292.5,
+            "horizonAngleDeg": 1.01,
+            "maxAtM": 2040,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 315,
+            "horizonAngleDeg": 1.05,
+            "maxAtM": 2400,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 337.5,
+            "horizonAngleDeg": 0.33,
+            "maxAtM": 1920,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          }
+        ],
         "moments": [
           {
             "label": "window opens",
@@ -238,6 +368,136 @@
           "verticalAccuracy": "lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical",
           "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer"
         },
+        "profile": [
+          {
+            "azimuthDeg": 0,
+            "horizonAngleDeg": 5.3,
+            "maxAtM": 240,
+            "uncertaintyDeg": 2,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 22.5,
+            "horizonAngleDeg": 7.75,
+            "maxAtM": 180,
+            "uncertaintyDeg": 3.65,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 45,
+            "horizonAngleDeg": 5.3,
+            "maxAtM": 300,
+            "uncertaintyDeg": 1.56,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 67.5,
+            "horizonAngleDeg": 1.02,
+            "maxAtM": 1620,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 90,
+            "horizonAngleDeg": 0.9,
+            "maxAtM": 2220,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 112.5,
+            "horizonAngleDeg": 0.7,
+            "maxAtM": 1020,
+            "uncertaintyDeg": 0.91,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 135,
+            "horizonAngleDeg": 0.82,
+            "maxAtM": 480,
+            "uncertaintyDeg": 1.15,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 157.5,
+            "horizonAngleDeg": 3.48,
+            "maxAtM": 480,
+            "uncertaintyDeg": 0.78,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 180,
+            "horizonAngleDeg": 3.98,
+            "maxAtM": 480,
+            "uncertaintyDeg": 1.67,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 202.5,
+            "horizonAngleDeg": 2.84,
+            "maxAtM": 360,
+            "uncertaintyDeg": 1.02,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 225,
+            "horizonAngleDeg": 0.05,
+            "maxAtM": 13380,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 247.5,
+            "horizonAngleDeg": 0.37,
+            "maxAtM": 9540,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 270,
+            "horizonAngleDeg": 0.54,
+            "maxAtM": 2880,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 292.5,
+            "horizonAngleDeg": 0.19,
+            "maxAtM": 4860,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 315,
+            "horizonAngleDeg": 2.33,
+            "maxAtM": 480,
+            "uncertaintyDeg": 1.35,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 337.5,
+            "horizonAngleDeg": 0.7,
+            "maxAtM": 480,
+            "uncertaintyDeg": 0.74,
+            "coverage": 1,
+            "status": "ok"
+          }
+        ],
         "moments": [
           {
             "label": "window opens",
@@ -381,6 +641,136 @@
           "verticalAccuracy": "lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical",
           "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer"
         },
+        "profile": [
+          {
+            "azimuthDeg": 0,
+            "horizonAngleDeg": 4.09,
+            "maxAtM": 600,
+            "uncertaintyDeg": 1.05,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 22.5,
+            "horizonAngleDeg": 4.71,
+            "maxAtM": 540,
+            "uncertaintyDeg": 0.85,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 45,
+            "horizonAngleDeg": 2.79,
+            "maxAtM": 480,
+            "uncertaintyDeg": 1.02,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 67.5,
+            "horizonAngleDeg": 3.11,
+            "maxAtM": 360,
+            "uncertaintyDeg": 1.28,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 90,
+            "horizonAngleDeg": 4.23,
+            "maxAtM": 480,
+            "uncertaintyDeg": 1.18,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 112.5,
+            "horizonAngleDeg": 0.5,
+            "maxAtM": 11460,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 135,
+            "horizonAngleDeg": 0.45,
+            "maxAtM": 15540,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 157.5,
+            "horizonAngleDeg": 0.36,
+            "maxAtM": 13440,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 180,
+            "horizonAngleDeg": 0.44,
+            "maxAtM": 6900,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 202.5,
+            "horizonAngleDeg": 0.38,
+            "maxAtM": 6960,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 225,
+            "horizonAngleDeg": 0.36,
+            "maxAtM": 13320,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 247.5,
+            "horizonAngleDeg": 0.24,
+            "maxAtM": 15120,
+            "uncertaintyDeg": 0.5,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 270,
+            "horizonAngleDeg": 6.01,
+            "maxAtM": 300,
+            "uncertaintyDeg": 1.97,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 292.5,
+            "horizonAngleDeg": 3.17,
+            "maxAtM": 600,
+            "uncertaintyDeg": 0.68,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 315,
+            "horizonAngleDeg": 3.18,
+            "maxAtM": 480,
+            "uncertaintyDeg": 1.05,
+            "coverage": 1,
+            "status": "ok"
+          },
+          {
+            "azimuthDeg": 337.5,
+            "horizonAngleDeg": 3.18,
+            "maxAtM": 660,
+            "uncertaintyDeg": 0.61,
+            "coverage": 1,
+            "status": "ok"
+          }
+        ],
         "moments": [
           {
             "label": "window opens",

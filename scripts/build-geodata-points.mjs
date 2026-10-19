@@ -138,6 +138,9 @@ for (const candidate of candidates) {
       state: profile.clearance.state,
       dem: { source: profile.dem.source, pixelSizeM: profile.dem.pixelSizeM, verticalAccuracy: profile.dem.verticalAccuracy,
         url: profile.dem.url },
+      // Sixteen azimuths with their own uncertainty, so a session on any night can evaluate the core's actual
+      // direction without a new DEM request and without inventing a horizon.
+      profile: profile.profile,
       moments: profile.clearance.moments.map(moment => ({ label: moment.label, azimuthDeg: moment.azimuthDeg,
         altitudeDeg: moment.altitudeDeg, horizonAngleDeg: moment.horizonAngleDeg, differenceDeg: moment.differenceDeg,
         uncertaintyDeg: moment.uncertaintyDeg, status: moment.status })),

@@ -6,7 +6,7 @@
     "lat": 37.45862,
     "lon": -88.23279000000002
   },
-  "generatedAt": "2026-10-18T23:49:54.635Z",
+  "generatedAt": "2026-10-19T11:27:13.072Z",
   "targetDate": "2027-04-13",
   "dem": {
     "source": "usgs-3dep",
@@ -30,113 +30,129 @@
   "profile": [
     {
       "azimuthDeg": 0,
-      "maxAngleDeg": 4.09,
+      "horizonAngleDeg": 4.09,
       "maxAtM": 600,
+      "uncertaintyDeg": 1.05,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 22.5,
-      "maxAngleDeg": 4.71,
+      "horizonAngleDeg": 4.71,
       "maxAtM": 540,
+      "uncertaintyDeg": 0.85,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 45,
-      "maxAngleDeg": 2.79,
+      "horizonAngleDeg": 2.79,
       "maxAtM": 480,
+      "uncertaintyDeg": 1.02,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 67.5,
-      "maxAngleDeg": 3.11,
+      "horizonAngleDeg": 3.11,
       "maxAtM": 360,
+      "uncertaintyDeg": 1.28,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 90,
-      "maxAngleDeg": 4.23,
+      "horizonAngleDeg": 4.23,
       "maxAtM": 480,
+      "uncertaintyDeg": 1.18,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 112.5,
-      "maxAngleDeg": 0.5,
+      "horizonAngleDeg": 0.5,
       "maxAtM": 11460,
+      "uncertaintyDeg": 0.5,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 135,
-      "maxAngleDeg": 0.45,
+      "horizonAngleDeg": 0.45,
       "maxAtM": 15540,
+      "uncertaintyDeg": 0.5,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 157.5,
-      "maxAngleDeg": 0.36,
+      "horizonAngleDeg": 0.36,
       "maxAtM": 13440,
+      "uncertaintyDeg": 0.5,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 180,
-      "maxAngleDeg": 0.44,
+      "horizonAngleDeg": 0.44,
       "maxAtM": 6900,
+      "uncertaintyDeg": 0.5,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 202.5,
-      "maxAngleDeg": 0.38,
+      "horizonAngleDeg": 0.38,
       "maxAtM": 6960,
+      "uncertaintyDeg": 0.5,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 225,
-      "maxAngleDeg": 0.36,
+      "horizonAngleDeg": 0.36,
       "maxAtM": 13320,
+      "uncertaintyDeg": 0.5,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 247.5,
-      "maxAngleDeg": 0.24,
+      "horizonAngleDeg": 0.24,
       "maxAtM": 15120,
+      "uncertaintyDeg": 0.5,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 270,
-      "maxAngleDeg": 6.01,
+      "horizonAngleDeg": 6.01,
       "maxAtM": 300,
+      "uncertaintyDeg": 1.97,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 292.5,
-      "maxAngleDeg": 3.17,
+      "horizonAngleDeg": 3.17,
       "maxAtM": 600,
+      "uncertaintyDeg": 0.68,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 315,
-      "maxAngleDeg": 3.18,
+      "horizonAngleDeg": 3.18,
       "maxAtM": 480,
+      "uncertaintyDeg": 1.05,
       "coverage": 1,
       "status": "ok"
     },
     {
       "azimuthDeg": 337.5,
-      "maxAngleDeg": 3.18,
+      "horizonAngleDeg": 3.18,
       "maxAtM": 660,
+      "uncertaintyDeg": 0.61,
       "coverage": 1,
       "status": "ok"
     }
