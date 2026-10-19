@@ -791,3 +791,59 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Next action: widen the region deliberately (the three excluded facilities are already evidenced), find a
   state-managed facility with a published point (Sugar Ridge's 24/7 permission lacks one), and add a licensed
   sky-brightness layer. A point must never be manufactured from an area centroid to fill the list.
+
+## Phase 6C: photography session builder (shipped)
+
+- [x] One panel in the Milky Way category, below **Where to go**, with five steps: When, Where, Conditions,
+      Prepare, Save or export. It opens only on request: the module (`overhead-sessions.js`), the point artifact
+      and the season search are fetched and run after the click, and a browser test asserts that nothing about
+      sessions is requested before it.
+- [x] Four date modes — tonight, the first favourable night and the season opening from `analyseSeason`, and a
+      custom date within the year — each evaluated at the selected place with `analyseNight` and the visitor's own
+      threshold. Switching place re-applies the mode, so a season date found for one site cannot survive a change
+      of site. A night with no window shows the engine's refusals, the core's real highest altitude, and disables
+      save, print, calendar and plan; no interval is ever stored that the engine did not produce.
+- [x] Conditions: window, best moment, plain-language compass direction with bearing and altitude, Moon (its own
+      classification and detail), darkness reached, the category's own window quality with its comparability
+      sentence, the site's timezone, and the unknowns. Weather is the page's own forecast and only for the saved
+      location: a point never inherits it, and a night beyond the nine-day horizon reads "Weather is not yet
+      forecastable for this date."
+- [x] Terrain: the point artifact now carries its 16 azimuths with a per-direction uncertainty, so a session can
+      evaluate the core's actual bearing on any night without a new DEM request. The interpolation is checked
+      against `src/geodata/terrain-horizon.mjs` in `tests/photography-sessions.cjs`, so there is one method and not
+      two; a saved location with no profile reads "Terrain horizon unavailable" and nothing is manufactured.
+- [x] Access: point evidence (agency, coordinate provenance, verification date, night presence, parking, quoted
+      statement, URL) travels into the conditions block, the saved record and the printed sheet; the Garden of the
+      Gods lot is the only point where parking is itself the permission, and the campsites say so. The saved
+      location is labelled unverified everywhere and the visitor's home site is never modified.
+- [x] Prepare: readiness checklist, thirteen-item equipment checklist (unticked by default, stored in
+      `overhead.session.checklist.v1`, copied into plans) and camera starting points that give a duration only
+      from the reader's own sensor and focal length (500/300-rule family, labelled as rules of thumb, no pixel
+      pitch or declination model), nothing at all for an unknown camera, and nothing for a tracking mount.
+- [x] Save and refresh: `worthlookingup.session/1` records in `overhead.session.list.v1` (12 newest), identity by
+      site and night so the same plan cannot be duplicated, migration from older shapes, corrupt entries skipped
+      and reported, notes stripped of control characters, capped and escaped. Refresh re-reads the published
+      evidence, recalculates and says the agency may still change it. Plans are readable after a reload and
+      offline from their own record; nothing is uploaded and no map tile is cached.
+- [x] Print: a hidden sheet filled at print time and `window.print()`, with `@page{margin:16mm}` for Letter and A4;
+      it carries coordinates, timezone, window, best moment, Moon, weather status, terrain uncertainty, access and
+      parking with the quoted evidence, kit, camera guidance, notes and unresolved items. No PDF service.
+- [x] Calendar and plan: the session enters the shared opportunity model and the only ICS writer as the
+      astronomical interval at that place, with `LOCATION` naming the point, an identity that cannot collide and
+      no departure time, travel duration or camping block.
+- [x] Tests: `npm test` exit 0 including 14 new checks in `tests/photography-sessions.cjs` (module budget, key
+      isolation, notes sanitising, stable identity, migration and refusal, bounded de-duplicated list, full-disk
+      behaviour, corrupt-entry skipping, checklist defaults, clearance equivalence with the research module, the
+      no-equipment and tracked-mount refusals, the 500-rule arithmetic, five rendered steps with escaped notes,
+      and a no-window night that cannot be saved). Browser: `tests/session.spec.js` adds 9 tests (lazy door,
+      tonight at a point with its own window and terrain, no-window refusal, custom date at the saved location with
+      no invented terrain or forecast, save + reload + reopen + refresh, notes injection and corrupt records,
+      calendar/plan identity and the duplicate refusal, print sheet content, and four widths in both themes with
+      no overflow).
+- [x] Documentation: [photography-sessions.md](photography-sessions.md), plus updates to [milky-way.md](milky-way.md),
+      [design.md](design.md) and `agents.md`.
+- Git and deployment: release identifier `2026.10.19.1`; no new infrastructure, account, API key, Worker, D1, KV,
+  R2, framework or scheduled job.
+- Next action: field-verify the three points against horizon photographs, widen the region to the three already
+  evidenced facilities west of 88.60°W, and add a licensed sky-brightness product so darkness can eventually be a
+  measurement rather than an absent field.

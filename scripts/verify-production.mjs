@@ -38,7 +38,10 @@ for(const file of ['overhead-discovery.js','overhead-calendar.js','overhead-milk
   // them. A mismatch here is how a stale index or a dropped review record is caught in production.
   'overhead-launch-explorer.js','src/launches/launch-trajectory.mjs','src/launches/launch-geodesy.mjs',
   'src/launches/launch-pad-index.mjs','data/launches/trajectory-profiles.json',
-  'data/launches/trajectory-pad-index.json','data/launches/trajectory-review.json','docs/trajectory-profiles.md']) {
+  'data/launches/trajectory-pad-index.json','data/launches/trajectory-review.json','docs/trajectory-profiles.md',
+  // Phase 6C: the session builder is fetched on demand, and the point artifact it reads now carries the
+  // azimuth profiles, so both are checked against this checkout rather than assumed to have deployed.
+  'overhead-sessions.js','data/geodata/points.json']) {
   assert.deepEqual(await get(file),fs.readFileSync(file),file+' deployed bytes');
 }
 const missing=await fetch(new URL('/missing-worker-verification.js',base));assert.equal(missing.status,404);

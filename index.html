@@ -221,6 +221,72 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 .celestial-section h2{font-size:1.05rem}
 .celestial-list{margin:0;padding-left:18px;display:grid;gap:4px;font-size:.85rem;color:var(--muted)}
 @media (max-width:720px){.celestial-card{padding:13px}}
+/* Photography sessions (Phase 6C). The builder is one panel of five steps, sized for a phone in the field:
+   large numerals, full-width choices, and no horizontal scrolling at 390 px. */
+.milkyway-session .sx{display:grid;gap:16px}
+.milkyway-session .sx-head h3{margin:0 0 4px;font-size:1.05rem}
+.milkyway-session .sx-head p{margin:0;color:var(--muted)}
+.milkyway-session .sx-step{border-top:1px solid var(--line);padding-top:14px;display:grid;gap:10px}
+.milkyway-session .sx-step-head{display:flex;align-items:center;gap:10px;margin:0;font-size:1rem}
+.milkyway-session .sx-step-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;
+ border:1px solid var(--line);font-size:.85rem;color:var(--muted);flex:none}
+.milkyway-session .sx-step-note{margin:0;color:var(--muted)}
+.milkyway-session .sx-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.milkyway-session .sx-choice{display:grid;gap:2px;text-align:left;padding:10px 12px;min-height:52px;border:1px solid var(--control-border);
+ border-radius:9px;background:var(--input-bg);color:var(--ink);cursor:pointer}
+.milkyway-session .sx-choice.is-on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.milkyway-session .sx-choice:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.milkyway-session .sx-choice-name{font-weight:600}
+.milkyway-session .sx-choice .small{color:var(--muted)}
+.milkyway-session .sx-date,.milkyway-session .sx-camera-inputs label,.milkyway-session .sx-notes{display:grid;gap:4px;font-size:.9rem}
+.milkyway-session .sx-camera-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.milkyway-session .sx-inline{display:flex!important;align-items:center;gap:8px}
+.milkyway-session .sx-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:0}
+.milkyway-session .sx-fact{margin:0}
+.milkyway-session .sx-fact dt{font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.milkyway-session .sx-fact dd{margin:2px 0 0;font-size:1.15rem;font-weight:600;line-height:1.3}
+.milkyway-session .sx-fact dd .small{display:block;font-weight:400;font-size:.8rem;color:var(--muted)}
+.milkyway-session .sx-terrain,.milkyway-session .sx-nowindow{border-left:2px solid var(--line);padding-left:10px}
+.milkyway-session .sx-terrain-clear{border-left-color:var(--good)}
+.milkyway-session .sx-terrain-unknown{border-left-color:var(--amber)}
+.milkyway-session .sx-terrain-obstructed{border-left-color:var(--danger)}
+.milkyway-session .sx-terrain p,.milkyway-session .sx-weather,.milkyway-session .sx-limits{margin:4px 0}
+.milkyway-session .sx-limits{padding-left:18px}
+.milkyway-session .sx-nowindow{border-left-color:var(--amber)}
+.milkyway-session .sx-readiness ul,.milkyway-session .sx-gear ul,.milkyway-session .sx-guidance{padding-left:18px;margin:4px 0}
+.milkyway-session h5{margin:8px 0 2px;font-size:.9rem}
+.milkyway-session .sx-checks{list-style:none;padding:0;margin:4px 0;display:grid;gap:4px}
+.milkyway-session .sx-check{display:flex;gap:9px;align-items:flex-start;padding:7px 0;min-height:40px;cursor:pointer}
+.milkyway-session .sx-check input{margin-top:3px;width:18px;height:18px;flex:none}
+.milkyway-session .sx-actions{display:flex;flex-wrap:wrap;gap:8px}
+.milkyway-session .sx-actions button{min-height:44px}
+.milkyway-session .sx-primary{background:var(--accent);color:var(--accent-ink,var(--bg));border:1px solid var(--accent);font-weight:600}
+.milkyway-session .sx-notice{border-left:2px solid var(--accent);padding-left:10px}
+.milkyway-session .sx-saved{list-style:none;padding:0;margin:4px 0;display:grid;gap:6px}
+.milkyway-session .sx-saved li{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;
+ border-bottom:1px solid var(--line);padding-bottom:6px}
+.milkyway-session .sx-saved-actions{display:flex;gap:6px}
+.milkyway-session .sx-foot{margin:0;color:var(--muted)}
+@media (max-width:720px){.milkyway-session .sx-facts,.milkyway-session .sx-choices{grid-template-columns:minmax(0,1fr)}
+ .milkyway-session .sx-actions button{flex:1 1 100%}}
+/* The printed field plan: monochrome, no page furniture, and legible on Letter and A4. */
+.session-print{display:none}
+@media print{
+ body>*:not(.session-print){display:none!important}
+ body{background:#fff!important;color:#000!important}
+ .session-print{display:block!important;font-size:11pt;line-height:1.45;color:#000}
+ .session-print h1{font-size:17pt;margin:0 0 2pt}
+ .session-print h2{font-size:12pt;margin:12pt 0 3pt;border-bottom:1px solid #000;padding-bottom:1pt}
+ .session-print dl{display:grid;grid-template-columns:max-content 1fr;gap:2pt 12pt;margin:0}
+ .session-print dt{font-weight:600}
+ .session-print dd{margin:0}
+ .session-print blockquote{margin:4pt 0;padding-left:8pt;border-left:2pt solid #000;font-style:italic}
+ .session-print ul{margin:2pt 0;padding-left:16pt}
+ .session-print .sheet-sub,.session-print .sheet-foot{font-size:9pt;color:#333}
+ .session-print .sheet-notes{white-space:pre-wrap}
+ .session-print .sheet-gear{columns:2;column-gap:18pt}
+}
+@page{margin:16mm}
 </style>
 <link rel="stylesheet" href="assets/brand/identity.css">
 </head>
@@ -259,6 +325,7 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <section id="celestial-changes" class="celestial-section" hidden aria-label="Noteworthy comet changes"><h2>What changed recently</h2><div id="celestial-changes-body" class="small"></div></section>
 <section id="milkyway-season" class="milkyway-season" hidden aria-label="Next Galactic-core season"></section>
 <section id="milkyway-whereto" class="milkyway-whereto" hidden aria-label="Where to go"></section>
+<section id="milkyway-session" class="milkyway-whereto milkyway-session" hidden aria-label="Plan a photography session"></section>
 <section id="celestial-more" class="celestial-section" aria-label="Other events in this window"><h2>Calculated but not prioritised</h2><div id="celestial-more-body" class="small"></div></section>
 <section id="celestial-freshness" class="celestial-section" aria-label="Celestial data sources"><h2>Where these numbers come from</h2><div id="celestial-freshness-body" class="small"></div></section>
 </section>
@@ -352,12 +419,14 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 <details id="how-it-works"><summary>How the recommendation works</summary><p>The night’s score is the best remaining satellite opportunity among your selected categories. It is not a weather score. A “likely visible” segment needs at least 20 seconds above your minimum elevation, with the Sun at least 6° below the horizon and the spacecraft fully sunlit. Buildings, trees, haze and object orientation can still prevent a sighting.</p><p>Base points: elevation 25, useful visible duration 15, sunlight 10, observer darkness 15, brightness category 10, cloud cover 20, and visibility 5. Cloud, poor visibility and rain then reduce the total. Unknown weather earns no weather points and makes the result provisional. No precise apparent magnitude is claimed. <a href="docs/overhead.md">Full algorithm, validation and limitations →</a></p><p>The Moon panel is informational and does not raise the satellite score. A quiet satellite night can still be a lovely night for stargazing.</p></details>
 <details id="diagnostics"><summary>Data & diagnostics</summary><div class="actions"><button id="refresh">Refresh source data</button><button id="clear-cache">Clear downloaded cache</button><label class="text-button">Import OMM JSON / TLE<input id="import" type="file" accept=".json,.txt,.tle" aria-label="Import orbital elements"></label></div><p>Import up to 2 MB of orbital elements from a trusted source if CelesTrak is unavailable. Imported records stay in this session and use their actual epoch; records more than 14 days from a prediction are excluded.</p><pre id="diagnostic-output"></pre></details>
 </main>
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.16.10" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.16.10">
+<section id="session-print" class="session-print" aria-hidden="true"></section>
+<!-- The print sheet above is filled only when a reader asks to print a session, and is hidden on screen. -->
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.19.1" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.19.1">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.16.10 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.19.1 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
@@ -895,8 +964,8 @@ $('discovery-build').onclick=buildDiscoveryGuide;$('discovery-back').onclick=bac
 // Local night windows for the planning horizon. The first seven come from the satellite side's own
 // night logic (so late-night viewing still belongs to the correct evening); the rest are extended
 // with real sunsets and sunrises for this location.
-function celestialWindows(days){
- const site=state.site,out=E.nights(site,Date.now()).slice(0,Math.min(days,7));
+function nightsForSite(site,days){
+ const out=E.nights(site,Date.now()).slice(0,Math.min(days,7));
  if(days>out.length&&Astro){
   // The base length is captured before the loop: reading out.length inside it grew with the array, so every
   // extended night after the seventh was a copy of the eighth and a "90-day" plan really spanned eight
@@ -913,6 +982,10 @@ function celestialWindows(days){
  }
  return out.filter(night=>Number.isFinite(night.start)&&Number.isFinite(night.end)&&night.end>night.start);
 }
+// Local night windows for the planning horizon. The first seven come from the satellite side's own
+// night logic (so late-night viewing still belongs to the correct evening); the rest are extended
+// with real sunsets and sunrises for this location.
+function celestialWindows(days){return nightsForSite(state.site,days);}
 // Datasets are versioned static files served beside the page. Only what the current category needs is
 // requested, so opening the planetary planner does not download the comet ephemerides. A missing or
 // invalid dataset is reported and the category degrades to an explanation instead of invented events.
@@ -1485,12 +1558,11 @@ function pointTonight(point){
 }
 /* The point's own window as an ordinary opportunity, so the existing calendar writer and observing plan
    handle it. Its identity is the point and the night, never the visitor's home site. */
-function pointOpportunity(point,tonight){
- if(!tonight.ok||!Opportunities||!MilkyWay)return null;
- const site=tonight.site,analysis=tonight.analysis,core=analysis.core,window=analysis.window;
- const series=analysis.series||[];
- const at=time=>{let best=series[0]||null;for(const sample of series)if(Math.abs(sample.t-time)<Math.abs(best.t-time))best=sample;return best;};
+function milkyWayPositions(analysis){
  const positions=[];
+ if(!analysis||!analysis.window||!analysis.core)return positions;
+ const window=analysis.window,core=analysis.core,series=analysis.series||[];
+ const at=time=>{let best=series[0]||null;for(const sample of series)if(Math.abs(sample.t-time)<Math.abs(best.t-time))best=sample;return best;};
  const push=(name,time,sample)=>{
   if(!sample||!Number.isFinite(sample.altitude))return;
   positions.push({name,altitude:Number(sample.altitude.toFixed(1)),azimuth:Number(sample.azimuth.toFixed(1)),
@@ -1499,34 +1571,49 @@ function pointOpportunity(point,tonight){
  push('The core as the window opens',window.start,at(window.start));
  push('The core at its highest',core.maxTime,{altitude:core.maxAltitude,azimuth:core.maxAzimuth});
  push('The core as the window closes',window.end,at(window.end));
- // The occurrence carries the point, so a point's event identity can never collide with the visitor's own
- // event for the same night.
- return {kind:'milky-way',category:'milkyway',objects:['Milky Way core'],night:tonight.night.day,
+ return positions;
+}
+/* One Milky Way candidate, from whatever place and night the caller calculated. The point explorer and the
+   session builder share it, so a point's card and its plan can never describe the same night differently. */
+function milkyWayCandidate(parts){
+ if(!parts||!parts.analysis||!parts.analysis.window||!Opportunities)return null;
+ const {site,night,analysis,title,summary,occurrence,caveats,data}=parts;
+ const core=analysis.core,window=analysis.window;
+ return {kind:'milky-way',category:'milkyway',objects:['Milky Way core'],night:night.day,occurrence,
+  title,summary,why:['this is a place and a night the app calculated at its own coordinates'],caveats,
+  t:{start:window.start,end:window.end,best:core.maxTime},positions:milkyWayPositions(analysis),optical:'camera',
+  observable:true,site,
+  data:{windowQuality:analysis.quality.value,qualityBasis:'Milky Way window quality (geometry, darkness, moonlight)',
+   qualityFactors:analysis.quality.factors,positionGrade:'reference-j2000',
+   comparability:'Milky Way window quality — this category\'s own measure, not comparable with satellite, meteor or planetary scores.',
+   windowMinutes:window.minutes,windowBasis:'the core at or above '+analysis.thresholdDeg+' degrees during '+analysis.darkness.achieved,
+   thresholdDeg:analysis.thresholdDeg,coreMaxAltitude:core.maxAltitude,coreMaxAzimuth:core.maxAzimuth,
+   coreMaxCompass:core.maxCompass,coreMaxTime:core.maxTime,darknessAchieved:analysis.darkness.achieved,
+   darknessMinutes:analysis.darkness.minutes,moon:analysis.moon?analysis.moon.classification:null,
+   band:analysis.band||null,...data},
+  provenance:{library:'Astronomy Engine / Overhead Milky Way',reference:MilkyWay.CORE.source,frame:MilkyWay.CORE.frame,
+   galacticFrame:MilkyWay.GALACTIC.source,dataset:null,method:'nightly analysis at the selected place'}};
+}
+function pointOpportunity(point,tonight){
+ if(!tonight.ok||!MilkyWay)return null;
+ const analysis=tonight.analysis,core=analysis.core,window=analysis.window;
+ return milkyWayCandidate({site:tonight.site,night:tonight.night,analysis,
+  // The occurrence carries the point, so a point's event identity can never collide with the visitor's own
+  // event for the same night.
   occurrence:point.id+' '+tonight.night.day,
   title:'Milky Way core at '+point.name+' — '+tonight.night.day,
   summary:'the core is up to '+core.maxAltitude.toFixed(0)+'° towards '+core.maxCompass+'; '+window.minutes+
    ' minutes with the core above '+MilkyWay.RULES.core.goodDeg+'° during '+analysis.darkness.achieved+' darkness'+
    (analysis.moon?'; Moon: '+String(analysis.moon.classification).replace(/-/g,' '):'')+
    '. Calculated at this point\'s own coordinates.',
-  why:['this is a facility the managing agency documents for overnight use, at its own coordinates'],
   caveats:['parking is '+(point.access.parking==='verified'?'permitted by the agency at this facility':
     'at a designated campsite, because camping is the permission here'),
    'terrain is a bare-earth model and does not include trees or buildings',
    'weather is shown for your own location only, never for this point',
    'local artificial sky brightness has not been assessed'],
-  t:{start:window.start,end:window.end,best:core.maxTime},positions,optical:'camera',observable:true,site,
-  data:{windowQuality:analysis.quality.value,qualityBasis:'Milky Way window quality (geometry, darkness, moonlight)',
-   qualityFactors:analysis.quality.factors,positionGrade:'reference-j2000',
-   comparability:'Milky Way window quality — this category\'s own measure, not comparable with satellite, meteor or planetary scores.',
-   windowMinutes:window.minutes,windowBasis:'the core at or above '+MilkyWay.RULES.core.goodDeg+' degrees during '+analysis.darkness.achieved,
-   thresholdDeg:MilkyWay.RULES.core.goodDeg,coreMaxAltitude:core.maxAltitude,coreMaxAzimuth:core.maxAzimuth,
-   coreMaxCompass:core.maxCompass,coreMaxTime:core.maxTime,darknessAchieved:analysis.darkness.achieved,
-   darknessMinutes:analysis.darkness.minutes,moon:analysis.moon?analysis.moon.classification:null,
-   band:analysis.band||null,pointId:point.id,pointFacilityType:point.facilityType,parking:point.access.parking,
+  data:{pointId:point.id,pointFacilityType:point.facilityType,parking:point.access.parking,
    coordinateSource:point.coordinateSource,terrainState:point.terrain.state,
-   terrainNote:point.terrain.note,weatherState:'home-location-only'},
-  provenance:{library:'Astronomy Engine / Overhead Milky Way',reference:MilkyWay.CORE.source,frame:MilkyWay.CORE.frame,
-   galacticFrame:MilkyWay.GALACTIC.source,dataset:null,method:'nightly analysis at the observation point'}};
+   terrainNote:point.terrain.note,weatherState:'home-location-only'}});
 }
 function buildPointViews(artifact){
  const views={};
@@ -1551,6 +1638,566 @@ function buildPointViews(artifact){
   views[point.id]=view;
  }
  return views;
+}
+
+/* ---- Photography sessions (Phase 6C) ---------------------------------------------------------
+   A session is a night, a place, the astronomy at that place, the equipment you intend to carry and a
+   plan you can print. Everything astronomical is calculated here with the same engine the category
+   above uses; the session module supplies the choices, the checklist, the camera starting points and
+   the record. Nothing in this block changes the visitor's saved location, claims that a saved home is
+   publicly accessible, invents a forecast for another place, or writes a plan for a night with no
+   window. See docs/photography-sessions.md. */
+const sessionState={open:false,status:'idle',module:null,loading:null,error:null,when:'tonight',date:null,
+ where:'home',notes:'',camera:{},checklist:null,notice:null,noticeTone:null,computed:null,computedKey:null,
+ saved:[],savedError:null,current:null,season:null,seasonKey:null,seasonBusy:false,seasonTried:new Set(),
+ opportunityId:null,refreshedAt:null};
+function sessionStore(){return {get:(key,fallback)=>read(key,fallback),set:(key,value)=>write(key,value)};}
+function loadSessionScript(){
+ // The builder is a separate file: a reader who never opens it downloads nothing for it.
+ if(sessionState.module)return Promise.resolve(sessionState.module);
+ if(sessionState.loading)return sessionState.loading;
+ sessionState.loading=new Promise((resolve,reject)=>{
+  const script=document.createElement('script');
+  script.src='overhead-sessions.js';script.async=true;
+  script.onload=()=>{const module=window.OverheadSessions||null;
+   if(!module){sessionState.loading=null;reject(new Error('the session builder did not register itself'));}
+   else{sessionState.module=module;resolve(module);}};
+  script.onerror=()=>{sessionState.loading=null;reject(new Error('the session builder could not be loaded'));};
+  document.head.append(script);
+ });
+ return sessionState.loading;
+}
+function sessionPoint(){
+ const list=pointsState.artifact&&pointsState.artifact.points;
+ return list?list.find(point=>point.id===sessionState.where)||null:null;
+}
+function sessionAtHome(site){return Math.abs(site.lat-state.site.lat)<1e-6&&Math.abs(site.lon-state.site.lon)<1e-6&&site.tz===state.site.tz;}
+function sessionSite(){
+ const point=sessionPoint();
+ if(point)return pointSite(point);
+ return {lat:state.site.lat,lon:state.site.lon,tz:state.site.tz,name:state.site.name||'your saved location'};
+}
+function sessionClock(site,ms){
+ if(!Number.isFinite(ms))return '—';
+ return new Intl.DateTimeFormat('en-US',{timeZone:site.tz,hour:'numeric',minute:'2-digit',hour12:state.settings.clock==='12'}).format(new Date(ms));
+}
+function sessionDay(site,dateISO){
+ const noon=E.zonedTime(dateISO,12,site.tz);
+ return new Intl.DateTimeFormat('en-US',{timeZone:site.tz,weekday:'long',month:'long',day:'numeric',year:'numeric'}).format(new Date(noon));
+}
+/* One night at one place, built the way the rest of the page builds extended nights. The date is the
+   local calendar date of the evening, which is also how a saved plan names its night. */
+function nightForDate(site,dateISO){
+ const noon=E.zonedTime(dateISO,12,site.tz);
+ let windows=null;
+ try{windows=Astro.sunsetSunrise(site,noon);}catch(error){windows=null;}
+ const day=E.localDate(noon,site.tz);
+ if(!windows||!Number.isFinite(windows.sunset)||!Number.isFinite(windows.sunrise)||windows.sunrise<=windows.sunset)
+  return {day,start:null,end:null};
+ return {day,start:windows.sunset,end:windows.sunrise};
+}
+/* The seasonal search at the session's own place. It is keyed by the place and by the threshold, one search
+   per place is ever in flight, and a finished search is published only when the reader is still looking at
+   that place — a "first favourable night" found for Camp Cadiz must never appear while Princeton is selected. */
+const sessionSeasons=new Map();
+function sessionSeasonKey(site){return [site.lat,site.lon,site.tz,seasonThreshold()].join(',');}
+function ensureSessionSeason(){
+ const site=sessionSite(),key=sessionSeasonKey(site);
+ if(sessionSeasons.has(key))return sessionSeasons.get(key);
+ if(!MilkyWay||!Astro)return Promise.resolve(null);
+ if(sessionAtHome(site)&&seasonState.status==='ready'&&seasonState.result&&seasonState.result.season){
+  const reused=Promise.resolve(seasonState.result.season);
+  sessionSeasons.set(key,reused);
+  sessionState.season=seasonState.result.season;sessionState.seasonKey=key;
+  return reused;
+ }
+ sessionState.notice='Searching a year of nights at this place…';sessionState.noticeTone=null;
+ if(sessionState.open)renderSession();
+ const pending=(async()=>{
+  await new Promise(resolve=>setTimeout(resolve,0));
+  try{
+   const result=MilkyWay.analyseSeason(nightsForSite(site,365),site,{minAltitude:seasonThreshold()});
+   return result&&result.season?result.season:result;
+  }catch(error){
+   sessionState.notice='The year-long search failed ('+String((error&&error.message)||error)+'). You can still choose a date yourself.';
+   sessionState.noticeTone='warn';
+   return null;
+  }
+ })().then(season=>{
+  if(!season)sessionSeasons.delete(key);
+  // Published only for the place the reader is looking at now; otherwise the promise is simply the answer
+  // for its own place and stays in the map, where a later visit to that place finds it instantly.
+  if(sessionSeasonKey(sessionSite())===key){
+   if(season){sessionState.season=season;sessionState.seasonKey=key;}
+   if(sessionState.notice&&/Searching/.test(sessionState.notice))sessionState.notice=null;
+   if(sessionState.open)renderSession();
+  }
+  return season;
+ });
+ sessionSeasons.set(key,pending);
+ return pending;
+}
+function sessionDates(){
+ const site=sessionSite();
+ const options=[{id:'tonight',label:'Tonight',detail:sessionDay(site,E.localDate(Date.now(),site.tz))}];
+ const season=sessionState.seasonKey===sessionSeasonKey(site)?sessionState.season:null;
+ // The two seasonal chips are always offered: before the year has been searched they say so, and pressing one
+ // starts the search instead of hiding the only way to ask the question.
+ options.push(season&&season.favorable
+  ?{id:'favourable',label:'First favourable night',detail:season.favorable.day+' · window quality '+season.favorable.quality+'/100'}
+  :{id:'favourable',label:'First favourable night',detail:'searches a year of nights at this place'});
+ options.push(season&&season.opening
+  ?{id:'season',label:'Season opening',detail:season.opening.day+' · the first night the window exists'}
+  :{id:'season',label:'Season opening',detail:'the first night the window exists at this place'});
+ return options;
+}
+/* Choosing "when" decides a date, and the date is always calculated at the selected place. A season with
+   no favourable night keeps the date where it is and explains the refusal instead of moving the plan to a
+   night the engine never offered. */
+async function applyWhen(kind){
+ sessionState.when=kind;
+ const site=sessionSite();
+ if(kind==='tonight'){sessionState.date=E.localDate(Date.now(),site.tz);sessionState.notice=null;}
+ else if(kind==='custom'){
+  if(!sessionState.date)sessionState.date=E.localDate(Date.now(),site.tz);
+  sessionState.notice=null;
+ }
+ else{
+  const key=sessionSeasonKey(site);
+  const season=await ensureSessionSeason();
+  // The reader may have changed place while the year was being searched: the answer for the old place is
+  // never applied to the new one, and the mode is simply re-applied for where they are now.
+  if(sessionSeasonKey(sessionSite())!==key){return applyWhen(kind);}
+  const record=season?(kind==='season'?season.opening:season.favorable):null;
+  if(record&&/^\d{4}-\d{2}-\d{2}$/.test(String(record.day))){
+   sessionState.date=record.day;sessionState.notice=null;
+  }else if(season&&season.explanation&&season.explanation.length){
+   sessionState.notice=season.explanation[0];sessionState.noticeTone='warn';
+  }else{
+   sessionState.notice='No such night could be found at this place, so the date has not changed.';sessionState.noticeTone='warn';
+  }
+ }
+ sessionState.refreshedAt=null;
+ renderSession();
+}
+function applyWhere(id){
+ if(id!=='home'&&!(pointsState.artifact&&pointsState.artifact.points.some(point=>point.id===id)))return;
+ sessionState.where=id;
+ // The night is re-calculated at the new place; when the place has no season yet, the chosen kind is
+ // re-applied so a "first favourable night" chip cannot keep a date that was found for another site.
+ if(sessionState.when==='favourable'||sessionState.when==='season'){applyWhen(sessionState.when);return;}
+ if(sessionState.when==='tonight')sessionState.date=E.localDate(Date.now(),sessionSite().tz);
+ sessionState.refreshedAt=null;
+ renderSession();
+ // The seasonal chips describe this place; the search runs once per place, off the click that asked for it.
+ if(!sessionSeasons.has(sessionSeasonKey(sessionSite())))ensureSessionSeason();
+}
+/* The forecast is only ever the one this app holds for the visitor's own coordinates. A point never
+   inherits it, and a night beyond the nine-day coverage is never given a forecast in words. */
+function sessionWeather(site,night){
+ const source=state.sources[weatherKey(state.site)];
+ const age=source&&Number.isFinite(source.at)?' (fetched '+age(source.at)+' ago)':'';
+ if(!sessionAtHome(site)){
+  return {state:'site-only',label:'Weather is not available for this place.',
+   detail:'The forecast this page holds is for your own saved location. Showing it here would describe a different sky, so it is not shown; recheck a forecast for the site before you leave.'};
+ }
+ // The forecast covers nine days from the last fetch (the request's own horizon), so a night beyond
+ // that is reported as unforecastable even when the request itself failed: the distance is the reason.
+ const coverageEnd=(source&&Number.isFinite(source.at)?source.at:Date.now())+9*DAY;
+ if(Number.isFinite(night.start)&&night.start>coverageEnd)
+  return {state:'not-forecastable',label:'Weather is not yet forecastable for this date.',
+   detail:'The forecast covers about nine days from its last update'+age+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
+ const hourly=state.weather&&state.weather.hourly;
+ if(!hourly||!Array.isArray(hourly.time)||!Number.isFinite(night.start)||!Number.isFinite(night.end))
+  return {state:'unavailable',label:'Weather is not available right now.',detail:'The forecast request did not return hourly data, so no cloud cover is claimed for this night.'};
+ const samples=[];
+ for(let i=0;i<hourly.time.length;i++){
+  const at=hourly.time[i]*1000;
+  if(at>=night.start&&at<=night.end&&Number.isFinite(hourly.cloud_cover&&hourly.cloud_cover[i]))samples.push(hourly.cloud_cover[i]);
+ }
+ if(!samples.length){
+  return {state:'not-forecastable',label:'Weather is not yet forecastable for this date.',
+   detail:'The forecast covers about nine days from its last update'+age+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
+ }
+ const mean=Math.round(samples.reduce((sum,value)=>sum+value,0)/samples.length);
+ return {state:'forecast',label:'Cloud cover '+mean+'% averaged over the night\'s forecast hours'+age+'.',
+  detail:'One forecast, not a promise: it is reissued, it is coarser than your site, and it says nothing about transparency, smoke or haze.'};
+}
+function sessionTerrain(point,analysis){
+ if(!point||!point.terrain||!Array.isArray(point.terrain.profile)||!point.terrain.profile.length||!analysis||!analysis.core)
+  return null;
+ const clearance=sessionState.module.clearance(point.terrain.profile,analysis.core.maxAzimuth,analysis.core.maxAltitude);
+ if(!clearance||clearance.state==='unavailable')return null;
+ const profile=clearance.horizon;
+ return {state:clearance.state,azimuthDeg:analysis.core.maxAzimuth.toFixed(1),altitudeDeg:analysis.core.maxAltitude.toFixed(1),
+  horizonAngleDeg:profile.horizonAngleDeg.toFixed(1),differenceDeg:clearance.differenceDeg.toFixed(1),
+  uncertaintyDeg:Number(profile.uncertaintyDeg||0).toFixed(1),marginDeg:clearance.marginDeg.toFixed(1),
+  dem:(point.terrain.dem&&Number.isFinite(point.terrain.dem.pixelSizeM)?'3DEP ~'+Math.round(point.terrain.dem.pixelSizeM)+' m':'a bare-earth DEM'),
+  moments:(point.terrain.moments||[]).map(moment=>({label:moment.label,azimuthDeg:Number(moment.azimuthDeg).toFixed(1),
+   horizonAngleDeg:Number(moment.horizonAngleDeg).toFixed(1)}))};
+}
+function sessionConditions(parts){
+ const {site,point,night,analysis,date}=parts;
+ const base={siteName:(point?point.name:(site.name||'your saved location')),dateLabel:sessionDay(site,date),timezone:site.tz,quality:null};
+ if(!Number.isFinite(night.start)){
+  return {...base,why:{headline:'No night could be calculated for this date.',
+   detail:'The Sun\'s set and rise could not be computed for this place and date, so no observing window is claimed.'}};
+ }
+ if(!analysis.observable||!analysis.window){
+  const refusal=analysis.refusals&&analysis.refusals.length?analysis.refusals[0]:null;
+  const highest=Number.isFinite(analysis.core&&analysis.core.maxAltitude)?analysis.core.maxAltitude.toFixed(1):null;
+  const where=analysis.core?analysis.core.maxCompass:null;
+  return {...base,why:{headline:'No qualifying Galactic-core window at this place on this date.',
+   detail:(refusal?String(refusal):'The core never clears the '+analysis.thresholdDeg+'° rule during this night\'s darkness.')+
+    (highest?' The core still reaches '+highest+'° towards '+where+' at its highest, so the galaxy is not invisible; there is simply no window that meets the rule.':'')}};
+ }
+ const core=analysis.core,window=analysis.window;
+ const bestAltitude=Number.isFinite(analysis.bestAltitude)?analysis.bestAltitude:core.maxAltitude;
+ const bestAzimuth=Number.isFinite(analysis.bestAzimuth)?analysis.bestAzimuth:core.maxAzimuth;
+ const bestCompass=analysis.bestCompass||core.maxCompass;
+ const limitations=[];
+ if(point){
+  limitations.push('parking is '+(point.access.parking==='verified'?'permitted by the agency at this facility':
+   point.access.parking==='verified-at-designated-campsite'?'verified only at a designated campsite; a day-visitor lot is not implied':
+   String(point.access.parking).replace(/-/g,' ')));
+  limitations.push('terrain is a bare-earth model: it does not include trees, buildings or the bank in front of you');
+  limitations.push('weather is never substituted from your own location for this point');
+ }else{
+  limitations.push('this is your own saved location: the app holds no public-access evidence for it, and nothing here says the site is open after dark');
+ }
+ if(core.maxAltitude<MilkyWay.RULES.core.photographicDeg&&analysis.band&&analysis.band.statement)limitations.push(analysis.band.statement);
+ limitations.push('local artificial sky brightness has not been assessed here; no darkness rating is derived from any dataset');
+ return {...base,quality:analysis.quality.value,
+  window:{startLabel:sessionClock(site,window.start),endLabel:sessionClock(site,window.end),minutes:window.minutes,
+   level:String(window.level||analysis.darkness.achieved||'').replace(/-/g,' ')},
+  best:{timeLabel:sessionClock(site,analysis.bestTime||core.maxTime),altitudeDeg:bestAltitude.toFixed(1),
+   azimuthDeg:bestAzimuth.toFixed(1),compass:bestCompass},
+  direction:{bearing:bestAzimuth.toFixed(0),cardinal:E.compass(bestAzimuth)+
+   (bestAltitude>=45?' and high in the sky':' above the '+E.compass(bestAzimuth).toLowerCase()+'ern horizon'),altitudeDeg:bestAltitude.toFixed(1)},
+  moon:{label:analysis.moon?(String(analysis.moon.classification).replace(/-/g,' ')+(analysis.moon.metrics?', up for '+Math.round(analysis.moon.metrics.upFraction*100)+'% of the window':'')):'not evaluated',
+   detail:analysis.moon&&analysis.moon.detail?analysis.moon.detail:''},
+  darkness:{label:String(analysis.darkness.achieved).replace(/-/g,' ')+' twilight reached',
+   detail:'the window needs the core at or above '+analysis.thresholdDeg+'° during that darkness'},
+  terrain:sessionTerrain(point,analysis),weather:sessionWeather(site,night),limitations};
+}
+function computeSession(){
+ const module=sessionState.module;
+ if(!module||!MilkyWay||!Astro)return null;
+ const site=sessionSite(),point=sessionPoint();
+ if(!sessionState.date)sessionState.date=E.localDate(Date.now(),site.tz);
+ const night=nightForDate(site,sessionState.date);
+ const key=[site.lat,site.lon,site.tz,sessionState.date,sessionState.where,seasonThreshold()].join(',');
+ if(sessionState.computedKey===key&&sessionState.computed)return sessionState.computed;
+ let analysis=null;
+ if(Number.isFinite(night.start)){
+  try{analysis=MilkyWay.analyseNight(night,site,{thresholdDeg:seasonThreshold()});}
+  catch(error){analysis=null;}
+ }
+ const computed={site,point,night,analysis,date:sessionState.date,
+  conditions:analysis?sessionConditions({site,point,night,analysis,date:sessionState.date})
+   :{siteName:(point?point.name:site.name),dateLabel:sessionDay(site,sessionState.date),
+     why:{headline:'This night could not be calculated.',detail:'The astronomy engine did not return an analysis for this place and date.'}}};
+ sessionState.computed=computed;sessionState.computedKey=key;
+ return computed;
+}
+
+function sessionRecord(computed){
+ const module=sessionState.module,point=computed.point,analysis=computed.analysis,conditions=computed.conditions;
+ const siteKey=point?point.id:('home:'+computed.site.lat.toFixed(4)+','+computed.site.lon.toFixed(4));
+ const existing=sessionState.current&&sessionState.current.id===module.sessionId(siteKey,computed.date)?sessionState.current:null;
+ return module.newSession({
+  id:module.sessionId(siteKey,computed.date),subject:'Milky Way core',date:computed.date,siteKey,site:computed.site,
+  pointId:point?point.id:null,
+  evidenceRef:point?{agency:point.agency,coordinateSource:point.coordinateSource,verifiedAt:point.verifiedAt,
+   access:point.access,url:(point.access&&point.access.source&&point.access.source.url)||null}:null,
+  window:{start:analysis.window.start,end:analysis.window.end,minutes:analysis.window.minutes,level:analysis.window.level},
+  core:{maxAltitudeDeg:analysis.core.maxAltitude,maxAzimuthDeg:analysis.core.maxAzimuth,maxCompass:analysis.core.maxCompass,
+   bestTime:analysis.bestTime||analysis.core.maxTime,bestAltitudeDeg:analysis.bestAltitude||analysis.core.maxAltitude},
+  moon:analysis.moon?{classification:analysis.moon.classification,detail:analysis.moon.detail}:null,
+  darkness:{achieved:analysis.darkness.achieved,minutes:analysis.darkness.minutes},
+  terrain:conditions.terrain?{state:conditions.terrain.state,azimuthDeg:conditions.terrain.azimuthDeg,
+   horizonAngleDeg:conditions.terrain.horizonAngleDeg,differenceDeg:conditions.terrain.differenceDeg,
+   uncertaintyDeg:conditions.terrain.uncertaintyDeg,dem:conditions.terrain.dem}:null,
+  weather:{state:conditions.weather?conditions.weather.state:'unavailable',at:Date.now(),forecastAge:state.sources[weatherKey(state.site)]?.at||null},
+  quality:conditions.quality,
+  engine:{name:'Overhead Milky Way',schema:MilkyWay.SCHEMA,thresholdDeg:analysis.thresholdDeg,
+   calculatedAt:Date.now(),version:siteRelease()},
+  checklist:sessionState.checklist||{},camera:sessionState.camera||{},notes:sessionState.notes,
+  createdAt:existing?existing.createdAt:Date.now(),limitations:conditions.limitations||[]});
+}
+function sessionCandidate(computed){
+ if(!computed||!computed.analysis||!computed.analysis.window)return null;
+ const site=computed.site,point=computed.point,analysis=computed.analysis,night=computed.night;
+ const name=point?point.name:(site.name||'your saved location');
+ return milkyWayCandidate({site,night,analysis,
+  occurrence:(point?point.id:'home:'+site.lat.toFixed(4)+','+site.lon.toFixed(4))+' '+night.day,
+  title:'Milky Way core at '+name+' — '+night.day,
+  summary:'the core reaches '+analysis.core.maxAltitude.toFixed(0)+'° towards '+analysis.core.maxCompass+'; '+analysis.window.minutes+
+   ' minutes with the core above '+analysis.thresholdDeg+'° during '+analysis.darkness.achieved+' darkness'+
+   (analysis.moon?'; Moon: '+String(analysis.moon.classification).replace(/-/g,' '):'')+
+   '. Calculated for a photography session at this place and night.',
+  caveats:[point?'parking is '+(point.access.parking==='verified'?'verified at this facility':
+    'verified at a designated campsite only; a day-visitor lot is not implied'):
+    'this is your own location and the app holds no access evidence for it',
+   'terrain is a bare-earth model and does not include trees or buildings',
+   point?'weather is not available at this point and is never substituted from your location':
+    'the forecast shown in this app is for your own location only',
+   'local artificial sky brightness has not been assessed'],
+  data:{sessionId:sessionState.module.sessionId(point?point.id:('home:'+site.lat.toFixed(4)+','+site.lon.toFixed(4)),night.day),
+   pointId:point?point.id:null,parking:point?point.access.parking:null,
+   weatherState:point?'site-only':'home-location-only',subject:'Milky Way core'}});
+}
+function sessionRegister(computed){
+ const candidate=sessionCandidate(computed);
+ if(!candidate)return null;
+ try{
+  const scored=Opportunities.withScores([candidate],{site:computed.site,now:Date.now(),weatherAt:null});
+  const opportunity=scored.opportunities[0];
+  if(!opportunity)return null;
+  const own=opportunity.attributes&&opportunity.attributes.windowQuality;
+  if(Number.isFinite(own))opportunity.observing={...opportunity.observing,value:own,
+   detail:'Milky Way window quality at this place: geometry, darkness and moonlight only.'};
+  const event=D.celestial(opportunity,{category:'milkyway',errors:[]});
+  if(!event)return null;
+  calendarItems.set(event.id,{event,source:opportunity,site:computed.site});
+  sessionState.opportunityId=event.id;
+  return event.id;
+ }catch(error){return null;}
+}
+function renderSession(){
+ const host=$('milkyway-session');
+ if(!host)return;
+ if(celestial.category!=='milkyway'){host.hidden=true;host.innerHTML='';return;}
+ host.hidden=false;
+ if(!sessionState.open){
+  host.innerHTML='<h2>Plan a photography session</h2>'+
+   '<p class="whereto-window">Choose a night and a documented place, read the astronomy at that place, prepare the '+
+   'kit, and print or save a field plan. It uses the same engines and the same access evidence as everything above, '+
+   'and it will not invent a window, a forecast or a permission.</p>'+
+   '<div class="season-actions"><button type="button" id="session-open">Plan a Photography Session</button></div>';
+  $('session-open').onclick=()=>{analyticsEvent('session_open',{category:'milkyway'});openSession();};
+  return;
+ }
+ if(sessionState.status==='loading'){
+  host.innerHTML='<h2>Plan a photography session</h2><p class="whereto-status">Loading the session builder and the '+
+   'verified observation points… nothing above waits for this.</p>';
+  return;
+ }
+ const module=sessionState.module;
+ if(!module){
+  host.innerHTML='<h2>Plan a photography session</h2><p class="whereto-status" data-tone="warn">The session builder '+
+   'could not be loaded ('+esc(sessionState.error||'unknown reason')+'). Your Milky Way calculations above are unaffected.</p>'+
+   '<div class="season-actions"><button type="button" id="session-retry">Try again</button></div>';
+  $('session-retry').onclick=()=>{sessionState.status='idle';sessionState.error=null;openSession();};
+  return;
+ }
+ if(!sessionState.checklist)sessionState.checklist=module.readChecklist(sessionStore(),module.CHECKLIST);
+ const computed=computeSession();
+ const points=pointsState.artifact?pointsState.artifact.points:[];
+ if(sessionState.where!=='home'&&!points.some(point=>point.id===sessionState.where))sessionState.where='home';
+ const todayISO=E.localDate(Date.now(),sessionSite().tz);
+ host.innerHTML='<div class="sx-wrap">'+module.render({state:{when:sessionState.when,date:sessionState.date,where:sessionState.where,
+  notes:sessionState.notes,camera:sessionState.camera},todayISO,maxDateISO:E.localDate(Date.now()+365*DAY,sessionSite().tz),
+  dates:sessionDates(),points,home:{name:state.site.name},conditions:computed?computed.conditions:null,
+  checklist:sessionState.checklist,guidance:module.cameraGuidance(sessionState.camera),saved:sessionState.saved,
+  notice:sessionState.notice,session:sessionState.current})+
+  '<div class="season-actions"><button type="button" data-session="close">Close the session builder</button></div></div>'+
+  (sessionState.savedError?'<p class="small" data-tone="warn">'+esc(sessionState.savedError)+'</p>':'')+
+  (sessionState.pointsError?'<p class="small" data-tone="warn">Verified observation points could not be loaded ('+
+   esc(sessionState.pointsError)+'), so only your own saved location is offered. The access evidence is never guessed.</p>':'');
+ if(!host.dataset.bound){host.dataset.bound='1';host.addEventListener('click',sessionClick);host.addEventListener('change',sessionChange);host.addEventListener('input',sessionChange);}
+}
+
+function siteRelease(){const footer=document.querySelector('[data-deploy-version]');return footer?footer.dataset.deployVersion:null;}
+async function openSession(){
+ if(sessionState.open)return;
+ sessionState.open=true;sessionState.status='loading';sessionState.error=null;sessionState.pointsError=null;sessionState.notice=null;
+ renderSession();
+ try{await loadSessionScript();}
+ catch(error){sessionState.error=String((error&&error.message)||error);renderSession();return;}
+ // The point list is the access evidence, and it is loaded only now. If it cannot be loaded the builder still
+ // works for the visitor's own saved location and says why the points are missing.
+ try{
+  if(!sitesState.module)await loadSitesScript();
+  await loadPointData();
+ }catch(error){sessionState.pointsError=String((error&&error.message)||error);}
+ sessionState.status='ready';
+ if(!sessionState.checklist)sessionState.checklist=sessionState.module.readChecklist(sessionStore(),sessionState.module.CHECKLIST);
+ const listed=sessionState.module.listFrom(sessionStore());
+ sessionState.saved=listed.sessions;
+ sessionState.savedError=listed.ok?(listed.skipped?'One saved plan could not be read and was skipped.':null):'The saved-plan list could not be read, so it is empty; new plans can still be saved.';
+ if(!sessionState.date)sessionState.date=E.localDate(Date.now(),sessionSite().tz);
+ renderSession();
+ const section=$('milkyway-session');if(section)section.scrollIntoView({block:'start'});
+ announce('Session builder open. Choose a night and a place; nothing is saved until you ask.');
+ ensureSessionSeason().then(()=>{if(sessionState.open)renderSession();});
+}
+function saveSession(){
+ const computed=computeSession();
+ if(!computed||!computed.analysis||!computed.analysis.window){
+  sessionState.notice='There is no observing window on this night, so there is nothing to save. Choose another date.';
+  sessionState.noticeTone='warn';renderSession();return;
+ }
+ const record=sessionRecord(computed);
+ const result=sessionState.module.put(sessionStore(),record);
+ if(!result.ok){sessionState.notice=result.reason||'The plan could not be saved in this browser.';sessionState.noticeTone='warn';renderSession();return;}
+ sessionState.saved=result.sessions;sessionState.current=record;
+ sessionState.notice='Saved in this browser only. The plan keeps the calculations it was made with; "refresh" recalculates them.';
+ sessionState.noticeTone=null;renderSession();
+ analyticsEvent('session_save',{category:'milkyway',point:record.pointId?'verified':'own'});
+}
+function openSavedSession(id){
+ const record=sessionState.saved.find(entry=>entry.id===id);
+ if(!record)return;
+ const points=pointsState.artifact?pointsState.artifact.points:[];
+ const available=!record.pointId||points.some(point=>point.id===record.pointId);
+ sessionState.current=record;
+ sessionState.notes=record.notes||'';
+ sessionState.camera=record.camera||{};
+ sessionState.checklist={...sessionState.module.readChecklist(sessionStore(),sessionState.module.CHECKLIST),...(record.checklist||{})};
+ sessionState.date=record.date;
+ sessionState.where=available?(record.pointId||'home'):'home';
+ sessionState.when='custom';sessionState.computedKey=null;sessionState.noticeTone=null;
+ sessionState.notice=available?'Opened a plan saved '+age(record.updatedAt)+' ago. The astronomy has been recalculated for now; the access notes are the ones the plan recorded.'
+  :'This plan names an observation point that is no longer published, so it has been opened at your own saved location. Its saved notes are still here.';
+ renderSession();
+ const section=$('milkyway-session');if(section)section.scrollIntoView({block:'start'});
+}
+function deleteSavedSession(id){
+ sessionState.saved=sessionState.module.remove(sessionStore(),id);
+ if(sessionState.current&&sessionState.current.id===id)sessionState.current=null;
+ sessionState.notice='Removed from this browser. Nothing was uploaded, so nothing else is affected.';
+ sessionState.noticeTone=null;renderSession();
+}
+async function refreshSession(){
+ const module=sessionState.module;
+ if(!module)return;
+ sessionState.notice='Refreshing the access evidence and recalculating this place and night…';sessionState.noticeTone=null;renderSession();
+ pointsState.artifact=null;
+ try{await loadPointData();sessionState.pointsError=null;}
+ catch(error){sessionState.pointsError=String((error&&error.message)||error);}
+ sessionState.computedKey=null;sessionState.refreshedAt=Date.now();
+ const computed=computeSession();
+ if(sessionState.current&&computed&&computed.analysis&&computed.analysis.window){
+  const record=sessionRecord(computed);
+  const result=module.put(sessionStore(),record);
+  if(result.ok){sessionState.saved=result.sessions;sessionState.current=record;}
+ }
+ sessionState.notice='Recalculated at '+time(Date.now())+'. The published access evidence was re-read; the agency may still change it, '+
+  'so check the site\'s own notice before you leave.';
+ sessionState.noticeTone=null;renderSession();
+}
+function printSession(){
+ const computed=computeSession();
+ if(!computed||!computed.analysis||!computed.analysis.window){
+  announce('There is no observing window on this night, so there is no field plan to print.');return;
+ }
+ const record=sessionRecord(computed);
+ const host=$('session-print');
+ if(!host){announce('The print view is missing from this page, so nothing was printed.');return;}
+ host.innerHTML=sessionPrintHTML(record,computed);
+ announce('Opening the print dialog for this field plan.');
+ analyticsEvent('session_print',{category:'milkyway',point:record.pointId?'verified':'own'});
+ window.print();
+}
+function sessionAddToCalendar(){
+ const computed=computeSession();
+ const id=sessionRegister(computed);
+ if(!id){announce('There is no observing window on this night, so no calendar event was created.');return;}
+ addToCalendar(id);
+}
+function sessionAddToPlan(){
+ const computed=computeSession();
+ const id=sessionRegister(computed);
+ if(!id){announce('There is no observing window on this night, so nothing was added to the plan.');return;}
+ planAdd(id);
+}
+
+function sessionPrintHTML(record,computed){
+ const site=record.site||state.site;
+ const clock=ms=>sessionClock(site,ms);
+ const dateLabel=sessionDay(site,record.date);
+ const guidance=sessionState.module.cameraGuidance(record.camera);
+ const access=record.evidenceRef&&record.evidenceRef.access?record.evidenceRef.access:null;
+ const evidence=access&&Array.isArray(access.evidence)&&access.evidence.length?access.evidence[0]:null;
+ const gear=sessionState.module.CHECKLIST.map(item=>'<li>'+(record.checklist&&record.checklist[item.id]?'☑':'☐')+' '+esc(item.label)+'</li>').join('');
+ const rows=[];
+ const row=(label,value)=>rows.push('<dt>'+esc(label)+'</dt><dd>'+value+'</dd>');
+ row('Coordinates',esc(site.lat.toFixed(4))+', '+esc(site.lon.toFixed(4)));
+ row('Local timezone',esc(site.tz));
+ if(record.window)row('Observing window',esc(clock(record.window.start))+'–'+esc(clock(record.window.end))+' ('+esc(record.window.minutes)+' min · '+esc(String(record.window.level||'').replace(/-/g,' '))+')');
+ if(record.core)row('Best available moment',esc(clock(record.core.bestTime))+' · core '+esc(record.core.bestAltitudeDeg.toFixed(1))+'° up, bearing '+
+  esc(record.core.maxAzimuthDeg.toFixed(0))+'° '+esc(record.core.maxCompass));
+ if(record.moon)row('Moon',esc(String(record.moon.classification).replace(/-/g,' '))+(record.moon.detail?' — '+esc(record.moon.detail):''));
+ if(record.darkness)row('Darkness',esc(String(record.darkness.achieved).replace(/-/g,' '))+' twilight reached');
+ if(Number.isFinite(record.quality))row('Window quality',esc(record.quality)+' / 100 — this category\'s own scale, not comparable with satellite or meteor values');
+ row('Weather',record.weather?esc(record.weather.state==='forecast'?'forecast held for your own location, fetched '+age(record.weather.forecastAge||record.weather.at)+' ago':
+  record.weather.state==='not-forecastable'?'not yet forecastable for this date':record.weather.state==='site-only'?'not available for this place':'unavailable'):'unavailable');
+ if(record.terrain)row('Terrain toward the core',esc(record.terrain.state)+' · modeled horizon '+esc(record.terrain.horizonAngleDeg)+'° at bearing '+
+  esc(record.terrain.azimuthDeg)+'°, clearance '+esc(record.terrain.differenceDeg)+'° ±'+esc(record.terrain.uncertaintyDeg)+'° ('+esc(record.terrain.dem)+' bare-earth, no trees or buildings)');
+ else row('Terrain toward the core','unavailable: no bare-earth profile exists for this place, and none is invented');
+ if(access)row('Night presence',esc(String(access.nightPresence).replace(/-/g,' ')));
+ if(access)row('Parking',esc(String(access.parking).replace(/-/g,' '))+' — '+esc(access.summary||''));
+ if(record.pointId&&record.evidenceRef)row('Evidence verified',esc(record.evidenceRef.verifiedAt||'date not recorded')+' · '+esc(record.evidenceRef.agency&&record.evidenceRef.agency.name||''));
+ return '<article class="session-sheet">'+
+  '<h1>Milky Way photography session — '+esc(site.name||'saved location')+'</h1>'+
+  '<p class="sheet-sub">'+esc(dateLabel)+' · '+esc(site.tz)+' · plan '+esc(record.id)+'</p>'+
+  (record.pointId?'<p class="sheet-sub">A verified observation point. My saved location is not used here and the visitor\'s home site is unchanged.</p>':
+   '<p class="sheet-sub">This plan uses your own saved location. The app holds no public-access evidence for it.</p>')+
+  '<dl>'+rows.join('')+'</dl>'+
+  (evidence?'<h2>Official access evidence</h2><p>'+esc(evidence.summary||'')+'</p><blockquote>'+esc(evidence.quote||'')+'</blockquote>'+
+   '<p class="sheet-sub">'+esc(evidence.publisher||'')+' · verified '+esc(evidence.verifiedAt||'')+' · '+esc(evidence.url||'')+'</p>':
+   '<h2>Official access evidence</h2><p>None recorded for this place. Access is yours to establish before you go.</p>')+
+  '<h2>Equipment</h2><ul class="sheet-gear">'+gear+'</ul>'+
+  '<h2>Camera starting points</h2><ul>'+guidance.lines.map(line=>'<li>'+esc(line)+'</li>').join('')+'</ul>'+
+  (guidance.assumptions.length?'<ul class="sheet-assume">'+guidance.assumptions.map(line=>'<li>'+esc(line)+'</li>').join('')+'</ul>':'')+
+  (record.notes?'<h2>Notes</h2><p class="sheet-notes">'+esc(record.notes)+'</p>':'')+
+  '<h2>Unresolved</h2><ul>'+record.limitations.map(line=>'<li>'+esc(line)+'</li>').join('')+
+   '<li>This is a plan, not a permission, a forecast or a promise of a photograph.</li></ul>'+
+  '<p class="sheet-foot">Worth Looking Up · astronomy by Astronomy Engine 2.1.19 · terrain from a 3DEP bare-earth DEM · '+
+   'printed '+esc(new Date().toLocaleString('en-US'))+'. Recheck the facility\'s own notices and the forecast before leaving.</p></article>';
+}
+function sessionClick(event){
+ const target=event.target.closest('[data-session]');
+ if(!target||target.disabled)return;
+ const action=target.dataset.session,value=target.dataset.value||null;
+ if(action==='close'){sessionState.open=false;sessionState.current=null;renderSession();return;}
+ if(action==='when'){applyWhen(value);return;}
+ if(action==='where'){applyWhere(value);return;}
+ if(action==='save'){saveSession();return;}
+ if(action==='print'){printSession();return;}
+ if(action==='calendar'){sessionAddToCalendar();return;}
+ if(action==='plan'){sessionAddToPlan();return;}
+ if(action==='refresh'){refreshSession();return;}
+ if(action==='open'){openSavedSession(value);return;}
+ if(action==='delete'){deleteSavedSession(value);return;}
+}
+function sessionChange(event){
+ const check=event.target.closest('[data-session-check]');
+ if(check){
+  // The tick is already in the DOM, so the checklist is stored without re-rendering and without stealing focus.
+  sessionState.checklist=sessionState.checklist||{};
+  sessionState.checklist[check.dataset.sessionCheck]=check.checked;
+  sessionStore().set(sessionState.module.CHECKLIST_KEY,sessionState.checklist);
+  return;
+ }
+ const input=event.target.closest('[data-session-input]');
+ if(!input)return;
+ const field=input.dataset.sessionInput;
+ if(field==='notes'){sessionState.notes=input.value;return;}
+ if(event.type!=='change')return;
+ if(field==='date'){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(input.value))return;
+  sessionState.date=input.value;sessionState.when='custom';sessionState.notice=null;sessionState.refreshedAt=null;
+  sessionState.computedKey=null;renderSession();return;
+ }
+ if(field==='sensor'||field==='focalLength'||field==='aperture'||field==='tracker'){
+  sessionState.camera={...sessionState.camera};
+  if(field==='tracker')sessionState.camera.tracker=input.checked;
+  else if(field==='sensor'){if(input.value)sessionState.camera.sensor=input.value;else delete sessionState.camera.sensor;}
+  else{const number=Number(input.value);if(Number.isFinite(number)&&number>0)sessionState.camera[field]=number;else delete sessionState.camera[field];}
+  renderSession();
+ }
 }
 
 function renderCelestial(){
@@ -1592,7 +2239,7 @@ function renderCelestial(){
  renderCelestialChanges();
  renderCelestialFreshness();
  renderSeasonSection();
- renderWhereTo();
+ renderWhereTo();renderSession();
 }
 // Noteworthy comet changes, straight from the published comparison in the dataset.
 function renderCelestialChanges(){
@@ -2080,7 +2727,10 @@ document.getElementById('celestial-more').addEventListener('click',()=>{});
  celestialDatasets,celestialWindows,celestialCard,celestialSky,celestialAvailable,celestialPlan:CelestialPlan,celestialEngines:{astro:Astro,planets:Planets,meteors:Meteors,comets:Comets,opportunities:Opportunities,get milkyway(){return MilkyWay;}},loadMilkyWayEngine,
  launches,launchesAvailable,loadLaunches,renderLaunches,launchCard,launchWindow,launchRelevance,launchRecordById,tickLaunchCountdowns,launchModule:L,launchFeedSources:LAUNCH_FEED_SOURCES,
  calendar:Cal,calendarItems,observingPlan,calendarActions,calendarCheck,addToCalendar,downloadPlan,planAdd,planRemove,planToggle,planClear,renderPlan,planRefresh,planSortKey,calendarOptions,satelliteCalendarItem,downloadText,
- season:seasonState,seasonCache,seasonKey,seasonRequest,requestSeason,finishSeason,renderSeasonSection,registerSeasonItems,seasonThreshold};
+ season:seasonState,seasonCache,seasonKey,seasonRequest,requestSeason,finishSeason,renderSeasonSection,registerSeasonItems,seasonThreshold,
+ session:sessionState,openSession,renderSession,computeSession,sessionDates,applyWhen,applyWhere,sessionSite,applySessionDate:
+  iso=>{sessionState.date=iso;sessionState.when="custom";sessionState.computedKey=null;renderSession();},
+ sessionRecord,sessionPrintHTML,printSession,saveSession,openSavedSession,refreshSession,sessionCandidate};
  $('sky-preview').innerHTML=skySVG(null);
  if(location.hash==='#about'){const b=document.querySelector('[data-view="about"]');if(b)b.click();}
  restoreDiscoveryFeed();

@@ -148,6 +148,25 @@ because of that rule; agents should read it explicitly (some tools discover only
   weather at the point, and evidence older than a year is withheld in the browser. See
   docs/phase-6b3-observation-points.md.
 
+- Phase 6C adds **photography sessions**: one night, one place, the astronomy that place has that night, the kit
+  and a printable field plan. `overhead-sessions.js` is a lazy module (no DOM-free purity claim — it renders the
+  builder — but no astronomy, no network and no storage of its own: the page passes it a storage adapter and a
+  calculated condition block). Every window in a session is recalculated at the selected site and date through
+  `analyseNight` with the visitor's own threshold; a window calculated for another place is never reused, a
+  season date is re-derived when the place changes, and a night whose `refusals` are non-empty disables save,
+  print, calendar and plan rather than storing an interval that does not exist. Terrain clearance interpolates the
+  point artifact's 16-azimuth bare-earth profile at that night's own core azimuth, and a test checks it against
+  `src/geodata/terrain-horizon.mjs` so there is one method, not two. Weather is the page's own forecast for the
+  visitor's coordinates only: a point never inherits it, and a date beyond the nine-day horizon always reads
+  "Weather is not yet forecastable for this date." Camera guidance is explicitly a rule of thumb (500/300 divided
+  by focal length times crop), an unknown camera gets advice and no duration, and a tracking mount gets none. A
+  saved plan is `worthlookingup.session/1` in `overhead.session.list.v1` (12 records), checklisted in
+  `overhead.session.checklist.v1`, identified by site and night so the same plan cannot be duplicated, and readable
+  offline from its own record; refresh re-reads the published evidence and never claims the access rule is
+  unchanged. Printing is `window.print()` against a hidden sheet with `@page{margin:16mm}` — no PDF service, no
+  dependency, and no invented drive time, departure time or camping block anywhere in the plan or the calendar
+  event. See docs/photography-sessions.md.
+
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.
 Guard storage and external requests; keep fallback paths, timestamps and stale warnings.

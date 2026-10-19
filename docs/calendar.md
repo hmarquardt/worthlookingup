@@ -150,3 +150,13 @@ reuse `overhead-calendar.js` unchanged and add only a location-keyed URL and a c
 * `scripts/verify-production.mjs` — the deployed `overhead-calendar.js` bytes must match this
   checkout.
 
+## A photography session is an ordinary event
+
+The Phase 6C session builder adds its window to the calendar and to the observing plan through the same
+registry and the same writer, because a session's event *is* an astronomical observing interval at a place.
+Its occurrence is the site key plus the night, so the same site and night selected twice is one event and the
+observing plan refuses the duplicate; `LOCATION` names the verified point's own name and timezone when one is
+selected, and the notes carry the window basis, the Moon and the caveats (bare-earth terrain, unassessed sky
+brightness, weather unavailable at a point). No departure time, travel duration, camping block or gate time is
+added: the app does not know them and will not invent them. See
+[photography-sessions.md](photography-sessions.md).

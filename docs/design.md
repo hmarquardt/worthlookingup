@@ -54,3 +54,38 @@ calendar client; the description names the observing site's local time. A launch
 announced period gets the refusal sentence in place of a button, in the same muted `calendar-note`
 style. Nothing in the visual system changes: same ink/paper surfaces, sage actions, 44px mobile
 controls and visible focus. See [calendar.md](calendar.md).
+
+## Phase 6C photography sessions
+
+The session builder is one bordered panel in the Milky Way category, below **Where to go**, and it opens
+in place instead of navigating to a separate screen. Five numbered steps run top to bottom, each a
+`border-top` rule and a small numeral in a 26px circle: **When**, **Where**, **Conditions**, **Prepare**,
+**Save or export**. The numeral is decoration; the step name is text, so nothing depends on the colour
+or the circle to be understood.
+
+Choices are full-width buttons with a two-line label — the name of the night or the place in the body
+text, its date, agency or parking classification in the muted `small` line — laid out as
+`repeat(auto-fit,minmax(180px,1fr))`, which becomes a single column at 390px. A selected choice keeps an
+`aria-pressed="true"` and an accent ring rather than a colour swap, so both themes stay legible.
+
+Facts are a definition list with uppercase muted terms and 1.15rem values, because the reader is standing
+in the dark: **Observing window**, **Best available moment**, **Point the camera**, **Moon**, **Darkness**,
+**Window quality**, **Times in**. Terrain reads as a left-bordered block tinted by the verdict — sage for
+clear, amber for unknown, red for obstructed — with the verdict spelled out in the heading so the colour
+is a reinforcement, not the message. The same block carries the bare-earth sentence.
+
+The readiness list, the equipment checklist and the camera starting points share one visual weight:
+`h5` headings, 18px-inset lists, and checkbox rows with a 40px minimum height and an 18px box, so a
+thumb can hit them. Camera inputs use the standard field style and sit on one row above the guidance.
+An `details` element holds the assumptions, collapsed by default and still reachable by keyboard.
+
+Step five is the only place with primary actions: **Save this plan** is the one accent-filled button, and
+print, calendar, plan and refresh are secondary. A disabled primary action is how the interface says a
+night has no window — the explanation above it is the reason, so the button never has to carry a
+tooltip. Saved plans are a compact two-column row list with Open and Delete, and nothing about them
+looks like cloud storage because none exists.
+
+The printed sheet is a separate artefact: black on white, 11pt, two-column definition list, a quoted
+evidence block with a left rule, and the equipment list in two newspaper columns via `columns:2`, which
+degrades to one column on A4 when the items are long. `@page{margin:16mm}` keeps it inside both Letter
+and A4 margins without a page-size-specific rule.
