@@ -848,6 +848,19 @@ route propagation; persistent failures still fail. No scientific/application cha
       for its own place instead of being published as the new one's.
 - [x] Documentation: [photography-sessions.md](photography-sessions.md), plus updates to [milky-way.md](milky-way.md),
       [design.md](design.md) and `agents.md`.
+- [x] Production acceptance was run independently against https://worthlookingup.com after deployment, not inferred
+      from the push: the footer read `2026.10.19.1`; the builder opened with four destinations (three verified points
+      and the saved location); the first favourable night at Camp Cadiz was searched at the point's own coordinates
+      and produced a window (2:36 AM–5:02 AM, 146 min, astronomical), a best moment at 5:02 AM with the core 22.7°
+      up at bearing 169.6°, toward the south, a moonless window and quality 72/100; the no-window date (2026-10-20)
+      explained itself with save, print, calendar and plan disabled; the saved location read as unverified, with no
+      terrain and with "Weather is not yet forecastable for this date"; the downloaded
+      `worth-looking-up-milky-way-core-at-camp-cadiz-campground-2027-04-13-20261019.ics` carried a `DTSTART` and
+      `LOCATION:Camp Cadiz Campground (America/Chicago)` and no drive time; the print sheet carried the access
+      evidence, the kit and the unresolved items; a plan saved before a reload reopened afterwards; and the page at
+      390 px had zero horizontal overflow, six categories and no console error. Two faults were found this way —
+      the `age` shadow and the seasonal chips a point could never offer — and were fixed and redeployed before this
+      record was written.
 - Git and deployment: release identifier `2026.10.19.1`; no new infrastructure, account, API key, Worker, D1, KV,
   R2, framework or scheduled job.
 - Next action: field-verify the three points against horizon photographs, widen the region to the three already
