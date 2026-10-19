@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-19T13:50:16.216Z",
+ "generated_at": "2026-10-19T14:46:02.059Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-19T13:50:16.216Z",
-  "sha256": "cb1239d1dacc4bcc2bed5f1e5731783dd7915a085893fae35966bdbbc45c748b",
+  "retrieved_at": "2026-10-19T14:46:02.059Z",
+  "sha256": "fc5f85c589d0ff68ca645845653ada2fa8e2db96cfbc7e04111b510ad235a18c",
   "pages": 2,
-  "upstream_count": 147,
-  "upstream_records": 147,
-  "announced_total": 476,
+  "upstream_count": 148,
+  "upstream_records": 148,
+  "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 148,
+  "count": 149,
   "by_status": {
-   "scheduled": 8,
+   "scheduled": 9,
    "unconfirmed": 140
   },
   "by_precision": {
    "second": 1,
-   "minute": 4,
+   "minute": 5,
    "hour": 5,
    "day": 7,
    "month": 25,
@@ -42,14 +42,14 @@
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 10,
-  "with_published_date": 17,
+  "with_published_time": 11,
+  "with_published_date": 18,
   "period_only": 131,
   "sites": 21,
   "providers": 28,
   "nearest_net": "2026-10-19T19:41:03.000Z",
   "window_days": 180,
-  "announced_total": 476
+  "announced_total": 477
  },
  "launches": [
   {
@@ -497,6 +497,56 @@
    "last_updated": "2026-10-16T16:02:46.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2886a96-5ce9-4f45-872f-4e25a00be837/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
+   "slug": "falcon-9-block-5-starlink-group-15-18",
+   "name": "Falcon 9 Block 5 | Starlink Group 15-18",
+   "mission": "Starlink Group 15-18",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-10-28T04:31:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-10-28T04:31:00.000Z",
+    "end": "2026-10-28T08:31:00.000Z"
+   },
+   "last_updated": "2026-10-19T14:24:48.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
     "info": [],
     "webcast": []
    },
