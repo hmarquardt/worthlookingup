@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-19T16:47:14.734Z",
+ "generated_at": "2026-10-19T17:43:00.186Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-19T16:47:14.734Z",
-  "sha256": "a0b439fefc78824661855f23ea179513e44fd49262953b660ae443974f59f37d",
+  "retrieved_at": "2026-10-19T17:43:00.186Z",
+  "sha256": "06538d1953e334bae32188ded606b2763a3d3d9a69d52cfe806252310d10f55c",
   "pages": 2,
-  "upstream_count": 148,
-  "upstream_records": 148,
-  "announced_total": 477,
+  "upstream_count": 149,
+  "upstream_records": 149,
+  "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 149,
+  "count": 150,
   "by_status": {
-   "scheduled": 9,
+   "scheduled": 10,
    "unconfirmed": 140
   },
   "by_precision": {
    "second": 1,
-   "minute": 5,
+   "minute": 6,
    "hour": 5,
    "day": 7,
    "month": 25,
@@ -42,14 +42,14 @@
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 11,
-  "with_published_date": 18,
+  "with_published_time": 12,
+  "with_published_date": 19,
   "period_only": 131,
   "sites": 21,
   "providers": 28,
   "nearest_net": "2026-10-19T19:41:03.000Z",
   "window_days": 180,
-  "announced_total": 477
+  "announced_total": 478
  },
  "launches": [
   {
@@ -94,7 +94,7 @@
     "start": "2026-10-19T19:41:03.000Z",
     "end": "2026-10-19T19:41:03.000Z"
    },
-   "last_updated": "2026-10-19T10:57:45.000Z",
+   "last_updated": "2026-10-19T17:13:40.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/69ebbcd2-b257-4070-9ef9-21e7d1f8a883/",
     "info": [],
@@ -747,6 +747,56 @@
    "last_updated": "2026-09-26T14:16:32.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e59ff9a4-f72f-4841-8546-3c94346ecdba/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "3cdb9dee-b5cb-406c-bbd1-06a219930fb7",
+   "slug": "falcon-9-block-5-starlink-group-15-21",
+   "name": "Falcon 9 Block 5 | Starlink Group 15-21",
+   "mission": "Starlink Group 15-21",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-01T05:11:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-01T05:11:00.000Z",
+    "end": "2026-11-01T09:11:00.000Z"
+   },
+   "last_updated": "2026-10-19T17:25:29.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3cdb9dee-b5cb-406c-bbd1-06a219930fb7/",
     "info": [],
     "webcast": []
    },
