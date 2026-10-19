@@ -17,7 +17,11 @@
     "geodata:fixture": "node research/geodata/tools/make-fixture.mjs",
     "geodata:sites": "node scripts/build-geodata-sites.mjs",
     "geodata:sites:check": "node scripts/build-geodata-sites.mjs --check",
-    "geodata:boundaries": "node research/geodata/tools/fetch-boundaries.mjs"
+    "geodata:boundaries": "node research/geodata/tools/fetch-boundaries.mjs",
+    "geodata:point-candidates": "node research/geodata/tools/fetch-point-candidates.mjs",
+    "geodata:point-profiles": "node research/geodata/tools/build-point-profiles.mjs",
+    "geodata:points": "node scripts/build-geodata-points.mjs",
+    "geodata:points:check": "node scripts/build-geodata-points.mjs --check"
   },
   "devDependencies": {
     "@playwright/test": "1.58.2",

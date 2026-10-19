@@ -305,3 +305,116 @@ test('an artifact with no areas explains the rule instead of showing an empty li
   await expect(page.locator('#celestial-events')).not.toBeEmpty();
   expect(errors).toEqual([]);
 });
+
+/* ---- verified observation points ----------------------------------------------------------------
+   The April clock is used here because a point shows tonight's window at its own coordinates, and in October
+   there is none: both states must exist and both must be honest. */
+const APRIL=new Date('2027-04-13T04:00Z');
+
+ test('points are listed apart from areas, with provenance, terrain and official evidence',async({page})=>{
+  const errors=await boot(page,{now:APRIL});
+  await openMilkyWay(page);
+  await openExplorer(page);
+  await page.waitForFunction(()=>document.querySelectorAll('.whereto-point').length>0,null,{timeout:60000});
+  const points=page.locator('.whereto-point');
+  expect(await points.count()).toBe(3);
+  expect(await page.locator('.whereto-area').count()).toBe(4);
+  expect(await page.locator('.whereto-map .whereto-point-mark').count()).toBe(3);
+  const mapLabel=await page.locator('.whereto-map svg').getAttribute('aria-label');
+  expect(mapLabel).toContain('3 verified observation points');
+  // A point is labelled as a point and carries its facility type.
+  const first=points.first();
+  await expect(first.locator('.whereto-chip[data-kind="point"]')).toHaveText('point');
+  await expect(first.locator('summary')).toContainText(/campground|trailhead/);
+  await first.locator('summary').click();
+  const text=await first.innerText();
+  expect(text).toContain('Coordinates');
+  expect(text).toMatch(/agency-marker|mapped-facility-node/);
+  expect(text).toContain('Night presence');
+  expect(text).toContain('Parking');
+  expect(text).toContain('Evidence');
+  expect(text).toContain('Tonight at this point');
+  expect(text).toContain('Reference night 2027-04-13');
+  expect(text).toContain('Terrain');
+  expect(text).toMatch(/modelled terrain horizon/);
+  expect(text).toContain('uncertainty');
+  expect(text).toContain('Local artificial sky brightness has not yet been assessed');
+  expect(text).not.toMatch(/bortle|mag\/arcsec|drive time|travel time/i);
+  const links=first.locator('a[href^="https://"]');
+  expect(await links.count()).toBeGreaterThanOrEqual(2);
+  for(const href of await links.evaluateAll(nodes=>nodes.map(node=>node.href))){
+   expect(href).toMatch(/^https:\/\/(www\.)?(apps\.)?(fs\.usda\.gov|usgs\.gov|openstreetmap\.org)/);
+  }
+  expect(errors).toEqual([]);
+ });
+
+ test('a point computes its own window, keeps the home site, and exports an entry that names the point',async({page})=>{
+  const errors=await boot(page,{now:APRIL});
+  await openMilkyWay(page);
+  await openExplorer(page);
+  await page.waitForFunction(()=>document.querySelectorAll('.whereto-point').length>0,null,{timeout:60000});
+  const home=await page.evaluate(()=>JSON.parse(JSON.stringify(window.__OVERHEAD_TEST__.state.site)));
+  const point=page.locator('.whereto-point').first();
+  await point.locator('summary').click();
+  const tonight=await point.innerText();
+  expect(tonight).toMatch(/Window \d+:\d+ [AP]M–\d+:\d+ [AP]M \(\d+ min\)/);
+  expect(tonight).toMatch(/The core reaches \d+\.\d° towards [A-Z]/);
+  expect(tonight).toContain('astronomical darkness');
+  expect(tonight).toMatch(/Window quality \d+\/100/);
+  // The visitor's own site is untouched by inspecting a point.
+  expect(await page.evaluate(()=>JSON.parse(JSON.stringify(window.__OVERHEAD_TEST__.state.site)))).toEqual(home);
+  expect(home.name).toContain('Princeton');
+  // The point's event names the point and its own coordinates.
+  const built=await page.evaluate(()=>{
+   const hook=window.__OVERHEAD_TEST__;
+   const item=[...hook.calendarItems.values()].find(entry=>entry.site&&entry.event.target&&/milkyway/.test(entry.event.category));
+   if(!item)return null;
+   const calendar=hook.calendar.single(item,hook.calendarOptions({source:item.source,site:item.site,timezone:item.site.tz}));
+   return {site:item.site,title:item.event.title,ics:calendar.ics,eligible:calendar.eligible};
+  });
+  expect(built).not.toBeNull();
+  expect(built.eligible).toBe(true);
+  expect(built.site.name).not.toBe(home.name);
+  expect(built.title).toContain(built.site.name);
+  const ics=built.ics.replace(/\r\n[ \t]/g,'');
+  expect(ics).toContain('LOCATION:'+built.site.name);
+  expect(ics).toMatch(/DTSTART:|DTEND:/);
+  // The plan takes the same identity, and the home site stays where it was.
+  await point.locator('[data-plan-toggle]').first().click();
+  await expect(page.locator('#observing-plan')).toBeVisible();
+  const planned=await page.evaluate(()=>[...window.__OVERHEAD_TEST__.observingPlan.values()].map(entry=>({
+   title:entry.event.title,site:entry.site})));
+  expect(planned.length).toBeGreaterThanOrEqual(1);
+  expect(planned[0].title).toContain(built.site.name);
+  expect(await page.evaluate(()=>JSON.parse(JSON.stringify(window.__OVERHEAD_TEST__.state.site)))).toEqual(home);
+  expect(errors).toEqual([]);
+ });
+
+ test('points keep four widths, both themes and no overflow',async({page})=>{
+  const errors=await boot(page,{now:APRIL});
+  await openMilkyWay(page);
+  await openExplorer(page);
+  await page.waitForFunction(()=>document.querySelectorAll('.whereto-point').length>0,null,{timeout:60000});
+  await setViewportAndOpen(page,390);
+  for(const width of [390,768,1280,1440]){
+   await page.setViewportSize({width,height:1000});
+   await page.waitForTimeout(200);
+   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
+   await expect(page.locator('.whereto-points')).toBeVisible();
+   const box=await page.locator('.whereto-points').boundingBox();
+   expect(box.width).toBeLessThanOrEqual(width);
+  }
+  await page.setViewportSize({width:390,height:900});
+  await page.locator('#settings-open').click();
+  await page.getByRole('button',{name:'Use light theme'}).click();
+  await page.keyboard.press('Escape');
+  await page.mouse.click(1,1);
+  expect(await page.evaluate(()=>document.documentElement.dataset.theme)).toBe('light');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(390);
+  expect(await page.locator('.whereto-point').count()).toBe(3);
+  expect(errors).toEqual([]);
+ });
+
+async function setViewportAndOpen(page,width){
+ await page.setViewportSize({width,height:1000});
+}
