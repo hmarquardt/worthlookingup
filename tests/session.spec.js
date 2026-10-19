@@ -24,7 +24,7 @@ function serve(){
 }
 const servers=[];
 test.afterEach(async()=>{ await Promise.all(servers.splice(0).map(server=>new Promise(resolve=>server.close(resolve)))); });
-async function boot(page,{requests=[],now=NOW,server=null}={}){
+async function boot(page,{requests=[],now=NOW,server=null,weather=null}={}){
   const errors=[];
   page.on('pageerror',error=>errors.push('pageerror: '+error.message));
   page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('Failed to load resource'))errors.push('console: '+message.text());});
@@ -32,7 +32,9 @@ async function boot(page,{requests=[],now=NOW,server=null}={}){
   await page.clock.setFixedTime(now);
   await page.route('**/api/analytics/**',route=>route.fulfill({status:204,body:''}));
   await page.route('**celestrak.org/**',route=>route.fulfill({json:[ISS]}));
-  await page.route('**api.open-meteo.com/**',route=>route.fulfill({status:503,body:'unavailable'}));
+  // A forecast fixture is registered before the page loads, because the page asks for weather once and
+  // keeps the answer; a later route could not retroactively supply it.
+  await page.route('**api.open-meteo.com/**',route=>weather?route.fulfill({json:weather}):route.fulfill({status:503,body:'unavailable'}));
   await page.route('**api/launches.json*',route=>route.fulfill({status:404,body:'none'}));
   await page.route('**data/launches/upcoming.json',route=>route.fulfill({status:404,body:'none'}));
   const own=server||serve();
@@ -298,5 +300,24 @@ test('a saved plan stays readable when the network drops, because its record is 
   const notes=await page.evaluate(()=>window.__OVERHEAD_TEST__.session.current.site.tz);
   expect(notes).toBe('America/Chicago');
   await context.setOffline(false);
+  expect(errors).toEqual([]);
+});
+
+test('a night inside the forecast horizon shows the real cloud context, dated, and never for a point',async({page})=>{
+  // This fixture is what the page's own weather request returns: a timezone and hourly cloud cover. It is the
+  // only path in which the builder may quote a forecast, and it used to throw before reaching the panel.
+  const hourly={time:[],cloud_cover:[]};
+  const start=Date.parse('2026-10-16T18:00:00Z');
+  for(let i=0;i<240;i++){hourly.time.push(Math.floor((start+i*3600000)/1000));hourly.cloud_cover.push(i%2?30:10);}
+  const errors=await boot(page,{weather:{timezone:'America/Chicago',hourly}});
+  await openMilkyWay(page);
+  await openBuilder(page);
+  const text=await builder(page).innerText();
+  expect(text).toMatch(/Cloud cover \d+% averaged over the night's forecast hours \(fetched .* ago\)\./);
+  expect(text).toContain('One forecast, not a promise');
+  // The same night at a point says nothing about weather rather than borrowing this forecast.
+  await page.locator('#milkyway-session [data-session="where"][data-value="camp-cadiz-campground"]').click();
+  await expect(builder(page)).toContainText('Weather is not available for this place.');
+  expect(await builder(page).innerText()).not.toMatch(/Cloud cover \d+%/);
   expect(errors).toEqual([]);
 });

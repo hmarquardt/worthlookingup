@@ -840,6 +840,12 @@ route propagation; persistent failures still fail. No scientific/application cha
       no invented terrain or forecast, save + reload + reopen + refresh, notes injection and corrupt records,
       calendar/plan identity and the duplicate refusal, print sheet content, and four widths in both themes with
       no overflow).
+- [x] Two faults were found only by the deployed build and are now covered: a local variable named `age` shadowed
+      the page's `age()` helper and threw before any forecast could be shown (the browser suite now supplies a real
+      hourly forecast fixture), and a 90-second test wait exposed that the two seasonal chips only existed after a
+      season had been searched, so at a point the reader could never ask the question — both chips are now always
+      offered, the search is keyed by place, and an answer that arrives after the reader has changed place is kept
+      for its own place instead of being published as the new one's.
 - [x] Documentation: [photography-sessions.md](photography-sessions.md), plus updates to [milky-way.md](milky-way.md),
       [design.md](design.md) and `agents.md`.
 - Git and deployment: release identifier `2026.10.19.1`; no new infrastructure, account, API key, Worker, D1, KV,

@@ -1796,7 +1796,10 @@ function applyWhere(id){
    inherits it, and a night beyond the nine-day coverage is never given a forecast in words. */
 function sessionWeather(site,night){
  const source=state.sources[weatherKey(state.site)];
- const age=source&&Number.isFinite(source.at)?' (fetched '+age(source.at)+' ago)':'';
+ // The local note must not shadow the page's age() helper: naming it `age` made the initialiser read its own
+ // binding and threw before the weather was ever shown.
+ const fetched=source&&Number.isFinite(source.at)?source.at:null;
+ const ageNote=fetched?' (fetched '+age(fetched)+' ago)':'';
  if(!sessionAtHome(site)){
   return {state:'site-only',label:'Weather is not available for this place.',
    detail:'The forecast this page holds is for your own saved location. Showing it here would describe a different sky, so it is not shown; recheck a forecast for the site before you leave.'};
@@ -1806,7 +1809,7 @@ function sessionWeather(site,night){
  const coverageEnd=(source&&Number.isFinite(source.at)?source.at:Date.now())+9*DAY;
  if(Number.isFinite(night.start)&&night.start>coverageEnd)
   return {state:'not-forecastable',label:'Weather is not yet forecastable for this date.',
-   detail:'The forecast covers about nine days from its last update'+age+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
+   detail:'The forecast covers about nine days from its last update'+ageNote+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
  const hourly=state.weather&&state.weather.hourly;
  if(!hourly||!Array.isArray(hourly.time)||!Number.isFinite(night.start)||!Number.isFinite(night.end))
   return {state:'unavailable',label:'Weather is not available right now.',detail:'The forecast request did not return hourly data, so no cloud cover is claimed for this night.'};
@@ -1817,10 +1820,10 @@ function sessionWeather(site,night){
  }
  if(!samples.length){
   return {state:'not-forecastable',label:'Weather is not yet forecastable for this date.',
-   detail:'The forecast covers about nine days from its last update'+age+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
+   detail:'The forecast covers about nine days from its last update'+ageNote+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
  }
  const mean=Math.round(samples.reduce((sum,value)=>sum+value,0)/samples.length);
- return {state:'forecast',label:'Cloud cover '+mean+'% averaged over the night\'s forecast hours'+age+'.',
+ return {state:'forecast',label:'Cloud cover '+mean+'% averaged over the night\'s forecast hours'+ageNote+'.',
   detail:'One forecast, not a promise: it is reissued, it is coarser than your site, and it says nothing about transparency, smoke or haze.'};
 }
 function sessionTerrain(point,analysis){
