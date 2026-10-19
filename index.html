@@ -1989,7 +1989,8 @@ function sessionForecast(site,night,window){
     (saved?' The last forecast saved with this plan is shown below, labelled with its age.':''),lastKnown:saved};
  }
  // The window is the interval a photographer cares about; the night is only the fallback when there is none.
- const interval=window&&Number.isFinite(window.start)&&Number.isFinite(window.end)?window:night;
+ const hasWindow=window&&Number.isFinite(window.start)&&Number.isFinite(window.end);
+ const interval=hasWindow?window:night;
  const summary=module.weatherSummary(destinationWeather.data&&destinationWeather.data.hourly,interval);
  if(!summary||!summary.hours){
   const saved=savedForecastFor(site,night);
@@ -2012,7 +2013,7 @@ function sessionForecast(site,night,window){
   :'Forecast retrieved, but it carries no cloud cover for this night';
  return {status:'forecast',label,tag:destinationWeather.stale?'cached':'forecast',
   short:cloud?('Cloud '+Math.round(cloud.value)+'%'):'Forecast without cloud cover',whenLabel,
-  detail:'Open-Meteo for these coordinates, averaged over the observing window'+(fetched?(fresh?', just fetched':', '+age(fetched)+' old'):'')+
+  detail:'Open-Meteo for these coordinates, '+(hasWindow?'averaged over the observing window':'summarised over the night because this date has no observing window')+(fetched?(fresh?', just fetched':', '+age(fetched)+' old'):'')+
    (destinationWeather.stale?', from a cached response':'')+'. Its models are coarser than this place, so a valley, a '+
    'ridge or a lake can differ — and a forecast of cloud is not a measurement of transparency, smoke or seeing.',
   rows,at:fetched,stale:Boolean(destinationWeather.stale),hours:summary.hours,summary};
