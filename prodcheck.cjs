@@ -18,9 +18,11 @@ const BASE='https://worthlookingup.com';
  // 1. a future favourable night at Camp Cadiz, from the season search
  await page.locator('#milkyway-session [data-session="where"][data-value="camp-cadiz-campground"]').click();
  await page.locator('#milkyway-session [data-session="when"][data-value="favourable"]').click();
- await page.waitForFunction(()=>{const s=window.__OVERHEAD_TEST__.session;return s.when==='favourable'&&!!s.season;},null,{timeout:120000});
+ await page.waitForFunction(()=>{const s=window.__OVERHEAD_TEST__.session;return s.when==='favourable'&&!!s.season&&s.date===s.season.favorable.day;},null,{timeout:120000});
+ await page.waitForTimeout(1200);
  const seasonDate=await page.evaluate(()=>window.__OVERHEAD_TEST__.session.date);
  const text1=await page.locator('#milkyway-session').innerText();
+ console.log('2a facts:',JSON.stringify((text1.match(/Observing window[^\n]*\n[^\n]*/)||[''])[0]),'| date label:',(text1.match(/[A-Z][a-z]+, [A-Z][a-z]+ \d+, \d{4}/)||[''])[0]);
  console.log('2 favourable night:',seasonDate,'| window:',/Observing window/.test(text1),'| terrain:',/Terrain toward the core/.test(text1),'| weather:',(text1.match(/Weather is not available for this place|[^\n]*forecastable[^\n]*/)||[''])[0].slice(0,90));
  // 2. no window on 2026-10-20
  await page.evaluate(()=>window.__OVERHEAD_TEST__.applySessionDate('2026-10-20'));

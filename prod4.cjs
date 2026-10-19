@@ -1,0 +1,20 @@
+const { chromium } = require('playwright');
+(async()=>{
+ const browser=await chromium.launch({channel:'chrome'});
+ const page=await browser.newPage({viewport:{width:1280,height:900}});
+ await page.goto('https://worthlookingup.com/',{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>window.__OVERHEAD_TEST__&&!window.__OVERHEAD_TEST__.state.busy,null,{timeout:60000});
+ await page.locator('[data-category="milkyway"]').click();
+ await page.waitForFunction(()=>{const c=window.__OVERHEAD_TEST__.celestial;return c.status==='ready'&&!c.busy;},null,{timeout:90000});
+ await page.locator('#session-open').click();
+ await page.waitForFunction(()=>!!document.querySelector('[data-session-root]'),null,{timeout:60000});
+ await page.locator('#milkyway-session [data-session="where"][data-value="camp-cadiz-campground"]').click();
+ await page.locator('#milkyway-session [data-session="when"][data-value="favourable"]').click();
+ await page.waitForFunction(()=>{const s=window.__OVERHEAD_TEST__.session;return s.date===s.season.favorable.day;},null,{timeout:120000});
+ await page.waitForTimeout(600);
+ const facts=await page.locator('#milkyway-session .sx-facts').evaluate(node=>[...node.querySelectorAll('.sx-fact')].map(f=>f.querySelector('dt').textContent+' = '+f.querySelector('dd').textContent.trim()));
+ console.log('DATE',await page.evaluate(()=>window.__OVERHEAD_TEST__.session.date));
+ facts.forEach(f=>console.log(' -',f.slice(0,120)));
+ console.log('NOTE',(await page.locator('#milkyway-session .sx-step-note').nth(1).textContent()).trim());
+ await browser.close();
+})().catch(e=>{console.log('FATAL',e.message);process.exit(1);});

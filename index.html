@@ -1839,6 +1839,12 @@ function sessionTerrain(point,analysis){
   moments:(point.terrain.moments||[]).map(moment=>({label:moment.label,azimuthDeg:Number(moment.azimuthDeg).toFixed(1),
    horizonAngleDeg:Number(moment.horizonAngleDeg).toFixed(1)}))};
 }
+const DIRECTION_WORDS={N:'north',NE:'north-east',E:'east',SE:'south-east',S:'south',SW:'south-west',W:'west',NW:'north-west'};
+function directionWord(compass,altitudeDeg){
+ const word=DIRECTION_WORDS[compass]||String(compass||'').toLowerCase()||'the horizon';
+ if(!Number.isFinite(altitudeDeg))return word;
+ return altitudeDeg>=45?word+' and high above the horizon':word+' above the horizon';
+}
 function sessionConditions(parts){
  const {site,point,night,analysis,date}=parts;
  const base={siteName:(point?point.name:(site.name||'your saved location')),dateLabel:sessionDay(site,date),timezone:site.tz,quality:null};
@@ -1875,8 +1881,9 @@ function sessionConditions(parts){
    level:String(window.level||analysis.darkness.achieved||'').replace(/-/g,' ')},
   best:{timeLabel:sessionClock(site,analysis.bestTime||core.maxTime),altitudeDeg:bestAltitude.toFixed(1),
    azimuthDeg:bestAzimuth.toFixed(1),compass:bestCompass},
-  direction:{bearing:bestAzimuth.toFixed(0),cardinal:E.compass(bestAzimuth)+
-   (bestAltitude>=45?' and high in the sky':' above the '+E.compass(bestAzimuth).toLowerCase()+'ern horizon'),altitudeDeg:bestAltitude.toFixed(1)},
+  // A plain-language direction, built from the compass letters without gluing suffixes onto them: "S" plus
+  // "ern" is not a word, and the reader is going to point a camera at this.
+  direction:{bearing:bestAzimuth.toFixed(0),cardinal:directionWord(bestCompass,bestAltitude),altitudeDeg:bestAltitude.toFixed(1)},
   moon:{label:analysis.moon?(String(analysis.moon.classification).replace(/-/g,' ')+(analysis.moon.metrics?', up for '+Math.round(analysis.moon.metrics.upFraction*100)+'% of the window':'')):'not evaluated',
    detail:analysis.moon&&analysis.moon.detail?analysis.moon.detail:''},
   darkness:{label:String(analysis.darkness.achieved).replace(/-/g,' ')+' twilight reached',

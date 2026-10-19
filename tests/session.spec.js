@@ -111,6 +111,10 @@ test('tonight at a verified point is calculated at the point, with its own windo
   await expect(door).toContainText('parking is verified only at a designated campsite');
   const text=await door.innerText();
   expect(text).not.toMatch(/bortle|mag\/arcsec|drive time|\d+ ?(min|minutes) drive/i);
+  // A plain-language direction that is actually a word, not a compass letter with a suffix glued on.
+  // Labels are uppercased by the stylesheet, so the match is case-insensitive.
+  expect(text).toMatch(/point the camera[\s\S]{0,80}(north|south|east|west)/i);
+  expect(text).not.toMatch(/\bsern\b|northerner|easternern|westernern/);
   // The visitor's own site is untouched by a point being inspected.
   const site=await page.evaluate(()=>window.__OVERHEAD_TEST__.state.site);
   expect(site.name).toBe('Princeton, Indiana');
