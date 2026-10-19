@@ -104,8 +104,9 @@ no account and no background service.
 ## Deployment
 
 - Commits pushed normally to `origin/main`: `5313ddf` (Phase 6D), `fbad028` (reconnect), `b55bb22` (refresh
-  identity), `93e73a0` (no-window forecast/access/terrain). `git rev-parse HEAD origin/main` both return
-  `93e73a09c5f4b806b76dec36da10bfc9a03f268e`.
+  identity), `93e73a0` (no-window forecast/access/terrain), `32d8ba1` (no-window forecast wording), with the
+  documentation record in later commits. Each push was followed by `git fetch origin`; `HEAD` and `origin/main`
+  matched after every push. Later documentation-only commits do not change the deployed application code.
 - GitHub Actions `validate and deploy` runs for these commits were still **queued** when this record was written
   (runs `39280655763`, `39280877754`, `39281541706`, `39282355146`); GitHub's status API reported the Actions
   component as `degraded_performance`. No CI conclusion is claimed.

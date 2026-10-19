@@ -908,9 +908,9 @@ route propagation; persistent failures still fail. No scientific/application cha
       recorded in the deployment section of [phase-6d-release.md](phase-6d-release.md).
 - [x] Documentation: [phase-6d-release.md](phase-6d-release.md), [photography-sessions.md](photography-sessions.md),
       plus updates to [milky-way.md](milky-way.md), [providers.md](providers.md) and `agents.md`.
-- [x] Git: commits `5313ddf`, `fbad028`, `b55bb22`, `93e73a0` pushed normally; `HEAD` and `origin/main` both
-      `93e73a0`. Cloudflare Pages deployment `ff29eb4c` serves release `2026.10.19.2`; deployed HTML SHA-256
-      matches `dist/`; `scripts/verify-production.mjs` passed.
+- [x] Git: code commits `5313ddf`, `fbad028`, `b55bb22`, `93e73a0` and `32d8ba1` pushed normally, with the
+      documentation record in later commits. Cloudflare Pages serves release `2026.10.19.2`; deployed HTML
+      SHA-256 matches `dist/`; `scripts/verify-production.mjs` passed after the deployments.
 - [x] Production scenarios: real Camp Cadiz coordinates and real Open-Meteo cloud data, no request for a date
       beyond the horizon, saved/reopen, print, field copy, calendar, partial refresh, withheld access, offline
       reading and checklist editing, 390 px in both themes with zero overflow. Full list in
