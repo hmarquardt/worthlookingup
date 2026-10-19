@@ -747,3 +747,47 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Next action: the honest next increment is a **verified observation point** — a curated trailhead or lot with
   its own agency evidence, coordinate source and a point-level terrain clearance — followed by a licensed
   sky-brightness layer. Neither may be simulated from an area centroid.
+
+## Phase 6B.3: verified observation points (shipped)
+
+- [x] Reviewed all **33** recreation facilities the Forest Service publishes for the Shawnee National Forest
+      (Enterprise Data Warehouse: names, points, activity groups, hours and restrictions, in the agency's words).
+      Accepted **three**: Camp Cadiz Campground and Tower Rock Campground (camping permitted; agency markers) and
+      the Garden of the Gods backpacker parking lot at Indian Point Trailhead ("overnight parking … at
+      Backpacker's Parking Lot only", coordinates from an OpenStreetMap node because the agency names the lot
+      without placing it). Rejected four with their evidence: Illinois Iron Furnace ("No overnight parking"),
+      High Knob Lookout (day-use 6 a.m.–10 p.m., the permitted overnight spot is unmapped), Oakwood Bottoms
+      (temporarily closed due to flooding per its own record) and Trigg Observation Tower (listed closed on the
+      forest alerts page). Left **23 unverified** because their records say nothing about overnight use, and
+      excluded three that would have qualified but lie west of the studied region's 88.60°W edge.
+- [x] `data/geodata/points.json` is a second generated artifact (20.4 kB, 3.7 kB gzipped) with its own gate:
+      published only when the agency names the facility and permits overnight use, the coordinate has a recorded
+      provenance inside the studied region, the point sits inside its published parent area and at least 1 km
+      from that area's centre, a real 3DEP profile exists, a quoted statement is present, and the evidence is
+      younger than a year. `npm run geodata:points:check` runs inside `npm test`.
+- [x] Night presence and parking are separate fields (`verified`, `verified-at-designated-campsite`, `unknown`,
+      `prohibited`), and no area rule is inherited by a point.
+- [x] Terrain: 3DEP at about 31 m per pixel, 16 azimuths, clearance evaluated at the window's start, the core's
+      best moment and its end, because the core moves — Camp Cadiz 158.5° → 179.9° → 174.4° azimuth, clearance
+      19.6°–22.9° ±0.5°; the Garden of the Gods lot under the bluffs 16.5°–19.4° ±1.7°. Bare-earth caveat on every
+      record.
+- [x] Site-specific astronomy at each point's own coordinates and timezone, a reference night (2027-04-13) in
+      the artifact and a live "tonight at this point" calculation in the page; the visitor's saved home site is
+      untouched (asserted byte for byte in the browser suite).
+- [x] Calendar and observing plan: the point's window enters the shared opportunity model and the only ICS
+      writer, with an identity that includes the point so it cannot collide with the visitor's own event, and a
+      `LOCATION:Camp Cadiz Campground (America/Chicago)` line. No drive time, departure time or directions.
+- [x] Tests: `npm test` exit 0 with 26 PASS suites and 118 checks — 11 new checks in
+      `tests/geodata-points.cjs` (schema, facility-level evidence, no centroid promotion, provenance
+      classification, three-moment terrain with core movement, point-local astronomy, preserved refusals,
+      forbidden fields, point expiry, `--check` reproducibility, calendar identity). Browser:
+      `tests/whereto.spec.js` grew to 13 tests (points distinct from areas, provenance and evidence links,
+      three-moment terrain with uncertainty, tonight-at-the-point window, home-site preservation, calendar entry
+      naming the point, plan integration, four widths, both themes, no overflow).
+- [x] Documentation: [phase-6b3-observation-points.md](phase-6b3-observation-points.md), plus updates to
+      [milky-way.md](milky-way.md) and `agents.md`.
+- Git and deployment: release identifier `2026.10.16.10`; no new infrastructure, no new secret, no new scheduled
+  job, no framework.
+- Next action: widen the region deliberately (the three excluded facilities are already evidenced), find a
+  state-managed facility with a published point (Sugar Ridge's 24/7 permission lacks one), and add a licensed
+  sky-brightness layer. A point must never be manufactured from an area centroid to fill the list.

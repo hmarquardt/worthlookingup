@@ -329,6 +329,10 @@ narrow:
 
 - **Areas, not points.** Each record is a mapped management outline (USGS PAD-US) with an acreage, a manager and
   the agency's own quotation. No record is a trailhead, a gate or a parking place, and none is described as one.
+- **Points are separate, and stricter.** Three facilities the Forest Service names and permits overnight use of
+  (two campgrounds and the one parking lot it allows overnight parking at) are listed with their own coordinate
+  provenance, quoted evidence, three-moment terrain clearance and their own Milky Way window, computed at the
+  point. See [phase-6b3-observation-points.md](phase-6b3-observation-points.md).
 - **Your window, not the area's.** The astronomical window shown is computed at your coordinates. No area has a
   verified observation point, so there is nothing to recalculate at and nothing is implied about any point
   inside an outline.
