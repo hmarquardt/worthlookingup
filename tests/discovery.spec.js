@@ -60,6 +60,7 @@ test('guide reuses category engines, retains diverse results and opens the match
  await expect(page.locator('#discovery-back')).toBeVisible();await page.locator('#discovery-back').click();await expect(page.locator('#discovery')).toBeFocused();
  await page.locator('#discovery-launches summary').first().click();
  await expect(page.locator('#discovery-launch-preview')).toContainText('Local visibility unknown');
+ await expect(page.locator('#discovery-launch-preview .discovery-state[data-state="unknown"]').first()).toHaveText('Scheduled · visibility unknown');
  await expect(page.locator('#discovery-launch-preview')).toContainText('On Hold');
  await expect(page.locator('#discovery-launch-preview')).toContainText('October 2026 (month announced, no day published)');
  await page.getByRole('button',{name:'Date-only schedule',exact:false}).click();

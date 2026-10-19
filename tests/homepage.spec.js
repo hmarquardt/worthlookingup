@@ -20,14 +20,18 @@ test('photographic discovery exposes real opportunities, every category and both
   for(const theme of ['dark','light']){
    await page.evaluate(t=>document.querySelector('[data-theme-choice="'+t+'"]').click(),theme);
    await expect(page.locator('.weekly-open')).toContainText('ISS');
+   await expect(page.locator('#hero-place')).toHaveText('Princeton, Indiana');
+   await expect(page.locator('.discovery-state[data-state="local"]').first()).toHaveText('Local opportunity');
+   expect(await page.locator('.hero-action').evaluate(e=>getComputedStyle(e).backgroundColor)).not.toBe('rgba(0, 0, 0, 0)');
    await expect(page.locator('#weekly-card')).toContainText('Cloud forecast unavailable');
    const geometry=await page.evaluate(()=>{
     const r=s=>document.querySelector(s).getBoundingClientRect();
-    const location=r('#location-open'),settings=r('#settings-open');
-    return {width:innerWidth,scroll:document.documentElement.scrollWidth,hero:r('.sky-intro').height,highlight:r('.discovery-open').top,overlap:location.right>settings.left&&location.bottom>settings.top&&settings.bottom>location.top};
+    const location=r('#location-open'),settings=r('#settings-open'),action=r('.hero-action'),credit=r('.photo-credit');
+    return {width:innerWidth,scroll:document.documentElement.scrollWidth,hero:r('.sky-intro').height,highlight:r('.discovery-open').top,overlap:location.right>settings.left&&location.bottom>settings.top&&settings.bottom>location.top,heroOverlap:action.right>credit.left&&action.bottom>credit.top&&credit.bottom>action.top};
    });
-   expect(geometry.scroll).toBe(geometry.width);expect(geometry.overlap).toBe(false);
+   expect(geometry.scroll).toBe(geometry.width);expect(geometry.overlap).toBe(false);expect(geometry.heroOverlap).toBe(false);
    expect(geometry.highlight).toBeLessThan(600);
+   expect((await page.locator('.hero-action').boundingBox()).height).toBeGreaterThanOrEqual(44);
    if(width===390)expect(geometry.hero).toBeLessThan(240);
    for(const tab of await page.locator('#categories [role=tab]').all()){
     const box=await tab.boundingBox();expect(box.height).toBeGreaterThanOrEqual(44);expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(width);
