@@ -244,8 +244,9 @@ test('a window exports to the calendar as an interval and joins the observing pl
   expect(text).toContain('not comparable with satellite');
   expect(text).toContain('Equipment: Camera on a tripod');
   const window=await page.evaluate(()=>{
-    const plan=window.__OVERHEAD_TEST__.celestial.result.plans.week.opportunities[0];
-    return { start:plan.start, end:plan.end };
+    const hook=window.__OVERHEAD_TEST__;
+    const item=[...hook.calendarItems.values()].find(entry=>entry.event.category==='milkyway');
+    return { start:item.source.start, end:item.source.end };
   });
   const stamp=await page.evaluate(ms=>window.__OVERHEAD_TEST__.calendar.formatUtc(ms),window.start);
   const endStamp=await page.evaluate(ms=>window.__OVERHEAD_TEST__.calendar.formatUtc(ms),window.end);
