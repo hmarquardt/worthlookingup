@@ -156,9 +156,11 @@ because of that rule; agents should read it explicitly (some tools discover only
   season date is re-derived when the place changes, and a night whose `refusals` are non-empty disables save,
   print, calendar and plan rather than storing an interval that does not exist. Terrain clearance interpolates the
   point artifact's 16-azimuth bare-earth profile at that night's own core azimuth, and a test checks it against
-  `src/geodata/terrain-horizon.mjs` so there is one method, not two. Weather is the page's own forecast for the
-  visitor's coordinates only: a point never inherits it, and a date beyond the nine-day horizon always reads
-  "Weather is not yet forecastable for this date." Camera guidance is explicitly a rule of thumb (500/300 divided
+  `src/geodata/terrain-horizon.mjs` so there is one method, not two. Weather is the page's own Open-Meteo request
+  made for the selected place's coordinates: a point never inherits the visitor's answer, the response is reused
+  for 30 minutes under a coordinate key with the page's existing seven-day stale fallback and is labelled when
+  cached, and a date beyond the nine-day horizon always reads "Weather is not yet forecastable for this date."
+  without a request. Camera guidance is explicitly a rule of thumb (500/300 divided
   by focal length times crop), an unknown camera gets advice and no duration, and a tracking mount gets none. A
   saved plan is `worthlookingup.session/1` in `overhead.session.list.v1` (12 records), checklisted in
   `overhead.session.checklist.v1`, identified by site and night so the same plan cannot be duplicated, and readable
@@ -166,6 +168,26 @@ because of that rule; agents should read it explicitly (some tools discover only
   unchanged. Printing is `window.print()` against a hidden sheet with `@page{margin:16mm}` — no PDF service, no
   dependency, and no invented drive time, departure time or camping block anywhere in the plan or the calendar
   event. See docs/photography-sessions.md.
+
+- Phase 6D makes a saved session dependable in the field, and its rules are structural. **Destination weather**
+  is the existing Open-Meteo request at the selected point's coordinates, never the visitor's, using only the
+  provider's supported hourly fields over the observing-window hours; the model grid is coarser than the
+  coordinate and the panel says so. A date beyond nine days is refused without a request, a failed request reads
+  "Forecast unavailable", and a cached response is always labelled with its age; no transparency, seeing, smoke,
+  brightness or success probability is ever derived. **Before you leave** is a compact summary plus seven
+  actionable checks in `overhead.session.readiness.v1`; a tick is a user acknowledgement and never an
+  independent verification of an agency rule. Saved and current access evidence are compared field by field
+  (`current`, `changed`, `expired`, `withheld`), the planning-time snapshot is never overwritten by a refresh
+  (only an explicit save takes a new one), the operation is labelled as a check against Worth Looking Up's
+  published record rather than the agency, a direct official link is always offered, and a withheld point keeps
+  its saved coordinates and identity instead of silently moving the plan home. **Refresh** reports astronomy,
+  access, weather and terrain separately, preserves notes, kit and identity, and never says everything updated.
+  Offline, a saved plan still shows its place, window, direction, Moon, terrain, evidence, notes and the
+  last-known forecast under a clearly separated heading, and offline outranks any forecast still held in memory;
+  cold start is covered by a self-contained, script-free field-copy HTML download, not by a service worker.
+  Checklist rows are native labels with 44 px minimum targets,
+  keyboard operation, a visible focus ring and no double toggle. Navigation, lazy loading, the astronomy engines
+  and the RFC 5545 writer are unchanged. See docs/photography-sessions.md.
 
 ## Coding and behavior
 No framework rewrite, bundler or speculative services. Prefer pure modules and browser APIs.

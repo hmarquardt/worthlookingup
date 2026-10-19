@@ -352,21 +352,24 @@ in [phase-6b2-regional-site-explorer.md](phase-6b2-regional-site-explorer.md).
 ## Photography sessions
 
 The category now answers a second question: not only *when*, but *when at a place, with what you need to carry*.
-**Plan a photography session** opens a single panel under **Where to go** with five steps — When, Where,
-Conditions, Prepare, Save or export. It is deliberately not a wizard: on a phone in the field, the reader keeps
-the category and the session on one page.
+**Plan a photography session** opens a single panel under **Where to go** with six steps — When, Where,
+Conditions, Before you leave, Prepare, Save or export. It is deliberately not a wizard: on a phone in the field,
+the reader keeps the category and the session on one page.
 
 The astronomy is unchanged and is never recalculated differently for a session. Each date is evaluated with
 `analyseNight` at the selected site's own coordinates and timezone with the visitor's threshold, so the session
 agrees with the plan above it. The date modes are tonight, the first favourable night and the season opening from
 `analyseSeason`, and a custom date within the year. When no window exists the engine's own refusals are shown and
-there is nothing to save; when the forecast cannot reach the date the plan says so instead of describing the sky.
+there is nothing to save; when a forecast cannot reach the date the plan says so instead of describing the sky.
 
-A session adds three things the category did not have: the point's bare-earth terrain interpolated at that night's
+A session adds five things the category did not have: the point's bare-earth terrain interpolated at that night's
 actual core azimuth (with its uncertainty and the statement that it cannot see trees), a checklist and camera
-starting points that say what they are and are not, and a printable field plan with the quoted access evidence
-attached. Nothing in it ranks a place, measures darkness, predicts clouds or invents a drive. The full contract is
-in [photography-sessions.md](photography-sessions.md).
+starting points that say what they are and are not, **a destination forecast at the selected point's own
+coordinates**, a pre-departure review with saved-versus-current access evidence, and a printable or downloadable
+field plan with the quoted access evidence attached. Weather remains a separate forecast category: it never
+enters the window quality, never fills the astronomy, and never turns into a claim about transparency, seeing or
+the chance of a photograph. Nothing in it ranks a place, measures darkness or invents a drive. The full contract
+is in [photography-sessions.md](photography-sessions.md).
 
 ## Inputs a future location recommendation would need
 

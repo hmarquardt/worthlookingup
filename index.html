@@ -267,6 +267,44 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
  border-bottom:1px solid var(--line);padding-bottom:6px}
 .milkyway-session .sx-saved-actions{display:flex;gap:6px}
 .milkyway-session .sx-foot{margin:0;color:var(--muted)}
+/* Phase 6D: the field summary, the forecast, the access comparison and the pre-departure review. */
+.milkyway-session .sx-fieldsum{display:grid;gap:2px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--panel)}
+.milkyway-session .sx-field{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.milkyway-session .sx-field:last-child{border-bottom:0}
+.milkyway-session .sx-field-key{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);flex:none}
+.milkyway-session .sx-field-value{font-weight:600;text-align:right;margin-left:auto}
+.milkyway-session .sx-field-big .sx-field-value{font-size:1.25rem;line-height:1.25}
+.milkyway-session .sx-field-value .small{font-weight:400;color:var(--muted)}
+.milkyway-session .sx-tag{display:inline-block;padding:1px 7px;border-radius:999px;font-size:.7rem;font-weight:600;letter-spacing:.02em;
+ border:1px solid var(--line);vertical-align:middle}
+.milkyway-session .sx-tag-good{border-color:var(--good);color:var(--good)}
+.milkyway-session .sx-tag-warn{border-color:var(--amber);color:var(--amber)}
+.milkyway-session .sx-tag-bad{border-color:var(--danger);color:var(--danger)}
+.milkyway-session .sx-forecast,.milkyway-session .sx-access{border-left:2px solid var(--line);padding-left:10px}
+.milkyway-session .sx-lastforecast{margin-top:8px;padding:8px 10px;border:1px dashed var(--line);border-radius:8px}
+.milkyway-session .sx-lastforecast p:first-child{margin-top:0}
+.milkyway-session .sx-forecast p,.milkyway-session .sx-access p{margin:3px 0}
+.milkyway-session .sx-access-changed,.milkyway-session .sx-access-expired{border-left-color:var(--amber)}
+.milkyway-session .sx-access-withheld{border-left-color:var(--danger)}
+.milkyway-session .sx-forecast-rows,.milkyway-session .sx-access-rows,.milkyway-session .sx-preflight{display:grid;
+ grid-template-columns:max-content 1fr;gap:2px 12px;margin:6px 0}
+.milkyway-session .sx-forecast-rows dt,.milkyway-session .sx-access-rows dt,.milkyway-session .sx-preflight dt{color:var(--muted)}
+.milkyway-session .sx-forecast-rows dd,.milkyway-session .sx-access-rows dd,.milkyway-session .sx-preflight dd{margin:0}
+.milkyway-session .sx-changes{padding-left:18px;margin:4px 0}
+.milkyway-session .sx-refresh{list-style:none;padding:0;margin:6px 0;display:grid;gap:3px}
+.milkyway-session .sx-refresh li{padding-left:14px;position:relative}
+.milkyway-session .sx-refresh li::before{content:'';position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--muted)}
+.milkyway-session .sx-refresh li[data-refresh-status="ok"]::before{background:var(--good)}
+.milkyway-session .sx-refresh li[data-refresh-status="warn"]::before{background:var(--amber)}
+.milkyway-session .sx-refresh li[data-refresh-status="bad"]::before{background:var(--danger)}
+/* A checklist row is the target, not the box: 44px minimum, the whole row toggles, and focus is visible on the box. */
+.milkyway-session .sx-check{min-height:44px;align-items:center;padding:8px 2px}
+.milkyway-session .sx-check input{width:20px;height:20px;margin:0;accent-color:var(--accent)}
+.milkyway-session .sx-check input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.milkyway-session .sx-check:hover{background:var(--hover)}
+@media (max-width:720px){.milkyway-session .sx-field{flex-direction:column;align-items:flex-start;gap:1px}
+ .milkyway-session .sx-field-value{text-align:left;margin-left:0}}
+
 @media (max-width:720px){.milkyway-session .sx-facts,.milkyway-session .sx-choices{grid-template-columns:minmax(0,1fr)}
  .milkyway-session .sx-actions button{flex:1 1 100%}}
 /* The printed field plan: monochrome, no page furniture, and legible on Letter and A4. */
@@ -421,12 +459,12 @@ document.querySelector('meta[name="theme-color"]').content=document.documentElem
 </main>
 <section id="session-print" class="session-print" aria-hidden="true"></section>
 <!-- The print sheet above is filled only when a reader asks to print a session, and is hidden on screen. -->
-<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.19.1" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
-<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.19.1">
+<!-- WORTHLOOKINGUP_DEPLOY_FOOTER version="2026.10.19.2" bump="Update this version whenever this file changes in a commit." (marker sits directly above the single site footer) -->
+<footer class="site-footer" data-worthlookingup-deploy-footer data-deploy-version="2026.10.19.2">
 <div class="footer-tagline">CALCULATED HERE. OBSERVED OUT THERE.</div>
 <div class="footer-sources">Orbital data: <a href="https://celestrak.org/NORAD/elements/">CelesTrak</a> · Weather: <a href="https://open-meteo.com/">Open-Meteo</a> · Predictions calculated locally with SGP4 · No account or API key</div>
 <div id="freshness" class="footer-freshness">Source freshness will appear here.</div>
-<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.19.1 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
+<div class="footer-meta">© 2026 Hank Marquardt · Worth Looking Up · version 2026.10.19.2 · <a href="docs/privacy.md">Privacy &amp; data sources</a></div>
 </footer>
 <dialog id="location-dialog" aria-labelledby="location-title"><div class="dialog-heading"><h2 id="location-title">Where will you look up?</h2><button class="close" data-close aria-label="Close location settings">×</button></div><form id="search-form"><label>Search city or place<input id="search" placeholder="Princeton, London, Cape Town…" minlength="2" maxlength="100" required></label><div class="actions"><button type="submit">Search places</button><button type="button" id="geolocate">Use my location</button></div></form><div id="search-results" class="results"></div><p id="location-status" class="privacy" role="status"></p><form id="coordinate-form" class="grid" style="margin-top:20px"><label class="full">Location name<input id="location-name" maxlength="60" required></label><label>Latitude<input id="latitude" type="number" min="-90" max="90" step="any" required></label><label>Longitude<input id="longitude" type="number" min="-180" max="180" step="any" required></label><label class="full">Timezone (IANA name; blank for automatic lookup)<input id="timezone" placeholder="America/Chicago" maxlength="80"></label><button class="primary full" type="submit">Use this location</button></form><div class="actions"><button id="save-location">Save current location</button></div><div id="saved-locations"></div><p class="privacy">Coordinates go to Open-Meteo for weather and timezone lookup. Place searches go to its geocoding service. Saved sites stay in this browser (up to 12). This page includes the Worth Looking Up Analytics Lite tracker; map tiles load only when you open the map.</p></dialog>
 <dialog id="settings-dialog" aria-labelledby="settings-title"><div class="dialog-heading"><h2 id="settings-title">Make it your night</h2><button class="close" data-close aria-label="Close settings">×</button></div><form id="settings-form" class="grid"><label>Minimum elevation<select name="minimum"><option value="10">10° · open horizon</option><option value="20">20°</option><option value="30">30°</option><option value="45">45° · high overhead</option></select></label><label>Minimum sighting score<input name="score" type="number" min="0" max="100" step="1"></label><label class="full">Show<select name="show"><option value="likely">Likely visible</option><option value="great">Great opportunities only (75+)</option><option value="all">All calculated orbital passes</option></select></label><label>Units<select name="units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></label><label>Clock<select name="clock"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><button type="submit" class="primary full">Apply settings</button></form><div class="theme-setting"><span id="theme-label">Appearance</span><div class="theme-switch" role="group" aria-labelledby="theme-label"><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="Use light theme">☀ Light</button><button type="button" data-theme-choice="dark" aria-pressed="true" aria-label="Use dark theme">☾ Dark</button></div></div><details class="preferences-transfer"><summary>Move your saved places &amp; preferences</summary><p>Import an Overhead export or back up this device. Location, up to 12 saved sites, 100 favorites, settings and theme are included. Downloads and analytics identifiers are excluded. Import replaces these preferences on this device after validation; your original Overhead data stays intact.</p><div class="actions"><button type="button" id="preferences-export">Export preferences</button><label>Import preferences<input id="preferences-import" type="file" accept="application/json,.json"></label></div><p id="preferences-status" role="status" aria-live="polite"></p><p><a href="docs/storage-migration.md">How to export from the original Overhead →</a></p></details><p class="privacy">Map gestures are always conservative: wheel, pinch, rotation and double-click zoom are disabled. Use the explicit + / − buttons. Touch scrolling stays with the page.</p></dialog>
@@ -508,7 +546,7 @@ async function source(key,url,ttl,force=false){
  try{const data=await fetchJSON(url);if(key.startsWith('orbits:')&&!E.parseElements(data,key.slice(7)).length)throw Error('No valid orbital records');if(key.startsWith('weather:')&&(!data?.hourly?.time?.length||!data.timezone))throw Error('Invalid weather response');if(key.startsWith('launches:')){const feedCheck=L.validateFeed(data);if(!feedCheck.ok)throw Error('Not a usable launch feed: '+(feedCheck.reason||'unrecognised'));}const record={key,data,at:Date.now()};await cachePut(record);state.sources[key]={at:record.at,cache:false,stale:false};return data;}
  catch(error){state.errors.push(key+': '+error.message);if(old&&Date.now()-old.at<=7*DAY){state.sources[key]={at:old.at,cache:true,stale:true};return old.data;}delete state.sources[key];throw Object.assign(Error(key+' unavailable'),{cause:error});}})();inflight.set(key,task);try{return await task;}finally{inflight.delete(key);}
 }
-const weatherURL=site=>'https://api.open-meteo.com/v1/forecast?'+new URLSearchParams({latitude:site.lat,longitude:site.lon,timezone:'auto',timeformat:'unixtime',forecast_days:9,past_days:1,hourly:'cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility,precipitation,relative_humidity_2m,weather_code,temperature_2m'});
+const weatherURL=site=>'https://api.open-meteo.com/v1/forecast?'+new URLSearchParams({latitude:site.lat,longitude:site.lon,timezone:'auto',timeformat:'unixtime',forecast_days:9,past_days:1,hourly:'cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility,precipitation,relative_humidity_2m,weather_code,temperature_2m,'+'precipitation_probability,wind_speed_10m,wind_gusts_10m,apparent_temperature'});
 const weatherKey=site=>'weather:'+site.lat.toFixed(3)+','+site.lon.toFixed(3);
 function time(t,seconds=false){return Number.isFinite(t)?new Intl.DateTimeFormat('en-US',{timeZone:state.site.tz,hour:'numeric',minute:'2-digit',...(seconds?{second:'2-digit'}:{}),hour12:state.settings.clock==='12'}).format(new Date(t)):'—';}
 function dateLabel(t){return new Intl.DateTimeFormat('en-US',{timeZone:state.site.tz,weekday:'short',month:'short',day:'numeric'}).format(new Date(t));}
@@ -1650,7 +1688,17 @@ function buildPointViews(artifact){
 const sessionState={open:false,status:'idle',module:null,loading:null,error:null,when:'tonight',date:null,
  where:'home',notes:'',camera:{},checklist:null,notice:null,noticeTone:null,computed:null,computedKey:null,
  saved:[],savedError:null,current:null,season:null,seasonKey:null,seasonBusy:false,seasonTried:new Set(),
- opportunityId:null,refreshedAt:null};
+ opportunityId:null,refreshedAt:null,readiness:null,refreshReport:null,
+ online:(()=>{try{return navigator.onLine!==false;}catch{return true;}})()};
+/* The browser's own connection flag is a hint, not a measurement: it can be wrong on a captive portal. The panel
+   uses it only to stop pretending a request is in flight, and every cached or saved value stays labelled. */
+function updateSessionConnection(online){
+ if(sessionState.online===online)return;
+ sessionState.online=online;
+ if(sessionState.open)renderSession();
+}
+window.addEventListener('online',()=>updateSessionConnection(true));
+window.addEventListener('offline',()=>updateSessionConnection(false));
 function sessionStore(){return {get:(key,fallback)=>read(key,fallback),set:(key,value)=>write(key,value)};}
 function loadSessionScript(){
  // The builder is a separate file: a reader who never opens it downloads nothing for it.
@@ -1671,10 +1719,22 @@ function sessionPoint(){
  const list=pointsState.artifact&&pointsState.artifact.points;
  return list?list.find(point=>point.id===sessionState.where)||null:null;
 }
+/* A point the reader selected may disappear from the published artifact (withheld, expired, restricted). That is
+   never a reason to quietly move the plan to the visitor's home: the saved plan keeps its own coordinates, and the
+   panel says the place is no longer published. Only a selection with no saved record behind it falls back home. */
+function sessionWithheld(){
+ if(sessionState.where==='home')return null;
+ const record=sessionState.current&&sessionState.current.pointId===sessionState.where?sessionState.current:null;
+ if(!record||!record.site||!Number.isFinite(record.site.lat))return null;
+ return {record,site:{lat:record.site.lat,lon:record.site.lon,tz:record.site.tz,name:record.site.name},
+  evidenceRef:record.evidenceRef||null};
+}
 function sessionAtHome(site){return Math.abs(site.lat-state.site.lat)<1e-6&&Math.abs(site.lon-state.site.lon)<1e-6&&site.tz===state.site.tz;}
 function sessionSite(){
  const point=sessionPoint();
  if(point)return pointSite(point);
+ const withheld=sessionWithheld();
+ if(withheld)return withheld.site;
  return {lat:state.site.lat,lon:state.site.lon,tz:state.site.tz,name:state.site.name||'your saved location'};
 }
 function sessionClock(site,ms){
@@ -1791,40 +1851,165 @@ function applyWhere(id){
  renderSession();
  // The seasonal chips describe this place; the search runs once per place, off the click that asked for it.
  if(!sessionSeasons.has(sessionSeasonKey(sessionSite())))ensureSessionSeason();
+ ensureDestinationWeather();
 }
-/* The forecast is only ever the one this app holds for the visitor's own coordinates. A point never
-   inherits it, and a night beyond the nine-day coverage is never given a forecast in words. */
-function sessionWeather(site,night){
- const source=state.sources[weatherKey(state.site)];
- // The local note must not shadow the page's age() helper: naming it `age` made the initialiser read its own
- // binding and threw before the weather was ever shown.
- const fetched=source&&Number.isFinite(source.at)?source.at:null;
- const ageNote=fetched?' (fetched '+age(fetched)+' ago)':'';
- if(!sessionAtHome(site)){
-  return {state:'site-only',label:'Weather is not available for this place.',
-   detail:'The forecast this page holds is for your own saved location. Showing it here would describe a different sky, so it is not shown; recheck a forecast for the site before you leave.'};
+/* ---- Destination weather (Phase 6D) --------------------------------------------------------------
+   The same Open-Meteo request the satellite side already uses, asked for the coordinates of the place the
+   session is actually at. It is fetched only when a session is open and only for a night inside the
+   provider's nine-day request; it is cached for half an hour under the coordinate key (the page's
+   existing cache also keeps it across reloads), one request per place is in flight at a time, and a
+   response that arrives after the reader has moved is discarded rather than shown for the wrong place.
+   Nothing here is requested by the homepage. */
+const WEATHER_TTL_MS=30*60000;
+const FORECAST_DAYS=9;
+const destinationWeather={key:null,status:'idle',at:null,data:null,stale:false,error:null,busy:false,queuedKey:null};
+function destinationHorizon(night){
+ const module=sessionState.module;
+ if(!module||!module.forecastHorizon)return {status:'unknown'};
+ return module.forecastHorizon(Date.now(),night&&night.start,FORECAST_DAYS);
+}
+async function ensureDestinationWeather(force){
+ const module=sessionState.module;
+ if(!module)return;
+ const site=sessionSite();
+ const night=nightForDate(site,sessionState.date||E.localDate(Date.now(),site.tz));
+ const key=weatherKey(site);
+ const horizon=destinationHorizon(night);
+ if(horizon.status!=='within'){
+  destinationWeather.key=key;destinationWeather.status=horizon.status;destinationWeather.data=null;
+  destinationWeather.at=null;destinationWeather.stale=false;destinationWeather.error=null;
+  if(sessionState.open)renderSession();
+  return;
  }
- // The forecast covers nine days from the last fetch (the request's own horizon), so a night beyond
- // that is reported as unforecastable even when the request itself failed: the distance is the reason.
- const coverageEnd=(source&&Number.isFinite(source.at)?source.at:Date.now())+9*DAY;
- if(Number.isFinite(night.start)&&night.start>coverageEnd)
-  return {state:'not-forecastable',label:'Weather is not yet forecastable for this date.',
-   detail:'The forecast covers about nine days from its last update'+ageNote+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
- const hourly=state.weather&&state.weather.hourly;
- if(!hourly||!Array.isArray(hourly.time)||!Number.isFinite(night.start)||!Number.isFinite(night.end))
-  return {state:'unavailable',label:'Weather is not available right now.',detail:'The forecast request did not return hourly data, so no cloud cover is claimed for this night.'};
- const samples=[];
- for(let i=0;i<hourly.time.length;i++){
-  const at=hourly.time[i]*1000;
-  if(at>=night.start&&at<=night.end&&Number.isFinite(hourly.cloud_cover&&hourly.cloud_cover[i]))samples.push(hourly.cloud_cover[i]);
+ // A browser that reports no connection gets no request at all, and whatever answer is still in memory is not
+ // presented as current. The saved plan's own forecast remains readable, with its age and its saved heading.
+ if(sessionState.online===false){
+  destinationWeather.key=key;destinationWeather.status='offline';destinationWeather.data=null;
+  destinationWeather.at=null;destinationWeather.stale=false;destinationWeather.error=null;
+  if(sessionState.open)renderSession();
+  return;
  }
- if(!samples.length){
-  return {state:'not-forecastable',label:'Weather is not yet forecastable for this date.',
-   detail:'The forecast covers about nine days from its last update'+ageNote+'. This night is outside that, so only the astronomy and the Moon above are predictable.'};
+ // The visitor's own location already has an answer from the page's own load; reusing it is the same request,
+ // not a second one, and it carries the same timestamp.
+ if(sessionAtHome(site)&&state.weather&&state.weather.hourly&&!force){
+  const meta=state.sources[key]||{};
+  destinationWeather.key=key;destinationWeather.status='ready';destinationWeather.data=state.weather;
+  destinationWeather.at=meta.at||Date.now();destinationWeather.stale=Boolean(meta.stale);destinationWeather.error=null;
+  if(sessionState.open)renderSession();
+  return;
  }
- const mean=Math.round(samples.reduce((sum,value)=>sum+value,0)/samples.length);
- return {state:'forecast',label:'Cloud cover '+mean+'% averaged over the night\'s forecast hours'+ageNote+'.',
-  detail:'One forecast, not a promise: it is reissued, it is coarser than your site, and it says nothing about transparency, smoke or haze.'};
+ // A request for another place may still be in flight. Queue this place instead of dropping it, or the panel
+ // would sit on "Checking…" until something else happened to ask again.
+ if(destinationWeather.busy){destinationWeather.queuedKey=key;return;}
+ if(!force&&destinationWeather.key===key&&destinationWeather.status==='ready'&&Number.isFinite(destinationWeather.at)&&
+  Date.now()-destinationWeather.at<WEATHER_TTL_MS)return;
+ destinationWeather.busy=true;destinationWeather.key=key;destinationWeather.status='loading';
+ destinationWeather.error=null;destinationWeather.data=null;
+ if(sessionState.open)renderSession();
+ try{
+  const data=await source(key,weatherURL(site),WEATHER_TTL_MS,force);
+  if(destinationWeather.key!==key)return;
+  const meta=state.sources[key]||{};
+  destinationWeather.busy=false;destinationWeather.status='ready';destinationWeather.data=data;
+  destinationWeather.at=meta.at||Date.now();destinationWeather.stale=Boolean(meta.stale);destinationWeather.error=null;
+ }catch(error){
+  if(destinationWeather.key!==key)return;
+  destinationWeather.busy=false;destinationWeather.status='error';destinationWeather.data=null;
+  destinationWeather.at=null;destinationWeather.stale=false;
+  destinationWeather.error=String((error&&error.message)||error);
+ }
+ if(sessionState.open)renderSession();
+ // The reader moved while this request was running: ask again for the place they are looking at now.
+ const queued=destinationWeather.queuedKey;
+ destinationWeather.queuedKey=null;
+ if(queued&&queued!==destinationWeather.key&&sessionState.open)ensureDestinationWeather();
+}
+function temperatureText(celsius){
+ if(!Number.isFinite(celsius))return null;
+ return state.settings.units==='imperial'?Math.round(celsius*9/5+32)+' °F':Math.round(celsius)+' °C';
+}
+function windText(kmh){
+ if(!Number.isFinite(kmh))return null;
+ return state.settings.units==='imperial'?Math.round(kmh*0.621371)+' mph':Math.round(kmh)+' km/h';
+}
+/* The forecast as the session shows it: what the provider published for the hours of this night, how old the
+   answer is, and — when it cannot be quoted — the reason rather than a hopeful blank. A saved plan keeps the
+   forecast it was made with, and that copy is useful in a dead zone. It is never presented as the current
+   forecast: it has its own heading, its own age and the state it had when the plan was saved. */
+function savedForecastFor(site,night){
+ const record=sessionState.current;
+ if(!record||!record.weather||record.date!==night.day)return null;
+ if(!record.site||Math.abs(record.site.lat-site.lat)>1e-6||Math.abs(record.site.lon-site.lon)>1e-6||record.site.tz!==site.tz)return null;
+ const weather=record.weather;
+ const saved=weather.lastKnown&&Array.isArray(weather.lastKnown.rows)?weather.lastKnown:null;
+ const rows=saved?saved.rows:(Array.isArray(weather.rows)?weather.rows:[]);
+ if(!rows.length)return null;
+ const at=Number.isFinite(weather.forecastAt)?weather.forecastAt:null;
+ return {label:saved&&saved.label?saved.label:(weather.label||'Forecast saved with this plan'),
+  rows,at,whenLabel:at?'fetched '+age(at)+' before this plan was saved':'fetch time was not recorded',
+  tag:'saved',state:weather.state||'unavailable'};
+}
+function sessionForecast(site,night,window){
+ const module=sessionState.module;
+ const offline=sessionState.online===false;
+ const horizon=destinationHorizon(night);
+ if(horizon.status==='past'){
+  return {status:'past',label:'This date is in the past, so there is no forecast for it.',tag:'not forecastable',
+   short:'No forecast for a past date',whenLabel:'',detail:'A past night is history, not a forecast, and nothing is extrapolated backwards.'};
+ }
+ if(horizon.status==='beyond'){
+  return {status:'beyond',label:'Weather is not yet forecastable for this date.',tag:'not forecastable',
+   short:'Not yet forecastable',whenLabel:'',detail:'This plan asks the provider for nine days of forecast. This night is '+
+   'outside that, so only the astronomy and the Moon above are predictable. Nothing is extrapolated.'};
+ }
+ // Offline outranks any answer still held in memory. A response fetched before the connection dropped is a saved
+ // observation with an age, never a current forecast.
+ if(offline){
+  const saved=savedForecastFor(site,night);
+  return {status:'unavailable',label:'Forecast unavailable while offline',tag:'offline',short:'Forecast unavailable',
+   detail:'The browser reports no network connection, so no current forecast can be requested. Nothing about the sky is assumed.'+
+    (saved?' The last forecast saved with this plan is shown below, labelled with its age.':''),lastKnown:saved};
+ }
+ if(!destinationWeather||destinationWeather.key!==weatherKey(site)||destinationWeather.status==='idle'){
+  return {status:'loading',label:'Checking the forecast for this place…',tag:'checking',short:'Checking…',detail:''};
+ }
+ if(destinationWeather.status==='error'){
+  const saved=savedForecastFor(site,night);
+  return {status:'unavailable',label:offline?'Forecast unavailable while offline':'Forecast unavailable',
+   tag:offline?'offline':'unavailable',short:'Forecast unavailable',
+   detail:(offline?'The browser reports no network connection, so no current forecast could be retrieved.'
+    :'The forecast request failed'+(destinationWeather.error?' ('+destinationWeather.error+')':''))+
+    '. Nothing about the sky is assumed; check a forecast before you leave.'+
+    (saved?' The last forecast saved with this plan is shown below, labelled with its age.':''),lastKnown:saved};
+ }
+ // The window is the interval a photographer cares about; the night is only the fallback when there is none.
+ const interval=window&&Number.isFinite(window.start)&&Number.isFinite(window.end)?window:night;
+ const summary=module.weatherSummary(destinationWeather.data&&destinationWeather.data.hourly,interval);
+ if(!summary||!summary.hours){
+  const saved=savedForecastFor(site,night);
+  return {status:'unavailable',label:'Forecast unavailable',tag:'unavailable',short:'Forecast unavailable',
+   detail:'The provider returned no hours covering this night, so no cloud cover is claimed for it.'+
+    (saved?' The last forecast saved with this plan is shown below, labelled with its age.':''),lastKnown:saved};
+ }
+ const rows=[];
+ const cloud=summary.cloud;
+ if(cloud)rows.push(['Cloud cover',Math.round(cloud.value)+'% ('+Math.round(cloud.min)+'–'+Math.round(cloud.max)+'%)']);
+ if(summary.precipitation)rows.push(['Rain chance',Math.round(summary.precipitation.value)+'% at most']);
+ if(summary.temperature)rows.push(['Temperature',temperatureText(summary.temperature.min)+' to '+temperatureText(summary.temperature.max)]);
+ if(summary.wind)rows.push(['Wind','up to '+windText(summary.wind.value)]);
+ if(summary.gust)rows.push(['Gusts','up to '+windText(summary.gust.value)]);
+ const fetched=destinationWeather.at;
+ // A fetch that just happened says so in words: "fetched 0m ago" is not something a person reads.
+ const fresh=Number.isFinite(fetched)&&Date.now()-fetched<60000;
+ const whenLabel=fetched?((fresh?'just fetched':'fetched '+age(fetched)+' ago')+(destinationWeather.stale?' from cache':'')):'';
+ const label=cloud?('Cloud cover '+Math.round(cloud.value)+'% over '+summary.hours+' hour'+(summary.hours===1?'':'s'))
+  :'Forecast retrieved, but it carries no cloud cover for this night';
+ return {status:'forecast',label,tag:destinationWeather.stale?'cached':'forecast',
+  short:cloud?('Cloud '+Math.round(cloud.value)+'%'):'Forecast without cloud cover',whenLabel,
+  detail:'Open-Meteo for these coordinates, averaged over the observing window'+(fetched?(fresh?', just fetched':', '+age(fetched)+' old'):'')+
+   (destinationWeather.stale?', from a cached response':'')+'. Its models are coarser than this place, so a valley, a '+
+   'ridge or a lake can differ — and a forecast of cloud is not a measurement of transparency, smoke or seeing.',
+  rows,at:fetched,stale:Boolean(destinationWeather.stale),hours:summary.hours,summary};
 }
 function sessionTerrain(point,analysis){
  if(!point||!point.terrain||!Array.isArray(point.terrain.profile)||!point.terrain.profile.length||!analysis||!analysis.core)
@@ -1845,9 +2030,55 @@ function directionWord(compass,altitudeDeg){
  if(!Number.isFinite(altitudeDeg))return word;
  return altitudeDeg>=45?word+' and high above the horizon':word+' above the horizon';
 }
+/* The point this plan was saved with is no longer published. The saved evidence is shown as history, never as a
+   current permission, and the warning is not hidden behind a disclosure. */
+function sessionWithheldAccess(){
+ const withheld=sessionWithheld();
+ if(!withheld)return null;
+ const saved=withheld.evidenceRef||{};
+ const access=saved.access||{};
+ const evidence=Array.isArray(access.evidence)?access.evidence:[];
+ return {status:'withheld',label:'This point is no longer published',
+  detail:'It is not in the current published record, so nothing here says the place is open. The window above is '+
+   'calculated from the coordinates saved in this plan, and the access notes are the ones it was saved with.',
+  warning:'This point is no longer published. Check the managing agency before relying on it.',
+  verifiedAt:saved.verifiedAt||null,officialUrl:evidence[0]?evidence[0].url:(saved.url||null),
+  rows:[['Saved night presence',String(access.nightPresence||'not recorded').replace(/-/g,' ')],
+   ['Saved parking',String(access.parking||'not recorded').replace(/-/g,' ')],
+   ['Saved verification',saved.verifiedAt||'not recorded']],
+  short:'no longer published'};
+}
+/* The access evidence as the session shows it: what was saved, what is published now, and the difference. The
+   comparison never overwrites the saved copy, and it never claims the site is open — it can only compare records. */
+function sessionAccess(point){
+ const module=sessionState.module;
+ if(!point)return null;
+ const saved=sessionState.current&&sessionState.current.pointId===point.id?sessionState.current.evidenceRef:null;
+ const comparison=saved?module.compareAccess(saved,point,Date.now()):null;
+ const verifiedAt=(point.access&&point.access.verifiedAt)||point.verifiedAt||null;
+ const parking=point.access&&point.access.parking?point.access.parking:'unknown';
+ const presence=point.access&&point.access.nightPresence?point.access.nightPresence:'unknown';
+ const evidence=(point.access&&Array.isArray(point.access.evidence))?point.access.evidence:[];
+ const restrictions=(point.access&&Array.isArray(point.access.restrictions))?point.access.restrictions:[];
+ const rows=[['Night presence',String(presence).replace(/-/g,' ')],['Parking',String(parking).replace(/-/g,' ')]];
+ if(restrictions.length)rows.push(['Restrictions',restrictions.map(rule=>rule.text).join(' · ')]);
+ if(verifiedAt)rows.push(['Verified',verifiedAt]);
+ const base={rows,verifiedAt,officialUrl:evidence[0]?evidence[0].url:null,parking,nightPresence:presence,
+  short:String(presence).replace(/-/g,' ')+' · parking '+String(parking).replace(/-/g,' ')};
+ if(!comparison)return {...base,status:'current',label:'Published access evidence',
+  detail:'What the managing agency published, as recorded by Worth Looking Up. This page cannot confirm that the place is open tonight.'};
+ const warning=comparison.status==='withheld'?'This point is no longer published. Do not treat it as verified.'
+  :comparison.status==='changed'?'The published access record has changed since you saved this plan.'
+  :comparison.status==='expired'?'The published access verification is more than a year old.':'';
+ return {...base,status:comparison.status,label:comparison.label,detail:comparison.detail,
+  changes:comparison.changes,savedSummary:saved&&saved.access?saved.access.summary:null,warning};
+}
 function sessionConditions(parts){
  const {site,point,night,analysis,date}=parts;
- const base={siteName:(point?point.name:(site.name||'your saved location')),dateLabel:sessionDay(site,date),timezone:site.tz,quality:null};
+ const base={siteName:(point?point.name:(site.name||'your saved location')),dateLabel:sessionDay(site,date),timezone:site.tz,quality:null,
+  offline:sessionState.online===false,
+  destination:{name:(point?point.name:(site.name||'your saved location')),verified:Boolean(point),pointId:point?point.id:null,
+   withheld:Boolean(!point&&sessionWithheld())}};
  if(!Number.isFinite(night.start)){
   return {...base,why:{headline:'No night could be calculated for this date.',
    detail:'The Sun\'s set and rise could not be computed for this place and date, so no observing window is claimed.'}};
@@ -1888,7 +2119,8 @@ function sessionConditions(parts){
    detail:analysis.moon&&analysis.moon.detail?analysis.moon.detail:''},
   darkness:{label:String(analysis.darkness.achieved).replace(/-/g,' ')+' twilight reached',
    detail:'the window needs the core at or above '+analysis.thresholdDeg+'° during that darkness'},
-  terrain:sessionTerrain(point,analysis),weather:sessionWeather(site,night),limitations};
+  terrain:sessionTerrain(point,analysis),forecast:sessionForecast(site,night,window),
+  access:point?sessionAccess(point):sessionWithheldAccess(),limitations};
 }
 function computeSession(){
  const module=sessionState.module;
@@ -1896,7 +2128,11 @@ function computeSession(){
  const site=sessionSite(),point=sessionPoint();
  if(!sessionState.date)sessionState.date=E.localDate(Date.now(),site.tz);
  const night=nightForDate(site,sessionState.date);
- const key=[site.lat,site.lon,site.tz,sessionState.date,sessionState.where,seasonThreshold()].join(',');
+ // The forecast and the saved-plan comparison are part of the cache key: when the weather answer arrives, or the
+ // current plan changes, the conditions block must be rebuilt rather than served from the previous render.
+ const key=[site.lat,site.lon,site.tz,sessionState.date,sessionState.where,seasonThreshold(),destinationWeather.key,
+  destinationWeather.status,destinationWeather.at,destinationWeather.stale,sessionState.online,
+  sessionState.current?sessionState.current.id+':'+sessionState.current.updatedAt:''].join(',');
  if(sessionState.computedKey===key&&sessionState.computed)return sessionState.computed;
  let analysis=null;
  if(Number.isFinite(night.start)){
@@ -1911,15 +2147,25 @@ function computeSession(){
  return computed;
 }
 
-function sessionRecord(computed){
+function sessionRecord(computed,options){
+ const keepEvidence=Boolean(options&&options.keepEvidence);
  const module=sessionState.module,point=computed.point,analysis=computed.analysis,conditions=computed.conditions;
- const siteKey=point?point.id:('home:'+computed.site.lat.toFixed(4)+','+computed.site.lon.toFixed(4));
+ // A withheld point keeps its own identity, so a plan made at it can never be recorded as a plan at home.
+ const withheldPoint=!point&&sessionState.where!=='home'?sessionState.where:null;
+ const siteKey=point?point.id:(withheldPoint||('home:'+computed.site.lat.toFixed(4)+','+computed.site.lon.toFixed(4)));
  const existing=sessionState.current&&sessionState.current.id===module.sessionId(siteKey,computed.date)?sessionState.current:null;
+ // Refresh never rewrites the evidence the plan was saved with. That snapshot is the "saved at planning time"
+ // side of the comparison; overwriting it with the newly published record would erase the very change the reader
+ // needs to see. A fresh planning-time snapshot is taken only by an explicit save.
+ const evidenceRef=keepEvidence&&existing&&existing.evidenceRef?existing.evidenceRef
+  :(point?{agency:point.agency,coordinateSource:point.coordinateSource,verifiedAt:point.verifiedAt,
+   fingerprint:module.evidenceFingerprint({verifiedAt:point.verifiedAt,access:point.access}),
+   access:point.access,url:(point.access&&point.access.evidence&&point.access.evidence[0]&&point.access.evidence[0].url)||null}
+   :(sessionWithheld()?sessionWithheld().evidenceRef:null));
  return module.newSession({
   id:module.sessionId(siteKey,computed.date),subject:'Milky Way core',date:computed.date,siteKey,site:computed.site,
-  pointId:point?point.id:null,
-  evidenceRef:point?{agency:point.agency,coordinateSource:point.coordinateSource,verifiedAt:point.verifiedAt,
-   access:point.access,url:(point.access&&point.access.source&&point.access.source.url)||null}:null,
+  pointId:point?point.id:withheldPoint,
+  evidenceRef,
   window:{start:analysis.window.start,end:analysis.window.end,minutes:analysis.window.minutes,level:analysis.window.level},
   core:{maxAltitudeDeg:analysis.core.maxAltitude,maxAzimuthDeg:analysis.core.maxAzimuth,maxCompass:analysis.core.maxCompass,
    bestTime:analysis.bestTime||analysis.core.maxTime,bestAltitudeDeg:analysis.bestAltitude||analysis.core.maxAltitude},
@@ -1928,11 +2174,17 @@ function sessionRecord(computed){
   terrain:conditions.terrain?{state:conditions.terrain.state,azimuthDeg:conditions.terrain.azimuthDeg,
    horizonAngleDeg:conditions.terrain.horizonAngleDeg,differenceDeg:conditions.terrain.differenceDeg,
    uncertaintyDeg:conditions.terrain.uncertaintyDeg,dem:conditions.terrain.dem}:null,
-  weather:{state:conditions.weather?conditions.weather.state:'unavailable',at:Date.now(),forecastAge:state.sources[weatherKey(state.site)]?.at||null},
+  weather:{state:conditions.forecast?conditions.forecast.status:'unavailable',at:Date.now(),
+   forecastAt:conditions.forecast&&Number.isFinite(conditions.forecast.at)?conditions.forecast.at:null,
+   label:conditions.forecast?conditions.forecast.label:null,
+   rows:conditions.forecast&&conditions.forecast.rows?conditions.forecast.rows:[],
+   lastKnown:conditions.forecast&&conditions.forecast.lastKnown?conditions.forecast.lastKnown:null,
+   stale:Boolean(conditions.forecast&&conditions.forecast.stale)},
+  accessStatus:conditions.access?conditions.access.status:null,
   quality:conditions.quality,
   engine:{name:'Overhead Milky Way',schema:MilkyWay.SCHEMA,thresholdDeg:analysis.thresholdDeg,
    calculatedAt:Date.now(),version:siteRelease()},
-  checklist:sessionState.checklist||{},camera:sessionState.camera||{},notes:sessionState.notes,
+  checklist:sessionState.checklist||{},camera:sessionState.camera||{},readiness:sessionState.readiness||{},notes:sessionState.notes,
   createdAt:existing?existing.createdAt:Date.now(),limitations:conditions.limitations||[]});
 }
 function sessionCandidate(computed){
@@ -1950,8 +2202,7 @@ function sessionCandidate(computed){
     'verified at a designated campsite only; a day-visitor lot is not implied'):
     'this is your own location and the app holds no access evidence for it',
    'terrain is a bare-earth model and does not include trees or buildings',
-   point?'weather is not available at this point and is never substituted from your location':
-    'the forecast shown in this app is for your own location only',
+   'the forecast is separate from this event: it is never part of the calendar interval and never a promise of clear sky',
    'local artificial sky brightness has not been assessed'],
   data:{sessionId:sessionState.module.sessionId(point?point.id:('home:'+site.lat.toFixed(4)+','+site.lon.toFixed(4)),night.day),
    pointId:point?point.id:null,parking:point?point.access.parking:null,
@@ -2004,12 +2255,13 @@ function renderSession(){
  if(!sessionState.checklist)sessionState.checklist=module.readChecklist(sessionStore(),module.CHECKLIST);
  const computed=computeSession();
  const points=pointsState.artifact?pointsState.artifact.points:[];
- if(sessionState.where!=='home'&&!points.some(point=>point.id===sessionState.where))sessionState.where='home';
+ if(sessionState.where!=='home'&&!points.some(point=>point.id===sessionState.where)&&!sessionWithheld())sessionState.where='home';
  const todayISO=E.localDate(Date.now(),sessionSite().tz);
  host.innerHTML='<div class="sx-wrap">'+module.render({state:{when:sessionState.when,date:sessionState.date,where:sessionState.where,
   notes:sessionState.notes,camera:sessionState.camera},todayISO,maxDateISO:E.localDate(Date.now()+365*DAY,sessionSite().tz),
   dates:sessionDates(),points,home:{name:state.site.name},conditions:computed?computed.conditions:null,
-  checklist:sessionState.checklist,guidance:module.cameraGuidance(sessionState.camera),saved:sessionState.saved,
+  checklist:sessionState.checklist,readiness:sessionState.readiness,refreshReport:sessionState.refreshReport,
+  guidance:module.cameraGuidance(sessionState.camera),saved:sessionState.saved,
   notice:sessionState.notice,session:sessionState.current})+
   '<div class="season-actions"><button type="button" data-session="close">Close the session builder</button></div></div>'+
   (sessionState.savedError?'<p class="small" data-tone="warn">'+esc(sessionState.savedError)+'</p>':'')+
@@ -2033,6 +2285,7 @@ async function openSession(){
  }catch(error){sessionState.pointsError=String((error&&error.message)||error);}
  sessionState.status='ready';
  if(!sessionState.checklist)sessionState.checklist=sessionState.module.readChecklist(sessionStore(),sessionState.module.CHECKLIST);
+ if(!sessionState.readiness)sessionState.readiness=sessionState.module.readReadiness(sessionStore(),sessionState.module.READINESS);
  const listed=sessionState.module.listFrom(sessionStore());
  sessionState.saved=listed.sessions;
  sessionState.savedError=listed.ok?(listed.skipped?'One saved plan could not be read and was skipped.':null):'The saved-plan list could not be read, so it is empty; new plans can still be saved.';
@@ -2041,6 +2294,9 @@ async function openSession(){
  const section=$('milkyway-session');if(section)section.scrollIntoView({block:'start'});
  announce('Session builder open. Choose a night and a place; nothing is saved until you ask.');
  ensureSessionSeason().then(()=>{if(sessionState.open)renderSession();});
+ // The destination forecast is asked for once, after the panel is on screen, and only for a night the provider
+ // can actually reach. Opening the homepage never reaches this code.
+ ensureDestinationWeather();
 }
 function saveSession(){
  const computed=computeSession();
@@ -2065,12 +2321,19 @@ function openSavedSession(id){
  sessionState.notes=record.notes||'';
  sessionState.camera=record.camera||{};
  sessionState.checklist={...sessionState.module.readChecklist(sessionStore(),sessionState.module.CHECKLIST),...(record.checklist||{})};
+ sessionState.readiness={...sessionState.module.readReadiness(sessionStore(),sessionState.module.READINESS),...(record.readiness||{})};
+ sessionState.refreshReport=null;
  sessionState.date=record.date;
- sessionState.where=available?(record.pointId||'home'):'home';
+ // The place is part of the plan's identity. A point that has been withheld keeps the plan at that point, using
+ // the coordinates and evidence the record saved; moving it to the visitor's home would silently answer a
+ // different question at a different place.
+ sessionState.where=record.pointId||'home';
  sessionState.when='custom';sessionState.computedKey=null;sessionState.noticeTone=null;
  sessionState.notice=available?'Opened a plan saved '+age(record.updatedAt)+' ago. The astronomy has been recalculated for now; the access notes are the ones the plan recorded.'
-  :'This plan names an observation point that is no longer published, so it has been opened at your own saved location. Its saved notes are still here.';
+  :sessionState.pointsError?'The published observation-point list could not be loaded, so this plan is showing the coordinates and access evidence it saved. Nothing here says the place is open.'
+  :'This plan names an observation point that is no longer published. It stays at that place, with the access evidence it was saved with, and the warning above is not a current permission.';
  renderSession();
+ ensureDestinationWeather();
  const section=$('milkyway-session');if(section)section.scrollIntoView({block:'start'});
 }
 function deleteSavedSession(id){
@@ -2079,23 +2342,88 @@ function deleteSavedSession(id){
  sessionState.notice='Removed from this browser. Nothing was uploaded, so nothing else is affected.';
  sessionState.noticeTone=null;renderSession();
 }
+/* Refresh reports each part separately and never summarises a partial result as success. Astronomy is a local
+   recalculation, access is a re-read of the published artifact, weather is a provider request, and terrain is
+   whatever the published profile now says. Notes, checklist and readiness state survive all of it, and the
+   session identity does not change, so refreshing a plan can never create a second one. */
 async function refreshSession(){
  const module=sessionState.module;
  if(!module)return;
- sessionState.notice='Refreshing the access evidence and recalculating this place and night…';sessionState.noticeTone=null;renderSession();
- pointsState.artifact=null;
- try{await loadPointData();sessionState.pointsError=null;}
- catch(error){sessionState.pointsError=String((error&&error.message)||error);}
+ const before=sessionState.current;
+ const report=[];
+ sessionState.notice='Refreshing this plan one part at a time…';sessionState.noticeTone=null;
+ sessionState.refreshReport=null;renderSession();
  sessionState.computedKey=null;sessionState.refreshedAt=Date.now();
- const computed=computeSession();
+ let computed=computeSession();
+ if(computed&&computed.analysis&&computed.analysis.window){
+  report.push({status:'ok',text:'Astronomy: recalculated at '+time(Date.now())+' for this place and night. The window is '+
+   computed.conditions.window.startLabel+'–'+computed.conditions.window.endLabel+' ('+computed.conditions.window.minutes+' min).'});
+ }else if(computed&&computed.conditions&&computed.conditions.why){
+  report.push({status:'warn',text:'Astronomy: recalculated, and this night no longer has a qualifying window. '+
+   computed.conditions.why.headline+' The saved window is kept for reference and the actions that need a live window stay disabled.'});
+ }else{
+  report.push({status:'bad',text:'Astronomy: could not be recalculated, so the saved calculation is still what this plan shows.'});
+ }
+ const fingerprintBefore=before&&before.evidenceRef?before.evidenceRef.fingerprint:null;
+ pointsState.artifact=null;
+ try{
+  await loadPointData();sessionState.pointsError=null;
+  // The artifact was just re-read, so the point and its access rules must come from the new copy rather than
+  // from the object the previous render held. Recomputing also refreshes terrain and the access comparison.
+  sessionState.computedKey=null;sessionState.computed=null;computed=computeSession();
+  const current=computed?computed.point:null;
+  if(before&&before.pointId&&!current){
+   report.push({status:'warn',text:'Access: this point is no longer published. The saved evidence is kept as history, and nothing here says the place is open.'});
+  }else if(current&&fingerprintBefore){
+   const now=module.evidenceFingerprint({verifiedAt:current.verifiedAt,access:current.access});
+   report.push({status:now===fingerprintBefore?'ok':'warn',text:now===fingerprintBefore
+    ?'Access: the published record still matches this plan (verified '+(current.access.verifiedAt||current.verifiedAt)+').'
+    :'Access: the published record has changed since this plan was saved. Both versions are shown in the conditions above.'});
+  }else{
+   report.push({status:'ok',text:'Access: the published evidence for this place was re-read.'});
+  }
+ }catch(error){
+  sessionState.pointsError=String((error&&error.message)||error);
+  report.push({status:'bad',text:'Access: the evidence could not be re-read ('+sessionState.pointsError+'). The saved record is unchanged.'});
+ }
+ await ensureDestinationWeather(true);
+ if(destinationWeather.status==='ready'&&destinationWeather.key===weatherKey(sessionSite())){
+  report.push({status:destinationWeather.stale?'warn':'ok',text:'Weather: '+(destinationWeather.stale
+   ?'a cached response was used; it is older than this refresh.'
+   :'the forecast for these coordinates was retrieved'+(destinationWeather.at?', fetched '+age(destinationWeather.at)+' ago':'')+'.')});
+ }else if(destinationWeather.status==='beyond'){
+  report.push({status:'ok',text:'Weather: this night is beyond the forecast horizon, so no forecast was requested.'});
+ }else if(destinationWeather.status==='past'){
+  report.push({status:'ok',text:'Weather: this night is in the past, so no forecast was requested.'});
+ }else{
+  report.push({status:'bad',text:'Weather: unavailable'+(destinationWeather.error?' ('+destinationWeather.error+')':'')+'. Nothing about the sky is assumed.'});
+ }
+ report.push({status:'ok',text:'Terrain: '+(computed&&computed.conditions.terrain
+  ?'the published bare-earth profile still covers this direction, with an uncertainty of ±'+computed.conditions.terrain.uncertaintyDeg+'°.'
+  :'no bare-earth profile is published for this place, and none was invented.')});
  if(sessionState.current&&computed&&computed.analysis&&computed.analysis.window){
-  const record=sessionRecord(computed);
+  const record=sessionRecord(computed,{keepEvidence:true});
   const result=module.put(sessionStore(),record);
   if(result.ok){sessionState.saved=result.sessions;sessionState.current=record;}
+  else report.push({status:'bad',text:'Saving the refreshed plan failed ('+(result.reason||'storage refused')+'). The previous saved version is unchanged.'});
  }
- sessionState.notice='Recalculated at '+time(Date.now())+'. The published access evidence was re-read; the agency may still change it, '+
-  'so check the site\'s own notice before you leave.';
- sessionState.noticeTone=null;renderSession();
+ sessionState.refreshReport=report;
+ sessionState.notice='Refresh finished. Each part is reported separately below; nothing here contacted the managing agency.';
+ sessionState.noticeTone=null;
+ renderSession();
+}
+function downloadOfflinePlan(){
+ const computed=computeSession();
+ if(!computed||!computed.analysis||!computed.analysis.window){
+  announce('There is no observing window on this night, so there is no field copy to make.');return;
+ }
+ const record=sessionRecord(computed);
+ const html=sessionState.module.offlinePlanHTML(record,{conditions:computed.conditions});
+ const site=(computed.point?computed.point.name:computed.site.name)||'session';
+ const name=('worth-looking-up-field-plan-'+site+'-'+record.date).toLowerCase().replace(/[^a-z0-9]+/g,'-')
+  .replace(/^-+|-+$/g,'')+'.html';
+ if(downloadText(name,html,'text/html'))
+  announce('Downloaded the field copy. It opens on this device with no network and no app.');
 }
 function printSession(){
  const computed=computeSession();
@@ -2141,14 +2469,24 @@ function sessionPrintHTML(record,computed){
  if(record.moon)row('Moon',esc(String(record.moon.classification).replace(/-/g,' '))+(record.moon.detail?' — '+esc(record.moon.detail):''));
  if(record.darkness)row('Darkness',esc(String(record.darkness.achieved).replace(/-/g,' '))+' twilight reached');
  if(Number.isFinite(record.quality))row('Window quality',esc(record.quality)+' / 100 — this category\'s own scale, not comparable with satellite or meteor values');
- row('Weather',record.weather?esc(record.weather.state==='forecast'?'forecast held for your own location, fetched '+age(record.weather.forecastAge||record.weather.at)+' ago':
-  record.weather.state==='not-forecastable'?'not yet forecastable for this date':record.weather.state==='site-only'?'not available for this place':'unavailable'):'unavailable');
+ // The printed forecast carries its own timestamp and state, so a sheet found in a bag cannot read as current.
+ if(record.weather){
+  const w=record.weather;
+  const when=w.forecastAt?' · fetched '+age(w.forecastAt)+' before this sheet was printed':'';
+  row('Weather forecast',esc(w.state==='forecast'&&w.label?w.label:w.state==='beyond'?'not yet forecastable for this date':w.state==='unavailable'?'forecast unavailable':'unavailable')+esc(when)+(w.stale?' (from a cached response)':''));
+  if(w.rows&&w.rows.length)row('Forecast detail',w.rows.map(entry=>esc(entry[0])+': '+esc(entry[1])).join(' · '));
+  if(w.lastKnown&&Array.isArray(w.lastKnown.rows)&&w.lastKnown.rows.length)
+   row('Last-known forecast',esc(w.lastKnown.label)+' · '+esc(w.lastKnown.whenLabel)+' — saved with the plan, not current · '+
+    w.lastKnown.rows.map(entry=>esc(entry[0])+': '+esc(entry[1])).join(' · '));
+ }
  if(record.terrain)row('Terrain toward the core',esc(record.terrain.state)+' · modeled horizon '+esc(record.terrain.horizonAngleDeg)+'° at bearing '+
   esc(record.terrain.azimuthDeg)+'°, clearance '+esc(record.terrain.differenceDeg)+'° ±'+esc(record.terrain.uncertaintyDeg)+'° ('+esc(record.terrain.dem)+' bare-earth, no trees or buildings)');
  else row('Terrain toward the core','unavailable: no bare-earth profile exists for this place, and none is invented');
  if(access)row('Night presence',esc(String(access.nightPresence).replace(/-/g,' ')));
  if(access)row('Parking',esc(String(access.parking).replace(/-/g,' '))+' — '+esc(access.summary||''));
  if(record.pointId&&record.evidenceRef)row('Evidence verified',esc(record.evidenceRef.verifiedAt||'date not recorded')+' · '+esc(record.evidenceRef.agency&&record.evidenceRef.agency.name||''));
+ // Saved evidence is printed as the record the plan was made with, and the current comparison as its own line.
+ if(record.accessStatus)row('Access record now',esc(record.accessStatus==='current'?'matches the plan as saved':record.accessStatus==='changed'?'has changed since this plan was saved':record.accessStatus==='withheld'?'this point is no longer published':record.accessStatus==='expired'?'the published verification is more than a year old':record.accessStatus));
  return '<article class="session-sheet">'+
   '<h1>Milky Way photography session — '+esc(site.name||'saved location')+'</h1>'+
   '<p class="sheet-sub">'+esc(dateLabel)+' · '+esc(site.tz)+' · plan '+esc(record.id)+'</p>'+
@@ -2162,6 +2500,8 @@ function sessionPrintHTML(record,computed){
   '<h2>Camera starting points</h2><ul>'+guidance.lines.map(line=>'<li>'+esc(line)+'</li>').join('')+'</ul>'+
   (guidance.assumptions.length?'<ul class="sheet-assume">'+guidance.assumptions.map(line=>'<li>'+esc(line)+'</li>').join('')+'</ul>':'')+
   (record.notes?'<h2>Notes</h2><p class="sheet-notes">'+esc(record.notes)+'</p>':'')+
+  '<h2>Still to do before leaving</h2><ul>'+sessionState.module.READINESS.filter(item=>!(record.readiness&&record.readiness[item.id]))
+   .map(item=>'<li>'+esc(item.label)+'</li>').join('')+'</ul>'+
   '<h2>Unresolved</h2><ul>'+record.limitations.map(line=>'<li>'+esc(line)+'</li>').join('')+
    '<li>This is a plan, not a permission, a forecast or a promise of a photograph.</li></ul>'+
   '<p class="sheet-foot">Worth Looking Up · astronomy by Astronomy Engine 2.1.19 · terrain from a 3DEP bare-earth DEM · '+
@@ -2179,10 +2519,24 @@ function sessionClick(event){
  if(action==='calendar'){sessionAddToCalendar();return;}
  if(action==='plan'){sessionAddToPlan();return;}
  if(action==='refresh'){refreshSession();return;}
+ if(action==='offline'){downloadOfflinePlan();return;}
  if(action==='open'){openSavedSession(value);return;}
  if(action==='delete'){deleteSavedSession(value);return;}
 }
 function sessionChange(event){
+ const ready=event.target.closest('[data-session-ready]');
+ if(ready){
+  // A readiness tick is the reader telling themselves they did something. It is stored locally and copied into the
+  // plan, and it never changes an access classification: the agency's record is what it is regardless.
+  sessionState.readiness=sessionState.readiness||{};
+  sessionState.readiness[ready.dataset.sessionReady]=ready.checked;
+  sessionStore().set(sessionState.module.READINESS_KEY,sessionState.readiness);
+  if(sessionState.current){
+   const record=sessionState.module.normalise({...sessionState.current,readiness:sessionState.readiness,updatedAt:Date.now()});
+   if(record){const result=sessionState.module.put(sessionStore(),record);if(result.ok){sessionState.saved=result.sessions;sessionState.current=record;}}
+  }
+  return;
+ }
  const check=event.target.closest('[data-session-check]');
  if(check){
   // The tick is already in the DOM, so the checklist is stored without re-rendering and without stealing focus.
@@ -2194,12 +2548,21 @@ function sessionChange(event){
  const input=event.target.closest('[data-session-input]');
  if(!input)return;
  const field=input.dataset.sessionInput;
- if(field==='notes'){sessionState.notes=input.value;return;}
+ if(field==='notes'){
+  sessionState.notes=input.value;
+  // A note typed into a saved plan is part of that plan: when the field loses focus it is written back to the
+  // local record, so a reload or a dead battery does not lose it. Nothing leaves the browser.
+  if(event.type==='change'&&sessionState.current&&sessionState.module){
+   const record=sessionState.module.normalise({...sessionState.current,notes:sessionState.notes,updatedAt:Date.now()});
+   if(record){const result=sessionState.module.put(sessionStore(),record);if(result.ok){sessionState.saved=result.sessions;sessionState.current=record;}}
+  }
+  return;
+ }
  if(event.type!=='change')return;
  if(field==='date'){
   if(!/^\d{4}-\d{2}-\d{2}$/.test(input.value))return;
   sessionState.date=input.value;sessionState.when='custom';sessionState.notice=null;sessionState.refreshedAt=null;
-  sessionState.computedKey=null;renderSession();return;
+  sessionState.computedKey=null;renderSession();ensureDestinationWeather();return;
  }
  if(field==='sensor'||field==='focalLength'||field==='aperture'||field==='tracker'){
   sessionState.camera={...sessionState.camera};
@@ -2740,7 +3103,9 @@ document.getElementById('celestial-more').addEventListener('click',()=>{});
  season:seasonState,seasonCache,seasonKey,seasonRequest,requestSeason,finishSeason,renderSeasonSection,registerSeasonItems,seasonThreshold,
  session:sessionState,openSession,renderSession,computeSession,sessionDates,applyWhen,applyWhere,sessionSite,applySessionDate:
   iso=>{sessionState.date=iso;sessionState.when="custom";sessionState.computedKey=null;renderSession();},
- sessionRecord,sessionPrintHTML,printSession,saveSession,openSavedSession,refreshSession,sessionCandidate};
+ sessionRecord,sessionPrintHTML,printSession,saveSession,openSavedSession,refreshSession,sessionCandidate,
+ destinationWeather,destinationHorizon,ensureDestinationWeather,sessionForecast,sessionAccess,sessionWeatherState:()=>destinationWeather,
+ downloadOfflinePlan,refreshing:()=>sessionState.refreshReport};
  $('sky-preview').innerHTML=skySVG(null);
  if(location.hash==='#about'){const b=document.querySelector('[data-view="about"]');if(b)b.click();}
  restoreDiscoveryFeed();

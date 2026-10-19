@@ -1,4 +1,4 @@
-# Migration status — 2026-10-15
+# Migration status — 2026-10-19
 
 ## Rocket launch schedules (Phase 1) — 2026-10-15
 - [x] Inspected the launch boundary (src/launches/readme.md), the existing Cloudflare setup and the UI.
@@ -866,3 +866,45 @@ route propagation; persistent failures still fail. No scientific/application cha
 - Next action: field-verify the three points against horizon photographs, widen the region to the three already
   evidenced facilities west of 88.60°W, and add a licensed sky-brightness product so darkness can eventually be a
   measurement rather than an absent field.
+
+## Phase 6D: field readiness and destination weather (shipped)
+
+- [x] Destination weather reuses the existing Open-Meteo endpoint at the selected session place's own
+      coordinates, never the visitor's when a distinct point is chosen. The request is made only when the builder
+      or a saved plan is open, never by the homepage, and never by a checklist tick. Only cloud cover,
+      precipitation probability, 2 m temperature, 10 m wind and gusts are read, over the observing-window hours,
+      with units, fetch age and valid interval. Missing series stay missing; no transparency, seeing, smoke,
+      brightness or success probability is derived.
+- [x] Horizon and cache: the shared request asks for nine days (Open-Meteo offers up to 16; nine keeps the
+      homepage payload small) and a night beyond it is refused without a request. Responses are reused for 30
+      minutes under a coordinate key rounded to three decimals; the existing seven-day `overhead-cache` fallback
+      is labelled cached. A provider failure reads "Forecast unavailable", never clear skies. Offline outranks an
+      in-memory answer: no request is attempted and a saved forecast is shown as history with its age.
+- [x] **Before you leave** adds a compact summary and seven actionable checks in `overhead.session.readiness.v1`.
+      A tick is an acknowledgement, never an independent verification of an agency rule.
+- [x] Access freshness compares the plan's planning-time `evidenceRef` with the current published point record
+      field by field (`current`, `changed`, `expired`, `withheld`), shows both versions and always links the
+      official source. Refresh preserves the planning-time snapshot; only an explicit save replaces it. A withheld
+      point keeps its saved coordinates and identity and is never presented as currently verified.
+- [x] Offline reading keeps place, window, direction, Moon, darkness, terrain, access evidence, kit, notes and the
+      last forecast. Notes and checklist edits persist locally. Cold start is covered by the script-free field-copy
+      HTML download; no service worker is added.
+- [x] Checklist rows are native labels around native checkboxes, with 44 px minimum targets, whole-row toggling,
+      visible focus, keyboard operation and persistent state; both checklists use the same control.
+- [x] Refresh reports astronomy, access, weather and terrain separately, preserves notes/kit/identity, never says
+      everything updated, and disables actions that need a live window when the recalculation removes it.
+- [x] Print carries the forecast state, fetch age and interval, access date, restrictions, parking caveats,
+      terrain uncertainty, current-versus-saved access status and outstanding checks. Calendar output remains the
+      shared RFC 5545 writer with no departure, drive or camping interval.
+- [x] Faults found and fixed: refresh used to overwrite the saved evidence snapshot (making every comparison look
+      current); an in-memory forecast could still read as current while offline; a test fixture used a parking
+      value the artifact gate correctly rejects.
+- [x] Tests: `npm test` exit 0; `tests/session.spec.js` 24 passed (destination coordinates, cache expiry, horizon,
+      provider failure, partial refresh, changed/withheld/expired access, offline reading, field copy, print,
+      calendar, four widths in both themes, keyboard, 44 px rows); `npm run build` and `npm run check` exit 0.
+      The full browser suite ran 109 tests with no failure (102 passed plus two live-source skips before a local
+      teardown stall; the remaining 7 passed separately); the authoritative full run is recorded in the deployment
+      section of [phase-6d-release.md](phase-6d-release.md).
+- [x] Documentation: [phase-6d-release.md](phase-6d-release.md), [photography-sessions.md](photography-sessions.md),
+      plus updates to [milky-way.md](milky-way.md), [providers.md](providers.md) and `agents.md`.
+- [ ] Deployment and production verification: pending.

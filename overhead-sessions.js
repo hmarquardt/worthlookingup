@@ -14,6 +14,7 @@
   var LIST_KEY = 'session.list.v1';
   var CURRENT_KEY = 'session.current.v1';
   var CHECKLIST_KEY = 'session.checklist.v1';
+  var READINESS_KEY = 'session.readiness.v1';
   var MAX_SESSIONS = 12;
   var MAX_NOTES = 2000;
 
@@ -159,6 +160,7 @@
       darkness: base.darkness || null, terrain: base.terrain || null, weather: base.weather || null,
       quality: base.quality || null, engine: base.engine || null,
       checklist: base.checklist || {}, camera: base.camera || {}, notes: base.notes || '',
+      readiness: base.readiness || {},
       createdAt: base.createdAt || now, updatedAt: now, limitations: base.limitations || [],
     });
   }
@@ -182,6 +184,7 @@
       weather: raw.weather || null, quality: Number.isFinite(raw.quality) ? raw.quality : null,
       engine: raw.engine || null,
       checklist: raw.checklist && typeof raw.checklist === 'object' ? raw.checklist : {},
+      readiness: raw.readiness && typeof raw.readiness === 'object' ? raw.readiness : {},
       camera: raw.camera && typeof raw.camera === 'object' ? raw.camera : {},
       notes: sanitiseNotes(raw.notes),
       createdAt: Number.isFinite(raw.createdAt) ? raw.createdAt : Date.now(),
@@ -237,6 +240,135 @@
   }
 
   /* Checklist state lives on its own so an unticked box survives a page reload even with no session open. */
+  /* One forecast for one night, from the hours the provider actually publishes. Missing series stay missing:
+     a payload without wind produces no wind, rather than a zero that reads as still air. */
+  function weatherSummary(hourly, window) {
+    var empty = { hours: 0, cloud: null, precipitation: null, temperature: null, wind: null, gust: null, units: {} };
+    if (!hourly || !Array.isArray(hourly.time) || !window || !Number.isFinite(window.start) || !Number.isFinite(window.end)) return empty;
+    var rows = [];
+    for (var i = 0; i < hourly.time.length; i++) {
+      var at = hourly.time[i] * 1000;
+      if (at >= window.start && at <= window.end) rows.push(i);
+    }
+    if (!rows.length) return empty;
+    var series = function (name) { return Array.isArray(hourly[name]) ? hourly[name] : null; };
+    var stats = function (name, reduce) {
+      var data = series(name);
+      if (!data) return null;
+      var values = [];
+      rows.forEach(function (index) {
+        var value = data[index];
+        if (Number.isFinite(value)) values.push(value);
+      });
+      if (!values.length) return null;
+      return { value: reduce(values), min: Math.min.apply(null, values), max: Math.max.apply(null, values), count: values.length };
+    };
+    var mean = function (values) { return values.reduce(function (sum, value) { return sum + value; }, 0) / values.length; };
+    var units = hourly.units || {};
+    return {
+      hours: rows.length,
+      cloud: stats('cloud_cover', mean),
+      precipitation: stats('precipitation_probability', function (values) { return Math.max.apply(null, values); }),
+      temperature: stats('temperature_2m', mean),
+      wind: stats('wind_speed_10m', function (values) { return Math.max.apply(null, values); }),
+      gust: stats('wind_gusts_10m', function (values) { return Math.max.apply(null, values); }),
+      units: { temperature: units.temperature_2m || null, wind: units.wind_speed_10m || null,
+        precipitation: units.precipitation_probability || '%' },
+    };
+  }
+
+  /* Whether a forecast may be quoted at all. The page requests nine days from now; a night before today
+     is history rather than a forecast, and a night beyond that request is never extrapolated. */
+  function forecastHorizon(now, nightStart, days) {
+    var span = (Number.isFinite(days) ? days : 9) * 86400000;
+    if (!Number.isFinite(nightStart)) return { status: 'unknown', lastDay: now + span };
+    if (nightStart < now - 86400000) return { status: 'past', lastDay: now + span };
+    if (nightStart > now + span) return { status: 'beyond', lastDay: now + span };
+    return { status: 'within', lastDay: now + span };
+  }
+
+  /* A stable digest of the access evidence that matters, so a saved plan can be compared with what is published
+     now without keeping a second copy of the rules. Restrictions are part of it: a new quiet-hours line is a
+     change a reader needs to see. */
+  function evidenceFingerprint(ref) {
+    if (!ref) return null;
+    var access = ref.access || {};
+    var evidence = Array.isArray(access.evidence) ? access.evidence : [];
+    var restrictions = Array.isArray(access.restrictions) ? access.restrictions : [];
+    var parts = [ref.verifiedAt || '', access.nightPresence || '', access.parking || '', access.classification || '',
+      access.summary || '', evidence.length, evidence[0] ? (evidence[0].verifiedAt || '') + '|' + (evidence[0].quote || '') : '',
+      restrictions.map(function (item) { return (item && item.text) || ''; }).join('~')];
+    var text = parts.join('');
+    var hash = 5381;
+    for (var i = 0; i < text.length; i++) hash = ((hash * 33) ^ text.charCodeAt(i)) >>> 0;
+    return 'ev-' + hash.toString(36) + '-' + text.length.toString(36);
+  }
+
+  /* Saved evidence against current evidence. The saved copy is never overwritten here: it is the record of what
+     the plan was made with, and the comparison says whether the published record still agrees with it. */
+  function compareAccess(saved, current, now) {
+    var savedRef = saved || null;
+    if (!current) {
+      return { status: 'withheld', label: 'This point is no longer published',
+        detail: 'The saved access record is kept below as history. Nothing here says the place is open; the managing agency is the only source that can.',
+        saved: savedRef, current: null, changes: [] };
+    }
+    var savedAccess = savedRef && savedRef.access ? savedRef.access : {};
+    var currentAccess = current.access || {};
+    var changes = [];
+    var compare = function (field, savedValue, currentValue) {
+      if (String(savedValue == null ? '' : savedValue) !== String(currentValue == null ? '' : currentValue)) {
+        changes.push({ field: field, saved: savedValue == null ? null : savedValue, current: currentValue == null ? null : currentValue });
+      }
+    };
+    compare('night presence', savedAccess.nightPresence, currentAccess.nightPresence);
+    compare('parking', savedAccess.parking, currentAccess.parking);
+    compare('classification', savedAccess.classification, currentAccess.classification);
+    compare('access summary', savedAccess.summary, currentAccess.summary);
+    compare('verification date', savedRef && savedRef.verifiedAt, current.verifiedAt);
+    var savedRestrictions = (Array.isArray(savedAccess.restrictions) ? savedAccess.restrictions : []).map(function (item) { return (item && item.text) || ''; });
+    var currentRestrictions = (Array.isArray(currentAccess.restrictions) ? currentAccess.restrictions : []).map(function (item) { return (item && item.text) || ''; });
+    if (savedRestrictions.join('|') !== currentRestrictions.join('|')) {
+      changes.push({ field: 'restrictions', saved: savedRestrictions, current: currentRestrictions });
+    }
+    var currentAt = Date.parse(String(currentAccess.verifiedAt || current.verifiedAt || ''));
+    var expired = Number.isFinite(currentAt) && Number.isFinite(now) && now - currentAt > 365 * 86400000;
+    if (expired) {
+      return { status: 'expired', label: 'The published verification is more than a year old',
+        detail: 'Worth Looking Up withholds evidence older than a year, so this record is shown as history rather than as a current permission.',
+        saved: savedRef, current: current, changes: changes };
+    }
+    if (changes.length) {
+      return { status: 'changed', label: 'The published access record has changed since this plan was saved',
+        detail: 'Both versions are shown below. The current one is what the site publishes now; neither is a substitute for the notice the agency publishes itself.',
+        saved: savedRef, current: current, changes: changes };
+    }
+    return { status: 'current', label: 'Published access evidence',
+      detail: 'Checked against the latest Worth Looking Up site record, not with the managing agency. It matches the record this plan was saved with.',
+      saved: savedRef, current: current, changes: [] };
+  }
+
+  /* The pre-departure list. Ticking one of these is the reader telling themselves they did it; it is never a
+     verification of an agency rule, and the wording says so wherever the list appears. */
+  var READINESS = [
+    { id: 'rules', label: 'Recheck the rules and current alerts the facility publishes itself', action: true },
+    { id: 'parking', label: 'Confirm parking or campsite eligibility for this night', action: true },
+    { id: 'weather', label: 'Look at the latest local forecast, and at the sky when you arrive', action: true },
+    { id: 'roads', label: 'Check roads, gates and vehicle restrictions', action: true },
+    { id: 'horizon', label: 'Check the real horizon for trees, buildings or a rise', action: true },
+    { id: 'kit', label: 'Charge batteries, format cards and pack the kit', action: true },
+    { id: 'company', label: 'Tell someone where you are going and when you expect to be back', action: true },
+  ];
+
+  function readReadiness(storage, defaults) {
+    var stored = storage && typeof storage.get === 'function' ? storage.get(READINESS_KEY, null) : null;
+    var state = {};
+    (defaults || READINESS).forEach(function (item) {
+      state[item.id] = stored && typeof stored[item.id] === 'boolean' ? stored[item.id] : false;
+    });
+    return state;
+  }
+
   function readChecklist(storage, defaults) {
     var stored = storage && typeof storage.get === 'function' ? storage.get(CHECKLIST_KEY, null) : null;
     var state = {};
@@ -247,7 +379,9 @@
   }
 
   root.OverheadSessions = { SCHEMA: SCHEMA, CHECKLIST: CHECKLIST, SENSORS: SENSORS, MAX_SESSIONS: MAX_SESSIONS,
-    LIST_KEY: LIST_KEY, CURRENT_KEY: CURRENT_KEY, CHECKLIST_KEY: CHECKLIST_KEY, MAX_NOTES: MAX_NOTES,
+    LIST_KEY: LIST_KEY, CURRENT_KEY: CURRENT_KEY, CHECKLIST_KEY: CHECKLIST_KEY, READINESS_KEY: READINESS_KEY,
+    MAX_NOTES: MAX_NOTES, READINESS: READINESS, weatherSummary: weatherSummary, forecastHorizon: forecastHorizon,
+    evidenceFingerprint: evidenceFingerprint, compareAccess: compareAccess, readReadiness: readReadiness,
     sanitiseNotes: sanitiseNotes, horizonAt: horizonAt, clearance: clearance, cameraGuidance: cameraGuidance,
     sessionId: sessionId, newSession: newSession, normalise: normalise, migrate: migrate, listFrom: listFrom,
     put: put, remove: remove, readChecklist: readChecklist, esc: esc };
@@ -273,14 +407,116 @@
     return '<div class="sx-fact"><dt>' + esc(label) + '</dt><dd>' + value + (note ? '<span class="small">' + note + '</span>' : '') + '</dd></div>';
   }
 
+  function tag(label, tone) {
+    return '<span class="sx-tag sx-tag-' + esc(tone || 'neutral') + '">' + esc(label) + '</span>';
+  }
+
+  function fieldRow(key, value, note, big) {
+    return '<div class="sx-field' + (big ? ' sx-field-big' : '') + '"><span class="sx-field-key">' + esc(key) + '</span>' +
+      '<span class="sx-field-value">' + value + (note ? ' <span class="small">' + note + '</span>' : '') + '</span></div>';
+  }
+
+  /* The forecast, stated as a forecast: which hours it covers, how old it is, and whether the provider answered at
+     all. A missing forecast is never rendered as quiet air, and a cached one is never rendered as current. */
+  function forecastBlock(forecast) {
+    if (!forecast) return '';
+    var tone = forecast.status === 'forecast' ? (forecast.stale ? 'warn' : 'good') : forecast.status === 'loading' ? 'neutral' : 'warn';
+    var head = '<div class="sx-forecast"><p><strong>' + esc(forecast.label) + '</strong> ' + tag(forecast.tag, tone) + '</p>';
+    if (forecast.detail) head += '<p class="small">' + esc(forecast.detail) + '</p>';
+    if (forecast.rows && forecast.rows.length) {
+      head += '<dl class="sx-forecast-rows">' + forecast.rows.map(function (row) {
+        return '<dt>' + esc(row[0]) + '</dt><dd>' + esc(row[1]) + '</dd>';
+      }).join('') + '</dl>';
+    }
+    if (forecast.lastKnown) {
+      var saved = forecast.lastKnown;
+      head += '<div class="sx-lastforecast"><p class="small"><strong>' + esc(saved.label) + '</strong> ' + tag(saved.tag || 'saved', 'warn') + '</p>' +
+        '<p class="small">' + esc(saved.whenLabel) + '. This is the forecast the plan was saved with, not a current one, ' +
+        'and it does not describe the sky now.</p>' +
+        (saved.rows && saved.rows.length ? '<dl class="sx-forecast-rows small">' + saved.rows.map(function (row) {
+          return '<dt>' + esc(row[0]) + '</dt><dd>' + esc(row[1]) + '</dd>';
+        }).join('') + '</dl>' : '') + '</div>';
+    }
+    return head + '</div>';
+  }
+
+  /* Saved evidence against published evidence. The differences are listed field by field, and the official link is
+     always present, because this page can only compare records — it cannot contact the managing agency. */
+  function accessBlock(access) {
+    if (!access) return '';
+    var tone = access.status === 'current' ? 'good' : access.status === 'changed' ? 'warn' : 'bad';
+    var html = '<div class="sx-access sx-access-' + esc(access.status) + '" data-access-status="' + esc(access.status) + '">' +
+      '<p><strong>' + esc(access.label) + '</strong> ' + tag(access.status === 'current' ? 'matches this plan' : access.status, tone) + '</p>' +
+      '<p class="small">' + esc(access.detail) + '</p>';
+    if (access.rows && access.rows.length) {
+      html += '<dl class="sx-access-rows small">' + access.rows.map(function (row) {
+        return '<dt>' + esc(row[0]) + '</dt><dd>' + esc(row[1]) + '</dd>';
+      }).join('') + '</dl>';
+    }
+    if (access.changes && access.changes.length) {
+      html += '<ul class="sx-changes small">' + access.changes.map(function (change) {
+        var from = Array.isArray(change.saved) ? change.saved.join('; ') : change.saved;
+        var to = Array.isArray(change.current) ? change.current.join('; ') : change.current;
+        return '<li><strong>' + esc(change.field) + ':</strong> was ' + esc(from || 'not recorded') + ' — now ' +
+          esc(to || 'not recorded') + '</li>';
+      }).join('') + '</ul>';
+    }
+    if (access.officialUrl) {
+      html += '<p class="small"><a href="' + esc(access.officialUrl) + '" rel="noopener">The managing agency source</a> — the ' +
+        'only place the current rule can be confirmed.</p>';
+    }
+    return html + '</div>';
+  }
+
   function conditionsBlock(conditions) {
     if (!conditions) return '<p class="small">Calculating this night at this place…</p>';
+    // The field summary is what a reader needs with a torch in one hand: where, when, which way, what the Moon and
+    // the forecast are doing, and any access warning. It is built before the no-window branch, because a night with
+    // no window still has a place, a forecast and an access rule, and hiding those would be less useful than showing
+    // them with the reason nothing here can be saved.
+    var summary = [];
+    // A reader in a dead zone needs to know why nothing below is moving. The connection flag is the browser's own
+    // hint, so it is phrased as a report rather than as a measurement of the sky or the site.
+    if (conditions.offline) {
+      summary.push(fieldRow('Connection', 'Offline' + (conditions.forecast && conditions.forecast.lastKnown ? ' · saved forecast below' : ''),
+        'nothing is being refreshed'));
+    }
+    if (conditions.destination) {
+      summary.push(fieldRow('Where', esc(conditions.destination.name) + ' ' +
+        (conditions.destination.withheld ? tag('no longer published', 'bad')
+          : conditions.destination.verified ? tag('verified point', 'good') : tag('your location, unverified', 'warn'))));
+    }
+    if (conditions.window) {
+      summary.push(fieldRow('Window', esc(conditions.window.startLabel) + ' – ' + esc(conditions.window.endLabel),
+        esc(conditions.window.minutes) + ' min', true));
+    }
+    if (conditions.best) {
+      summary.push(fieldRow('Best moment', esc(conditions.best.timeLabel), '', true));
+    }
+    if (conditions.direction) {
+      summary.push(fieldRow('Point the camera', esc(conditions.direction.cardinal),
+        esc(conditions.direction.bearing) + '° · core ' + esc(conditions.direction.altitudeDeg) + '° up', true));
+    }
+    if (conditions.moon) {
+      summary.push(fieldRow('Moon', esc(conditions.moon.short || conditions.moon.label)));
+    }
+    if (conditions.forecast) {
+      summary.push(fieldRow('Forecast', esc(conditions.forecast.short || conditions.forecast.label),
+        conditions.forecast.whenLabel ? esc(conditions.forecast.whenLabel) : ''));
+    }
+    if (conditions.access && conditions.access.warning) {
+      summary.push(fieldRow('Access', esc(conditions.access.warning)));
+    }
+    var summaryHTML = '<div class="sx-fieldsum" role="group" aria-label="The field summary">' + summary.join('') + '</div>';
     if (conditions.why) {
       return '<div class="sx-nowindow"><p><strong>' + esc(conditions.why.headline) + '</strong></p><p class="small">' +
         esc(conditions.why.detail) + '</p><p class="small">A session saved for this night would hold an observing window that ' +
         'does not exist, so there is nothing to save. Choose another date above: the next favourable night is offered ' +
-        'when the engine finds one, and a date months away is still fine — only the astronomy is certain that far ahead.</p></div>';
+        'when the engine finds one, and a date months away is still fine — only the astronomy is certain that far ahead.</p></div>' +
+        summaryHTML + (conditions.forecast ? forecastBlock(conditions.forecast) : '') +
+        (conditions.access ? accessBlock(conditions.access) : '');
     }
+    var html = summaryHTML;
     var facts = [];
     if (conditions.window) {
       facts.push(fact('Observing window', esc(conditions.window.startLabel) + ' – ' + esc(conditions.window.endLabel),
@@ -304,7 +540,7 @@
     if (Number.isFinite(conditions.quality)) {
       facts.push(fact('Window quality', esc(conditions.quality) + ' / 100', 'this category\'s own scale, not comparable with satellite or meteor values'));
     }
-    var html = '<dl class="sx-facts">' + facts.join('') + '</dl>';
+    html += '<dl class="sx-facts">' + facts.join('') + '</dl>';
     if (conditions.terrain) {
       var t = conditions.terrain;
       html += '<div class="sx-terrain sx-terrain-' + esc(t.state) + '"><p><strong>Terrain toward the core: ' + esc(t.state) + '</strong></p>' +
@@ -318,10 +554,13 @@
       html += '<p class="small sx-terrain-none">Terrain horizon unavailable for this place: no bare-earth profile has been ' +
         'evaluated here, and none is invented. Check the view yourself before dark.</p>';
     }
-    if (conditions.weather) {
+    if (conditions.forecast) {
+      html += forecastBlock(conditions.forecast);
+    } else if (conditions.weather) {
       html += '<p class="small sx-weather"><strong>Weather:</strong> ' + esc(conditions.weather.label) +
         (conditions.weather.detail ? ' ' + esc(conditions.weather.detail) : '') + '</p>';
     }
+    if (conditions.access) html += accessBlock(conditions.access);
     if (Array.isArray(conditions.limitations) && conditions.limitations.length) {
       html += '<ul class="sx-limits small">' + conditions.limitations.map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('') + '</ul>';
     }
@@ -359,6 +598,46 @@
     return '<div class="sx-choices">' + chips + '</div>' + custom;
   }
 
+  /* The pre-departure review: what is known, what is forecast, what is unverified, and what still has to be done by
+     hand. The checkboxes record that the reader did something; they never turn an agency rule into a verified fact. */
+  function readinessBlock(ctx) {
+    var conditions = ctx.conditions || {};
+    var rows = [];
+    var row = function (key, value, note) {
+      rows.push('<dt>' + esc(key) + '</dt><dd>' + value + (note ? ' <span class="small">' + note + '</span>' : '') + '</dd>');
+    };
+    if (conditions.destination) {
+      row('Destination', esc(conditions.destination.name),
+        conditions.destination.verified ? 'verified observation point' : 'your own location, not a verified public site');
+    }
+    if (conditions.dateLabel) row('Night', esc(conditions.dateLabel), conditions.timezone ? 'times in ' + esc(conditions.timezone) : '');
+    if (conditions.window) row('Window', esc(conditions.window.startLabel) + ' – ' + esc(conditions.window.endLabel) + ' (' + esc(conditions.window.minutes) + ' min)');
+    if (conditions.forecast) row('Forecast', esc(conditions.forecast.short || conditions.forecast.label), conditions.forecast.whenLabel ? esc(conditions.forecast.whenLabel) : '');
+    if (conditions.access) {
+      row('Access evidence', esc(conditions.access.short || conditions.access.label),
+        conditions.access.verifiedAt ? 'verified ' + esc(conditions.access.verifiedAt) : '');
+    }
+    if (conditions.terrain) row('Terrain', esc(conditions.terrain.state) + ' at ' + esc(conditions.terrain.horizonAngleDeg) + '°, uncertainty ±' + esc(conditions.terrain.uncertaintyDeg) + '°');
+    else row('Terrain', 'no bare-earth profile for this place', 'check the real horizon yourself');
+    var gear = api.CHECKLIST.filter(function (item) { return ctx.checklist && ctx.checklist[item.id]; }).length;
+    row('Equipment', gear + ' of ' + api.CHECKLIST.length + ' packed', gear === api.CHECKLIST.length ? 'all ticked' : 'still to pack');
+    if (Array.isArray(conditions.limitations) && conditions.limitations.length) {
+      row('Still unverified', conditions.limitations.length + ' item' + (conditions.limitations.length === 1 ? '' : 's'),
+        'listed with the conditions above');
+    }
+    var items = api.READINESS.map(function (item) {
+      var on = Boolean(ctx.readiness && ctx.readiness[item.id]);
+      return '<li><label class="sx-check"><input type="checkbox" data-session-ready="' + esc(item.id) + '"' +
+        (on ? ' checked' : '') + '><span>' + esc(item.label) + '</span></label></li>';
+    }).join('');
+    return step(4, 'Before you leave',
+      '<dl class="sx-preflight">' + rows.join('') + '</dl>' +
+      '<ul class="sx-checks sx-ready">' + items + '</ul>' +
+      '<p class="small">Ticking these records that you did them. It does not verify anything: this page cannot see the ' +
+      'site, contact the agency, or know whether a gate is open tonight.</p>',
+      'Every one of these is a thing to do, not a thing this page can check for you.');
+  }
+
   function prepareBlock(ctx) {
     var guidance = ctx.guidance || api.cameraGuidance(ctx.state.camera);
     var items = api.CHECKLIST.map(function (item) {
@@ -379,7 +658,7 @@
     var sensorOptions = api.SENSORS.map(function (entry) {
       return '<option value="' + esc(entry.id) + '"' + (camera.sensor === entry.id ? ' selected' : '') + '>' + esc(entry.label) + '</option>';
     }).join('');
-    return step(4, 'Prepare',
+    return step(5, 'Prepare',
       '<div class="sx-readiness"><h5>Readiness checklist</h5><ul class="small">' + readiness + '</ul>' +
       '<p class="small">Ticking these boxes is a prompt, not a safety certification, and this page cannot know the conditions at the site.</p></div>' +
       '<div class="sx-gear"><h5>Equipment checklist</h5><ul class="sx-checks">' + items + '</ul>' +
@@ -407,16 +686,24 @@
         '</span></span><span class="sx-saved-actions">' + button('open', entry.id, 'Open') + button('delete', entry.id, 'Delete') + '</span></li>';
     }).join('') + '</ul>' : '<p class="small">No plans saved in this browser yet.</p>';
     var disabled = ctx.conditions && ctx.conditions.why ? ' disabled' : '';
-    return step(5, 'Save or export',
+    return step(6, 'Save or export',
       '<label class="sx-notes"><span>Notes for the field</span><textarea data-session-input="notes" rows="3" maxlength="' + api.MAX_NOTES +
         '" placeholder="Meeting point, gate code you already know, frames you want…">' + esc(ctx.state.notes || '') + '</textarea></label>' +
       '<div class="sx-actions">' +
       '<button type="button" class="sx-primary" data-session="save"' + disabled + '>Save this plan</button>' +
       '<button type="button" data-session="print"' + disabled + '>Print field plan</button>' +
+      '<button type="button" data-session="offline"' + disabled + '>Download a field copy</button>' +
       '<button type="button" data-session="calendar"' + disabled + '>Add to calendar</button>' +
       '<button type="button" data-session="plan"' + disabled + '>Add to observing plan</button>' +
       '<button type="button" data-session="refresh"' + (ctx.session ? '' : ' disabled') + '>Refresh evidence and forecast</button>' +
       '</div>' +
+      '<p class="small">Download a field copy saves one self-contained HTML file with this plan. It opens from your own ' +
+      'device with no network and no app, and it says when it was made. The page itself still has to be loaded once before ' +
+      'that, so this is how a plan survives a cold start in a dead zone.</p>' +
+      (Array.isArray(ctx.refreshReport) && ctx.refreshReport.length
+        ? '<ul class="sx-refresh small">' + ctx.refreshReport.map(function (line) {
+          return '<li data-refresh-status="' + esc(line.status) + '">' + esc(line.text) + '</li>';
+        }).join('') + '</ul>' : '') +
       (ctx.notice ? '<p class="small sx-notice" role="status">' + esc(ctx.notice) + '</p>' : '') +
       '<h5>Saved plans in this browser</h5>' + list +
       '<p class="small">Plans are stored locally, one list of at most ' + api.MAX_SESSIONS + ' entries, and never synchronised. ' +
@@ -439,11 +726,102 @@
         'where you are: the app has no public-access evidence for it and will never claim any.') +
       step(3, 'Conditions at ' + esc(chosen || 'the chosen place'), conditionsBlock(context.conditions),
         context.conditions && context.conditions.dateLabel ? esc(context.conditions.dateLabel) : null) +
+      readinessBlock(context) +
       prepareBlock(context) +
       saveBlock(context) +
       '<p class="small sx-foot">A plan is a record of what was calculated and published at the time you made it. ' +
       'It is not a permission, a forecast, or a promise of a photograph.</p></div>';
   }
 
+  /* A single self-contained HTML file for the field: no scripts, no network, no app. It carries the facts the page
+     shows, the evidence the plan was made with, when it was made and what it could not know. This is the only form
+     of cold-start offline access this release claims. */
+  function offlinePlanHTML(record, context) {
+    var ctx = context || {};
+    var site = (record && record.site) || { name: 'saved location', tz: '' };
+    var zone = site.tz || 'UTC';
+    var clock = function (ms) {
+      if (!Number.isFinite(ms)) return '--';
+      try { return new Intl.DateTimeFormat('en-US', { timeZone: zone, hour: 'numeric', minute: '2-digit' }).format(new Date(ms)); }
+      catch (error) { return new Date(ms).toISOString().slice(11, 16) + ' UTC'; }
+    };
+    var conditions = ctx.conditions || {};
+    var forecast = conditions.forecast || null;
+    var access = conditions.access || null;
+    var rows = [];
+    var row = function (key, value) { if (value) rows.push('<tr><th>' + esc(key) + '</th><td>' + value + '</td></tr>'); };
+    row('Destination', esc(site.name || 'saved location') + (record && record.pointId ? ' (verified observation point)' : ' (your own location, unverified)'));
+    row('Coordinates', Number.isFinite(site.lat) ? esc(site.lat.toFixed(4)) + ', ' + esc(site.lon.toFixed(4)) : 'not recorded');
+    row('Local timezone', esc(zone));
+    row('Night', esc(record && record.date ? record.date : 'not recorded'));
+    if (record && record.window) row('Observing window', esc(clock(record.window.start)) + ' - ' + esc(clock(record.window.end)) + ' (' + esc(record.window.minutes) + ' min, ' + esc(record.window.level || '') + ')');
+    if (record && record.core) row('Best moment', esc(clock(record.core.bestTime)) + ' · core ' + esc(Number(record.core.bestAltitudeDeg).toFixed(1)) + '° up, bearing ' + esc(Number(record.core.maxAzimuthDeg).toFixed(0)) + '° ' + esc(record.core.maxCompass));
+    if (record && record.moon) row('Moon', esc(String(record.moon.classification).replace(/-/g, ' ')) + (record.moon.detail ? ' — ' + esc(record.moon.detail) : ''));
+    if (record && record.darkness) row('Darkness', esc(String(record.darkness.achieved).replace(/-/g, ' ')) + ' twilight reached');
+    if (record && Number.isFinite(record.quality)) row('Window quality', esc(record.quality) + ' / 100 — this category only, not comparable with satellite or meteor values');
+    row('Forecast', forecast ? esc(forecast.label) + (forecast.whenLabel ? ' · ' + esc(forecast.whenLabel) : '') : 'not recorded in this plan');
+    if (forecast && forecast.rows && forecast.rows.length) {
+      row('Forecast detail', forecast.rows.map(function (entry) { return esc(entry[0]) + ': ' + esc(entry[1]); }).join(' · '));
+    }
+    if (forecast && forecast.lastKnown) {
+      row('Last-known forecast', esc(forecast.lastKnown.label) + ' · ' + esc(forecast.lastKnown.whenLabel) +
+        ' — saved with the plan, not current');
+      if (forecast.lastKnown.rows && forecast.lastKnown.rows.length) {
+        row('Last-known detail', forecast.lastKnown.rows.map(function (entry) { return esc(entry[0]) + ': ' + esc(entry[1]); }).join(' · '));
+      }
+    }
+    if (record && record.terrain) row('Terrain toward the core', esc(record.terrain.state) + ' · modeled horizon ' + esc(record.terrain.horizonAngleDeg) + '° at bearing ' + esc(record.terrain.azimuthDeg) + '°, clearance ' + esc(record.terrain.differenceDeg) + '° ±' + esc(record.terrain.uncertaintyDeg) + '° — bare earth, no trees or buildings');
+    else row('Terrain toward the core', 'no bare-earth profile for this place, and none is invented');
+    appendOfflineAccessRows(row, access);
+    return offlinePlanDocument(record, ctx, rows, clock);
+  }
+
+  function appendOfflineAccessRows(row, access) {
+    if (!access) return;
+    row('Access at planning time', esc(access.savedShort || access.short || access.label || ''));
+    row('Access status', esc(access.label) + (access.verifiedAt ? ' · verified ' + esc(access.verifiedAt) : ''));
+    if (access.changes && access.changes.length) {
+      row('Changed since', access.changes.map(function (change) {
+        var from = Array.isArray(change.saved) ? change.saved.join('; ') : change.saved;
+        var to = Array.isArray(change.current) ? change.current.join('; ') : change.current;
+        return esc(change.field) + ': was ' + esc(from || 'not recorded') + ', now ' + esc(to || 'not recorded');
+      }).join(' · '));
+    }
+    if (access.officialUrl) row('Official source', '<a href="' + esc(access.officialUrl) + '">' + esc(access.officialUrl) + '</a>');
+  }
+
+  function offlinePlanDocument(record, ctx, rows, clock) {
+    var site = (record && record.site) || { name: 'saved location' };
+    var gear = record && record.checklist ? Object.keys(record.checklist).filter(function (key) { return record.checklist[key]; }) : [];
+    var gearList = api.CHECKLIST.map(function (item) {
+      return '<li>' + (record && record.checklist && record.checklist[item.id] ? '[x]' : '[ ]') + ' ' + esc(item.label) + '</li>';
+    }).join('');
+    var outstanding = api.READINESS.filter(function (item) { return !(record && record.readiness && record.readiness[item.id]); })
+      .map(function (item) { return '<li>' + esc(item.label) + '</li>'; }).join('');
+    var made = new Date().toISOString().slice(0, 16).replace('T', ' ');
+    return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">' +
+      '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+      '<title>Field plan: ' + esc(site.name || 'saved location') + ' · ' + esc(record && record.date ? record.date : '') + '</title>' +
+      '<style>body{font:16px/1.5 system-ui,sans-serif;margin:0 auto;max-width:46rem;padding:18px;color:#111;background:#fff}' +
+      'h1{font-size:1.3rem;margin:0 0 4px}h2{font-size:1rem;margin:20px 0 6px;border-bottom:1px solid #111;padding-bottom:2px}' +
+      'table{border-collapse:collapse;width:100%}th,td{text-align:left;vertical-align:top;padding:4px 8px 4px 0;border-bottom:1px solid #ddd}' +
+      'th{white-space:nowrap;font-weight:600;width:38%}ul{padding-left:18px;margin:4px 0}.note{font-size:.85rem;color:#333}' +
+      '@media print{body{max-width:none;padding:0}h2{break-after:avoid}}@page{margin:16mm}</style></head><body>' +
+      '<h1>Milky Way field plan: ' + esc(site.name || 'saved location') + '</h1>' +
+      '<p class="note">Made by Worth Looking Up on ' + esc(made) + ' UTC. This file works with no network. Everything in it was ' +
+      'calculated or published when it was made; nothing here is a permission, a forecast for a different place, or a promise ' +
+      'of a photograph.</p>' +
+      '<h2>Where and when</h2><table>' + rows.join('') + '</table>' +
+      '<h2>Equipment (' + gear.length + ' of ' + api.CHECKLIST.length + ' ticked)</h2><ul>' + gearList + '</ul>' +
+      '<h2>Still to do before leaving</h2><ul>' + (outstanding || '<li>Nothing left on the pre-departure list.</li>') + '</ul>' +
+      '<p class="note">This file cannot verify a rule, a gate, a road or the sky. Check the agency source and the local forecast ' +
+      'before you go.</p>' +
+      (record && record.notes ? '<h2>Notes</h2><p>' + esc(record.notes).replace(/\n/g, '<br>') + '</p>' : '') +
+      (record && record.limitations && record.limitations.length ? '<h2>Unresolved</h2><ul>' +
+        record.limitations.map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('') + '</ul>' : '') +
+      '</body></html>';
+  }
+
+  api.offlinePlanHTML = offlinePlanHTML;
   api.render = render;
 })(typeof self !== 'undefined' ? self : globalThis);

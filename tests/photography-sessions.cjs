@@ -38,7 +38,9 @@ function fakeStorage(limit = Infinity) {
 (async () => {
   test('the module stays small enough to load on demand', () => {
     const bytes = fs.statSync(path.join(root, 'overhead-sessions.js')).size;
-    assert.ok(bytes < 36 * 1024, 'module is ' + (bytes / 1024).toFixed(1) + ' kB');
+    // Phase 6D added the forecast summary, the access comparison, the pre-departure list and the offline field
+    // copy. It is still fetched only when a reader opens the builder: 64 kB raw is roughly 18 kB gzipped.
+    assert.ok(bytes < 64 * 1024, 'module is ' + (bytes / 1024).toFixed(1) + ' kB');
   });
 
   test('session storage never shares a key with the saved site, settings or favourites', () => {
@@ -186,13 +188,13 @@ function fakeStorage(limit = Infinity) {
     assert.strictEqual(odd.exposure, null, 'an unknown crop factor cannot produce a duration');
   });
 
-  test('the builder renders the five steps and escapes everything a visitor typed', () => {
+  test('the builder renders the six steps and escapes everything a visitor typed', () => {
     const html = S.render({ state: { when: 'custom', date: '2027-04-13', where: 'home', notes: '<script>bad()</script>',
       camera: { sensor: 'aps-c', focalLength: 24 } }, todayISO: '2026-10-15', maxDateISO: '2027-10-15',
       dates: [{ id: 'tonight', label: 'Tonight', detail: 'Thursday, October 15, 2026' }], points: [],
       home: { name: 'Princeton, Indiana' }, conditions: null, checklist: { camera: true },
       guidance: S.cameraGuidance({ sensor: 'aps-c', focalLength: 24 }), saved: [], notice: null, session: null });
-    for (const heading of ['When', 'Where', 'Conditions at', 'Prepare', 'Save or export']) {
+    for (const heading of ['When', 'Where', 'Conditions at', 'Before you leave', 'Prepare', 'Save or export']) {
       assert.ok(html.includes(heading), 'missing step: ' + heading);
     }
     assert.ok(!html.includes('<script>bad()'), 'notes are escaped');
@@ -211,6 +213,165 @@ function fakeStorage(limit = Infinity) {
     assert.ok(html.includes('No qualifying Galactic-core window at this place on this date.'));
     assert.ok(html.includes('data-session="save" disabled'), 'the save button is disabled');
     assert.ok(html.includes('data-session="print" disabled'));
+  });
+
+  test('the forecast summary uses the hours of this window, and leaves absent series absent', () => {
+    const start = Date.parse('2027-04-10T20:00:00Z');
+    const hourly = { time: [], cloud_cover: [], precipitation_probability: [], temperature_2m: [],
+      wind_speed_10m: [], wind_gusts_10m: [],
+      units: { temperature_2m: '°C', wind_speed_10m: 'km/h', precipitation_probability: '%' } };
+    for (let hour = 0; hour < 24; hour++) {
+      hourly.time.push(Math.floor((start + hour * 3600000) / 1000));
+      hourly.cloud_cover.push(hour < 2 ? 90 : 10 + hour);
+      hourly.precipitation_probability.push(hour);
+      hourly.temperature_2m.push(5 + hour / 10);
+      hourly.wind_speed_10m.push(hour);
+      hourly.wind_gusts_10m.push(hour * 2);
+    }
+    const window = { start: start + 3 * 3600000, end: start + 6 * 3600000 };
+    const summary = S.weatherSummary(hourly, window);
+    assert.strictEqual(summary.hours, 4, 'four hourly rows fall inside the window');
+    assert.strictEqual(summary.cloud.value, 14.5, 'only the four hours inside the window are averaged');
+    assert.strictEqual(summary.cloud.min, 13);
+    assert.strictEqual(summary.cloud.max, 16);
+    assert.strictEqual(summary.precipitation.value, 6, 'rain chance is the maximum, not a mean');
+    assert.strictEqual(summary.wind.value, 6);
+    assert.strictEqual(summary.gust.value, 12);
+    assert.strictEqual(summary.temperature.min, 5.3);
+    assert.strictEqual(summary.units.temperature, '°C');
+    // A provider answer without wind produces no wind, not a zero that reads as still air.
+    const withoutWind = S.weatherSummary({ time: hourly.time, cloud_cover: hourly.cloud_cover }, window);
+    assert.strictEqual(withoutWind.wind, null);
+    assert.strictEqual(withoutWind.cloud.value, 14.5);
+    assert.strictEqual(S.weatherSummary(hourly, { start: start + 40 * 3600000, end: start + 41 * 3600000 }).hours, 0);
+    assert.strictEqual(S.weatherSummary(null, window).hours, 0);
+    assert.strictEqual(S.weatherSummary(hourly, null).hours, 0);
+  });
+
+  test('a forecast is only quoted inside the provider horizon, and never for a past night', () => {
+    const now = Date.parse('2027-04-10T18:00:00Z');
+    assert.strictEqual(S.forecastHorizon(now, now + 3 * 86400000, 9).status, 'within');
+    assert.strictEqual(S.forecastHorizon(now, now + 10 * 86400000, 9).status, 'beyond');
+    assert.strictEqual(S.forecastHorizon(now, now - 3 * 86400000, 9).status, 'past');
+    assert.strictEqual(S.forecastHorizon(now, NaN, 9).status, 'unknown');
+  });
+
+  const EVIDENCE = { verifiedAt: '2026-10-18', access: { nightPresence: 'verified', parking: 'verified-at-designated-campsite',
+    classification: 'verified-night-access', summary: 'Camping is permitted.', verifiedAt: '2026-10-18',
+    evidence: [{ verifiedAt: '2026-10-18', quote: 'Camp only at designated campsites.' }],
+    restrictions: [{ text: 'Quiet hours 10 p.m. to 6 a.m.' }] } };
+  const currentPoint = () => ({ id: 'camp-cadiz-campground', verifiedAt: '2026-10-18',
+    access: JSON.parse(JSON.stringify(EVIDENCE.access)) });
+
+  test('saved and current access records are compared field by field, and the saved copy is never rewritten', () => {
+    const saved = JSON.parse(JSON.stringify(EVIDENCE));
+    const same = S.compareAccess(saved, currentPoint(), Date.parse('2027-04-01T00:00:00Z'));
+    assert.strictEqual(same.status, 'current');
+    assert.deepStrictEqual(same.changes, []);
+    assert.strictEqual(saved.access.parking, 'verified-at-designated-campsite', 'the saved record is untouched');
+    const changedPoint = currentPoint();
+    changedPoint.access.parking = 'unknown';
+    const changed = S.compareAccess(saved, changedPoint, Date.parse('2027-04-01T00:00:00Z'));
+    assert.strictEqual(changed.status, 'changed');
+    assert.ok(changed.changes.some(change => change.field === 'parking' && change.current === 'unknown'));
+    const restricted = currentPoint();
+    restricted.access.restrictions.push({ text: 'Gate locked 9 p.m. to 7 a.m.' });
+    const restrictedResult = S.compareAccess(saved, restricted, Date.parse('2027-04-01T00:00:00Z'));
+    assert.ok(restrictedResult.changes.some(change => change.field === 'restrictions'), 'a new restriction is a change');
+    assert.strictEqual(S.compareAccess(saved, null, Date.now()).status, 'withheld');
+    const old = currentPoint();
+    old.access.verifiedAt = '2024-01-01';
+    assert.strictEqual(S.compareAccess(saved, old, Date.parse('2027-04-01T00:00:00Z')).status, 'expired');
+  });
+
+  test('the fingerprint follows the evidence that matters and nothing else', () => {
+    const base = S.evidenceFingerprint(EVIDENCE);
+    assert.strictEqual(base, S.evidenceFingerprint(JSON.parse(JSON.stringify(EVIDENCE))));
+    const other = JSON.parse(JSON.stringify(EVIDENCE));
+    other.access.parking = 'verified';
+    assert.notStrictEqual(S.evidenceFingerprint(other), base);
+    const restriction = JSON.parse(JSON.stringify(EVIDENCE));
+    restriction.access.restrictions[0].text = 'Gate locked at dusk.';
+    assert.notStrictEqual(S.evidenceFingerprint(restriction), base);
+    const note = JSON.parse(JSON.stringify(EVIDENCE));
+    note.access.operatingSeason = 'summer only';
+    note.unrelated = 'a field the plan does not depend on';
+    assert.strictEqual(S.evidenceFingerprint(note), base, 'a field the plan does not depend on does not change the digest');
+    assert.strictEqual(S.evidenceFingerprint(null), null);
+  });
+
+  test('the pre-departure list is unticked by default, keeps a tick and ignores unknown ids', () => {
+    const storage = fakeStorage();
+    const fresh = S.readReadiness(storage);
+    assert.ok(Object.keys(fresh).length >= 6);
+    assert.ok(Object.values(fresh).every(value => value === false));
+    storage.set(S.READINESS_KEY, { parking: true, notAnItem: true });
+    const stored = S.readReadiness(storage);
+    assert.strictEqual(stored.parking, true);
+    assert.strictEqual('notAnItem' in stored, false);
+    assert.notStrictEqual(S.READINESS_KEY, S.CHECKLIST_KEY);
+  });
+
+  test('a saved record keeps its readiness state and its evidence fingerprint through a round trip', () => {
+    const record = S.newSession({ siteKey: 'camp-cadiz-campground', date: '2027-04-13',
+      evidenceRef: { ...EVIDENCE, fingerprint: S.evidenceFingerprint(EVIDENCE) }, readiness: { parking: true },
+      checklist: { tripod: true }, notes: 'keep' });
+    assert.strictEqual(record.readiness.parking, true);
+    assert.strictEqual(record.evidenceRef.fingerprint, S.evidenceFingerprint(EVIDENCE));
+    const stored = S.migrate(JSON.parse(JSON.stringify(record)));
+    assert.strictEqual(stored.session.readiness.parking, true);
+    assert.strictEqual(stored.session.notes, 'keep');
+    // An older record without these fields still opens, with empty values rather than undefined ones.
+    const legacy = S.migrate({ date: '2027-04-13', siteKey: 'camp-cadiz-campground' });
+    assert.deepStrictEqual(legacy.session.readiness, {});
+  });
+
+  test('the offline field copy is one self-contained file, with no script and every fact the page shows', () => {
+    const record = S.newSession({ siteKey: 'camp-cadiz-campground', date: '2027-04-13',
+      site: { name: 'Camp Cadiz Campground', lat: 37.57834, lon: -88.24417, tz: 'America/Chicago' },
+      pointId: 'camp-cadiz-campground',
+      window: { start: Date.parse('2027-04-14T06:00:00Z'), end: Date.parse('2027-04-14T08:00:00Z'), minutes: 120, level: 'astronomical' },
+      core: { bestTime: Date.parse('2027-04-14T07:30:00Z'), bestAltitudeDeg: 22.7, maxAltitudeDeg: 22.7,
+        maxAzimuthDeg: 169.6, maxCompass: 'S' },
+      moon: { classification: 'moon-below-horizon', detail: 'the Moon is below the horizon' },
+      darkness: { achieved: 'astronomical', minutes: { astronomical: 300 } }, quality: 72,
+      terrain: { state: 'clear', azimuthDeg: '169.6', horizonAngleDeg: '1.2', differenceDeg: '21.5', uncertaintyDeg: '0.6', dem: '3DEP ~31 m' },
+      checklist: { tripod: true }, readiness: { rules: true }, notes: 'Gate code is on the board.\nBring the red light.',
+      limitations: ['local artificial sky brightness has not been assessed here'],
+      evidenceRef: { ...EVIDENCE, fingerprint: S.evidenceFingerprint(EVIDENCE) } });
+    const html = S.offlinePlanHTML(record, { conditions: {
+      forecast: { label: 'Forecast unavailable', whenLabel: 'fetched 20m ago', rows: [['Cloud cover', '30% (10-60%)'], ['Wind', 'up to 11 km/h']],
+        lastKnown: { label: 'Last forecast saved with this plan', whenLabel: 'fetched 2h before this plan was saved', tag: 'saved', rows: [['Cloud cover', '35% (20-60%)']] } },
+      access: { label: 'Published access evidence', status: 'current', verifiedAt: '2026-10-18',
+        officialUrl: 'https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins',
+        savedShort: 'verified · parking verified at designated campsite',
+        changes: [{ field: 'parking', saved: 'unknown', current: 'verified' }] } } });
+    assert.strictEqual((html.match(/<script/g) || []).length, 0, 'no script of any kind');
+    assert.match(html, /^<!doctype html>/);
+    assert.match(html, /Camp Cadiz Campground/);
+    assert.match(html, /Observing window/);
+    assert.match(html, /Best moment/);
+    assert.match(html, /Cloud cover: 30%/);
+    assert.match(html, /fetched 20m ago/);
+    assert.match(html, /Last-known forecast/);
+    assert.match(html, /Last forecast saved with this plan/);
+    assert.match(html, /saved with the plan, not current/);
+    assert.match(html, /Access at planning time/);
+    assert.match(html, /Official source/);
+    assert.match(html, /Still to do before leaving/);
+    assert.match(html, /Confirm parking or campsite eligibility/);
+    assert.match(html, /Gate code is on the board/);
+    assert.match(html, /nothing here is a permission[^.]*promise of a photograph/i);
+    assert.match(html, /Unresolved/);
+    assert.ok(!/undefined|\[object Object\]/.test(html), 'no undefined or stringified object leaks into the file');
+  });
+
+  test('nothing in the builder invents brightness, seeing, transparency or travel', () => {
+    const source = fs.readFileSync(path.join(root, 'overhead-sessions.js'), 'utf8').toLowerCase();
+    for (const forbidden of ['bortle', 'mag/arcsec', 'drive time', 'travel time', 'departure time']) {
+      assert.ok(!source.includes(forbidden), 'module mentions ' + forbidden);
+    }
+    assert.ok(!/skybrightness\s*[:=]\s*\d/.test(source), 'no numeric sky brightness is produced');
   });
 
   console.log(failures ? '\nFAILURES: ' + failures : '\nPASS: photography sessions — record, clearance, guidance, storage and the refusal to invent');
