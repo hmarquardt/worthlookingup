@@ -73,22 +73,41 @@ calculation or a detectability model. The full contract is in [equipment-difficu
 
 ## Scientific and deterministic tests
 
-- `tests/equipment-difficulty.cjs`: bright vs faint comets, 13.7/14.3/14.5 fixtures, diffuse vs point-source,
-  stale/recent photometry, measured/predicted disagreement, unverified coma units, missing magnitude,
-  conditions modifiers, visual vs imaging, aperture tiers, no profile, binoculars, smart telescope, planet
-  angular size, meteor/satellite/Milky Way/eclipse rules, unknown types, score immutability, profile
-  migration/corruption.
-- `tests/equipment.spec.js`: card difficulty, lazy module request, guide content, profile save/edit/reset,
-  corrupt storage, comet card separation, camera session prefill, four widths/two themes, keyboard targets.
+- `tests/equipment-difficulty.cjs`: **25** deterministic checks — bright vs faint comets, 13.7/14.3/14.5
+  fixtures, diffuse vs point-source, stale/recent photometry, measured/predicted disagreement, unverified coma
+  units, missing magnitude, conditions modifiers, visual vs imaging, aperture tiers, no profile, binoculars,
+  smart telescope, planet angular size, meteor/satellite/Milky Way/eclipse rules, unknown types, score
+  immutability, profile migration/corruption.
+- `tests/equipment.spec.js`: **6** browser tests — card difficulty, lazy module request, guide content, profile
+  save/edit/reset, corrupt storage, comet card separation, camera session prefill, four widths/two themes,
+  keyboard targets.
 - `npm test` and `npm run check` pass; `tests/migration.cjs` includes the updated scientific-source baseline
   for the additive planetary/comet/celestial-plan changes.
 
 ## Measurements
 
-- `overhead-difficulty.js` is a small eager module because every card uses it; `overhead-equipment.js` is
-  lazy and only fetched when the reader opens the guide.
+- `index.html` grew by about **3.5 kB gzip** (91,455 → 94,982 bytes). `overhead-difficulty.js` is a
+  **11.6 kB gzip / 42 kB raw** eager module because every card uses it. `overhead-equipment.js` is a
+  **4.6 kB gzip / 13 kB raw** lazy module fetched only when the guide opens.
 - No homepage network request for the guide; no new dependency, provider, Worker, KV, D1 or R2.
 - Existing scores and ranks are unchanged; the tests assert the assessment does not mutate an opportunity.
+
+## Independent production scenarios
+
+All checks passed against the deployed site using real catalog data and the real page:
+
+- `C/2026 A2 (Bok)` appeared with **79/100** observing suitability and **Visual: Advanced**, an imaging tier,
+  the "not a stellar limiting magnitude" statement and no numeric surface brightness. The score stayed 79/100
+  through every equipment-profile change.
+- `C/2024 J3 (ATLAS)` was present and **not** presented as easy visual observing.
+- A bright planet grouping (Venus + Mars + Jupiter) received an easier visual tier than the faint comet.
+- The Geminids meteor card recommended naked-eye, wide-field observing.
+- A Milky Way window card recommended wide-field camera work and did not suggest a telescope as the primary
+  instrument.
+- With a binocular profile, the comet's fit said binoculars are beyond the range for that target; with a
+  150 mm visual telescope it changed to the small-aperture qualified guidance; with a smart telescope it changed
+  to imaging-oriented guidance. Resetting returned to general guidance.
+- No page errors occurred in the real-data or Milky Way phases.
 
 ## Known limitations
 
@@ -103,4 +122,14 @@ calculation or a detectability model. The full contract is in [equipment-difficu
 
 ## Deployment
 
-Pending. This section will record the commits, CI status and independent production verification.
+- Code commits: `3b4b902` (difficulty, guide, cards, tests, docs) and `19e773a` (missing-module resilience and
+  the focus-ring fix found by CI). Both were pushed normally; `HEAD` and `origin/main` matched after each push.
+- GitHub Actions `validate and deploy` run **39302090323** completed **success** on Chromium: `npm ci`,
+  `npm test`, launch check, comet precision/builders/meteors, `npm run test:browser`, `npm run build`, artifact
+  upload, Cloudflare Pages deploy and `scripts/verify-production.mjs`.
+- The staged `dist/` was also deployed independently through the existing Pages project (deployment
+  `02fe9178`) so production verification could proceed while the Actions run was in progress. Production serves
+  `2026.10.19.3`; the deployed HTML SHA-256 matched `dist/` (`a92d531d…` before the final documentation-only
+  commit). The deployed `overhead-equipment.js` hash matched the checkout.
+- `node scripts/verify-production.mjs https://worthlookingup.com --wait` — **PASS**: release, scientific hashes,
+  both workers, data, brand/transfer/analytics bytes, real 404 and canonical/legacy redirects.

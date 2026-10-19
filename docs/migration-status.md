@@ -939,4 +939,11 @@ route propagation; persistent failures still fail. No scientific/application cha
 - [x] Documentation: [phase-7a-release.md](phase-7a-release.md), [equipment-difficulty.md](equipment-difficulty.md),
       design, photography sessions, overhead-celestial, privacy and `agents.md`.
 - [x] Version `2026.10.19.3` in the index comment/footer/visible text.
-- [ ] Deployment, CI and production verification: pending.
+- [x] Commits `3b4b902` and `19e773a` pushed normally; `HEAD` and `origin/main` matched. GitHub Actions
+      `validate and deploy` run `39302090323` completed success (npm test, Chromium browser suite, build,
+      Pages deploy, production verifier). Production serves `2026.10.19.3` and the deployed HTML/equipment
+      module hashes match the checkout.
+- [x] Production scenarios: C/2026 A2 at 79/100 with Visual Advanced and no score change under profiles;
+      C/2024 J3 not easy; bright planet easier than the comet; Geminids naked-eye/wide-field; Milky Way
+      wide-field camera; binocular, 150 mm telescope and smart-telescope profiles each changed the qualified
+      guidance; reset returned to general. Full evidence in [phase-7a-release.md](phase-7a-release.md).
