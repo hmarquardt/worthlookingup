@@ -948,3 +948,25 @@ route propagation; persistent failures still fail. No scientific/application cha
       C/2024 J3 not easy; bright planet easier than the comet; Geminids naked-eye/wide-field; Milky Way
       wide-field camera; binocular, 150 mm telescope and smart-telescope profiles each changed the qualified
       guidance; reset returned to general. Full evidence in [phase-7a-release.md](phase-7a-release.md).
+
+## Phase 2 refinement: local hero context and explicit discovery state (implemented)
+
+- [x] The existing NASA hero now names the active observing place in its overline, uses a filled sage
+      primary action and keeps the calculation/privacy line secondary. Mobile hero height, photo crop,
+      credit, fallback and request count are unchanged.
+- [x] Discovery cards present the existing `classification` as a worded state chip after the title:
+      **Local opportunity**, **Scheduled · visibility unknown** or **Announcement · no local window**.
+      No new score, ranking or launch-to-local inference was introduced.
+- [x] Homepage tests assert the live place, the local state chip, a non-transparent 44px hero action,
+      no hero action/photo-credit overlap, no horizontal overflow, and the unchanged first-event
+      geometry at 390/768/1280/1440 in both themes. Discovery tests assert the launch state chip.
+- [x] Checks: `npm test` exit 0; full browser suite 116 passed with 2 intentional live-provider skips;
+      `npm run build` exit 0 and `dist/index.html` matches the source. Local lab LCP/CLS: 128ms/0.0246
+      at 390, 108ms/0.0051 at 1280, 100ms/0.0041 at 1440 (unthrottled, not field data).
+- [x] Scheduled launch ingestion independently verified from a genuine `schedule` run
+      `39321749261` (150 launches, generated `2026-10-19T20:43:59.221Z`, stale false). The preceding
+      scheduled run hit a malformed upstream payload and correctly left the last-good feed untouched.
+- [x] Version `2026.10.19.4` in the index comment/footer/visible text and README.
+- [ ] Release commit, CI deployment and production verification: pending.
+- [x] Evidence: [phase-2-refinement-release.md](phase-2-refinement-release.md),
+      [design.md](design.md), eight deterministic screenshots at all four widths and both themes.

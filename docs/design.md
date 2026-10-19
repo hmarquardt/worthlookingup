@@ -12,6 +12,19 @@ expandable list of areas (the authoritative interface) and a tile-free SVG sketc
 map-first view. It reuses the panel, line, lime and blue tokens, 44 px actions and native `<details>` disclosures,
 collapses to one column under 900 px, and adds no homepage element. Phase 6A.1's **Next Galactic-core season** block lives inside that category, under the cards and the chart: it is a plain panel when the horizon is empty (where it is the answer, and carries `data-prominent="true"` with the amber border) and a collapsed `<details>` when there are windows to look at, so it never competes with tonight. It uses the existing panel, line, lime and amber tokens and the same 44 px action buttons as a card, adds no homepage element and does not move the first-opportunity geometry.
 
+## Phase 2 refinement
+The hero names the active place in its overline (`#hero-place`, updated by the existing place render),
+so the photograph has local meaning before the first event is read. Its primary action is a filled
+sage button with a visible arrow, while the calculation/privacy reassurance is secondary text that is
+hidden below 720px. The photograph, crop, credit and fallback are unchanged; mobile hero height stays
+222px.
+
+Every discovery card now starts with the event title, then a metadata row containing the category and
+one explicit state chip: **Local opportunity** (sage), **Scheduled · visibility unknown** (amber), or
+**Announcement · no local window** (muted). This is a presentation of the existing
+`classification`; it is never derived from a new score or a cross-category comparison. Launch records
+still state their global-schedule nature in text, and no launch becomes a local opportunity.
+
 ## Reusable patterns
 - Ink/navy dark surfaces, paper light surfaces, sage actions and muted blue information. Use semantic
   palette variables so charts, confidence chips and dialogs retain their established meanings.
