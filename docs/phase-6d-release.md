@@ -71,8 +71,8 @@ no account and no background service.
 - Local Chromium at 390×844, one session: homepage ready 146 ms; builder cold open 82 ms; close/reopen 52 ms;
   one session module fetch; one existing home weather request at boot; one destination weather request after
   selecting Camp Cadiz; zero weather requests across 20 checklist/readiness ticks; zero horizontal overflow.
-- No polling or background monitoring. A reload of a saved plan is the only automatic weather touch, and it
-  obeys the horizon and cache rules.
+- No polling or background monitoring. A reload of a saved plan, a refresh, and a connection returning while the
+  builder is open are the only automatic weather touches, and each obeys the horizon and cache rules.
 
 ## Storage and files
 

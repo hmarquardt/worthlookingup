@@ -1695,7 +1695,12 @@ const sessionState={open:false,status:'idle',module:null,loading:null,error:null
 function updateSessionConnection(online){
  if(sessionState.online===online)return;
  sessionState.online=online;
- if(sessionState.open)renderSession();
+ if(sessionState.open){
+  renderSession();
+  // A connection that came back while a session is open is the one moment a session-specific request is
+  // clearly wanted; it is still only for this open plan, and still subject to the horizon and cache rules.
+  if(online)ensureDestinationWeather();
+ }
 }
 window.addEventListener('online',()=>updateSessionConnection(true));
 window.addEventListener('offline',()=>updateSessionConnection(false));
@@ -1970,7 +1975,8 @@ function sessionForecast(site,night,window){
    detail:'The browser reports no network connection, so no current forecast can be requested. Nothing about the sky is assumed.'+
     (saved?' The last forecast saved with this plan is shown below, labelled with its age.':''),lastKnown:saved};
  }
- if(!destinationWeather||destinationWeather.key!==weatherKey(site)||destinationWeather.status==='idle'){
+ if(!destinationWeather||destinationWeather.key!==weatherKey(site)||destinationWeather.status==='idle'||
+  destinationWeather.status==='offline'){
   return {status:'loading',label:'Checking the forecast for this place…',tag:'checking',short:'Checking…',detail:''};
  }
  if(destinationWeather.status==='error'){

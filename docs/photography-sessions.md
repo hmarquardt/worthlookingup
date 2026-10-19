@@ -155,7 +155,8 @@ point, and the field summary names the place the forecast belongs to.
   panel never derives any of those, and never converts a forecast into a probability that a photograph works.
 
 The forecast is requested only while a session is open (or a saved plan is reopened), never on homepage load,
-and never from a tick in either checklist.
+and never from a tick in either checklist. If the browser reports that a connection has returned while a session
+is open, the panel makes one request for that open plan, still subject to the horizon and cache rules.
 
 ## Pre-departure review and access freshness
 
