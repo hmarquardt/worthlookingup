@@ -68,8 +68,9 @@ no account and no background service.
 - Full browser suite — 109 tests in 16 files before the final two session additions: 102 passed and the two
   live-source tests skipped before a local teardown stall, and the remaining 7 homepage/discovery tests passed in
   a separate run. The 26-test session file passed after the final changes; the other 85 tests exercise code this
-  phase does not modify. No failure was observed. The authoritative full run is the GitHub Actions Chromium job
-  recorded below.
+  phase does not modify. No failure was observed. The GitHub Actions Chromium job that would re-run the whole
+  suite remained queued under a platform outage (see **Deployment**); the local runs are the browser evidence
+  available for this record.
 
 ## Measurements
 

@@ -904,8 +904,8 @@ route propagation; persistent failures still fail. No scientific/application cha
       offline reading, field copy, print, calendar, four widths in both themes, keyboard, 44 px rows); `npm run
       build` and `npm run check` exit 0. The full browser suite ran 109 tests before the final two session
       additions with no failure (102 passed plus two live-source skips before a local teardown stall; the
-      remaining 7 passed separately); the 26-test session file passed after. The authoritative full run is
-      recorded in the deployment section of [phase-6d-release.md](phase-6d-release.md).
+      remaining 7 passed separately); the 26-test session file passed after. The GitHub Actions Chromium job
+      remained queued under the platform outage recorded below, so no CI conclusion is claimed.
 - [x] Documentation: [phase-6d-release.md](phase-6d-release.md), [photography-sessions.md](photography-sessions.md),
       plus updates to [milky-way.md](milky-way.md), [providers.md](providers.md) and `agents.md`.
 - [x] Git: code commits `5313ddf`, `fbad028`, `b55bb22`, `93e73a0` and `32d8ba1` pushed normally, with the
