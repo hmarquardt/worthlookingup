@@ -59,14 +59,17 @@ no account and no background service.
 - `npm test` — exit 0. The session suite now includes forecast window summarisation, missing-series refusal,
   horizon refusal, field-by-field access comparison, evidence fingerprint, readiness storage, migration,
   offline field copy and the no-invented-brightness guard.
-- `npx playwright test tests/session.spec.js` — 24 passed, exit 0, including destination coordinates, home
+- `npx playwright test tests/session.spec.js` — 26 passed, exit 0, including destination coordinates, home
   forecast not reused, 30-minute cache expiry, provider failure, future date outside the horizon, partial
-  refresh, changed and withheld points, offline reading and checklist editing, field-copy cold start, print,
-  calendar, four widths in both themes, keyboard use and 44 px rows at 390 px.
+  refresh, a no-window night that still shows forecast/access/terrain, changed and withheld points, offline
+  reading and checklist editing, field-copy cold start, print, calendar, four widths in both themes, keyboard use
+  and 44 px rows at 390 px.
 - `npm run build` and `npm run check` — exit 0; staged `dist/` carries release `2026.10.19.2`.
-- Full browser suite — 109 tests in 16 files; 102 passed and the two live-source tests skipped before a local
-  teardown stall, and the remaining 7 homepage/discovery tests passed in a separate run. No failure was observed.
-  The authoritative full run is the GitHub Actions Chromium job recorded below.
+- Full browser suite — 109 tests in 16 files before the final two session additions: 102 passed and the two
+  live-source tests skipped before a local teardown stall, and the remaining 7 homepage/discovery tests passed in
+  a separate run. The 26-test session file passed after the final changes; the other 85 tests exercise code this
+  phase does not modify. No failure was observed. The authoritative full run is the GitHub Actions Chromium job
+  recorded below.
 
 ## Measurements
 
@@ -100,4 +103,31 @@ no account and no background service.
 
 ## Deployment
 
-Pending. This section will record the commit, GitHub Actions run and the independent production checks.
+- Commits pushed normally to `origin/main`: `5313ddf` (Phase 6D), `fbad028` (reconnect), `b55bb22` (refresh
+  identity), `93e73a0` (no-window forecast/access/terrain). `git rev-parse HEAD origin/main` both return
+  `93e73a09c5f4b806b76dec36da10bfc9a03f268e`.
+- GitHub Actions `validate and deploy` runs for these commits were still **queued** when this record was written
+  (runs `39280655763`, `39280877754`, `39281541706`, `39282355146`); GitHub's status API reported the Actions
+  component as `degraded_performance`. No CI conclusion is claimed.
+- The same validated `dist/` was deployed through the existing Cloudflare Pages project
+  (`wrangler pages deploy dist --project-name worthlookingup --branch main`), deployment `ff29eb4c`.
+  `https://worthlookingup.com/` serves release `2026.10.19.2`; its SHA-256 matches the locally staged
+  `dist/index.html` (`4a63e35c9c9855e047f91aa187dedb69734c7eee2d44c9411313146ea31685e9`).
+- `node scripts/verify-production.mjs https://worthlookingup.com --wait` — **PASS**: deployed HTML and release,
+  scientific hashes, both workers, data, brand/transfer/analytics bytes, real 404, and permanent
+  canonical/legacy redirects that preserve queries.
+- Independent production scenarios against the deployed site:
+  - Camp Cadiz, real clock: one request to Open-Meteo for `37.57834, -88.24417` (the point, not the visitor);
+    the real provider returned cloud cover, shown as "Cloud cover 64% over 13 hours"; the field summary named
+    Camp Cadiz. A June 2027 date made **0** new forecast requests and read "Weather is not yet forecastable for
+    this date." At 390 px, both themes had **0** horizontal overflow.
+  - Saved/offline scenario: 24/24 checks passed — destination forecast with cloud/wind/temperature and the
+    transparency caveat; save; print with forecast age, access evidence, terrain uncertainty and no travel;
+    script-free field copy; calendar `LOCATION:Camp Cadiz Campground` with no travel interval; reopen with notes
+    and kit; partial refresh reporting astronomy success and a labelled cached weather answer; a simulated
+    withheld point shown as no longer published while keeping Camp Cadiz and its identity; no duplicate plan;
+    offline reading with the saved forecast as history; an offline checklist edit that persisted; the field copy
+    opening with no network; 390 px overflow 0 in both themes; 44 px checklist rows; no page errors.
+  - The withheld-point mutation and the provider-failure/forced-cache case were injected in the browser to
+    exercise the deployed code paths; the real published artifact and the real provider were used for the
+    coordinate and forecast checks.

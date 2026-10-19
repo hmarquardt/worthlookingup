@@ -899,12 +899,22 @@ route propagation; persistent failures still fail. No scientific/application cha
 - [x] Faults found and fixed: refresh used to overwrite the saved evidence snapshot (making every comparison look
       current); an in-memory forecast could still read as current while offline; a test fixture used a parking
       value the artifact gate correctly rejects.
-- [x] Tests: `npm test` exit 0; `tests/session.spec.js` 24 passed (destination coordinates, cache expiry, horizon,
-      provider failure, partial refresh, changed/withheld/expired access, offline reading, field copy, print,
-      calendar, four widths in both themes, keyboard, 44 px rows); `npm run build` and `npm run check` exit 0.
-      The full browser suite ran 109 tests with no failure (102 passed plus two live-source skips before a local
-      teardown stall; the remaining 7 passed separately); the authoritative full run is recorded in the deployment
-      section of [phase-6d-release.md](phase-6d-release.md).
+- [x] Tests: `npm test` exit 0; `tests/session.spec.js` 26 passed (destination coordinates, cache expiry, horizon,
+      provider failure, partial refresh, no-window forecast/access/terrain, changed/withheld/expired access,
+      offline reading, field copy, print, calendar, four widths in both themes, keyboard, 44 px rows); `npm run
+      build` and `npm run check` exit 0. The full browser suite ran 109 tests before the final two session
+      additions with no failure (102 passed plus two live-source skips before a local teardown stall; the
+      remaining 7 passed separately); the 26-test session file passed after. The authoritative full run is
+      recorded in the deployment section of [phase-6d-release.md](phase-6d-release.md).
 - [x] Documentation: [phase-6d-release.md](phase-6d-release.md), [photography-sessions.md](photography-sessions.md),
       plus updates to [milky-way.md](milky-way.md), [providers.md](providers.md) and `agents.md`.
-- [ ] Deployment and production verification: pending.
+- [x] Git: commits `5313ddf`, `fbad028`, `b55bb22`, `93e73a0` pushed normally; `HEAD` and `origin/main` both
+      `93e73a0`. Cloudflare Pages deployment `ff29eb4c` serves release `2026.10.19.2`; deployed HTML SHA-256
+      matches `dist/`; `scripts/verify-production.mjs` passed.
+- [x] Production scenarios: real Camp Cadiz coordinates and real Open-Meteo cloud data, no request for a date
+      beyond the horizon, saved/reopen, print, field copy, calendar, partial refresh, withheld access, offline
+      reading and checklist editing, 390 px in both themes with zero overflow. Full list in
+      [phase-6d-release.md](phase-6d-release.md).
+- [ ] GitHub Actions completion: `validate and deploy` runs `39280655763`, `39280877754`, `39281541706` and
+      `39282355146` were queued under a platform-wide Actions `degraded_performance` at the time of this record.
+      No CI conclusion is claimed; the production deployment and verifier results above are independent of it.
