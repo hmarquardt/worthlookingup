@@ -29,12 +29,12 @@ function fixture(){
     hourly.precipitation_probability.push(2);hourly.temperature_2m.push(10);hourly.wind_speed_10m.push(7);hourly.wind_gusts_10m.push(14);}
   return {timezone:'America/Chicago',hourly};
 }
-async function boot(page){
+async function boot(page,clock=NOW){
   const errors=[];const requests=[];
   page.on('pageerror',error=>errors.push('pageerror: '+error.message));
   page.on('console',message=>{if(message.type()==='error'&&!message.text().includes('Failed to load resource'))errors.push('console: '+message.text());});
   page.on('request',request=>requests.push(request.url()));
-  await page.clock.setFixedTime(NOW);
+  await page.clock.setFixedTime(clock);
   await page.route('**/api/analytics/**',route=>route.fulfill({status:204,body:''}));
   await page.route('**celestrak.org/**',route=>route.fulfill({json:[ISS]}));
   await page.route('**data/launches/**',route=>route.fulfill({status:404,body:'none'}));
@@ -149,6 +149,42 @@ test('a camera profile prefills the Milky Way session without overwriting saved 
   await expect(page.locator('#milkyway-session input[data-session-input="focalLength"]')).toHaveValue('24');
   await expect(page.locator('#milkyway-session select[data-session-input="sensor"]')).toHaveValue('aps-c');
   await expect(page.locator('#milkyway-session')).toContainText('prefilled from your equipment profile');
+  expect(errors).toEqual([]);
+});
+
+test('a saved session keeps its own camera when the general profile changes',async({page})=>{
+  const {errors}=await boot(page,new Date('2027-04-10T18:30Z'));
+  await openSettingsAndGuide(page);
+  await page.locator('input[name="types.camera"]').check();
+  await page.locator('select[name="camera.sensor"]').selectOption('aps-c');
+  await page.locator('input[name="camera.focalLengthMm"]').fill('24');
+  await page.locator('#equipment-form button[type="submit"]').click();
+  await page.locator('#equipment-dialog [data-close]').click();
+  await page.locator('#settings-dialog [data-close]').click();
+  await page.locator('[data-category="milkyway"]').click();
+  await page.waitForFunction(()=>{const c=window.__OVERHEAD_TEST__.celestial;return c.status==='ready'&&!c.busy;},null,{timeout:60000});
+  await page.locator('#session-open').click();
+  await page.waitForFunction(()=>{const s=window.__OVERHEAD_TEST__.session;return s.open&&s.status==='ready'&&!!document.querySelector('[data-session-root]');},null,{timeout:60000});
+  await page.locator('#milkyway-session [data-session="where"][data-value="camp-cadiz-campground"]').click();
+  await page.locator('#milkyway-session [data-session="when"][data-value="custom"]').click();
+  await page.locator('#milkyway-session input[data-session-input="date"]').fill('2027-04-13');
+  await page.waitForFunction(()=>window.__OVERHEAD_TEST__.session.date==='2027-04-13');
+  await expect(page.locator('#milkyway-session input[data-session-input="focalLength"]')).toHaveValue('24');
+  await page.locator('#milkyway-session input[data-session-input="focalLength"]').fill('50');
+  await page.locator('#milkyway-session [data-session="save"]').click();
+  await expect(page.locator('#milkyway-session')).toContainText('Saved in this browser only');
+  await page.locator('#settings-open').click();await page.locator('#equipment-open').click();
+  await page.waitForFunction(()=>document.querySelector('#equipment-dialog').innerText.includes('Choosing equipment for the night sky'));
+  await page.locator('#equipment-form input[name="camera.focalLengthMm"]').fill('14');
+  await page.locator('#equipment-form button[type="submit"]').click();
+  await page.locator('#equipment-dialog [data-close]').click();await page.locator('#settings-dialog [data-close]').click();
+  await page.locator('#milkyway-session [data-session="close"]').click();
+  await page.locator('#session-open').click();
+  await page.waitForFunction(()=>!!document.querySelector('[data-session-root]'),null,{timeout:30000});
+  await page.locator('#milkyway-session [data-session="open"]').first().click();
+  await page.waitForFunction(()=>!!window.__OVERHEAD_TEST__.session.current,null,{timeout:30000});
+  await expect(page.locator('#milkyway-session input[data-session-input="focalLength"]')).toHaveValue('50');
+  await expect(page.locator('#milkyway-session')).toContainText('saved plan uses its own camera settings');
   expect(errors).toEqual([]);
 });
 

@@ -197,6 +197,9 @@ function measuredBrightness(comet) {
     methodName: measured.latest.method_name || null, observerCount: measured.latest.observer_count || null,
     source: 'COBS - Comet Observation Database',
     median30d: measured.median_30d ? measured.median_30d.magnitude : null,
+    // The published field is named coma_diameter_arcmin, but the generator records that the COBS unit
+    // could not be confirmed. The value is preserved for source compatibility with unitVerified:false;
+    // no consumer may turn it into a surface brightness until the unit is documented.
     coma: measured.latest.coma_diameter_arcmin !== null && measured.latest.coma_diameter_arcmin !== undefined
       ? { value: measured.latest.coma_diameter_arcmin, unit: null, field: 'coma_diameter_arcmin', source: 'COBS',
         unitVerified: false } : null,

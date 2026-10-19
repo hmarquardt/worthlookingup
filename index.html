@@ -2797,7 +2797,9 @@ function sessionChange(event){
   if(field==='tracker')sessionState.camera.tracker=input.checked;
   else if(field==='sensor'){if(input.value)sessionState.camera.sensor=input.value;else delete sessionState.camera.sensor;}
   else{const number=Number(input.value);if(Number.isFinite(number)&&number>0)sessionState.camera[field]=number;else delete sessionState.camera[field];}
-  renderSession();
+  // The change that fires when the field loses focus can arrive during a click on Save. Re-rendering
+  // synchronously there would replace the button under the pointer; let the click finish first.
+  setTimeout(()=>{if(sessionState.open)renderSession();},0);
  }
 }
 
