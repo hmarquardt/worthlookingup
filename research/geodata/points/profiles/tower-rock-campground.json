@@ -1,0 +1,201 @@
+{
+  "schema": "worthlookingup.geodata-point-profile/1",
+  "point": "Tower Rock Campground",
+  "pointName": "Tower Rock Campground",
+  "coordinates": {
+    "lat": 37.45862,
+    "lon": -88.23279000000002
+  },
+  "generatedAt": "2026-10-18T23:49:54.635Z",
+  "targetDate": "2027-04-13",
+  "dem": {
+    "source": "usgs-3dep",
+    "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+    "bbox": [
+      -88.413857,
+      37.277553,
+      -88.051723,
+      37.639686999999995
+    ],
+    "width": 1024,
+    "height": 1024,
+    "pixelSizeM": 31.2,
+    "bytes": 4195622,
+    "verticalAccuracy": "lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical"
+  },
+  "observer": {
+    "eyeHeightM": 1.6,
+    "groundElevationM": 108
+  },
+  "profile": [
+    {
+      "azimuthDeg": 0,
+      "maxAngleDeg": 4.09,
+      "maxAtM": 600,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 22.5,
+      "maxAngleDeg": 4.71,
+      "maxAtM": 540,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 45,
+      "maxAngleDeg": 2.79,
+      "maxAtM": 480,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 67.5,
+      "maxAngleDeg": 3.11,
+      "maxAtM": 360,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 90,
+      "maxAngleDeg": 4.23,
+      "maxAtM": 480,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 112.5,
+      "maxAngleDeg": 0.5,
+      "maxAtM": 11460,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 135,
+      "maxAngleDeg": 0.45,
+      "maxAtM": 15540,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 157.5,
+      "maxAngleDeg": 0.36,
+      "maxAtM": 13440,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 180,
+      "maxAngleDeg": 0.44,
+      "maxAtM": 6900,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 202.5,
+      "maxAngleDeg": 0.38,
+      "maxAtM": 6960,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 225,
+      "maxAngleDeg": 0.36,
+      "maxAtM": 13320,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 247.5,
+      "maxAngleDeg": 0.24,
+      "maxAtM": 15120,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 270,
+      "maxAngleDeg": 6.01,
+      "maxAtM": 300,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 292.5,
+      "maxAngleDeg": 3.17,
+      "maxAtM": 600,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 315,
+      "maxAngleDeg": 3.18,
+      "maxAtM": 480,
+      "coverage": 1,
+      "status": "ok"
+    },
+    {
+      "azimuthDeg": 337.5,
+      "maxAngleDeg": 3.18,
+      "maxAtM": 660,
+      "coverage": 1,
+      "status": "ok"
+    }
+  ],
+  "core": {
+    "windowStart": 1807691809767,
+    "windowEnd": 1807696056642,
+    "minutes": 71,
+    "level": "astronomical",
+    "maxAltitudeDeg": 23.56,
+    "maxAzimuthDeg": 180.11,
+    "maxCompass": "S",
+    "maxTime": 1807697481642,
+    "darknessMinutes": {
+      "astronomical": 469,
+      "nautical": 535,
+      "civil": 599
+    },
+    "darknessAchieved": "astronomical",
+    "moonlight": "moon-below-horizon",
+    "quality": 64
+  },
+  "clearance": {
+    "state": "clear",
+    "moments": [
+      {
+        "label": "window opens",
+        "time": 1807691809767,
+        "azimuthDeg": 158.15,
+        "altitudeDeg": 19.99,
+        "status": "clear",
+        "differenceDeg": 19.63,
+        "horizonAngleDeg": 0.36,
+        "uncertaintyDeg": 0.5,
+        "reason": null
+      },
+      {
+        "label": "core at its highest",
+        "time": 1807697481642,
+        "azimuthDeg": 180.11,
+        "altitudeDeg": 23.56,
+        "status": "clear",
+        "differenceDeg": 23.12,
+        "horizonAngleDeg": 0.44,
+        "uncertaintyDeg": 0.5,
+        "reason": null
+      },
+      {
+        "label": "window closes",
+        "time": 1807696056642,
+        "azimuthDeg": 174.45,
+        "altitudeDeg": 23.34,
+        "status": "clear",
+        "differenceDeg": 22.92,
+        "horizonAngleDeg": 0.42,
+        "uncertaintyDeg": 0.5,
+        "reason": null
+      }
+    ],
+    "note": "Bare-earth terrain only. Trees, crops, buildings, fences and vehicles are not in the model, and in a wooded campground they are the likely horizon. A snapshot at each moment, not a promise of a clear view."
+  }
+}

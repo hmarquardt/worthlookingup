@@ -1,0 +1,698 @@
+{
+  "schema": "worthlookingup.geodata-point-candidates/1",
+  "fetchedAt": "2026-10-18T23:49:36.297Z",
+  "source": {
+    "id": "usfs-edw-recreation-opportunities",
+    "publisher": "USDA Forest Service",
+    "service": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query",
+    "note": "Facility names, points, hours and restrictions as published by the agency. The recarea URLs in this dataset redirect to a general page, so they are recorded as a reference and not as the evidence: the evidence is the facility record itself, which anyone can re-query."
+  },
+  "counts": {
+    "facilities": 33,
+    "publish": 6,
+    "reject": 4,
+    "unverified": 23
+  },
+  "candidates": [
+    {
+      "sourceRecord": {
+        "objectId": 981,
+        "recAreaId": 10670,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10670",
+        "name": "Mississippi Bluffs Ranger District",
+        "activityGroup": "Forest Service Shield",
+        "openStatus": "none",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.45784,
+        "lon": -89.26947
+      },
+      "operationalHours": null,
+      "restrictions": null,
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 982,
+        "recAreaId": 10672,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10672",
+        "name": "Johnson Creek Recreation Area",
+        "activityGroup": "Picnicking",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.84116,
+        "lon": -89.51596
+      },
+      "operationalHours": "Campground open from 3/15 - 12/15 Boat Launch & picnic area - Open year-round.",
+      "restrictions": "Pets are alowed only on a leash. Picnic areas open 6am-10pm. Use trash receptacles Camp only at designated campsites. Stay on the designated trails. Please Pack It In, Pack it Out when on trails. Camp at least 150 feet from the lakeshore. No horseback riding is allowed in the day-use areas.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 993,
+        "recAreaId": 10673,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10673",
+        "name": "Lincoln Memorial",
+        "activityGroup": "Picnicking",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.45779,
+        "lon": -89.26946
+      },
+      "operationalHours": "All Year 6 a.m.-10:00 p.m.",
+      "restrictions": null,
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 994,
+        "recAreaId": 10676,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10676",
+        "name": "Oakwood Bottoms & Turkey Bayou Campground",
+        "activityGroup": "Hunting",
+        "openStatus": "closed",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.67444,
+        "lon": -89.46236
+      },
+      "operationalHours": "Open year-round",
+      "restrictions": "Big Muddy boat launch and Turkey Bayou campground are temporarily closed due to flooding. Designated Waterfowl Refuge Area Closed 14 days prior to start of waterfowl hunting season (Illinois' southern central zone) to the end of waterfowl hunting season. No walking access or hunting is permitted during the closure period in the designated waterfowl refuge.",
+      "decision": "reject",
+      "decisionBasis": "The agency record reports the campground and boat launch temporarily closed due to flooding, so a camping permission there cannot be relied on until it reopens."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1005,
+        "recAreaId": 10677,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10677",
+        "name": "Pine Hills Campground",
+        "activityGroup": "Camping & Cabins",
+        "openStatus": "open",
+        "seasonStart": "Year-round",
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.51556,
+        "lon": -89.42223
+      },
+      "operationalHours": null,
+      "restrictions": "Camp only at designated campsites. Camping is not allowed in LaRue Pine Hills Research Natural Area. Pets are allowed only on a leash. Stay on the designated trail. Pack it in, Pack it out, along trails. Collections of any kind is strictly prohibited within the Research Natural Area. Violators will be prosecuted. Refer to the Illinois Dept. of Natural Resources hunting website for all hunting and fishing regulations .",
+      "decision": "publish-as-named-facility",
+      "decisionBasis": "Listed as open year-round and used for camping.",
+      "pointName": "Pine Hills Campground",
+      "facilityType": "campground"
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1006,
+        "recAreaId": 10680,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10680",
+        "name": "Hidden Springs Ranger District",
+        "activityGroup": "Forest Service Shield",
+        "openStatus": "none",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.42075,
+        "lon": -88.89279
+      },
+      "operationalHours": null,
+      "restrictions": null,
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1007,
+        "recAreaId": 10682,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10682",
+        "name": "Camp Cadiz Campground",
+        "activityGroup": "Camping & Cabins",
+        "openStatus": "open",
+        "seasonStart": "Year-round",
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.57834,
+        "lon": -88.24417
+      },
+      "operationalHours": null,
+      "restrictions": "Camp only at designated campsites. Pets are allowed only on a leash. Stay on the designated trail. Pack it in, Pack it out, along trails. A complete list of site regulations is posted on bulletin boards and at fee stations.",
+      "decision": "publish-as-named-facility",
+      "decisionBasis": "Camping is permitted year-round at designated campsites, which is overnight presence with a vehicle.",
+      "pointName": "Camp Cadiz Campground",
+      "facilityType": "campground"
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1016,
+        "recAreaId": 10683,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10683",
+        "name": "Lake of Egypt",
+        "activityGroup": "Fishing",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.58362,
+        "lon": -88.87473
+      },
+      "operationalHours": "Campground loop closes December 15th. Boat Launch open year-round.",
+      "restrictions": "Fishing regulations are set by IL. Dept of Natural Resources. A fishing license is required and can be obtained at local vendors or online from the IL. Dept. of Natural Resources.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1017,
+        "recAreaId": 10685,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10685",
+        "name": "Garden of the Gods Recreation Area",
+        "activityGroup": "Hiking",
+        "openStatus": "open",
+        "seasonStart": "Year-round",
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.6039,
+        "lon": -88.38195
+      },
+      "operationalHours": "Campground is open year-round. Picnic area and Observation Trail hours of operation - 6 a.m. to 10 p.m.",
+      "restrictions": "Overnight parking allowed at Backpacker's Parking Lot only (Indian Point Trailhead). Pets are allowed only on a leash. Picnic areas and Observation Trail are open 6am-10pm. Use trash receptacles where available. Pack It In, Pack It Out while on trails. Camp only at designated sites in the campground. Disposable food and beverage containers are not permitted on the Observation Trail. Stay on the designated trail and leave the beauty of the rocks and plants for others to enjoy.",
+      "decision": "publish-as-named-facility",
+      "decisionBasis": "The facility record permits overnight parking at this lot only, and closes the picnic area and Observation Trail from 10 p.m. to 6 a.m.",
+      "pointName": "Garden of the Gods backpacker parking (Indian Point Trailhead)",
+      "facilityType": "trailhead-parking",
+      "coordinates": {
+        "lat": 37.6001,
+        "lon": -88.38117,
+        "source": "openstreetmap",
+        "note": "The Forest Service names this lot but publishes no point for it; the coordinates come from the OpenStreetMap node \"Backpackers Parking\", about 300 m west of the recreation-area marker."
+      }
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1025,
+        "recAreaId": 10687,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10687",
+        "name": "Illinois Iron Furnace Historic Site",
+        "activityGroup": "Picnicking",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.49918,
+        "lon": -88.32695
+      },
+      "operationalHours": "Open all year - Daily from 6:00 a.m.-10:00 p.m. No overnight parking.",
+      "restrictions": "No trash receptacles - No garbage pick-up provided. Pack it in - Pack it out.",
+      "decision": "reject",
+      "decisionBasis": "The agency record says \"No overnight parking\", which is an explicit prohibition at this facility.",
+      "parking": "prohibited"
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1026,
+        "recAreaId": 10686,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10686",
+        "name": "High Knob Lookout",
+        "activityGroup": "Nature Viewing",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.60028,
+        "lon": -88.32807
+      },
+      "operationalHours": "All Year - 6:00 a.m.-10:00 p.m.",
+      "restrictions": "This is a day-use area; parking is allowed 6:00 a.m.-10:00 p.m. Overnight parking is allowed outside the recreation site, near the stone pillar entrance, at the trail crossing. Backpackers can also find overnight parking at the trailhead on the west side of High Knob Road where it intersects Knob Hill Lane.",
+      "decision": "reject",
+      "decisionBasis": "Day-use only, 6 a.m. to 10 p.m. The record allows overnight parking outside the site near the stone pillar entrance, but the agency publishes no point for that spot, so there is nothing to place on a map."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1036,
+        "recAreaId": 10688,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10688",
+        "name": "Lake Glendale Recreation Area",
+        "activityGroup": "Water Activities",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.41445,
+        "lon": -88.66168
+      },
+      "operationalHours": "Lake Glendale Oak Point Campground and Picnic Areas: Open year round Lake Glendale Beach: Open Memorial Day weekend to Labor Day weekend; Monday-Saturday 11am to 5:30pm and Sunday 12pm to 6pm. After August 1 beach is only open on Saturday and Sunday and closes for the season after Labor Day. Lake Glendale Trails and Boat Launch: Open year round",
+      "restrictions": "Picnic areas are open 6am – 10pm Beach Open: Monday - Saturday 11am to 5:30pm and Sunday 12pm to 6pm Swimming allowed at beach only. Pets must be leashed, and are not allowed on the beach or in the designated swim area. Pack It In, Pack It Out, along trails. Stay on the designated trails. Camp only at designated sites. A complete list of site regulations is posted on bulletin boards and at fee stations.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1047,
+        "recAreaId": 10689,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10689",
+        "name": "Millstone Bluff Archaeological Area",
+        "activityGroup": "Outdoor Learning",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.46862,
+        "lon": -88.68751
+      },
+      "operationalHours": null,
+      "restrictions": null,
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1056,
+        "recAreaId": 10690,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10690",
+        "name": "Pounds Hollow Recreation Area",
+        "activityGroup": "Water Activities",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.61473,
+        "lon": -88.27362
+      },
+      "operationalHours": "Campground - March 15th to December15th Beach - no lifeguard; swim at your own risk. Lake Access Road and Picnic Area - March 1st to November1st (daily from 6am to 10pm)",
+      "restrictions": "Swimming allowed at the beach only. Picnic area is open 6am - 10pm. Beach area is open dawn to dusk. Pets must be leashed and are not allowed on the beach or in the designated swimming area. Use trash receptacles in developed areas. No glass or metal containers allowed on the beach per Forest Order. Camp only at designated sites. No reservations, campsites are available on a first-come, first-serve basis. There is a maximum of 2 tents, 8 people and 2 vehicles allowed per campsite. ​A complete list of site regulations is posted on each bulletin board and at fee stations.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1077,
+        "recAreaId": 35185,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=35185",
+        "name": "LaRue-Pine Hills/Otter Pond Research Natural Area",
+        "activityGroup": "Nature Viewing",
+        "openStatus": "open",
+        "seasonStart": "Year-round",
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.58349,
+        "lon": -89.44799
+      },
+      "operationalHours": "Research Natural Area is open year-round. Biannual Road Closure: Forest Road #345 (the Snake Road) is closed to vehicles twice a year from March 15 to May 15 and Sept. 1 to Oct. 30. Capturing, collecting or harassing wildlife of any kind is Prohibited.",
+      "restrictions": "This Research Natural Area has been established to protect the plants, animals, and natural community types of the area. To help meet these objectives the following restrictions apply to LaRue-Pine Hills/Otter Pond Research Natural Area. The following is prohibited: Collection, handling or removal of any snake species. This includes gathering, herding, harassing or having in possession. Also to have in your possession collecting equipment (unless authorized). The use of horses except on Forest Road 345. Overnight camping. Building, maintaining, attending or using a campfire (gas stoves are allowed). Excavation, disturbance or removal of any soil, stone, or material lying upon or contained in the rock or soil of the area. Cutting, killing, destroying, injuring or removing living vegetation. Taking or killing of any animal, bird, fish, reptile or amphibian, except for game species as defined and permitted by Illinois state laws. Conducting certain activities such as, research projects, tours, group visits, etc. which the Forest Service has not approved in writing.* To possess or use motorized or non-motorized vehicles and cycles off-road. Using a gas-powered motorized watercraft. Rappelling or rock climbing. Abandonment of garbage brought to the LaRue-Pine Hills RNA. Establishment of commercial enterprise, construction of any improvements, establishment of permanent or semi-permanent camps or erection of structures. Temporary waterfowl blinds are permitted, but must be removed at the end of each hunting day.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1066,
+        "recAreaId": 10692,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=10692",
+        "name": "Tower Rock Campground",
+        "activityGroup": "Picnicking",
+        "openStatus": "open",
+        "seasonStart": "May 1st",
+        "seasonEnd": "December 15"
+      },
+      "agencyCoordinates": {
+        "lat": 37.45862,
+        "lon": -88.23279
+      },
+      "operationalHours": null,
+      "restrictions": "No trash receptacles - No garbage pick-up provided. Pack it in - Pack it out. Camping is free and limited to 14 continuous days. Dogs allowed but must be leashed. Fishing regulations are set by Illinois Dept. of Natural Resources. Anglers can obtain fishing licenses on line .",
+      "decision": "publish-as-named-facility",
+      "decisionBasis": "Camping is free and limited to 14 continuous days; the season runs 1 May to 15 December.",
+      "pointName": "Tower Rock Campground",
+      "facilityType": "campground"
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1067,
+        "recAreaId": 13020,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=13020",
+        "name": "Bell Smith Springs Recreation Area",
+        "activityGroup": "Hiking",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.5189,
+        "lon": -88.65695
+      },
+      "operationalHours": "Bell Smith Springs Trail System is open year round. Redbud Campground is open 3/15 - 12/15",
+      "restrictions": "Forest Order is in place that prohibits possessing any food or beverage glass containers in the Bell Smith Springs Recreation Area, excluding the Redbud Campground. (persuant 36 CFR 261.58cc) Pets are allowed only on a leash. Stay on the designated trails. Use trash receptacles. Pack It In, Pack It Out rules apply to the entire trail system. Camp only at designated sites in the campground. No camping allowed in Natural Area. No horseback riding is allowed in the day-use areas.",
+      "decision": "publish-as-named-facility",
+      "decisionBasis": "The record states that Redbud Campground is open 15 March to 15 December; the trail system is open year-round, but the overnight facility is the campground.",
+      "pointName": "Redbud Campground (Bell Smith Springs)",
+      "facilityType": "campground"
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1085,
+        "recAreaId": 32359,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=32359",
+        "name": "Jackson Falls",
+        "activityGroup": "Hiking",
+        "openStatus": "open",
+        "seasonStart": "Year-round",
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.50917,
+        "lon": -88.68306
+      },
+      "operationalHours": null,
+      "restrictions": "Stay on the designated trails. Pack It In, Pack It Out rules apply to the entire trail system. Camping is free throughout the year up to 14-days continuous stay. No permanent structures may be built. Camp and wash at least 150 feet from any water source. Burn dead and down trees only, making sure campfires are completely out. Do not build campfires on top of the bluffs. Confine rock climbing activities to existing climbing routes to avoid resource damage.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1086,
+        "recAreaId": 34608,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=34608",
+        "name": "Clear Springs Wilderness",
+        "activityGroup": "Hiking",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.61751,
+        "lon": -89.41945
+      },
+      "operationalHours": null,
+      "restrictions": null,
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1087,
+        "recAreaId": 34603,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=34603",
+        "name": "Panther Den Wilderness",
+        "activityGroup": "Trailhead",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.57684,
+        "lon": -89.08829
+      },
+      "operationalHours": null,
+      "restrictions": null,
+      "decision": "publish-as-named-facility",
+      "decisionBasis": "The agency marks this as a trailhead, and the forest's camping page permits overnight parking at trailheads such as this; vehicles cannot enter the wilderness itself.",
+      "pointName": "Panther Den Wilderness trailhead",
+      "facilityType": "trailhead-parking"
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1095,
+        "recAreaId": 32309,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=32309",
+        "name": "Burden Fall Wilderness",
+        "activityGroup": "Hiking",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.56334,
+        "lon": -88.64251
+      },
+      "operationalHours": null,
+      "restrictions": "WARNING! Hunting is popular within wilderness areas during designated seasons. Backpacking and horseback riding is not recommended during Illinois Hunting Season. All wilderness users should exercis good otudoor ethics, which include; brtinging a compass, appropriate maps, drinking water and \"Leave no Trace\" practices. Campers are encouraged to register with the nearest Ranger District.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1094,
+        "recAreaId": 32330,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=32330",
+        "name": "Bay Creek Lake",
+        "activityGroup": "Water Activities",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.48269,
+        "lon": -88.68865
+      },
+      "operationalHours": "Open year round.",
+      "restrictions": "No camping allowed within 150 feet of the lake. Camping is available at the Lake Glendale Recreation Area located 6 mile south along Hwy 145. Anglers must not use more than 2 poles and each pole must not have more than 2 hooks or lures attached while fishing. Catch Limits: Channel Catfish: 6 fish daily creel limit Largemouth Bass: 15 inch minimum length.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1096,
+        "recAreaId": 44041,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=44041",
+        "name": "Little Cache Lake #1 (Bowman Lake)",
+        "activityGroup": "Fishing",
+        "openStatus": "none",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.50829,
+        "lon": -88.87011
+      },
+      "operationalHours": "Open year round.",
+      "restrictions": "State Fishing Regulations apply to all of the Shawnee National Forest. Visit IDNR website for more information. Anglers must not use more than 2 poles and each pole must not have more than 2 hooks or lures attached while fishing. Daily catch limits: Largemouth Bass & Channel Catfish: 6 daily creel limit Largemouth Bass: 15 inch minimum length",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1105,
+        "recAreaId": 44038,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=44038",
+        "name": "Whoopie Cat Lake",
+        "activityGroup": "Fishing",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.4794,
+        "lon": -88.32492
+      },
+      "operationalHours": null,
+      "restrictions": "Anglers must not use more than 2 poles and each pole must not have more than 2 hooks or lures attached while fishing. Limits Largemouth Bass & Channel Catfish: 6 fish daily creel limit Largemouth Bass: 15 minimum length. Motor Restrictions: Electric motors only.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1106,
+        "recAreaId": 44043,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=44043",
+        "name": "Lake Tecumseh",
+        "activityGroup": "Fishing",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.48251,
+        "lon": -88.32445
+      },
+      "operationalHours": null,
+      "restrictions": "Anglers must not use more than 2 poles and each pole must not have more than 2 hooks or lures attached while fishing. Limits Largemouth Bass & Channel Catfish: 6 daily creel limit Largemouth Bass: 15 minimum length. Motor Restrictions: Motor use is limited to a maximum of ten horsepower.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1107,
+        "recAreaId": 44033,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=44033",
+        "name": "Dutchman Lake",
+        "activityGroup": "Fishing",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.49045,
+        "lon": -88.91277
+      },
+      "operationalHours": "Open year round",
+      "restrictions": "Fishing licenses can be obtained online from the IL. Dept. of Natural Resources. Anglers must not use more than 2 poles and each pole must not have more than 2 hooks or lures attached while fishing. Catch Limits: Largemouth Bass & Channel Catfish: 6 daily creel limit Largemouth Bass: 15 minimum length. Boating Restrictions: Motor use is limited to a maximum of 10 horsepower.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1116,
+        "recAreaId": 44032,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=44032",
+        "name": "Cedar Lake",
+        "activityGroup": "Hiking",
+        "openStatus": "open",
+        "seasonStart": "Year-round",
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.62139,
+        "lon": -89.30029
+      },
+      "operationalHours": null,
+      "restrictions": "Watercraft motors restricted to 10 hp. Pets are allowed only on a leash. Stay on the designated trail and pack out your trash. No fee to primitive camp in this area; Set up campsite at least 150 feet from trails, trailheads and lakes or streams. Camping allowed up to 14-days continuous stay away from trails and parking lot. Drown campfires completely and naturalize your campsite by practicing Leave No Trace Outdoor Ethics.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1117,
+        "recAreaId": 44034,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=44034",
+        "name": "One Horse Gap Lake",
+        "activityGroup": "Fishing",
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.51251,
+        "lon": -88.44723
+      },
+      "operationalHours": null,
+      "restrictions": "Anglers must not use more than 2 poles and each pole must not have more than 2 hooks or lures attached while fishing. Limits Largemouth Bass & Channel Catfish: 6 daily creel limit Largemouth Bass: 15 minimum length Motor Restrictions: Electric motors only.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1130,
+        "recAreaId": 82843,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=82843",
+        "name": "Lusk Creek Canoe/Kayak Access",
+        "activityGroup": null,
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.47222,
+        "lon": -88.54825
+      },
+      "operationalHours": null,
+      "restrictions": "No camping in designated natural areas within Lusk Creek Wilderness, this includes along the banks. Natural Areas are marked on the ground with yellow flexi-posts labeled \"Natural Area\". Read about specific regulations for designated Natural Areas . Group size is restricted to10 people or less within Lusk Creek Wilderness. Pack It In, Pack It Out.",
+      "decision": "unverified",
+      "decisionBasis": "No statement addresses overnight presence; camping is prohibited in the natural areas of the wilderness, so the access point cannot be assumed to be an overnight location.",
+      "parking": "unknown"
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1129,
+        "recAreaId": 81903,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=81903",
+        "name": "Underground Railroad: Cultural Landscape",
+        "activityGroup": "Outdoor Learning",
+        "openStatus": "none",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.49979,
+        "lon": -88.64737
+      },
+      "operationalHours": null,
+      "restrictions": null,
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1131,
+        "recAreaId": 81900,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=81900",
+        "name": "Underground Railroad: People of Miller Grove",
+        "activityGroup": "Outdoor Learning",
+        "openStatus": "none",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.49956,
+        "lon": -88.6477
+      },
+      "operationalHours": null,
+      "restrictions": null,
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1132,
+        "recAreaId": 82490,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=82490",
+        "name": "Pennant Bar Openlands",
+        "activityGroup": "Beaches & Dunes",
+        "openStatus": "open",
+        "seasonStart": "Year-round",
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.38978,
+        "lon": -88.71077
+      },
+      "operationalHours": null,
+      "restrictions": "Camping is free throughout the year up to 14-days continuous stay. No permanent structures may be built. No garbage recepticles - Pack It In, Pack It Camp and wash at least 150 feet from any water source. Burn dead and down trees only, making sure campfires are completely out.",
+      "decision": "unverified",
+      "decisionBasis": "The facility record does not address overnight presence, which is not permission."
+    },
+    {
+      "sourceRecord": {
+        "objectId": 1141,
+        "recAreaId": 84435,
+        "recAreaUrl": "https://www.fs.usda.gov/recarea/shawnee/recarea/?recid=84435",
+        "name": "Trigg Observation Tower",
+        "activityGroup": null,
+        "openStatus": "open",
+        "seasonStart": null,
+        "seasonEnd": null
+      },
+      "agencyCoordinates": {
+        "lat": 37.49152,
+        "lon": -88.72325
+      },
+      "operationalHours": null,
+      "restrictions": "No trash receptacles - No garbage pick-up provided. Pack it in - Pack it out.",
+      "decision": "reject",
+      "decisionBasis": "The forest's own alerts page listed the tower as temporarily closed, and the facility record says nothing about overnight use."
+    }
+  ]
+}

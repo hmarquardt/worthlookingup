@@ -1,0 +1,446 @@
+{
+  "schema": "worthlookingup.geodata-points/1",
+  "generated_by": "scripts/build-geodata-points.mjs",
+  "checked_at": "2026-10-18",
+  "region": {
+    "id": "southern-indiana",
+    "label": "Southern Indiana, western Kentucky and southeastern Illinois",
+    "west": -88.6,
+    "east": -86.3,
+    "south": 37.3,
+    "north": 38.7,
+    "note": "Location exploration is available only in this researched region. Milky Way calculations continue worldwide for the location you choose."
+  },
+  "publication": {
+    "rule": "A point is published only when the managing agency names the facility and states that overnight presence or overnight parking is permitted there, its coordinate has a recorded provenance inside the studied region, and a real elevation model produced its terrain profile. An area rule alone is never inherited by a point.",
+    "reviewedFacilities": 33,
+    "publishedPoints": 3,
+    "excludedCount": 30
+  },
+  "points": [
+    {
+      "id": "camp-cadiz-campground",
+      "type": "point",
+      "name": "Camp Cadiz Campground",
+      "parentArea": "shawnee-nf",
+      "facilityType": "campground",
+      "coordinates": {
+        "lat": 37.57834,
+        "lon": -88.24417
+      },
+      "timezone": "America/Chicago",
+      "agency": {
+        "name": "USDA Forest Service",
+        "manager": "USFS",
+        "state": "IL"
+      },
+      "coordinateSource": {
+        "kind": "agency-point-feature",
+        "confidence": "agency-marker",
+        "detail": "Point geometry published by the Forest Service with the facility record: a marker for the facility, not a surveyed point, and not the centre of the surrounding land.",
+        "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1007&outFields=*&returnGeometry=true&f=json",
+        "estimatedPrecisionM": 50
+      },
+      "access": {
+        "nightPresence": "verified",
+        "parking": "verified-at-designated-campsite",
+        "classification": "verified-night-access",
+        "label": "Public access after dark documented",
+        "summary": "Camping is permitted at this campground, which means overnight presence with a vehicle at a designated site.",
+        "evidence": [
+          {
+            "publisher": "USDA Forest Service, recreation facility record (Enterprise Data Warehouse)",
+            "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1007&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18",
+            "summary": "Camping is permitted year-round at designated campsites, which is overnight presence with a vehicle.",
+            "quote": "Camp only at designated campsites. Pets are allowed only on a leash. Stay on the designated trail. Pack it in, Pack it out, along trails. A complete list of site regulations is posted on bulletin boards and at fee stations.",
+            "scope": "facility"
+          },
+          {
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking.",
+            "scope": "forest"
+          },
+          {
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records federal ownership and USFS management for this unit. It does not record opening hours.",
+            "quote": null,
+            "scope": null
+          }
+        ],
+        "restrictions": [
+          {
+            "text": "Camp only at designated campsites; quiet hours on the forest are 10 p.m. to 6 a.m.",
+            "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18"
+          },
+          {
+            "text": "Season: Year-round to unspecified, per the facility record.",
+            "sourceUrl": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1007&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18"
+          },
+          {
+            "text": "Pets must be leashed.",
+            "sourceUrl": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1007&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18"
+          }
+        ],
+        "verifiedAt": "2026-10-18"
+      },
+      "terrain": {
+        "state": "clear",
+        "dem": {
+          "source": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "verticalAccuracy": "lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical",
+          "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer"
+        },
+        "moments": [
+          {
+            "label": "window opens",
+            "azimuthDeg": 158.51,
+            "altitudeDeg": 19.99,
+            "horizonAngleDeg": 0.42,
+            "differenceDeg": 19.57,
+            "uncertaintyDeg": 0.5,
+            "status": "clear"
+          },
+          {
+            "label": "core at its highest",
+            "azimuthDeg": 179.91,
+            "altitudeDeg": 23.44,
+            "horizonAngleDeg": 0.52,
+            "differenceDeg": 22.92,
+            "uncertaintyDeg": 0.5,
+            "status": "clear"
+          },
+          {
+            "label": "window closes",
+            "azimuthDeg": 174.37,
+            "altitudeDeg": 23.21,
+            "horizonAngleDeg": 0.49,
+            "differenceDeg": 22.72,
+            "uncertaintyDeg": 0.5,
+            "status": "clear"
+          }
+        ],
+        "note": "Bare-earth terrain only. Trees, crops, buildings, fences and vehicles are not in the model, and in a wooded campground they are the likely horizon. A snapshot at each moment, not a promise of a clear view."
+      },
+      "core": {
+        "date": "2027-04-13",
+        "windowStart": 1807691904813,
+        "windowEnd": 1807696039188,
+        "minutes": 69,
+        "level": "astronomical",
+        "maxAltitudeDeg": 23.44,
+        "maxAzimuthDeg": 179.91,
+        "maxCompass": "S",
+        "darknessMinutes": {
+          "astronomical": 468,
+          "nautical": 535,
+          "civil": 599
+        },
+        "moonlight": "moon-below-horizon",
+        "quality": 63
+      },
+      "sky": {
+        "state": "unavailable",
+        "message": "Local artificial sky brightness has not yet been assessed for these locations."
+      },
+      "unknowns": [
+        "trees, buildings and vehicles are not in a bare-earth terrain model",
+        "the parking area is documented, but its exact usable extent and surface are not",
+        "local artificial sky brightness",
+        "weather: a forecast is shown for your own location only, never for this point",
+        "seasonal closures, hunting seasons and current conditions"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "garden-of-the-gods-backpacker-parking-indian-point-trailhead",
+      "type": "point",
+      "name": "Garden of the Gods backpacker parking (Indian Point Trailhead)",
+      "parentArea": "garden-of-the-gods",
+      "facilityType": "trailhead-parking",
+      "coordinates": {
+        "lat": 37.6001,
+        "lon": -88.38117
+      },
+      "timezone": "America/Chicago",
+      "agency": {
+        "name": "USDA Forest Service",
+        "manager": "USFS",
+        "state": "IL"
+      },
+      "coordinateSource": {
+        "kind": "third-party-map",
+        "confidence": "mapped-facility-node",
+        "detail": "The Forest Service names this facility but publishes no point for it. The coordinates come from the OpenStreetMap node for it, which is a community-mapped feature and not an agency survey.",
+        "url": "https://www.openstreetmap.org/",
+        "estimatedPrecisionM": 30
+      },
+      "access": {
+        "nightPresence": "verified",
+        "parking": "verified",
+        "classification": "verified-night-access",
+        "label": "Public access after dark documented",
+        "summary": "The agency permits overnight parking at this facility, and names it as the only place inside the recreation area where overnight parking is allowed.",
+        "evidence": [
+          {
+            "publisher": "USDA Forest Service, recreation facility record (Enterprise Data Warehouse)",
+            "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1017&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18",
+            "summary": "The facility record permits overnight parking at this lot only, and closes the picnic area and Observation Trail from 10 p.m. to 6 a.m.",
+            "quote": "Campground is open year-round. Picnic area and Observation Trail hours of operation - 6 a.m. to 10 p.m. Overnight parking allowed at Backpacker's Parking Lot only (Indian Point Trailhead). Pets are allowed only on a leash. Picnic areas and Observation Trail are open 6am-10pm. Use trash receptacles where available. Pack It In, Pack It Out while on trails. Camp only at designated sites in the campground. Disposable food and beverage containers are not permitted on the Observation Trail. Stay on the designated trail and leave the beauty of the rocks and plants for others to enjoy.",
+            "scope": "facility"
+          },
+          {
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking.",
+            "scope": "forest"
+          },
+          {
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records federal ownership and USFS management for this unit. It does not record opening hours.",
+            "quote": null,
+            "scope": null
+          }
+        ],
+        "restrictions": [
+          {
+            "text": "The recreation area around this facility is day-use and closes at 10 p.m.; only this facility is an overnight location.",
+            "sourceUrl": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1017&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18"
+          },
+          {
+            "text": "Pets must be leashed.",
+            "sourceUrl": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1017&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18"
+          }
+        ],
+        "verifiedAt": "2026-10-18"
+      },
+      "terrain": {
+        "state": "clear",
+        "dem": {
+          "source": "usgs-3dep",
+          "pixelSizeM": 31.3,
+          "verticalAccuracy": "lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical",
+          "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer"
+        },
+        "moments": [
+          {
+            "label": "window opens",
+            "azimuthDeg": 158.59,
+            "altitudeDeg": 20,
+            "horizonAngleDeg": 3.5,
+            "differenceDeg": 16.5,
+            "uncertaintyDeg": 1.67,
+            "status": "clear"
+          },
+          {
+            "label": "core at its highest",
+            "azimuthDeg": 179.91,
+            "altitudeDeg": 23.42,
+            "horizonAngleDeg": 3.98,
+            "differenceDeg": 19.44,
+            "uncertaintyDeg": 1.67,
+            "status": "clear"
+          },
+          {
+            "label": "window closes",
+            "azimuthDeg": 174.34,
+            "altitudeDeg": 23.19,
+            "horizonAngleDeg": 3.86,
+            "differenceDeg": 19.33,
+            "uncertaintyDeg": 1.67,
+            "status": "clear"
+          }
+        ],
+        "note": "Bare-earth terrain only. Trees, crops, buildings, fences and vehicles are not in the model, and in a wooded campground they are the likely horizon. A snapshot at each moment, not a promise of a clear view."
+      },
+      "core": {
+        "date": "2027-04-13",
+        "windowStart": 1807691957910,
+        "windowEnd": 1807696064160,
+        "minutes": 68,
+        "level": "astronomical",
+        "maxAltitudeDeg": 23.42,
+        "maxAzimuthDeg": 179.91,
+        "maxCompass": "S",
+        "darknessMinutes": {
+          "astronomical": 468,
+          "nautical": 535,
+          "civil": 599
+        },
+        "moonlight": "moon-below-horizon",
+        "quality": 63
+      },
+      "sky": {
+        "state": "unavailable",
+        "message": "Local artificial sky brightness has not yet been assessed for these locations."
+      },
+      "unknowns": [
+        "trees, buildings and vehicles are not in a bare-earth terrain model",
+        "the parking area is documented, but its exact usable extent and surface are not",
+        "local artificial sky brightness",
+        "weather: a forecast is shown for your own location only, never for this point",
+        "seasonal closures, hunting seasons and current conditions"
+      ],
+      "verifiedAt": "2026-10-18"
+    },
+    {
+      "id": "tower-rock-campground",
+      "type": "point",
+      "name": "Tower Rock Campground",
+      "parentArea": "shawnee-nf",
+      "facilityType": "campground",
+      "coordinates": {
+        "lat": 37.45862,
+        "lon": -88.23279
+      },
+      "timezone": "America/Chicago",
+      "agency": {
+        "name": "USDA Forest Service",
+        "manager": "USFS",
+        "state": "IL"
+      },
+      "coordinateSource": {
+        "kind": "agency-point-feature",
+        "confidence": "agency-marker",
+        "detail": "Point geometry published by the Forest Service with the facility record: a marker for the facility, not a surveyed point, and not the centre of the surrounding land.",
+        "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1066&outFields=*&returnGeometry=true&f=json",
+        "estimatedPrecisionM": 50
+      },
+      "access": {
+        "nightPresence": "verified",
+        "parking": "verified-at-designated-campsite",
+        "classification": "verified-night-access",
+        "label": "Public access after dark documented",
+        "summary": "Camping is permitted at this campground, which means overnight presence with a vehicle at a designated site.",
+        "evidence": [
+          {
+            "publisher": "USDA Forest Service, recreation facility record (Enterprise Data Warehouse)",
+            "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1066&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18",
+            "summary": "Camping is free and limited to 14 continuous days; the season runs 1 May to 15 December.",
+            "quote": "No trash receptacles - No garbage pick-up provided. Pack it in - Pack it out. Camping is free and limited to 14 continuous days. Dogs allowed but must be leashed. Fishing regulations are set by Illinois Dept. of Natural Resources. Anglers can obtain fishing licenses on line .",
+            "scope": "facility"
+          },
+          {
+            "publisher": "USDA Forest Service, Shawnee National Forest",
+            "url": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18",
+            "summary": "Overnight parking is permitted where posted, such as trailheads, for overnight camping; day-use areas signed 6 a.m. to 10 p.m. are closed to overnight parking.",
+            "quote": "When camping overnight be sure you park where overnight parking is allowed, such as trailheads and do not block roads or gates. Areas signed as Day-Use Areas - open 6am to 10pm are closed to overnight parking.",
+            "scope": "forest"
+          },
+          {
+            "publisher": "USGS PAD-US 4.1",
+            "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-overview",
+            "verifiedAt": "2026-10-18",
+            "summary": "PAD-US records federal ownership and USFS management for this unit. It does not record opening hours.",
+            "quote": null,
+            "scope": null
+          }
+        ],
+        "restrictions": [
+          {
+            "text": "Camp only at designated campsites; quiet hours on the forest are 10 p.m. to 6 a.m.",
+            "sourceUrl": "https://www.fs.usda.gov/r09/shawnee/recreation/camping-cabins",
+            "verifiedAt": "2026-10-18"
+          },
+          {
+            "text": "Season: May 1st to December 15, per the facility record.",
+            "sourceUrl": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1066&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18"
+          },
+          {
+            "text": "Pets must be leashed.",
+            "sourceUrl": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0/query?where=objectid%3D1066&outFields=*&returnGeometry=true&f=json",
+            "verifiedAt": "2026-10-18"
+          }
+        ],
+        "verifiedAt": "2026-10-18"
+      },
+      "terrain": {
+        "state": "clear",
+        "dem": {
+          "source": "usgs-3dep",
+          "pixelSizeM": 31.2,
+          "verticalAccuracy": "lidar-derived bare earth, resampled: treat the angle as indicative at about 1-2 m vertical",
+          "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer"
+        },
+        "moments": [
+          {
+            "label": "window opens",
+            "azimuthDeg": 158.15,
+            "altitudeDeg": 19.99,
+            "horizonAngleDeg": 0.36,
+            "differenceDeg": 19.63,
+            "uncertaintyDeg": 0.5,
+            "status": "clear"
+          },
+          {
+            "label": "core at its highest",
+            "azimuthDeg": 180.11,
+            "altitudeDeg": 23.56,
+            "horizonAngleDeg": 0.44,
+            "differenceDeg": 23.12,
+            "uncertaintyDeg": 0.5,
+            "status": "clear"
+          },
+          {
+            "label": "window closes",
+            "azimuthDeg": 174.45,
+            "altitudeDeg": 23.34,
+            "horizonAngleDeg": 0.42,
+            "differenceDeg": 22.92,
+            "uncertaintyDeg": 0.5,
+            "status": "clear"
+          }
+        ],
+        "note": "Bare-earth terrain only. Trees, crops, buildings, fences and vehicles are not in the model, and in a wooded campground they are the likely horizon. A snapshot at each moment, not a promise of a clear view."
+      },
+      "core": {
+        "date": "2027-04-13",
+        "windowStart": 1807691809767,
+        "windowEnd": 1807696056642,
+        "minutes": 71,
+        "level": "astronomical",
+        "maxAltitudeDeg": 23.56,
+        "maxAzimuthDeg": 180.11,
+        "maxCompass": "S",
+        "darknessMinutes": {
+          "astronomical": 469,
+          "nautical": 535,
+          "civil": 599
+        },
+        "moonlight": "moon-below-horizon",
+        "quality": 64
+      },
+      "sky": {
+        "state": "unavailable",
+        "message": "Local artificial sky brightness has not yet been assessed for these locations."
+      },
+      "unknowns": [
+        "trees, buildings and vehicles are not in a bare-earth terrain model",
+        "the parking area is documented, but its exact usable extent and surface are not",
+        "local artificial sky brightness",
+        "weather: a forecast is shown for your own location only, never for this point",
+        "seasonal closures, hunting seasons and current conditions"
+      ],
+      "verifiedAt": "2026-10-18"
+    }
+  ]
+}
