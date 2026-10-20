@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-20T11:44:12.656Z",
+ "generated_at": "2026-10-20T12:53:41.094Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,40 +18,40 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-20T11:44:12.656Z",
-  "sha256": "d7ebfa248e3fe6012422bdbf04453b9c7b88ecc7f73e92335535d509cf484137",
+  "retrieved_at": "2026-10-20T12:53:41.094Z",
+  "sha256": "5a13dee7bd655401c8668918a258e8fa30b2d173b2588214164d3d44c9342079",
   "pages": 2,
-  "upstream_count": 149,
-  "upstream_records": 149,
-  "announced_total": 478,
+  "upstream_count": 150,
+  "upstream_records": 150,
+  "announced_total": 479,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 150,
+  "count": 151,
   "by_status": {
    "success": 1,
    "unknown": 1,
    "scheduled": 8,
-   "unconfirmed": 140
+   "unconfirmed": 141
   },
   "by_precision": {
    "second": 3,
    "hour": 4,
-   "minute": 4,
+   "minute": 5,
    "day": 8,
    "month": 25,
    "year": 75,
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 11,
-  "with_published_date": 19,
+  "with_published_time": 12,
+  "with_published_date": 20,
   "period_only": 131,
   "sites": 21,
   "providers": 28,
   "nearest_net": "2026-10-19T19:41:03.000Z",
   "window_days": 180,
-  "announced_total": 478
+  "announced_total": 479
  },
  "launches": [
   {
@@ -146,19 +146,13 @@
     "start": "2026-10-20T10:30:00.000Z",
     "end": "2026-10-20T11:30:00.000Z"
    },
-   "last_updated": "2026-10-20T11:43:03.000Z",
+   "last_updated": "2026-10-20T12:52:59.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3b430f81-0ff1-4d85-8a1a-cef0de326198/",
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Go for Launch",
-    "previous_net": "2026-10-20T11:04:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-10-20T11:44:12.656Z"
-   }
+   "change": null
   },
   {
    "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
@@ -305,56 +299,6 @@
    "last_updated": "2026-10-19T22:25:48.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "6b95bcc8-1f88-4539-84fe-f63630138766",
-   "slug": "long-march-8a-unknown-payload",
-   "name": "Long March 8A | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
-   "vehicle": "Long March 8A",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Wenchang Space Launch Site, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Commercial LC-1",
-    "latitude": 19.597275,
-    "longitude": 110.930753
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-10-22T02:57:00.000Z",
-   "precision": {
-    "kind": "hour",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 2,
-    "name": "Hour"
-   },
-   "window": {
-    "start": "2026-10-22T02:50:00.000Z",
-    "end": "2026-10-22T03:15:00.000Z"
-   },
-   "last_updated": "2026-10-16T11:48:38.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6b95bcc8-1f88-4539-84fe-f63630138766/",
     "info": [],
     "webcast": []
    },
@@ -509,6 +453,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "6b95bcc8-1f88-4539-84fe-f63630138766",
+   "slug": "long-march-8a-unknown-payload",
+   "name": "Long March 8A | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Long March 8A",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Wenchang Space Launch Site, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Commercial LC-1",
+    "latitude": 19.597275,
+    "longitude": 110.930753
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-10-25T01:50:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-10-25T01:42:00.000Z",
+    "end": "2026-10-25T02:32:00.000Z"
+   },
+   "last_updated": "2026-10-20T12:35:18.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6b95bcc8-1f88-4539-84fe-f63630138766/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-22T02:57:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 4253,
+    "detected_at": "2026-10-20T12:53:41.094Z"
+   }
   },
   {
    "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
@@ -805,6 +805,56 @@
    "last_updated": "2026-10-12T23:38:34.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "56ca6058-7ccc-4ec0-b1b0-fb49f3bfee49",
+   "slug": "falcon-9-block-5-nrol-195",
+   "name": "Falcon 9 Block 5 | NROL-195",
+   "mission": "NROL-195",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "Fifteenth batch of satellites for a reconnaissance satellite constellation built by SpaceX and Northrop Grumman for the National Reconnaissance Office to provide imaging and other reconnaissance capabilities.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-05T22:34:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-05T22:34:00.000Z",
+    "end": "2026-11-06T02:34:00.000Z"
+   },
+   "last_updated": "2026-10-20T12:23:17.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/56ca6058-7ccc-4ec0-b1b0-fb49f3bfee49/",
     "info": [],
     "webcast": []
    },
