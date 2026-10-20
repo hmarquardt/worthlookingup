@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-20T03:49:01.866Z",
+ "generated_at": "2026-10-20T04:46:42.831Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-20T03:49:01.866Z",
-  "sha256": "6bc08baece361cd09d43304a906dd6a46d1021ac3fb1d77b95650ec4a85ede09",
+  "retrieved_at": "2026-10-20T04:46:42.831Z",
+  "sha256": "325f6b11d2b7d17f7ddff295816df4ec0192fc9292a77bee2a70ad71b8e05b0c",
   "pages": 2,
   "upstream_count": 149,
   "upstream_records": 149,
@@ -30,20 +30,20 @@
   "count": 150,
   "by_status": {
    "success": 1,
-   "scheduled": 10,
-   "unconfirmed": 139
+   "scheduled": 9,
+   "unconfirmed": 140
   },
   "by_precision": {
    "second": 3,
    "hour": 4,
-   "minute": 5,
-   "day": 7,
+   "minute": 4,
+   "day": 8,
    "month": 25,
    "year": 75,
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 12,
+  "with_published_time": 11,
   "with_published_date": 19,
   "period_only": 131,
   "sites": 21,
@@ -182,7 +182,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-10-20T23:09:23.000Z",
+   "net": "2026-10-20T23:10:02.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -195,13 +195,19 @@
     "start": "2026-10-20T22:14:00.000Z",
     "end": "2026-10-21T02:14:00.000Z"
    },
-   "last_updated": "2026-10-19T23:34:21.000Z",
+   "last_updated": "2026-10-20T04:38:09.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-20T23:09:23.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1,
+    "detected_at": "2026-10-20T04:46:42.831Z"
+   }
   },
   {
    "id": "c6f8b6b0-6bae-460a-99bb-c12a3d29effd",
@@ -754,56 +760,6 @@
    "change": null
   },
   {
-   "id": "3cdb9dee-b5cb-406c-bbd1-06a219930fb7",
-   "slug": "falcon-9-block-5-starlink-group-15-21",
-   "name": "Falcon 9 Block 5 | Starlink Group 15-21",
-   "mission": "Starlink Group 15-21",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-01T05:11:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-01T05:11:00.000Z",
-    "end": "2026-11-01T09:11:00.000Z"
-   },
-   "last_updated": "2026-10-19T17:25:29.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3cdb9dee-b5cb-406c-bbd1-06a219930fb7/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
    "slug": "electron-the-sea-god-surveys-iqps-launch-9",
    "name": "Electron | The Sea God Surveys (iQPS Launch 9)",
@@ -852,6 +808,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "3cdb9dee-b5cb-406c-bbd1-06a219930fb7",
+   "slug": "falcon-9-block-5-starlink-group-15-21",
+   "name": "Falcon 9 Block 5 | Starlink Group 15-21",
+   "mission": "Starlink Group 15-21",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-10T00:00:00.000Z",
+   "precision": {
+    "kind": "day",
+    "exact": false,
+    "dated": true,
+    "countdown": false,
+    "id": 5,
+    "name": "Day"
+   },
+   "window": {
+    "start": "2026-11-10T00:00:00.000Z",
+    "end": "2026-11-10T00:00:00.000Z"
+   },
+   "last_updated": "2026-10-20T03:57:28.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3cdb9dee-b5cb-406c-bbd1-06a219930fb7/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-01T05:11:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 12649,
+    "detected_at": "2026-10-20T04:46:42.831Z"
+   }
   },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
