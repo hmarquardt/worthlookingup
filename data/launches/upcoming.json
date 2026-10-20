@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-20T09:46:13.844Z",
+ "generated_at": "2026-10-20T10:44:00.043Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-20T09:46:13.844Z",
-  "sha256": "aaff3e70876b5e1bc597c98b857589cc2afd1cd85f4e97ebd21ac085c162d2b1",
+  "retrieved_at": "2026-10-20T10:44:00.043Z",
+  "sha256": "6a4122aa0a1216797a7cbe7911a98c2ef0d91ca8c308e4402f91f29877a38f95",
   "pages": 2,
   "upstream_count": 149,
   "upstream_records": 149,
@@ -132,7 +132,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-10-20T10:30:00.000Z",
+   "net": "2026-10-20T11:04:00.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -145,13 +145,19 @@
     "start": "2026-10-20T10:30:00.000Z",
     "end": "2026-10-20T11:30:00.000Z"
    },
-   "last_updated": "2026-10-20T09:32:40.000Z",
+   "last_updated": "2026-10-20T10:06:30.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3b430f81-0ff1-4d85-8a1a-cef0de326198/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-20T10:30:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 34,
+    "detected_at": "2026-10-20T10:44:00.043Z"
+   }
   },
   {
    "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
