@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-19T23:42:52.270Z",
+ "generated_at": "2026-10-20T01:08:22.941Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-19T23:42:52.270Z",
-  "sha256": "7b6d6b88a589f224229f3538cafb3a4eafc3b5062f65bf54375e443882a6e59b",
+  "retrieved_at": "2026-10-20T01:08:22.941Z",
+  "sha256": "6bc08baece361cd09d43304a906dd6a46d1021ac3fb1d77b95650ec4a85ede09",
   "pages": 2,
   "upstream_count": 149,
   "upstream_records": 149,
@@ -101,13 +101,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Payload Deployed",
-    "previous_net": "2026-10-19T19:41:03.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-10-19T23:42:52.270Z"
-   }
+   "change": null
   },
   {
    "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
@@ -207,13 +201,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-20T22:14:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 55,
-    "detected_at": "2026-10-19T23:42:52.270Z"
-   }
+   "change": null
   },
   {
    "id": "c6f8b6b0-6bae-460a-99bb-c12a3d29effd",
