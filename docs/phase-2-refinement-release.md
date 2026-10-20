@@ -84,7 +84,24 @@ manual-workflow substitute. No KV, new cache or provider change was added.
 
 ## Release evidence
 
-_To be completed after the CI deployment and production verification._
+- Release commits: `e2f92ec` (presentation and tests) and `302aac8` (documentation and visual
+  evidence), pushed to `origin/main` without force.
+- GitHub Actions `validate and deploy`
+  [39329188502](https://github.com/hmarquardt/worthlookingup/actions/runs/39329188502) completed
+  **success** on `302aac8` at 2026-10-19T21:43:34Z. Both `validate` (including the Chromium browser
+  suite and build) and `deploy` succeeded.
+- Cloudflare Pages serves `2026.10.19.4`; `https://worthlookingup.com/` contains
+  `id="hero-place">Princeton, Indiana` and `data-deploy-version="2026.10.19.4"`.
+- `node scripts/verify-production.mjs` **PASS**: deployed HTML matches this checkout, the deployed
+  `index.html` SHA-256 is `ac0930e334eda02a05e8ba81c5cd8bbe15f2f960e7461659f6b676610df86a02`,
+  scientific hashes, both workers, launch and geodata artifacts, brand/analytics bytes and the real
+  404 pass, and canonical/www/legacy redirects preserve paths and queries (including repeated
+  parameters and an empty value). The scheduled comet pipeline outputs are newer than this checkout,
+  as expected; their deployed schema and provenance validate.
+- Production launch feed: `available true`, 150 launches, `generated_at 2026-10-20T10:44:00.043Z`,
+  `stale false`, served by the cached worker path from Launch Library 2. Scheduled refresh
+  [39409992356](https://github.com/hmarquardt/worthlookingup/actions/runs/39409992356) succeeded.
+
 
 ## Limits and next improvement
 

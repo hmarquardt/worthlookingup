@@ -967,6 +967,10 @@ route propagation; persistent failures still fail. No scientific/application cha
       `39321749261` (150 launches, generated `2026-10-19T20:43:59.221Z`, stale false). The preceding
       scheduled run hit a malformed upstream payload and correctly left the last-good feed untouched.
 - [x] Version `2026.10.19.4` in the index comment/footer/visible text and README.
-- [ ] Release commit, CI deployment and production verification: pending.
+- [x] Commits `e2f92ec` and `302aac8` pushed normally; `HEAD` and `origin/main` matched. CI
+      `validate and deploy` run `39329188502` completed success for `302aac8`; production serves
+      `2026.10.19.4`, deployed HTML equals the checkout (`sha256 ac0930e3…`), and
+      `scripts/verify-production.mjs` passed for hashes, workers, artifacts, 404 and redirects.
+      Production launch feed: 150 launches, generated `2026-10-20T10:44:00.043Z`, stale false.
 - [x] Evidence: [phase-2-refinement-release.md](phase-2-refinement-release.md),
       [design.md](design.md), eight deterministic screenshots at all four widths and both themes.
