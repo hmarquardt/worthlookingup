@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-20T10:44:00.043Z",
+ "generated_at": "2026-10-20T11:44:12.656Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-20T10:44:00.043Z",
-  "sha256": "6a4122aa0a1216797a7cbe7911a98c2ef0d91ca8c308e4402f91f29877a38f95",
+  "retrieved_at": "2026-10-20T11:44:12.656Z",
+  "sha256": "d7ebfa248e3fe6012422bdbf04453b9c7b88ecc7f73e92335535d509cf484137",
   "pages": 2,
   "upstream_count": 149,
   "upstream_records": 149,
@@ -30,7 +30,8 @@
   "count": 150,
   "by_status": {
    "success": 1,
-   "scheduled": 9,
+   "unknown": 1,
+   "scheduled": 8,
    "unconfirmed": 140
   },
   "by_precision": {
@@ -126,11 +127,11 @@
     "longitude": -80.57735736
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
    "net": "2026-10-20T11:04:00.000Z",
    "precision": {
@@ -145,18 +146,18 @@
     "start": "2026-10-20T10:30:00.000Z",
     "end": "2026-10-20T11:30:00.000Z"
    },
-   "last_updated": "2026-10-20T10:06:30.000Z",
+   "last_updated": "2026-10-20T11:43:03.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3b430f81-0ff1-4d85-8a1a-cef0de326198/",
     "info": [],
     "webcast": []
    },
    "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-20T10:30:00.000Z",
+    "kind": "status",
     "previous_status": "Go for Launch",
-    "delta_minutes": 34,
-    "detected_at": "2026-10-20T10:44:00.043Z"
+    "previous_net": "2026-10-20T11:04:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-10-20T11:44:12.656Z"
    }
   },
   {
