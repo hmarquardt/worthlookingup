@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-21T06:58:55.333Z",
+ "generated_at": "2026-10-21T07:49:39.190Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-21T06:58:55.333Z",
-  "sha256": "adbe412adbfc91c2f245ca8d5292fcc16a4bef66244c450b2f1fd4fd119c2f1b",
+  "retrieved_at": "2026-10-21T07:49:39.190Z",
+  "sha256": "d06bd3c0ff476c0bdf1111f3ef58b28b614219da82c175e4f827f62aa5094999",
   "pages": 2,
-  "upstream_count": 150,
-  "upstream_records": 150,
+  "upstream_count": 149,
+  "upstream_records": 149,
   "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 151,
+  "count": 150,
   "by_status": {
-   "success": 3,
+   "success": 2,
    "scheduled": 6,
    "unconfirmed": 142
   },
   "by_precision": {
-   "second": 3,
+   "second": 2,
    "minute": 6,
    "hour": 3,
    "day": 8,
@@ -43,66 +43,16 @@
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 12,
-  "with_published_date": 20,
+  "with_published_time": 11,
+  "with_published_date": 19,
   "period_only": 131,
   "sites": 21,
   "providers": 28,
-  "nearest_net": "2026-10-19T19:41:03.000Z",
+  "nearest_net": "2026-10-20T11:04:00.000Z",
   "window_days": 180,
   "announced_total": 478
  },
  "launches": [
-  {
-   "id": "69ebbcd2-b257-4070-9ef9-21e7d1f8a883",
-   "slug": "h3-24-martian-moons-exploration-mmx",
-   "name": "H3-24 | Martian Moons eXploration (MMX)",
-   "mission": "Martian Moons eXploration (MMX)",
-   "mission_type": "Planetary Science",
-   "mission_description": "MMX is a Japanese scientific mission to land on Phobos, one of the two moons of Mars, to collect samples before bringing them back to Earth. The mission includes a small French/German rover to explore the surface of Phobos.",
-   "orbit": "Mars Orbit",
-   "vehicle": "H3-24",
-   "vehicle_family": "H3",
-   "provider": "Mitsubishi Heavy Industries",
-   "provider_abbrev": "MHI",
-   "site": {
-    "name": "Tanegashima Space Center, Japan",
-    "timezone": "Asia/Tokyo",
-    "country": "Japan"
-   },
-   "pad": {
-    "name": "Yoshinobu Launch Complex LP-2",
-    "latitude": 30.400938,
-    "longitude": 130.97564
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-19T19:41:03.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-10-19T19:41:03.000Z",
-    "end": "2026-10-19T19:41:03.000Z"
-   },
-   "last_updated": "2026-10-19T23:04:55.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/69ebbcd2-b257-4070-9ef9-21e7d1f8a883/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
    "slug": "falcon-9-block-5-bandwagon-5-dedicated-mid-inclina",
@@ -195,7 +145,7 @@
     "start": "2026-10-21T03:29:00.000Z",
     "end": "2026-10-21T03:50:00.000Z"
    },
-   "last_updated": "2026-10-21T04:12:18.000Z",
+   "last_updated": "2026-10-21T07:02:23.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c6f8b6b0-6bae-460a-99bb-c12a3d29effd/",
     "info": [],
@@ -245,7 +195,7 @@
     "start": "2026-10-21T21:59:00.000Z",
     "end": "2026-10-22T01:59:00.000Z"
    },
-   "last_updated": "2026-10-21T05:20:30.000Z",
+   "last_updated": "2026-10-21T07:23:26.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
