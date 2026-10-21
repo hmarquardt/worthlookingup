@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-21T22:43:21.283Z",
+ "generated_at": "2026-10-21T23:42:35.217Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,24 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-21T22:43:21.283Z",
-  "sha256": "46d0c6c5e3ee523f50050536b6b6e7271f33ee7ef0c20c7eac8cfbda5eebed47",
+  "retrieved_at": "2026-10-21T23:42:35.217Z",
+  "sha256": "1f2d91e2c93a55d48cce702ffa3b6c1095c8606bdd1990ba2c14b834104ced7b",
   "pages": 2,
-  "upstream_count": 149,
-  "upstream_records": 149,
+  "upstream_count": 148,
+  "upstream_records": 148,
   "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 150,
+  "count": 149,
   "by_status": {
-   "success": 2,
-   "scheduled": 6,
-   "unconfirmed": 142
+   "success": 1,
+   "unconfirmed": 142,
+   "scheduled": 6
   },
   "by_precision": {
-   "second": 2,
-   "minute": 6,
+   "minute": 7,
    "hour": 3,
    "day": 8,
    "month": 26,
@@ -43,66 +42,16 @@
    "quarter": 28,
    "half": 3
   },
-  "with_published_time": 11,
-  "with_published_date": 19,
+  "with_published_time": 10,
+  "with_published_date": 18,
   "period_only": 131,
   "sites": 21,
   "providers": 28,
-  "nearest_net": "2026-10-20T11:04:00.000Z",
+  "nearest_net": "2026-10-21T03:39:00.000Z",
   "window_days": 180,
   "announced_total": 477
  },
  "launches": [
-  {
-   "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
-   "slug": "falcon-9-block-5-bandwagon-5-dedicated-mid-inclina",
-   "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
-   "mission": "Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
-   "mission_type": "Dedicated Rideshare",
-   "mission_description": "Dedicated rideshare flight to a mid-inclination orbit with dozens of small microsatellites and nanosatellites for commercial and government customers. This launch also carries the second demonstration mission for SpaceX’s Project Starfall, which aims to mass-produce reentry capsules designed to autonomously transport valuable customer experiments and other payloads safely back from space to Earth…",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Cape Canaveral SFS, FL, USA",
-    "timezone": "America/New_York",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 40",
-    "latitude": 28.56194122,
-    "longitude": -80.57735736
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-20T11:04:00.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-10-20T10:30:00.000Z",
-    "end": "2026-10-20T11:30:00.000Z"
-   },
-   "last_updated": "2026-10-20T13:58:25.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3b430f81-0ff1-4d85-8a1a-cef0de326198/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "c6f8b6b0-6bae-460a-99bb-c12a3d29effd",
    "slug": "ceres-1s-xiguang-4-01",
@@ -148,56 +97,6 @@
    "last_updated": "2026-10-21T07:02:23.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c6f8b6b0-6bae-460a-99bb-c12a3d29effd/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
-   "slug": "falcon-9-block-5-starlink-group-15-15",
-   "name": "Falcon 9 Block 5 | Starlink Group 15-15",
-   "mission": "Starlink Group 15-15",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-10-21T23:22:34.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-10-21T21:59:00.000Z",
-    "end": "2026-10-22T01:59:00.000Z"
-   },
-   "last_updated": "2026-10-21T21:11:45.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
     "webcast": []
    },
@@ -252,6 +151,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
+   "slug": "falcon-9-block-5-starlink-group-15-15",
+   "name": "Falcon 9 Block 5 | Starlink Group 15-15",
+   "mission": "Starlink Group 15-15",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-10-22T21:45:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-10-22T21:45:00.000Z",
+    "end": "2026-10-23T01:45:00.000Z"
+   },
+   "last_updated": "2026-10-21T23:36:53.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-21T23:22:34.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1342,
+    "detected_at": "2026-10-21T23:42:35.217Z"
+   }
   },
   {
    "id": "9648124f-8568-46d2-86d7-4b4d6f12187f",
