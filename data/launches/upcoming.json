@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-21T03:49:21.794Z",
+ "generated_at": "2026-10-21T04:48:03.141Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-21T03:49:21.794Z",
-  "sha256": "1967da5726978cd4d639020c1bf0b64e79c0967377717742e592ae249195f1c0",
+  "retrieved_at": "2026-10-21T04:48:03.141Z",
+  "sha256": "a93e2da973f8c4368b982c3b8db07a26fc910a76a3d008d2830f894cef386866",
   "pages": 2,
   "upstream_count": 150,
   "upstream_records": 150,
@@ -29,8 +29,7 @@
  "stats": {
   "count": 151,
   "by_status": {
-   "success": 2,
-   "unknown": 1,
+   "success": 3,
    "scheduled": 7,
    "unconfirmed": 141
   },
@@ -156,12 +155,12 @@
   },
   {
    "id": "c6f8b6b0-6bae-460a-99bb-c12a3d29effd",
-   "slug": "ceres-1s-unknown-payload",
-   "name": "Ceres-1S | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
+   "slug": "ceres-1s-xiguang-4-01",
+   "name": "Ceres-1S | Xiguang-4 01",
+   "mission": "Xiguang-4 01",
+   "mission_type": "Earth Science",
+   "mission_description": "0.5 meter resolution Earth observation satellite for the city of Guangzhou government and Guangzhou University with multi-spectral imaging capability. Prototype of a proposed 25 satellites constellation.",
+   "orbit": "Low Earth Orbit",
    "vehicle": "Ceres-1S",
    "vehicle_family": "Ceres-1",
    "provider": "Galactic Energy",
@@ -177,11 +176,11 @@
     "longitude": 119.598667
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-10-21T03:39:00.000Z",
    "precision": {
@@ -196,18 +195,18 @@
     "start": "2026-10-21T03:29:00.000Z",
     "end": "2026-10-21T03:50:00.000Z"
    },
-   "last_updated": "2026-10-21T03:43:27.000Z",
+   "last_updated": "2026-10-21T04:12:18.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c6f8b6b0-6bae-460a-99bb-c12a3d29effd/",
     "info": [],
     "webcast": []
    },
    "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-21T03:35:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 4,
-    "detected_at": "2026-10-21T03:49:21.794Z"
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-10-21T03:39:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-10-21T04:48:03.141Z"
    }
   },
   {
