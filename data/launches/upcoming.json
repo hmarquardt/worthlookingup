@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-22T01:53:05.039Z",
+ "generated_at": "2026-10-22T02:51:09.847Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-22T01:53:05.039Z",
-  "sha256": "2a36724247aa97554091aaefbb1033ab3ace5b253ddbf959336a831adae7dd77",
+  "retrieved_at": "2026-10-22T02:51:09.847Z",
+  "sha256": "0709022d0f16f9da4b098e82f392bc1f7d532e71cb1727e0d3a0d8bf2bea3ba8",
   "pages": 2,
   "upstream_count": 148,
   "upstream_records": 148,
@@ -30,8 +30,8 @@
   "count": 149,
   "by_status": {
    "success": 1,
-   "unconfirmed": 142,
-   "scheduled": 6
+   "scheduled": 6,
+   "unconfirmed": 142
   },
   "by_precision": {
    "minute": 6,
@@ -104,56 +104,6 @@
    "change": null
   },
   {
-   "id": "7766f3bb-674c-4c71-b986-963bd633fcfe",
-   "slug": "electron-were-not-hawking-around-3x-hawkeye-360",
-   "name": "Electron | We're Not Hawking Around (3x HawkEye 360)",
-   "mission": "We're Not Hawking Around (3x HawkEye 360)",
-   "mission_type": "Earth Science",
-   "mission_description": "HawkEye 360 is a a space-based civil global intelligence satellite network using radio frequency (RF) technology to help monitor transportation across air, land and sea and assist with emergencies, and to provide civil SIGINT (Signal Intelligence) mission. The constellation of small satellites (named Hawk ) will collect information on specific radio signals worldwide to provide high-precision rad…",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Electron",
-   "vehicle_family": null,
-   "provider": "Rocket Lab",
-   "provider_abbrev": "RL",
-   "site": {
-    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "country": "New Zealand"
-   },
-   "pad": {
-    "name": "Rocket Lab Launch Complex 1A",
-    "latitude": -39.262833,
-    "longitude": 177.864469
-   },
-   "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-10-22T07:00:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-22T07:00:00.000Z",
-    "end": "2026-10-22T07:00:00.000Z"
-   },
-   "last_updated": "2026-10-21T05:14:34.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
    "slug": "falcon-9-block-5-starlink-group-15-15",
    "name": "Falcon 9 Block 5 | Starlink Group 15-15",
@@ -202,6 +152,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "7766f3bb-674c-4c71-b986-963bd633fcfe",
+   "slug": "electron-were-not-hawking-around-3x-hawkeye-360",
+   "name": "Electron | We're Not Hawking Around (3x HawkEye 360)",
+   "mission": "We're Not Hawking Around (3x HawkEye 360)",
+   "mission_type": "Earth Science",
+   "mission_description": "HawkEye 360 is a a space-based civil global intelligence satellite network using radio frequency (RF) technology to help monitor transportation across air, land and sea and assist with emergencies, and to provide civil SIGINT (Signal Intelligence) mission. The constellation of small satellites (named Hawk ) will collect information on specific radio signals worldwide to provide high-precision rad…",
+   "orbit": "Sun-Synchronous Orbit",
+   "vehicle": "Electron",
+   "vehicle_family": null,
+   "provider": "Rocket Lab",
+   "provider_abbrev": "RL",
+   "site": {
+    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
+    "timezone": "Pacific/Auckland",
+    "country": "New Zealand"
+   },
+   "pad": {
+    "name": "Rocket Lab Launch Complex 1A",
+    "latitude": -39.262833,
+    "longitude": 177.864469
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-10-23T07:00:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-10-23T07:00:00.000Z",
+    "end": "2026-10-23T08:45:00.000Z"
+   },
+   "last_updated": "2026-10-22T02:44:07.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-22T07:00:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": 1440,
+    "detected_at": "2026-10-22T02:51:09.847Z"
+   }
   },
   {
    "id": "9648124f-8568-46d2-86d7-4b4d6f12187f",
