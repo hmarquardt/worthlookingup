@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-22T16:46:23.919Z",
+ "generated_at": "2026-10-22T17:42:47.196Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-22T16:46:23.919Z",
-  "sha256": "e3c189289fc3d64142465497d8c95e9a339893e435e8585f1758c2c76b6e7d22",
+  "retrieved_at": "2026-10-22T17:42:47.196Z",
+  "sha256": "1db9a9a624d5302e7cce2b6b78aaaa7ec70eaf7b5f45bfbfd081e15dbcdb2e5e",
   "pages": 2,
   "upstream_count": 147,
   "upstream_records": 147,
@@ -94,7 +94,7 @@
     "start": "2026-10-22T21:45:00.000Z",
     "end": "2026-10-23T01:45:00.000Z"
    },
-   "last_updated": "2026-10-22T15:20:15.000Z",
+   "last_updated": "2026-10-22T16:49:40.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
@@ -500,13 +500,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "advanced",
-    "previous_net": "2026-10-31T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": -1440,
-    "detected_at": "2026-10-22T16:46:23.919Z"
-   }
+   "change": null
   },
   {
    "id": "dc570565-4dcf-4ab9-8174-bf88efef477f",
@@ -656,13 +650,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "advanced",
-    "previous_net": "2026-11-10T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": -6886,
-    "detected_at": "2026-10-22T16:46:23.919Z"
-   }
+   "change": null
   },
   {
    "id": "56ca6058-7ccc-4ec0-b1b0-fb49f3bfee49",
@@ -5578,13 +5566,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-31T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": 87840,
-    "detected_at": "2026-10-22T16:46:23.919Z"
-   }
+   "change": null
   },
   {
    "id": "e61d353c-db55-4a57-8184-0fab187231e6",
