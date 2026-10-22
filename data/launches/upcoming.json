@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-22T19:43:18.516Z",
+ "generated_at": "2026-10-22T22:42:46.639Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-22T19:43:18.516Z",
-  "sha256": "1db9a9a624d5302e7cce2b6b78aaaa7ec70eaf7b5f45bfbfd081e15dbcdb2e5e",
+  "retrieved_at": "2026-10-22T22:42:46.639Z",
+  "sha256": "5801413c5da995d79f7f1efa02a209bc05d3491f8b102879a98c094639b92cfc",
   "pages": 2,
   "upstream_count": 147,
   "upstream_records": 147,
@@ -29,8 +29,8 @@
  "stats": {
   "count": 148,
   "by_status": {
-   "scheduled": 7,
-   "unconfirmed": 141
+   "scheduled": 8,
+   "unconfirmed": 140
   },
   "by_precision": {
    "second": 1,
@@ -94,7 +94,7 @@
     "start": "2026-10-22T21:45:00.000Z",
     "end": "2026-10-23T01:45:00.000Z"
    },
-   "last_updated": "2026-10-22T16:49:40.000Z",
+   "last_updated": "2026-10-22T22:41:06.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
@@ -125,11 +125,11 @@
     "longitude": 177.864469
    },
    "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
    "net": "2026-10-23T07:00:00.000Z",
    "precision": {
@@ -144,13 +144,19 @@
     "start": "2026-10-23T07:00:00.000Z",
     "end": "2026-10-23T08:45:00.000Z"
    },
-   "last_updated": "2026-10-22T02:44:07.000Z",
+   "last_updated": "2026-10-22T22:27:28.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "To Be Confirmed",
+    "previous_net": "2026-10-23T07:00:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-10-22T22:42:46.639Z"
+   }
   },
   {
    "id": "9648124f-8568-46d2-86d7-4b4d6f12187f",
