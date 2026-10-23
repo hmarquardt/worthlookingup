@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-23T21:42:18.188Z",
+ "generated_at": "2026-10-23T22:41:47.005Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-23T21:42:18.188Z",
-  "sha256": "e831adce9e04c684081dcafe9d4346d515c016fad8932a72a7b3cc6d5327f440",
+  "retrieved_at": "2026-10-23T22:41:47.005Z",
+  "sha256": "b58b21e1f7db9c7827c69e2cf743fb22fc3dc2e9fff930b7eb4f92aeda196e93",
   "pages": 2,
   "upstream_count": 137,
   "upstream_records": 137,
@@ -201,13 +201,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Go for Launch",
-    "previous_net": "2026-10-23T19:25:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-10-23T21:42:18.188Z"
-   }
+   "change": null
   },
   {
    "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
@@ -251,19 +245,13 @@
     "start": "2026-10-23T21:30:00.000Z",
     "end": "2026-10-24T01:30:00.000Z"
    },
-   "last_updated": "2026-10-23T21:38:38.000Z",
+   "last_updated": "2026-10-23T22:37:57.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-23T22:28:53.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 20,
-    "detected_at": "2026-10-23T21:42:18.188Z"
-   }
+   "change": null
   },
   {
    "id": "6b95bcc8-1f88-4539-84fe-f63630138766",
