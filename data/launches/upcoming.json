@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-23T06:57:59.531Z",
+ "generated_at": "2026-10-23T07:48:36.049Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-23T06:57:59.531Z",
-  "sha256": "95690ed23414b76efbeef23f1db02d3c57fc17f7f642cc960ba36bdab0be5172",
+  "retrieved_at": "2026-10-23T07:48:36.049Z",
+  "sha256": "b9d91486e43809e44a2f4f5d76dcc425ad223dab7b8cc77b3d48445131156ebc",
   "pages": 2,
   "upstream_count": 138,
   "upstream_records": 138,
@@ -29,7 +29,8 @@
  "stats": {
   "count": 148,
   "by_status": {
-   "scheduled": 8,
+   "unknown": 1,
+   "scheduled": 7,
    "unconfirmed": 140
   },
   "by_precision": {
@@ -74,11 +75,11 @@
     "longitude": 177.864469
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
    "net": "2026-10-23T07:11:00.000Z",
    "precision": {
@@ -93,18 +94,18 @@
     "start": "2026-10-23T07:00:00.000Z",
     "end": "2026-10-23T08:45:00.000Z"
    },
-   "last_updated": "2026-10-23T06:52:27.000Z",
+   "last_updated": "2026-10-23T07:12:49.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
     "info": [],
     "webcast": []
    },
    "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-23T07:00:00.000Z",
+    "kind": "status",
     "previous_status": "Go for Launch",
-    "delta_minutes": 11,
-    "detected_at": "2026-10-23T06:57:59.531Z"
+    "previous_net": "2026-10-23T07:11:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-10-23T07:48:36.049Z"
    }
   },
   {
@@ -249,7 +250,7 @@
     "start": "2026-10-23T21:30:00.000Z",
     "end": "2026-10-24T01:30:00.000Z"
    },
-   "last_updated": "2026-10-23T06:55:29.000Z",
+   "last_updated": "2026-10-23T07:27:42.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
