@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-23T11:44:01.040Z",
+ "generated_at": "2026-10-23T12:52:05.233Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,11 +18,11 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-23T11:44:01.040Z",
-  "sha256": "0abc8a63e6ebece8942c8fd2a890ab96c7278af00e5d8512eb535322fb57f2c8",
+  "retrieved_at": "2026-10-23T12:52:05.233Z",
+  "sha256": "b43c4c8e064194df9de2ad42ca65442089da1823665b82e1d9adc9d84e780772",
   "pages": 2,
-  "upstream_count": 138,
-  "upstream_records": 138,
+  "upstream_count": 137,
+  "upstream_records": 137,
   "announced_total": 476,
   "duplicates_removed": 0
  },
@@ -34,8 +34,9 @@
    "unconfirmed": 140
   },
   "by_precision": {
-   "minute": 8,
+   "minute": 7,
    "hour": 3,
+   "second": 1,
    "day": 7,
    "month": 24,
    "year": 75,
@@ -100,13 +101,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Payload Deployed",
-    "previous_net": "2026-10-23T07:11:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-10-23T11:44:01.040Z"
-   }
+   "change": null
   },
   {
    "id": "9648124f-8568-46d2-86d7-4b4d6f12187f",
@@ -156,13 +151,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Go for Launch",
-    "previous_net": "2026-10-23T10:15:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-10-23T11:44:01.040Z"
-   }
+   "change": null
   },
   {
    "id": "3621085f-deae-4f89-bd54-c0f96ee44421",
@@ -243,26 +232,32 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-10-23T21:30:00.000Z",
+   "net": "2026-10-23T22:28:53.000Z",
    "precision": {
-    "kind": "minute",
+    "kind": "second",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 1,
-    "name": "Minute"
+    "id": 0,
+    "name": "Second"
    },
    "window": {
     "start": "2026-10-23T21:30:00.000Z",
     "end": "2026-10-24T01:30:00.000Z"
    },
-   "last_updated": "2026-10-23T07:27:42.000Z",
+   "last_updated": "2026-10-23T12:38:39.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-23T21:30:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 59,
+    "detected_at": "2026-10-23T12:52:05.233Z"
+   }
   },
   {
    "id": "6b95bcc8-1f88-4539-84fe-f63630138766",
