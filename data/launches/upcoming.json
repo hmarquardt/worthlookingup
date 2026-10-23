@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-23T05:45:05.099Z",
+ "generated_at": "2026-10-23T06:57:59.531Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,11 +18,11 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-23T05:45:05.099Z",
-  "sha256": "54a007471257813f1c800882671b6c0c30a6c9b5dc1b0ab41b02c441b504a5b5",
+  "retrieved_at": "2026-10-23T06:57:59.531Z",
+  "sha256": "95690ed23414b76efbeef23f1db02d3c57fc17f7f642cc960ba36bdab0be5172",
   "pages": 2,
-  "upstream_count": 147,
-  "upstream_records": 147,
+  "upstream_count": 138,
+  "upstream_records": 138,
   "announced_total": 476,
   "duplicates_removed": 0
  },
@@ -46,7 +46,7 @@
   "period_only": 130,
   "sites": 21,
   "providers": 27,
-  "nearest_net": "2026-10-23T07:00:00.000Z",
+  "nearest_net": "2026-10-23T07:11:00.000Z",
   "window_days": 180,
   "announced_total": 476
  },
@@ -80,7 +80,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-10-23T07:00:00.000Z",
+   "net": "2026-10-23T07:11:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -93,13 +93,19 @@
     "start": "2026-10-23T07:00:00.000Z",
     "end": "2026-10-23T08:45:00.000Z"
    },
-   "last_updated": "2026-10-22T23:54:09.000Z",
+   "last_updated": "2026-10-23T06:52:27.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-23T07:00:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 11,
+    "detected_at": "2026-10-23T06:57:59.531Z"
+   }
   },
   {
    "id": "9648124f-8568-46d2-86d7-4b4d6f12187f",
@@ -243,7 +249,7 @@
     "start": "2026-10-23T21:30:00.000Z",
     "end": "2026-10-24T01:30:00.000Z"
    },
-   "last_updated": "2026-10-22T23:53:10.000Z",
+   "last_updated": "2026-10-23T06:55:29.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
     "info": [],
@@ -4468,7 +4474,7 @@
    "name": "Firefly Alpha Block 2 | TacSat",
    "mission": "TacSat",
    "mission_type": "Technology",
-   "mission_description": "First of up to 25 launches of Low Earth Orbit technology demonstration satellites to be built and operated by Lockheed Martin. TacSat is an intelligence, surveillance and reconnaissance spacecraft with a mission to prove specialized sensing and communications capabilities on orbit. The satellite will participate in exercises that highlight cross-domain kill-web connectivity, enabling timely execu…",
+   "mission_description": "TacSat is an intelligence, surveillance and reconnaissance spacecraft with a mission to prove specialized sensing and communications capabilities on orbit. The satellite will participate in exercises that highlight cross-domain kill-web connectivity, enabling timely execution of tactical space missions. TacSat will host a proven Lockheed Martin infrared sensor on board that brings previously deve…",
    "orbit": "Low Earth Orbit",
    "vehicle": "Firefly Alpha Block 2",
    "vehicle_family": "Firefly Alpha",
@@ -4504,7 +4510,7 @@
     "start": "2026-12-31T00:00:00.000Z",
     "end": "2026-12-31T00:00:00.000Z"
    },
-   "last_updated": "2026-01-13T17:07:04.000Z",
+   "last_updated": "2026-10-23T06:32:54.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/b94b49fc-5784-4dfd-92e7-07e57f50edcd/",
     "info": [],
@@ -5020,7 +5026,7 @@
    "name": "Falcon 9 Block 5 | Telesat Lightspeed 1",
    "mission": "Telesat Lightspeed 1",
    "mission_type": "Communications",
-   "mission_description": "Up to 18 satellites manufactured by MDA for Canadian satellite operator Telesat's Lightspeed constellation.",
+   "mission_description": "First two satellites manufactured by MDA for Canadian satellite operator Telesat's Lightspeed constellation.",
    "orbit": "Low Earth Orbit",
    "vehicle": "Falcon 9 Block 5",
    "vehicle_family": "Falcon",
@@ -5056,7 +5062,7 @@
     "start": "2026-12-31T00:00:00.000Z",
     "end": "2026-12-31T00:00:00.000Z"
    },
-   "last_updated": "2025-11-06T10:41:03.000Z",
+   "last_updated": "2026-10-23T06:27:52.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ce1317de-ec94-4479-9b28-38ebf11f13ae/",
     "info": [],
@@ -5170,7 +5176,7 @@
    "name": "Falcon Heavy | Griffin Mission One",
    "mission": "Griffin Mission One",
    "mission_type": "Lunar Exploration",
-   "mission_description": "Demonstration flight of the Astrobotic Griffin lander and its engines, initially contracted for the cancelled NASA VIPER (Volatiles Investigating Polar Exploration Rover) mission. The vacated payload spot will now host the FLIP (FLEX Lunar Innovation Platform) lunar rover from Astrolab.",
+   "mission_description": "Demonstration flight of the Astrobotic Griffin lander and its engines, initially contracted for the NASA VIPER (Volatiles Investigating Polar Exploration Rover) mission. The vacated payload spot will now host the FLIP (FLEX Lunar Innovation Platform) lunar rover from Astrolab.",
    "orbit": "Lunar Orbit",
    "vehicle": "Falcon Heavy",
    "vehicle_family": "Falcon",
@@ -5206,7 +5212,7 @@
     "start": "2026-12-31T00:00:00.000Z",
     "end": "2026-12-31T00:00:00.000Z"
    },
-   "last_updated": "2026-10-01T14:26:48.000Z",
+   "last_updated": "2026-10-23T06:32:28.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d3bd7fb2-fac6-49fc-ae52-cee07d2fde67/",
     "info": [],
