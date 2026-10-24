@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-24T18:44:40.730Z",
+ "generated_at": "2026-10-24T19:40:05.365Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-24T18:44:40.730Z",
-  "sha256": "ed449f92b9eb4c927d2b35682b238f1aa4a3a73c8d3f56f78dab3f4a2fc34b85",
+  "retrieved_at": "2026-10-24T19:40:05.365Z",
+  "sha256": "7b6d3f6d4eef7be2e7879381a5fc1da22b7b70c66328bbee3f605743ed9044b4",
   "pages": 2,
-  "upstream_count": 137,
-  "upstream_records": 137,
-  "announced_total": 475,
+  "upstream_count": 136,
+  "upstream_records": 136,
+  "announced_total": 474,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 148,
+  "count": 147,
   "by_status": {
-   "success": 4,
+   "success": 3,
    "scheduled": 4,
    "unconfirmed": 140
   },
   "by_precision": {
-   "minute": 8,
+   "minute": 7,
    "second": 1,
    "hour": 2,
    "month": 25,
@@ -43,66 +43,16 @@
    "quarter": 28,
    "half": 2
   },
-  "with_published_time": 11,
-  "with_published_date": 18,
+  "with_published_time": 10,
+  "with_published_date": 17,
   "period_only": 130,
   "sites": 21,
   "providers": 27,
-  "nearest_net": "2026-10-23T07:11:00.000Z",
+  "nearest_net": "2026-10-23T10:15:00.000Z",
   "window_days": 180,
-  "announced_total": 475
+  "announced_total": 474
  },
  "launches": [
-  {
-   "id": "7766f3bb-674c-4c71-b986-963bd633fcfe",
-   "slug": "electron-were-not-hawking-around-3x-hawkeye-360",
-   "name": "Electron | We're Not Hawking Around (3x HawkEye 360)",
-   "mission": "We're Not Hawking Around (3x HawkEye 360)",
-   "mission_type": "Earth Science",
-   "mission_description": "HawkEye 360 is a a space-based civil global intelligence satellite network using radio frequency (RF) technology to help monitor transportation across air, land and sea and assist with emergencies, and to provide civil SIGINT (Signal Intelligence) mission. The constellation of small satellites (named Hawk ) will collect information on specific radio signals worldwide to provide high-precision rad…",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Electron",
-   "vehicle_family": null,
-   "provider": "Rocket Lab",
-   "provider_abbrev": "RL",
-   "site": {
-    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "country": "New Zealand"
-   },
-   "pad": {
-    "name": "Rocket Lab Launch Complex 1A",
-    "latitude": -39.262833,
-    "longitude": 177.864469
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-23T07:11:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-23T07:00:00.000Z",
-    "end": "2026-10-23T08:45:00.000Z"
-   },
-   "last_updated": "2026-10-24T02:38:14.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7766f3bb-674c-4c71-b986-963bd633fcfe/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "9648124f-8568-46d2-86d7-4b4d6f12187f",
    "slug": "long-march-6a-yaogan-50-03",
