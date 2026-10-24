@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-24T12:48:24.386Z",
+ "generated_at": "2026-10-24T14:42:08.035Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-24T12:48:24.386Z",
-  "sha256": "d71a26c13f0f1d9099bb2c6b20fe48f069e6f72281207c037eb3d7453351a7e8",
+  "retrieved_at": "2026-10-24T14:42:08.035Z",
+  "sha256": "ed449f92b9eb4c927d2b35682b238f1aa4a3a73c8d3f56f78dab3f4a2fc34b85",
   "pages": 2,
   "upstream_count": 137,
   "upstream_records": 137,
@@ -37,11 +37,11 @@
    "minute": 8,
    "second": 1,
    "hour": 2,
+   "month": 25,
    "day": 7,
-   "month": 24,
    "year": 75,
    "quarter": 28,
-   "half": 3
+   "half": 2
   },
   "with_published_time": 11,
   "with_published_date": 18,
@@ -348,56 +348,6 @@
    "last_updated": "2026-10-23T14:05:56.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2886a96-5ce9-4f45-872f-4e25a00be837/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
-   "slug": "vulcan-vc6l-amazon-leo-lv-01",
-   "name": "Vulcan VC6L | Amazon Leo (LV-01)",
-   "mission": "Amazon Leo (LV-01)",
-   "mission_type": "Communications",
-   "mission_description": "Amazon Leo, formerly known as Project Kuiper, is a mega constellation of satellites in Low Earth Orbit that will offer broadband internet access, this constellation will be managed by Kuiper Systems LLC, a subsidiary of Amazon. This constellation is planned to be composed of 3,276 satellites. The satellites are projected to be placed in 98 orbital planes in three orbital layers, one at 590 km, 61…",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Vulcan VC6L",
-   "vehicle_family": "Vulcan",
-   "provider": "United Launch Alliance",
-   "provider_abbrev": "ULA",
-   "site": {
-    "name": "Cape Canaveral SFS, FL, USA",
-    "timezone": "America/New_York",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 41",
-    "latitude": 28.58341025,
-    "longitude": -80.58303644
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-10-29T00:00:00.000Z",
-   "precision": {
-    "kind": "day",
-    "exact": false,
-    "dated": true,
-    "countdown": false,
-    "id": 5,
-    "name": "Day"
-   },
-   "window": {
-    "start": "2026-10-29T00:00:00.000Z",
-    "end": "2026-10-29T00:00:00.000Z"
-   },
-   "last_updated": "2026-10-08T18:02:42.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ef9850ad-1096-425b-9d27-f7bbd186e61a/",
     "info": [],
     "webcast": []
    },
@@ -854,6 +804,62 @@
    "change": null
   },
   {
+   "id": "c9605b67-8a53-4239-a8ae-577fe3b79799",
+   "slug": "long-march-2fg-shenzhou-24",
+   "name": "Long March 2F/G | Shenzhou 24",
+   "mission": "Shenzhou 24",
+   "mission_type": "Human Exploration",
+   "mission_description": "Shenzhou 24 will be the 24th flight of the Shenzhou program. The first astronaut from Pakistan is expected to fly on this on a short duration mission, with another Chinese astronaut to undergo a year long expedition.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Long March 2F/G",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Area 91 (SLS-1 / 921)",
+    "latitude": 40.957893,
+    "longitude": 100.290944
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-25T00:00:00.000Z",
+   "precision": {
+    "kind": "day",
+    "exact": false,
+    "dated": true,
+    "countdown": false,
+    "id": 5,
+    "name": "Day"
+   },
+   "window": {
+    "start": "2026-11-25T00:00:00.000Z",
+    "end": "2026-11-25T00:00:00.000Z"
+   },
+   "last_updated": "2026-10-24T14:00:00.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c9605b67-8a53-4239-a8ae-577fe3b79799/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-12-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -51840,
+    "detected_at": "2026-10-24T14:42:08.035Z"
+   }
+  },
+  {
    "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
    "slug": "mir-demo-flight",
    "name": "Mir | Demo Flight",
@@ -1052,6 +1058,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
+   "slug": "vulcan-vc6l-amazon-leo-lv-01",
+   "name": "Vulcan VC6L | Amazon Leo (LV-01)",
+   "mission": "Amazon Leo (LV-01)",
+   "mission_type": "Communications",
+   "mission_description": "Amazon Leo, formerly known as Project Kuiper, is a mega constellation of satellites in Low Earth Orbit that will offer broadband internet access, this constellation will be managed by Kuiper Systems LLC, a subsidiary of Amazon. This constellation is planned to be composed of 3,276 satellites. The satellites are projected to be placed in 98 orbital planes in three orbital layers, one at 590 km, 61…",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Vulcan VC6L",
+   "vehicle_family": "Vulcan",
+   "provider": "United Launch Alliance",
+   "provider_abbrev": "ULA",
+   "site": {
+    "name": "Cape Canaveral SFS, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 41",
+    "latitude": 28.58341025,
+    "longitude": -80.58303644
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-30T00:00:00.000Z",
+   "precision": {
+    "kind": "month",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 7,
+    "name": "Month"
+   },
+   "window": {
+    "start": "2026-11-30T00:00:00.000Z",
+    "end": "2026-11-30T00:00:00.000Z"
+   },
+   "last_updated": "2026-10-24T13:55:46.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ef9850ad-1096-425b-9d27-f7bbd186e61a/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-29T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 46080,
+    "detected_at": "2026-10-24T14:42:08.035Z"
+   }
   },
   {
    "id": "0196fba7-dd6c-4ba0-bf71-e1460930ffde",
@@ -4810,57 +4872,6 @@
    "last_updated": "2026-07-17T13:35:07.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c703fab3-2ce4-4cf1-861d-754da3f3ad42/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "c9605b67-8a53-4239-a8ae-577fe3b79799",
-   "slug": "long-march-2fg-shenzhou-24",
-   "name": "Long March 2F/G | Shenzhou 24",
-   "mission": "Shenzhou 24",
-   "mission_type": "Human Exploration",
-   "mission_description": "Shenzhou 24 will be the 24th flight of the Shenzhou program.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 2F/G",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Area 91 (SLS-1 / 921)",
-    "latitude": 40.957893,
-    "longitude": 100.290944
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-12-31T00:00:00.000Z",
-   "precision": {
-    "kind": "half",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "half": 2,
-    "id": 13,
-    "name": "Year Half 2"
-   },
-   "window": {
-    "start": "2026-12-31T00:00:00.000Z",
-    "end": "2026-12-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-01-23T08:16:32.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c9605b67-8a53-4239-a8ae-577fe3b79799/",
     "info": [],
     "webcast": []
    },
