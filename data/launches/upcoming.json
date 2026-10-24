@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-24T20:42:08.098Z",
+ "generated_at": "2026-10-24T22:41:35.406Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-24T20:42:08.098Z",
-  "sha256": "f57018c79536576df9a8c4fd0b211ecb186de50df47703bf23e6499e60d585c3",
+  "retrieved_at": "2026-10-24T22:41:35.406Z",
+  "sha256": "1e413a84342ff852cf3025cf5c433a1a8eadbc7c2e24e598d0276da31fe8adb5",
   "pages": 2,
-  "upstream_count": 136,
-  "upstream_records": 136,
+  "upstream_count": 135,
+  "upstream_records": 135,
   "announced_total": 474,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 147,
+  "count": 146,
   "by_status": {
-   "success": 3,
+   "success": 2,
    "scheduled": 4,
    "unconfirmed": 140
   },
   "by_precision": {
-   "minute": 7,
+   "minute": 6,
    "second": 1,
    "hour": 2,
    "month": 25,
@@ -43,66 +43,16 @@
    "quarter": 28,
    "half": 2
   },
-  "with_published_time": 10,
-  "with_published_date": 17,
+  "with_published_time": 9,
+  "with_published_date": 16,
   "period_only": 130,
-  "sites": 21,
+  "sites": 20,
   "providers": 27,
-  "nearest_net": "2026-10-23T10:15:00.000Z",
+  "nearest_net": "2026-10-23T19:25:00.000Z",
   "window_days": 180,
   "announced_total": 474
  },
  "launches": [
-  {
-   "id": "9648124f-8568-46d2-86d7-4b4d6f12187f",
-   "slug": "long-march-6a-yaogan-50-03",
-   "name": "Long March 6A | Yaogan 50-03",
-   "mission": "Yaogan 50-03",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "The Yaogan 50-03 is a Chinese military “remote sensing” satellite of unknown purposes.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 6A",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Taiyuan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Complex 9A",
-    "latitude": 38.8583,
-    "longitude": 111.5802
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-23T10:15:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-23T10:07:00.000Z",
-    "end": "2026-10-23T10:28:00.000Z"
-   },
-   "last_updated": "2026-10-24T02:45:38.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/9648124f-8568-46d2-86d7-4b4d6f12187f/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "3621085f-deae-4f89-bd54-c0f96ee44421",
    "slug": "long-march-4b-yaogan-53-07-to-0956-19-to-21",
