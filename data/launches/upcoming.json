@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-25T03:51:01.755Z",
+ "generated_at": "2026-10-25T04:46:37.341Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-25T03:51:01.755Z",
-  "sha256": "efa80c21c9904a50788e0ce90e07f83e59ff662f8f15e2c60cec795089857101",
+  "retrieved_at": "2026-10-25T04:46:37.341Z",
+  "sha256": "9196e0a9ffa291c9db2cb8ad01113747375b9676527664dddb14332ef7698b7c",
   "pages": 2,
   "upstream_count": 135,
   "upstream_records": 135,
@@ -29,8 +29,7 @@
  "stats": {
   "count": 146,
   "by_status": {
-   "success": 2,
-   "unknown": 1,
+   "success": 3,
    "scheduled": 3,
    "unconfirmed": 140
   },
@@ -156,12 +155,12 @@
   },
   {
    "id": "6b95bcc8-1f88-4539-84fe-f63630138766",
-   "slug": "long-march-8a-unknown-payload",
-   "name": "Long March 8A | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
+   "slug": "long-march-8a-satnet-leo-group-28",
+   "name": "Long March 8A | SatNet LEO Group 28",
+   "mission": "SatNet LEO Group 28",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 9 Low Earth Orbit communication satellites for the Chinese state owned SatNet constellation operated by the China Satellite Network Group. The constellation will eventually consists of 13000 satellites.",
+   "orbit": "Low Earth Orbit",
    "vehicle": "Long March 8A",
    "vehicle_family": "Long March",
    "provider": "China Aerospace Science and Technology Corporation",
@@ -177,11 +176,11 @@
     "longitude": 110.930753
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-10-25T02:03:00.000Z",
    "precision": {
@@ -196,13 +195,19 @@
     "start": "2026-10-25T01:42:00.000Z",
     "end": "2026-10-25T02:32:00.000Z"
    },
-   "last_updated": "2026-10-25T02:11:30.000Z",
+   "last_updated": "2026-10-25T03:55:06.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6b95bcc8-1f88-4539-84fe-f63630138766/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-10-25T02:03:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-10-25T04:46:37.341Z"
+   }
   },
   {
    "id": "e2886a96-5ce9-4f45-872f-4e25a00be837",
