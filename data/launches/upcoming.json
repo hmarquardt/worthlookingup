@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-25T04:46:37.341Z",
+ "generated_at": "2026-10-25T05:43:59.621Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,11 +18,11 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-25T04:46:37.341Z",
-  "sha256": "9196e0a9ffa291c9db2cb8ad01113747375b9676527664dddb14332ef7698b7c",
+  "retrieved_at": "2026-10-25T05:43:59.621Z",
+  "sha256": "d3e52e8464edddb1d9ca569f2d7033ba59975e94348948c8e9a6619f05663805",
   "pages": 2,
-  "upstream_count": 135,
-  "upstream_records": 135,
+  "upstream_count": 134,
+  "upstream_records": 134,
   "announced_total": 473,
   "duplicates_removed": 0
  },
@@ -201,13 +201,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Launch in Flight",
-    "previous_net": "2026-10-25T02:03:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-10-25T04:46:37.341Z"
-   }
+   "change": null
   },
   {
    "id": "e2886a96-5ce9-4f45-872f-4e25a00be837",
@@ -3921,25 +3915,25 @@
   },
   {
    "id": "a9ee8337-127d-4f17-9e3a-a07999f80099",
-   "slug": "vulcan-sda-tranche-1-tracking-layer-d",
-   "name": "Vulcan | SDA Tranche 1 Tracking Layer D",
+   "slug": "falcon-9-block-5-sda-tranche-1-tracking-layer-d",
+   "name": "Falcon 9 Block 5 | SDA Tranche 1 Tracking Layer D",
    "mission": "SDA Tranche 1 Tracking Layer D",
    "mission_type": "Government/Top Secret",
    "mission_description": "Tranche 1 Tracking Layer D is one of five missions by the United States Space Force Space Development Agency (SDA) for the Proliferated Warfighter Space Architecture (PWSA) Tranche 1 Tracking Layer constellation, which will provide global indications, warning, tracking, and targeting of advanced missile threats, including hypersonic missile systems.",
    "orbit": "Polar Orbit",
-   "vehicle": "Vulcan",
-   "vehicle_family": "Vulcan",
-   "provider": "United Launch Alliance",
-   "provider_abbrev": "ULA",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
    "site": {
     "name": "Vandenberg SFB, CA, USA",
     "timezone": "America/Los_Angeles",
     "country": "United States of America"
    },
    "pad": {
-    "name": "Space Launch Complex 3E",
-    "latitude": 34.64,
-    "longitude": -120.5895
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
    },
    "status": {
     "id": 2,
@@ -3950,18 +3944,19 @@
    },
    "net": "2026-12-31T00:00:00.000Z",
    "precision": {
-    "kind": "year",
+    "kind": "quarter",
     "exact": false,
     "dated": false,
     "countdown": false,
-    "id": 14,
-    "name": "Year"
+    "quarter": 4,
+    "id": 11,
+    "name": "Quarter 4"
    },
    "window": {
     "start": "2026-12-31T00:00:00.000Z",
     "end": "2026-12-31T00:00:00.000Z"
    },
-   "last_updated": "2026-03-17T13:58:07.000Z",
+   "last_updated": "2026-10-25T04:56:36.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a9ee8337-127d-4f17-9e3a-a07999f80099/",
     "info": [],
@@ -5927,25 +5922,25 @@
   },
   {
    "id": "fcbc4550-e69e-4458-a9e6-4a5b6b6b15a5",
-   "slug": "falcon-9-block-5-sda-tranche-1-tracking-layer-e",
-   "name": "Falcon 9 Block 5 | SDA Tranche 1 Tracking Layer E",
+   "slug": "vulcan-sda-tranche-1-tracking-layer-e",
+   "name": "Vulcan | SDA Tranche 1 Tracking Layer E",
    "mission": "SDA Tranche 1 Tracking Layer E",
    "mission_type": "Government/Top Secret",
    "mission_description": "Tranche 1 Tracking Layer E is one of five missions by the United States Space Force Space Development Agency (SDA) for the Proliferated Warfighter Space Architecture (PWSA) Tranche 1 Tracking Layer constellation, which will provide global indications, warning, tracking, and targeting of advanced missile threats, including hypersonic missile systems.",
    "orbit": "Polar Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
+   "vehicle": "Vulcan",
+   "vehicle_family": "Vulcan",
+   "provider": "United Launch Alliance",
+   "provider_abbrev": "ULA",
    "site": {
     "name": "Vandenberg SFB, CA, USA",
     "timezone": "America/Los_Angeles",
     "country": "United States of America"
    },
    "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
+    "name": "Space Launch Complex 3E",
+    "latitude": 34.64,
+    "longitude": -120.5895
    },
    "status": {
     "id": 2,
@@ -5956,19 +5951,18 @@
    },
    "net": "2026-12-31T00:00:00.000Z",
    "precision": {
-    "kind": "quarter",
+    "kind": "year",
     "exact": false,
     "dated": false,
     "countdown": false,
-    "quarter": 4,
-    "id": 11,
-    "name": "Quarter 4"
+    "id": 14,
+    "name": "Year"
    },
    "window": {
     "start": "2026-12-31T00:00:00.000Z",
     "end": "2026-12-31T00:00:00.000Z"
    },
-   "last_updated": "2026-08-27T16:03:29.000Z",
+   "last_updated": "2026-10-25T04:57:06.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/fcbc4550-e69e-4458-a9e6-4a5b6b6b15a5/",
     "info": [],
