@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-25T05:43:59.621Z",
+ "generated_at": "2026-10-25T07:43:12.555Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,24 +18,24 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-25T05:43:59.621Z",
-  "sha256": "d3e52e8464edddb1d9ca569f2d7033ba59975e94348948c8e9a6619f05663805",
+  "retrieved_at": "2026-10-25T07:43:12.555Z",
+  "sha256": "428795421ef4f1cf1e5be6dcf33a38bb27a100ee80620b4bb57a6adcb3405e09",
   "pages": 2,
-  "upstream_count": 134,
-  "upstream_records": 134,
+  "upstream_count": 133,
+  "upstream_records": 133,
   "announced_total": 473,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 146,
+  "count": 145,
   "by_status": {
-   "success": 3,
+   "success": 2,
    "scheduled": 3,
    "unconfirmed": 140
   },
   "by_precision": {
-   "minute": 7,
    "second": 1,
+   "minute": 6,
    "hour": 1,
    "month": 25,
    "day": 7,
@@ -43,66 +43,16 @@
    "quarter": 28,
    "half": 2
   },
-  "with_published_time": 9,
-  "with_published_date": 16,
+  "with_published_time": 8,
+  "with_published_date": 15,
   "period_only": 130,
   "sites": 20,
   "providers": 27,
-  "nearest_net": "2026-10-23T19:25:00.000Z",
+  "nearest_net": "2026-10-23T22:48:44.000Z",
   "window_days": 180,
   "announced_total": 473
  },
  "launches": [
-  {
-   "id": "3621085f-deae-4f89-bd54-c0f96ee44421",
-   "slug": "long-march-4b-yaogan-53-07-to-0956-19-to-21",
-   "name": "Long March 4B | Yaogan 53-07 to 09/56-19 to 21",
-   "mission": "Yaogan 53-07 to 09/56-19 to 21",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "6 Chinese military “remote sensing” satellite of unknown purposes.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 4B",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Area 94 (SLS-2 / 603)",
-    "latitude": 40.960482,
-    "longitude": 100.298059
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-23T19:25:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-23T19:17:00.000Z",
-    "end": "2026-10-23T19:39:00.000Z"
-   },
-   "last_updated": "2026-10-24T02:53:17.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3621085f-deae-4f89-bd54-c0f96ee44421/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
    "slug": "falcon-9-block-5-starlink-group-15-15",
