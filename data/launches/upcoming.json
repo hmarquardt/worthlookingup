@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-25T01:54:02.825Z",
+ "generated_at": "2026-10-25T02:50:21.500Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-25T01:54:02.825Z",
-  "sha256": "7d2250c163fc76f8a30b8fcdddb532fae32195ab3e5b950f1ce49c020d34866e",
+  "retrieved_at": "2026-10-25T02:50:21.500Z",
+  "sha256": "efa80c21c9904a50788e0ce90e07f83e59ff662f8f15e2c60cec795089857101",
   "pages": 2,
   "upstream_count": 135,
   "upstream_records": 135,
@@ -30,13 +30,14 @@
   "count": 146,
   "by_status": {
    "success": 2,
-   "scheduled": 4,
+   "unknown": 1,
+   "scheduled": 3,
    "unconfirmed": 140
   },
   "by_precision": {
-   "minute": 6,
+   "minute": 7,
    "second": 1,
-   "hour": 2,
+   "hour": 1,
    "month": 25,
    "day": 7,
    "year": 75,
@@ -176,32 +177,38 @@
     "longitude": 110.930753
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
-   "net": "2026-10-25T01:50:00.000Z",
+   "net": "2026-10-25T02:03:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-10-25T01:42:00.000Z",
     "end": "2026-10-25T02:32:00.000Z"
    },
-   "last_updated": "2026-10-25T01:47:41.000Z",
+   "last_updated": "2026-10-25T02:11:30.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6b95bcc8-1f88-4539-84fe-f63630138766/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-25T01:50:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 13,
+    "detected_at": "2026-10-25T02:50:21.500Z"
+   }
   },
   {
    "id": "e2886a96-5ce9-4f45-872f-4e25a00be837",
