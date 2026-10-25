@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-25T09:43:08.659Z",
+ "generated_at": "2026-10-25T11:41:49.280Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,22 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-25T09:43:08.659Z",
-  "sha256": "428795421ef4f1cf1e5be6dcf33a38bb27a100ee80620b4bb57a6adcb3405e09",
+  "retrieved_at": "2026-10-25T11:41:49.280Z",
+  "sha256": "bcfb9085a87aeb113f284cb18cdad28572732cd4301b80fd4452dd2198daf2d1",
   "pages": 2,
-  "upstream_count": 133,
-  "upstream_records": 133,
+  "upstream_count": 132,
+  "upstream_records": 132,
   "announced_total": 473,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 145,
+  "count": 144,
   "by_status": {
-   "success": 2,
+   "success": 1,
    "scheduled": 3,
    "unconfirmed": 140
   },
   "by_precision": {
-   "second": 1,
    "minute": 6,
    "hour": 1,
    "month": 25,
@@ -43,66 +42,16 @@
    "quarter": 28,
    "half": 2
   },
-  "with_published_time": 8,
-  "with_published_date": 15,
+  "with_published_time": 7,
+  "with_published_date": 14,
   "period_only": 130,
   "sites": 20,
   "providers": 27,
-  "nearest_net": "2026-10-23T22:48:44.000Z",
+  "nearest_net": "2026-10-25T02:03:00.000Z",
   "window_days": 180,
   "announced_total": 473
  },
  "launches": [
-  {
-   "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
-   "slug": "falcon-9-block-5-starlink-group-15-15",
-   "name": "Falcon 9 Block 5 | Starlink Group 15-15",
-   "mission": "Starlink Group 15-15",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-23T22:48:44.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-10-23T21:30:00.000Z",
-    "end": "2026-10-24T01:30:00.000Z"
-   },
-   "last_updated": "2026-10-24T20:04:33.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f6af629d-39b5-4f86-bc0c-f8776444a858/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "6b95bcc8-1f88-4539-84fe-f63630138766",
    "slug": "long-march-8a-satnet-leo-group-28",
@@ -145,7 +94,7 @@
     "start": "2026-10-25T01:42:00.000Z",
     "end": "2026-10-25T02:32:00.000Z"
    },
-   "last_updated": "2026-10-25T03:55:06.000Z",
+   "last_updated": "2026-10-25T11:01:14.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6b95bcc8-1f88-4539-84fe-f63630138766/",
     "info": [],
