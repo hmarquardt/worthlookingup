@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-26T21:43:46.141Z",
+ "generated_at": "2026-10-26T23:43:10.394Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,37 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-26T21:43:46.141Z",
-  "sha256": "2cfb5b687ae0a55f0c246ce218a3ecfe8980dc520b6e404d6bfbd7e04435e552",
+  "retrieved_at": "2026-10-26T23:43:10.394Z",
+  "sha256": "60a32feb78b9f2731efee09a7690faffbe819d2d11d9e3096cf08ad0a2b464bf",
   "pages": 2,
-  "upstream_count": 132,
-  "upstream_records": 132,
-  "announced_total": 474,
+  "upstream_count": 133,
+  "upstream_records": 133,
+  "announced_total": 475,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 144,
+  "count": 145,
   "by_status": {
    "scheduled": 5,
-   "unconfirmed": 139
+   "unconfirmed": 140
   },
   "by_precision": {
    "second": 1,
    "minute": 5,
    "day": 7,
+   "hour": 1,
    "month": 25,
    "year": 76,
    "quarter": 28,
    "half": 2
   },
-  "with_published_time": 6,
-  "with_published_date": 13,
+  "with_published_time": 7,
+  "with_published_date": 14,
   "period_only": 131,
   "sites": 20,
   "providers": 27,
   "nearest_net": "2026-10-27T05:46:37.000Z",
   "window_days": 180,
-  "announced_total": 474
+  "announced_total": 475
  },
  "launches": [
   {
@@ -346,6 +347,56 @@
    "last_updated": "2026-10-22T16:39:24.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3cdb9dee-b5cb-406c-bbd1-06a219930fb7/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "a2423132-f965-423f-8b03-6891b775dc54",
+   "slug": "long-march-12-satnet-leo-group-tbd",
+   "name": "Long March 12 | SatNet LEO Group TBD?",
+   "mission": "SatNet LEO Group TBD?",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 9 Low Earth Orbit communication satellites for the Chinese state owned SatNet constellation operated by the China Satellite Network Group. The constellation will eventually consists of 13000 satellites.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Long March 12",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Wenchang Space Launch Site, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Commercial LC-2",
+    "latitude": 19.59755,
+    "longitude": 110.936481
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-05T20:00:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-05T20:00:00.000Z",
+    "end": "2026-11-05T23:00:00.000Z"
+   },
+   "last_updated": "2026-10-26T23:22:44.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a2423132-f965-423f-8b03-6891b775dc54/",
     "info": [],
     "webcast": []
    },
