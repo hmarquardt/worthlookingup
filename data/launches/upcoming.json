@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-26T09:54:08.842Z",
+ "generated_at": "2026-10-26T14:18:26.405Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,90 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-26T09:54:08.842Z",
-  "sha256": "387e0d95b8b9b08767f2ae48a8141f3044d34ffd615380448372d0728cfcb624",
+  "retrieved_at": "2026-10-26T14:18:26.405Z",
+  "sha256": "7d0fb60d3ce3fd0a91a564de7dbb64d7412ac0fdb430c6fc840e8840f8c04e55",
   "pages": 2,
-  "upstream_count": 132,
-  "upstream_records": 132,
+  "upstream_count": 131,
+  "upstream_records": 131,
   "announced_total": 472,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 144,
+  "count": 143,
   "by_status": {
-   "success": 1,
-   "scheduled": 3,
-   "unconfirmed": 140
+   "scheduled": 4,
+   "unconfirmed": 139
   },
   "by_precision": {
    "minute": 6,
-   "hour": 1,
-   "month": 25,
    "day": 7,
-   "year": 75,
+   "month": 24,
+   "year": 76,
    "quarter": 28,
    "half": 2
   },
-  "with_published_time": 7,
-  "with_published_date": 14,
+  "with_published_time": 6,
+  "with_published_date": 13,
   "period_only": 130,
   "sites": 20,
   "providers": 27,
-  "nearest_net": "2026-10-25T02:03:00.000Z",
+  "nearest_net": "2026-10-27T04:45:00.000Z",
   "window_days": 180,
   "announced_total": 472
  },
  "launches": [
-  {
-   "id": "6b95bcc8-1f88-4539-84fe-f63630138766",
-   "slug": "long-march-8a-satnet-leo-group-28",
-   "name": "Long March 8A | SatNet LEO Group 28",
-   "mission": "SatNet LEO Group 28",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 9 Low Earth Orbit communication satellites for the Chinese state owned SatNet constellation operated by the China Satellite Network Group. The constellation will eventually consists of 13000 satellites.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 8A",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Wenchang Space Launch Site, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Commercial LC-1",
-    "latitude": 19.597275,
-    "longitude": 110.930753
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-25T02:03:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-25T01:42:00.000Z",
-    "end": "2026-10-25T02:32:00.000Z"
-   },
-   "last_updated": "2026-10-26T06:09:23.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6b95bcc8-1f88-4539-84fe-f63630138766/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "e2886a96-5ce9-4f45-872f-4e25a00be837",
    "slug": "falcon-9-block-5-starlink-group-15-16",
@@ -225,82 +173,38 @@
     "longitude": 80.2304
    },
    "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
-   "net": "2026-10-30T17:00:00.000Z",
+   "net": "2026-10-30T18:21:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-10-30T17:00:00.000Z",
     "end": "2026-10-30T21:00:00.000Z"
    },
-   "last_updated": "2026-10-23T08:05:38.000Z",
+   "last_updated": "2026-10-26T12:04:31.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/20d5676e-111b-40e3-8923-b218c3665ca2/",
     "info": [],
     "webcast": []
    },
-   "change": null
-  },
-  {
-   "id": "dc570565-4dcf-4ab9-8174-bf88efef477f",
-   "slug": "long-march-12a-flight-2",
-   "name": "Long March 12A | Flight 2",
-   "mission": "Flight 2",
-   "mission_type": "Test Flight",
-   "mission_description": "Second test launch of CASC/SAST’s Long March 12A rocket. Payload identities are TBD.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 12A",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Long March 12 series Pad",
-    "latitude": 40.891596,
-    "longitude": 100.217289
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-10-31T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-10-31T00:00:00.000Z",
-    "end": "2026-10-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-09-20T02:52:25.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/dc570565-4dcf-4ab9-8174-bf88efef477f/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-30T17:00:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": 81,
+    "detected_at": "2026-10-26T14:18:26.405Z"
+   }
   },
   {
    "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
@@ -5165,6 +5069,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "dc570565-4dcf-4ab9-8174-bf88efef477f",
+   "slug": "long-march-12a-flight-2",
+   "name": "Long March 12A | Flight 2",
+   "mission": "Flight 2",
+   "mission_type": "Test Flight",
+   "mission_description": "Second test launch of CASC/SAST’s Long March 12A rocket. Payload identities are TBD.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Long March 12A",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Long March 12 series Pad",
+    "latitude": 40.891596,
+    "longitude": 100.217289
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-12-31T00:00:00.000Z",
+   "precision": {
+    "kind": "year",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 14,
+    "name": "Year"
+   },
+   "window": {
+    "start": "2026-12-31T00:00:00.000Z",
+    "end": "2026-12-31T00:00:00.000Z"
+   },
+   "last_updated": "2026-10-26T12:51:11.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/dc570565-4dcf-4ab9-8174-bf88efef477f/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 87840,
+    "detected_at": "2026-10-26T14:18:26.405Z"
+   }
   },
   {
    "id": "dca8749f-1552-485a-8061-f1ad79055b8d",
