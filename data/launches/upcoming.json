@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-26T14:18:26.405Z",
+ "generated_at": "2026-10-26T15:20:01.293Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,12 +18,12 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-26T14:18:26.405Z",
-  "sha256": "7d0fb60d3ce3fd0a91a564de7dbb64d7412ac0fdb430c6fc840e8840f8c04e55",
+  "retrieved_at": "2026-10-26T15:20:01.293Z",
+  "sha256": "f74de8e8430db17869b35e582969607fae359e03c2a24ea8e472b9d3b7c84860",
   "pages": 2,
   "upstream_count": 131,
   "upstream_records": 131,
-  "announced_total": 472,
+  "announced_total": 474,
   "duplicates_removed": 0
  },
  "stats": {
@@ -47,7 +47,7 @@
   "providers": 27,
   "nearest_net": "2026-10-27T04:45:00.000Z",
   "window_days": 180,
-  "announced_total": 472
+  "announced_total": 474
  },
  "launches": [
   {
@@ -198,13 +198,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-30T17:00:00.000Z",
-    "previous_status": "To Be Confirmed",
-    "delta_minutes": 81,
-    "detected_at": "2026-10-26T14:18:26.405Z"
-   }
+   "change": null
   },
   {
    "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
@@ -5118,13 +5112,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-10-31T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": 87840,
-    "detected_at": "2026-10-26T14:18:26.405Z"
-   }
+   "change": null
   },
   {
    "id": "dca8749f-1552-485a-8061-f1ad79055b8d",
