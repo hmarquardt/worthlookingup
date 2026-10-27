@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-27T03:50:26.850Z",
+ "generated_at": "2026-10-27T04:48:51.259Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-27T03:50:26.850Z",
-  "sha256": "ca5fc913a2d81ede2f5fc11cbf7fb470dd3845adfce16e8c2ce290afc4f84dbe",
+  "retrieved_at": "2026-10-27T04:48:51.259Z",
+  "sha256": "ee71e8af747bb99e6a53e7adccf75eb1ec4e285d895b976aa612729023a31504",
   "pages": 2,
   "upstream_count": 133,
   "upstream_records": 133,
@@ -47,7 +47,7 @@
   "period_only": 131,
   "sites": 20,
   "providers": 27,
-  "nearest_net": "2026-10-27T05:46:37.000Z",
+  "nearest_net": "2026-10-27T07:25:51.000Z",
   "window_days": 180,
   "announced_total": 475
  },
@@ -81,7 +81,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-10-27T05:46:37.000Z",
+   "net": "2026-10-27T07:25:51.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -94,13 +94,19 @@
     "start": "2026-10-27T04:45:00.000Z",
     "end": "2026-10-27T08:45:00.000Z"
    },
-   "last_updated": "2026-10-27T00:53:57.000Z",
+   "last_updated": "2026-10-27T04:47:15.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2886a96-5ce9-4f45-872f-4e25a00be837/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-27T05:46:37.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 99,
+    "detected_at": "2026-10-27T04:48:51.259Z"
+   }
   },
   {
    "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
@@ -144,7 +150,7 @@
     "start": "2026-10-30T04:02:00.000Z",
     "end": "2026-10-30T08:02:00.000Z"
    },
-   "last_updated": "2026-10-23T14:05:57.000Z",
+   "last_updated": "2026-10-27T04:02:05.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
     "info": [],
