@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'dist');
 fs.mkdirSync(out,{recursive:true});
 for(const name of fs.readdirSync(out))fs.rmSync(path.join(out,name),{recursive:true,force:true});
-const files=['index.html','analytics-lite.js','preferences-transfer.js','_headers','_redirects','404.html'];
+const files=['index.html','analytics-lite.js','preferences-transfer.js','_headers','_redirects','404.html','robots.txt','sitemap.xml'];
 files.push(...fs.readdirSync(root).filter(f=>/^overhead-[\w-]+\.js$/.test(f)));
 for(const file of files)fs.copyFileSync(path.join(root,file),path.join(out,file));
 // The Pages Worker is staged from the repository root, and the launch engine it imports is staged at
