@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-28T18:41:11.125Z",
+ "generated_at": "2026-10-28T19:39:32.242Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,141 +18,39 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-28T18:41:11.125Z",
-  "sha256": "fde58363744f3945a146fbd900aa49a64521f5475c30f5113e3a1c4eb10b441f",
+  "retrieved_at": "2026-10-28T19:39:32.242Z",
+  "sha256": "087a16de72f236b3031db02dd61284326b2785966ee9981fd2e6c65c2b98f203",
   "pages": 2,
   "upstream_count": 133,
   "upstream_records": 133,
-  "announced_total": 474,
+  "announced_total": 475,
   "duplicates_removed": 0
  },
  "stats": {
   "count": 145,
   "by_status": {
-   "success": 1,
    "scheduled": 4,
-   "unconfirmed": 140
+   "unconfirmed": 141
   },
   "by_precision": {
-   "second": 1,
-   "minute": 5,
-   "day": 8,
-   "hour": 1,
-   "month": 24,
+   "minute": 6,
+   "hour": 3,
+   "day": 7,
+   "month": 23,
    "year": 76,
    "quarter": 28,
    "half": 2
   },
-  "with_published_time": 7,
-  "with_published_date": 15,
-  "period_only": 130,
+  "with_published_time": 9,
+  "with_published_date": 16,
+  "period_only": 129,
   "sites": 20,
   "providers": 27,
-  "nearest_net": "2026-10-27T07:25:51.000Z",
+  "nearest_net": "2026-10-30T18:21:00.000Z",
   "window_days": 180,
-  "announced_total": 474
+  "announced_total": 475
  },
  "launches": [
-  {
-   "id": "e2886a96-5ce9-4f45-872f-4e25a00be837",
-   "slug": "falcon-9-block-5-starlink-group-15-16",
-   "name": "Falcon 9 Block 5 | Starlink Group 15-16",
-   "mission": "Starlink Group 15-16",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-27T07:25:51.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-10-27T04:45:00.000Z",
-    "end": "2026-10-27T08:45:00.000Z"
-   },
-   "last_updated": "2026-10-28T01:05:50.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2886a96-5ce9-4f45-872f-4e25a00be837/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
-   "slug": "falcon-9-block-5-starlink-group-15-18",
-   "name": "Falcon 9 Block 5 | Starlink Group 15-18",
-   "mission": "Starlink Group 15-18",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-10-30T04:02:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-30T04:02:00.000Z",
-    "end": "2026-10-30T08:02:00.000Z"
-   },
-   "last_updated": "2026-10-27T18:09:36.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "20d5676e-111b-40e3-8923-b218c3665ca2",
    "slug": "gslv-mk-ii-irnss-1l-nvs-03",
@@ -204,6 +102,118 @@
    "change": null
   },
   {
+   "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
+   "slug": "falcon-9-block-5-starlink-group-15-18",
+   "name": "Falcon 9 Block 5 | Starlink Group 15-18",
+   "mission": "Starlink Group 15-18",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-10-31T03:48:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-10-31T03:48:00.000Z",
+    "end": "2026-10-31T07:48:00.000Z"
+   },
+   "last_updated": "2026-10-28T19:32:47.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-30T04:02:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1426,
+    "detected_at": "2026-10-28T19:39:32.242Z"
+   }
+  },
+  {
+   "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
+   "slug": "electron-the-sea-god-surveys-iqps-launch-9",
+   "name": "Electron | The Sea God Surveys (iQPS Launch 9)",
+   "mission": "The Sea God Surveys (iQPS Launch 9)",
+   "mission_type": "Earth Science",
+   "mission_description": "Synthetic aperture radar Earth observation satellite for Japanese Earth imaging company iQPS.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Electron",
+   "vehicle_family": null,
+   "provider": "Rocket Lab",
+   "provider_abbrev": "RL",
+   "site": {
+    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
+    "timezone": "Pacific/Auckland",
+    "country": "New Zealand"
+   },
+   "pad": {
+    "name": "Unknown Pad",
+    "latitude": -39.260881,
+    "longitude": 177.865826
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-02T08:45:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-02T08:45:00.000Z",
+    "end": "2026-11-02T18:15:00.000Z"
+   },
+   "last_updated": "2026-10-28T18:45:02.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-11-03T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -915,
+    "detected_at": "2026-10-28T19:39:32.242Z"
+   }
+  },
+  {
    "id": "54d471e8-695c-4fa7-a3cf-dbd8b389e8ae",
    "slug": "falcon-9-block-5-ussf-432",
    "name": "Falcon 9 Block 5 | USSF-432",
@@ -232,7 +242,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-02T01:56:00.000Z",
+   "net": "2026-11-03T01:42:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -242,116 +252,78 @@
     "name": "Minute"
    },
    "window": {
-    "start": "2026-11-02T01:56:00.000Z",
-    "end": "2026-11-02T05:56:00.000Z"
+    "start": "2026-11-03T01:42:00.000Z",
+    "end": "2026-11-03T05:42:00.000Z"
    },
-   "last_updated": "2026-10-26T18:04:08.000Z",
+   "last_updated": "2026-10-28T19:26:10.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-02T01:56:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1426,
+    "detected_at": "2026-10-28T19:39:32.242Z"
+   }
   },
   {
-   "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
-   "slug": "electron-the-sea-god-surveys-iqps-launch-9",
-   "name": "Electron | The Sea God Surveys (iQPS Launch 9)",
-   "mission": "The Sea God Surveys (iQPS Launch 9)",
-   "mission_type": "Earth Science",
-   "mission_description": "Synthetic aperture radar Earth observation satellite for Japanese Earth imaging company iQPS.",
+   "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
+   "slug": "mir-demo-flight",
+   "name": "Mir | Demo Flight",
+   "mission": "Demo Flight",
+   "mission_type": "Test Flight",
+   "mission_description": "Note: Launch vehicle name is provisional. First orbital full version launch of the South Korean military small satellite launch vehicle, after 2 sub-orbital tests of individual stages on 30 March and 30 December 2022, and 1 orbital test flight without the 2nd stage on 4 December 2023. Details TBD.",
    "orbit": "Low Earth Orbit",
-   "vehicle": "Electron",
-   "vehicle_family": null,
-   "provider": "Rocket Lab",
-   "provider_abbrev": "RL",
+   "vehicle": "Mir",
+   "vehicle_family": "Mir",
+   "provider": "Agency for Defense Development",
+   "provider_abbrev": "ADD",
    "site": {
-    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "country": "New Zealand"
+    "name": "Sea Launch",
+    "timezone": null,
+    "country": "South Korea"
    },
    "pad": {
-    "name": "Unknown Pad",
-    "latitude": -39.260881,
-    "longitude": 177.865826
+    "name": "ADD Offshore launch platform",
+    "latitude": 33.216667,
+    "longitude": 126.366667
    },
    "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
     "kind": "unconfirmed"
    },
-   "net": "2026-11-03T00:00:00.000Z",
+   "net": "2026-11-04T05:00:00.000Z",
    "precision": {
-    "kind": "day",
-    "exact": false,
-    "dated": true,
-    "countdown": false,
-    "id": 5,
-    "name": "Day"
-   },
-   "window": {
-    "start": "2026-11-03T00:00:00.000Z",
-    "end": "2026-11-03T00:00:00.000Z"
-   },
-   "last_updated": "2026-10-23T08:05:23.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "3cdb9dee-b5cb-406c-bbd1-06a219930fb7",
-   "slug": "falcon-9-block-5-starlink-group-15-21",
-   "name": "Falcon 9 Block 5 | Starlink Group 15-21",
-   "mission": "Starlink Group 15-21",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-05T02:35:00.000Z",
-   "precision": {
-    "kind": "minute",
+    "kind": "hour",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 1,
-    "name": "Minute"
+    "id": 2,
+    "name": "Hour"
    },
    "window": {
-    "start": "2026-11-05T02:35:00.000Z",
-    "end": "2026-11-05T06:35:00.000Z"
+    "start": "2026-11-04T05:00:00.000Z",
+    "end": "2026-11-04T09:00:00.000Z"
    },
-   "last_updated": "2026-10-27T19:38:47.000Z",
+   "last_updated": "2026-10-28T19:12:07.000Z",
    "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3cdb9dee-b5cb-406c-bbd1-06a219930fb7/",
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/9e27a1ed-e81a-4918-b32b-0380cf3a9f8f/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-11-30T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -37140,
+    "detected_at": "2026-10-28T19:39:32.242Z"
+   }
   },
   {
    "id": "a2423132-f965-423f-8b03-6891b775dc54",
@@ -404,6 +376,62 @@
    "change": null
   },
   {
+   "id": "3cdb9dee-b5cb-406c-bbd1-06a219930fb7",
+   "slug": "falcon-9-block-5-starlink-group-15-21",
+   "name": "Falcon 9 Block 5 | Starlink Group 15-21",
+   "mission": "Starlink Group 15-21",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-06T02:21:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-06T02:21:00.000Z",
+    "end": "2026-11-06T06:21:00.000Z"
+   },
+   "last_updated": "2026-10-28T19:26:40.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3cdb9dee-b5cb-406c-bbd1-06a219930fb7/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-05T02:35:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1426,
+    "detected_at": "2026-10-28T19:39:32.242Z"
+   }
+  },
+  {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
    "slug": "electron-the-mountain-god-rises-iqps-launch-10",
    "name": "Electron | The Mountain God Rises (iQPS Launch 10)",
@@ -448,6 +476,56 @@
    "last_updated": "2026-10-12T23:40:41.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/db3500ac-965b-4ad8-b417-cb8d8d005586/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
+   "slug": "falcon-9-block-5-ussf-xxx-r-5",
+   "name": "Falcon 9 Block 5 | USSF-xxx (\"R-5\")",
+   "mission": "USSF-xxx (\"R-5\")",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-10T03:03:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-10T03:03:00.000Z",
+    "end": "2026-11-10T07:03:00.000Z"
+   },
+   "last_updated": "2026-10-28T18:57:38.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
     "info": [],
     "webcast": []
    },
@@ -698,56 +776,6 @@
    "last_updated": "2026-10-26T17:58:53.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/56ca6058-7ccc-4ec0-b1b0-fb49f3bfee49/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
-   "slug": "mir-demo-flight",
-   "name": "Mir | Demo Flight",
-   "mission": "Demo Flight",
-   "mission_type": "Test Flight",
-   "mission_description": "Note: Launch vehicle name is provisional. First orbital full version launch of the South Korean military small satellite launch vehicle, after 2 sub-orbital tests of individual stages on 30 March and 30 December 2022, and 1 orbital test flight without the 2nd stage on 4 December 2023. Details TBD.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Mir",
-   "vehicle_family": "Mir",
-   "provider": "Agency for Defense Development",
-   "provider_abbrev": "ADD",
-   "site": {
-    "name": "Sea Launch",
-    "timezone": null,
-    "country": "South Korea"
-   },
-   "pad": {
-    "name": "ADD Offshore launch platform",
-    "latitude": 33.216667,
-    "longitude": 126.366667
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-11-30T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-11-30T00:00:00.000Z",
-    "end": "2026-11-30T00:00:00.000Z"
-   },
-   "last_updated": "2026-10-21T21:21:16.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/9e27a1ed-e81a-4918-b32b-0380cf3a9f8f/",
     "info": [],
     "webcast": []
    },
