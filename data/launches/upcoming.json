@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-29T15:39:53.558Z",
+ "generated_at": "2026-10-29T17:39:49.877Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-29T15:39:53.558Z",
-  "sha256": "4de270649fd6b6e6c15553a745e07a6941081777b9d27af5c577ef25a060a8eb",
+  "retrieved_at": "2026-10-29T17:39:49.877Z",
+  "sha256": "2625d1d31bf6c485ccd13e763fd4c8272ebd5acd91ccf22eeb63c5c00f09285d",
   "pages": 2,
   "upstream_count": 135,
   "upstream_records": 135,
@@ -143,7 +143,7 @@
     "start": "2026-10-31T03:48:00.000Z",
     "end": "2026-10-31T07:48:00.000Z"
    },
-   "last_updated": "2026-10-29T06:12:36.000Z",
+   "last_updated": "2026-10-29T17:31:03.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
     "info": [],
@@ -293,7 +293,7 @@
     "start": "2026-11-03T01:42:00.000Z",
     "end": "2026-11-03T05:42:00.000Z"
    },
-   "last_updated": "2026-10-28T19:26:10.000Z",
+   "last_updated": "2026-10-29T17:31:04.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
@@ -493,7 +493,7 @@
     "start": "2026-11-06T02:21:00.000Z",
     "end": "2026-11-06T06:21:00.000Z"
    },
-   "last_updated": "2026-10-28T19:26:40.000Z",
+   "last_updated": "2026-10-29T17:31:03.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/3cdb9dee-b5cb-406c-bbd1-06a219930fb7/",
     "info": [],
