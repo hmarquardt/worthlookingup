@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-29T17:39:49.877Z",
+ "generated_at": "2026-10-29T18:41:20.441Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-29T17:39:49.877Z",
-  "sha256": "2625d1d31bf6c485ccd13e763fd4c8272ebd5acd91ccf22eeb63c5c00f09285d",
+  "retrieved_at": "2026-10-29T18:41:20.441Z",
+  "sha256": "2f805d7640c8a35f3ab26fb36459710815a4edb04038547afe3051ef6575b4d3",
   "pages": 2,
   "upstream_count": 135,
   "upstream_records": 135,
@@ -34,16 +34,16 @@
   },
   "by_precision": {
    "minute": 6,
-   "hour": 5,
+   "hour": 6,
    "day": 7,
-   "month": 25,
+   "month": 24,
    "year": 76,
    "quarter": 26,
    "half": 2
   },
-  "with_published_time": 11,
-  "with_published_date": 18,
-  "period_only": 129,
+  "with_published_time": 12,
+  "with_published_date": 19,
+  "period_only": 128,
   "sites": 20,
   "providers": 29,
   "nearest_net": "2026-10-30T18:21:00.000Z",
@@ -143,7 +143,7 @@
     "start": "2026-10-31T03:48:00.000Z",
     "end": "2026-10-31T07:48:00.000Z"
    },
-   "last_updated": "2026-10-29T17:31:03.000Z",
+   "last_updated": "2026-10-29T18:34:20.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
     "info": [],
@@ -802,6 +802,62 @@
    "change": null
   },
   {
+   "id": "d74afbc7-0de5-491c-be05-4e9c31f736ac",
+   "slug": "falcon-9-block-5-cygnus-crs-2-ng-25",
+   "name": "Falcon 9 Block 5 | Cygnus CRS-2 NG-25",
+   "mission": "Cygnus CRS-2 NG-25",
+   "mission_type": "Resupply",
+   "mission_description": "This is the 25th flight of the Orbital ATK's uncrewed resupply spacecraft Cygnus and its 24th flight to the International Space Station under the Commercial Resupply Services contract with NASA.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Cape Canaveral SFS, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 40",
+    "latitude": 28.56194122,
+    "longitude": -80.57735736
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-29T16:00:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-29T16:00:00.000Z",
+    "end": "2026-11-29T16:00:00.000Z"
+   },
+   "last_updated": "2026-10-29T17:44:30.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d74afbc7-0de5-491c-be05-4e9c31f736ac/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-11-30T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -480,
+    "detected_at": "2026-10-29T18:41:20.441Z"
+   }
+  },
+  {
    "id": "0f867f0c-5422-4d44-93b8-d7faaae7019b",
    "slug": "starship-flight-15",
    "name": "Starship | Flight 15",
@@ -996,56 +1052,6 @@
    "last_updated": "2026-09-26T12:26:06.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/b5a9bccb-30d7-4af6-8ad1-fabb563be53c/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "d74afbc7-0de5-491c-be05-4e9c31f736ac",
-   "slug": "falcon-9-block-5-cygnus-crs-2-ng-25",
-   "name": "Falcon 9 Block 5 | Cygnus CRS-2 NG-25",
-   "mission": "Cygnus CRS-2 NG-25",
-   "mission_type": "Resupply",
-   "mission_description": "This is the 25th flight of the Orbital ATK's uncrewed resupply spacecraft Cygnus and its 24th flight to the International Space Station under the Commercial Resupply Services contract with NASA.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Cape Canaveral SFS, FL, USA",
-    "timezone": "America/New_York",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 40",
-    "latitude": 28.56194122,
-    "longitude": -80.57735736
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-11-30T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-11-30T00:00:00.000Z",
-    "end": "2026-11-30T00:00:00.000Z"
-   },
-   "last_updated": "2026-10-04T15:15:02.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d74afbc7-0de5-491c-be05-4e9c31f736ac/",
     "info": [],
     "webcast": []
    },
