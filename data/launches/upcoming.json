@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-30T06:47:24.075Z",
+ "generated_at": "2026-10-30T07:40:15.155Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-30T06:47:24.075Z",
-  "sha256": "6ef5f53a86251a3c6e8ea186f091c2d8a9c53c66037597c5c06e60a810e279d1",
+  "retrieved_at": "2026-10-30T07:40:15.155Z",
+  "sha256": "7a6f22e5f7dd2825e24abd5eff19e1990275ab9ef63b1141717fa1dd4bed5259",
   "pages": 2,
   "upstream_count": 134,
   "upstream_records": 134,
@@ -180,7 +180,7 @@
     "description": "Awaiting official confirmation - current date is known with some certainty.",
     "kind": "unconfirmed"
    },
-   "net": "2026-11-02T08:45:00.000Z",
+   "net": "2026-11-02T16:00:00.000Z",
    "precision": {
     "kind": "hour",
     "exact": true,
@@ -190,16 +190,22 @@
     "name": "Hour"
    },
    "window": {
-    "start": "2026-11-02T08:45:00.000Z",
-    "end": "2026-11-02T18:15:00.000Z"
+    "start": "2026-11-02T16:00:00.000Z",
+    "end": "2026-11-02T18:20:00.000Z"
    },
-   "last_updated": "2026-10-28T18:45:02.000Z",
+   "last_updated": "2026-10-30T07:19:07.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-02T08:45:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": 435,
+    "detected_at": "2026-10-30T07:40:15.155Z"
+   }
   },
   {
    "id": "f3f201cd-0ff9-4ff7-9aaa-1d22c399c75a",
