@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-30T13:40:15.722Z",
+ "generated_at": "2026-10-30T14:39:56.536Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,37 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-30T13:40:15.722Z",
-  "sha256": "051504461b29b392a888c815a19769c3748e6d9ccc39ad7732c36b95f93cd20c",
+  "retrieved_at": "2026-10-30T14:39:56.536Z",
+  "sha256": "c8811c505796d7d6d8e8b3beec8a9a4d12e39a7fbba545451833ca592dcd8c80",
   "pages": 2,
-  "upstream_count": 135,
-  "upstream_records": 135,
-  "announced_total": 478,
+  "upstream_count": 137,
+  "upstream_records": 137,
+  "announced_total": 480,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 148,
+  "count": 150,
   "by_status": {
    "scheduled": 7,
-   "unconfirmed": 141
+   "unconfirmed": 143
   },
   "by_precision": {
-   "minute": 6,
-   "hour": 8,
+   "minute": 5,
+   "second": 1,
+   "hour": 10,
    "day": 7,
    "month": 24,
    "year": 76,
    "quarter": 26,
    "half": 1
   },
-  "with_published_time": 14,
-  "with_published_date": 21,
+  "with_published_time": 16,
+  "with_published_date": 23,
   "period_only": 127,
   "sites": 21,
   "providers": 29,
   "nearest_net": "2026-10-30T18:21:00.000Z",
   "window_days": 180,
-  "announced_total": 478
+  "announced_total": 480
  },
  "launches": [
   {
@@ -130,26 +131,32 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-10-31T03:48:00.000Z",
+   "net": "2026-10-31T04:02:22.000Z",
    "precision": {
-    "kind": "minute",
+    "kind": "second",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 1,
-    "name": "Minute"
+    "id": 0,
+    "name": "Second"
    },
    "window": {
     "start": "2026-10-31T03:48:00.000Z",
     "end": "2026-10-31T07:48:00.000Z"
    },
-   "last_updated": "2026-10-29T18:34:20.000Z",
+   "last_updated": "2026-10-30T14:16:59.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-31T03:48:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 14,
+    "detected_at": "2026-10-30T14:39:56.536Z"
+   }
   },
   {
    "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
@@ -499,13 +506,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-05T20:00:00.000Z",
-    "previous_status": "To Be Confirmed",
-    "delta_minutes": 75,
-    "detected_at": "2026-10-30T13:40:15.722Z"
-   }
+   "change": null
   },
   {
    "id": "3cdb9dee-b5cb-406c-bbd1-06a219930fb7",
@@ -708,6 +709,56 @@
    "change": null
   },
   {
+   "id": "a2975167-7c6f-4403-99e1-b40df17c8140",
+   "slug": "long-march-8a-satnet-leo-group-tbd",
+   "name": "Long March 8A | SatNet LEO Group TBD?",
+   "mission": "SatNet LEO Group TBD?",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 9 Low Earth Orbit communication satellites for the Chinese state owned SatNet constellation operated by the China Satellite Network Group. The constellation will eventually consists of 13000 satellites.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Long March 8A",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Wenchang Space Launch Site, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Commercial LC-1",
+    "latitude": 19.597275,
+    "longitude": 110.930753
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-20T11:00:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-20T11:00:00.000Z",
+    "end": "2026-11-20T14:00:00.000Z"
+   },
+   "last_updated": "2026-10-30T13:59:24.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a2975167-7c6f-4403-99e1-b40df17c8140/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
    "id": "7bdc412b-c965-4517-a131-f57a01189803",
    "slug": "ariane-64-block-2-amazon-leo-le-04",
    "name": "Ariane 64 Block 2 | Amazon Leo (LE-04)",
@@ -802,6 +853,56 @@
    "last_updated": "2026-06-08T21:46:36.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8dd5de11-831b-445f-86f0-bffefe0550d9/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "5ce59e3a-c343-430f-ae4e-e608ba536754",
+   "slug": "long-march-12-satnet-leo-group-tbd-2",
+   "name": "Long March 12 | SatNet LEO Group TBD?",
+   "mission": "SatNet LEO Group TBD?",
+   "mission_type": "Communications",
+   "mission_description": "A batch of 9 Low Earth Orbit communication satellites for the Chinese state owned SatNet constellation operated by the China Satellite Network Group. The constellation will eventually consists of 13000 satellites.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Long March 12",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Wenchang Space Launch Site, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Commercial LC-2",
+    "latitude": 19.59755,
+    "longitude": 110.936481
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-24T07:00:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-24T07:00:00.000Z",
+    "end": "2026-11-24T10:00:00.000Z"
+   },
+   "last_updated": "2026-10-30T13:59:29.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/5ce59e3a-c343-430f-ae4e-e608ba536754/",
     "info": [],
     "webcast": []
    },
