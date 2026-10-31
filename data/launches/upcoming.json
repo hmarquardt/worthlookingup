@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-31T00:47:05.556Z",
+ "generated_at": "2026-10-31T01:40:46.116Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-31T00:47:05.556Z",
-  "sha256": "ebd28ef836ae15e5909927f5b65a5f4976259d10a7114299c38f1989cbf4ddbb",
+  "retrieved_at": "2026-10-31T01:40:46.116Z",
+  "sha256": "c2f15f00367fd87be2b2b4333fc0c722348407b501be4d8f384322c41b5a2a81",
   "pages": 2,
   "upstream_count": 137,
   "upstream_records": 137,
@@ -101,13 +101,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Payload Deployed",
-    "previous_net": "2026-10-30T18:21:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-10-31T00:47:05.556Z"
-   }
+   "change": null
   },
   {
    "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
