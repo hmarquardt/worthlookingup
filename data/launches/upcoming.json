@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-31T01:40:46.116Z",
+ "generated_at": "2026-10-31T02:39:14.873Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-31T01:40:46.116Z",
-  "sha256": "c2f15f00367fd87be2b2b4333fc0c722348407b501be4d8f384322c41b5a2a81",
+  "retrieved_at": "2026-10-31T02:39:14.873Z",
+  "sha256": "f28cfdcc97646417f18277b65eb102d0b5856f67612a1ead96a07ef75c7c1df6",
   "pages": 2,
   "upstream_count": 137,
   "upstream_records": 137,
@@ -132,7 +132,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-10-31T04:02:22.000Z",
+   "net": "2026-10-31T04:04:34.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -145,13 +145,19 @@
     "start": "2026-10-31T03:48:00.000Z",
     "end": "2026-10-31T07:48:00.000Z"
    },
-   "last_updated": "2026-10-30T23:07:41.000Z",
+   "last_updated": "2026-10-31T02:37:30.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-10-31T04:02:22.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 2,
+    "detected_at": "2026-10-31T02:39:14.873Z"
+   }
   },
   {
    "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
@@ -295,7 +301,7 @@
     "start": "2026-11-03T01:42:00.000Z",
     "end": "2026-11-03T05:42:00.000Z"
    },
-   "last_updated": "2026-10-29T17:31:04.000Z",
+   "last_updated": "2026-10-31T01:42:11.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
