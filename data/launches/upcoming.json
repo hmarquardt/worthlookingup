@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-31T04:39:13.526Z",
+ "generated_at": "2026-10-31T05:39:20.296Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-31T04:39:13.526Z",
-  "sha256": "977fb222791d887b5f87480fc130d5774529192585fb2550f76e0c9843d17aae",
+  "retrieved_at": "2026-10-31T05:39:20.296Z",
+  "sha256": "fe855a61bf45d7ec4f14fda89d9930aac6ea03b206cc9e2b7a630d0453984ae6",
   "pages": 2,
   "upstream_count": 137,
   "upstream_records": 137,
@@ -29,8 +29,7 @@
  "stats": {
   "count": 150,
   "by_status": {
-   "success": 1,
-   "unknown": 1,
+   "success": 2,
    "unconfirmed": 143,
    "scheduled": 5
   },
@@ -127,11 +126,11 @@
     "longitude": -120.611
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-10-31T04:04:34.000Z",
    "precision": {
@@ -146,7 +145,7 @@
     "start": "2026-10-31T03:48:00.000Z",
     "end": "2026-10-31T07:48:00.000Z"
    },
-   "last_updated": "2026-10-31T04:24:55.000Z",
+   "last_updated": "2026-10-31T05:09:34.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
     "info": [],
@@ -154,10 +153,10 @@
    },
    "change": {
     "kind": "status",
-    "previous_status": "Go for Launch",
+    "previous_status": "Launch in Flight",
     "previous_net": "2026-10-31T04:04:34.000Z",
     "delta_minutes": null,
-    "detected_at": "2026-10-31T04:39:13.526Z"
+    "detected_at": "2026-10-31T05:39:20.296Z"
    }
   },
   {
