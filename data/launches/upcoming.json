@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-01T04:39:25.981Z",
+ "generated_at": "2026-11-01T06:39:25.338Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,24 +18,24 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-01T04:39:25.981Z",
-  "sha256": "28d0eea7c55f4df42c03de8ba14dce39cc6295f5f4aac34106796aee1a91d208",
+  "retrieved_at": "2026-11-01T06:39:25.338Z",
+  "sha256": "768151687f80be95ac80e000ca319f991f7891a69d73c840de3ce15cfcba6264",
   "pages": 2,
-  "upstream_count": 141,
-  "upstream_records": 141,
+  "upstream_count": 140,
+  "upstream_records": 140,
   "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 154,
+  "count": 153,
   "by_status": {
-   "success": 2,
+   "success": 1,
    "scheduled": 6,
    "unconfirmed": 146
   },
   "by_precision": {
-   "minute": 6,
    "second": 1,
+   "minute": 5,
    "hour": 9,
    "day": 7,
    "month": 27,
@@ -43,66 +43,16 @@
    "quarter": 27,
    "half": 1
   },
-  "with_published_time": 16,
-  "with_published_date": 23,
+  "with_published_time": 15,
+  "with_published_date": 22,
   "period_only": 131,
   "sites": 21,
   "providers": 29,
-  "nearest_net": "2026-10-30T18:21:00.000Z",
+  "nearest_net": "2026-10-31T04:04:34.000Z",
   "window_days": 180,
   "announced_total": 478
  },
  "launches": [
-  {
-   "id": "20d5676e-111b-40e3-8923-b218c3665ca2",
-   "slug": "gslv-mk-ii-irnss-1l-nvs-03",
-   "name": "GSLV Mk II | IRNSS-1L (NVS-03)",
-   "mission": "IRNSS-1L (NVS-03)",
-   "mission_type": "Navigation",
-   "mission_description": "This is a replacement satellite for the Indian Regional Navigation Satellite System. The constellation will provide India with an alternative to GPS and will be used for military and civilian use. Located at a geosynchronous orbit, the system will be operated by the Indian government.",
-   "orbit": "Geostationary Transfer Orbit",
-   "vehicle": "GSLV Mk. II",
-   "vehicle_family": "GSLV",
-   "provider": "Indian Space Research Organization",
-   "provider_abbrev": "ISRO",
-   "site": {
-    "name": "Satish Dhawan Space Centre, India",
-    "timezone": "Asia/Kolkata",
-    "country": "India"
-   },
-   "pad": {
-    "name": "Satish Dhawan Space Centre Second Launch Pad",
-    "latitude": 13.7199,
-    "longitude": 80.2304
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-30T18:21:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-10-30T17:00:00.000Z",
-    "end": "2026-10-30T21:00:00.000Z"
-   },
-   "last_updated": "2026-10-30T23:48:30.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/20d5676e-111b-40e3-8923-b218c3665ca2/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
    "slug": "falcon-9-block-5-starlink-group-15-18",
@@ -295,7 +245,7 @@
     "start": "2026-11-03T01:42:00.000Z",
     "end": "2026-11-03T05:42:00.000Z"
    },
-   "last_updated": "2026-11-01T01:00:49.000Z",
+   "last_updated": "2026-11-01T06:28:40.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
