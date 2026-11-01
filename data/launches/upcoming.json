@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-01T00:53:12.883Z",
+ "generated_at": "2026-11-01T01:42:29.659Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-01T00:53:12.883Z",
-  "sha256": "3bacceb618940620c0175feedfb763edc42266ac28c3f0a5d7d3a3aa2f92b950",
+  "retrieved_at": "2026-11-01T01:42:29.659Z",
+  "sha256": "28d0eea7c55f4df42c03de8ba14dce39cc6295f5f4aac34106796aee1a91d208",
   "pages": 2,
   "upstream_count": 141,
   "upstream_records": 141,
@@ -295,7 +295,7 @@
     "start": "2026-11-03T01:42:00.000Z",
     "end": "2026-11-03T05:42:00.000Z"
    },
-   "last_updated": "2026-10-31T01:42:11.000Z",
+   "last_updated": "2026-11-01T01:00:49.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
@@ -5316,56 +5316,6 @@
    "change": null
   },
   {
-   "id": "d3bd7fb2-fac6-49fc-ae52-cee07d2fde67",
-   "slug": "falcon-heavy-griffin-mission-one",
-   "name": "Falcon Heavy | Griffin Mission One",
-   "mission": "Griffin Mission One",
-   "mission_type": "Lunar Exploration",
-   "mission_description": "Demonstration flight of the Astrobotic Griffin lander and its engines, initially contracted for the NASA VIPER (Volatiles Investigating Polar Exploration Rover) mission. The vacated payload spot will now host the FLIP (FLEX Lunar Innovation Platform) lunar rover from Astrolab.",
-   "orbit": "Lunar Orbit",
-   "vehicle": "Falcon Heavy",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Kennedy Space Center, FL, USA",
-    "timezone": "America/New_York",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Launch Complex 39A",
-    "latitude": 28.60822681,
-    "longitude": -80.60428186
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-12-31T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-12-31T00:00:00.000Z",
-    "end": "2026-12-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-10-23T06:32:28.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d3bd7fb2-fac6-49fc-ae52-cee07d2fde67/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "d40b57ec-e294-4aa2-9822-33eb222105cb",
    "slug": "vulcan-ussf-16",
    "name": "Vulcan | USSF-16",
@@ -6518,6 +6468,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "d3bd7fb2-fac6-49fc-ae52-cee07d2fde67",
+   "slug": "falcon-heavy-griffin-mission-one",
+   "name": "Falcon Heavy | Griffin Mission One",
+   "mission": "Griffin Mission One",
+   "mission_type": "Lunar Exploration",
+   "mission_description": "Demonstration flight of the Astrobotic Griffin lander and its engines, initially contracted for the NASA VIPER (Volatiles Investigating Polar Exploration Rover) mission. The vacated payload spot will now host the FLIP (FLEX Lunar Innovation Platform) lunar rover from Astrolab.",
+   "orbit": "Lunar Orbit",
+   "vehicle": "Falcon Heavy",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Kennedy Space Center, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Launch Complex 39A",
+    "latitude": 28.60822681,
+    "longitude": -80.60428186
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-01-31T00:00:00.000Z",
+   "precision": {
+    "kind": "month",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 7,
+    "name": "Month"
+   },
+   "window": {
+    "start": "2027-01-31T00:00:00.000Z",
+    "end": "2027-01-31T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-01T01:12:16.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d3bd7fb2-fac6-49fc-ae52-cee07d2fde67/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-12-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 44640,
+    "detected_at": "2026-11-01T01:42:29.659Z"
+   }
   },
   {
    "id": "de3d5d91-f115-4a86-b923-203a91a08735",
