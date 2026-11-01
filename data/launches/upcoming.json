@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-01T15:39:10.683Z",
+ "generated_at": "2026-11-01T16:39:39.549Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,21 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-01T15:39:10.683Z",
-  "sha256": "4d4e0863539b254c5f04016aef3ab3f5f092c9288daaf0b8a5ae8fab552cd8a2",
+  "retrieved_at": "2026-11-01T16:39:39.549Z",
+  "sha256": "673722b821ad8c3ae6c95e6005d4a9c393ffe9b4b26f50655be8a8cd6863d6ac",
   "pages": 2,
-  "upstream_count": 140,
-  "upstream_records": 140,
+  "upstream_count": 139,
+  "upstream_records": 139,
   "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 152,
   "by_status": {
-   "success": 1,
    "scheduled": 6,
    "unconfirmed": 146
   },
   "by_precision": {
-   "second": 1,
    "minute": 5,
    "hour": 9,
    "day": 7,
@@ -43,66 +41,16 @@
    "quarter": 27,
    "half": 1
   },
-  "with_published_time": 15,
-  "with_published_date": 22,
+  "with_published_time": 14,
+  "with_published_date": 21,
   "period_only": 131,
   "sites": 21,
   "providers": 29,
-  "nearest_net": "2026-10-31T04:04:34.000Z",
+  "nearest_net": "2026-11-02T16:41:00.000Z",
   "window_days": 180,
   "announced_total": 478
  },
  "launches": [
-  {
-   "id": "57ce0a39-d035-4f16-a418-bd6108f78199",
-   "slug": "falcon-9-block-5-starlink-group-15-18",
-   "name": "Falcon 9 Block 5 | Starlink Group 15-18",
-   "mission": "Starlink Group 15-18",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 27 satellites for the Starlink mega-constellation - SpaceX's project for space-based Internet communication system.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-10-31T04:04:34.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-10-31T03:48:00.000Z",
-    "end": "2026-10-31T07:48:00.000Z"
-   },
-   "last_updated": "2026-10-31T05:09:34.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/57ce0a39-d035-4f16-a418-bd6108f78199/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
    "slug": "electron-the-sea-god-surveys-iqps-launch-9",
