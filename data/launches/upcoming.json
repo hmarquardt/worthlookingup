@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-10-31T21:39:49.975Z",
+ "generated_at": "2026-11-01T00:53:12.883Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,34 +18,34 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-10-31T21:39:49.975Z",
-  "sha256": "38aef9fcb4be62aa56154e662a1d78d6eadbab0a9bfff25c4f7a5dec6ffff41c",
+  "retrieved_at": "2026-11-01T00:53:12.883Z",
+  "sha256": "3bacceb618940620c0175feedfb763edc42266ac28c3f0a5d7d3a3aa2f92b950",
   "pages": 2,
-  "upstream_count": 137,
-  "upstream_records": 137,
+  "upstream_count": 141,
+  "upstream_records": 141,
   "announced_total": 479,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 150,
+  "count": 154,
   "by_status": {
    "success": 2,
    "scheduled": 6,
-   "unconfirmed": 142
+   "unconfirmed": 146
   },
   "by_precision": {
    "minute": 6,
    "second": 1,
    "hour": 9,
    "day": 7,
-   "month": 24,
+   "month": 27,
    "year": 76,
-   "quarter": 26,
+   "quarter": 27,
    "half": 1
   },
   "with_published_time": 16,
   "with_published_date": 23,
-  "period_only": 127,
+  "period_only": 131,
   "sites": 21,
   "providers": 29,
   "nearest_net": "2026-10-30T18:21:00.000Z",
@@ -7575,6 +7575,207 @@
    "last_updated": "2026-06-26T04:53:01.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/eda0f3bb-3a5e-438f-bdba-9dab2a86c281/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "0d7dd3ae-0750-49be-a6ef-db40fd6ec5a5",
+   "slug": "falcon-9-block-5-ayap-1",
+   "name": "Falcon 9 Block 5 | AYAP-1",
+   "mission": "AYAP-1",
+   "mission_type": "Planetary Science",
+   "mission_description": "AYAP-1 is the first Turkish lunar exploration spacecraft mission. The AYAP-1 spacecraft will operate for at least 3 months (possibly extended to 6) in a 100-km circular lunar orbit above the lunar surface before concluding its mission with a controlled crash landing. It will test the 1st Turkish spacecraft hybrid propulsion system and ollect data about the Moon's water, magnetic activity and radi…",
+   "orbit": "Lunar Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Cape Canaveral SFS, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 40",
+    "latitude": 28.56194122,
+    "longitude": -80.57735736
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-04-30T00:00:00.000Z",
+   "precision": {
+    "kind": "month",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 7,
+    "name": "Month"
+   },
+   "window": {
+    "start": "2027-04-30T00:00:00.000Z",
+    "end": "2027-04-30T00:00:00.000Z"
+   },
+   "last_updated": "2026-10-10T15:21:59.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0d7dd3ae-0750-49be-a6ef-db40fd6ec5a5/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "80b587cd-ca6f-4b8f-b026-1d02889a1019",
+   "slug": "firefly-alpha-block-2-connectedcosmos-launch-4",
+   "name": "Firefly Alpha Block 2 | ConnectedCosmos Launch 4",
+   "mission": "ConnectedCosmos Launch 4",
+   "mission_type": "Communications",
+   "mission_description": "Fourth of at least four missions carrying 6 satellites for Open Cosmos' secure LEO broadband constellation, designed to provide independent and resilient connectivity infrastructure for Europe and the world using high-priority Ka-band spectrum filings by the Principality of Liechtenstein.",
+   "orbit": "Polar Orbit",
+   "vehicle": "Firefly Alpha Block 2",
+   "vehicle_family": "Firefly Alpha",
+   "provider": "Firefly Aerospace",
+   "provider_abbrev": "FA",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 2W",
+    "latitude": 34.7556,
+    "longitude": -120.6224
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-04-30T00:00:00.000Z",
+   "precision": {
+    "kind": "quarter",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "quarter": 2,
+    "id": 9,
+    "name": "Quarter 2"
+   },
+   "window": {
+    "start": "2027-04-30T00:00:00.000Z",
+    "end": "2027-04-30T00:00:00.000Z"
+   },
+   "last_updated": "2026-06-26T04:47:10.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/80b587cd-ca6f-4b8f-b026-1d02889a1019/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "91f5f940-da5a-44de-a10a-b44c59066285",
+   "slug": "vega-c-kompsat-6-platino-1",
+   "name": "Vega-C | KOMPSAT-6 & PLATiNO 1",
+   "mission": "KOMPSAT-6 & PLATiNO 1",
+   "mission_type": "Earth Science",
+   "mission_description": "Korean Multi-purpose Satellite 6 (KOMPSAT-6) is the sixth South Korean Earth observation satellite of the KOMPSAT series. It is equipped with a synthetic aperture radar with a ground resolution between 0.5 and 20 meters. PLATiNO 1 is an experimental X-band SAR earth observation satellite project by the Italian Space Agency (ASI), with a radar payload from Thales Alenia Space Italia. The X-band SA…",
+   "orbit": "Sun-Synchronous Orbit",
+   "vehicle": "Vega-C",
+   "vehicle_family": "Vega",
+   "provider": "Avio S.p.A",
+   "provider_abbrev": "Avio",
+   "site": {
+    "name": "Guiana Space Centre, French Guiana",
+    "timezone": "America/Cayenne",
+    "country": "French Guiana"
+   },
+   "pad": {
+    "name": "Ariane Launch Area 1 (ELV)",
+    "latitude": 5.236,
+    "longitude": -52.775
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-04-30T00:00:00.000Z",
+   "precision": {
+    "kind": "month",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 7,
+    "name": "Month"
+   },
+   "window": {
+    "start": "2027-04-30T00:00:00.000Z",
+    "end": "2027-04-30T00:00:00.000Z"
+   },
+   "last_updated": "2026-08-31T09:17:09.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/91f5f940-da5a-44de-a10a-b44c59066285/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "d89815f1-7cc8-4dad-b3c4-5db80a9f4c01",
+   "slug": "falcon-9-block-5-bandwagon-6-dedicated-mid-inclina",
+   "name": "Falcon 9 Block 5 | Bandwagon 6 (Dedicated Mid-Inclination Rideshare)",
+   "mission": "Bandwagon 6 (Dedicated Mid-Inclination Rideshare)",
+   "mission_type": "Dedicated Rideshare",
+   "mission_description": "Dedicated rideshare flight to a mid-inclination orbit with dozens of small microsatellites and nanosatellites for commercial and government customers.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Cape Canaveral SFS, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 40",
+    "latitude": 28.56194122,
+    "longitude": -80.57735736
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-04-30T00:00:00.000Z",
+   "precision": {
+    "kind": "month",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 7,
+    "name": "Month"
+   },
+   "window": {
+    "start": "2027-04-30T00:00:00.000Z",
+    "end": "2027-04-30T00:00:00.000Z"
+   },
+   "last_updated": "2026-09-30T06:31:06.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d89815f1-7cc8-4dad-b3c4-5db80a9f4c01/",
     "info": [],
     "webcast": []
    },
