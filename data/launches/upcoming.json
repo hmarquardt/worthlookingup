@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-02T20:39:21.869Z",
+ "generated_at": "2026-11-02T21:39:27.084Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-02T20:39:21.869Z",
-  "sha256": "5661d54972e2c09d74d036d03f792dbc8f80f25068d6f78263c5ac2e3ea48b3d",
+  "retrieved_at": "2026-11-02T21:39:27.084Z",
+  "sha256": "9ab68a832cc4efddf603af18df5f8138f67100dcae529fdfff37e331eaa0ed4d",
   "pages": 2,
   "upstream_count": 139,
   "upstream_records": 139,
@@ -29,7 +29,7 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "unknown": 1,
+   "success": 1,
    "scheduled": 6,
    "unconfirmed": 145
   },
@@ -75,11 +75,11 @@
     "longitude": 177.864469
    },
    "status": {
-    "id": 9,
-    "name": "Payload Deployed",
-    "abbrev": "Deployed",
-    "description": "Deployment of the payload(s) has been confirmed.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-11-02T16:41:00.000Z",
    "precision": {
@@ -94,13 +94,19 @@
     "start": "2026-11-02T16:30:00.000Z",
     "end": "2026-11-02T18:20:00.000Z"
    },
-   "last_updated": "2026-11-02T18:38:07.000Z",
+   "last_updated": "2026-11-02T21:35:27.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Payload Deployed",
+    "previous_net": "2026-11-02T16:41:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-02T21:39:27.084Z"
+   }
   },
   {
    "id": "f3f201cd-0ff9-4ff7-9aaa-1d22c399c75a",
@@ -244,19 +250,13 @@
     "start": "2026-11-05T01:14:00.000Z",
     "end": "2026-11-05T05:14:00.000Z"
    },
-   "last_updated": "2026-11-02T19:54:18.000Z",
+   "last_updated": "2026-11-02T21:01:53.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-04T01:28:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 1426,
-    "detected_at": "2026-11-02T20:39:21.869Z"
-   }
+   "change": null
   },
   {
    "id": "711de6bc-f755-475b-a12f-ec5240da3a11",
