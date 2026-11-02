@@ -1,7 +1,7 @@
 # IMO Meteor Shower Calendar 2026 - Table 5: Working List of Visual Meteor Showers (page 25)
 # source_url: https://www.imo.net/files/meteor-shower/cal2026.pdf
-# retrieved_url: https://web.archive.org/web/20250712192730id_/https://www.imo.net/files/meteor-shower/cal2026.pdf
-# retrieved_at: 2026-10-08T23:58:47Z
+# retrieved_url: https://www.imo.net/files/meteor-shower/cal2026.pdf
+# retrieved_at: 2026-11-01T06:28:26Z
 # pdf_sha256: fde5388889ebda9fe13436d793da5e9935ae46b99edf20e0b19f7fe32ce1ed9f
 # page: 25 (1-based page number; pypdf page index 24)
 # normalisation: U+25E6 -> U+00B0 (the degree glyph pypdf extracts), U+2013/U+2014/U+2212 -> "-",
