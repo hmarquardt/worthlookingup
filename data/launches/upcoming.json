@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-02T16:39:12.882Z",
+ "generated_at": "2026-11-02T17:39:15.916Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-02T16:39:12.882Z",
-  "sha256": "445459b9307c747166f861f20ea7c89a6c8546c7d33b25300e9b9863c73b35aa",
+  "retrieved_at": "2026-11-02T17:39:15.916Z",
+  "sha256": "b3df748a495d0555c58beb8c5c35e119e8d67903ad8804e62e45875163fd9140",
   "pages": 2,
   "upstream_count": 139,
   "upstream_records": 139,
@@ -29,7 +29,8 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "scheduled": 6,
+   "unknown": 1,
+   "scheduled": 5,
    "unconfirmed": 146
   },
   "by_precision": {
@@ -74,11 +75,11 @@
     "longitude": 177.864469
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 9,
+    "name": "Payload Deployed",
+    "abbrev": "Deployed",
+    "description": "Deployment of the payload(s) has been confirmed.",
+    "kind": "unknown"
    },
    "net": "2026-11-02T16:41:00.000Z",
    "precision": {
@@ -93,13 +94,19 @@
     "start": "2026-11-02T16:30:00.000Z",
     "end": "2026-11-02T18:20:00.000Z"
    },
-   "last_updated": "2026-11-02T16:21:02.000Z",
+   "last_updated": "2026-11-02T17:35:48.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Go for Launch",
+    "previous_net": "2026-11-02T16:41:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-02T17:39:15.916Z"
+   }
   },
   {
    "id": "f3f201cd-0ff9-4ff7-9aaa-1d22c399c75a",
@@ -449,13 +456,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "advanced",
-    "previous_net": "2026-11-10T03:03:00.000Z",
-    "previous_status": "To Be Confirmed",
-    "delta_minutes": -1426,
-    "detected_at": "2026-11-02T16:39:12.882Z"
-   }
+   "change": null
   },
   {
    "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
