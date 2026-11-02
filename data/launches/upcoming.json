@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-02T15:39:39.269Z",
+ "generated_at": "2026-11-02T16:39:12.882Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-02T15:39:39.269Z",
-  "sha256": "7430109f194ada01f153b5ed88f833525b7ea1c5603fbda7af0bcad054a44464",
+  "retrieved_at": "2026-11-02T16:39:12.882Z",
+  "sha256": "445459b9307c747166f861f20ea7c89a6c8546c7d33b25300e9b9863c73b35aa",
   "pages": 2,
   "upstream_count": 139,
   "upstream_records": 139,
@@ -93,7 +93,7 @@
     "start": "2026-11-02T16:30:00.000Z",
     "end": "2026-11-02T18:20:00.000Z"
    },
-   "last_updated": "2026-11-02T15:11:02.000Z",
+   "last_updated": "2026-11-02T16:21:02.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
     "info": [],
@@ -430,7 +430,7 @@
     "description": "Awaiting official confirmation - current date is known with some certainty.",
     "kind": "unconfirmed"
    },
-   "net": "2026-11-10T03:03:00.000Z",
+   "net": "2026-11-09T03:17:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -440,16 +440,22 @@
     "name": "Minute"
    },
    "window": {
-    "start": "2026-11-10T03:03:00.000Z",
-    "end": "2026-11-10T07:03:00.000Z"
+    "start": "2026-11-09T03:17:00.000Z",
+    "end": "2026-11-09T07:17:00.000Z"
    },
-   "last_updated": "2026-10-28T18:57:38.000Z",
+   "last_updated": "2026-11-02T16:03:38.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-11-10T03:03:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": -1426,
+    "detected_at": "2026-11-02T16:39:12.882Z"
+   }
   },
   {
    "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
