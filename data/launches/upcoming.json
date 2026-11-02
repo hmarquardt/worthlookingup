@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-02T02:39:48.773Z",
+ "generated_at": "2026-11-02T03:39:06.883Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-02T02:39:48.773Z",
-  "sha256": "a49c447024aca03cbee643db891a13948ac82a248018acc123adc9e44643468d",
+  "retrieved_at": "2026-11-02T03:39:06.883Z",
+  "sha256": "ce22ca775c7f2811ae7a3a7c42cf8956ca4116a9c9874b5c8194d0dad72a2c21",
   "pages": 2,
   "upstream_count": 139,
   "upstream_records": 139,
@@ -29,8 +29,8 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "scheduled": 5,
-   "unconfirmed": 147
+   "scheduled": 6,
+   "unconfirmed": 146
   },
   "by_precision": {
    "minute": 4,
@@ -252,56 +252,6 @@
    "change": null
   },
   {
-   "id": "e91d1da2-819b-4523-95bf-39ac7daa871d",
-   "slug": "ceres-2-unknown-payload",
-   "name": "Ceres-2 | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
-   "vehicle": "Ceres-2",
-   "vehicle_family": null,
-   "provider": "Galactic Energy",
-   "provider_abbrev": "GE",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Area 95A",
-    "latitude": 40.969117,
-    "longitude": 100.343333
-   },
-   "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-11-04T21:00:00.000Z",
-   "precision": {
-    "kind": "hour",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 2,
-    "name": "Hour"
-   },
-   "window": {
-    "start": "2026-11-04T21:00:00.000Z",
-    "end": "2026-11-05T02:00:00.000Z"
-   },
-   "last_updated": "2026-10-28T19:41:41.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e91d1da2-819b-4523-95bf-39ac7daa871d/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "711de6bc-f755-475b-a12f-ec5240da3a11",
    "slug": "long-march-2c-unknown-payload",
    "name": "Long March 2C | Unknown Payload",
@@ -400,6 +350,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "e91d1da2-819b-4523-95bf-39ac7daa871d",
+   "slug": "ceres-2-unknown-payload",
+   "name": "Ceres-2 | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Ceres-2",
+   "vehicle_family": null,
+   "provider": "Galactic Energy",
+   "provider_abbrev": "GE",
+   "site": {
+    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Area 95A",
+    "latitude": 40.969117,
+    "longitude": 100.343333
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-06T23:35:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-06T23:28:00.000Z",
+    "end": "2026-11-06T23:50:00.000Z"
+   },
+   "last_updated": "2026-11-02T02:55:01.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e91d1da2-819b-4523-95bf-39ac7daa871d/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-04T21:00:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": 3035,
+    "detected_at": "2026-11-02T03:39:06.883Z"
+   }
   },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
