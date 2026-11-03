@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-03T00:47:47.486Z",
+ "generated_at": "2026-11-03T01:40:50.189Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-03T00:47:47.486Z",
-  "sha256": "83519bafe4064f07ad431e4c1bc9580fb6584d32e83abc87fcc47b589b0aeaa5",
+  "retrieved_at": "2026-11-03T01:40:50.189Z",
+  "sha256": "26b7058c273704be6d67cb3ca876c10b542b21126a637bcb1df6a13cbfdf6059",
   "pages": 2,
   "upstream_count": 139,
   "upstream_records": 139,
@@ -29,13 +29,13 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "success": 1,
-   "scheduled": 6,
-   "unconfirmed": 145
+   "success": 2,
+   "unconfirmed": 145,
+   "scheduled": 5
   },
   "by_precision": {
-   "minute": 5,
-   "hour": 8,
+   "minute": 6,
+   "hour": 7,
    "day": 7,
    "month": 28,
    "year": 76,
@@ -104,11 +104,11 @@
   },
   {
    "id": "f3f201cd-0ff9-4ff7-9aaa-1d22c399c75a",
-   "slug": "kinetica-2-spacesail-polar-group-tbd",
-   "name": "Kinetica 2 | SpaceSail Polar Group TBD?",
-   "mission": "SpaceSail Polar Group TBD?",
+   "slug": "kinetica-2-spacesail-polar-group-17",
+   "name": "Kinetica 2 | SpaceSail Polar Group #17",
+   "mission": "SpaceSail Polar Group #17",
    "mission_type": "Communications",
-   "mission_description": "Low Earth Orbit communication satellites with Ku, Q and V band payloads for the G60 constellation operated by Shanghai Spacesail Technologies with funding backed by the Shanghai local government. Initial constellation will consist of 1296 satellites by 2027 with long term plans to expand it to 12000 satellites.",
+   "mission_description": "18 Low Earth Orbit communication satellites with Ku, Q and V band payloads for the G60 constellation operated by Shanghai Spacesail Technologies with funding backed by the Shanghai local government. Initial constellation will consist of 1296 satellites by 2027 with long term plans to expand it to 12000 satellites.",
    "orbit": "Polar Orbit",
    "vehicle": "Kinetica 2",
    "vehicle_family": null,
@@ -125,32 +125,38 @@
     "longitude": 100.21939
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
-   "net": "2026-11-03T00:10:00.000Z",
+   "net": "2026-11-03T00:15:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-11-03T00:05:00.000Z",
     "end": "2026-11-03T00:33:00.000Z"
    },
-   "last_updated": "2026-10-28T19:41:36.000Z",
+   "last_updated": "2026-11-03T00:55:38.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/f3f201cd-0ff9-4ff7-9aaa-1d22c399c75a/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-03T00:10:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 5,
+    "detected_at": "2026-11-03T01:40:50.189Z"
+   }
   },
   {
    "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
@@ -400,13 +406,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-05T01:14:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 2852,
-    "detected_at": "2026-11-03T00:47:47.486Z"
-   }
+   "change": null
   },
   {
    "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
