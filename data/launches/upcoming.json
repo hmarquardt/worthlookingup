@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-03T22:39:21.834Z",
+ "generated_at": "2026-11-03T23:39:06.307Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-03T22:39:21.834Z",
-  "sha256": "54657fa35a6b87c7581c09c6310295dbd998573073fb9ba229eafd173787d836",
+  "retrieved_at": "2026-11-03T23:39:06.307Z",
+  "sha256": "e36046e663a9e45d779838fffac638b049ef4a1f374563a5557d998d487a5f96",
   "pages": 2,
   "upstream_count": 140,
   "upstream_records": 140,
@@ -30,8 +30,8 @@
   "count": 153,
   "by_status": {
    "success": 2,
-   "scheduled": 7,
-   "unconfirmed": 144
+   "scheduled": 8,
+   "unconfirmed": 143
   },
   "by_precision": {
    "minute": 8,
@@ -400,19 +400,13 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "To Be Confirmed",
-    "previous_net": "2026-11-10T03:03:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-11-03T22:39:21.834Z"
-   }
+   "change": null
   },
   {
    "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
-   "slug": "falcon-9-block-5-ussf-xxx-r-6",
-   "name": "Falcon 9 Block 5 | USSF-xxx (\"R-6\")",
-   "mission": "USSF-xxx (\"R-6\")",
+   "slug": "falcon-9-block-5-ussf-317",
+   "name": "Falcon 9 Block 5 | USSF-317",
+   "mission": "USSF-317",
    "mission_type": "Government/Top Secret",
    "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
    "orbit": "Low Earth Orbit",
@@ -431,11 +425,11 @@
     "longitude": -120.611
    },
    "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
    "net": "2026-11-13T04:23:00.000Z",
    "precision": {
@@ -450,13 +444,19 @@
     "start": "2026-11-13T04:23:00.000Z",
     "end": "2026-11-13T08:23:00.000Z"
    },
-   "last_updated": "2026-11-03T13:16:04.000Z",
+   "last_updated": "2026-11-03T23:29:40.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "To Be Confirmed",
+    "previous_net": "2026-11-13T04:23:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-03T23:39:06.307Z"
+   }
   },
   {
    "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
