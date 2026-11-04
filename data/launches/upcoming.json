@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-04T03:39:01.492Z",
+ "generated_at": "2026-11-04T05:39:15.333Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-04T03:39:01.492Z",
-  "sha256": "4e523392f5943289a182aca47e6cbf77404a6543fef2bd9f8b8a6ea699001c3e",
+  "retrieved_at": "2026-11-04T05:39:15.333Z",
+  "sha256": "ef4a0bf9e8be6a59d650e57ebad9b684f9abc3777a96340869c2b3768dff6031",
   "pages": 2,
-  "upstream_count": 140,
-  "upstream_records": 140,
+  "upstream_count": 139,
+  "upstream_records": 139,
   "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 152,
   "by_status": {
-   "success": 2,
+   "success": 1,
    "scheduled": 8,
    "unconfirmed": 143
   },
   "by_precision": {
-   "minute": 8,
+   "minute": 7,
    "hour": 6,
    "day": 6,
    "month": 29,
@@ -42,66 +42,16 @@
    "quarter": 27,
    "half": 1
   },
-  "with_published_time": 14,
-  "with_published_date": 20,
+  "with_published_time": 13,
+  "with_published_date": 19,
   "period_only": 133,
   "sites": 21,
   "providers": 29,
-  "nearest_net": "2026-11-02T16:41:00.000Z",
+  "nearest_net": "2026-11-03T00:15:00.000Z",
   "window_days": 180,
   "announced_total": 477
  },
  "launches": [
-  {
-   "id": "426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff",
-   "slug": "electron-the-sea-god-surveys-iqps-launch-9",
-   "name": "Electron | The Sea God Surveys (iQPS Launch 9)",
-   "mission": "The Sea God Surveys (iQPS Launch 9)",
-   "mission_type": "Earth Science",
-   "mission_description": "Synthetic aperture radar Earth observation satellite for Japanese Earth imaging company iQPS.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Electron",
-   "vehicle_family": null,
-   "provider": "Rocket Lab",
-   "provider_abbrev": "RL",
-   "site": {
-    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "country": "New Zealand"
-   },
-   "pad": {
-    "name": "Rocket Lab Launch Complex 1A",
-    "latitude": -39.262833,
-    "longitude": 177.864469
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-02T16:41:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-02T16:30:00.000Z",
-    "end": "2026-11-02T18:20:00.000Z"
-   },
-   "last_updated": "2026-11-02T21:35:27.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/426bd2a5-02dd-4fbd-9f4d-2b8439c3a1ff/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "f3f201cd-0ff9-4ff7-9aaa-1d22c399c75a",
    "slug": "kinetica-2-spacesail-polar-group-17",
