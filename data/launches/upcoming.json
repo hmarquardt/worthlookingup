@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-05T04:39:09.155Z",
+ "generated_at": "2026-11-05T06:42:39.925Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,22 +18,22 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-05T04:39:09.155Z",
-  "sha256": "068f7466a08ddbf9996406b1fecb1be048a45adb76d8a9e07f42d7810dd9b6fe",
+  "retrieved_at": "2026-11-05T06:42:39.925Z",
+  "sha256": "f7f66b450aeb49bd39b52728ea9b7e71f714b575902d9d06eac49c69f1e823f0",
   "pages": 2,
-  "upstream_count": 138,
-  "upstream_records": 138,
-  "announced_total": 477,
+  "upstream_count": 139,
+  "upstream_records": 139,
+  "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 151,
+  "count": 152,
   "by_status": {
-   "scheduled": 9,
+   "scheduled": 10,
    "unconfirmed": 142
   },
   "by_precision": {
-   "hour": 7,
+   "hour": 8,
    "minute": 6,
    "day": 6,
    "month": 28,
@@ -41,14 +41,14 @@
    "quarter": 27,
    "half": 1
   },
-  "with_published_time": 13,
-  "with_published_date": 19,
+  "with_published_time": 14,
+  "with_published_date": 20,
   "period_only": 132,
   "sites": 21,
   "providers": 28,
   "nearest_net": "2026-11-05T16:00:00.000Z",
   "window_days": 180,
-  "announced_total": 477
+  "announced_total": 478
  },
  "launches": [
   {
@@ -346,6 +346,56 @@
    "last_updated": "2026-11-05T02:58:19.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/9e27a1ed-e81a-4918-b32b-0380cf3a9f8f/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "d66590ab-b273-47ff-b85a-608b62851b4b",
+   "slug": "long-march-2d-unknown-payload",
+   "name": "Long March 2D | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Long March 2D",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Area 94 (SLS-2 / 603)",
+    "latitude": 40.960482,
+    "longitude": 100.298059
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-11T11:40:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-11T11:32:00.000Z",
+    "end": "2026-11-11T12:05:00.000Z"
+   },
+   "last_updated": "2026-11-05T06:42:19.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d66590ab-b273-47ff-b85a-608b62851b4b/",
     "info": [],
     "webcast": []
    },
