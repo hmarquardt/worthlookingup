@@ -97,7 +97,9 @@ async function refresh() {
   const deadline = freshnessDeadlineMinutes();
   let upstream;
   try {
-    upstream = await fetchUpstreamLaunches({ now, windowDays: WINDOW_DAYS, maxPages: MAX_PAGES });
+    // The scheduled job may retry one transient network/5xx failure per page. HTTP 429
+    // and malformed data still fail immediately; no more than 7 requests per run.
+    upstream = await fetchUpstreamLaunches({ now, windowDays: WINDOW_DAYS, maxPages: MAX_PAGES, maxRetries: 1 });
   } catch (error) {
     console.error('FAIL: upstream retrieval failed (' + String((error && error.code) || 'unknown') + ': ' + String((error && error.message) || error) + ').');
     console.error('      The committed feed was left untouched, so the site keeps serving the last good schedule.');

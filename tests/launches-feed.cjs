@@ -191,6 +191,26 @@ assert.equal(await failureOf(()=>response({}, {status:503,ok:false})),"upstream-
 assert.equal(await failureOf(()=>response({}, {status:404,ok:false})),"upstream-rejected");
 assert.equal(await failureOf(()=>response({results:null})),"upstream-malformed");
 assert.equal(await failureOf(()=>{throw new Error("socket hang up");}),"upstream-unreachable");
+
+const recoveringFetch=stubFetch((url,call)=>call===1
+  ? {ok:true,status:200,json:async()=>{throw Object.assign(new Error("body read timed out"),{name:"TimeoutError"});}}
+  : response(pageOf(fixture.records.slice(0,2))));
+const recovered=await fetchUpstreamLaunches({fetchImpl:recoveringFetch,now:NOW,maxPages:1,maxRetries:1,retryDelayMs:0,includeAnnouncedTotal:false});
+assert.equal(recovered.records.length,2,"a transient response-body timeout is retried");
+assert.equal(recoveringFetch.calls.length,2,"only one retry is allowed for the timed-out page");
+const exhaustedFetch=stubFetch(()=>({ok:true,status:200,json:async()=>{throw Object.assign(new Error("body read timed out"),{name:"TimeoutError"});}}));
+try { await fetchUpstreamLaunches({fetchImpl:exhaustedFetch,now:NOW,maxPages:1,maxRetries:1,retryDelayMs:0,includeAnnouncedTotal:false}); assert.fail("expected body timeout"); }
+catch(error) { assert.equal(error.code,"upstream-unreachable","body-read timeouts must not masquerade as malformed data"); }
+assert.equal(exhaustedFetch.calls.length,2,"transient failures are retried at most once");
+const rejectedFetch=stubFetch(()=>response({}, {status:429,ok:false}));
+assert.equal(await (async()=>{try{await fetchUpstreamLaunches({fetchImpl:rejectedFetch,now:NOW,maxPages:1,maxRetries:1,includeAnnouncedTotal:false});return null;}catch(error){return error.code;}})(),"rate-limited");
+assert.equal(rejectedFetch.calls.length,1,"429 is never retried");
+const invalidJsonFetch=stubFetch(()=>({ok:true,status:200,json:async()=>{throw new SyntaxError("invalid JSON");}}));
+assert.equal(await (async()=>{try{await fetchUpstreamLaunches({fetchImpl:invalidJsonFetch,now:NOW,maxPages:1,maxRetries:1,includeAnnouncedTotal:false});return null;}catch(error){return error.code;}})(),"upstream-malformed");
+assert.equal(invalidJsonFetch.calls.length,1,"invalid JSON is not retried");
+const serviceRecovery=stubFetch((url,call)=>call===1?response({}, {status:503,ok:false}):response(pageOf(fixture.records.slice(0,1))));
+assert.equal((await fetchUpstreamLaunches({fetchImpl:serviceRecovery,now:NOW,maxPages:1,maxRetries:1,retryDelayMs:0,includeAnnouncedTotal:false})).records.length,1,"a transient HTTP 5xx is retried");
+assert.equal(serviceRecovery.calls.length,2,"5xx gets only one retry");
 const noTotal=await fetchUpstreamLaunches({fetchImpl:stubFetch(url=>String(url).includes("/upcoming/")?response({}, {status:500,ok:false}):response(pageOf(fixture.records.slice(0,2)))),now:NOW,maxPages:1});
 assert.equal(noTotal.source.announced_total,null,"a failed announced-total request is reported as unknown, not guessed");
 assert.equal(noTotal.records.length,2,"a failed announced-total request does not lose the schedule");

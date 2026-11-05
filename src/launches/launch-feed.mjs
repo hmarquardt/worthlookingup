@@ -514,7 +514,7 @@ export function unavailableFeed({ now = Date.now(), reason = 'no launch schedule
 /* Bounded upstream read. One page is 100 records (LL2 caps `limit`), pages are sequential and the
    caller decides the cap, so a single refresh can never exhaust the hourly allowance. A failed read
    throws a coded error so the caller can describe the failure honestly instead of guessing. */
-export async function fetchUpstreamLaunches({ fetchImpl = globalThis.fetch, now = Date.now(), windowDays = 180, maxPages = 3, limit = 100, timeoutMs = 30000, includeAnnouncedTotal = true } = {}) {
+export async function fetchUpstreamLaunches({ fetchImpl = globalThis.fetch, now = Date.now(), windowDays = 180, maxPages = 3, limit = 100, timeoutMs = 30000, includeAnnouncedTotal = true, maxRetries = 0, retryDelayMs = 1000 } = {}) {
   const window = upstreamWindow(now, windowDays);
   const params = new URLSearchParams({ limit: String(limit), mode: 'normal', ordering: 'net', net__gte: window.start, net__lte: window.end });
   let url = PROVIDER.base + '/launches/?' + params.toString();
@@ -523,30 +523,61 @@ export async function fetchUpstreamLaunches({ fetchImpl = globalThis.fetch, now 
   const retrievedAt = new Date(now).toISOString();
   let pages = 0;
   let count = null;
+  // Scheduled ingestion retries one transient failure per page; a real HTTP 429,
+  // invalid JSON or a changed provider schema still fails immediately. A three-page
+  // run uses no more than 6 page requests plus the optional announced-total request.
+  const retryLimit = Math.min(1, Math.max(0, Math.trunc(Number(maxRetries) || 0)));
+  const retryWait = Math.max(0, Number(retryDelayMs) || 0);
   while (url && pages < maxPages) {
-    let response;
-    try {
-      response = await fetchImpl(url, {
-        headers: { Accept: 'application/json', 'User-Agent': PROVIDER.user_agent },
-        signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(timeoutMs) : undefined
-      });
-    } catch (error) {
-      const failure = new Error('upstream request failed: ' + String((error && error.message) || error));
-      failure.code = 'upstream-unreachable';
-      throw failure;
-    }
-    if (!response.ok) {
-      const failure = new Error('upstream HTTP ' + response.status);
-      failure.code = response.status === 429 ? 'rate-limited' : response.status >= 500 ? 'upstream-error' : 'upstream-rejected';
-      failure.status = response.status;
-      throw failure;
-    }
     let body;
-    try { body = await response.json(); } catch (error) { body = null; }
-    if (!body || !Array.isArray(body.results)) {
-      const failure = new Error('upstream payload is not a launch page');
-      failure.code = 'upstream-malformed';
-      throw failure;
+    for (let attempt = 0; attempt <= retryLimit; attempt++) {
+      let response;
+      try {
+        response = await fetchImpl(url, {
+          headers: { Accept: 'application/json', 'User-Agent': PROVIDER.user_agent },
+          signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(timeoutMs) : undefined
+        });
+      } catch (error) {
+        const failure = new Error('upstream request failed: ' + String((error && error.message) || error));
+        failure.code = 'upstream-unreachable';
+        if (attempt < retryLimit) {
+          console.warn('Retrying launch page after network failure (attempt ' + (attempt + 2) + '/' + (retryLimit + 1) + ')');
+          await new Promise(resolve => setTimeout(resolve, retryWait));
+          continue;
+        }
+        throw failure;
+      }
+      if (!response.ok) {
+        const failure = new Error('upstream HTTP ' + response.status);
+        failure.code = response.status === 429 ? 'rate-limited' : response.status >= 500 ? 'upstream-error' : 'upstream-rejected';
+        failure.status = response.status;
+        if (failure.code === 'upstream-error' && attempt < retryLimit) {
+          console.warn('Retrying launch page after HTTP ' + response.status + ' (attempt ' + (attempt + 2) + '/' + (retryLimit + 1) + ')');
+          await new Promise(resolve => setTimeout(resolve, retryWait));
+          continue;
+        }
+        throw failure;
+      }
+      try {
+        body = await response.json();
+      } catch (error) {
+        // Timeout while reading a successful HTTP response is not malformed JSON.
+        const malformed = error instanceof SyntaxError;
+        const failure = new Error(malformed ? 'upstream JSON could not be parsed' : 'upstream response body could not be read: ' + String((error && error.message) || error));
+        failure.code = malformed ? 'upstream-malformed' : 'upstream-unreachable';
+        if (!malformed && attempt < retryLimit) {
+          console.warn('Retrying launch page after response read failure (attempt ' + (attempt + 2) + '/' + (retryLimit + 1) + ')');
+          await new Promise(resolve => setTimeout(resolve, retryWait));
+          continue;
+        }
+        throw failure;
+      }
+      if (!body || !Array.isArray(body.results)) {
+        const failure = new Error('upstream payload is not a launch page');
+        failure.code = 'upstream-malformed';
+        throw failure;
+      }
+      break;
     }
     payloads.push(JSON.stringify(body.results));
     records.push(...body.results);
