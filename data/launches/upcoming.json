@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-06T15:39:38.467Z",
+ "generated_at": "2026-11-06T16:39:16.673Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,12 +18,12 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-06T15:39:38.467Z",
+  "retrieved_at": "2026-11-06T16:39:16.673Z",
   "sha256": "7b7b319ffcb0b59bd930bc2d5655beeee8704a43ca6cbf8e55bf6cd90a0adb6f",
   "pages": 2,
   "upstream_count": 136,
   "upstream_records": 136,
-  "announced_total": 478,
+  "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
@@ -49,7 +49,7 @@
   "providers": 28,
   "nearest_net": "2026-11-05T15:58:00.000Z",
   "window_days": 180,
-  "announced_total": 478
+  "announced_total": 477
  },
  "launches": [
   {
@@ -350,13 +350,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-10T06:00:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 1380,
-    "detected_at": "2026-11-06T15:39:38.467Z"
-   }
+   "change": null
   },
   {
    "id": "d66590ab-b273-47ff-b85a-608b62851b4b",
