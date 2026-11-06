@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-06T09:41:42.151Z",
+ "generated_at": "2026-11-06T12:39:21.761Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-06T09:41:42.151Z",
-  "sha256": "367c13789ebe2483eff6f9b161da3687bb3a7a8663823f02987dd349f76df7b8",
+  "retrieved_at": "2026-11-06T12:39:21.761Z",
+  "sha256": "089b9c99cf12a9251a95e653923b91d6258c10389100c85ca292faa7c028fbd6",
   "pages": 2,
   "upstream_count": 136,
   "upstream_records": 136,
@@ -34,8 +34,9 @@
    "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 8,
+   "minute": 7,
    "hour": 7,
+   "second": 1,
    "day": 6,
    "month": 29,
    "year": 74,
@@ -180,26 +181,32 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-07T00:46:00.000Z",
+   "net": "2026-11-07T00:48:42.000Z",
    "precision": {
-    "kind": "minute",
+    "kind": "second",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 1,
-    "name": "Minute"
+    "id": 0,
+    "name": "Second"
    },
    "window": {
     "start": "2026-11-07T00:46:00.000Z",
     "end": "2026-11-07T04:46:00.000Z"
    },
-   "last_updated": "2026-11-04T00:46:25.000Z",
+   "last_updated": "2026-11-06T12:06:21.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-07T00:46:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 3,
+    "detected_at": "2026-11-06T12:39:21.761Z"
+   }
   },
   {
    "id": "a2423132-f965-423f-8b03-6891b775dc54",
