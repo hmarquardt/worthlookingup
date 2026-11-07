@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-07T17:39:48.350Z",
+ "generated_at": "2026-11-07T18:39:46.252Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,7 +18,7 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-07T17:39:48.350Z",
+  "retrieved_at": "2026-11-07T18:39:46.252Z",
   "sha256": "ff8b1b16c47e5b489a41a1e63667ccec05bd0c52022de9f9ee5a36b0d2848274",
   "pages": 2,
   "upstream_count": 136,
@@ -200,13 +200,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Launch in Flight",
-    "previous_net": "2026-11-07T13:30:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-11-07T17:39:48.350Z"
-   }
+   "change": null
   },
   {
    "id": "a2423132-f965-423f-8b03-6891b775dc54",
