@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-06T22:39:45.811Z",
+ "generated_at": "2026-11-07T00:46:46.187Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-06T22:39:45.811Z",
-  "sha256": "7b7b319ffcb0b59bd930bc2d5655beeee8704a43ca6cbf8e55bf6cd90a0adb6f",
+  "retrieved_at": "2026-11-07T00:46:46.187Z",
+  "sha256": "5f7b2718d30aae5dd0d61c5e4d045d5ed920d863c063b1c210758bc846131727",
   "pages": 2,
   "upstream_count": 136,
   "upstream_records": 136,
@@ -29,14 +29,14 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "success": 1,
-   "scheduled": 10,
+   "success": 2,
+   "scheduled": 9,
    "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 7,
-   "hour": 7,
+   "minute": 8,
    "second": 1,
+   "hour": 6,
    "day": 6,
    "month": 29,
    "year": 74,
@@ -104,12 +104,12 @@
   },
   {
    "id": "e91d1da2-819b-4523-95bf-39ac7daa871d",
-   "slug": "ceres-2-unknown-payload",
-   "name": "Ceres-2 | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
+   "slug": "ceres-2-4-satellites",
+   "name": "Ceres-2 | 4 satellites",
+   "mission": "4 satellites",
+   "mission_type": "Earth Science",
+   "mission_description": "Share-ride of 4 commercial Earth observation and technology demonstration satellites to SSO, details TBD.",
+   "orbit": "Sun-Synchronous Orbit",
    "vehicle": "Ceres-2",
    "vehicle_family": null,
    "provider": "Galactic Energy",
@@ -125,32 +125,38 @@
     "longitude": 100.343333
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
-   "net": "2026-11-06T23:35:00.000Z",
+   "net": "2026-11-06T23:37:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-11-06T23:28:00.000Z",
     "end": "2026-11-06T23:50:00.000Z"
    },
-   "last_updated": "2026-11-02T02:55:01.000Z",
+   "last_updated": "2026-11-07T00:15:23.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e91d1da2-819b-4523-95bf-39ac7daa871d/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-06T23:35:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 2,
+    "detected_at": "2026-11-07T00:46:46.187Z"
+   }
   },
   {
    "id": "54d471e8-695c-4fa7-a3cf-dbd8b389e8ae",
@@ -194,7 +200,7 @@
     "start": "2026-11-07T00:46:00.000Z",
     "end": "2026-11-07T04:46:00.000Z"
    },
-   "last_updated": "2026-11-06T14:59:36.000Z",
+   "last_updated": "2026-11-07T00:36:21.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
