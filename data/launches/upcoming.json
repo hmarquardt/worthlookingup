@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-07T16:39:29.765Z",
+ "generated_at": "2026-11-07T17:39:48.350Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-07T16:39:29.765Z",
-  "sha256": "748538ec106012892291a5632599d2228f6bb0c46347c30f45d84804f0a4abcf",
+  "retrieved_at": "2026-11-07T17:39:48.350Z",
+  "sha256": "ff8b1b16c47e5b489a41a1e63667ccec05bd0c52022de9f9ee5a36b0d2848274",
   "pages": 2,
   "upstream_count": 136,
   "upstream_records": 136,
@@ -29,8 +29,7 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "success": 2,
-   "unknown": 1,
+   "success": 3,
    "scheduled": 8,
    "unconfirmed": 141
   },
@@ -171,16 +170,16 @@
     "country": "Russia"
    },
    "pad": {
-    "name": "Unknown Pad",
-    "latitude": 62.925556,
-    "longitude": 40.577778
+    "name": "43/3 (43L)",
+    "latitude": 62.9273,
+    "longitude": 40.45
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-11-07T13:30:00.000Z",
    "precision": {
@@ -195,13 +194,19 @@
     "start": "2026-11-07T07:00:00.000Z",
     "end": "2026-11-07T21:00:00.000Z"
    },
-   "last_updated": "2026-11-07T15:18:52.000Z",
+   "last_updated": "2026-11-07T17:30:52.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c476fea7-7814-4adb-91d1-98918bc2cc57/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-11-07T13:30:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-07T17:39:48.350Z"
+   }
   },
   {
    "id": "a2423132-f965-423f-8b03-6891b775dc54",
@@ -551,13 +556,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-13T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": 1365,
-    "detected_at": "2026-11-07T16:39:29.765Z"
-   }
+   "change": null
   },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
