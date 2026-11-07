@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-07T02:39:21.012Z",
+ "generated_at": "2026-11-07T04:39:50.130Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,24 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-07T02:39:21.012Z",
-  "sha256": "15618cb1637a4ef5dde7a3a987b84bed4703e0b5eba3cfe6d0d2b6455eb77085",
+  "retrieved_at": "2026-11-07T04:39:50.130Z",
+  "sha256": "37a6fd3eefd05ce36963609d67e3fdef08555c7bcc66113bcc8a8e3655fb3192",
   "pages": 2,
-  "upstream_count": 136,
-  "upstream_records": 136,
+  "upstream_count": 135,
+  "upstream_records": 135,
   "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 152,
+  "count": 151,
   "by_status": {
    "success": 2,
-   "unknown": 1,
    "scheduled": 8,
    "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 8,
+   "minute": 7,
    "second": 1,
    "hour": 6,
    "day": 6,
@@ -43,66 +42,16 @@
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 15,
-  "with_published_date": 21,
+  "with_published_time": 14,
+  "with_published_date": 20,
   "period_only": 131,
-  "sites": 21,
+  "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-11-05T15:58:00.000Z",
+  "nearest_net": "2026-11-06T23:37:00.000Z",
   "window_days": 180,
   "announced_total": 477
  },
  "launches": [
-  {
-   "id": "711de6bc-f755-475b-a12f-ec5240da3a11",
-   "slug": "long-march-2c-yaogan-51-07-to-09",
-   "name": "Long March 2C | Yaogan 51-07 to 09",
-   "mission": "Yaogan 51-07 to 09",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "3 Chinese military “remote sensing” satellite of unknown purposes.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 2C",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Xichang Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Complex 3 (LC-3/LA-1)",
-    "latitude": 28.247059,
-    "longitude": 102.029008
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-05T15:58:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-05T15:52:00.000Z",
-    "end": "2026-11-05T16:16:00.000Z"
-   },
-   "last_updated": "2026-11-05T16:47:23.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/711de6bc-f755-475b-a12f-ec5240da3a11/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "e91d1da2-819b-4523-95bf-39ac7daa871d",
    "slug": "ceres-2-4-satellites",
@@ -176,11 +125,11 @@
     "longitude": -120.611
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-11-07T00:48:42.000Z",
    "precision": {
@@ -195,13 +144,19 @@
     "start": "2026-11-07T00:46:00.000Z",
     "end": "2026-11-07T04:46:00.000Z"
    },
-   "last_updated": "2026-11-07T02:24:57.000Z",
+   "last_updated": "2026-11-07T04:29:55.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/54d471e8-695c-4fa7-a3cf-dbd8b389e8ae/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-11-07T00:48:42.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-07T04:39:50.130Z"
+   }
   },
   {
    "id": "a2423132-f965-423f-8b03-6891b775dc54",
