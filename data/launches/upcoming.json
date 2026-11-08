@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-08T20:39:33.530Z",
+ "generated_at": "2026-11-08T21:39:31.871Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,7 +18,7 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-08T20:39:33.530Z",
+  "retrieved_at": "2026-11-08T21:39:31.871Z",
   "sha256": "a536b276121041304568c8a7b802ed10b837b6119d5a6d6c46b5a78fbde17c85",
   "pages": 2,
   "upstream_count": 134,
@@ -150,13 +150,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "advanced",
-    "previous_net": "2026-11-08T20:25:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": -1,
-    "detected_at": "2026-11-08T20:39:33.530Z"
-   }
+   "change": null
   },
   {
    "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
