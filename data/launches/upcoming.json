@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-08T21:39:31.871Z",
+ "generated_at": "2026-11-08T22:39:25.321Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-08T21:39:31.871Z",
-  "sha256": "a536b276121041304568c8a7b802ed10b837b6119d5a6d6c46b5a78fbde17c85",
+  "retrieved_at": "2026-11-08T22:39:25.321Z",
+  "sha256": "36c6271bbd481a4512025bad2ba9fd5d1fe5aff5d0f17c3c9b45e5e666c2e96f",
   "pages": 2,
   "upstream_count": 134,
   "upstream_records": 134,
@@ -29,8 +29,7 @@
  "stats": {
   "count": 150,
   "by_status": {
-   "success": 1,
-   "unknown": 1,
+   "success": 2,
    "scheduled": 7,
    "unconfirmed": 141
   },
@@ -104,9 +103,9 @@
   },
   {
    "id": "a2423132-f965-423f-8b03-6891b775dc54",
-   "slug": "long-march-12-satnet-leo-group-tbd",
-   "name": "Long March 12 | SatNet LEO Group TBD?",
-   "mission": "SatNet LEO Group TBD?",
+   "slug": "long-march-12-satnet-leo-group-29",
+   "name": "Long March 12 | SatNet LEO Group 29",
+   "mission": "SatNet LEO Group 29",
    "mission_type": "Communications",
    "mission_description": "A batch of 9 Low Earth Orbit communication satellites for the Chinese state owned SatNet constellation operated by the China Satellite Network Group. The constellation will eventually consists of 13000 satellites.",
    "orbit": "Low Earth Orbit",
@@ -125,11 +124,11 @@
     "longitude": 110.936481
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-11-08T20:24:00.000Z",
    "precision": {
@@ -144,13 +143,19 @@
     "start": "2026-11-08T20:17:00.000Z",
     "end": "2026-11-08T20:47:00.000Z"
    },
-   "last_updated": "2026-11-08T20:33:21.000Z",
+   "last_updated": "2026-11-08T22:34:35.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a2423132-f965-423f-8b03-6891b775dc54/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-11-08T20:24:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-08T22:39:25.321Z"
+   }
   },
   {
    "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
