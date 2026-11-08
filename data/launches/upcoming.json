@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-08T18:39:16.508Z",
+ "generated_at": "2026-11-08T20:39:33.530Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-08T18:39:16.508Z",
-  "sha256": "2cc901696f6b7d0880ba5a3ac4146902c3abc87b391839882ab142e445f2b3c6",
+  "retrieved_at": "2026-11-08T20:39:33.530Z",
+  "sha256": "a536b276121041304568c8a7b802ed10b837b6119d5a6d6c46b5a78fbde17c85",
   "pages": 2,
   "upstream_count": 134,
   "upstream_records": 134,
@@ -30,12 +30,13 @@
   "count": 150,
   "by_status": {
    "success": 1,
-   "scheduled": 8,
+   "unknown": 1,
+   "scheduled": 7,
    "unconfirmed": 141
   },
   "by_precision": {
-   "hour": 7,
-   "minute": 7,
+   "hour": 6,
+   "minute": 8,
    "day": 5,
    "month": 29,
    "year": 74,
@@ -124,32 +125,38 @@
     "longitude": 110.936481
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
-   "net": "2026-11-08T20:25:00.000Z",
+   "net": "2026-11-08T20:24:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-11-08T20:17:00.000Z",
     "end": "2026-11-08T20:47:00.000Z"
    },
-   "last_updated": "2026-11-03T13:09:32.000Z",
+   "last_updated": "2026-11-08T20:33:21.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a2423132-f965-423f-8b03-6891b775dc54/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-11-08T20:25:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": -1,
+    "detected_at": "2026-11-08T20:39:33.530Z"
+   }
   },
   {
    "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
