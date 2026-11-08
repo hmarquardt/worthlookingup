@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-08T09:39:20.966Z",
+ "generated_at": "2026-11-08T11:39:02.338Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,90 +18,40 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-08T09:39:20.966Z",
-  "sha256": "f15c4519b1023c47969f0e5c39243e48c1478010814a6e510fc31c8759c5b776",
+  "retrieved_at": "2026-11-08T11:39:02.338Z",
+  "sha256": "0de10e8dabdb6fc68f7d7bac59e5d591fcdf4694e8ba45c10d5d4b68b1d992b9",
   "pages": 2,
-  "upstream_count": 136,
-  "upstream_records": 136,
+  "upstream_count": 135,
+  "upstream_records": 135,
   "announced_total": 476,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 152,
+  "count": 151,
   "by_status": {
-   "success": 3,
+   "success": 2,
    "scheduled": 8,
    "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 8,
    "second": 1,
    "hour": 7,
+   "minute": 7,
    "day": 5,
    "month": 29,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 16,
-  "with_published_date": 21,
+  "with_published_time": 15,
+  "with_published_date": 20,
   "period_only": 131,
   "sites": 21,
-  "providers": 29,
-  "nearest_net": "2026-11-06T23:37:00.000Z",
+  "providers": 28,
+  "nearest_net": "2026-11-07T00:48:42.000Z",
   "window_days": 180,
   "announced_total": 476
  },
  "launches": [
-  {
-   "id": "e91d1da2-819b-4523-95bf-39ac7daa871d",
-   "slug": "ceres-2-4-satellites",
-   "name": "Ceres-2 | 4 satellites",
-   "mission": "4 satellites",
-   "mission_type": "Earth Science",
-   "mission_description": "Share-ride of 4 commercial Earth observation and technology demonstration satellites to SSO, details TBD.",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Ceres-2",
-   "vehicle_family": null,
-   "provider": "Galactic Energy",
-   "provider_abbrev": "GE",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Area 95A",
-    "latitude": 40.969117,
-    "longitude": 100.343333
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-06T23:37:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-06T23:28:00.000Z",
-    "end": "2026-11-06T23:50:00.000Z"
-   },
-   "last_updated": "2026-11-07T00:15:23.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e91d1da2-819b-4523-95bf-39ac7daa871d/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "54d471e8-695c-4fa7-a3cf-dbd8b389e8ae",
    "slug": "falcon-9-block-5-ussf-432",
