@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-09T17:39:44.001Z",
+ "generated_at": "2026-11-09T18:39:17.132Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-09T17:39:44.001Z",
-  "sha256": "10b58e106a85e10c9573311c03a5bf58c0fe1499af4f78ece5a709435a55197f",
+  "retrieved_at": "2026-11-09T18:39:17.132Z",
+  "sha256": "81ea210b94bc0a053ad5ff4613e63b880095dfc26c17acb7c2ad04013e58e416",
   "pages": 2,
   "upstream_count": 132,
   "upstream_records": 132,
@@ -37,14 +37,14 @@
    "minute": 7,
    "second": 1,
    "hour": 6,
-   "day": 5,
-   "month": 29,
+   "day": 6,
+   "month": 28,
    "year": 74,
    "quarter": 28
   },
   "with_published_time": 14,
-  "with_published_date": 19,
-  "period_only": 131,
+  "with_published_date": 20,
+  "period_only": 130,
   "sites": 20,
   "providers": 28,
   "nearest_net": "2026-11-08T20:24:00.000Z",
@@ -5918,6 +5918,62 @@
    "change": null
   },
   {
+   "id": "d3bd7fb2-fac6-49fc-ae52-cee07d2fde67",
+   "slug": "falcon-heavy-griffin-mission-one",
+   "name": "Falcon Heavy | Griffin Mission One",
+   "mission": "Griffin Mission One",
+   "mission_type": "Lunar Exploration",
+   "mission_description": "Demonstration flight of the Astrobotic Griffin lander and its engines, initially contracted for the NASA VIPER (Volatiles Investigating Polar Exploration Rover) mission. The vacated payload spot will now host the FLIP (FLEX Lunar Innovation Platform) lunar rover from Astrolab.",
+   "orbit": "Lunar Orbit",
+   "vehicle": "Falcon Heavy",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Kennedy Space Center, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Launch Complex 39A",
+    "latitude": 28.60822681,
+    "longitude": -80.60428186
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-01-06T00:00:00.000Z",
+   "precision": {
+    "kind": "day",
+    "exact": false,
+    "dated": true,
+    "countdown": false,
+    "id": 5,
+    "name": "Day"
+   },
+   "window": {
+    "start": "2027-01-06T00:00:00.000Z",
+    "end": "2027-01-06T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-09T18:22:21.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d3bd7fb2-fac6-49fc-ae52-cee07d2fde67/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2027-01-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -36000,
+    "detected_at": "2026-11-09T18:39:17.132Z"
+   }
+  },
+  {
    "id": "07e945c1-2ec6-4d29-a500-1afbe920440f",
    "slug": "atlas-v-n22-starliner-1",
    "name": "Atlas V N22 | Starliner-1",
@@ -6263,56 +6319,6 @@
    "last_updated": "2026-11-05T18:10:53.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a5e81552-ecdd-4d89-b6bd-b594e22ca891/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "d3bd7fb2-fac6-49fc-ae52-cee07d2fde67",
-   "slug": "falcon-heavy-griffin-mission-one",
-   "name": "Falcon Heavy | Griffin Mission One",
-   "mission": "Griffin Mission One",
-   "mission_type": "Lunar Exploration",
-   "mission_description": "Demonstration flight of the Astrobotic Griffin lander and its engines, initially contracted for the NASA VIPER (Volatiles Investigating Polar Exploration Rover) mission. The vacated payload spot will now host the FLIP (FLEX Lunar Innovation Platform) lunar rover from Astrolab.",
-   "orbit": "Lunar Orbit",
-   "vehicle": "Falcon Heavy",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Kennedy Space Center, FL, USA",
-    "timezone": "America/New_York",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Launch Complex 39A",
-    "latitude": 28.60822681,
-    "longitude": -80.60428186
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2027-01-31T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2027-01-31T00:00:00.000Z",
-    "end": "2027-01-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-11-01T01:12:16.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d3bd7fb2-fac6-49fc-ae52-cee07d2fde67/",
     "info": [],
     "webcast": []
    },
@@ -7381,11 +7387,11 @@
   },
   {
    "id": "0d7dd3ae-0750-49be-a6ef-db40fd6ec5a5",
-   "slug": "falcon-9-block-5-ayap-1",
-   "name": "Falcon 9 Block 5 | AYAP-1",
-   "mission": "AYAP-1",
+   "slug": "falcon-9-block-5-turkish-lunar-mission-1-tlm-1",
+   "name": "Falcon 9 Block 5 | Turkish Lunar Mission-1 (TLM-1)",
+   "mission": "Turkish Lunar Mission-1 (TLM-1)",
    "mission_type": "Planetary Science",
-   "mission_description": "AYAP-1 is the first Turkish lunar exploration spacecraft mission. The AYAP-1 spacecraft will operate for at least 3 months (possibly extended to 6) in a 100-km circular lunar orbit above the lunar surface before concluding its mission with a controlled crash landing. It will test the 1st Turkish spacecraft hybrid propulsion system and ollect data about the Moon's water, magnetic activity and radi…",
+   "mission_description": "Turkish Lunar Mission-1 (TLM-1) is the first Turkish lunar exploration spacecraft mission. The TLM-1 spacecraft will operate for at least 3 months (possibly extended to 6) in a 100-km circular lunar orbit above the lunar surface before concluding its mission with a controlled crash landing. It will test the 1st Turkish spacecraft hybrid propulsion system and collect data about the Moon's water, m…",
    "orbit": "Lunar Orbit",
    "vehicle": "Falcon 9 Block 5",
    "vehicle_family": "Falcon",
@@ -7421,7 +7427,7 @@
     "start": "2027-04-30T00:00:00.000Z",
     "end": "2027-04-30T00:00:00.000Z"
    },
-   "last_updated": "2026-10-10T15:21:59.000Z",
+   "last_updated": "2026-11-09T18:35:26.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0d7dd3ae-0750-49be-a6ef-db40fd6ec5a5/",
     "info": [],
