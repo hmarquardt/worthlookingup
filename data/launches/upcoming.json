@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-09T19:39:09.034Z",
+ "generated_at": "2026-11-09T21:39:11.486Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-09T19:39:09.034Z",
-  "sha256": "81ea210b94bc0a053ad5ff4613e63b880095dfc26c17acb7c2ad04013e58e416",
+  "retrieved_at": "2026-11-09T21:39:11.486Z",
+  "sha256": "98315824ba8178a345341105642af4233aca569c42f295cb26a87a73c99e3d28",
   "pages": 2,
   "upstream_count": 132,
   "upstream_records": 132,
@@ -27,23 +27,22 @@
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 150,
+  "count": 151,
   "by_status": {
    "success": 1,
-   "scheduled": 8,
+   "scheduled": 9,
    "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 7,
-   "second": 1,
+   "minute": 9,
    "hour": 6,
    "day": 6,
    "month": 28,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 14,
-  "with_published_date": 20,
+  "with_published_time": 15,
+  "with_published_date": 21,
   "period_only": 130,
   "sites": 20,
   "providers": 28,
@@ -131,26 +130,32 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-10T04:59:49.000Z",
+   "net": "2026-11-11T02:49:00.000Z",
    "precision": {
-    "kind": "second",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 0,
-    "name": "Second"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
-    "start": "2026-11-10T03:03:00.000Z",
-    "end": "2026-11-10T07:03:00.000Z"
+    "start": "2026-11-11T02:49:00.000Z",
+    "end": "2026-11-11T06:49:00.000Z"
    },
-   "last_updated": "2026-11-09T17:13:07.000Z",
+   "last_updated": "2026-11-09T21:22:26.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-10T04:59:49.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1309,
+    "detected_at": "2026-11-09T21:39:11.486Z"
+   }
   },
   {
    "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
@@ -497,6 +502,56 @@
    "last_updated": "2026-11-06T01:54:25.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/db3500ac-965b-4ad8-b417-cb8d8d005586/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
+   "slug": "falcon-9-block-5-ussf-266",
+   "name": "Falcon 9 Block 5 | USSF-266",
+   "mission": "USSF-266",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of ascent rocket stage drop zones being fits with previous SDA Transport Layer launches.",
+   "orbit": "Polar Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-16T17:07:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-16T17:07:00.000Z",
+    "end": "2026-11-16T21:07:00.000Z"
+   },
+   "last_updated": "2026-11-09T21:03:46.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/460d9db7-eaf6-4cd9-b095-cff433534c09/",
     "info": [],
     "webcast": []
    },
