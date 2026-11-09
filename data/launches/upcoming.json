@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-09T15:39:27.054Z",
+ "generated_at": "2026-11-09T16:39:20.499Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,38 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-09T15:39:27.054Z",
-  "sha256": "6977dcefd8648b9f27d8234d3bedb0afc1c76ccf9eb9755ffcab9cf63aeffe27",
+  "retrieved_at": "2026-11-09T16:39:20.499Z",
+  "sha256": "b6999f6743883633594403a745b84e75519da257756ce6ad08155e83e56b461f",
   "pages": 2,
-  "upstream_count": 131,
-  "upstream_records": 131,
-  "announced_total": 475,
+  "upstream_count": 132,
+  "upstream_records": 132,
+  "announced_total": 476,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 149,
+  "count": 150,
   "by_status": {
    "success": 1,
-   "scheduled": 7,
+   "scheduled": 8,
    "unconfirmed": 141
   },
   "by_precision": {
    "minute": 7,
    "second": 1,
-   "hour": 5,
+   "hour": 6,
    "day": 5,
    "month": 29,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 13,
-  "with_published_date": 18,
+  "with_published_time": 14,
+  "with_published_date": 19,
   "period_only": 131,
   "sites": 20,
-  "providers": 27,
+  "providers": 28,
   "nearest_net": "2026-11-08T20:24:00.000Z",
   "window_days": 180,
-  "announced_total": 475
+  "announced_total": 476
  },
  "launches": [
   {
@@ -131,7 +131,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-10T03:07:15.000Z",
+   "net": "2026-11-10T04:59:49.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -144,13 +144,19 @@
     "start": "2026-11-10T03:03:00.000Z",
     "end": "2026-11-10T07:03:00.000Z"
    },
-   "last_updated": "2026-11-09T15:18:13.000Z",
+   "last_updated": "2026-11-09T16:36:31.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-10T03:07:15.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 113,
+    "detected_at": "2026-11-09T16:39:20.499Z"
+   }
   },
   {
    "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
@@ -247,6 +253,56 @@
    "last_updated": "2026-11-05T06:42:19.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d66590ab-b273-47ff-b85a-608b62851b4b/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "e2523821-9760-4cb4-ad1f-7ce2e30419bd",
+   "slug": "kuaizhou-11-unknown-payload",
+   "name": "Kuaizhou 11 | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Kuaizhou 11",
+   "vehicle_family": "Kuaizhou",
+   "provider": "ExPace",
+   "provider_abbrev": "EP",
+   "site": {
+    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Area 95A",
+    "latitude": 40.969117,
+    "longitude": 100.343333
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-12T19:50:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-12T19:44:00.000Z",
+    "end": "2026-11-12T20:29:00.000Z"
+   },
+   "last_updated": "2026-11-09T16:25:42.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2523821-9760-4cb4-ad1f-7ce2e30419bd/",
     "info": [],
     "webcast": []
    },
