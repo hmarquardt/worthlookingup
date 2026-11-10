@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-10T15:39:13.648Z",
+ "generated_at": "2026-11-10T16:39:37.102Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,12 +18,12 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-10T15:39:13.648Z",
-  "sha256": "a0de99b4b45e5b31053881d0228f13b5c0a064749c746557f6b05299d5de4b8a",
+  "retrieved_at": "2026-11-10T16:39:37.102Z",
+  "sha256": "4d4923997539080de7e8d82a406636e644eb58bd925a2ad074721f6795742d0e",
   "pages": 2,
   "upstream_count": 131,
   "upstream_records": 131,
-  "announced_total": null,
+  "announced_total": 476,
   "duplicates_removed": 0
  },
  "stats": {
@@ -33,8 +33,8 @@
    "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 8,
    "hour": 6,
+   "minute": 8,
    "day": 6,
    "month": 28,
    "year": 74,
@@ -45,61 +45,11 @@
   "period_only": 130,
   "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-11-11T02:49:00.000Z",
+  "nearest_net": "2026-11-11T11:40:00.000Z",
   "window_days": 180,
-  "announced_total": null
+  "announced_total": 476
  },
  "launches": [
-  {
-   "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
-   "slug": "falcon-9-block-5-ussf-627",
-   "name": "Falcon 9 Block 5 | USSF-627",
-   "mission": "USSF-627",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-11T02:49:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-11T02:49:00.000Z",
-    "end": "2026-11-11T06:49:00.000Z"
-   },
-   "last_updated": "2026-11-09T21:22:26.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "d66590ab-b273-47ff-b85a-608b62851b4b",
    "slug": "long-march-2d-unknown-payload",
@@ -149,6 +99,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
+   "slug": "falcon-9-block-5-ussf-627",
+   "name": "Falcon 9 Block 5 | USSF-627",
+   "mission": "USSF-627",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-12T02:35:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-12T02:35:00.000Z",
+    "end": "2026-11-12T06:35:00.000Z"
+   },
+   "last_updated": "2026-11-10T16:25:24.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-11T02:49:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1426,
+    "detected_at": "2026-11-10T16:39:37.102Z"
+   }
   },
   {
    "id": "e2523821-9760-4cb4-ad1f-7ce2e30419bd",
@@ -351,56 +357,6 @@
    "change": null
   },
   {
-   "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
-   "slug": "falcon-9-block-5-ussf-317",
-   "name": "Falcon 9 Block 5 | USSF-317",
-   "mission": "USSF-317",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-14T04:09:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-14T04:09:00.000Z",
-    "end": "2026-11-14T08:09:00.000Z"
-   },
-   "last_updated": "2026-11-09T21:55:20.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
    "slug": "electron-the-mountain-god-rises-iqps-launch-10",
    "name": "Electron | The Mountain God Rises (iQPS Launch 10)",
@@ -451,6 +407,62 @@
    "change": null
   },
   {
+   "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
+   "slug": "falcon-9-block-5-ussf-317",
+   "name": "Falcon 9 Block 5 | USSF-317",
+   "mission": "USSF-317",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-15T03:55:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-15T03:55:00.000Z",
+    "end": "2026-11-15T07:55:00.000Z"
+   },
+   "last_updated": "2026-11-10T16:25:25.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-14T04:09:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1426,
+    "detected_at": "2026-11-10T16:39:37.102Z"
+   }
+  },
+  {
    "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
    "slug": "falcon-9-block-5-ussf-266",
    "name": "Falcon 9 Block 5 | USSF-266",
@@ -479,7 +491,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-17T16:58:00.000Z",
+   "net": "2026-11-18T16:49:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -489,16 +501,22 @@
     "name": "Minute"
    },
    "window": {
-    "start": "2026-11-17T16:58:00.000Z",
-    "end": "2026-11-17T20:58:00.000Z"
+    "start": "2026-11-18T16:49:00.000Z",
+    "end": "2026-11-18T20:49:00.000Z"
    },
-   "last_updated": "2026-11-09T21:55:20.000Z",
+   "last_updated": "2026-11-10T16:26:25.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/460d9db7-eaf6-4cd9-b095-cff433534c09/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-17T16:58:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1431,
+    "detected_at": "2026-11-10T16:39:37.102Z"
+   }
   },
   {
    "id": "a2975167-7c6f-4403-99e1-b40df17c8140",
