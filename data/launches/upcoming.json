@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-10T12:39:41.584Z",
+ "generated_at": "2026-11-10T14:39:30.196Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-10T12:39:41.584Z",
-  "sha256": "7c9428cd97966c7efb066bd20e00572f11baa2a0bbbec13aa088a0ee3e1c1fb1",
+  "retrieved_at": "2026-11-10T14:39:30.196Z",
+  "sha256": "a0de99b4b45e5b31053881d0228f13b5c0a064749c746557f6b05299d5de4b8a",
   "pages": 2,
   "upstream_count": 131,
   "upstream_records": 131,
@@ -95,56 +95,6 @@
    "last_updated": "2026-11-09T21:22:26.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
-   "slug": "mir-demo-flight",
-   "name": "Mir | Demo Flight",
-   "mission": "Demo Flight",
-   "mission_type": "Test Flight",
-   "mission_description": "Note: Launch vehicle name is provisional. First orbital full version launch of the South Korean military small satellite launch vehicle, after 2 sub-orbital tests of individual stages on 30 March and 30 December 2022, and 1 orbital test flight without the 2nd stage on 4 December 2023. Details TBD.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Mir",
-   "vehicle_family": "Mir",
-   "provider": "Agency for Defense Development",
-   "provider_abbrev": "ADD",
-   "site": {
-    "name": "Sea Launch",
-    "timezone": null,
-    "country": "South Korea"
-   },
-   "pad": {
-    "name": "ADD Offshore launch platform",
-    "latitude": 33.216667,
-    "longitude": 126.366667
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-11T05:00:00.000Z",
-   "precision": {
-    "kind": "hour",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 2,
-    "name": "Hour"
-   },
-   "window": {
-    "start": "2026-11-11T05:00:00.000Z",
-    "end": "2026-11-11T09:00:00.000Z"
-   },
-   "last_updated": "2026-11-06T14:45:06.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/9e27a1ed-e81a-4918-b32b-0380cf3a9f8f/",
     "info": [],
     "webcast": []
    },
@@ -249,6 +199,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
+   "slug": "mir-demo-flight",
+   "name": "Mir | Demo Flight",
+   "mission": "Demo Flight",
+   "mission_type": "Test Flight",
+   "mission_description": "Note: Launch vehicle name is provisional. First orbital full version launch of the South Korean military small satellite launch vehicle, after 2 sub-orbital tests of individual stages on 30 March and 30 December 2022, and 1 orbital test flight without the 2nd stage on 4 December 2023. Details TBD.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Mir",
+   "vehicle_family": "Mir",
+   "provider": "Agency for Defense Development",
+   "provider_abbrev": "ADD",
+   "site": {
+    "name": "Sea Launch",
+    "timezone": null,
+    "country": "South Korea"
+   },
+   "pad": {
+    "name": "ADD Offshore launch platform",
+    "latitude": 33.216667,
+    "longitude": 126.366667
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-13T05:00:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-13T05:00:00.000Z",
+    "end": "2026-11-13T09:00:00.000Z"
+   },
+   "last_updated": "2026-11-10T14:07:18.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/9e27a1ed-e81a-4918-b32b-0380cf3a9f8f/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-11T05:00:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 2880,
+    "detected_at": "2026-11-10T14:39:30.196Z"
+   }
   },
   {
    "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
