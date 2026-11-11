@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-11T11:39:42.860Z",
+ "generated_at": "2026-11-11T13:39:44.144Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-11T11:39:42.860Z",
-  "sha256": "67e9939c9bc594235f268d31312108d023b6e8dd37588a9bf3bbfec3966aeda7",
+  "retrieved_at": "2026-11-11T13:39:44.144Z",
+  "sha256": "1f2af85019504505b76a78839756551a5ceb192247dcbededd90c1df7dc6e0ba",
   "pages": 2,
   "upstream_count": 131,
   "upstream_records": 131,
@@ -29,12 +29,13 @@
  "stats": {
   "count": 150,
   "by_status": {
-   "scheduled": 9,
+   "success": 1,
+   "scheduled": 8,
    "unconfirmed": 141
   },
   "by_precision": {
-   "hour": 6,
-   "minute": 8,
+   "minute": 9,
+   "hour": 5,
    "day": 6,
    "month": 28,
    "year": 74,
@@ -45,19 +46,19 @@
   "period_only": 130,
   "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-11-11T11:40:00.000Z",
+  "nearest_net": "2026-11-11T11:41:00.000Z",
   "window_days": 180,
   "announced_total": 476
  },
  "launches": [
   {
    "id": "d66590ab-b273-47ff-b85a-608b62851b4b",
-   "slug": "long-march-2d-unknown-payload",
-   "name": "Long March 2D | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
+   "slug": "long-march-2d-cas-pathfinder-1",
+   "name": "Long March 2D | CAS Pathfinder-1",
+   "mission": "CAS Pathfinder-1",
+   "mission_type": "Technology",
+   "mission_description": "The Chinese Academy of Science (CAS)' Pathfinder-1 satellites is built for in-orbit validation of critical technologies for the upcoming main missions of CAS' \"Origins” Space Science Program, which consists of 4 upcoming astronomical observatory missions to be launched by 2030: * Discovering the Sky at the Longest wavelength (DSL * Solar Polar Orbit Observatory (SPO) * Earth 2.0 (ET) * Enhanced X…",
+   "orbit": "Sun-Synchronous Orbit",
    "vehicle": "Long March 2D",
    "vehicle_family": "Long March",
    "provider": "China Aerospace Science and Technology Corporation",
@@ -73,32 +74,38 @@
     "longitude": 100.298059
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
-   "net": "2026-11-11T11:40:00.000Z",
+   "net": "2026-11-11T11:41:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-11-11T11:32:00.000Z",
     "end": "2026-11-11T12:05:00.000Z"
    },
-   "last_updated": "2026-11-05T06:42:19.000Z",
+   "last_updated": "2026-11-11T12:52:14.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d66590ab-b273-47ff-b85a-608b62851b4b/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-11T11:40:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1,
+    "detected_at": "2026-11-11T13:39:44.144Z"
+   }
   },
   {
    "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
