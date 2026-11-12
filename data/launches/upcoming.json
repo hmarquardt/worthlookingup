@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-12T19:39:13.870Z",
+ "generated_at": "2026-11-12T21:39:09.885Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,7 +18,7 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-12T19:39:13.870Z",
+  "retrieved_at": "2026-11-12T21:39:09.885Z",
   "sha256": "e5f9457d0d73355dc99dacb38d02a29a35690415bd36334fa759da951cc4e860",
   "pages": 2,
   "upstream_count": 129,
