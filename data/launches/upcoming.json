@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-12T03:39:09.199Z",
+ "generated_at": "2026-11-12T04:39:33.689Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-12T03:39:09.199Z",
-  "sha256": "bcca4023150ac47114b6b31fb2f6bae818b9db2705f9ca307f4211dadc285201",
+  "retrieved_at": "2026-11-12T04:39:33.689Z",
+  "sha256": "0652ebfa1c87120d572f56316dfc036601c22570003ce301a8638d0b3ae3130a",
   "pages": 2,
   "upstream_count": 126,
   "upstream_records": 126,
@@ -30,7 +30,8 @@
   "count": 150,
   "by_status": {
    "success": 1,
-   "scheduled": 8,
+   "unknown": 1,
+   "scheduled": 7,
    "unconfirmed": 141
   },
   "by_precision": {
@@ -125,11 +126,11 @@
     "longitude": -120.611
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
    "net": "2026-11-12T04:36:30.000Z",
    "precision": {
@@ -144,13 +145,19 @@
     "start": "2026-11-12T02:35:00.000Z",
     "end": "2026-11-12T06:35:00.000Z"
    },
-   "last_updated": "2026-11-11T23:51:06.000Z",
+   "last_updated": "2026-11-12T04:37:26.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Go for Launch",
+    "previous_net": "2026-11-12T04:36:30.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-12T04:39:33.689Z"
+   }
   },
   {
    "id": "e2523821-9760-4cb4-ad1f-7ce2e30419bd",
@@ -444,7 +451,7 @@
     "start": "2026-11-15T03:55:00.000Z",
     "end": "2026-11-15T07:55:00.000Z"
    },
-   "last_updated": "2026-11-10T16:25:25.000Z",
+   "last_updated": "2026-11-12T03:55:21.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
     "info": [],
