@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-12T17:39:05.126Z",
+ "generated_at": "2026-11-12T19:39:13.870Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,38 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-12T17:39:05.126Z",
-  "sha256": "d2122b9a6395dd351972acf83397113baa4d8d2a17355204214deb6f91eeced7",
+  "retrieved_at": "2026-11-12T19:39:13.870Z",
+  "sha256": "e5f9457d0d73355dc99dacb38d02a29a35690415bd36334fa759da951cc4e860",
   "pages": 2,
-  "upstream_count": 127,
-  "upstream_records": 127,
-  "announced_total": 475,
+  "upstream_count": 129,
+  "upstream_records": 129,
+  "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 151,
+  "count": 153,
   "by_status": {
    "success": 2,
-   "scheduled": 6,
+   "scheduled": 8,
    "unconfirmed": 143
   },
   "by_precision": {
-   "minute": 8,
+   "minute": 9,
    "second": 1,
-   "hour": 4,
+   "hour": 5,
    "day": 6,
    "month": 30,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 13,
-  "with_published_date": 19,
+  "with_published_time": 15,
+  "with_published_date": 21,
   "period_only": 132,
-  "sites": 21,
+  "sites": 22,
   "providers": 28,
   "nearest_net": "2026-11-11T11:41:00.000Z",
   "window_days": 180,
-  "announced_total": 475
+  "announced_total": 477
  },
  "launches": [
   {
@@ -453,6 +453,56 @@
    "change": null
   },
   {
+   "id": "e0a11eb1-0bda-4872-b36b-140247fd5c60",
+   "slug": "long-march-2d-unknown-payload",
+   "name": "Long March 2D | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Long March 2D",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Taiyuan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Complex 9",
+    "latitude": 38.863128,
+    "longitude": 111.589567
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-18T22:50:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-18T22:43:00.000Z",
+    "end": "2026-11-18T23:05:00.000Z"
+   },
+   "last_updated": "2026-11-12T19:18:17.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e0a11eb1-0bda-4872-b36b-140247fd5c60/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
    "id": "a2975167-7c6f-4403-99e1-b40df17c8140",
    "slug": "long-march-8a-satnet-leo-group-tbd",
    "name": "Long March 8A | SatNet LEO Group TBD?",
@@ -497,6 +547,56 @@
    "last_updated": "2026-10-30T13:59:24.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a2975167-7c6f-4403-99e1-b40df17c8140/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "951a341f-236b-42fe-a667-4ab2fcf36eac",
+   "slug": "falcon-9-block-5-nrol-136",
+   "name": "Falcon 9 Block 5 | NROL-136",
+   "mission": "NROL-136",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "Fifteenth batch of satellites for a reconnaissance satellite constellation built by SpaceX and Northrop Grumman for the National Reconnaissance Office to provide imaging and other reconnaissance capabilities.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-21T12:30:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-21T12:30:00.000Z",
+    "end": "2026-11-21T13:00:00.000Z"
+   },
+   "last_updated": "2026-11-12T19:21:00.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/951a341f-236b-42fe-a667-4ab2fcf36eac/",
     "info": [],
     "webcast": []
    },
@@ -858,7 +958,7 @@
    "name": "Falcon 9 Block 5 | NROL-195",
    "mission": "NROL-195",
    "mission_type": "Government/Top Secret",
-   "mission_description": "Fifteenth batch of satellites for a reconnaissance satellite constellation built by SpaceX and Northrop Grumman for the National Reconnaissance Office to provide imaging and other reconnaissance capabilities.",
+   "mission_description": "Sixteenth batch of satellites for a reconnaissance satellite constellation built by SpaceX and Northrop Grumman for the National Reconnaissance Office to provide imaging and other reconnaissance capabilities.",
    "orbit": "Low Earth Orbit",
    "vehicle": "Falcon 9 Block 5",
    "vehicle_family": "Falcon",
@@ -894,7 +994,7 @@
     "start": "2026-11-30T00:00:00.000Z",
     "end": "2026-11-30T00:00:00.000Z"
    },
-   "last_updated": "2026-10-26T17:58:53.000Z",
+   "last_updated": "2026-11-12T19:09:40.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/56ca6058-7ccc-4ec0-b1b0-fb49f3bfee49/",
     "info": [],
