@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-13T16:39:33.475Z",
+ "generated_at": "2026-11-13T17:39:23.166Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-13T16:39:33.475Z",
-  "sha256": "e588f174547a23b56af2c30e09dcbdeaf519b7cc1e9aa1bfda001e15f6902efa",
+  "retrieved_at": "2026-11-13T17:39:23.166Z",
+  "sha256": "c00a292d08666999326ba94198b4a4bb5fca72c33341da3e4619a0b9d4e76d93",
   "pages": 2,
   "upstream_count": 127,
   "upstream_records": 127,
@@ -302,56 +302,6 @@
    "change": null
   },
   {
-   "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
-   "slug": "falcon-9-block-5-ussf-266",
-   "name": "Falcon 9 Block 5 | USSF-266",
-   "mission": "USSF-266",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of ascent rocket stage drop zones being fits with previous SDA Transport Layer launches.",
-   "orbit": "Polar Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-18T16:49:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-18T16:49:00.000Z",
-    "end": "2026-11-18T20:49:00.000Z"
-   },
-   "last_updated": "2026-11-10T16:26:25.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/460d9db7-eaf6-4cd9-b095-cff433534c09/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "e0a11eb1-0bda-4872-b36b-140247fd5c60",
    "slug": "long-march-2d-unknown-payload",
    "name": "Long March 2D | Unknown Payload",
@@ -550,6 +500,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
+   "slug": "falcon-9-block-5-ussf-266",
+   "name": "Falcon 9 Block 5 | USSF-266",
+   "mission": "USSF-266",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of ascent rocket stage drop zones being fits with previous SDA Transport Layer launches.",
+   "orbit": "Polar Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-23T16:04:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-23T16:04:00.000Z",
+    "end": "2026-11-23T20:04:00.000Z"
+   },
+   "last_updated": "2026-11-13T17:31:26.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/460d9db7-eaf6-4cd9-b095-cff433534c09/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-18T16:49:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 7155,
+    "detected_at": "2026-11-13T17:39:23.166Z"
+   }
   },
   {
    "id": "8dd5de11-831b-445f-86f0-bffefe0550d9",
