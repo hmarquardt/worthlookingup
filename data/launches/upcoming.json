@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-13T15:38:58.587Z",
+ "generated_at": "2026-11-13T16:39:33.475Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,90 +18,39 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-13T15:38:58.587Z",
-  "sha256": "75896cd7cffe7d9d37097d527a7c284ee50d4d46e50719b4bdcdf283cf5e9148",
+  "retrieved_at": "2026-11-13T16:39:33.475Z",
+  "sha256": "e588f174547a23b56af2c30e09dcbdeaf519b7cc1e9aa1bfda001e15f6902efa",
   "pages": 2,
-  "upstream_count": 128,
-  "upstream_records": 128,
+  "upstream_count": 127,
+  "upstream_records": 127,
   "announced_total": 476,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 152,
+  "count": 151,
   "by_status": {
-   "success": 1,
    "unconfirmed": 143,
    "scheduled": 8
   },
   "by_precision": {
-   "second": 2,
    "minute": 8,
+   "second": 1,
    "hour": 4,
    "day": 6,
    "month": 30,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 14,
-  "with_published_date": 20,
+  "with_published_time": 13,
+  "with_published_date": 19,
   "period_only": 132,
   "sites": 22,
   "providers": 28,
-  "nearest_net": "2026-11-12T04:36:30.000Z",
+  "nearest_net": "2026-11-13T22:45:00.000Z",
   "window_days": 180,
   "announced_total": 476
  },
  "launches": [
-  {
-   "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
-   "slug": "falcon-9-block-5-ussf-627",
-   "name": "Falcon 9 Block 5 | USSF-627",
-   "mission": "USSF-627",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-12T04:36:30.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-11-12T02:35:00.000Z",
-    "end": "2026-11-12T06:35:00.000Z"
-   },
-   "last_updated": "2026-11-12T07:02:47.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/6aa7b90b-e5ed-45d8-a52e-04fbf399d178/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "0f867f0c-5422-4d44-93b8-d7faaae7019b",
    "slug": "starship-starlink-group-31-2-starship-flight-15",
@@ -200,13 +149,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-14T00:50:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 26,
-    "detected_at": "2026-11-13T15:38:58.587Z"
-   }
+   "change": null
   },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
@@ -306,13 +249,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-13T17:54:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 1419,
-    "detected_at": "2026-11-13T15:38:58.587Z"
-   }
+   "change": null
   },
   {
    "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
