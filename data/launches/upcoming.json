@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-13T22:39:29.003Z",
+ "generated_at": "2026-11-13T23:39:06.746Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-13T22:39:29.003Z",
-  "sha256": "2f5fcd1f3a1d75fc978ec086ca81388068e16f319e95746b0c532a1c99f20944",
+  "retrieved_at": "2026-11-13T23:39:06.746Z",
+  "sha256": "1ab953da0279ab7b124dd234de458bdf3696146956a82ccc50c8e4cf5703115e",
   "pages": 2,
   "upstream_count": 127,
   "upstream_records": 127,
@@ -29,7 +29,8 @@
  "stats": {
   "count": 151,
   "by_status": {
-   "scheduled": 9,
+   "unknown": 1,
+   "scheduled": 8,
    "unconfirmed": 142
   },
   "by_precision": {
@@ -74,11 +75,11 @@
     "longitude": -97.15799
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
    "net": "2026-11-13T22:47:36.000Z",
    "precision": {
@@ -93,18 +94,18 @@
     "start": "2026-11-13T22:45:00.000Z",
     "end": "2026-11-14T00:00:00.000Z"
    },
-   "last_updated": "2026-11-13T22:07:33.000Z",
+   "last_updated": "2026-11-13T23:02:44.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0f867f0c-5422-4d44-93b8-d7faaae7019b/",
     "info": [],
     "webcast": []
    },
    "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-13T22:45:00.000Z",
+    "kind": "status",
     "previous_status": "Go for Launch",
-    "delta_minutes": 3,
-    "detected_at": "2026-11-13T22:39:29.003Z"
+    "previous_net": "2026-11-13T22:47:36.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-13T23:39:06.746Z"
    }
   },
   {
