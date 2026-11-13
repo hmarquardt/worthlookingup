@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-12T23:39:06.589Z",
+ "generated_at": "2026-11-13T00:49:23.612Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,90 +18,40 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-12T23:39:06.589Z",
-  "sha256": "9275b83afce30c68f0202c955bd5f291301ec134ac9d44aa4a29a9a8c70e94ec",
+  "retrieved_at": "2026-11-13T00:49:23.612Z",
+  "sha256": "9340c99b3655423ec28d6f4a1b71cb6fa93a63536370f1440ba70208b53cd630",
   "pages": 2,
-  "upstream_count": 129,
-  "upstream_records": 129,
+  "upstream_count": 128,
+  "upstream_records": 128,
   "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 152,
   "by_status": {
-   "success": 2,
+   "success": 1,
    "scheduled": 8,
    "unconfirmed": 143
   },
   "by_precision": {
-   "minute": 9,
    "second": 1,
+   "minute": 8,
    "hour": 5,
    "day": 6,
    "month": 30,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 15,
-  "with_published_date": 21,
+  "with_published_time": 14,
+  "with_published_date": 20,
   "period_only": 132,
   "sites": 22,
   "providers": 28,
-  "nearest_net": "2026-11-11T11:41:00.000Z",
+  "nearest_net": "2026-11-12T04:36:30.000Z",
   "window_days": 180,
   "announced_total": 477
  },
  "launches": [
-  {
-   "id": "d66590ab-b273-47ff-b85a-608b62851b4b",
-   "slug": "long-march-2d-cas-pathfinder-1",
-   "name": "Long March 2D | CAS Pathfinder-1",
-   "mission": "CAS Pathfinder-1",
-   "mission_type": "Technology",
-   "mission_description": "The Chinese Academy of Science (CAS)' Pathfinder-1 satellites is built for in-orbit validation of critical technologies for the upcoming main missions of CAS' \"Origins” Space Science Program, which consists of 4 upcoming astronomical observatory missions to be launched by 2030: * Discovering the Sky at the Longest wavelength (DSL * Solar Polar Orbit Observatory (SPO) * Earth 2.0 (ET) * Enhanced X…",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Long March 2D",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Area 94 (SLS-2 / 603)",
-    "latitude": 40.960482,
-    "longitude": 100.298059
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-11T11:41:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-11T11:32:00.000Z",
-    "end": "2026-11-11T12:05:00.000Z"
-   },
-   "last_updated": "2026-11-11T15:33:54.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d66590ab-b273-47ff-b85a-608b62851b4b/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
    "slug": "falcon-9-block-5-ussf-627",
@@ -320,9 +270,9 @@
     "country": "New Zealand"
    },
    "pad": {
-    "name": "Unknown Pad",
-    "latitude": -39.260881,
-    "longitude": 177.865826
+    "name": "Rocket Lab Launch Complex 1A",
+    "latitude": -39.262833,
+    "longitude": 177.864469
    },
    "status": {
     "id": 1,
@@ -344,7 +294,7 @@
     "start": "2026-11-14T05:30:00.000Z",
     "end": "2026-11-14T05:30:00.000Z"
    },
-   "last_updated": "2026-11-12T22:39:56.000Z",
+   "last_updated": "2026-11-13T00:15:49.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/db3500ac-965b-4ad8-b417-cb8d8d005586/",
     "info": [],
@@ -381,7 +331,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-15T03:55:00.000Z",
+   "net": "2026-11-18T03:14:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -391,16 +341,22 @@
     "name": "Minute"
    },
    "window": {
-    "start": "2026-11-15T03:55:00.000Z",
-    "end": "2026-11-15T07:55:00.000Z"
+    "start": "2026-11-18T03:14:00.000Z",
+    "end": "2026-11-18T07:14:00.000Z"
    },
-   "last_updated": "2026-11-12T03:55:21.000Z",
+   "last_updated": "2026-11-13T00:24:39.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-15T03:55:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 4279,
+    "detected_at": "2026-11-13T00:49:23.612Z"
+   }
   },
   {
    "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
