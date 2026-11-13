@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-13T21:38:58.170Z",
+ "generated_at": "2026-11-13T22:39:29.003Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-13T21:38:58.170Z",
-  "sha256": "e5bb3acbb8f3861604b86b142c62cc1df74fc99217d08d9f3a2897b124838543",
+  "retrieved_at": "2026-11-13T22:39:29.003Z",
+  "sha256": "2f5fcd1f3a1d75fc978ec086ca81388068e16f319e95746b0c532a1c99f20944",
   "pages": 2,
   "upstream_count": 127,
   "upstream_records": 127,
@@ -33,8 +33,8 @@
    "unconfirmed": 142
   },
   "by_precision": {
-   "minute": 8,
-   "second": 1,
+   "second": 2,
+   "minute": 7,
    "hour": 4,
    "day": 6,
    "month": 30,
@@ -46,7 +46,7 @@
   "period_only": 132,
   "sites": 22,
   "providers": 28,
-  "nearest_net": "2026-11-13T22:45:00.000Z",
+  "nearest_net": "2026-11-13T22:47:36.000Z",
   "window_days": 180,
   "announced_total": 476
  },
@@ -80,26 +80,32 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-13T22:45:00.000Z",
+   "net": "2026-11-13T22:47:36.000Z",
    "precision": {
-    "kind": "minute",
+    "kind": "second",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 1,
-    "name": "Minute"
+    "id": 0,
+    "name": "Second"
    },
    "window": {
     "start": "2026-11-13T22:45:00.000Z",
     "end": "2026-11-14T00:00:00.000Z"
    },
-   "last_updated": "2026-11-13T21:28:59.000Z",
+   "last_updated": "2026-11-13T22:07:33.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0f867f0c-5422-4d44-93b8-d7faaae7019b/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-13T22:45:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 3,
+    "detected_at": "2026-11-13T22:39:29.003Z"
+   }
   },
   {
    "id": "bff2fc91-eddd-4dfc-af26-ac0674cfab4d",
