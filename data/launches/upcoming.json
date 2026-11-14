@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-14T02:39:16.273Z",
+ "generated_at": "2026-11-14T03:39:02.511Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-14T02:39:16.273Z",
-  "sha256": "5e47ccf4af8b2967a0cb6fdddd6bfb5fe996cc35a77b742b92e7f6b10ecef539",
+  "retrieved_at": "2026-11-14T03:39:02.511Z",
+  "sha256": "43fe0ed76d7175c97a630dd1e1b3e69c2bc235381ec57284816a430355353153",
   "pages": 2,
   "upstream_count": 127,
   "upstream_records": 127,
@@ -29,8 +29,8 @@
  "stats": {
   "count": 151,
   "by_status": {
-   "unknown": 1,
-   "scheduled": 8,
+   "unknown": 2,
+   "scheduled": 7,
    "unconfirmed": 142
   },
   "by_precision": {
@@ -125,11 +125,11 @@
     "longitude": 128.333932
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
    "net": "2026-11-14T01:16:00.000Z",
    "precision": {
@@ -144,13 +144,19 @@
     "start": "2026-11-14T00:50:00.000Z",
     "end": "2026-11-14T01:50:00.000Z"
    },
-   "last_updated": "2026-11-13T15:37:56.000Z",
+   "last_updated": "2026-11-14T02:49:20.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/bff2fc91-eddd-4dfc-af26-ac0674cfab4d/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Go for Launch",
+    "previous_net": "2026-11-14T01:16:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-14T03:39:02.511Z"
+   }
   },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
