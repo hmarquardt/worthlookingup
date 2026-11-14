@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-14T08:39:29.086Z",
+ "generated_at": "2026-11-14T09:39:29.227Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-14T08:39:29.086Z",
-  "sha256": "c6dac43f17c4328d31da53528f3a82372bc8ba74ce6a50f57635e3d213c24c39",
+  "retrieved_at": "2026-11-14T09:39:29.227Z",
+  "sha256": "c82460e08a56d5101bcff76b79e1817fd35b9879b92aac2153cbc9f7906c82df",
   "pages": 2,
   "upstream_count": 128,
   "upstream_records": 128,
@@ -29,8 +29,8 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "unknown": 2,
-   "success": 1,
+   "unknown": 1,
+   "success": 2,
    "scheduled": 6,
    "unconfirmed": 143
   },
@@ -126,11 +126,11 @@
     "longitude": 128.333932
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-11-14T01:16:00.000Z",
    "precision": {
@@ -145,13 +145,19 @@
     "start": "2026-11-14T00:50:00.000Z",
     "end": "2026-11-14T01:50:00.000Z"
    },
-   "last_updated": "2026-11-14T02:49:20.000Z",
+   "last_updated": "2026-11-14T09:26:23.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/bff2fc91-eddd-4dfc-af26-ac0674cfab4d/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-11-14T01:16:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-14T09:39:29.227Z"
+   }
   },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
@@ -201,13 +207,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Payload Deployed",
-    "previous_net": "2026-11-14T05:30:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-11-14T08:39:29.086Z"
-   }
+   "change": null
   },
   {
    "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
