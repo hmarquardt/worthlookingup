@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-14T09:39:29.227Z",
+ "generated_at": "2026-11-14T10:39:28.347Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-14T09:39:29.227Z",
-  "sha256": "c82460e08a56d5101bcff76b79e1817fd35b9879b92aac2153cbc9f7906c82df",
+  "retrieved_at": "2026-11-14T10:39:28.347Z",
+  "sha256": "6e55ed9ace520ab53ad43e6872ed4c60d716c1bd5146f1054b057426403b94b9",
   "pages": 2,
   "upstream_count": 128,
   "upstream_records": 128,
@@ -95,7 +95,7 @@
     "start": "2026-11-13T22:45:00.000Z",
     "end": "2026-11-14T00:00:00.000Z"
    },
-   "last_updated": "2026-11-14T02:11:54.000Z",
+   "last_updated": "2026-11-14T10:04:00.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0f867f0c-5422-4d44-93b8-d7faaae7019b/",
     "info": [],
@@ -151,13 +151,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Launch in Flight",
-    "previous_net": "2026-11-14T01:16:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-11-14T09:39:29.227Z"
-   }
+   "change": null
   },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
