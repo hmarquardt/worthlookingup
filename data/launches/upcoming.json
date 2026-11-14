@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-14T13:39:11.627Z",
+ "generated_at": "2026-11-14T14:39:09.344Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-14T13:39:11.627Z",
-  "sha256": "dc1b6bc26d1f04083253d48b2e388a8310d6ac26299a36e0aa0360478bcd2f38",
+  "retrieved_at": "2026-11-14T14:39:09.344Z",
+  "sha256": "5df431bb866e182a61922b1fb4b10546b48958ed23e1394a7c53490835bbb7b9",
   "pages": 2,
   "upstream_count": 128,
   "upstream_records": 128,
@@ -232,7 +232,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-14T17:32:30.000Z",
+   "net": "2026-11-15T17:11:30.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -242,16 +242,22 @@
     "name": "Second"
    },
    "window": {
-    "start": "2026-11-14T17:32:00.000Z",
-    "end": "2026-11-14T18:01:00.000Z"
+    "start": "2026-11-15T17:11:30.000Z",
+    "end": "2026-11-15T17:31:00.000Z"
    },
-   "last_updated": "2026-11-13T14:54:33.000Z",
+   "last_updated": "2026-11-14T14:18:08.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ef9850ad-1096-425b-9d27-f7bbd186e61a/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-14T17:32:30.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1419,
+    "detected_at": "2026-11-14T14:39:09.344Z"
+   }
   },
   {
    "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
@@ -445,7 +451,7 @@
     "start": "2026-11-21T12:30:00.000Z",
     "end": "2026-11-21T13:00:00.000Z"
    },
-   "last_updated": "2026-11-12T19:21:00.000Z",
+   "last_updated": "2026-11-14T14:29:39.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/951a341f-236b-42fe-a667-4ab2fcf36eac/",
     "info": [],
