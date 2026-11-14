@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-14T20:39:36.636Z",
+ "generated_at": "2026-11-14T21:39:15.281Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-14T20:39:36.636Z",
-  "sha256": "5df431bb866e182a61922b1fb4b10546b48958ed23e1394a7c53490835bbb7b9",
+  "retrieved_at": "2026-11-14T21:39:15.281Z",
+  "sha256": "c7646294b115b66dca55edded1f6897244b2e77bccb42db5f92c91c2e9db4253",
   "pages": 2,
   "upstream_count": 128,
   "upstream_records": 128,
@@ -29,8 +29,7 @@
  "stats": {
   "count": 152,
   "by_status": {
-   "unknown": 1,
-   "success": 2,
+   "success": 3,
    "scheduled": 6,
    "unconfirmed": 143
   },
@@ -76,11 +75,11 @@
     "longitude": -97.15799
    },
    "status": {
-    "id": 9,
-    "name": "Payload Deployed",
-    "abbrev": "Deployed",
-    "description": "Deployment of the payload(s) has been confirmed.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-11-13T22:47:36.000Z",
    "precision": {
@@ -95,13 +94,19 @@
     "start": "2026-11-13T22:45:00.000Z",
     "end": "2026-11-14T00:00:00.000Z"
    },
-   "last_updated": "2026-11-14T10:48:08.000Z",
+   "last_updated": "2026-11-14T21:31:56.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0f867f0c-5422-4d44-93b8-d7faaae7019b/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Payload Deployed",
+    "previous_net": "2026-11-13T22:47:36.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-14T21:39:15.281Z"
+   }
   },
   {
    "id": "bff2fc91-eddd-4dfc-af26-ac0674cfab4d",
