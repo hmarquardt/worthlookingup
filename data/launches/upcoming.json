@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-15T11:39:24.613Z",
+ "generated_at": "2026-11-15T13:39:06.586Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-15T11:39:24.613Z",
-  "sha256": "9a22b9d2f7bead502b89d6c00b8362d70304a6d1abade7be302722761ddef7df",
+  "retrieved_at": "2026-11-15T13:39:06.586Z",
+  "sha256": "e537ffbe208d2b975986d9c469ca5dff8b84ff0428aa9385e087ea61eba02e1a",
   "pages": 2,
-  "upstream_count": 127,
-  "upstream_records": 127,
+  "upstream_count": 126,
+  "upstream_records": 126,
   "announced_total": 473,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 151,
+  "count": 150,
   "by_status": {
-   "success": 2,
+   "success": 1,
    "scheduled": 6,
    "unconfirmed": 143
   },
   "by_precision": {
-   "minute": 7,
+   "minute": 6,
    "second": 1,
    "hour": 4,
    "day": 6,
@@ -42,66 +42,16 @@
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 12,
-  "with_published_date": 18,
+  "with_published_time": 11,
+  "with_published_date": 17,
   "period_only": 133,
-  "sites": 21,
+  "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-11-14T01:16:00.000Z",
+  "nearest_net": "2026-11-14T05:30:00.000Z",
   "window_days": 180,
   "announced_total": 473
  },
  "launches": [
-  {
-   "id": "bff2fc91-eddd-4dfc-af26-ac0674cfab4d",
-   "slug": "soyuz-21bfregat-m-mka-kinosputnik-koen-and-others",
-   "name": "Soyuz 2.1b/Fregat-M | MKA Kinosputnik, KOEN and others",
-   "mission": "MKA Kinosputnik, KOEN and others",
-   "mission_type": "Technology",
-   "mission_description": "Share-ride of multiple satellites, including dual-use optical Earth observation satellites and drone-guiding satellites: * MKA Kinosputnik * KOEN, KA MT-LAB * NPO Kaisant 6U cubesat with a Germes modem * NPO Kaisant 16U cubesat with Gonets modems",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Soyuz 2.1b Fregat-M",
-   "vehicle_family": "Soyuz",
-   "provider": "Russian Federal Space Agency (ROSCOSMOS)",
-   "provider_abbrev": "RFSA",
-   "site": {
-    "name": "Vostochny Cosmodrome, Siberia, Russian Federation",
-    "timezone": "Asia/Yakutsk",
-    "country": "Russia"
-   },
-   "pad": {
-    "name": "Cosmodrome Site 1S",
-    "latitude": 51.884395,
-    "longitude": 128.333932
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-14T01:16:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-14T00:50:00.000Z",
-    "end": "2026-11-14T01:50:00.000Z"
-   },
-   "last_updated": "2026-11-14T09:26:23.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/bff2fc91-eddd-4dfc-af26-ac0674cfab4d/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
    "slug": "electron-the-mountain-god-rises-iqps-launch-10",
