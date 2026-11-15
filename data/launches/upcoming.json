@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-15T17:39:04.074Z",
+ "generated_at": "2026-11-15T18:39:01.575Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-15T17:39:04.074Z",
-  "sha256": "3b04c593fd88135b1d167ecd259304eb72369655871a1bfd39a4ba6047e7b085",
+  "retrieved_at": "2026-11-15T18:39:01.575Z",
+  "sha256": "2c81c0a985cff8d1f94014781d488e8e22e47365a7eebc1f1b11622ea7b36a62",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
@@ -29,7 +29,8 @@
  "stats": {
   "count": 149,
   "by_status": {
-   "scheduled": 6,
+   "failure": 1,
+   "scheduled": 5,
    "unconfirmed": 143
   },
   "by_precision": {
@@ -74,11 +75,11 @@
     "longitude": -80.58303644
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 4,
+    "name": "Launch Failure",
+    "abbrev": "Failure",
+    "description": "Either the launch vehicle did not reach orbit, or the payload(s) failed to separate.",
+    "kind": "failure"
    },
    "net": "2026-11-15T17:40:30.000Z",
    "precision": {
@@ -93,18 +94,18 @@
     "start": "2026-11-15T17:11:30.000Z",
     "end": "2026-11-15T17:40:30.000Z"
    },
-   "last_updated": "2026-11-15T17:19:54.000Z",
+   "last_updated": "2026-11-15T18:32:22.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ef9850ad-1096-425b-9d27-f7bbd186e61a/",
     "info": [],
     "webcast": []
    },
    "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-15T17:11:30.000Z",
+    "kind": "status",
     "previous_status": "Go for Launch",
-    "delta_minutes": 29,
-    "detected_at": "2026-11-15T17:39:04.074Z"
+    "previous_net": "2026-11-15T17:40:30.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-15T18:39:01.575Z"
    }
   },
   {
