@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-15T09:39:02.549Z",
+ "generated_at": "2026-11-15T11:39:24.613Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,90 +18,40 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-15T09:39:02.549Z",
-  "sha256": "58aa6f22a99f6dfe97611fc980c1e8978bbb9234fff5a79e1bdf08af6ba187a2",
+  "retrieved_at": "2026-11-15T11:39:24.613Z",
+  "sha256": "9a22b9d2f7bead502b89d6c00b8362d70304a6d1abade7be302722761ddef7df",
   "pages": 2,
-  "upstream_count": 128,
-  "upstream_records": 128,
+  "upstream_count": 127,
+  "upstream_records": 127,
   "announced_total": 473,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 152,
+  "count": 151,
   "by_status": {
-   "success": 3,
+   "success": 2,
    "scheduled": 6,
    "unconfirmed": 143
   },
   "by_precision": {
-   "second": 2,
    "minute": 7,
+   "second": 1,
    "hour": 4,
    "day": 6,
    "month": 31,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 13,
-  "with_published_date": 19,
+  "with_published_time": 12,
+  "with_published_date": 18,
   "period_only": 133,
-  "sites": 22,
+  "sites": 21,
   "providers": 28,
-  "nearest_net": "2026-11-13T22:47:36.000Z",
+  "nearest_net": "2026-11-14T01:16:00.000Z",
   "window_days": 180,
   "announced_total": 473
  },
  "launches": [
-  {
-   "id": "0f867f0c-5422-4d44-93b8-d7faaae7019b",
-   "slug": "starship-starlink-group-31-2-starship-flight-15",
-   "name": "Starship | Starlink Group 31-2 (Starship Flight 15)",
-   "mission": "Starlink Group 31-2 (Starship Flight 15)",
-   "mission_type": "Communications",
-   "mission_description": "15th test flight of the two-stage Starship launch vehicle and 4th flight of Starship V3. Second Starship flight to deploy satellites (a group of Starlink satellites known as Starlink Group 31-2) into stable Low Earth Orbit and first ever to attempt returning the Starship 2nd stage back to the launch site. The ship is expected to fly at an altitude approximately 275 km above Earth and complete app…",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Starship V3",
-   "vehicle_family": "Starship",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "SpaceX Starbase, TX, USA",
-    "timezone": "America/Chicago",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Orbital Launch Pad 2",
-    "latitude": 25.99677,
-    "longitude": -97.15799
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-13T22:47:36.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-11-13T22:45:00.000Z",
-    "end": "2026-11-14T00:00:00.000Z"
-   },
-   "last_updated": "2026-11-15T01:57:37.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0f867f0c-5422-4d44-93b8-d7faaae7019b/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "bff2fc91-eddd-4dfc-af26-ac0674cfab4d",
    "slug": "soyuz-21bfregat-m-mka-kinosputnik-koen-and-others",
