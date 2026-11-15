@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-15T16:39:11.046Z",
+ "generated_at": "2026-11-15T17:39:04.074Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,90 +18,39 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-15T16:39:11.046Z",
-  "sha256": "4e52079a76f49ebfe29d85456d5bd1305e68f0a4d0a2d1725edf5f8b7b290440",
+  "retrieved_at": "2026-11-15T17:39:04.074Z",
+  "sha256": "3b04c593fd88135b1d167ecd259304eb72369655871a1bfd39a4ba6047e7b085",
   "pages": 2,
-  "upstream_count": 126,
-  "upstream_records": 126,
+  "upstream_count": 125,
+  "upstream_records": 125,
   "announced_total": 473,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 150,
+  "count": 149,
   "by_status": {
-   "success": 1,
    "scheduled": 6,
    "unconfirmed": 143
   },
   "by_precision": {
-   "minute": 6,
    "second": 1,
+   "minute": 5,
    "hour": 4,
    "day": 6,
    "month": 31,
    "year": 74,
    "quarter": 28
   },
-  "with_published_time": 11,
-  "with_published_date": 17,
+  "with_published_time": 10,
+  "with_published_date": 16,
   "period_only": 133,
   "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-11-14T05:30:00.000Z",
+  "nearest_net": "2026-11-15T17:40:30.000Z",
   "window_days": 180,
   "announced_total": 473
  },
  "launches": [
-  {
-   "id": "db3500ac-965b-4ad8-b417-cb8d8d005586",
-   "slug": "electron-the-mountain-god-rises-iqps-launch-10",
-   "name": "Electron | The Mountain God Rises (iQPS Launch 10)",
-   "mission": "The Mountain God Rises (iQPS Launch 10)",
-   "mission_type": "Earth Science",
-   "mission_description": "Synthetic aperture radar Earth observation satellite for Japanese Earth imaging company iQPS.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Electron",
-   "vehicle_family": null,
-   "provider": "Rocket Lab",
-   "provider_abbrev": "RL",
-   "site": {
-    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "country": "New Zealand"
-   },
-   "pad": {
-    "name": "Rocket Lab Launch Complex 1A",
-    "latitude": -39.262833,
-    "longitude": 177.864469
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-14T05:30:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-14T05:30:00.000Z",
-    "end": "2026-11-14T05:30:00.000Z"
-   },
-   "last_updated": "2026-11-14T07:59:42.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/db3500ac-965b-4ad8-b417-cb8d8d005586/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
    "slug": "vulcan-vc6l-amazon-leo-lv-01",
@@ -131,7 +80,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-15T17:11:30.000Z",
+   "net": "2026-11-15T17:40:30.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -142,15 +91,21 @@
    },
    "window": {
     "start": "2026-11-15T17:11:30.000Z",
-    "end": "2026-11-15T17:31:00.000Z"
+    "end": "2026-11-15T17:40:30.000Z"
    },
-   "last_updated": "2026-11-15T16:17:04.000Z",
+   "last_updated": "2026-11-15T17:19:54.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ef9850ad-1096-425b-9d27-f7bbd186e61a/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-15T17:11:30.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 29,
+    "detected_at": "2026-11-15T17:39:04.074Z"
+   }
   },
   {
    "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
