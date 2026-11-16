@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-16T09:46:54.374Z",
+ "generated_at": "2026-11-16T12:53:28.394Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,11 +18,11 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-16T09:46:54.374Z",
-  "sha256": "43e214e1de6fcc149dfcf3e0dede17515eb6c438914d71ef50e3974834836487",
+  "retrieved_at": "2026-11-16T12:53:28.394Z",
+  "sha256": "5555b89ecee3c106b89523fd6f472c6cc4e1e8adede5bbd1ca81cd75fb28eaf5",
   "pages": 2,
-  "upstream_count": 125,
-  "upstream_records": 125,
+  "upstream_count": 124,
+  "upstream_records": 124,
   "announced_total": 473,
   "duplicates_removed": 0
  },
@@ -38,8 +38,8 @@
    "hour": 4,
    "minute": 5,
    "day": 6,
-   "month": 31,
-   "year": 74,
+   "month": 32,
+   "year": 73,
    "quarter": 28
   },
   "with_published_time": 10,
@@ -3567,7 +3567,7 @@
    "name": "Vega-C | IRIDE 1",
    "mission": "IRIDE 1",
    "mission_type": "Earth Science",
-   "mission_description": "First dedicated launch for the European Space Agency's IRIDE Earth observation constellation.",
+   "mission_description": "First dedicated launch for the European Space Agency's IRIDE Earth observation constellation, with six satellites onboard.",
    "orbit": "Sun-Synchronous Orbit",
    "vehicle": "Vega-C",
    "vehicle_family": "Vega",
@@ -3592,18 +3592,18 @@
    },
    "net": "2026-12-31T00:00:00.000Z",
    "precision": {
-    "kind": "year",
+    "kind": "month",
     "exact": false,
     "dated": false,
     "countdown": false,
-    "id": 14,
-    "name": "Year"
+    "id": 7,
+    "name": "Month"
    },
    "window": {
     "start": "2026-12-31T00:00:00.000Z",
     "end": "2026-12-31T00:00:00.000Z"
    },
-   "last_updated": "2025-12-31T11:12:49.000Z",
+   "last_updated": "2026-11-16T12:45:29.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/912a8aee-8fc2-47b4-81a5-040fa0e0a36f/",
     "info": [],
