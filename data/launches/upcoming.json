@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-17T15:39:10.915Z",
+ "generated_at": "2026-11-17T16:39:19.452Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-17T15:39:10.915Z",
-  "sha256": "271a0e2dfb236710c9b117929ef218917f8cdf02d1fc83546b80c88fa2c49466",
+  "retrieved_at": "2026-11-17T16:39:19.452Z",
+  "sha256": "509a8a1dbb4b2653bd913d312d30085b3950dab33f154542c4d428bdf3a02958",
   "pages": 2,
   "upstream_count": 123,
   "upstream_records": 123,
@@ -129,7 +129,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-19T03:00:00.000Z",
+   "net": "2026-11-20T02:46:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -139,16 +139,22 @@
     "name": "Minute"
    },
    "window": {
-    "start": "2026-11-19T03:00:00.000Z",
-    "end": "2026-11-19T07:00:00.000Z"
+    "start": "2026-11-20T02:46:00.000Z",
+    "end": "2026-11-20T06:46:00.000Z"
    },
-   "last_updated": "2026-11-17T00:50:52.000Z",
+   "last_updated": "2026-11-17T16:09:07.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-19T03:00:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1426,
+    "detected_at": "2026-11-17T16:39:19.452Z"
+   }
   },
   {
    "id": "a2975167-7c6f-4403-99e1-b40df17c8140",
