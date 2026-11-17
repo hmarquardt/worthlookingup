@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-17T04:39:32.399Z",
+ "generated_at": "2026-11-17T06:43:47.290Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,21 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-17T04:39:32.399Z",
-  "sha256": "b13cc9589b007cddf6d7f351b9f6246e5df8c541e429dbd2221562ffe69511b5",
+  "retrieved_at": "2026-11-17T06:43:47.290Z",
+  "sha256": "271a0e2dfb236710c9b117929ef218917f8cdf02d1fc83546b80c88fa2c49466",
   "pages": 2,
-  "upstream_count": 124,
-  "upstream_records": 124,
+  "upstream_count": 123,
+  "upstream_records": 123,
   "announced_total": 472,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 149,
+  "count": 148,
   "by_status": {
-   "failure": 1,
    "scheduled": 5,
    "unconfirmed": 143
   },
   "by_precision": {
-   "second": 1,
    "hour": 4,
    "minute": 5,
    "day": 6,
@@ -42,66 +40,16 @@
    "year": 73,
    "quarter": 28
   },
-  "with_published_time": 10,
-  "with_published_date": 16,
+  "with_published_time": 9,
+  "with_published_date": 15,
   "period_only": 133,
   "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-11-15T17:40:30.000Z",
+  "nearest_net": "2026-11-18T22:50:00.000Z",
   "window_days": 180,
   "announced_total": 472
  },
  "launches": [
-  {
-   "id": "ef9850ad-1096-425b-9d27-f7bbd186e61a",
-   "slug": "vulcan-vc6l-amazon-leo-lv-01",
-   "name": "Vulcan VC6L | Amazon Leo (LV-01)",
-   "mission": "Amazon Leo (LV-01)",
-   "mission_type": "Communications",
-   "mission_description": "Amazon Leo, formerly known as Project Kuiper, is a mega constellation of satellites in Low Earth Orbit that will offer broadband internet access, this constellation will be managed by Kuiper Systems LLC, a subsidiary of Amazon. This constellation is planned to be composed of 3,276 satellites. The satellites are projected to be placed in 98 orbital planes in three orbital layers, one at 590 km, 61…",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Vulcan VC6L",
-   "vehicle_family": "Vulcan",
-   "provider": "United Launch Alliance",
-   "provider_abbrev": "ULA",
-   "site": {
-    "name": "Cape Canaveral SFS, FL, USA",
-    "timezone": "America/New_York",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 41",
-    "latitude": 28.58341025,
-    "longitude": -80.58303644
-   },
-   "status": {
-    "id": 4,
-    "name": "Launch Failure",
-    "abbrev": "Failure",
-    "description": "Either the launch vehicle did not reach orbit, or the payload(s) failed to separate.",
-    "kind": "failure"
-   },
-   "net": "2026-11-15T17:40:30.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-11-15T17:11:30.000Z",
-    "end": "2026-11-15T17:40:30.000Z"
-   },
-   "last_updated": "2026-11-15T19:30:04.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ef9850ad-1096-425b-9d27-f7bbd186e61a/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "e0a11eb1-0bda-4872-b36b-140247fd5c60",
    "slug": "long-march-2d-unknown-payload",
