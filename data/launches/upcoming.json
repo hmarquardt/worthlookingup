@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-18T08:39:41.689Z",
+ "generated_at": "2026-11-18T09:38:56.153Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,36 +18,36 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-18T08:39:41.689Z",
-  "sha256": "9cf0e543a996e688e3047850b8c9c61408e2ab5ead1e22913912f317f39e36e9",
+  "retrieved_at": "2026-11-18T09:38:56.153Z",
+  "sha256": "b8b92e24a4d9e3194763ba2303e08743f6d3f91147e8ac8021a90c593c638d4a",
   "pages": 2,
-  "upstream_count": 123,
-  "upstream_records": 123,
-  "announced_total": 472,
+  "upstream_count": 124,
+  "upstream_records": 124,
+  "announced_total": 473,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 148,
+  "count": 149,
   "by_status": {
-   "scheduled": 7,
+   "scheduled": 8,
    "unconfirmed": 141
   },
   "by_precision": {
-   "hour": 4,
+   "hour": 5,
    "minute": 6,
    "day": 5,
    "month": 32,
    "year": 73,
    "quarter": 28
   },
-  "with_published_time": 10,
-  "with_published_date": 15,
+  "with_published_time": 11,
+  "with_published_date": 16,
   "period_only": 133,
   "sites": 20,
   "providers": 28,
   "nearest_net": "2026-11-18T22:50:00.000Z",
   "window_days": 180,
-  "announced_total": 472
+  "announced_total": 473
  },
  "launches": [
   {
@@ -198,13 +198,57 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-20T11:00:00.000Z",
-    "previous_status": "To Be Confirmed",
-    "delta_minutes": 59,
-    "detected_at": "2026-11-18T08:39:41.689Z"
-   }
+   "change": null
+  },
+  {
+   "id": "13270554-4bdb-42ae-916f-1bb54492204f",
+   "slug": "long-march-6c-unknown-payload",
+   "name": "Long March 6C | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Long March 6C",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Taiyuan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Complex 9A",
+    "latitude": 38.8583,
+    "longitude": 111.5802
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-21T03:50:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-21T03:46:00.000Z",
+    "end": "2026-11-21T04:15:00.000Z"
+   },
+   "last_updated": "2026-11-18T09:09:19.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/13270554-4bdb-42ae-916f-1bb54492204f/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
   },
   {
    "id": "951a341f-236b-42fe-a667-4ab2fcf36eac",
