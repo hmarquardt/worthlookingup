@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-18T21:39:27.204Z",
+ "generated_at": "2026-11-18T23:39:04.928Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-18T21:39:27.204Z",
-  "sha256": "8105ca881346e28bab1dcb882f2bfa61a5f3896d74570b059cdf2e62d34b9f12",
+  "retrieved_at": "2026-11-18T23:39:04.928Z",
+  "sha256": "078ac639b7954128df29782e7324638840c82e6f6aaa37dd82b890ca44a1b5b6",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
@@ -29,12 +29,13 @@
  "stats": {
   "count": 150,
   "by_status": {
-   "scheduled": 9,
+   "success": 1,
+   "scheduled": 8,
    "unconfirmed": 141
   },
   "by_precision": {
-   "hour": 5,
-   "minute": 7,
+   "minute": 8,
+   "hour": 4,
    "day": 5,
    "month": 32,
    "year": 73,
@@ -45,19 +46,19 @@
   "period_only": 133,
   "sites": 20,
   "providers": 28,
-  "nearest_net": "2026-11-18T22:50:00.000Z",
+  "nearest_net": "2026-11-18T22:51:00.000Z",
   "window_days": 180,
   "announced_total": 474
  },
  "launches": [
   {
    "id": "e0a11eb1-0bda-4872-b36b-140247fd5c60",
-   "slug": "long-march-2d-unknown-payload",
-   "name": "Long March 2D | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
+   "slug": "long-march-2d-shijian-24",
+   "name": "Long March 2D | Shijian 24",
+   "mission": "Shijian 24",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "Experimental Chinese satellite of unknown purposes.",
+   "orbit": "Sun-Synchronous Orbit",
    "vehicle": "Long March 2D",
    "vehicle_family": "Long March",
    "provider": "China Aerospace Science and Technology Corporation",
@@ -73,32 +74,38 @@
     "longitude": 111.589567
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
-   "net": "2026-11-18T22:50:00.000Z",
+   "net": "2026-11-18T22:51:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-11-18T22:43:00.000Z",
     "end": "2026-11-18T23:05:00.000Z"
    },
-   "last_updated": "2026-11-12T19:18:17.000Z",
+   "last_updated": "2026-11-18T23:26:42.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e0a11eb1-0bda-4872-b36b-140247fd5c60/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-18T22:50:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1,
+    "detected_at": "2026-11-18T23:39:04.928Z"
+   }
   },
   {
    "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
