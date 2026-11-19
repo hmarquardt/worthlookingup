@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-19T11:39:29.635Z",
+ "generated_at": "2026-11-19T12:41:19.024Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-19T11:39:29.635Z",
-  "sha256": "ddac72ce5c635a00c1056b68d2d0124355cf474e141e24e843418a6dd6677d08",
+  "retrieved_at": "2026-11-19T12:41:19.024Z",
+  "sha256": "df52a9ec32c39d86b072c571d1d3a5fbbac58fe90c9687715d3dd9ae18c67df9",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
@@ -37,14 +37,14 @@
    "minute": 7,
    "second": 1,
    "hour": 4,
-   "day": 5,
+   "day": 6,
    "month": 32,
    "year": 73,
-   "quarter": 28
+   "quarter": 27
   },
   "with_published_time": 12,
-  "with_published_date": 17,
-  "period_only": 133,
+  "with_published_date": 18,
+  "period_only": 132,
   "sites": 20,
   "providers": 28,
   "nearest_net": "2026-11-18T22:51:00.000Z",
@@ -694,7 +694,7 @@
     "start": "2026-11-29T15:47:00.000Z",
     "end": "2026-11-29T15:47:00.000Z"
    },
-   "last_updated": "2026-11-13T12:35:58.000Z",
+   "last_updated": "2026-11-19T12:34:08.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d74afbc7-0de5-491c-be05-4e9c31f736ac/",
     "info": [],
@@ -1101,6 +1101,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "22e117bf-041c-49d5-9d09-7b180036e143",
+   "slug": "ariane-62-metop-sg-b1",
+   "name": "Ariane 62 | Metop-SG B1",
+   "mission": "Metop-SG B1",
+   "mission_type": "Earth Science",
+   "mission_description": "Second of EUMETSAT's second generation of Metop weather satellites.",
+   "orbit": "Sun-Synchronous Orbit",
+   "vehicle": "Ariane 62",
+   "vehicle_family": "Ariane",
+   "provider": "Arianespace",
+   "provider_abbrev": "ASA",
+   "site": {
+    "name": "Guiana Space Centre, French Guiana",
+    "timezone": "America/Cayenne",
+    "country": "French Guiana"
+   },
+   "pad": {
+    "name": "Ariane Launch Area 4",
+    "latitude": 5.256319,
+    "longitude": -52.786838
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-12-17T00:00:00.000Z",
+   "precision": {
+    "kind": "day",
+    "exact": false,
+    "dated": true,
+    "countdown": false,
+    "id": 5,
+    "name": "Day"
+   },
+   "window": {
+    "start": "2026-12-17T00:00:00.000Z",
+    "end": "2026-12-17T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-19T11:44:23.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/22e117bf-041c-49d5-9d09-7b180036e143/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-12-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -20160,
+    "detected_at": "2026-11-19T12:41:19.024Z"
+   }
   },
   {
    "id": "0196fba7-dd6c-4ba0-bf71-e1460930ffde",
@@ -1899,56 +1955,6 @@
    "last_updated": "2025-11-14T13:55:53.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/20fa8dc4-8cab-41cf-b452-98a2620f7e86/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "22e117bf-041c-49d5-9d09-7b180036e143",
-   "slug": "ariane-62-metop-sg-b1",
-   "name": "Ariane 62 | Metop-SG B1",
-   "mission": "Metop-SG B1",
-   "mission_type": "Earth Science",
-   "mission_description": "Second of EUMETSAT's second generation of Metop weather satellites.",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Ariane 62",
-   "vehicle_family": "Ariane",
-   "provider": "Arianespace",
-   "provider_abbrev": "ASA",
-   "site": {
-    "name": "Guiana Space Centre, French Guiana",
-    "timezone": "America/Cayenne",
-    "country": "French Guiana"
-   },
-   "pad": {
-    "name": "Ariane Launch Area 4",
-    "latitude": 5.256319,
-    "longitude": -52.786838
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-12-31T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-12-31T00:00:00.000Z",
-    "end": "2026-12-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-10-13T18:57:50.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/22e117bf-041c-49d5-9d09-7b180036e143/",
     "info": [],
     "webcast": []
    },
@@ -6419,6 +6425,62 @@
    "change": null
   },
   {
+   "id": "0b85fcca-5252-48d7-9ccb-c10b1da9d183",
+   "slug": "ariane-62-galileo-l15-foc-fm28-fm31",
+   "name": "Ariane 62 | Galileo L15 (FOC FM28 & FM31)",
+   "mission": "Galileo L15 (FOC FM28 & FM31)",
+   "mission_type": "Navigation",
+   "mission_description": "Payload consists of two satellites for Europe's Galileo navigation system.",
+   "orbit": "Medium Earth Orbit",
+   "vehicle": "Ariane 62",
+   "vehicle_family": "Ariane",
+   "provider": "Arianespace",
+   "provider_abbrev": "ASA",
+   "site": {
+    "name": "Guiana Space Centre, French Guiana",
+    "timezone": "America/Cayenne",
+    "country": "French Guiana"
+   },
+   "pad": {
+    "name": "Ariane Launch Area 4",
+    "latitude": 5.256319,
+    "longitude": -52.786838
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-02-28T00:00:00.000Z",
+   "precision": {
+    "kind": "month",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 7,
+    "name": "Month"
+   },
+   "window": {
+    "start": "2027-02-28T00:00:00.000Z",
+    "end": "2027-02-28T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-19T12:17:41.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0b85fcca-5252-48d7-9ccb-c10b1da9d183/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2027-03-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -44640,
+    "detected_at": "2026-11-19T12:41:19.024Z"
+   }
+  },
+  {
    "id": "22023c17-c196-4b56-bfd4-7fc5e9db84c0",
    "slug": "falcon-9-block-5-transporter-19-dedicated-sso-ride",
    "name": "Falcon 9 Block 5 | Transporter 19 (Dedicated SSO Rideshare)",
@@ -6614,57 +6676,6 @@
    "last_updated": "2026-06-26T04:45:01.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c71bc50d-de5f-48ea-8a74-0503871eaaf7/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "0b85fcca-5252-48d7-9ccb-c10b1da9d183",
-   "slug": "ariane-62-galileo-l15-foc-fm28-fm31",
-   "name": "Ariane 62 | Galileo L15 (FOC FM28 & FM31)",
-   "mission": "Galileo L15 (FOC FM28 & FM31)",
-   "mission_type": "Navigation",
-   "mission_description": "Payload consists of two satellites for Europe's Galileo navigation system.",
-   "orbit": "Medium Earth Orbit",
-   "vehicle": "Ariane 62",
-   "vehicle_family": "Ariane",
-   "provider": "Arianespace",
-   "provider_abbrev": "ASA",
-   "site": {
-    "name": "Guiana Space Centre, French Guiana",
-    "timezone": "America/Cayenne",
-    "country": "French Guiana"
-   },
-   "pad": {
-    "name": "Ariane Launch Area 4",
-    "latitude": 5.256319,
-    "longitude": -52.786838
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2027-03-31T00:00:00.000Z",
-   "precision": {
-    "kind": "quarter",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "quarter": 1,
-    "id": 8,
-    "name": "Quarter 1"
-   },
-   "window": {
-    "start": "2027-03-31T00:00:00.000Z",
-    "end": "2027-03-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-10-13T18:58:31.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/0b85fcca-5252-48d7-9ccb-c10b1da9d183/",
     "info": [],
     "webcast": []
    },
