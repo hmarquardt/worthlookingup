@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-19T13:39:21.826Z",
+ "generated_at": "2026-11-19T15:39:20.264Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,12 +18,12 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-19T13:39:21.826Z",
-  "sha256": "df52a9ec32c39d86b072c571d1d3a5fbbac58fe90c9687715d3dd9ae18c67df9",
+  "retrieved_at": "2026-11-19T15:39:20.264Z",
+  "sha256": "91427148e891af6a2f4e8d9a5f82ed0835675afacc713d53749fa9068f4d32a7",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
-  "announced_total": 474,
+  "announced_total": 475,
   "duplicates_removed": 0
  },
  "stats": {
@@ -49,7 +49,7 @@
   "providers": 28,
   "nearest_net": "2026-11-18T22:51:00.000Z",
   "window_days": 180,
-  "announced_total": 474
+  "announced_total": 475
  },
  "launches": [
   {
@@ -131,7 +131,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-20T04:28:55.000Z",
+   "net": "2026-11-20T04:32:55.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -144,13 +144,19 @@
     "start": "2026-11-20T02:46:00.000Z",
     "end": "2026-11-20T06:46:00.000Z"
    },
-   "last_updated": "2026-11-19T05:08:14.000Z",
+   "last_updated": "2026-11-19T15:08:34.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-20T04:28:55.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 4,
+    "detected_at": "2026-11-19T15:39:20.264Z"
+   }
   },
   {
    "id": "a2975167-7c6f-4403-99e1-b40df17c8140",
