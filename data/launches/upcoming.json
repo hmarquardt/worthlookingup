@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-20T08:39:32.305Z",
+ "generated_at": "2026-11-20T09:39:28.339Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,37 +18,37 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-20T08:39:32.305Z",
-  "sha256": "be92908f315f919a45d12468db11594d465df2370d54c9d8c21c8cddd6692b09",
+  "retrieved_at": "2026-11-20T09:39:28.339Z",
+  "sha256": "2799ee67a923894a8b25d00e640c2b0f5e9389211b91860c5ba4ed00f9695dc2",
   "pages": 2,
-  "upstream_count": 125,
-  "upstream_records": 125,
-  "announced_total": 476,
+  "upstream_count": 126,
+  "upstream_records": 126,
+  "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 154,
   "by_status": {
    "success": 1,
-   "scheduled": 10,
-   "unconfirmed": 142
+   "scheduled": 12,
+   "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 10,
-   "hour": 5,
-   "day": 7,
+   "minute": 11,
+   "hour": 6,
    "month": 29,
+   "day": 6,
    "year": 75,
    "quarter": 27
   },
-  "with_published_time": 15,
-  "with_published_date": 22,
+  "with_published_time": 17,
+  "with_published_date": 23,
   "period_only": 131,
-  "sites": 21,
+  "sites": 22,
   "providers": 30,
   "nearest_net": "2026-11-18T22:51:00.000Z",
   "window_days": 180,
-  "announced_total": 476
+  "announced_total": 477
  },
  "launches": [
   {
@@ -474,28 +474,84 @@
     "longitude": 100.290944
    },
    "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
-   "net": "2026-11-25T00:00:00.000Z",
+   "net": "2026-11-25T00:18:00.000Z",
    "precision": {
-    "kind": "day",
-    "exact": false,
+    "kind": "minute",
+    "exact": true,
     "dated": true,
-    "countdown": false,
-    "id": 5,
-    "name": "Day"
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
-    "start": "2026-11-25T00:00:00.000Z",
-    "end": "2026-11-25T00:00:00.000Z"
+    "start": "2026-11-25T00:08:00.000Z",
+    "end": "2026-11-25T00:48:00.000Z"
    },
-   "last_updated": "2026-10-24T14:00:00.000Z",
+   "last_updated": "2026-11-20T09:07:56.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c9605b67-8a53-4239-a8ae-577fe3b79799/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-25T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 18,
+    "detected_at": "2026-11-20T09:39:28.339Z"
+   }
+  },
+  {
+   "id": "b00f0e9a-48d6-4f26-9cb5-7d19169ff7c4",
+   "slug": "long-march-2d-unknown-payload",
+   "name": "Long March 2D | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Long March 2D",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Xichang Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Complex 3 (LC-3/LA-1)",
+    "latitude": 28.247059,
+    "longitude": 102.029008
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-26T09:35:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-26T09:30:00.000Z",
+    "end": "2026-11-26T09:52:00.000Z"
+   },
+   "last_updated": "2026-11-20T09:12:38.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/b00f0e9a-48d6-4f26-9cb5-7d19169ff7c4/",
     "info": [],
     "webcast": []
    },
