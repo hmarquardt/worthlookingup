@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-20T02:39:08.119Z",
+ "generated_at": "2026-11-20T03:39:15.494Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,38 +18,37 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-20T02:39:08.119Z",
-  "sha256": "031238012434b020625c296e5ae552c3b580352c6dcf2e5246e235eea39b5e0a",
+  "retrieved_at": "2026-11-20T03:39:15.494Z",
+  "sha256": "a3a017da1951b711845c1eb761484154103dee0533ea90d929ae62a8d32526fe",
   "pages": 2,
-  "upstream_count": 123,
-  "upstream_records": 123,
-  "announced_total": 475,
+  "upstream_count": 125,
+  "upstream_records": 125,
+  "announced_total": 476,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 151,
+  "count": 153,
   "by_status": {
    "success": 1,
-   "scheduled": 9,
-   "unconfirmed": 141
+   "scheduled": 10,
+   "unconfirmed": 142
   },
   "by_precision": {
-   "minute": 8,
-   "second": 1,
+   "minute": 10,
    "hour": 5,
-   "day": 6,
+   "day": 7,
    "month": 29,
    "year": 75,
    "quarter": 27
   },
-  "with_published_time": 14,
-  "with_published_date": 20,
+  "with_published_time": 15,
+  "with_published_date": 22,
   "period_only": 131,
-  "sites": 20,
-  "providers": 29,
+  "sites": 21,
+  "providers": 30,
   "nearest_net": "2026-11-18T22:51:00.000Z",
   "window_days": 180,
-  "announced_total": 475
+  "announced_total": 476
  },
  "launches": [
   {
@@ -97,56 +96,6 @@
    "last_updated": "2026-11-18T23:26:42.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e0a11eb1-0bda-4872-b36b-140247fd5c60/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
-   "slug": "falcon-9-block-5-ussf-317",
-   "name": "Falcon 9 Block 5 | USSF-317",
-   "mission": "USSF-317",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-20T06:43:59.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-11-20T02:46:00.000Z",
-    "end": "2026-11-20T06:46:00.000Z"
-   },
-   "last_updated": "2026-11-20T02:16:06.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
     "info": [],
     "webcast": []
    },
@@ -201,6 +150,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
+   "slug": "falcon-9-block-5-ussf-317",
+   "name": "Falcon 9 Block 5 | USSF-317",
+   "mission": "USSF-317",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "A classified mission for the United States Space Force. It is possibly a batch of classified LEO satellites based on SpaceX’s Starshield satellite bus, based on locations of rocket stage drop zones being exact fits with previous Starlink Group 15 launches.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-21T02:32:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-11-21T02:32:00.000Z",
+    "end": "2026-11-21T06:32:00.000Z"
+   },
+   "last_updated": "2026-11-20T03:26:30.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-20T06:43:59.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1188,
+    "detected_at": "2026-11-20T03:39:15.494Z"
+   }
   },
   {
    "id": "13270554-4bdb-42ae-916f-1bb54492204f",
@@ -6018,6 +6023,56 @@
    "change": null
   },
   {
+   "id": "21561fba-dc41-41b3-9d18-e13339fc3396",
+   "slug": "h3-30-igs-optical-diversification-1",
+   "name": "H3-30 | IGS Optical Diversification 1",
+   "mission": "IGS Optical Diversification 1",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "The IGS Optical Diversification 1 is a Japanese optical reconnaissance satellite. The satellite is operated by the Cabinet Satellite Information Center. The satellite serves both Japan's national defense and civil natural disaster monitoring.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "H3-30",
+   "vehicle_family": "H3",
+   "provider": "Mitsubishi Heavy Industries",
+   "provider_abbrev": "MHI",
+   "site": {
+    "name": "Tanegashima Space Center, Japan",
+    "timezone": "Asia/Tokyo",
+    "country": "Japan"
+   },
+   "pad": {
+    "name": "Yoshinobu Launch Complex LP-2",
+    "latitude": 30.400938,
+    "longitude": 130.97564
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2027-01-10T23:00:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2027-01-10T23:00:00.000Z",
+    "end": "2027-01-11T01:00:00.000Z"
+   },
+   "last_updated": "2026-11-20T02:39:33.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/21561fba-dc41-41b3-9d18-e13339fc3396/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
    "id": "07e945c1-2ec6-4d29-a500-1afbe920440f",
    "slug": "atlas-v-n22-starliner-1",
    "name": "Atlas V N22 | Starliner-1",
@@ -6062,6 +6117,56 @@
    "last_updated": "2026-10-06T23:27:12.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/07e945c1-2ec6-4d29-a500-1afbe920440f/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "7149bbf6-bf27-4115-bb19-8c7c7b93fad9",
+   "slug": "kairos-flight-4",
+   "name": "KAIROS | Flight 4",
+   "mission": "Flight 4",
+   "mission_type": "Test Flight",
+   "mission_description": "Fourth flight of the KAIROS launch vehicle. Payload is TBD.",
+   "orbit": "Sun-Synchronous Orbit",
+   "vehicle": "Kii-based Advanced & Instant ROcket System",
+   "vehicle_family": null,
+   "provider": "Space One",
+   "provider_abbrev": "Space One",
+   "site": {
+    "name": "Spaceport Kii, Japan",
+    "timezone": "Asia/Tokyo",
+    "country": "Japan"
+   },
+   "pad": {
+    "name": "Space One Launch Pad",
+    "latitude": 33.544224,
+    "longitude": 135.889502
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-01-22T00:00:00.000Z",
+   "precision": {
+    "kind": "day",
+    "exact": false,
+    "dated": true,
+    "countdown": false,
+    "id": 5,
+    "name": "Day"
+   },
+   "window": {
+    "start": "2027-01-22T00:00:00.000Z",
+    "end": "2027-01-22T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-20T03:30:05.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7149bbf6-bf27-4115-bb19-8c7c7b93fad9/",
     "info": [],
     "webcast": []
    },
