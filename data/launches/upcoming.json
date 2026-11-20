@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-20T18:39:18.033Z",
+ "generated_at": "2026-11-20T19:39:14.010Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-20T18:39:18.033Z",
-  "sha256": "9dc4eb62c2fd606118df876dc22223d26fc60b99ff0d0683bdb59883024d321a",
+  "retrieved_at": "2026-11-20T19:39:14.010Z",
+  "sha256": "44f0138d4ed477f636e37f5502fc97374c672c275867cdf9a2dbd9f02b322c8d",
   "pages": 2,
   "upstream_count": 127,
   "upstream_records": 127,
@@ -244,7 +244,7 @@
     "start": "2026-11-23T11:09:00.000Z",
     "end": "2026-11-23T11:38:00.000Z"
    },
-   "last_updated": "2026-11-20T14:23:25.000Z",
+   "last_updated": "2026-11-20T18:43:43.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
     "info": [],
@@ -350,13 +350,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-23T16:04:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 1431,
-    "detected_at": "2026-11-20T18:39:18.033Z"
-   }
+   "change": null
   },
   {
    "id": "c9605b67-8a53-4239-a8ae-577fe3b79799",
@@ -756,13 +750,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-28T04:53:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 1426,
-    "detected_at": "2026-11-20T18:39:18.033Z"
-   }
+   "change": null
   },
   {
    "id": "d74afbc7-0de5-491c-be05-4e9c31f736ac",
@@ -812,13 +800,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-29T15:47:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 3,
-    "detected_at": "2026-11-20T18:39:18.033Z"
-   }
+   "change": null
   },
   {
    "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
@@ -2272,13 +2254,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-30T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": 44640,
-    "detected_at": "2026-11-20T18:39:18.033Z"
-   }
+   "change": null
   },
   {
    "id": "428edcbe-bbd7-4475-8eb1-3dd90b39ad75",
@@ -2780,13 +2756,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-30T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": 44640,
-    "detected_at": "2026-11-20T18:39:18.033Z"
-   }
+   "change": null
   },
   {
    "id": "57109ff0-a70b-4ee0-a86f-b64505d6bd92",
@@ -4241,13 +4211,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-30T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": 44640,
-    "detected_at": "2026-11-20T18:39:18.033Z"
-   }
+   "change": null
   },
   {
    "id": "b32689fe-b156-4ccd-b824-fd555d12ba24",
