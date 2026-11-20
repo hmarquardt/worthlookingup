@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-20T10:39:47.288Z",
+ "generated_at": "2026-11-20T11:39:13.913Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,89 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-20T10:39:47.288Z",
-  "sha256": "2799ee67a923894a8b25d00e640c2b0f5e9389211b91860c5ba4ed00f9695dc2",
+  "retrieved_at": "2026-11-20T11:39:13.913Z",
+  "sha256": "7495934b50ea50f232e356b3da0839073c0ea8a3989ba05bc7b1a4d4e35e10cd",
   "pages": 2,
-  "upstream_count": 126,
-  "upstream_records": 126,
+  "upstream_count": 125,
+  "upstream_records": 125,
   "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 154,
+  "count": 153,
   "by_status": {
-   "success": 1,
    "scheduled": 12,
    "unconfirmed": 141
   },
   "by_precision": {
-   "minute": 11,
    "hour": 6,
+   "minute": 10,
    "month": 29,
    "day": 6,
    "year": 75,
    "quarter": 27
   },
-  "with_published_time": 17,
-  "with_published_date": 23,
+  "with_published_time": 16,
+  "with_published_date": 22,
   "period_only": 131,
   "sites": 22,
   "providers": 30,
-  "nearest_net": "2026-11-18T22:51:00.000Z",
+  "nearest_net": "2026-11-20T11:59:00.000Z",
   "window_days": 180,
   "announced_total": 477
  },
  "launches": [
-  {
-   "id": "e0a11eb1-0bda-4872-b36b-140247fd5c60",
-   "slug": "long-march-2d-shijian-24",
-   "name": "Long March 2D | Shijian 24",
-   "mission": "Shijian 24",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "Experimental Chinese satellite of unknown purposes.",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "Long March 2D",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Taiyuan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Complex 9",
-    "latitude": 38.863128,
-    "longitude": 111.589567
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-18T22:51:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-18T22:43:00.000Z",
-    "end": "2026-11-18T23:05:00.000Z"
-   },
-   "last_updated": "2026-11-18T23:26:42.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e0a11eb1-0bda-4872-b36b-140247fd5c60/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "a2975167-7c6f-4403-99e1-b40df17c8140",
    "slug": "long-march-8a-satnet-leo-group-tbd",
