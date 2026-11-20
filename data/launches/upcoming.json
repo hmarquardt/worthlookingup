@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-20T16:39:35.125Z",
+ "generated_at": "2026-11-20T17:39:14.182Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,37 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-20T16:39:35.125Z",
-  "sha256": "9d237a1f6945bef390bf2d7971f2185dcee3b7a2b244b0613954e30db2d18a9a",
+  "retrieved_at": "2026-11-20T17:39:14.182Z",
+  "sha256": "bf2d7dafe1cb196871f683170bbaeec1590c49276f341fac9fb799c6cfc581d7",
   "pages": 2,
-  "upstream_count": 125,
-  "upstream_records": 125,
-  "announced_total": 477,
+  "upstream_count": 127,
+  "upstream_records": 127,
+  "announced_total": 479,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 155,
   "by_status": {
    "success": 1,
-   "scheduled": 11,
-   "unconfirmed": 141
+   "scheduled": 12,
+   "unconfirmed": 142
   },
   "by_precision": {
-   "minute": 11,
-   "hour": 5,
+   "minute": 10,
+   "second": 1,
+   "hour": 6,
    "month": 29,
    "day": 6,
-   "year": 75,
+   "year": 76,
    "quarter": 27
   },
-  "with_published_time": 16,
-  "with_published_date": 22,
-  "period_only": 131,
+  "with_published_time": 17,
+  "with_published_date": 23,
+  "period_only": 132,
   "sites": 22,
-  "providers": 30,
+  "providers": 31,
   "nearest_net": "2026-11-20T11:59:00.000Z",
   "window_days": 180,
-  "announced_total": 477
+  "announced_total": 479
  },
  "launches": [
   {
@@ -99,13 +100,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Launch in Flight",
-    "previous_net": "2026-11-20T11:59:00.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-11-20T16:39:35.125Z"
-   }
+   "change": null
   },
   {
    "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
@@ -136,76 +131,32 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-21T02:32:00.000Z",
+   "net": "2026-11-21T04:20:35.000Z",
    "precision": {
-    "kind": "minute",
+    "kind": "second",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 1,
-    "name": "Minute"
+    "id": 0,
+    "name": "Second"
    },
    "window": {
     "start": "2026-11-21T02:32:00.000Z",
     "end": "2026-11-21T06:32:00.000Z"
    },
-   "last_updated": "2026-11-20T07:57:14.000Z",
+   "last_updated": "2026-11-20T17:33:23.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/76617033-4dc0-4448-b50c-e5b0d5a18539/",
     "info": [],
     "webcast": []
    },
-   "change": null
-  },
-  {
-   "id": "13270554-4bdb-42ae-916f-1bb54492204f",
-   "slug": "long-march-6c-unknown-payload",
-   "name": "Long March 6C | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
-   "vehicle": "Long March 6C",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Taiyuan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Complex 9A",
-    "latitude": 38.8583,
-    "longitude": 111.5802
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-21T03:50:00.000Z",
-   "precision": {
-    "kind": "hour",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 2,
-    "name": "Hour"
-   },
-   "window": {
-    "start": "2026-11-21T03:46:00.000Z",
-    "end": "2026-11-21T04:15:00.000Z"
-   },
-   "last_updated": "2026-11-18T09:09:19.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/13270554-4bdb-42ae-916f-1bb54492204f/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-21T02:32:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 109,
+    "detected_at": "2026-11-20T17:39:14.182Z"
+   }
   },
   {
    "id": "951a341f-236b-42fe-a667-4ab2fcf36eac",
@@ -249,19 +200,13 @@
     "start": "2026-11-22T12:16:00.000Z",
     "end": "2026-11-22T12:46:00.000Z"
    },
-   "last_updated": "2026-11-20T16:16:13.000Z",
+   "last_updated": "2026-11-20T17:28:15.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/951a341f-236b-42fe-a667-4ab2fcf36eac/",
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-21T12:30:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 1426,
-    "detected_at": "2026-11-20T16:39:35.125Z"
-   }
+   "change": null
   },
   {
    "id": "7bdc412b-c965-4517-a131-f57a01189803",
@@ -614,6 +559,56 @@
    "change": null
   },
   {
+   "id": "a6421db3-7c8a-4cf7-a659-cec195140f7f",
+   "slug": "long-march-6a-unknown-payload",
+   "name": "Long March 6A | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Long March 6A",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Taiyuan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Complex 9A",
+    "latitude": 38.8583,
+    "longitude": 111.5802
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-27T13:00:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-27T12:53:00.000Z",
+    "end": "2026-11-27T13:15:00.000Z"
+   },
+   "last_updated": "2026-11-20T17:15:10.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a6421db3-7c8a-4cf7-a659-cec195140f7f/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
    "id": "b0d27def-0a88-44c3-a947-1fd5b8503e2c",
    "slug": "falcon-9-block-5-ussf-380",
    "name": "Falcon 9 Block 5 | USSF-380",
@@ -712,6 +707,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "13270554-4bdb-42ae-916f-1bb54492204f",
+   "slug": "long-march-6c-unknown-payload",
+   "name": "Long March 6C | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Long March 6C",
+   "vehicle_family": "Long March",
+   "provider": "China Aerospace Science and Technology Corporation",
+   "provider_abbrev": "CASC",
+   "site": {
+    "name": "Taiyuan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Complex 9A",
+    "latitude": 38.8583,
+    "longitude": 111.5802
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-11-29T03:50:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-29T03:46:00.000Z",
+    "end": "2026-11-29T04:15:00.000Z"
+   },
+   "last_updated": "2026-11-20T17:17:02.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/13270554-4bdb-42ae-916f-1bb54492204f/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-21T03:50:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 11520,
+    "detected_at": "2026-11-20T17:39:14.182Z"
+   }
   },
   {
    "id": "d74afbc7-0de5-491c-be05-4e9c31f736ac",
@@ -4971,6 +5022,56 @@
    "last_updated": "2026-10-23T06:27:52.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/ce1317de-ec94-4479-9b28-38ebf11f13ae/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "cf2647a7-e99a-4cbe-acab-a206a2f2fc3a",
+   "slug": "vikram-i-nila-iii-scope",
+   "name": "Vikram-I | NILA III & SCOPE",
+   "mission": "NILA III & SCOPE",
+   "mission_type": "Technology",
+   "mission_description": "Second launch of Skyroot Aerospace's Vikram-I launch vehicle. 2 payloads will be launched on board: - HEX20 (India)'s NILA III satellite (4U cubesat), which will test OhmSpace (Italy)'s high-temperature resistojet/3D-printed electric propulsion system for high-thrust orbital manoeuvres - Skyroot's own SCOPE satellite (4U cubesat) Exolaunch of Germany will provide the cubesat deployer.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Vikram-I",
+   "vehicle_family": "Vikram",
+   "provider": "Skyroot Aerospace",
+   "provider_abbrev": "Skyroot",
+   "site": {
+    "name": "Satish Dhawan Space Centre, India",
+    "timezone": "Asia/Kolkata",
+    "country": "India"
+   },
+   "pad": {
+    "name": "Satish Dhawan Space Centre First Launch Pad",
+    "latitude": 13.733,
+    "longitude": 80.235
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-12-31T00:00:00.000Z",
+   "precision": {
+    "kind": "year",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 14,
+    "name": "Year"
+   },
+   "window": {
+    "start": "2026-12-31T00:00:00.000Z",
+    "end": "2026-12-31T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-20T17:25:14.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/cf2647a7-e99a-4cbe-acab-a206a2f2fc3a/",
     "info": [],
     "webcast": []
    },
