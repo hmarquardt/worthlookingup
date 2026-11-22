@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-21T23:39:36.673Z",
+ "generated_at": "2026-11-22T00:51:30.210Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,90 +18,40 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-21T23:39:36.673Z",
-  "sha256": "4e2236babed2045da9c1dbdd350379bc4d424372ff8de4a85526dae575e83a11",
+  "retrieved_at": "2026-11-22T00:51:30.210Z",
+  "sha256": "f4433861f71334a3ce7393792e68d3391cceeedab308647b27f8e028165c7f33",
   "pages": 2,
-  "upstream_count": 127,
-  "upstream_records": 127,
+  "upstream_count": 126,
+  "upstream_records": 126,
   "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 155,
+  "count": 154,
   "by_status": {
-   "success": 2,
+   "success": 1,
    "scheduled": 11,
    "unconfirmed": 142
   },
   "by_precision": {
-   "minute": 9,
    "second": 2,
+   "minute": 8,
    "hour": 6,
    "month": 29,
    "day": 6,
    "year": 76,
    "quarter": 27
   },
-  "with_published_time": 17,
-  "with_published_date": 23,
+  "with_published_time": 16,
+  "with_published_date": 22,
   "period_only": 132,
   "sites": 22,
   "providers": 31,
-  "nearest_net": "2026-11-20T11:59:00.000Z",
+  "nearest_net": "2026-11-21T04:20:35.000Z",
   "window_days": 180,
   "announced_total": 478
  },
  "launches": [
-  {
-   "id": "a2975167-7c6f-4403-99e1-b40df17c8140",
-   "slug": "long-march-8a-satnet-leo-group-30",
-   "name": "Long March 8A | SatNet LEO Group 30",
-   "mission": "SatNet LEO Group 30",
-   "mission_type": "Communications",
-   "mission_description": "A batch of 9 Low Earth Orbit communication satellites for the Chinese state owned SatNet constellation operated by the China Satellite Network Group. The constellation will eventually consists of 13000 satellites.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 8A",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Wenchang Space Launch Site, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Commercial LC-1",
-    "latitude": 19.597275,
-    "longitude": 110.930753
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-20T11:59:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-20T11:51:00.000Z",
-    "end": "2026-11-20T12:17:00.000Z"
-   },
-   "last_updated": "2026-11-20T16:14:14.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/a2975167-7c6f-4403-99e1-b40df17c8140/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
    "slug": "falcon-9-block-5-ussf-317",
