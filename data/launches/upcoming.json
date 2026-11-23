@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-23T14:39:39.920Z",
+ "generated_at": "2026-11-23T16:39:25.190Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,38 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-23T14:39:39.920Z",
-  "sha256": "681ced899536d2252f51e7d52a40348096e92939e7b2d6d6c154b9d13d5532ba",
+  "retrieved_at": "2026-11-23T16:39:25.190Z",
+  "sha256": "54b812141c1f5c9812f3ffcf218ae6d0b1033d94713fa92a2dba0d2ff76e3cfa",
   "pages": 2,
-  "upstream_count": 125,
-  "upstream_records": 125,
-  "announced_total": 476,
+  "upstream_count": 126,
+  "upstream_records": 126,
+  "announced_total": 477,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 154,
   "by_status": {
    "success": 1,
    "unconfirmed": 142,
-   "scheduled": 10
+   "scheduled": 11
   },
   "by_precision": {
    "second": 1,
-   "minute": 8,
+   "minute": 9,
    "hour": 5,
    "month": 29,
    "day": 6,
    "year": 76,
    "quarter": 28
   },
-  "with_published_time": 14,
-  "with_published_date": 20,
+  "with_published_time": 15,
+  "with_published_date": 21,
   "period_only": 133,
   "sites": 22,
   "providers": 31,
   "nearest_net": "2026-11-22T12:23:56.000Z",
   "window_days": 180,
-  "announced_total": 476
+  "announced_total": 477
  },
  "launches": [
   {
@@ -194,7 +194,7 @@
     "start": "2026-11-24T10:45:00.000Z",
     "end": "2026-11-24T11:14:00.000Z"
    },
-   "last_updated": "2026-11-23T13:40:20.000Z",
+   "last_updated": "2026-11-23T16:18:07.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
     "info": [],
@@ -453,56 +453,6 @@
    "change": null
   },
   {
-   "id": "8b46d360-6b3b-423f-9036-d5568e485624",
-   "slug": "kinetica-1-unknown-payload",
-   "name": "Kinetica 1 | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
-   "vehicle": "Kinetica 1",
-   "vehicle_family": null,
-   "provider": "CAS Space",
-   "provider_abbrev": "CAS",
-   "site": {
-    "name": "Haiyang Oriental Spaceport",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "South China Sea (launch location 3)",
-    "latitude": 21.366667,
-    "longitude": 112.116667
-   },
-   "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-11-29T01:00:00.000Z",
-   "precision": {
-    "kind": "hour",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 2,
-    "name": "Hour"
-   },
-   "window": {
-    "start": "2026-11-29T01:00:00.000Z",
-    "end": "2026-11-29T04:00:00.000Z"
-   },
-   "last_updated": "2026-11-20T00:28:53.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8b46d360-6b3b-423f-9036-d5568e485624/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "13270554-4bdb-42ae-916f-1bb54492204f",
    "slug": "long-march-6c-unknown-payload",
    "name": "Long March 6C | Unknown Payload",
@@ -747,6 +697,112 @@
    "last_updated": "2026-11-12T15:55:03.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2523821-9760-4cb4-ad1f-7ce2e30419bd/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "8b46d360-6b3b-423f-9036-d5568e485624",
+   "slug": "kinetica-1-unknown-payload",
+   "name": "Kinetica 1 | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Kinetica 1",
+   "vehicle_family": null,
+   "provider": "CAS Space",
+   "provider_abbrev": "CAS",
+   "site": {
+    "name": "Haiyang Oriental Spaceport",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "South China Sea (launch location 4)",
+    "latitude": 21.133333,
+    "longitude": 112.683333
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-12-01T01:45:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-12-01T01:38:00.000Z",
+    "end": "2026-12-01T02:03:00.000Z"
+   },
+   "last_updated": "2026-11-23T15:39:32.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8b46d360-6b3b-423f-9036-d5568e485624/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-29T01:00:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": 2925,
+    "detected_at": "2026-11-23T16:39:25.190Z"
+   }
+  },
+  {
+   "id": "5591cfa3-6336-41ab-a37a-7c57aa28ab5f",
+   "slug": "falcon-9-block-5-nrol-132",
+   "name": "Falcon 9 Block 5 | NROL-132",
+   "mission": "NROL-132",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "Sixteenth batch of satellites for a reconnaissance satellite constellation built by SpaceX and Northrop Grumman for the National Reconnaissance Office to provide imaging and other reconnaissance capabilities.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Vandenberg SFB, CA, USA",
+    "timezone": "America/Los_Angeles",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 4E",
+    "latitude": 34.632,
+    "longitude": -120.611
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-12-02T20:30:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-12-02T20:30:00.000Z",
+    "end": "2026-12-03T00:30:00.000Z"
+   },
+   "last_updated": "2026-11-23T16:16:11.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/5591cfa3-6336-41ab-a37a-7c57aa28ab5f/",
     "info": [],
     "webcast": []
    },
