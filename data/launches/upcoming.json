@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-23T12:41:48.123Z",
+ "generated_at": "2026-11-23T13:38:52.777Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-23T12:41:48.123Z",
-  "sha256": "56418173418d934ebc6e3ac8f6dd5e4f0f66d4927fbcdfa6a43dc25a064760f2",
+  "retrieved_at": "2026-11-23T13:38:52.777Z",
+  "sha256": "6e04fd722f64926f9a93adcb509f80e16dab0bb15707c1c75cc03c9eecf1709e",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
@@ -30,13 +30,13 @@
   "count": 153,
   "by_status": {
    "success": 1,
-   "unconfirmed": 143,
-   "scheduled": 9
+   "unconfirmed": 142,
+   "scheduled": 10
   },
   "by_precision": {
    "second": 1,
-   "minute": 7,
-   "hour": 6,
+   "minute": 8,
+   "hour": 5,
    "month": 29,
    "day": 6,
    "year": 76,
@@ -175,32 +175,38 @@
     "longitude": -52.786838
    },
    "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
-   "net": "2026-11-24T11:09:00.000Z",
+   "net": "2026-11-24T10:45:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
-    "start": "2026-11-24T11:09:00.000Z",
-    "end": "2026-11-24T11:38:00.000Z"
+    "start": "2026-11-24T10:45:00.000Z",
+    "end": "2026-11-24T11:14:00.000Z"
    },
-   "last_updated": "2026-11-23T08:53:13.000Z",
+   "last_updated": "2026-11-23T13:36:00.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-11-24T11:09:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": -24,
+    "detected_at": "2026-11-23T13:38:52.777Z"
+   }
   },
   {
    "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
