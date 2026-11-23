@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-23T04:40:33.423Z",
+ "generated_at": "2026-11-23T06:53:54.962Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-23T04:40:33.423Z",
-  "sha256": "1f5e4e21ac820fec23c13cb5737c289682d84e91591d611a23cefb7ccc596ac8",
+  "retrieved_at": "2026-11-23T06:53:54.962Z",
+  "sha256": "047a6093cdf1992b45e524b8315c8378f7149643fe579718a5609425e2bb5439",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
@@ -30,13 +30,13 @@
   "count": 153,
   "by_status": {
    "success": 1,
-   "scheduled": 10,
-   "unconfirmed": 142
+   "unconfirmed": 143,
+   "scheduled": 9
   },
   "by_precision": {
    "second": 1,
-   "minute": 8,
-   "hour": 5,
+   "minute": 7,
+   "hour": 6,
    "month": 29,
    "day": 6,
    "year": 76,
@@ -103,56 +103,6 @@
    "change": null
   },
   {
-   "id": "7bdc412b-c965-4517-a131-f57a01189803",
-   "slug": "ariane-64-block-2-amazon-leo-le-04",
-   "name": "Ariane 64 Block 2 | Amazon Leo (LE-04)",
-   "mission": "Amazon Leo (LE-04)",
-   "mission_type": "Communications",
-   "mission_description": "Amazon Leo, formerly known as Project Kuiper, is a mega constellation of satellites in Low Earth Orbit that will offer broadband internet access, this constellation will be managed by Kuiper Systems LLC, a subsidiary of Amazon. This constellation is planned to be composed of 3,276 satellites. The satellites are projected to be placed in 98 orbital planes in three orbital layers, one at 590 km, 61…",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Ariane 64 Block 2",
-   "vehicle_family": "Ariane",
-   "provider": "Arianespace",
-   "provider_abbrev": "ASA",
-   "site": {
-    "name": "Guiana Space Centre, French Guiana",
-    "timezone": "America/Cayenne",
-    "country": "French Guiana"
-   },
-   "pad": {
-    "name": "Ariane Launch Area 4",
-    "latitude": 5.256319,
-    "longitude": -52.786838
-   },
-   "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
-   },
-   "net": "2026-11-23T11:09:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-23T11:09:00.000Z",
-    "end": "2026-11-23T11:38:00.000Z"
-   },
-   "last_updated": "2026-11-20T18:43:43.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "8dd5de11-831b-445f-86f0-bffefe0550d9",
    "slug": "soyuz-21b-progress-ms-36-97p",
    "name": "Soyuz 2.1b | Progress MS-36 (97P)",
@@ -201,6 +151,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "7bdc412b-c965-4517-a131-f57a01189803",
+   "slug": "ariane-64-block-2-amazon-leo-le-04",
+   "name": "Ariane 64 Block 2 | Amazon Leo (LE-04)",
+   "mission": "Amazon Leo (LE-04)",
+   "mission_type": "Communications",
+   "mission_description": "Amazon Leo, formerly known as Project Kuiper, is a mega constellation of satellites in Low Earth Orbit that will offer broadband internet access, this constellation will be managed by Kuiper Systems LLC, a subsidiary of Amazon. This constellation is planned to be composed of 3,276 satellites. The satellites are projected to be placed in 98 orbital planes in three orbital layers, one at 590 km, 61…",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Ariane 64 Block 2",
+   "vehicle_family": "Ariane",
+   "provider": "Arianespace",
+   "provider_abbrev": "ASA",
+   "site": {
+    "name": "Guiana Space Centre, French Guiana",
+    "timezone": "America/Cayenne",
+    "country": "French Guiana"
+   },
+   "pad": {
+    "name": "Ariane Launch Area 4",
+    "latitude": 5.256319,
+    "longitude": -52.786838
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-11-24T11:09:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-11-24T11:09:00.000Z",
+    "end": "2026-11-24T11:38:00.000Z"
+   },
+   "last_updated": "2026-11-23T06:53:18.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-23T11:09:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 1440,
+    "detected_at": "2026-11-23T06:53:54.962Z"
+   }
   },
   {
    "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
