@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-24T19:39:41.895Z",
+ "generated_at": "2026-11-24T20:39:33.712Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,11 +18,11 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-24T19:39:41.895Z",
-  "sha256": "13969ea17b79ae950b21d376da0f0b8aef8f758c81167eb900be46e05d234171",
-  "pages": 2,
-  "upstream_count": 110,
-  "upstream_records": 110,
+  "retrieved_at": "2026-11-24T20:39:33.712Z",
+  "sha256": "b641d366e902757ceb354abaa33e080068ba956db66afb0abbb7851393b5d31d",
+  "pages": 1,
+  "upstream_count": 91,
+  "upstream_records": 91,
   "announced_total": 478,
   "duplicates_removed": 0
  },
@@ -37,10 +37,10 @@
    "second": 3,
    "minute": 7,
    "hour": 6,
-   "month": 29,
+   "month": 27,
    "day": 5,
-   "year": 76,
-   "quarter": 28
+   "year": 75,
+   "quarter": 31
   },
   "with_published_time": 16,
   "with_published_date": 21,
@@ -208,7 +208,7 @@
    "name": "Long March 2F/G | Shenzhou 24",
    "mission": "Shenzhou 24",
    "mission_type": "Human Exploration",
-   "mission_description": "Shenzhou 24 will be the 24th flight of the Shenzhou program. The first astronaut from Pakistan is expected to fly on this on a short duration mission, with another Chinese astronaut to undergo a year long expedition.",
+   "mission_description": "Shenzhou 24 will be the 24th flight of the Shenzhou program. The first astronaut from Pakistan, Muhammad Zeeshan Ali, will fly on this on a short duration mission, with Chinese astronaut Zhu Yangzhu of Shenzhou 23 to undergo a year long expedition and stay on the CSS in exchange.",
    "orbit": "Low Earth Orbit",
    "vehicle": "Long March 2F/G",
    "vehicle_family": "Long March",
@@ -244,7 +244,7 @@
     "start": "2026-11-25T00:08:00.000Z",
     "end": "2026-11-25T00:48:00.000Z"
    },
-   "last_updated": "2026-11-20T09:07:56.000Z",
+   "last_updated": "2026-11-24T20:33:13.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c9605b67-8a53-4239-a8ae-577fe3b79799/",
     "info": [],
@@ -531,7 +531,7 @@
     "description": "Current T-0 confirmed by official or reliable sources.",
     "kind": "scheduled"
    },
-   "net": "2026-11-29T15:50:00.000Z",
+   "net": "2026-11-29T15:47:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -541,16 +541,22 @@
     "name": "Minute"
    },
    "window": {
-    "start": "2026-11-29T15:50:00.000Z",
-    "end": "2026-11-29T15:50:00.000Z"
+    "start": "2026-11-29T15:47:00.000Z",
+    "end": "2026-11-29T15:47:00.000Z"
    },
-   "last_updated": "2026-11-20T17:43:33.000Z",
+   "last_updated": "2026-11-24T19:47:23.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d74afbc7-0de5-491c-be05-4e9c31f736ac/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-11-29T15:50:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": -3,
+    "detected_at": "2026-11-24T20:39:33.712Z"
+   }
   },
   {
    "id": "9e27a1ed-e81a-4918-b32b-0380cf3a9f8f",
@@ -4315,56 +4321,6 @@
    "change": null
   },
   {
-   "id": "b5a9bccb-30d7-4af6-8ad1-fabb563be53c",
-   "slug": "pslv-xl-tds-01",
-   "name": "PSLV-XL | TDS-01",
-   "mission": "TDS-01",
-   "mission_type": "Technology",
-   "mission_description": "TDS-01 (Technology Demonstration Satellite-01) is an Indian geostationary orbit technology demonstration satellite carrying payloads for the Indian Space Research Organisation (ISRO)’s Institute of Plasma Research, Gandhinagar and the CSIR-CEERI, Pilani. Payloads to be tested included an internally developed 300 mN electric powered thrusters, atomic clocks, travelling wave tube amplifiers (TWTA)…",
-   "orbit": "Geostationary Transfer Orbit",
-   "vehicle": "PSLV XL",
-   "vehicle_family": "PSLV",
-   "provider": "Indian Space Research Organization",
-   "provider_abbrev": "ISRO",
-   "site": {
-    "name": "Satish Dhawan Space Centre, India",
-    "timezone": "Asia/Kolkata",
-    "country": "India"
-   },
-   "pad": {
-    "name": "Satish Dhawan Space Centre First Launch Pad",
-    "latitude": 13.733,
-    "longitude": 80.235
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-12-31T00:00:00.000Z",
-   "precision": {
-    "kind": "year",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 14,
-    "name": "Year"
-   },
-   "window": {
-    "start": "2026-12-31T00:00:00.000Z",
-    "end": "2026-12-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-11-20T00:19:16.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/b5a9bccb-30d7-4af6-8ad1-fabb563be53c/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "b94b49fc-5784-4dfd-92e7-07e57f50edcd",
    "slug": "firefly-alpha-block-2-tacsat",
    "name": "Firefly Alpha Block 2 | TacSat",
@@ -5312,56 +5268,6 @@
    "last_updated": "2026-08-27T16:02:56.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/dca8749f-1552-485a-8061-f1ad79055b8d/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "dfac5ab7-7017-454f-b6cf-eeed277a97b5",
-   "slug": "lvm-3-gaganyaan-1",
-   "name": "LVM-3 | Gaganyaan-1",
-   "mission": "Gaganyaan-1",
-   "mission_type": "Test Flight",
-   "mission_description": "First uncrewed orbital test flight of the Gaganyaan capsule.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Launch Vehicle Mark-3 (GSLV Mk III)",
-   "vehicle_family": "GSLV",
-   "provider": "Indian Space Research Organization",
-   "provider_abbrev": "ISRO",
-   "site": {
-    "name": "Satish Dhawan Space Centre, India",
-    "timezone": "Asia/Kolkata",
-    "country": "India"
-   },
-   "pad": {
-    "name": "Satish Dhawan Space Centre Second Launch Pad",
-    "latitude": 13.7199,
-    "longitude": 80.2304
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-12-31T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-12-31T00:00:00.000Z",
-    "end": "2026-12-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-11-20T00:18:55.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/dfac5ab7-7017-454f-b6cf-eeed277a97b5/",
     "info": [],
     "webcast": []
    },
@@ -6420,56 +6326,6 @@
    "change": null
   },
   {
-   "id": "90232cff-15ff-4755-8a56-4ed544767665",
-   "slug": "pslv-xl-eos-10-oceansat-3a",
-   "name": "PSLV-XL | EOS-10 (Oceansat-3A)",
-   "mission": "EOS-10 (Oceansat-3A)",
-   "mission_type": "Earth Science",
-   "mission_description": "Oceansat-3A is a part of ISRO's Oceansat program. Its main purpose is ocean observation, which includes gathering ocean color data, sea surface temperature measurements and wind vector data.",
-   "orbit": "Sun-Synchronous Orbit",
-   "vehicle": "PSLV XL",
-   "vehicle_family": "PSLV",
-   "provider": "Indian Space Research Organization",
-   "provider_abbrev": "ISRO",
-   "site": {
-    "name": "Satish Dhawan Space Centre, India",
-    "timezone": "Asia/Kolkata",
-    "country": "India"
-   },
-   "pad": {
-    "name": "Satish Dhawan Space Centre First Launch Pad",
-    "latitude": 13.733,
-    "longitude": 80.235
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2027-01-31T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2027-01-31T00:00:00.000Z",
-    "end": "2027-01-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-09-26T12:28:37.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/90232cff-15ff-4755-8a56-4ed544767665/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "a5e81552-ecdd-4d89-b6bd-b594e22ca891",
    "slug": "new-glenn-blue-ring-1",
    "name": "New Glenn | Blue Ring-1",
@@ -7175,6 +7031,63 @@
    "change": null
   },
   {
+   "id": "90232cff-15ff-4755-8a56-4ed544767665",
+   "slug": "pslv-xl-eos-10-oceansat-3a",
+   "name": "PSLV-XL | EOS-10 (Oceansat-3A)",
+   "mission": "EOS-10 (Oceansat-3A)",
+   "mission_type": "Earth Science",
+   "mission_description": "Oceansat-3A is a part of ISRO's Oceansat program. Its main purpose is ocean observation, which includes gathering ocean color data, sea surface temperature measurements and wind vector data.",
+   "orbit": "Sun-Synchronous Orbit",
+   "vehicle": "PSLV XL",
+   "vehicle_family": "PSLV",
+   "provider": "Indian Space Research Organization",
+   "provider_abbrev": "ISRO",
+   "site": {
+    "name": "Satish Dhawan Space Centre, India",
+    "timezone": "Asia/Kolkata",
+    "country": "India"
+   },
+   "pad": {
+    "name": "Satish Dhawan Space Centre First Launch Pad",
+    "latitude": 13.733,
+    "longitude": 80.235
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-03-31T00:00:00.000Z",
+   "precision": {
+    "kind": "quarter",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "quarter": 1,
+    "id": 8,
+    "name": "Quarter 1"
+   },
+   "window": {
+    "start": "2027-03-31T00:00:00.000Z",
+    "end": "2027-03-31T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-24T19:55:31.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/90232cff-15ff-4755-8a56-4ed544767665/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2027-01-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 84960,
+    "detected_at": "2026-11-24T20:39:33.712Z"
+   }
+  },
+  {
    "id": "98ec4234-8c4e-4365-b6c5-6b89da53f8dd",
    "slug": "new-glenn-blue-moon-pathfinder",
    "name": "New Glenn | Blue Moon Pathfinder",
@@ -7377,6 +7290,63 @@
    "change": null
   },
   {
+   "id": "b5a9bccb-30d7-4af6-8ad1-fabb563be53c",
+   "slug": "pslv-xl-tds-01",
+   "name": "PSLV-XL | TDS-01",
+   "mission": "TDS-01",
+   "mission_type": "Technology",
+   "mission_description": "TDS-01 (Technology Demonstration Satellite-01) is an Indian geostationary orbit technology demonstration satellite carrying payloads for the Indian Space Research Organisation (ISRO)’s Institute of Plasma Research, Gandhinagar and the CSIR-CEERI, Pilani. Payloads to be tested included an internally developed 300 mN electric powered thrusters, atomic clocks, travelling wave tube amplifiers (TWTA)…",
+   "orbit": "Geostationary Transfer Orbit",
+   "vehicle": "PSLV XL",
+   "vehicle_family": "PSLV",
+   "provider": "Indian Space Research Organization",
+   "provider_abbrev": "ISRO",
+   "site": {
+    "name": "Satish Dhawan Space Centre, India",
+    "timezone": "Asia/Kolkata",
+    "country": "India"
+   },
+   "pad": {
+    "name": "Satish Dhawan Space Centre First Launch Pad",
+    "latitude": 13.733,
+    "longitude": 80.235
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-03-31T00:00:00.000Z",
+   "precision": {
+    "kind": "quarter",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "quarter": 1,
+    "id": 8,
+    "name": "Quarter 1"
+   },
+   "window": {
+    "start": "2027-03-31T00:00:00.000Z",
+    "end": "2027-03-31T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-24T19:54:36.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/b5a9bccb-30d7-4af6-8ad1-fabb563be53c/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-12-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 129600,
+    "detected_at": "2026-11-24T20:39:33.712Z"
+   }
+  },
+  {
    "id": "bb34dbf6-9b46-400a-94d6-a0b6dbd6cb03",
    "slug": "falcon-9-block-5-wsf-m2-blaze-2-ussf-178",
    "name": "Falcon 9 Block 5 | WSF-M2 & BLAZE-2 (USSF-178)",
@@ -7527,6 +7497,63 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "dfac5ab7-7017-454f-b6cf-eeed277a97b5",
+   "slug": "lvm-3-gaganyaan-1",
+   "name": "LVM-3 | Gaganyaan-1",
+   "mission": "Gaganyaan-1",
+   "mission_type": "Test Flight",
+   "mission_description": "First uncrewed orbital test flight of the Gaganyaan capsule.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Launch Vehicle Mark-3 (GSLV Mk III)",
+   "vehicle_family": "GSLV",
+   "provider": "Indian Space Research Organization",
+   "provider_abbrev": "ISRO",
+   "site": {
+    "name": "Satish Dhawan Space Centre, India",
+    "timezone": "Asia/Kolkata",
+    "country": "India"
+   },
+   "pad": {
+    "name": "Satish Dhawan Space Centre Second Launch Pad",
+    "latitude": 13.7199,
+    "longitude": 80.2304
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2027-03-31T00:00:00.000Z",
+   "precision": {
+    "kind": "quarter",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "quarter": 1,
+    "id": 8,
+    "name": "Quarter 1"
+   },
+   "window": {
+    "start": "2027-03-31T00:00:00.000Z",
+    "end": "2027-03-31T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-24T19:53:11.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/dfac5ab7-7017-454f-b6cf-eeed277a97b5/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-12-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 129600,
+    "detected_at": "2026-11-24T20:39:33.712Z"
+   }
   },
   {
    "id": "eda0f3bb-3a5e-438f-bdba-9dab2a86c281",
