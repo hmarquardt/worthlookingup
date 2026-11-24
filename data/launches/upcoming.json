@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-24T10:39:11.171Z",
+ "generated_at": "2026-11-24T11:38:58.767Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-24T10:39:11.171Z",
-  "sha256": "4d5091f14224466bab72a7c4a126452d20a541af3a7cb726ca8554de3095d7b9",
+  "retrieved_at": "2026-11-24T11:38:58.767Z",
+  "sha256": "4ba5cea55a639e446c53bc136b32d125be3ae916bd4c6e172b643f9f295987b1",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
@@ -30,21 +30,22 @@
   "count": 153,
   "by_status": {
    "success": 1,
-   "scheduled": 11,
+   "unknown": 1,
+   "scheduled": 10,
    "unconfirmed": 141
   },
   "by_precision": {
    "second": 3,
    "minute": 6,
-   "hour": 5,
-   "month": 29,
+   "hour": 6,
+   "month": 28,
    "day": 6,
    "year": 76,
    "quarter": 28
   },
-  "with_published_time": 14,
-  "with_published_date": 20,
-  "period_only": 133,
+  "with_published_time": 15,
+  "with_published_date": 21,
+  "period_only": 132,
   "sites": 22,
   "providers": 31,
   "nearest_net": "2026-11-24T10:17:46.000Z",
@@ -100,13 +101,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-24T10:17:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 1,
-    "detected_at": "2026-11-24T10:39:11.171Z"
-   }
+   "change": null
   },
   {
    "id": "7bdc412b-c965-4517-a131-f57a01189803",
@@ -131,13 +126,13 @@
     "longitude": -52.786838
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
-   "net": "2026-11-24T10:46:32.000Z",
+   "net": "2026-11-24T11:14:52.000Z",
    "precision": {
     "kind": "second",
     "exact": true,
@@ -148,9 +143,9 @@
    },
    "window": {
     "start": "2026-11-24T10:45:00.000Z",
-    "end": "2026-11-24T11:14:00.000Z"
+    "end": "2026-11-24T11:14:52.000Z"
    },
-   "last_updated": "2026-11-24T10:36:15.000Z",
+   "last_updated": "2026-11-24T11:36:19.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
     "info": [],
@@ -158,10 +153,10 @@
    },
    "change": {
     "kind": "postponed",
-    "previous_net": "2026-11-24T10:45:00.000Z",
+    "previous_net": "2026-11-24T10:46:32.000Z",
     "previous_status": "Go for Launch",
-    "delta_minutes": 2,
-    "detected_at": "2026-11-24T10:39:11.171Z"
+    "delta_minutes": 28,
+    "detected_at": "2026-11-24T11:38:58.767Z"
    }
   },
   {
@@ -615,56 +610,6 @@
    "change": null
   },
   {
-   "id": "e2523821-9760-4cb4-ad1f-7ce2e30419bd",
-   "slug": "kuaizhou-11-unknown-payload",
-   "name": "Kuaizhou 11 | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
-   "vehicle": "Kuaizhou 11",
-   "vehicle_family": "Kuaizhou",
-   "provider": "ExPace",
-   "provider_abbrev": "EP",
-   "site": {
-    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Area 95A",
-    "latitude": 40.969117,
-    "longitude": 100.343333
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-11-30T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-11-30T00:00:00.000Z",
-    "end": "2026-11-30T00:00:00.000Z"
-   },
-   "last_updated": "2026-11-12T15:55:03.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2523821-9760-4cb4-ad1f-7ce2e30419bd/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
    "id": "8b46d360-6b3b-423f-9036-d5568e485624",
    "slug": "kinetica-1-unknown-payload",
    "name": "Kinetica 1 | Unknown Payload",
@@ -713,6 +658,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "e2523821-9760-4cb4-ad1f-7ce2e30419bd",
+   "slug": "kuaizhou-11-unknown-payload",
+   "name": "Kuaizhou 11 | Unknown Payload",
+   "mission": "Unknown Payload",
+   "mission_type": "Unknown",
+   "mission_description": "Details TBD.",
+   "orbit": "Unknown",
+   "vehicle": "Kuaizhou 11",
+   "vehicle_family": "Kuaizhou",
+   "provider": "ExPace",
+   "provider_abbrev": "EP",
+   "site": {
+    "name": "Jiuquan Satellite Launch Center, People's Republic of China",
+    "timezone": "Asia/Shanghai",
+    "country": "China"
+   },
+   "pad": {
+    "name": "Launch Area 95A",
+    "latitude": 40.969117,
+    "longitude": 100.343333
+   },
+   "status": {
+    "id": 8,
+    "name": "To Be Confirmed",
+    "abbrev": "TBC",
+    "description": "Awaiting official confirmation - current date is known with some certainty.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-12-01T08:00:00.000Z",
+   "precision": {
+    "kind": "hour",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 2,
+    "name": "Hour"
+   },
+   "window": {
+    "start": "2026-12-01T08:00:00.000Z",
+    "end": "2026-12-01T16:00:00.000Z"
+   },
+   "last_updated": "2026-11-24T10:47:49.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/e2523821-9760-4cb4-ad1f-7ce2e30419bd/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-30T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 1920,
+    "detected_at": "2026-11-24T11:38:58.767Z"
+   }
   },
   {
    "id": "5591cfa3-6336-41ab-a37a-7c57aa28ab5f",
