@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-24T15:39:23.529Z",
+ "generated_at": "2026-11-24T16:39:29.931Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-24T15:39:23.529Z",
-  "sha256": "327b2b08e2356d7b268cd316d74c1dac3a7ee37dccb2897244cf0fd0034f850f",
+  "retrieved_at": "2026-11-24T16:39:29.931Z",
+  "sha256": "4ecae4fc1cb9bb90a5d76a9fb09920791b3ec8e20e34fba42ac5671b94c48a41",
   "pages": 2,
   "upstream_count": 109,
   "upstream_records": 109,
@@ -30,7 +30,8 @@
   "count": 153,
   "by_status": {
    "success": 2,
-   "scheduled": 11,
+   "unknown": 1,
+   "scheduled": 10,
    "unconfirmed": 140
   },
   "by_precision": {
@@ -94,7 +95,7 @@
     "start": "2026-11-24T10:17:46.000Z",
     "end": "2026-11-24T10:17:46.000Z"
    },
-   "last_updated": "2026-11-24T10:35:14.000Z",
+   "last_updated": "2026-11-24T16:23:46.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8dd5de11-831b-445f-86f0-bffefe0550d9/",
     "info": [],
@@ -175,11 +176,11 @@
     "longitude": -120.611
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
    "net": "2026-11-24T16:08:59.000Z",
    "precision": {
@@ -194,13 +195,19 @@
     "start": "2026-11-24T15:55:00.000Z",
     "end": "2026-11-24T19:55:00.000Z"
    },
-   "last_updated": "2026-11-24T15:34:27.000Z",
+   "last_updated": "2026-11-24T16:34:58.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/460d9db7-eaf6-4cd9-b095-cff433534c09/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Go for Launch",
+    "previous_net": "2026-11-24T16:08:59.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-24T16:39:29.931Z"
+   }
   },
   {
    "id": "c9605b67-8a53-4239-a8ae-577fe3b79799",
@@ -3353,7 +3360,7 @@
     "start": "2026-12-31T00:00:00.000Z",
     "end": "2026-12-31T00:00:00.000Z"
    },
-   "last_updated": "2026-11-05T18:00:50.000Z",
+   "last_updated": "2026-11-24T16:23:22.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8bf5f61e-a7e1-41e6-aede-7b87e4beebab/",
     "info": [],
