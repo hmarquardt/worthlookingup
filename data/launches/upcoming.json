@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-24T18:39:13.733Z",
+ "generated_at": "2026-11-24T19:39:41.895Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,33 +18,33 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-24T18:39:13.733Z",
-  "sha256": "32745cf620442cd22087ea3cb5f688a2ab3dc0e3558fc6ee1d4750e319fe4d92",
+  "retrieved_at": "2026-11-24T19:39:41.895Z",
+  "sha256": "13969ea17b79ae950b21d376da0f0b8aef8f758c81167eb900be46e05d234171",
   "pages": 2,
-  "upstream_count": 109,
-  "upstream_records": 109,
+  "upstream_count": 110,
+  "upstream_records": 110,
   "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 154,
   "by_status": {
    "success": 3,
    "scheduled": 10,
-   "unconfirmed": 140
+   "unconfirmed": 141
   },
   "by_precision": {
    "second": 3,
    "minute": 7,
    "hour": 6,
-   "month": 28,
+   "month": 29,
    "day": 5,
    "year": 76,
    "quarter": 28
   },
   "with_published_time": 16,
   "with_published_date": 21,
-  "period_only": 132,
+  "period_only": 133,
   "sites": 22,
   "providers": 31,
   "nearest_net": "2026-11-24T10:17:46.000Z",
@@ -200,13 +200,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "status",
-    "previous_status": "Launch in Flight",
-    "previous_net": "2026-11-24T16:08:59.000Z",
-    "delta_minutes": null,
-    "detected_at": "2026-11-24T18:39:13.733Z"
-   }
+   "change": null
   },
   {
    "id": "c9605b67-8a53-4239-a8ae-577fe3b79799",
@@ -3562,6 +3556,56 @@
    "last_updated": "2023-09-11T12:41:58.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/98b905bb-4060-40a2-b299-2773b6883203/",
+    "info": [],
+    "webcast": []
+   },
+   "change": null
+  },
+  {
+   "id": "9b9db235-8ffb-4569-b09b-0e852ad231a0",
+   "slug": "falcon-9-block-5-amazon-leo-lf-04",
+   "name": "Falcon 9 Block 5 | Amazon Leo (LF-04)",
+   "mission": "Amazon Leo (LF-04)",
+   "mission_type": "Communications",
+   "mission_description": "Amazon Leo, formerly known as Project Kuiper, is a mega constellation of satellites in Low Earth Orbit designed to offer broadband internet access managed by Kuiper Systems LLC, a subsidiary of Amazon. This constellation is planned to be composed of 3,276 satellites. The satellites are projected to be placed in 98 orbital planes in three orbital layers, one at 590 km, 610 km and 630 km altitude.",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Cape Canaveral SFS, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Unknown Pad",
+    "latitude": 28.458,
+    "longitude": -80.528
+   },
+   "status": {
+    "id": 2,
+    "name": "To Be Determined",
+    "abbrev": "TBD",
+    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
+    "kind": "unconfirmed"
+   },
+   "net": "2026-12-31T00:00:00.000Z",
+   "precision": {
+    "kind": "month",
+    "exact": false,
+    "dated": false,
+    "countdown": false,
+    "id": 7,
+    "name": "Month"
+   },
+   "window": {
+    "start": "2026-12-31T00:00:00.000Z",
+    "end": "2026-12-31T00:00:00.000Z"
+   },
+   "last_updated": "2026-11-24T19:21:29.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/9b9db235-8ffb-4569-b09b-0e852ad231a0/",
     "info": [],
     "webcast": []
    },
