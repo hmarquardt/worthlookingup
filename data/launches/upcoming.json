@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-24T07:39:45.887Z",
+ "generated_at": "2026-11-24T09:40:00.995Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-24T07:39:45.887Z",
-  "sha256": "b71a443b5d3166298a1da8f74755b04c5e9d6577859b304d44d5538fc0556810",
+  "retrieved_at": "2026-11-24T09:40:00.995Z",
+  "sha256": "1d88a1716ca32c0cdf8d2956ee5dc5513bb8e7e30df1db3bb69b49128bbd0caf",
   "pages": 2,
   "upstream_count": 125,
   "upstream_records": 125,
@@ -29,8 +29,8 @@
  "stats": {
   "count": 153,
   "by_status": {
-   "unconfirmed": 142,
-   "scheduled": 11
+   "scheduled": 12,
+   "unconfirmed": 141
   },
   "by_precision": {
    "minute": 8,
@@ -74,11 +74,11 @@
     "longitude": 63.564003
    },
    "status": {
-    "id": 8,
-    "name": "To Be Confirmed",
-    "abbrev": "TBC",
-    "description": "Awaiting official confirmation - current date is known with some certainty.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
    "net": "2026-11-24T10:17:00.000Z",
    "precision": {
@@ -93,13 +93,19 @@
     "start": "2026-11-24T10:17:00.000Z",
     "end": "2026-11-24T10:17:00.000Z"
    },
-   "last_updated": "2026-11-24T00:02:27.000Z",
+   "last_updated": "2026-11-24T09:36:16.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8dd5de11-831b-445f-86f0-bffefe0550d9/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "To Be Confirmed",
+    "previous_net": "2026-11-24T10:17:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-24T09:40:00.995Z"
+   }
   },
   {
    "id": "7bdc412b-c965-4517-a131-f57a01189803",
