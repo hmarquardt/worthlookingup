@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-24T22:39:28.661Z",
+ "generated_at": "2026-11-24T23:39:12.181Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-24T22:39:28.661Z",
-  "sha256": "d45e065cbbda2acdb51060c9a549fa2e5ae2de63803ba6f8431568adac83133c",
+  "retrieved_at": "2026-11-24T23:39:12.181Z",
+  "sha256": "bd4332bb8c05638ff308f19e983a44f33f7d019e603146833d28d8d499a12713",
   "pages": 1,
   "upstream_count": 91,
   "upstream_records": 91,
@@ -244,7 +244,7 @@
     "start": "2026-11-25T00:08:00.000Z",
     "end": "2026-11-25T00:48:00.000Z"
    },
-   "last_updated": "2026-11-24T22:35:56.000Z",
+   "last_updated": "2026-11-24T22:40:33.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/c9605b67-8a53-4239-a8ae-577fe3b79799/",
     "info": [],
