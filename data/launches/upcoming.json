@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-23T23:39:19.007Z",
+ "generated_at": "2026-11-24T00:47:40.837Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,21 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-23T23:39:19.007Z",
-  "sha256": "8c17c07038e6be69c091d77b7020c3ea7ae7f2e9ef7d209d10d7b31d026107ec",
+  "retrieved_at": "2026-11-24T00:47:40.837Z",
+  "sha256": "bb9cc0b6e97e916fef0911faccfb1282791e4855798c77f4b4d2d4832c9f1b0c",
   "pages": 2,
-  "upstream_count": 126,
-  "upstream_records": 126,
+  "upstream_count": 125,
+  "upstream_records": 125,
   "announced_total": 478,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 154,
+  "count": 153,
   "by_status": {
-   "success": 1,
    "unconfirmed": 142,
    "scheduled": 11
   },
   "by_precision": {
-   "second": 1,
    "minute": 9,
    "hour": 5,
    "month": 29,
@@ -42,66 +40,16 @@
    "year": 76,
    "quarter": 28
   },
-  "with_published_time": 15,
-  "with_published_date": 21,
+  "with_published_time": 14,
+  "with_published_date": 20,
   "period_only": 133,
   "sites": 22,
   "providers": 31,
-  "nearest_net": "2026-11-22T12:23:56.000Z",
+  "nearest_net": "2026-11-24T10:17:00.000Z",
   "window_days": 180,
   "announced_total": 478
  },
  "launches": [
-  {
-   "id": "951a341f-236b-42fe-a667-4ab2fcf36eac",
-   "slug": "falcon-9-block-5-nrol-136",
-   "name": "Falcon 9 Block 5 | NROL-136",
-   "mission": "NROL-136",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "Fifteenth batch of satellites for a reconnaissance satellite constellation built by SpaceX and Northrop Grumman for the National Reconnaissance Office to provide imaging and other reconnaissance capabilities.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Vandenberg SFB, CA, USA",
-    "timezone": "America/Los_Angeles",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Space Launch Complex 4E",
-    "latitude": 34.632,
-    "longitude": -120.611
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-22T12:23:56.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-11-22T12:16:00.000Z",
-    "end": "2026-11-22T12:46:00.000Z"
-   },
-   "last_updated": "2026-11-23T01:22:16.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/951a341f-236b-42fe-a667-4ab2fcf36eac/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "8dd5de11-831b-445f-86f0-bffefe0550d9",
    "slug": "soyuz-21b-progress-ms-36-97p",
@@ -131,7 +79,7 @@
     "description": "Awaiting official confirmation - current date is known with some certainty.",
     "kind": "unconfirmed"
    },
-   "net": "2026-11-24T10:13:00.000Z",
+   "net": "2026-11-24T10:17:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -141,16 +89,22 @@
     "name": "Minute"
    },
    "window": {
-    "start": "2026-11-24T10:13:00.000Z",
-    "end": "2026-11-24T10:13:00.000Z"
+    "start": "2026-11-24T10:17:00.000Z",
+    "end": "2026-11-24T10:17:00.000Z"
    },
-   "last_updated": "2026-11-22T19:47:17.000Z",
+   "last_updated": "2026-11-24T00:02:27.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8dd5de11-831b-445f-86f0-bffefe0550d9/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-24T10:13:00.000Z",
+    "previous_status": "To Be Confirmed",
+    "delta_minutes": 4,
+    "detected_at": "2026-11-24T00:47:40.837Z"
+   }
   },
   {
    "id": "7bdc412b-c965-4517-a131-f57a01189803",
