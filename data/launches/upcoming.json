@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-24T12:41:26.370Z",
+ "generated_at": "2026-11-24T13:39:01.013Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-24T12:41:26.370Z",
-  "sha256": "bfc2036b2be2078b637b737b3622a154c9aade43a7a114694077da329a6be368",
+  "retrieved_at": "2026-11-24T13:39:01.013Z",
+  "sha256": "880aca73943b8cc29424ae20ae34980c38eb42c5817e3569556cb7fd35c6f1b7",
   "pages": 2,
   "upstream_count": 109,
   "upstream_records": 109,
@@ -29,8 +29,7 @@
  "stats": {
   "count": 153,
   "by_status": {
-   "success": 1,
-   "unknown": 1,
+   "success": 2,
    "scheduled": 11,
    "unconfirmed": 140
   },
@@ -126,11 +125,11 @@
     "longitude": -52.786838
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
-    "kind": "unknown"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
    "net": "2026-11-24T11:14:52.000Z",
    "precision": {
@@ -145,13 +144,19 @@
     "start": "2026-11-24T10:45:00.000Z",
     "end": "2026-11-24T11:14:52.000Z"
    },
-   "last_updated": "2026-11-24T12:41:12.000Z",
+   "last_updated": "2026-11-24T13:32:41.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-11-24T11:14:52.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-24T13:39:01.013Z"
+   }
   },
   {
    "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
@@ -6167,13 +6172,7 @@
     "info": [],
     "webcast": []
    },
-   "change": {
-    "kind": "postponed",
-    "previous_net": "2027-01-22T00:00:00.000Z",
-    "previous_status": "To Be Determined",
-    "delta_minutes": 360,
-    "detected_at": "2026-11-24T12:41:26.370Z"
-   }
+   "change": null
   },
   {
    "id": "0d6ad64c-3aed-4041-b095-e1d951bc6d29",
