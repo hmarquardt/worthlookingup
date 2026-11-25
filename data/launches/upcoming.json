@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-25T22:39:03.082Z",
+ "generated_at": "2026-11-25T23:39:17.414Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-25T22:39:03.082Z",
-  "sha256": "b5ba5251a5c7cfe952ab07e22ff256150eadca2518d09802a188fb16d9c8621d",
+  "retrieved_at": "2026-11-25T23:39:17.414Z",
+  "sha256": "253020b5d50a27a4c32462d677f51c6eb0c685bbcefdd9d3c14b3c4e9b8bd6ad",
   "pages": 1,
-  "upstream_count": 90,
-  "upstream_records": 90,
+  "upstream_count": 89,
+  "upstream_records": 89,
   "announced_total": 475,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 153,
+  "count": 152,
   "by_status": {
-   "success": 3,
+   "success": 2,
    "scheduled": 11,
    "unconfirmed": 139
   },
   "by_precision": {
-   "second": 3,
+   "second": 2,
    "hour": 6,
    "minute": 8,
    "month": 26,
@@ -42,66 +42,16 @@
    "quarter": 31,
    "day": 4
   },
-  "with_published_time": 17,
-  "with_published_date": 21,
+  "with_published_time": 16,
+  "with_published_date": 20,
   "period_only": 132,
   "sites": 22,
   "providers": 31,
-  "nearest_net": "2026-11-24T11:14:52.000Z",
+  "nearest_net": "2026-11-24T16:08:59.000Z",
   "window_days": 180,
   "announced_total": 475
  },
  "launches": [
-  {
-   "id": "7bdc412b-c965-4517-a131-f57a01189803",
-   "slug": "ariane-64-block-2-amazon-leo-le-04",
-   "name": "Ariane 64 Block 2 | Amazon Leo (LE-04)",
-   "mission": "Amazon Leo (LE-04)",
-   "mission_type": "Communications",
-   "mission_description": "Amazon Leo, formerly known as Project Kuiper, is a mega constellation of satellites in Low Earth Orbit that will offer broadband internet access, this constellation will be managed by Kuiper Systems LLC, a subsidiary of Amazon. This constellation is planned to be composed of 3,276 satellites. The satellites are projected to be placed in 98 orbital planes in three orbital layers, one at 590 km, 61…",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Ariane 64 Block 2",
-   "vehicle_family": "Ariane",
-   "provider": "Arianespace",
-   "provider_abbrev": "ASA",
-   "site": {
-    "name": "Guiana Space Centre, French Guiana",
-    "timezone": "America/Cayenne",
-    "country": "French Guiana"
-   },
-   "pad": {
-    "name": "Ariane Launch Area 4",
-    "latitude": 5.256319,
-    "longitude": -52.786838
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-24T11:14:52.000Z",
-   "precision": {
-    "kind": "second",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 0,
-    "name": "Second"
-   },
-   "window": {
-    "start": "2026-11-24T10:45:00.000Z",
-    "end": "2026-11-24T11:14:52.000Z"
-   },
-   "last_updated": "2026-11-25T02:45:37.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/7bdc412b-c965-4517-a131-f57a01189803/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
    "slug": "falcon-9-block-5-ussf-266",
