@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-25T07:39:32.517Z",
+ "generated_at": "2026-11-25T09:39:41.595Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-25T07:39:32.517Z",
-  "sha256": "0f7867116fba634fe5bd34dcd04daad177b8f816475f6763a48749775097b687",
+  "retrieved_at": "2026-11-25T09:39:41.595Z",
+  "sha256": "054165323e2bf891641a4b88f42359b47c82c64e15fe7871ef8a59211e3c988b",
   "pages": 1,
   "upstream_count": 91,
   "upstream_records": 91,
@@ -30,19 +30,19 @@
   "count": 154,
   "by_status": {
    "success": 4,
-   "scheduled": 9,
-   "unconfirmed": 141
+   "scheduled": 10,
+   "unconfirmed": 140
   },
   "by_precision": {
    "second": 4,
    "hour": 6,
-   "minute": 6,
+   "minute": 7,
    "month": 27,
-   "day": 5,
    "year": 75,
-   "quarter": 31
+   "quarter": 31,
+   "day": 4
   },
-  "with_published_time": 16,
+  "with_published_time": 17,
   "with_published_date": 21,
   "period_only": 133,
   "sites": 22,
@@ -825,32 +825,38 @@
     "longitude": -52.786838
    },
    "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
    },
-   "net": "2026-12-17T00:00:00.000Z",
+   "net": "2026-12-18T00:36:00.000Z",
    "precision": {
-    "kind": "day",
-    "exact": false,
+    "kind": "minute",
+    "exact": true,
     "dated": true,
-    "countdown": false,
-    "id": 5,
-    "name": "Day"
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
-    "start": "2026-12-17T00:00:00.000Z",
-    "end": "2026-12-17T00:00:00.000Z"
+    "start": "2026-12-18T00:36:00.000Z",
+    "end": "2026-12-18T00:36:00.000Z"
    },
-   "last_updated": "2026-11-19T11:44:23.000Z",
+   "last_updated": "2026-11-25T09:14:15.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/22e117bf-041c-49d5-9d09-7b180036e143/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-12-17T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": 1476,
+    "detected_at": "2026-11-25T09:39:41.595Z"
+   }
   },
   {
    "id": "0196fba7-dd6c-4ba0-bf71-e1460930ffde",
