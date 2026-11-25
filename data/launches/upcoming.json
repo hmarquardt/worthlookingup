@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-25T15:39:23.862Z",
+ "generated_at": "2026-11-25T17:39:20.557Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,38 +18,38 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-25T15:39:23.862Z",
-  "sha256": "5f710044affc3bef94610c8c760560a22110d12b5683b45afa3980ea8d71c42f",
+  "retrieved_at": "2026-11-25T17:39:20.557Z",
+  "sha256": "18ff0cf0f953abfa307091236ccce7907400f3f4dc0eb48fda88a69ec80c47bf",
   "pages": 1,
   "upstream_count": 91,
   "upstream_records": 91,
-  "announced_total": 476,
+  "announced_total": 475,
   "duplicates_removed": 0
  },
  "stats": {
   "count": 154,
   "by_status": {
    "success": 4,
-   "scheduled": 10,
-   "unconfirmed": 140
+   "scheduled": 11,
+   "unconfirmed": 139
   },
   "by_precision": {
    "second": 4,
    "hour": 6,
-   "minute": 7,
-   "month": 27,
+   "minute": 8,
+   "month": 26,
    "year": 75,
    "quarter": 31,
    "day": 4
   },
-  "with_published_time": 17,
-  "with_published_date": 21,
-  "period_only": 133,
+  "with_published_time": 18,
+  "with_published_date": 22,
+  "period_only": 132,
   "sites": 22,
   "providers": 31,
   "nearest_net": "2026-11-24T10:17:46.000Z",
   "window_days": 180,
-  "announced_total": 476
+  "announced_total": 475
  },
  "launches": [
   {
@@ -544,7 +544,7 @@
     "start": "2026-11-29T15:47:00.000Z",
     "end": "2026-11-29T15:47:00.000Z"
    },
-   "last_updated": "2026-11-24T19:47:23.000Z",
+   "last_updated": "2026-11-25T17:21:30.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d74afbc7-0de5-491c-be05-4e9c31f736ac/",
     "info": [],
@@ -751,6 +751,62 @@
     "webcast": []
    },
    "change": null
+  },
+  {
+   "id": "8bf5f61e-a7e1-41e6-aede-7b87e4beebab",
+   "slug": "falcon-9-block-5-chorus",
+   "name": "Falcon 9 Block 5 | CHORUS",
+   "mission": "CHORUS",
+   "mission_type": "Earth Science",
+   "mission_description": "CHORUS is MDA's next generation Earth observation constellation, consisting of 2 radar satellites (C-band SAR and X-band SAR), in a 53.5 degree 600 km altitude LEO, with the X-band trailing the C-band by 60 minutes. A collaborative multi-sensor constellation, CHORUS will bring together diverse and unique imagery and data sources and provide a new level of near real-time insight and innovative Ear…",
+   "orbit": "Low Earth Orbit",
+   "vehicle": "Falcon 9 Block 5",
+   "vehicle_family": "Falcon",
+   "provider": "SpaceX",
+   "provider_abbrev": "SpX",
+   "site": {
+    "name": "Cape Canaveral SFS, FL, USA",
+    "timezone": "America/New_York",
+    "country": "United States of America"
+   },
+   "pad": {
+    "name": "Space Launch Complex 40",
+    "latitude": 28.56194122,
+    "longitude": -80.57735736
+   },
+   "status": {
+    "id": 1,
+    "name": "Go for Launch",
+    "abbrev": "Go",
+    "description": "Current T-0 confirmed by official or reliable sources.",
+    "kind": "scheduled"
+   },
+   "net": "2026-12-04T12:55:00.000Z",
+   "precision": {
+    "kind": "minute",
+    "exact": true,
+    "dated": true,
+    "countdown": true,
+    "id": 1,
+    "name": "Minute"
+   },
+   "window": {
+    "start": "2026-12-04T12:55:00.000Z",
+    "end": "2026-12-04T13:24:00.000Z"
+   },
+   "last_updated": "2026-11-25T17:33:27.000Z",
+   "links": {
+    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8bf5f61e-a7e1-41e6-aede-7b87e4beebab/",
+    "info": [],
+    "webcast": []
+   },
+   "change": {
+    "kind": "advanced",
+    "previous_net": "2026-12-31T00:00:00.000Z",
+    "previous_status": "To Be Determined",
+    "delta_minutes": -38105,
+    "detected_at": "2026-11-25T17:39:20.557Z"
+   }
   },
   {
    "id": "5ce59e3a-c343-430f-ae4e-e608ba536754",
@@ -3306,56 +3362,6 @@
    "last_updated": "2026-08-11T22:32:15.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/875ba957-be5f-42bd-8a6e-ed98254f572a/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
-  {
-   "id": "8bf5f61e-a7e1-41e6-aede-7b87e4beebab",
-   "slug": "falcon-9-block-5-chorus",
-   "name": "Falcon 9 Block 5 | CHORUS",
-   "mission": "CHORUS",
-   "mission_type": "Earth Science",
-   "mission_description": "CHORUS is MDA's next generation Earth observation constellation, consisting of 2 radar satellites (C-band SAR and X-band SAR), in a 53.5 degree 600 km altitude LEO, with the X-band trailing the C-band by 60 minutes. A collaborative multi-sensor constellation, CHORUS will bring together diverse and unique imagery and data sources and provide a new level of near real-time insight and innovative Ear…",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Falcon 9 Block 5",
-   "vehicle_family": "Falcon",
-   "provider": "SpaceX",
-   "provider_abbrev": "SpX",
-   "site": {
-    "name": "Cape Canaveral SFS, FL, USA",
-    "timezone": "America/New_York",
-    "country": "United States of America"
-   },
-   "pad": {
-    "name": "Unknown Pad",
-    "latitude": 28.458,
-    "longitude": -80.528
-   },
-   "status": {
-    "id": 2,
-    "name": "To Be Determined",
-    "abbrev": "TBD",
-    "description": "Current date is a placeholder or rough estimation based on unreliable or interpreted sources.",
-    "kind": "unconfirmed"
-   },
-   "net": "2026-12-31T00:00:00.000Z",
-   "precision": {
-    "kind": "month",
-    "exact": false,
-    "dated": false,
-    "countdown": false,
-    "id": 7,
-    "name": "Month"
-   },
-   "window": {
-    "start": "2026-12-31T00:00:00.000Z",
-    "end": "2026-12-31T00:00:00.000Z"
-   },
-   "last_updated": "2026-11-24T16:23:22.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/8bf5f61e-a7e1-41e6-aede-7b87e4beebab/",
     "info": [],
     "webcast": []
    },
