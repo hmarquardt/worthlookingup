@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-26T09:39:18.840Z",
+ "generated_at": "2026-11-26T11:39:00.485Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-26T09:39:18.840Z",
-  "sha256": "c3a92cb2755aacb8bc6fe3b37b45eb3713ad77b72788661f8d8a5f4884cc676a",
+  "retrieved_at": "2026-11-26T11:39:00.485Z",
+  "sha256": "049c073566bb0d85f26e15def6b62272d896a366bda1b82a9daf08893a5a8e21",
   "pages": 1,
   "upstream_count": 88,
   "upstream_records": 88,
@@ -29,14 +29,14 @@
  "stats": {
   "count": 151,
   "by_status": {
-   "success": 1,
-   "scheduled": 11,
+   "success": 2,
+   "scheduled": 10,
    "unconfirmed": 139
   },
   "by_precision": {
    "second": 1,
-   "hour": 6,
-   "minute": 8,
+   "minute": 9,
+   "hour": 5,
    "month": 26,
    "year": 75,
    "quarter": 31,
@@ -104,12 +104,12 @@
   },
   {
    "id": "b00f0e9a-48d6-4f26-9cb5-7d19169ff7c4",
-   "slug": "long-march-2d-unknown-payload",
-   "name": "Long March 2D | Unknown Payload",
-   "mission": "Unknown Payload",
-   "mission_type": "Unknown",
-   "mission_description": "Details TBD.",
-   "orbit": "Unknown",
+   "slug": "long-march-2d-yaogan-49-group-01",
+   "name": "Long March 2D | Yaogan 49 Group 01",
+   "mission": "Yaogan 49 Group 01",
+   "mission_type": "Government/Top Secret",
+   "mission_description": "Chinese reconnaissance satellites of unknown functions.",
+   "orbit": "Low Earth Orbit",
    "vehicle": "Long March 2D",
    "vehicle_family": "Long March",
    "provider": "China Aerospace Science and Technology Corporation",
@@ -125,32 +125,38 @@
     "longitude": 102.029008
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 3,
+    "name": "Launch Successful",
+    "abbrev": "Success",
+    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
+    "kind": "success"
    },
-   "net": "2026-11-26T09:35:00.000Z",
+   "net": "2026-11-26T09:38:00.000Z",
    "precision": {
-    "kind": "hour",
+    "kind": "minute",
     "exact": true,
     "dated": true,
     "countdown": true,
-    "id": 2,
-    "name": "Hour"
+    "id": 1,
+    "name": "Minute"
    },
    "window": {
     "start": "2026-11-26T09:30:00.000Z",
     "end": "2026-11-26T09:52:00.000Z"
    },
-   "last_updated": "2026-11-25T13:35:20.000Z",
+   "last_updated": "2026-11-26T11:20:00.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/b00f0e9a-48d6-4f26-9cb5-7d19169ff7c4/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-26T09:35:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 3,
+    "detected_at": "2026-11-26T11:39:00.485Z"
+   }
   },
   {
    "id": "2093e4fc-ac8c-4296-a1b5-deececee6a72",
