@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-27T19:38:49.897Z",
+ "generated_at": "2026-11-27T21:39:28.656Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,89 +18,39 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-27T19:38:49.897Z",
-  "sha256": "7d7e553a03689f2446b6d01aae8476d203f535ad1dba6d022211aaccd7c9f33f",
+  "retrieved_at": "2026-11-27T21:39:28.656Z",
+  "sha256": "1dce1d531b55ba1173dd46bc7dcf68b50106a9987a01d069a7ad489f7945612b",
   "pages": 1,
-  "upstream_count": 87,
-  "upstream_records": 87,
+  "upstream_count": 86,
+  "upstream_records": 86,
   "announced_total": 473,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 150,
+  "count": 149,
   "by_status": {
-   "success": 3,
+   "success": 2,
    "scheduled": 9,
    "unconfirmed": 138
   },
   "by_precision": {
-   "minute": 10,
+   "minute": 9,
    "hour": 4,
    "year": 76,
    "quarter": 31,
    "month": 25,
    "day": 4
   },
-  "with_published_time": 14,
-  "with_published_date": 18,
+  "with_published_time": 13,
+  "with_published_date": 17,
   "period_only": 132,
-  "sites": 22,
+  "sites": 21,
   "providers": 31,
-  "nearest_net": "2026-11-26T09:38:00.000Z",
+  "nearest_net": "2026-11-27T00:15:00.000Z",
   "window_days": 180,
   "announced_total": 473
  },
  "launches": [
-  {
-   "id": "b00f0e9a-48d6-4f26-9cb5-7d19169ff7c4",
-   "slug": "long-march-2d-yaogan-49-group-01",
-   "name": "Long March 2D | Yaogan 49 Group 01",
-   "mission": "Yaogan 49 Group 01",
-   "mission_type": "Government/Top Secret",
-   "mission_description": "Chinese reconnaissance satellites of unknown functions.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Long March 2D",
-   "vehicle_family": "Long March",
-   "provider": "China Aerospace Science and Technology Corporation",
-   "provider_abbrev": "CASC",
-   "site": {
-    "name": "Xichang Satellite Launch Center, People's Republic of China",
-    "timezone": "Asia/Shanghai",
-    "country": "China"
-   },
-   "pad": {
-    "name": "Launch Complex 3 (LC-3/LA-1)",
-    "latitude": 28.247059,
-    "longitude": 102.029008
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-26T09:38:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-26T09:30:00.000Z",
-    "end": "2026-11-26T09:52:00.000Z"
-   },
-   "last_updated": "2026-11-27T02:25:32.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/b00f0e9a-48d6-4f26-9cb5-7d19169ff7c4/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "2093e4fc-ac8c-4296-a1b5-deececee6a72",
    "slug": "electron-night-owls-never-sleep-strix-launch-14",
@@ -343,7 +293,7 @@
     "start": "2026-11-29T15:47:00.000Z",
     "end": "2026-11-29T15:47:00.000Z"
    },
-   "last_updated": "2026-11-26T11:44:54.000Z",
+   "last_updated": "2026-11-27T20:59:10.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/d74afbc7-0de5-491c-be05-4e9c31f736ac/",
     "info": [],
