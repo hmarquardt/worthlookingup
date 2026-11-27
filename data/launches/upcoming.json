@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-27T00:50:28.810Z",
+ "generated_at": "2026-11-27T01:41:56.164Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-27T00:50:28.810Z",
-  "sha256": "99d3c9b2763cff823f05e304c94b4571ddba868f813e6ccaa191afdf5f5d16c9",
+  "retrieved_at": "2026-11-27T01:41:56.164Z",
+  "sha256": "5962037eaab3e93a8f930a08a53cc3bb6ad705fce280180f5169e0ff72476023",
   "pages": 1,
   "upstream_count": 87,
   "upstream_records": 87,
@@ -125,10 +125,10 @@
     "longitude": 177.864469
    },
    "status": {
-    "id": 6,
-    "name": "Launch in Flight",
-    "abbrev": "In Flight",
-    "description": "The launch vehicle has lifted off from the launchpad.",
+    "id": 9,
+    "name": "Payload Deployed",
+    "abbrev": "Deployed",
+    "description": "Deployment of the payload(s) has been confirmed.",
     "kind": "unknown"
    },
    "net": "2026-11-27T00:15:00.000Z",
@@ -144,18 +144,18 @@
     "start": "2026-11-27T00:00:00.000Z",
     "end": "2026-11-27T01:00:00.000Z"
    },
-   "last_updated": "2026-11-27T00:44:15.000Z",
+   "last_updated": "2026-11-27T01:14:59.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/2093e4fc-ac8c-4296-a1b5-deececee6a72/",
     "info": [],
     "webcast": []
    },
    "change": {
-    "kind": "postponed",
-    "previous_net": "2026-11-27T00:05:00.000Z",
-    "previous_status": "Go for Launch",
-    "delta_minutes": 10,
-    "detected_at": "2026-11-27T00:50:28.810Z"
+    "kind": "status",
+    "previous_status": "Launch in Flight",
+    "previous_net": "2026-11-27T00:15:00.000Z",
+    "delta_minutes": null,
+    "detected_at": "2026-11-27T01:41:56.164Z"
    }
   },
   {
