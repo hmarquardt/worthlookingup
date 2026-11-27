@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-26T22:39:08.441Z",
+ "generated_at": "2026-11-27T00:50:28.810Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,8 +18,8 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-26T22:39:08.441Z",
-  "sha256": "abbbe5c51e1f4d35a8baa2280fc207dcf45bea3e67ddbda6dc2f71b81c05ad88",
+  "retrieved_at": "2026-11-27T00:50:28.810Z",
+  "sha256": "99d3c9b2763cff823f05e304c94b4571ddba868f813e6ccaa191afdf5f5d16c9",
   "pages": 1,
   "upstream_count": 87,
   "upstream_records": 87,
@@ -30,7 +30,8 @@
   "count": 150,
   "by_status": {
    "success": 1,
-   "scheduled": 10,
+   "unknown": 1,
+   "scheduled": 9,
    "unconfirmed": 139
   },
   "by_precision": {
@@ -124,13 +125,13 @@
     "longitude": 177.864469
    },
    "status": {
-    "id": 1,
-    "name": "Go for Launch",
-    "abbrev": "Go",
-    "description": "Current T-0 confirmed by official or reliable sources.",
-    "kind": "scheduled"
+    "id": 6,
+    "name": "Launch in Flight",
+    "abbrev": "In Flight",
+    "description": "The launch vehicle has lifted off from the launchpad.",
+    "kind": "unknown"
    },
-   "net": "2026-11-27T00:05:00.000Z",
+   "net": "2026-11-27T00:15:00.000Z",
    "precision": {
     "kind": "minute",
     "exact": true,
@@ -141,15 +142,21 @@
    },
    "window": {
     "start": "2026-11-27T00:00:00.000Z",
-    "end": "2026-11-27T00:05:00.000Z"
+    "end": "2026-11-27T01:00:00.000Z"
    },
-   "last_updated": "2026-11-26T19:42:10.000Z",
+   "last_updated": "2026-11-27T00:44:15.000Z",
    "links": {
     "ll2": "https://ll.thespacedevs.com/2.3.0/launches/2093e4fc-ac8c-4296-a1b5-deececee6a72/",
     "info": [],
     "webcast": []
    },
-   "change": null
+   "change": {
+    "kind": "postponed",
+    "previous_net": "2026-11-27T00:05:00.000Z",
+    "previous_status": "Go for Launch",
+    "delta_minutes": 10,
+    "detected_at": "2026-11-27T00:50:28.810Z"
+   }
   },
   {
    "id": "a6421db3-7c8a-4cf7-a659-cec195140f7f",
