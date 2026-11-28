@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-28T12:39:41.487Z",
+ "generated_at": "2026-11-28T15:39:06.781Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,12 +18,12 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-28T12:39:41.487Z",
-  "sha256": "b9df9d11bbb846129ef67246c7a9f88d704e2b29a2e381f5d8d8db991d1478ed",
+  "retrieved_at": "2026-11-28T15:39:06.781Z",
+  "sha256": "6e2b0eee657c2ee918a7491cb8ac1ee2a6ecc7a388a568ed0c11235a3e98e8d5",
   "pages": 1,
   "upstream_count": 85,
   "upstream_records": 85,
-  "announced_total": 472,
+  "announced_total": 471,
   "duplicates_removed": 0
  },
  "stats": {
@@ -49,7 +49,7 @@
   "providers": 31,
   "nearest_net": "2026-11-27T13:05:00.000Z",
   "window_days": 180,
-  "announced_total": 472
+  "announced_total": 471
  },
  "launches": [
   {
