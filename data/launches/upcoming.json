@@ -1,7 +1,7 @@
 {
  "schema": "worthlookingup.launches/1",
  "available": true,
- "generated_at": "2026-11-28T11:38:52.261Z",
+ "generated_at": "2026-11-28T12:39:41.487Z",
  "refresh_interval_minutes": 30,
  "stale_after_minutes": 180,
  "stale": false,
@@ -18,23 +18,23 @@
    "unauthenticated_requests_per_hour": 15,
    "max_pages_per_refresh": 3
   },
-  "retrieved_at": "2026-11-28T11:38:52.261Z",
-  "sha256": "d298f31d0c4cf13152dd5bbc17aff502e9202b8fcef8e7db9e661b629ad2201a",
+  "retrieved_at": "2026-11-28T12:39:41.487Z",
+  "sha256": "b9df9d11bbb846129ef67246c7a9f88d704e2b29a2e381f5d8d8db991d1478ed",
   "pages": 1,
-  "upstream_count": 86,
-  "upstream_records": 86,
+  "upstream_count": 85,
+  "upstream_records": 85,
   "announced_total": 472,
   "duplicates_removed": 0
  },
  "stats": {
-  "count": 149,
+  "count": 148,
   "by_status": {
-   "success": 2,
+   "success": 1,
    "scheduled": 9,
    "unconfirmed": 138
   },
   "by_precision": {
-   "minute": 8,
+   "minute": 7,
    "hour": 4,
    "second": 1,
    "year": 76,
@@ -42,66 +42,16 @@
    "month": 25,
    "day": 4
   },
-  "with_published_time": 13,
-  "with_published_date": 17,
+  "with_published_time": 12,
+  "with_published_date": 16,
   "period_only": 132,
   "sites": 21,
   "providers": 31,
-  "nearest_net": "2026-11-27T00:15:00.000Z",
+  "nearest_net": "2026-11-27T13:05:00.000Z",
   "window_days": 180,
   "announced_total": 472
  },
  "launches": [
-  {
-   "id": "2093e4fc-ac8c-4296-a1b5-deececee6a72",
-   "slug": "electron-night-owls-never-sleep-strix-launch-14",
-   "name": "Electron | Night Owls Never Sleep (StriX Launch 14)",
-   "mission": "Night Owls Never Sleep (StriX Launch 14)",
-   "mission_type": "Earth Science",
-   "mission_description": "Synthetic aperture radar satellite for Japanese Earth imaging company Synspective.",
-   "orbit": "Low Earth Orbit",
-   "vehicle": "Electron",
-   "vehicle_family": null,
-   "provider": "Rocket Lab",
-   "provider_abbrev": "RL",
-   "site": {
-    "name": "Rocket Lab Launch Complex 1, Mahia Peninsula, New Zealand",
-    "timezone": "Pacific/Auckland",
-    "country": "New Zealand"
-   },
-   "pad": {
-    "name": "Rocket Lab Launch Complex 1B",
-    "latitude": -39.262833,
-    "longitude": 177.864469
-   },
-   "status": {
-    "id": 3,
-    "name": "Launch Successful",
-    "abbrev": "Success",
-    "description": "The launch vehicle successfully inserted its payload(s) into the target orbit(s).",
-    "kind": "success"
-   },
-   "net": "2026-11-27T00:15:00.000Z",
-   "precision": {
-    "kind": "minute",
-    "exact": true,
-    "dated": true,
-    "countdown": true,
-    "id": 1,
-    "name": "Minute"
-   },
-   "window": {
-    "start": "2026-11-27T00:00:00.000Z",
-    "end": "2026-11-27T01:00:00.000Z"
-   },
-   "last_updated": "2026-11-27T04:48:55.000Z",
-   "links": {
-    "ll2": "https://ll.thespacedevs.com/2.3.0/launches/2093e4fc-ac8c-4296-a1b5-deececee6a72/",
-    "info": [],
-    "webcast": []
-   },
-   "change": null
-  },
   {
    "id": "a6421db3-7c8a-4cf7-a659-cec195140f7f",
    "slug": "long-march-6a-yaogan-50-04",
